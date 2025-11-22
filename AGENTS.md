@@ -38,10 +38,11 @@ This file defines the operating protocols for any Large Language Model (LLM), Ag
 * **Quality Gates:** After dependency updates, ALL quality gates MUST pass: `pnpm lint`, `pnpm check`, `pnpm build`.
 * **Security Priority:** Security patches should be applied promptly, even if they require minor code adjustments.
 
-## 6. Lessons Learned from UAT (Phase 2)
+## 6. Lessons Learned from UAT (Phase 2+)
 * **DEFECT-001:** Always implement explicit imports. Missing imports cause TypeScript compilation failures.
 * **DEFECT-002:** Outdated dependencies create security risks and compatibility issues. Use migration tools to reduce manual work.
 * **DEFECT-003:** Legacy APIs should be migrated to modern equivalents during major version upgrades to prevent future breaking changes.
+* **DEFECT-005:** CSS must be imported in component frontmatter, not linked via `<link href="/src/...">`. Dev server masks this issue.
 
 ## 7. Quality Checklist (Pre-Commit)
 Before committing ANY code, verify:
@@ -50,7 +51,16 @@ Before committing ANY code, verify:
 - [ ] `pnpm build` succeeds (all routes generate)
 - [ ] All imports are explicit (no missing component imports)
 - [ ] Content follows schemas in `src/content/config.ts`
+- [ ] CSS files are imported in frontmatter, never linked to `/src/` paths
 - [ ] Commit message follows Conventional Commits format
+
+## 7.1. Pre-Deployment Checklist
+Before deploying to production:
+- [ ] `pnpm build` completes without errors
+- [ ] `pnpm preview` serves the production build locally
+- [ ] Verify all styles load correctly in preview
+- [ ] Check browser console for 404 errors or missing assets
+- [ ] Test critical user paths (home, concepts, patterns)
 
 ## 8. Reference Documents
 * **Content Schemas:** `src/content/config.ts`
