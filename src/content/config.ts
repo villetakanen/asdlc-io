@@ -18,7 +18,7 @@ const patterns = defineCollection({
   schema: z.object({
     title: z.string(),
     complexity: z.enum(["Low", "Medium", "High"]),
-    status: z.enum(["Draft", "Review", "Approved"]),
+    status: z.enum(["Draft", "Review", "Approved", "Experimental"]),
     diagram_source: z.string().optional(),
     publishDate: z.coerce.date(),
   }),

@@ -1,7 +1,7 @@
 ---
 title: "Supervisor Agent Pattern"
 complexity: "Medium"
-status: "Approved"
+status: "Experimental"
 diagram_source: "https://example.com/diagrams/supervisor-agent"
 publishDate: 2025-01-10
 ---
