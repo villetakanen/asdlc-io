@@ -1,25 +1,26 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const concepts = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/concepts" }),
   schema: z.object({
     title: z.string(),
     definition: z.string().max(200, "Definition must be < 200 chars for quick scanning."),
     tags: z.array(z.string()),
     related_concepts: z.array(z.string()).optional(),
     maturity: z.enum(["Theoretical", "Experimental", "Standard", "Deprecated"]),
-    lastUpdated: z.date(),
+    lastUpdated: z.coerce.date(),
   }),
 });
 
 const patterns = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/patterns" }),
   schema: z.object({
     title: z.string(),
     complexity: z.enum(["Low", "Medium", "High"]),
     status: z.enum(["Draft", "Review", "Approved"]),
     diagram_source: z.string().optional(),
-    publishDate: z.date(),
+    publishDate: z.coerce.date(),
   }),
 });
 

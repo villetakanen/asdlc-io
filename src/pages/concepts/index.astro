@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import SpecCard from "../../components/SpecCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const concepts = await getCollection("concepts");
+const sortedConcepts = concepts.sort(
+  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
+);
+---
+
+<BaseLayout title="Concepts" description="Defined concepts in the ASDLC Knowledge Base">
+  <h1>Defined Concepts</h1>
+
+  <div class="spec-grid">
+    {sortedConcepts.map((concept) => (
+      <SpecCard
+        title={concept.data.title}
+        url={`/concepts/${concept.id}`}
+        meta={`${concept.data.maturity} | ${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+        tags={concept.data.tags}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--s-gap);
+  }
+</style>

@@ -1,11 +1,20 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": {
-    "ignore": ["dist", "node_modules", ".astro", "public", "pnpm-lock.yaml"],
-    "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.json", "src/**/*.astro"]
+    "includes": [
+      "**/src/**/*.ts",
+      "**/src/**/*.js",
+      "**/src/**/*.json",
+      "**/src/**/*.astro",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/.astro",
+      "!**/public",
+      "!**/pnpm-lock.yaml"
+    ]
   },
-  "organizeImports": { "enabled": true },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
@@ -26,11 +35,14 @@
   "javascript": { "globals": ["Astro", "Fragment"] },
   "overrides": [
     {
-      "include": ["*.astro"],
+      "includes": ["**/*.astro"],
       "linter": {
         "rules": {
           "style": { "useConst": "off", "useImportType": "off" },
-          "correctness": { "noUnusedVariables": "off" }
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
         }
       },
       "formatter": { "attributePosition": "auto" }

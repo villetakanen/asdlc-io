@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    {description && <meta name="description" content={description} />}
+    <title>{title} | ASDLC Knowledge Base</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <header class="border-box" style="margin-bottom: var(--s-gap);">
+      <nav style="display: flex; gap: 2rem; align-items: center;">
+        <a href="/" style="font-weight: 600; text-decoration: none;">ASDLC</a>
+        <a href="/concepts">Concepts</a>
+        <a href="/patterns">Patterns</a>
+      </nav>
+    </header>
+    <main class="grid-layout">
+      <slot />
+    </main>
+    <footer class="border-box" style="margin-top: var(--s-gap); text-align: center; font-family: var(--f-mono); font-size: 0.875rem; color: var(--c-dim);">
+      <p>ASDLC Knowledge Base © {new Date().getFullYear()}</p>
+    </footer>
+  </body>
+</html>

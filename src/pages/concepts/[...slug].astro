@@ -1,0 +1,143 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const concepts = await getCollection("concepts");
+  return concepts.map((concept) => ({
+    params: { slug: concept.id },
+    props: { concept },
+  }));
+}
+
+interface Props {
+  concept: CollectionEntry<"concepts">;
+}
+
+const { concept } = Astro.props;
+const { Content } = await render(concept);
+---
+
+<BaseLayout title={concept.data.title} description={concept.data.definition}>
+  <article class="concept-detail">
+    <header class="spec-header border-box">
+      <h1>{concept.data.title}</h1>
+      <dl class="spec-meta mono">
+        <div>
+          <dt>Definition:</dt>
+          <dd>{concept.data.definition}</dd>
+        </div>
+        <div>
+          <dt>Maturity:</dt>
+          <dd>{concept.data.maturity}</dd>
+        </div>
+        <div>
+          <dt>Last Updated:</dt>
+          <dd>{concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</dd>
+        </div>
+        {concept.data.tags && concept.data.tags.length > 0 && (
+          <div>
+            <dt>Tags:</dt>
+            <dd>{concept.data.tags.join(', ')}</dd>
+          </div>
+        )}
+        {concept.data.related_concepts && concept.data.related_concepts.length > 0 && (
+          <div>
+            <dt>Related:</dt>
+            <dd>{concept.data.related_concepts.join(', ')}</dd>
+          </div>
+        )}
+      </dl>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .concept-detail {
+    max-width: 800px;
+  }
+
+  .spec-header {
+    margin-bottom: 2rem;
+  }
+
+  .spec-header h1 {
+    margin-bottom: 1rem;
+  }
+
+  .spec-meta {
+    font-family: var(--f-mono);
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .spec-meta div {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+  }
+
+  .spec-meta dt {
+    font-weight: 600;
+    color: var(--c-dim);
+  }
+
+  .spec-meta dd {
+    margin: 0;
+  }
+
+  .prose {
+    line-height: 1.7;
+  }
+
+  .prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose pre {
+    background: #f4f4f4;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--c-border);
+  }
+
+  .prose code {
+    background: #f4f4f4;
+    padding: 0.2em 0.4em;
+    font-family: var(--f-mono);
+    font-size: 0.9em;
+  }
+
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+  }
+</style>
