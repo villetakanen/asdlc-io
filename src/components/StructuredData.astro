@@ -1,0 +1,81 @@
+---
+/**
+ * StructuredData.astro
+ *
+ * Generates Schema.org JSON-LD structured data for SEO and AEO.
+ * Transforms our Zod content schemas into Schema.org markup.
+ *
+ * Supported types: TechArticle, Article, WebSite, Organization
+ */
+
+type JsonLdValue = string | number | boolean | Date | JsonLdObject | JsonLdArray | undefined;
+type JsonLdArray = JsonLdValue[];
+interface JsonLdObject {
+  [key: string]: JsonLdValue;
+}
+
+export interface Props {
+  type: "TechArticle" | "Article" | "WebSite" | "Organization";
+  data: JsonLdObject;
+}
+
+const { type, data } = Astro.props;
+
+// Generate Schema.org JSON-LD based on type
+let structuredData: JsonLdObject = {
+  "@context": "https://schema.org",
+  "@type": type,
+};
+
+// Map data to Schema.org properties based on type
+if (type === "TechArticle" || type === "Article") {
+  structuredData = {
+    ...structuredData,
+    headline: data.title || data.headline,
+    description: data.description || data.definition,
+    author: {
+      "@type": "Organization",
+      name: "ASDLC.io Contributors",
+      url: "https://asdlc.io",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ASDLC.io",
+      url: "https://asdlc.io",
+    },
+    ...(data.datePublished && { datePublished: data.datePublished }),
+    ...(data.dateModified && { dateModified: data.dateModified }),
+    ...(data.keywords && { keywords: data.keywords }),
+    ...(data.url && { url: data.url }),
+    ...(data.image && { image: data.image }),
+  };
+
+  // Add custom properties for technical content
+  if (type === "TechArticle") {
+    if (data.proficiencyLevel || data.maturity) {
+      structuredData.proficiencyLevel = data.proficiencyLevel || data.maturity;
+    }
+    if (data.complexity) {
+      structuredData.articleBody = `Complexity: ${data.complexity}`;
+    }
+  }
+} else if (type === "WebSite") {
+  structuredData = {
+    ...structuredData,
+    name: data.name,
+    url: data.url,
+    description: data.description,
+    ...(data.potentialAction && { potentialAction: data.potentialAction }),
+  };
+} else if (type === "Organization") {
+  structuredData = {
+    ...structuredData,
+    name: data.name,
+    url: data.url,
+    ...(data.logo && { logo: data.logo }),
+    ...(data.description && { description: data.description }),
+  };
+}
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData, null, 2)} />
