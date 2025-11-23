@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
+import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -17,7 +18,22 @@ interface Props {
 
 const { concept } = Astro.props;
 const { Content } = await render(concept);
+
+// Generate canonical URL for structured data
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Prepare structured data for Schema.org TechArticle
+const structuredDataProps = {
+  title: concept.data.title,
+  description: concept.data.definition,
+  keywords: concept.data.tags.join(", "),
+  dateModified: concept.data.lastUpdated.toISOString(),
+  maturity: concept.data.maturity,
+  url: canonicalURL.toString(),
+};
 ---
+
+<StructuredData type="TechArticle" data={structuredDataProps} />
 
 <BaseLayout title={concept.data.title} description={concept.data.definition}>
   <article class="concept-detail">
@@ -34,7 +50,7 @@ const { Content } = await render(concept);
         </div>
         <div>
           <dt>Last Updated:</dt>
-          <dd>{concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</dd>
+          <dd><time datetime={concept.data.lastUpdated.toISOString()}>{concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
         </div>
         {concept.data.tags && concept.data.tags.length > 0 && (
           <div>

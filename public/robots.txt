@@ -1,0 +1,7 @@
+# robots.txt for ASDLC.io
+# Allow all crawlers to index all content
+
+User-agent: *
+Allow: /
+
+Sitemap: https://asdlc.io/sitemap-index.xml

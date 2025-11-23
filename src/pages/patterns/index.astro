@@ -10,18 +10,20 @@ const sortedPatterns = patterns.sort(
 ---
 
 <BaseLayout title="Patterns" description="Architectural patterns in the ASDLC Knowledge Base">
-  <h1>Architectural Patterns</h1>
+  <section>
+    <h1>Architectural Patterns</h1>
 
-  <div class="spec-grid">
-    {sortedPatterns.map((pattern) => (
-      <SpecCard
-        title={pattern.data.title}
-        url={`/patterns/${pattern.id}`}
-        meta={`${pattern.data.complexity} | ${pattern.data.status} | ${pattern.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-        tags={[pattern.data.complexity, pattern.data.status]}
-      />
-    ))}
-  </div>
+    <div class="spec-grid">
+      {sortedPatterns.map((pattern) => (
+        <SpecCard
+          title={pattern.data.title}
+          url={`/patterns/${pattern.id}`}
+          meta={`${pattern.data.complexity} | ${pattern.data.status} | ${pattern.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+          tags={[pattern.data.complexity, pattern.data.status]}
+        />
+      ))}
+    </div>
+  </section>
 </BaseLayout>
 
 <style>

@@ -10,18 +10,20 @@ const sortedConcepts = concepts.sort(
 ---
 
 <BaseLayout title="Concepts" description="Defined concepts in the ASDLC Knowledge Base">
-  <h1>Defined Concepts</h1>
+  <section>
+    <h1>Defined Concepts</h1>
 
-  <div class="spec-grid">
-    {sortedConcepts.map((concept) => (
-      <SpecCard
-        title={concept.data.title}
-        url={`/concepts/${concept.id}`}
-        meta={`${concept.data.maturity} | ${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-        tags={concept.data.tags}
-      />
-    ))}
-  </div>
+    <div class="spec-grid">
+      {sortedConcepts.map((concept) => (
+        <SpecCard
+          title={concept.data.title}
+          url={`/concepts/${concept.id}`}
+          meta={`${concept.data.maturity} | ${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+          tags={concept.data.tags}
+        />
+      ))}
+    </div>
+  </section>
 </BaseLayout>
 
 <style>

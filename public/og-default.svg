@@ -1,0 +1,43 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+
+  <!-- Grid lines (spec-sheet aesthetic) -->
+  <line x1="0" y1="157.5" x2="1200" y2="157.5" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="0" y1="315" x2="1200" y2="315" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="0" y1="472.5" x2="1200" y2="472.5" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="300" y1="0" x2="300" y2="630" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="630" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="900" y1="0" x2="900" y2="630" stroke="#e0e0e0" stroke-width="1"/>
+
+  <!-- Border frame -->
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#333333" stroke-width="2"/>
+
+  <!-- Main title -->
+  <text x="600" y="250" font-family="'Courier New', monospace" font-size="72" font-weight="600" fill="#333333" text-anchor="middle">
+    ASDLC.io
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="320" font-family="'Courier New', monospace" font-size="28" fill="#666666" text-anchor="middle">
+    Agentic Software Development Life Cycle
+  </text>
+
+  <!-- Bottom tagline -->
+  <text x="600" y="480" font-family="'Courier New', monospace" font-size="20" fill="#999999" text-anchor="middle">
+    AI-Augmented Software Engineering Knowledge Base
+  </text>
+
+  <!-- Corner markers (spec-sheet detail) -->
+  <line x1="40" y1="40" x2="60" y2="40" stroke="#333333" stroke-width="3"/>
+  <line x1="40" y1="40" x2="40" y2="60" stroke="#333333" stroke-width="3"/>
+
+  <line x1="1160" y1="40" x2="1140" y2="40" stroke="#333333" stroke-width="3"/>
+  <line x1="1160" y1="40" x2="1160" y2="60" stroke="#333333" stroke-width="3"/>
+
+  <line x1="40" y1="590" x2="60" y2="590" stroke="#333333" stroke-width="3"/>
+  <line x1="40" y1="590" x2="40" y2="570" stroke="#333333" stroke-width="3"/>
+
+  <line x1="1160" y1="590" x2="1140" y2="590" stroke="#333333" stroke-width="3"/>
+  <line x1="1160" y1="590" x2="1160" y2="570" stroke="#333333" stroke-width="3"/>
+</svg>
