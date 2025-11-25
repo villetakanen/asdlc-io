@@ -1,14 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
-  --c-bg: #ffffff;
-  --c-fg: #050505;
-  --c-dim: #666666;
-  --c-border: #000000;
-  --c-accent: #0000ff;
-  --f-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --f-mono: "JetBrains Mono", "SF Mono", monospace;
+  /* --- The Paper & Ink --- */
+  --c-bg-page: #F4F4F0;
+  --c-bg-surface: #EBEBE6;
+  --c-border: #D6D6D1;
+
+  /* The Text */
+  --c-text-primary: #111111;
+  --c-text-secondary: #585855;
+
+  /* --- Branding --- */
+  --c-brand: #F04E30;
+  --c-brand-hover: #D13A1E;
+
+  /* --- Functional / Status Indicators --- */
+  --c-success: #00703C;
+  --c-success-bg: #E1F0E5;
+  --c-warning: #946800;
+  --c-warning-bg: #FFF5CC;
+  --c-error: #CC0000;
+  --c-error-bg: #FFEBEB;
+
+  /* --- Code Syntax Highlighting Base --- */
+  --c-code-bg: #EBEBE6;
+  --c-code-text: #2A2A2A;
+
+  /* --- Fonts & Spacing --- */
+  --f-sans: "Archivo", sans-serif;
+  --f-mono: "B612 Mono", monospace;
   --s-grid: 24px;
   --s-gap: 1.5rem;
+
+  /* --- Legacy Mappings --- */
+  --c-bg: var(--c-bg-page);
+  --c-fg: var(--c-text-primary);
+  --c-dim: var(--c-text-secondary);
+  --c-accent: var(--c-brand);
 }
+
 *,
 *::before,
 *::after {
@@ -16,54 +46,70 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: var(--f-sans);
-  background-color: var(--c-bg);
-  color: var(--c-fg);
+  background-color: var(--c-bg-page);
+  color: var(--c-text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
 }
+
 h1,
 h2,
 h3 {
   font-weight: 600;
-  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 110;
   line-height: 1.1;
+  text-transform: uppercase;
 }
+
 h1 {
   font-size: 2.5rem;
+  letter-spacing: 0.02em;
 }
+
 h2 {
   font-size: 1.75rem;
   margin-bottom: 1rem;
+  letter-spacing: 0.04em;
 }
+
 h3 {
   font-size: 1.25rem;
   font-family: var(--f-mono);
+  letter-spacing: 0.06em;
 }
+
 a {
-  color: var(--c-fg);
+  color: var(--c-text-primary);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
+
 a:hover {
-  color: var(--c-accent);
+  color: var(--c-brand);
   text-decoration-style: double;
 }
+
 code {
   font-family: var(--f-mono);
   font-size: 0.9em;
-  background: #f4f4f4;
+  background: var(--c-bg-surface);
   padding: 0.2em 0.4em;
 }
+
 .mono {
   font-family: var(--f-mono);
 }
+
 .border-box {
   border: 1px solid var(--c-border);
   padding: var(--s-gap);
 }
+
 .grid-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -72,42 +118,89 @@ code {
   margin: 0 auto;
   padding: var(--s-gap);
 }
+
+/* --- Utilities --- */
+.spec-card {
+  background: var(--c-bg-page);
+  border: 1px solid var(--c-border);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--c-border);
+  font-family: var(--f-mono);
+  background: var(--c-bg-surface);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--c-text-primary);
+  color: var(--c-bg-page);
+  text-decoration: none;
+}
+
+.nav-link {
+  color: var(--c-text-primary);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background: var(--c-text-primary);
+  color: var(--c-bg-page);
+  text-decoration: none;
+}
+
+/* --- Prose --- */
 .prose {
   max-width: 65ch;
   line-height: 1.7;
 }
+
 .prose h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+
 .prose h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
+
 .prose p {
   margin-bottom: 1rem;
 }
+
 .prose ul,
 .prose ol {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
+
 .prose li {
   margin-bottom: 0.5rem;
 }
+
 .prose pre {
-  background: #f4f4f4;
+  background: var(--c-code-bg);
   padding: 1rem;
   overflow-x: auto;
   margin-bottom: 1rem;
-  border: 1px solid var(--c-border);
+  border-left: 3px solid var(--c-brand);
+  color: var(--c-code-text);
 }
+
 .prose code {
-  background: #f4f4f4;
+  background: var(--c-bg-surface);
   padding: 0.2em 0.4em;
   font-family: var(--f-mono);
   font-size: 0.9em;
 }
+
 .prose pre code {
   background: transparent;
   padding: 0;

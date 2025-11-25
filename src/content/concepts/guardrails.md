@@ -7,11 +7,11 @@ related_concepts: ["context-gates"]
 lastUpdated: 2025-11-25
 ---
 
-# The Industry Conflict
+## The Industry Conflict
 
 Standard definitions of "Guardrails" conflate two opposing engineering concepts: architectural firewalls (deterministic) and prompt engineering (probabilistic). This ambiguity leads to agents that are "safe" but functionally paralyzed.
 
-# The ASDLC Definition
+## The ASDLC Definition
 
 To resolve this, we map "Guardrails" to the **Agent Constitution** and **Gates** (e.g. Quality Gates, Firewalls).
 
@@ -19,7 +19,7 @@ To resolve this, we map "Guardrails" to the **Agent Constitution** and **Gates**
 
 The Agent Constitution is a set of probabilistic, semantic instructions acting as the model's "internal conscience." Unlike a firewall that passively intercepts errors, the Constitution actively steers the agent's intent, ensuring it understands how to act correctly to avoid colliding with hard infrastructure.
 
-# Comparison of Controls
+## Comparison of Controls
 
 | Feature | Gates (Standard "Guardrails") | Agent Constitution (ASDLC) |
 | :--- | :--- | :--- |
