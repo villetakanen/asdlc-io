@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 interface Props {
   title: string;
@@ -49,18 +51,11 @@ const pageTitle = `${title} | ASDLC.io`;
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
-    <header class="border-box" style="margin-bottom: var(--s-gap);">
-      <nav style="display: flex; gap: 2rem; align-items: center;">
-        <a href="/" style="font-weight: 600; text-decoration: none;">ASDLC</a>
-        <a href="/concepts">Concepts</a>
-        <a href="/patterns">Patterns</a>
-      </nav>
-    </header>
+
+    <Header />
     <main class="grid-layout">
       <slot />
     </main>
-    <footer class="border-box" style="margin-top: var(--s-gap); text-align: center; font-family: var(--f-mono); font-size: 0.875rem; color: var(--c-dim);">
-      <p>ASDLC.io © {new Date().getFullYear()} | Licensed under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a></p>
-    </footer>
+    <Footer />
   </body>
 </html>

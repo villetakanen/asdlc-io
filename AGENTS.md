@@ -9,7 +9,7 @@ This file defines the operating protocols for any Large Language Model (LLM), Ag
 ## 1. Core Directives (Global)
 * **No "Vibe Coding":** Do not guess types. Do not use `any`. Do not hallucinate imports. ALL component imports in `.astro` files MUST be explicitly declared (enforced by Astro 5+).
 * **Schema First:** Before generating any `.md` or `.mdx` content, you MUST read `src/content/config.ts`. All frontmatter must validate against the Zod schemas defined there.
-* **Style:** Adhere to the "Spec-Sheet" aesthetic defined in `src/styles/global.css`. Do not add inline styles or Tailwind classes.
+* **Style:** Adhere to the "Industrial/Spec-Sheet" aesthetic (Archivo + B612 Mono) defined in `src/styles/global.css`. Do not add inline styles or Tailwind classes.
 * **Explicit Imports:** Every `.astro` file MUST explicitly import all components and layouts used. No implicit component resolution.
 * **Modern APIs Only:** Always use the latest recommended APIs. For Astro 5+, use Content Layer API (`glob` loader) instead of legacy `type: 'content'` collections.
 * **Dependency Currency:** Dependencies SHOULD be kept up-to-date. When major version updates occur, follow official migration guides and use provided migration tools.
@@ -183,7 +183,7 @@ Based on `docs/backlog/PBI-0003-Review-Comparison.md`:
 #### Mistake #5: Design System Violations
 ```diff
 - "Add Tailwind for responsive layouts"
-+ "Use existing spec-sheet grid system from global.css"
++ "Use existing industrial spec-sheet grid system and typography (Archivo/B612) from global.css"
 ```
 
 ### 8.5. Validation Checklist for External Submissions
