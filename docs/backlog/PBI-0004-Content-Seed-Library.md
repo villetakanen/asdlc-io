@@ -42,7 +42,7 @@ As a **Content Strategist**, I want **a populated library of core concepts and p
 
 ### 4.2. Patterns Collection (`src/content/patterns/`)
 *   [ ] **Update/Verify:** `supervisor-agent-pattern.md` (Ensure alignment)
-*   [ ] **Create:** `context-gates.md`
+*   [x] **Create:** `context-gates.md`
     *   *Complexity:* `Medium`
     *   *Status:* `Approved`
 *   [ ] **Create:** `repository-mapping.md`
