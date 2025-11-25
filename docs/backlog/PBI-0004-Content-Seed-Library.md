@@ -24,7 +24,7 @@ As a **Content Strategist**, I want **a populated library of core concepts and p
 *   [ ] **Create:** `agentic-sdlc.md`
     *   *Tags:* `["Core", "SDLC"]`
     *   *Maturity:* `Standard`
-*   [ ] **Create:** `model-context-protocol.md`
+*   [x] **Create:** `model-context-protocol.md`
     *   *Tags:* `["Infrastructure", "Standards"]`
     *   *Maturity:* `Standard`
 *   [ ] **Create:** `agents-md.md` (Title: "AGENTS.md")
