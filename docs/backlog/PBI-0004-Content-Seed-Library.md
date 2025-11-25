@@ -76,3 +76,7 @@ As a **Content Strategist**, I want **a populated library of core concepts and p
 1. [ ] 11 Markdown files created/updated.
 2. [ ] All files pass the Astro build process.
 3. [ ] Committed to `dev` branch.
+
+## 9. Change Log / Pivots
+*   **2025-11-25:** Added `guardrails.md` to `src/content/concepts/` as a disambiguation page. This was not in the original scope but is necessary to clarify the distinction between "Gates" and "Constitutions" for the third milestone. The term "Guardrail" is explicitly deprecated in the ASDLC context.
+*   **2025-11-25:** Identified "Quality Gates" as a future concept to be documented. This will be handled in a subsequent PBI.
