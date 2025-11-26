@@ -20,38 +20,38 @@ As a **Content Strategist**, I want **a populated library of core concepts and p
 ## 4. Implementation Tasks
 
 ### 4.1. Concepts Collection (`src/content/concepts/`)
-*   [ ] **Update/Verify:** `context-engineering.md` (Ensure alignment with new definition if changed)
-*   [ ] **Create:** `agentic-sdlc.md`
+*   [x] **Update/Verify:** `context-engineering.md` (Ensure alignment with new definition if changed)
+*   [x] **Create:** `agentic-sdlc.md`
     *   *Tags:* `["Core", "SDLC"]`
     *   *Maturity:* `Standard`
 *   [x] **Create:** `model-context-protocol.md`
     *   *Tags:* `["Infrastructure", "Standards"]`
     *   *Maturity:* `Standard`
-*   [ ] **Create:** `agents-md.md` (Title: "AGENTS.md")
+*   [x] **Create:** `agents-md.md` (Title: "AGENTS.md")
     *   *Tags:* `["Standards", "Config"]`
     *   *Maturity:* `Experimental`
-*   [ ] **Create:** `quantum-backlog.md`
+*   [x] **Create:** `quantum-backlog.md`
     *   *Tags:* `["Agile", "Management"]`
     *   *Maturity:* `Theoretical`
-*   [ ] **Create:** `levels-of-autonomy.md`
+*   [x] **Create:** `levels-of-autonomy.md`
     *   *Tags:* `["Taxonomy"]`
     *   *Maturity:* `Standard`
-*   [ ] **Create:** `cognitive-lifecycle.md`
+*   [x] **Create:** `cognitive-lifecycle.md`
     *   *Tags:* `["SDLC", "Process"]`
     *   *Maturity:* `Theoretical`
 
 ### 4.2. Patterns Collection (`src/content/patterns/`)
-*   [ ] **Update/Verify:** `supervisor-agent-pattern.md` (Ensure alignment)
+*   [x] **Update/Verify:** `supervisor-agent-pattern.md` (Ensure alignment)
 *   [x] **Create:** `context-gates.md`
     *   *Complexity:* `Medium`
     *   *Status:* `Approved`
-*   [ ] **Create:** `repository-mapping.md`
+*   [x] **Create:** `repository-mapping.md`
     *   *Complexity:* `High`
     *   *Status:* `Approved`
-*   [ ] **Create:** `verification-loops.md`
+*   [x] **Create:** `verification-loops.md`
     *   *Complexity:* `Medium`
     *   *Status:* `Standard`
-*   [ ] **Create:** `jit-objectives.md`
+*   [x] **Create:** `jit-objectives.md`
     *   *Complexity:* `High`
     *   *Status:* `Experimental`
 
@@ -61,21 +61,21 @@ As a **Content Strategist**, I want **a populated library of core concepts and p
 *   Visual assets (diagrams) - placeholders or text descriptions will suffice for now.
 
 ## 6. Acceptance Criteria
-*   [ ] All 11 files exist in their respective directories.
-*   [ ] Frontmatter strictly validates against `src/content/config.ts`.
-*   [ ] `lastUpdated` / `publishDate` are set to the current date.
-*   [ ] Cross-links (e.g., `Context Engineering` -> `AGENTS.md`) are implemented in the `related_concepts` or body text.
-*   [ ] Content tone is "Spec-Sheet" (Minimalist, authoritative).
+*   [x] All 11 files exist in their respective directories.
+*   [x] Frontmatter strictly validates against `src/content/config.ts`.
+*   [x] `lastUpdated` / `publishDate` are set to the current date.
+*   [x] Cross-links (e.g., `Context Engineering` -> `AGENTS.md`) are implemented in the `related_concepts` or body text.
+*   [x] Content tone is "Spec-Sheet" (Minimalist, authoritative).
 
 ## 7. Quality Gates
-*   [ ] `pnpm lint` passes.
-*   [ ] `pnpm check` passes (No schema validation errors).
-*   [ ] `pnpm build` succeeds.
+*   [x] `pnpm lint` passes.
+*   [x] `pnpm check` passes (No schema validation errors).
+*   [x] `pnpm build` succeeds.
 
 ## 8. Definition of Done
-1. [ ] 11 Markdown files created/updated.
-2. [ ] All files pass the Astro build process.
-3. [ ] Committed to `dev` branch.
+1. [x] 11 Markdown files created/updated.
+2. [x] All files pass the Astro build process.
+3. [x] Committed to `dev` branch.
 
 ## 9. Change Log / Pivots
 *   **2025-11-25:** Added `guardrails.md` to `src/content/concepts/` as a disambiguation page. This was not in the original scope but is necessary to clarify the distinction between "Gates" and "Constitutions" for the third milestone. The term "Guardrail" is explicitly deprecated in the ASDLC context.
