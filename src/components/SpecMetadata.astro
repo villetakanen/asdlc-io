@@ -1,0 +1,97 @@
+---
+interface Props {
+  data: {
+    label: string;
+    value: string;
+    isLink?: boolean;
+    isBadge?: boolean;
+    badgeStatus?: "deprecated" | "active" | "draft";
+  }[];
+}
+
+const { data } = Astro.props;
+---
+
+<dl class="spec-meta">
+  {data.map((item) => (
+    <div class="spec-row">
+      <dt>{item.label}</dt>
+      <dd>
+        {item.isBadge ? (
+          <span class={`status-badge ${item.badgeStatus}`}>{item.value}</span>
+        ) : item.isLink ? (
+          <a href={item.value}>{item.value}</a>
+        ) : (
+          item.value
+        )}
+      </dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+  .spec-meta {
+    font-family: var(--f-mono);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--c-border);
+    margin-bottom: 2rem;
+  }
+
+  .spec-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  dt {
+    padding: 0.75rem 0;
+    color: var(--c-text-secondary);
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  dd {
+    padding: 0.75rem 0;
+    color: var(--c-text-primary);
+  }
+
+  /* Status Badge Styles */
+  .status-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge.deprecated {
+    background: var(--c-text-primary);
+    color: var(--c-bg-page);
+  }
+
+  .status-badge.active {
+    background: var(--c-success);
+    color: white;
+  }
+  
+  .status-badge.draft {
+    background: var(--c-warning);
+    color: var(--c-text-primary);
+  }
+
+  @media (max-width: 600px) {
+    .spec-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    
+    dt {
+      padding-bottom: 0;
+      font-size: 0.75rem;
+    }
+    
+    dd {
+      padding-top: 0.25rem;
+    }
+  }
+</style>

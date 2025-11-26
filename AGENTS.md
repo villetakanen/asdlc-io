@@ -14,6 +14,10 @@ This file defines the operating protocols for any Large Language Model (LLM), Ag
 * **Modern APIs Only:** Always use the latest recommended APIs. For Astro 5+, use Content Layer API (`glob` loader) instead of legacy `type: 'content'` collections.
 * **Dependency Currency:** Dependencies SHOULD be kept up-to-date. When major version updates occur, follow official migration guides and use provided migration tools.
 
+## 1.1. Accessibility Constitution
+* **One H1 Per Page:** The `h1` tag is reserved for the page title (handled by the layout). All content within `.md` or `.mdx` files MUST start with `h2` (`##`) to maintain a correct document outline.
+
+
 ## 2. Astro-Specific Rules (Astro 5+)
 * **Content Collections:** Use `loader: glob({ pattern, base })` instead of `type: 'content'`.
 * **Entry Properties:** Use `entry.id` (not `entry.slug`) for routing in `getStaticPaths()`.

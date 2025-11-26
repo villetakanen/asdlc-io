@@ -1,0 +1,212 @@
+---
+import { getCollection, render } from "astro:content";
+import "../styles/global.css";
+
+// Fetch collections
+const concepts = await getCollection("concepts");
+const patterns = await getCollection("patterns");
+
+// Sort collections (alphabetical by title)
+const sortedConcepts = concepts.sort((a, b) => a.data.title.localeCompare(b.data.title));
+const sortedPatterns = patterns.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const today = new Date().toISOString().split("T")[0];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDLC.io Manuscript</title>
+    <style>
+        /* Print-specific overrides */
+        @media print {
+            @page {
+                margin: 2cm;
+            }
+            
+            body {
+                border-top: none !important; /* Remove safety strip for print if desired, or keep it */
+                background-color: white !important; /* Save ink */
+                color: black !important;
+            }
+
+            .site-header, footer, .no-print {
+                display: none !important;
+            }
+
+            .chapter {
+                break-before: page;
+            }
+
+            .section-header {
+                break-before: page;
+                break-after: avoid;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: black !important;
+            }
+            
+            /* Ensure background colors for code blocks/callouts print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* Screen styles for the manuscript view */
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--c-bg-page);
+        }
+
+        .cover-page {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--c-text-primary);
+            margin-bottom: 4rem;
+        }
+
+        .cover-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-family: var(--f-sans);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-meta {
+            font-family: var(--f-mono);
+            color: var(--c-text-secondary);
+            font-size: 1.25rem;
+        }
+
+        .toc {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: var(--c-bg-surface);
+            border: 1px solid var(--c-border);
+        }
+
+        .toc h2 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+            font-family: var(--f-mono);
+        }
+
+        .toc a {
+            text-decoration: none;
+            border-bottom: 1px dotted var(--c-text-secondary);
+        }
+
+        .section-header {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--c-brand);
+            border-bottom: 4px solid var(--c-brand);
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .chapter {
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+            border-top: 1px dashed var(--c-border);
+        }
+
+        .chapter-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-meta {
+            font-family: var(--f-mono);
+            color: var(--c-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="cover-page">
+        <h1 class="cover-title">ASDLC.io<br>Manuscript</h1>
+        <div class="cover-meta">
+            <p>Version: Iteration 4</p>
+            <p>Generated: {today}</p>
+        </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc no-print">
+        <h2>Table of Contents</h2>
+        <h3>Part I: Concepts</h3>
+        <ul>
+            {sortedConcepts.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
+        <h3>Part II: Patterns</h3>
+        <ul>
+            {sortedPatterns.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
+    </div>
+
+    <!-- Part I: Concepts -->
+    <h1 class="section-header">Part I: Concepts</h1>
+    {sortedConcepts.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+            <article class="chapter" id={entry.id}>
+                <h2 class="chapter-title">{entry.data.title}</h2>
+                <span class="chapter-meta">ID: {entry.id} // Maturity: {entry.data.maturity}</span>
+                <div class="prose">
+                    <Content />
+                </div>
+            </article>
+        );
+    })}
+
+    <!-- Part II: Patterns -->
+    <h1 class="section-header">Part II: Patterns</h1>
+    {sortedPatterns.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+            <article class="chapter" id={entry.id}>
+                <h2 class="chapter-title">{entry.data.title}</h2>
+                <span class="chapter-meta">ID: {entry.id} // Status: {entry.data.status}</span>
+                <div class="prose">
+                    <Content />
+                </div>
+            </article>
+        );
+    })}
+
+</body>
+</html>

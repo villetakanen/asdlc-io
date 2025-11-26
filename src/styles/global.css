@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  /* --- The Paper & Ink --- */
-  --c-bg-page: #F4F4F0;
-  --c-bg-surface: #EBEBE6;
-  --c-border: #D6D6D1;
+  /* --- The Avionics Palette (International Safety) --- */
+  --c-bg-page: #F4F4F0;     /* Warm, off-white concrete/paper */
+  --c-bg-surface: #EBEBE6;  /* Slightly darker, for cards or headers */
+  --c-border: #D1D1C7;      /* Visible, structural grey */
 
   /* The Text */
-  --c-text-primary: #111111;
+  --c-text-primary: #111111; /* Soft black, like high-quality toner */
   --c-text-secondary: #585855;
 
   /* --- Branding --- */
-  --c-brand: #F04E30;
+  --c-brand: #F04E30;       /* Safety Orange */
   --c-brand-hover: #D13A1E;
 
   /* --- Functional / Status Indicators --- */
-  --c-success: #00703C;
+  --c-success: #00703C;     /* DIN Standard Green */
   --c-success-bg: #E1F0E5;
-  --c-warning: #946800;
+  --c-warning: #946800;     /* Industrial Amber */
   --c-warning-bg: #FFF5CC;
-  --c-error: #CC0000;
+  --c-error: #CC0000;       /* Switch Red */
   --c-error-bg: #FFEBEB;
 
   /* --- Code Syntax Highlighting Base --- */
@@ -31,6 +31,7 @@
   --f-mono: "B612 Mono", monospace;
   --s-grid: 24px;
   --s-gap: 1.5rem;
+  --s-container: 800px;
 
   /* --- Legacy Mappings --- */
   --c-bg: var(--c-bg-page);
@@ -39,6 +40,7 @@
   --c-accent: var(--c-brand);
 }
 
+/* --- Global Reset & Base --- */
 *,
 *::before,
 *::after {
@@ -48,50 +50,69 @@
 }
 
 body {
-  font-family: var(--f-sans);
   background-color: var(--c-bg-page);
   color: var(--c-text-primary);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--f-sans);
+  line-height: 1.6;
+  font-size: 16px;
+  /* The "Swiss" tightness */
   letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  /* Top Safety Strip */
+  border-top: 6px solid var(--c-brand);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* --- Typography Details --- */
 h1,
 h2,
 h3 {
-  font-weight: 600;
-  font-variation-settings: "wdth" 110;
-  line-height: 1.1;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
+  /* Variable font width settings for "Industrial" look */
+  font-variation-settings: "wdth" 110;
 }
 
 h1 {
   font-size: 2.5rem;
-  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
-  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--c-text-primary);
+  padding-bottom: 0.5rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  margin-top: 2rem;
   font-family: var(--f-mono);
-  letter-spacing: 0.06em;
+  color: var(--c-text-secondary);
 }
 
 a {
   color: var(--c-text-primary);
   text-decoration: underline;
+  text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  transition: color 0.2s;
 }
 
 a:hover {
   color: var(--c-brand);
-  text-decoration-style: double;
+  background: var(--c-bg-surface);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--c-text-primary);
 }
 
 code {
@@ -105,54 +126,22 @@ code {
   font-family: var(--f-mono);
 }
 
+/* --- Utilities --- */
 .border-box {
   border: 1px solid var(--c-border);
   padding: var(--s-gap);
 }
 
-.grid-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--s-gap);
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--s-gap);
-}
-
-/* --- Utilities --- */
-.spec-card {
-  background: var(--c-bg-page);
-  border: 1px solid var(--c-border);
-  box-shadow: 4px 4px 0px rgba(0,0,0,0.05);
-}
-
-.btn {
+.status-badge {
   display: inline-block;
-  border: 1px solid var(--c-border);
+  background: var(--c-text-primary);
+  color: var(--c-bg-page);
+  padding: 2px 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   font-family: var(--f-mono);
-  background: var(--c-bg-surface);
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.btn:hover {
-  background: var(--c-text-primary);
-  color: var(--c-bg-page);
-  text-decoration: none;
-}
-
-.nav-link {
-  color: var(--c-text-primary);
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  transition: all 0.2s ease;
-}
-
-.nav-link:hover {
-  background: var(--c-text-primary);
-  color: var(--c-bg-page);
-  text-decoration: none;
+  font-size: 0.85rem;
 }
 
 /* --- Prose --- */
@@ -161,28 +150,74 @@ code {
   line-height: 1.7;
 }
 
-.prose h2 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.prose h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
 .prose p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .prose ul,
 .prose ol {
-  margin-bottom: 1rem;
   padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .prose li {
   margin-bottom: 0.5rem;
+}
+
+
+/* Blockquotes as "Safety Notes" */
+.prose blockquote {
+  background: var(--c-bg-surface);
+  border-left: 4px solid var(--c-brand); /* Orange Accent */
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+}
+
+.prose blockquote strong {
+  color: var(--c-brand);
+}
+
+/* --- Industrial Data Table --- */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+  border: 1px solid var(--c-border);
+}
+
+.prose thead {
+  background: var(--c-bg-surface);
+}
+
+.prose th {
+  text-align: left;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--c-text-primary);
+}
+
+.prose td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: top;
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column specific styling for better read layout */
+.prose th:first-child,
+.prose td:first-child {
+  font-weight: 700;
+  width: 20%;
+  color: var(--c-text-secondary);
 }
 
 .prose pre {
@@ -205,3 +240,56 @@ code {
   background: transparent;
   padding: 0;
 }
+
+
+/* --- CSS Grid Layout System --- */
+:root {
+  --s-grid-unit: 0.5em;
+  --s-gutter-min: var(--s-grid-unit);
+  --s-gutter-max: 25.6ch;
+  --s-content-max: 67ch;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--s-gutter-min), 1fr)
+    [breakout-start] minmax(var(--s-gutter-min), var(--s-gutter-max))
+    [content-start] min(100% - (4 * var(--s-grid-unit)), var(--s-content-max)) [content-end]
+    minmax(var(--s-gutter-min), var(--s-gutter-max)) [breakout-end]
+    minmax(var(--s-gutter-min), 1fr) [full-end];
+  /* Add vertical spacing */
+  padding-block: var(--s-gap);
+}
+
+.grid-layout > * {
+  grid-column: content;
+}
+
+.grid-layout > .breakout {
+  grid-column: breakout;
+}
+
+.grid-layout > .full {
+  grid-column: full;
+  width: 100%;
+}
+
+/* --- Prose Integration with Grid --- */
+/* Flatten prose container so children participate in the main grid */
+.grid-layout > .prose {
+  display: contents;
+}
+
+
+/* Default prose children to content column */
+.prose > * {
+  grid-column: content;
+}
+
+/* Force tables to breakout */
+.prose > table {
+  grid-column: breakout;
+  width: 100%;
+}
+
