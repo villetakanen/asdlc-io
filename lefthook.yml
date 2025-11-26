@@ -4,6 +4,9 @@ pre-commit:
     biome-check:
       glob: "src/**/*.{js,ts,astro,json,css}"
       run: npx @biomejs/biome check --write {staged_files} && git add {staged_files}
+    astro-check:
+      glob: "**/*.{astro,ts,tsx,js,jsx}"
+      run: pnpm check
 
 commit-msg:
   commands:

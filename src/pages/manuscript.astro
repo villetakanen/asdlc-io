@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import "../styles/global.css";
 
 // Fetch collections
@@ -167,13 +167,13 @@ const today = new Date().toISOString().split("T")[0];
         <h3>Part I: Concepts</h3>
         <ul>
             {sortedConcepts.map(entry => (
-                <li><a href={`#${entry.slug}`}>{entry.data.title}</a></li>
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
             ))}
         </ul>
         <h3>Part II: Patterns</h3>
         <ul>
             {sortedPatterns.map(entry => (
-                <li><a href={`#${entry.slug}`}>{entry.data.title}</a></li>
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
             ))}
         </ul>
     </div>
@@ -181,11 +181,11 @@ const today = new Date().toISOString().split("T")[0];
     <!-- Part I: Concepts -->
     <h1 class="section-header">Part I: Concepts</h1>
     {sortedConcepts.map(async (entry) => {
-        const { Content } = await entry.render();
+        const { Content } = await render(entry);
         return (
-            <article class="chapter" id={entry.slug}>
+            <article class="chapter" id={entry.id}>
                 <h2 class="chapter-title">{entry.data.title}</h2>
-                <span class="chapter-meta">ID: {entry.slug} // Maturity: {entry.data.maturity}</span>
+                <span class="chapter-meta">ID: {entry.id} // Maturity: {entry.data.maturity}</span>
                 <div class="prose">
                     <Content />
                 </div>
@@ -196,11 +196,11 @@ const today = new Date().toISOString().split("T")[0];
     <!-- Part II: Patterns -->
     <h1 class="section-header">Part II: Patterns</h1>
     {sortedPatterns.map(async (entry) => {
-        const { Content } = await entry.render();
+        const { Content } = await render(entry);
         return (
-            <article class="chapter" id={entry.slug}>
+            <article class="chapter" id={entry.id}>
                 <h2 class="chapter-title">{entry.data.title}</h2>
-                <span class="chapter-meta">ID: {entry.slug} // Status: {entry.data.status}</span>
+                <span class="chapter-meta">ID: {entry.id} // Status: {entry.data.status}</span>
                 <div class="prose">
                     <Content />
                 </div>
