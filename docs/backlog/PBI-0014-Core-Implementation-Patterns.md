@@ -21,7 +21,7 @@ As a **Developer**, I want **clear, copy-pasteable implementation patterns**, so
     *   **Outcome:** A reader can create a map of their repo.
 
 ### 3.2. AGENTS.md Specification
-*   [ ] **Create:** `docs/practices/agents-md-spec.md` (or similar path)
+*   [x] **Create:** `docs/practices/agents-md-spec.md` (or similar path)
     *   **Goal:** The definitive guide to the `AGENTS.md` file.
     *   **Artifact:** A strict schema/template for `AGENTS.md`.
     *   **Outcome:** A reader can create a valid `AGENTS.md` file.

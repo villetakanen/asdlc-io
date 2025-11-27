@@ -1,0 +1,148 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import StructuredData from "../../components/StructuredData.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const practices = await getCollection("practices");
+  return practices.map((practice) => ({
+    params: { slug: practice.id },
+    props: { practice },
+  }));
+}
+
+interface Props {
+  practice: CollectionEntry<"practices">;
+}
+
+const { practice } = Astro.props;
+const { Content } = await render(practice);
+
+// Generate canonical URL for structured data
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Prepare structured data for Schema.org TechArticle
+const structuredDataProps = {
+  title: practice.data.title,
+  description: practice.data.description,
+  keywords: practice.data.tags ? practice.data.tags.join(", ") : "",
+  dateModified: practice.data.lastUpdated.toISOString(),
+  url: canonicalURL.toString(),
+};
+---
+
+<StructuredData type="TechArticle" data={structuredDataProps} />
+
+<BaseLayout title={practice.data.title} description={practice.data.description}>
+  <article class="practice-detail">
+    <header class="spec-header border-box">
+      <h1>{practice.data.title}</h1>
+      <dl class="spec-meta mono">
+        <div>
+          <dt>Description:</dt>
+          <dd>{practice.data.description}</dd>
+        </div>
+        <div>
+          <dt>Last Updated:</dt>
+          <dd><time datetime={practice.data.lastUpdated.toISOString()}>{practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
+        </div>
+        {practice.data.tags && practice.data.tags.length > 0 && (
+          <div>
+            <dt>Tags:</dt>
+            <dd>{practice.data.tags.join(', ')}</dd>
+          </div>
+        )}
+      </dl>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .practice-detail {
+    max-width: 800px;
+  }
+
+  .spec-header {
+    margin-bottom: 2rem;
+  }
+
+  .spec-header h1 {
+    margin-bottom: 1rem;
+  }
+
+  .spec-meta {
+    font-family: var(--f-mono);
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .spec-meta div {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+  }
+
+  .spec-meta dt {
+    font-weight: 600;
+    color: var(--c-dim);
+  }
+
+  .spec-meta dd {
+    margin: 0;
+  }
+
+  .prose {
+    line-height: 1.7;
+  }
+
+  .prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    margin-bottom: 1rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose pre {
+    background: #f4f4f4;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--c-border);
+  }
+
+  .prose code {
+    background: #f4f4f4;
+    padding: 0.2em 0.4em;
+    font-family: var(--f-mono);
+    font-size: 0.9em;
+  }
+
+  .prose pre code {
+    background: transparent;
+    padding: 0;
+  }
+</style>

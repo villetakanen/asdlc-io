@@ -18,10 +18,21 @@ const patterns = defineCollection({
   schema: z.object({
     title: z.string(),
     complexity: z.enum(["Low", "Medium", "High"]),
-    status: z.enum(["Draft", "Review", "Approved", "Experimental"]),
+    status: z.enum(["Draft", "Proposed", "Live", "Experimental"]),
     diagram_source: z.string().optional(),
     publishDate: z.coerce.date(),
   }),
 });
 
-export const collections = { concepts, patterns };
+const practices = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/practices" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    lastUpdated: z.coerce.date(),
+    status: z.enum(["Draft", "Proposed", "Live", "Deprecated"]),
+    tags: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { concepts, patterns, practices };
