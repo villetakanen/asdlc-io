@@ -24,6 +24,7 @@
     width: 100%;
     background: var(--c-bg-surface);
     padding: var(--s-gap);
+    z-index: 100;
   }
   .nav-link {
     margin: 0.5rem 0;

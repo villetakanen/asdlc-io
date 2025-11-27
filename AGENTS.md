@@ -30,7 +30,7 @@
 - **ASK** before adding new dependencies to `package.json`.
 - **ASK** before modifying `src/styles/global.css` (This is the immutable design token source).
 - **ASK** before deleting content files.
-- **ASK** before using component level styling
+- **ASK** before using scoped CSS in .astro files (Prefer global CSS).
 
 ### Tier 3: NEVER DO (Hard Constraints)
 - **NEVER** use `any`. "Vibe coding" is strictly prohibited.

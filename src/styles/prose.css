@@ -1,3 +1,4 @@
+@import "content-prose.css";
 /* --- Prose --- */
 .prose {
   max-width: 65ch;
@@ -8,27 +9,6 @@
 .prose p {
   margin-bottom: 1.25rem;
 }
-
-/* H2 chapter prefix and separator */
-.prose h2 {
-  counter-increment: chapter;
-  position: relative;
-}
-
-.prose h2::before {
-  content: counter(chapter) ". ";
-  color: var(--c-brand);
-  margin-right: 0.25rem;
-}
-
-/*.prose h2::after {
-  content: " // ";
-  color: var(--c-text-secondary);
-  margin-left: 0.25rem;
-  position: absolute;
-  left: 0;
-}
-*/
 
 .prose ul,
 .prose ol {

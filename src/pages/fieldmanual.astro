@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import "../styles/global.css";
+import { version } from "../../package.json";
 
 // Fetch collections
 const concepts = await getCollection("concepts");
@@ -18,14 +19,14 @@ const today = new Date().toISOString().split("T")[0];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASDLC.io Manuscript</title>
+    <title>ASDLC.io Field Manual</title>
     <style>
         /* Print-specific overrides */
         @media print {
             @page {
                 margin: 2cm;
             }
-            
+
             body {
                 border-top: none !important; /* Remove safety strip for print if desired, or keep it */
                 background-color: white !important; /* Save ink */
@@ -49,7 +50,7 @@ const today = new Date().toISOString().split("T")[0];
                 text-decoration: none !important;
                 color: black !important;
             }
-            
+
             /* Ensure background colors for code blocks/callouts print */
             * {
                 -webkit-print-color-adjust: exact !important;
@@ -140,7 +141,7 @@ const today = new Date().toISOString().split("T")[0];
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
+
         .chapter-meta {
             font-family: var(--f-mono);
             color: var(--c-text-secondary);
@@ -154,9 +155,9 @@ const today = new Date().toISOString().split("T")[0];
 
     <!-- Cover Page -->
     <div class="cover-page">
-        <h1 class="cover-title">ASDLC.io<br>Manuscript</h1>
+        <h1 class="cover-title">ASDLC.io<br> Field Manual</h1>
         <div class="cover-meta">
-            <p>Version: Iteration 4</p>
+            <p>Version: {version}</p>
             <p>Generated: {today}</p>
         </div>
     </div>

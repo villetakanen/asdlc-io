@@ -1,10 +1,7 @@
+@import "./site-header.css";
 @import "./hamburger.css";
 @import "status.css";
 @import "./prose.css";
-/* Hide navigation on mobile by default */
-.nav-links {
-  display: none;
-}
 
 :root {
   /* --- The Avionics Palette (International Safety) --- */
