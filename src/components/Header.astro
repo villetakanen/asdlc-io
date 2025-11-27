@@ -1,10 +1,16 @@
 ---
 ---
 <header class="site-header">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" hidden>
+  <label for="nav-toggle" class="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
   <a href="/" style="text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em;">
     <span style="color: var(--c-brand);">//</span> ASDLC<span style="color: var(--c-text-secondary);">.io</span>
   </a>
-  <nav>
+  <nav class="nav-links">
     <a href="/concepts" class="nav-link">Concepts</a>
     <a href="/patterns" class="nav-link">Patterns</a>
     <a href="/practices" class="nav-link">Practices</a>
@@ -18,8 +24,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 
+  .nav-link:hover {
+    color: var(--c-brand);
+}
+
+.site-header a {
+  order: -1;
+}
+
+/* Ensure navigation is pushed to the right on large screens */
+@media (min-width: 621px) {
+  .nav-links {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+  }
+}
+
+ 
   .nav-link { 
     font-family: var(--f-mono); 
     text-decoration: none; 
@@ -29,7 +54,5 @@
     color: var(--c-text-primary);
   }
   
-  .nav-link:hover {
-    color: var(--c-brand);
-  }
+  
 </style>

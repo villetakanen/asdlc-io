@@ -1,0 +1,40 @@
+/* Hamburger styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--c-text-primary);
+  border-radius: 1px;
+}
+/* Mobile navigation */
+@media (max-width: 620px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--c-bg-surface);
+    padding: var(--s-gap);
+  }
+  .nav-link {
+    margin: 0.5rem 0;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+  }
+  .hamburger {
+    display: flex;
+  }
+  #nav-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+}

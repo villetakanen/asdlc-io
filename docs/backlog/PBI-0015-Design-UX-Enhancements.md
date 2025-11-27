@@ -15,7 +15,7 @@ As a **Reader**, I want **a responsive and clearly structured interface**, so th
 ## 3. Implementation Tasks
 
 ### 3.1. Mobile Navigation
-*   [ ] **Feature:** Implement a hamburger menu for mobile devices.
+*   [x] **Feature:** Implement a hamburger menu for mobile devices.
     *   **Issue:** Top navigation is currently broken or unusable on small screens.
     *   **Goal:** Functional navigation on mobile.
 

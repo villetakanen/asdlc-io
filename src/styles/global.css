@@ -1,5 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+@import "./hamburger.css";
 @import "status.css";
+
+/* Hide navigation on mobile by default */
+.nav-links {
+  display: none;
+}
+
 :root {
   /* --- The Avionics Palette (International Safety) --- */
   --c-bg-page: #f4f4f0; /* Warm, off-white concrete/paper */

@@ -1,4 +1,5 @@
 # PBI-0014: Core Implementation Patterns
+**Status**: DONE
 
 **ID:** PBI-0014
 **Priority:** High
@@ -14,11 +15,12 @@ As a **Developer**, I want **clear, copy-pasteable implementation patterns**, so
 
 ## 3. Implementation Tasks
 
-### 3.1. Repository Mapping Guide
+### 3.1. Repository Mapping Guide (Deprecated)
 *   [ ] **Create:** `docs/practices/repository-mapping.md` (or similar path)
     *   **Goal:** A guide on how to map a repository to the ASDLC.
     *   **Artifact:** Define the `repository-map.yaml` structure.
     *   **Outcome:** A reader can create a map of their repo.
+*   **Note:** This method is deprecated and should be documented under **Concepts** rather than **Practices**.
 
 ### 3.2. AGENTS.md Specification
 *   [x] **Create:** `docs/practices/agents-md-spec.md` (or similar path)

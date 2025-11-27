@@ -25,7 +25,7 @@ Our goal is to prove that we can bridge the gap from abstract theory to concrete
 
 ### PBI-0014: Core Implementation Patterns
 *Carryover from PBI-0004, reimagined as implementation guides.*
-- [ ] **Repository Mapping**: A guide on how to map a repository to the ASDLC, resulting in a `repository-map.yaml` or similar artifact.
+- [ ] **Repository Mapping**: *Deferred to a new PBI; will be addressed in a future iteration.*
 - [ ] **AGENTS.md Specification**: The definitive guide to the `AGENTS.md` file, including a strict schema/template.
 
 ### PBI-0015: Design & UX Enhancements
