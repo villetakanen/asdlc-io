@@ -1,34 +1,19 @@
 ---
 ---
 <header class="site-header">
-  <a href="/" style="text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em;">
-    <span style="color: var(--c-brand);">//</span> ASDLC<span style="color: var(--c-text-secondary);">.io</span>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" hidden>
+  <a href="/" class="site-logo">
+    <span class="brand-mark">//</span> ASDLC<span class="brand-suffix">.io</span>
   </a>
-  <nav>
+  <label for="nav-toggle" class="hamburger" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="nav-links">
     <a href="/concepts" class="nav-link">Concepts</a>
     <a href="/patterns" class="nav-link">Patterns</a>
+    <a href="/practices" class="nav-link">Practices</a>
+    <a href="/resources" class="nav-link">Resources</a>
   </nav>
 </header>
-
-<style>
-  .site-header {
-    padding: var(--s-gap);
-    border-bottom: 1px solid var(--c-border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-link { 
-    font-family: var(--f-mono); 
-    text-decoration: none; 
-    font-size: 0.9rem; 
-    margin-left: 1.5rem;
-    text-transform: uppercase;
-    color: var(--c-text-primary);
-  }
-  
-  .nav-link:hover {
-    color: var(--c-brand);
-  }
-</style>

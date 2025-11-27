@@ -1,0 +1,51 @@
+/* Site Header Layout */
+.site-header {
+  padding: var(--s-gap);
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo */
+.site-logo {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--c-text-primary);
+  /* Pushes everything else (nav) to the right */
+  margin-right: auto;
+  z-index: 20; /* Ensure logo is clickable */
+}
+
+.site-logo .brand-mark {
+  color: var(--c-brand);
+}
+
+.site-logo .brand-suffix {
+  color: var(--c-text-secondary);
+}
+
+/* Navigation Links Base Styles */
+.nav-link {
+  font-family: var(--f-mono);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-left: 1.5rem;
+  text-transform: uppercase;
+  color: var(--c-text-primary);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--c-brand);
+}
+
+/* Desktop Navigation */
+@media (min-width: 621px) {
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+}

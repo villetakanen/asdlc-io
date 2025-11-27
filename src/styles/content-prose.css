@@ -1,0 +1,20 @@
+/* H2 chapter prefix and separator */
+.content-prose h2 {
+  counter-increment: chapter;
+  position: relative;
+}
+
+.content-prose h2::before {
+  content: counter(chapter) ". ";
+  color: var(--c-brand);
+  margin-right: 0.25rem;
+}
+
+/*.prose h2::after {
+  content: " // ";
+  color: var(--c-text-secondary);
+  margin-left: 0.25rem;
+  position: absolute;
+  left: 0;
+}
+*/

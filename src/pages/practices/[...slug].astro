@@ -5,65 +5,63 @@ import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const concepts = await getCollection("concepts");
-  return concepts.map((concept) => ({
-    params: { slug: concept.id },
-    props: { concept },
+  const practices = await getCollection("practices");
+  return practices.map((practice) => ({
+    params: { slug: practice.id },
+    props: { practice },
   }));
 }
 
 interface Props {
-  concept: CollectionEntry<"concepts">;
+  practice: CollectionEntry<"practices">;
 }
 
-const { concept } = Astro.props;
-const { Content } = await render(concept);
+const { practice } = Astro.props;
+const { Content } = await render(practice);
 
 // Generate canonical URL for structured data
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
-  title: concept.data.title,
-  description: concept.data.definition,
-  keywords: concept.data.tags.join(", "),
-  dateModified: concept.data.lastUpdated.toISOString(),
-  maturity: concept.data.maturity,
+  title: practice.data.title,
+  description: practice.data.description,
+  keywords: practice.data.tags ? practice.data.tags.join(", ") : "",
+  dateModified: practice.data.lastUpdated.toISOString(),
   url: canonicalURL.toString(),
 };
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
-<BaseLayout title={concept.data.title} description={concept.data.definition}>
-  <article class="concept-detail">
+<BaseLayout title={practice.data.title} description={practice.data.description}>
+  <article class="practice-detail">
     <header class="spec-header border-box">
-      <h1>{concept.data.title}</h1>
+      <h1>{practice.data.title}</h1>
       <dl class="spec-meta mono">
         <div>
-          <dt>Definition:</dt>
-          <dd>{concept.data.definition}</dd>
+          <dt>Description:</dt>
+          <dd>{practice.data.description}</dd>
         </div>
         <div>
-          <dt>Maturity:</dt>
-          <dd>{concept.data.maturity}</dd>
+          <dt>Status:</dt>
+          <dd>
+            <span class={`status status-${practice.data.status.toLowerCase().replace(/\s+/g, '-')}`}>
+            {practice.data.status}
+            </span>
+          </dd>
         </div>
         <div>
           <dt>Last Updated:</dt>
-          <dd><time datetime={concept.data.lastUpdated.toISOString()}>{concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
+          <dd><time datetime={practice.data.lastUpdated.toISOString()}>{practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
         </div>
-        {concept.data.tags && concept.data.tags.length > 0 && (
+        {practice.data.tags && practice.data.tags.length > 0 && (
           <div>
             <dt>Tags:</dt>
-            <dd>{concept.data.tags.join(', ')}</dd>
+            <dd>{practice.data.tags.join(', ')}</dd>
           </div>
         )}
-        {concept.data.related_concepts && concept.data.related_concepts.length > 0 && (
-          <div>
-            <dt>Related:</dt>
-            <dd>{concept.data.related_concepts.join(', ')}</dd>
-          </div>
-        )}
+
       </dl>
     </header>
 
@@ -74,7 +72,7 @@ const structuredDataProps = {
 </BaseLayout>
 
 <style>
-  .concept-detail {
+  .practice-detail {
     max-width: 800px;
   }
 
