@@ -26,11 +26,11 @@ In an agentic workflow, intelligence is treated as a commodity, while context se
 
 Modern models have large context windows (over 200,000 tokens); however, attention tends to degrade with length, leading to the “Lost in the Middle” phenomenon. A well-structured AGENTS.md document optimizes the Signal-to-Noise Ratio. It emphasizes imperative instructions rather than conversational prose and uses structural markers, such as XML tags and headers, to direct the model’s attention more effectively.
 
-ANATOMY OF A PERFORMING FILE
+## Best Practices & ANATOMY
 
 A valid AGENTS.md is not a "Context Dump" of documentation. It is a segmented database of rules, mapped to the specific reasoning stages of the agent.
 
-1. Identity Anchoring (The Persona)
+### 1. Identity Anchoring (The Persona)
 
 Establishes the specific expertise required to prune the model's search space. Without this, the model reverts to the "average" developer found in its training data.
 
@@ -38,41 +38,43 @@ Bad: "You are a coding assistant."
 
 Good: "You are a Principal Systems Engineer specializing in Go 1.22, gRPC, and high-throughput concurrency patterns. You favor composition over inheritance."
 
-2. Operational Grounding (The Tech Stack)
+### 2. Operational Grounding (The Tech Stack)
 
 Explicitly defines the software environment to prevent "Library Hallucination." This section must be exhaustive regarding key dependencies and restrictive regarding alternatives.
 
-Directive: "Runtime: Node.js v20 (LTS) exclusively."
+- Directive: "Runtime: Node.js v20 (LTS) exclusively."
+- Directive: "Styling: Tailwind CSS only. Do not use CSS Modules or Emotion."
+- Directive: "State: Zustand only. Do not use Redux."
 
-Directive: "Styling: Tailwind CSS only. Do not use CSS Modules or Emotion."
+### 3. Behavioral Boundaries (Context Gates)
 
-Directive: "State: Zustand only. Do not use Redux."
+Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, or _constitution_. As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
+the _constitution_ with explicit and deterministic _quality gates_ enforced by tests, linters, and CI/CD pipelines.
 
-3. Behavioral Boundaries (Context Gates)
-
-Replaces vague "Guardrails" with a "Three-Tiered Boundary" system:
-
-Tier 1 (Constitutive - ALWAYS): Non-negotiable standards.
+**Tier 1 (Constitutive - ALWAYS): Non-negotiable standards.**
 
 Example: "Always add JSDoc to exported functions."
 
-Tier 2 (Procedural - ASK): High-risk operations requiring Human-in-the-Loop.
+**Tier 2 (Procedural - ASK): High-risk operations requiring Human-in-the-Loop.**
 
 Example: "Ask before running database migrations or deleting files."
 
-Tier 3 (Hard Constraints - NEVER): Safety limits.
+**Tier 3 (Hard Constraints - NEVER): Safety limits.**
 
 Example: "Never commit secrets, API keys, or .env files."
 
-4. The Command Registry
+### 4. The Command Registry
 
 A lookup table mapping intent to execution. Agents often default to standard commands (npm test) which may fail in custom environments (make test-unit). The Registry forces specific tool usage.
 
-Intent: "Test" $\rightarrow$ Command: pnpm test:unit (Flags: --watch=false)
+| Intent | Command | Notes |
+| :--- | :--- | :--- |
+| **Build** | pnpm build | Outputs to `dist/` |
+| **Test** | pnpm test:unit | Flags: --watch=false |
+| **Lint** | pnpm lint --fix | Self-correction enabled |
 
-Intent: "Lint" $\rightarrow$ Command: pnpm lint --fix (Self-correction enabled)
 
-IMPLEMENTATION STRATEGY
+### 5. Implementation notes
 
 XML-Tagging for Semantic Parsing
 
@@ -93,22 +95,10 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
 </coding_standard>
 ```
 
+## REFERENCE TEMPLATE
 
-Chain-of-Thought (CoT) Enforcement
+`Filename: AGENTS.md`
 
-To prevent "lazy coding," the file should mandate a reasoning protocol for complex tasks.
-
-Protocol: "Before generating code, you MUST output a plan:
-
-Analyze: Identify affected files.
-
-Design: Propose function signatures.
-
-Verify: List tests to be added."
-
-REFERENCE TEMPLATE
-
-Filename: AGENTS.md
 ```md
 # AGENTS.md - Context & Rules for AI Agents
 
