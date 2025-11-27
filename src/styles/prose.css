@@ -21,13 +21,13 @@
   margin-right: 0.25rem;
 }
 
-/*.prose h2::after {
+.prose h2::after {
   content: " // ";
   color: var(--c-text-secondary);
   margin-left: 0.25rem;
   position: absolute;
   left: 0;
-}*/
+}
 
 .prose ul,
 .prose ol {
