@@ -6,27 +6,25 @@ tags: ["governance", "agents", "specification"]
 status: "Proposed"
 ---
 
-# DEFINITION
+## DEFINITION
 
-The Context Artifact, standardized as AGENTS.md, is a machine-readable governance file residing at the root of a software repository. It serves as a persistent "System Prompt Injection," transforming abstract architectural intent into strict algorithmic constraints.
+The Context Artifact, standardized as `AGENTS.md`, is a machine-readable governance file located at the root of a software repository. It acts as a persistent "System Prompt Injection," converting abstract architectural intent into strict algorithmic constraints.
 
-Unlike a README.md (written for human onboarding), AGENTS.md is written for the Token Economy of a Large Language Model (LLM). It is the bridge that closes the "Contextual Gap" between human implicit knowledge and agentic stochastic behavior.
+Unlike README.md or CONTRIBUTORS.md, which are designed for human onboarding, AGENTS.md is aimed at the Token Economy of a Large Language Model (LLM). It serves as a bridge that closes the contextual gap between human implicit knowledge and agentic stochastic behavior.
 
-CORE PHILOSOPHY
+## CORE PHILOSOPHY
 
-1. Context is Code
+**1\. Context is Code**
 
-In an agentic workflow, intelligence is a commodity; context is the differentiator. Therefore, AGENTS.md must be treated with the same rigor as production software:
+In an agentic workflow, intelligence is treated as a commodity, while context serves as the primary differentiator. Therefore, AGENTS.md should be managed with the same level of rigor as production software:
 
-Version Controlled: It must be diffed in PRs.
+- **Version Controlled**: Changes must be tracked through pull requests (PRs).
+- **Immutable**: It serves as the "Ground Truth" for the session.
+- **Falsifiable**: It should include clear criteria for determining pass or fail outcomes for agent behavior.
 
-Immutable: It acts as the "Ground Truth" for the session.
+**2\. Token Economy**
 
-Falsifiable: It must contain clear pass/fail criteria for agent behavior.
-
-2. Token Economy
-
-Modern models have large context windows (200k+ tokens), but attention degrades over length ("Lost in the Middle" phenomenon). A well-formed AGENTS.md optimizes for Signal-to-Noise Ratio. It prioritizes imperative instructions over conversational prose, using structural markers (XML tags, headers) to guide the model's attention heads.
+Modern models have large context windows (over 200,000 tokens); however, attention tends to degrade with length, leading to the “Lost in the Middle” phenomenon. A well-structured AGENTS.md document optimizes the Signal-to-Noise Ratio. It emphasizes imperative instructions rather than conversational prose and uses structural markers, such as XML tags and headers, to direct the model’s attention more effectively.
 
 ANATOMY OF A PERFORMING FILE
 
@@ -111,7 +109,7 @@ Verify: List tests to be added."
 REFERENCE TEMPLATE
 
 Filename: AGENTS.md
-
+```md
 # AGENTS.md - Context & Rules for AI Agents
 
 ## 1. Identity & Persona
@@ -140,7 +138,7 @@ Filename: AGENTS.md
 | **Gen** | `make proto` | Regenerates gRPC stubs |
 
 ## 5. Coding Standards
-```xml
+\```xml
 <rule_set name="Concurrency">
   <instruction>Use `errgroup` for managing goroutines. Avoid bare `go` routines.</instruction>
   <example>
@@ -148,8 +146,9 @@ Filename: AGENTS.md
     <good>g.Go(func() error {... })</good>
   </example>
 </rule_set>
-```
+\`\`\`
 
 ## 6. Context References
 - **Database Schema:** Read `@database/schema.sql`
 - **API Contracts:** Read `@api/v1/service.proto`
+```

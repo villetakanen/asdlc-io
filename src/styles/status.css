@@ -1,0 +1,10 @@
+.status {
+  border: solid 1px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.status-proposed {
+  background-color: var(--c-warning-bg);
+  color: var(--c-warning);
+  border-color: var(--c-warning);
+}

@@ -44,6 +44,14 @@ const structuredDataProps = {
           <dd>{practice.data.description}</dd>
         </div>
         <div>
+          <dt>Status:</dt>
+          <dd>
+            <span class={`status status-${practice.data.status.toLowerCase().replace(/\s+/g, '-')}`}>
+            {practice.data.status}
+            </span>
+          </dd>
+        </div>
+        <div>
           <dt>Last Updated:</dt>
           <dd><time datetime={practice.data.lastUpdated.toISOString()}>{practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
         </div>
@@ -53,6 +61,7 @@ const structuredDataProps = {
             <dd>{practice.data.tags.join(', ')}</dd>
           </div>
         )}
+
       </dl>
     </header>
 

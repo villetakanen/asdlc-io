@@ -1,30 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,100..900&family=B612+Mono:ital,wght@0,400;0,700;1,400&display=swap");
+@import "status.css";
 :root {
   /* --- The Avionics Palette (International Safety) --- */
-  --c-bg-page: #F4F4F0;     /* Warm, off-white concrete/paper */
-  --c-bg-surface: #EBEBE6;  /* Slightly darker, for cards or headers */
-  --c-border: #D1D1C7;      /* Visible, structural grey */
+  --c-bg-page: #f4f4f0; /* Warm, off-white concrete/paper */
+  --c-bg-surface: #ebebe6; /* Slightly darker, for cards or headers */
+  --c-border: #d1d1c7; /* Visible, structural grey */
 
   /* The Text */
   --c-text-primary: #111111; /* Soft black, like high-quality toner */
   --c-text-secondary: #585855;
 
   /* --- Branding --- */
-  --c-brand: #F04E30;       /* Safety Orange */
-  --c-brand-hover: #D13A1E;
+  --c-brand: #f04e30; /* Safety Orange */
+  --c-brand-hover: #d13a1e;
 
   /* --- Functional / Status Indicators --- */
-  --c-success: #00703C;     /* DIN Standard Green */
-  --c-success-bg: #E1F0E5;
-  --c-warning: #946800;     /* Industrial Amber */
-  --c-warning-bg: #FFF5CC;
-  --c-error: #CC0000;       /* Switch Red */
-  --c-error-bg: #FFEBEB;
+  --c-success: #00703c; /* DIN Standard Green */
+  --c-success-bg: #e1f0e5;
+  --c-warning: #946800; /* Industrial Amber */
+  --c-warning-bg: #fff5cc;
+  --c-error: #cc0000; /* Switch Red */
+  --c-error-bg: #ffebeb;
 
   /* --- Code Syntax Highlighting Base --- */
-  --c-code-bg: #EBEBE6;
-  --c-code-text: #2A2A2A;
+  --c-code-bg: #ebebe6;
+  --c-code-text: #2a2a2a;
 
   /* --- Fonts & Spacing --- */
   --f-sans: "Archivo", sans-serif;
@@ -164,7 +164,6 @@ code {
   margin-bottom: 0.5rem;
 }
 
-
 /* Blockquotes as "Safety Notes" */
 .prose blockquote {
   background: var(--c-bg-surface);
@@ -241,7 +240,6 @@ code {
   padding: 0;
 }
 
-
 /* --- CSS Grid Layout System --- */
 :root {
   --s-grid-unit: 0.5em;
@@ -255,7 +253,8 @@ code {
   grid-template-columns:
     [full-start] minmax(var(--s-gutter-min), 1fr)
     [breakout-start] minmax(var(--s-gutter-min), var(--s-gutter-max))
-    [content-start] min(100% - (4 * var(--s-grid-unit)), var(--s-content-max)) [content-end]
+    [content-start] min(100% - (4 * var(--s-grid-unit)), var(--s-content-max))
+    [content-end]
     minmax(var(--s-gutter-min), var(--s-gutter-max)) [breakout-end]
     minmax(var(--s-gutter-min), 1fr) [full-end];
   /* Add vertical spacing */
@@ -281,7 +280,6 @@ code {
   display: contents;
 }
 
-
 /* Default prose children to content column */
 .prose > * {
   grid-column: content;
@@ -292,4 +290,3 @@ code {
   grid-column: breakout;
   width: 100%;
 }
-
