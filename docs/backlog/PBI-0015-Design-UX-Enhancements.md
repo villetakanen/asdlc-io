@@ -21,6 +21,11 @@ As a **Reader**, I want **a responsive and clearly structured interface**, so th
 
 ### 3.2. H2 Styling
 *   [ ] **Style:** Update `.prose` H2 headers.
+    *   **Implementation Plan:**
+    * **Goal:** Add a numbered chapter prefix (`[chapter number]. //`) to every H2 heading.
+    * **Approach:** Create a Remark plugin (`src/plugins/remark-h2-prefix.js`) that increments a counter for H2s, injects a number node and a hidden `//` separator (`<span aria-hidden="//"></span>`). Register the plugin in `astro.config.mjs`. Add minimal CSS for the separator.
+    * **Verification:** Run `pnpm run build` (no errors), inspect generated HTML for the `<span class="sep" aria-hidden="//"></span>`, and confirm screen readers ignore the separator. Manual test with NVDA/VoiceOver.
+    * **Risks:** Counter resets per file (acceptable). Plugin may need adjustments for inline HTML – mitigate with unit tests.
     *   **Pattern:** `[chapter number]. // [Title]`
     *   **Details:** Chapter number in brand color, `//` in muted color.
     *   **Goal:** Enhance the "Spec-Sheet" aesthetic.

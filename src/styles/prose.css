@@ -1,0 +1,116 @@
+/* --- Prose --- */
+.prose {
+  max-width: 65ch;
+  line-height: 1.7;
+  counter-reset: chapter; /* reset chapter numbering for each prose block */
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+/* H2 chapter prefix and separator */
+.prose h2 {
+  counter-increment: chapter;
+  position: relative;
+}
+
+.prose h2::before {
+  content: counter(chapter) ". ";
+  color: var(--c-brand);
+  margin-right: 0.25rem;
+}
+
+/*.prose h2::after {
+  content: " // ";
+  color: var(--c-text-secondary);
+  margin-left: 0.25rem;
+  position: absolute;
+  left: 0;
+}*/
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes as "Safety Notes" */
+.prose blockquote {
+  background: var(--c-bg-surface);
+  border-left: 4px solid var(--c-brand); /* Orange Accent */
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+}
+
+.prose blockquote strong {
+  color: var(--c-brand);
+}
+
+/* --- Industrial Data Table --- */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: var(--f-mono);
+  font-size: 0.9rem;
+  border: 1px solid var(--c-border);
+}
+
+.prose thead {
+  background: var(--c-bg-surface);
+}
+
+.prose th {
+  text-align: left;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--c-text-primary);
+}
+
+.prose td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: top;
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column specific styling for better read layout */
+.prose th:first-child,
+.prose td:first-child {
+  font-weight: 700;
+  width: 20%;
+  color: var(--c-text-secondary);
+}
+
+.prose pre {
+  background: var(--c-code-bg);
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--c-brand);
+  color: var(--c-code-text);
+}
+
+.prose code {
+  background: var(--c-bg-surface);
+  padding: 0.2em 0.4em;
+  font-family: var(--f-mono);
+  font-size: 0.9em;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
