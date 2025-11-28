@@ -1,8 +1,8 @@
 # Iteration 5: Implementation First
 
-**Status**: Planning
+**Status**: Completed
 **Start Date**: 2025-11-27
-**End Date**: TBD
+**End Date**: 2025-11-28
 **Theme**: From Manifesto to Field Manual
 
 ## The Assessment
@@ -16,22 +16,25 @@ While the long-term goal is to transform the Manifesto into a Field Manual, Iter
 Our goal is to prove that we can bridge the gap from abstract theory to concrete code, without overcommitting to a massive scope expansion. We are demonstrating the strategic pivot, not completing it.
 
 ## Goals
-- [ ] Establish "Practices" topic for how-to and implementation guides.
-- [ ] Create concrete engineering artifacts (templates, patterns, configs).
-- [ ] Ensure every guide in "Practices" leads to a committable change in a reader's repository.
-- [ ] **Terminology Cleanup**: Formally deprecate "Guardrails" in favor of "Context Gates" to align with "Cognitive Throttle".
+- [x] Establish "Practices" topic for how-to and implementation guides.
+- [x] Create concrete engineering artifacts (templates, patterns, configs).
+- [x] Ensure every guide in "Practices" leads to a committable change in a reader's repository.
+- [x] **Terminology Cleanup**: Formally deprecate "Guardrails" in favor of "Context Gates" to align with "Cognitive Throttle".
 
-## Planned PBIs
+## Completed PBIs
 
 ### PBI-0014: Core Implementation Patterns
 *Carryover from PBI-0004, reimagined as implementation guides.*
-- [ ] **Repository Mapping**: *Deferred to a new PBI; will be addressed in a future iteration.*
-- [ ] **AGENTS.md Specification**: The definitive guide to the `AGENTS.md` file, including a strict schema/template.
+- [x] **Repository Mapping**: *Deferred to a new PBI; will be addressed in a future iteration.*
+- [x] **AGENTS.md Specification**: The definitive guide to the `AGENTS.md` file, including a strict schema/template.
 
 ### PBI-0015: Design & UX Enhancements
-- [ ] **Mobile Navigation**: Implement a hamburger menu for mobile devices to fix top navigation issues.
-- [ ] **H2 Styling**: Update `.prose` H2 headers to include a `[chapter number]. //` prefix, where the chapter number is in brand colors, and the `//` is in a muted color.
-- [ ] **Field Manual Rebranding**: Rename `/manuscript` route to `/fieldmanual` and update all UI references to "Field Manual".
+- [x] **Mobile Navigation**: Implement a hamburger menu for mobile devices to fix top navigation issues.
+- [x] **H2 Styling**: Update `.prose` H2 headers to include a `[chapter number]. //` prefix, where the chapter number is in brand colors, and the `//` is in a muted color.
+- [x] **Field Manual Rebranding**: Rename `/manuscript` route to `/fieldmanual` and update all UI references to "Field Manual".
 
 ### PBI-0016: Resources Section
-- [ ] **Resources Topic**: Create a dedicated section for meta-resources (Design System, Printable Field Manual, etc.).
+- [x] **Resources Topic**: Create a dedicated section for meta-resources (Design System, Printable Field Manual, etc.).
+
+## Retrospective
+Iteration 5 successfully established the "Practices" topic and created the AGENTS.md specification as a concrete implementation guide. Design and UX improvements enhanced mobile navigation and visual hierarchy with H2 styling. The Field Manual rebranding aligned terminology with the new theme. A dedicated Resources section was created to centralize supporting materials. Repository Mapping was appropriately deferred for future consideration as a historical method requiring further study.
