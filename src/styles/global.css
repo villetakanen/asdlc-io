@@ -2,6 +2,7 @@
 @import "./hamburger.css";
 @import "status.css";
 @import "./prose.css";
+@import "./page-details.css";
 
 :root {
   /* --- The Avionics Palette (International Safety) --- */
@@ -156,7 +157,7 @@ code {
 :root {
   --s-grid-unit: 0.5em;
   --s-gutter-min: var(--s-grid-unit);
-  --s-gutter-max: 25.6ch;
+  --s-gutter-max: 9.7ch;
   --s-content-max: 67ch;
 }
 
@@ -188,7 +189,9 @@ code {
 
 /* --- Prose Integration with Grid --- */
 /* Flatten prose container so children participate in the main grid */
-.grid-layout > .prose {
+.grid-layout > .prose,
+.grid-layout > * > .prose,
+.grid-layout > * > * > .prose {
   display: contents;
 }
 
@@ -198,7 +201,9 @@ code {
 }
 
 /* Force tables to breakout */
-.prose > table {
-  grid-column: breakout;
+.prose > table,
+.prose > :has(> table) {
+  grid-column: breakout !important;
   width: 100%;
+  max-width: 100%;
 }

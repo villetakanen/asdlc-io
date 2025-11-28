@@ -8,7 +8,7 @@ const description =
 
 <BaseLayout title={title} description={description}>
   <article class="design-system">
-    <header class="spec-header border-box">
+    <header class="spec-header border-box content">
       <h1>Avionics Design System</h1>
       <p class="lead">
         The visual and structural foundation of ASDLC.io. Inspired by industrial specification documents, 
@@ -300,81 +300,4 @@ const description =
   </article>
 </BaseLayout>
 
-<style>
-  .design-system {
-    max-width: 800px;
-  }
 
-  .spec-header {
-    margin-bottom: 2rem;
-  }
-
-  .spec-header h1 {
-    margin-bottom: 1rem;
-  }
-
-  .lead {
-    font-size: 1.125rem;
-    color: var(--c-text-secondary);
-    line-height: 1.6;
-  }
-
-  .prose hr {
-    border: none;
-    border-top: 2px solid var(--c-border);
-    margin: 3rem 0;
-  }
-
-  /* Color Palette Demo */
-  .color-palette {
-    display: grid;
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-
-  .color-group h4 {
-    font-family: var(--f-mono);
-    font-size: 0.875rem;
-    color: var(--c-text-secondary);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .color-swatches {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem;
-  }
-
-  .color-swatch {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .swatch {
-    height: 60px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .swatch-label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-family: var(--f-mono);
-    font-size: 0.75rem;
-  }
-
-  .swatch-label code {
-    font-size: 0.75rem;
-    padding: 0;
-    background: none;
-    color: var(--c-text-primary);
-  }
-
-  .swatch-label span {
-    color: var(--c-text-secondary);
-  }
-</style>

@@ -36,7 +36,7 @@ const structuredDataProps = {
 
 <BaseLayout title={pattern.data.title} description={`Architectural pattern: ${pattern.data.title}`}>
   <article class="pattern-detail">
-    <header class="spec-header border-box">
+    <header class="spec-header border-box content">
       <h1>{pattern.data.title}</h1>
       <dl class="spec-meta mono">
         <div>
@@ -66,96 +66,4 @@ const structuredDataProps = {
   </article>
 </BaseLayout>
 
-<style>
-  .pattern-detail {
-    max-width: 800px;
-  }
 
-  .spec-header {
-    margin-bottom: 2rem;
-  }
-
-  .spec-header h1 {
-    margin-bottom: 1rem;
-  }
-
-  .spec-meta {
-    font-family: var(--f-mono);
-    font-size: 0.875rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .spec-meta div {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 1rem;
-  }
-
-  .spec-meta dt {
-    font-weight: 600;
-    color: var(--c-dim);
-  }
-
-  .spec-meta dd {
-    margin: 0;
-  }
-
-  .spec-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid var(--c-border);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .prose {
-    line-height: 1.7;
-  }
-
-  .prose h2 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .prose h3 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .prose p {
-    margin-bottom: 1rem;
-  }
-
-  .prose ul,
-  .prose ol {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-  }
-
-  .prose li {
-    margin-bottom: 0.5rem;
-  }
-
-  .prose pre {
-    background: #f4f4f4;
-    padding: 1rem;
-    overflow-x: auto;
-    margin-bottom: 1rem;
-    border: 1px solid var(--c-border);
-  }
-
-  .prose code {
-    background: #f4f4f4;
-    padding: 0.2em 0.4em;
-    font-family: var(--f-mono);
-    font-size: 0.9em;
-  }
-
-  .prose pre code {
-    background: transparent;
-    padding: 0;
-  }
-</style>
