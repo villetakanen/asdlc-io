@@ -9,6 +9,7 @@ related_concepts:
   - guardrails
   - context-gates
 maturity: Standard
+status: Proposed
 lastUpdated: 2025-11-28
 ---
 
@@ -62,4 +63,3 @@ We map software autonomy directly to the SAE J3016 automotive standard to clarif
 | **L3** | L3 (Conditional) | **Hands Off, Eyes On.** AI executes the maneuver (The Drive). Human is the Instructor ready to grab the wheel immediately. |
 | **L4** | L4 (High) | **Mind Off.** Sleeping in the back seat within a geo-fenced area. Dangerous if the "fence" (Context) breaks. |
 | **L5** | L5 (Full) | **No Steering Wheel.** The vehicle has no manual controls. |
-
