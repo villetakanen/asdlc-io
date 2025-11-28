@@ -45,6 +45,14 @@ const structuredDataProps = {
           <dd>{concept.data.definition}</dd>
         </div>
         <div>
+          <dt>Status:</dt>
+          <dd>
+            <span class={`status status-${concept.data.status.toLowerCase().replace(/\s+/g, '-')}`}>
+            {concept.data.status}
+            </span>
+          </dd>
+        </div>
+        <div>
           <dt>Maturity:</dt>
           <dd>{concept.data.maturity}</dd>
         </div>

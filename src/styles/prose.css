@@ -95,3 +95,6 @@
   background: transparent;
   padding: 0;
 }
+.prose blockquote h2:first-child {
+  margin-top: 0;
+}

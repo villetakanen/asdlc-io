@@ -10,6 +10,7 @@ const concepts = defineCollection({
     related_concepts: z.array(z.string()).optional(),
     maturity: z.enum(["Theoretical", "Experimental", "Standard", "Deprecated"]),
     lastUpdated: z.coerce.date(),
+    status: z.enum(["Draft", "Proposed", "Live", "Deprecated"]).default("Draft"),
   }),
 });
 

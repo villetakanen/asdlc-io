@@ -9,17 +9,37 @@ related_concepts:
   - guardrails
   - context-gates
 maturity: Standard
-lastUpdated: 2025-11-26
+lastUpdated: 2025-11-28
 ---
 
 
 ## Definition
 
-The Levels of Autonomy scale classifies AI systems based on their operational independence and the required depth of human intervention. In the context of ASDLC, this scale determines the rigidity of Context Gates and the frequency of Verification Loops.
+The **Levels of Autonomy** scale categorizes AI systems based on their operational independence.
+Unlike general-purpose taxonomies, the Autonomous System Development Life Cycle (ASDLC) utilizes
+this scale to establish the Safe Operating Area for software agents. 
+
+We define these levels to explicitly identify where the **Context Gate** (the boundary of human
+oversight) must be placed. In ASDLC, autonomy is not a measure of intelligence; it is a measure
+of optimal risk.
 
 ## The ASDLC Standard: L3
 
-While the industry pursues L5 (Full Autonomy), ASDLC is explicitly designed for L3 (Conditional Autonomy). We reject the "autopilot" illusion in favor of the Cybernetic/Instructor model, where high-autonomy bursts are bracketed by strict human constraints.
+ASDLC standardizes practices for **Level 3 (Conditional Autonomy)** in software engineering. While 
+the industry frequently promotes **Level 5 (Full Autonomy)** as the ultimate goal, we believe this 
+perspective may be counterproductive at the moment. Therefore, we intentionally establish Level 3 a
+s the sensible default.
+
+> ## Level 4 Autonomy Risks
+> 
+> At Level 4 (L4), agents are advanced enough to operate for days without human intervention; 
+> however, they lack the strategic foresight needed to maintain system integrity. This results in 
+> a phenomenon known as Silent Drift—where the codebase continues to function technically but 
+> gradually deteriorates into an unmanageable state.
+> 
+> It's important to note that there are ways to mitigate this risk, such as implementing Advanced
+> Context Gate strategies and utilizing emerging tools to monitor architectural health for drift.
+> However, these solutions will need to be tested and validated over time.
 
 ## The Scale
 
@@ -42,14 +62,4 @@ We map software autonomy directly to the SAE J3016 automotive standard to clarif
 | **L3** | L3 (Conditional) | **Hands Off, Eyes On.** AI executes the maneuver (The Drive). Human is the Instructor ready to grab the wheel immediately. |
 | **L4** | L4 (High) | **Mind Off.** Sleeping in the back seat within a geo-fenced area. Dangerous if the "fence" (Context) breaks. |
 | **L5** | L5 (Full) | **No Steering Wheel.** The vehicle has no manual controls. |
-
-## The Uncanny Valley (L4)
-
-ASDLC warns against Level 4.
-
-At L4, agents are capable enough to run for days without intervention but not reliable enough to make strategic architectural decisions. This creates a "Silent Drift" risk where the codebase technically functions but slowly rots into an unmaintainable "Big Ball of Mud."
-
-## Guideline
-
-**Remain at L3.** Use Context Gates to artificially limit agent scope, forcing frequent human "Instructor" checkpoints to maintain architectural purity.
 
