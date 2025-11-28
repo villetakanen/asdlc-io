@@ -19,11 +19,8 @@
 
   /* --- Functional / Status Indicators --- */
   --c-success: #00703c; /* DIN Standard Green */
-  --c-success-bg: #e1f0e5;
-  --c-warning: #946800; /* Industrial Amber */
-  --c-warning-bg: #fff5cc;
+  --c-warning: #ffb400; /* Signal Yellow */
   --c-error: #cc0000; /* Switch Red */
-  --c-error-bg: #ffebeb;
 
   /* --- Code Syntax Highlighting Base --- */
   --c-code-bg: #ebebe6;

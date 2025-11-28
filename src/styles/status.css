@@ -4,7 +4,7 @@
   border-radius: 6px;
 }
 .status-proposed {
-  background-color: var(--c-warning-bg);
-  color: var(--c-warning);
+  background-color: var(--c-warning);
+  color: var(--c-text-primary);
   border-color: var(--c-warning);
 }
