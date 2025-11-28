@@ -9,6 +9,13 @@
   color: var(--c-brand);
   margin-right: 0.25rem;
 }
+.content-prose blockquote h2 {
+  counter-increment: none;
+  border: none;
+}
+.content-prose blockquote h2::before {
+  content: "";
+}
 
 /*.prose h2::after {
   content: " // ";
