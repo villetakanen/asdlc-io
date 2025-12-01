@@ -1,8 +1,10 @@
 @import "./site-header.css";
 @import "./hamburger.css";
-@import "status.css";
+@import "./status.css";
 @import "./prose.css";
-@import "./page-details.css";
+@import "./components/spec-card.css";
+@import "./components/spec-metadata.css";
+@import "./components/footer.css";
 
 :root {
   /* --- The Avionics Palette (International Safety) --- */
@@ -139,18 +141,6 @@ code {
 .border-box {
   border: 1px solid var(--c-border);
   padding: var(--s-gap);
-}
-
-.status-badge {
-  display: inline-block;
-  background: var(--c-text-primary);
-  color: var(--c-bg-page);
-  padding: 2px 6px;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-family: var(--f-mono);
-  font-size: 0.85rem;
 }
 
 /* --- CSS Grid Layout System --- */

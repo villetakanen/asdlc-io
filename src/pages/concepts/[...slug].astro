@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
+import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -31,49 +32,31 @@ const structuredDataProps = {
   maturity: concept.data.maturity,
   url: canonicalURL.toString(),
 };
+
+const metadata: MetadataItem[] = [
+  { label: "Maturity", value: concept.data.maturity },
+  { label: "Last Updated", value: concept.data.lastUpdated, type: "date" },
+];
+
+if (concept.data.tags && concept.data.tags.length > 0) {
+  metadata.push({ label: "Tags", value: concept.data.tags, type: "list" });
+}
+
+if (concept.data.related_concepts && concept.data.related_concepts.length > 0) {
+  metadata.push({ label: "Related", value: concept.data.related_concepts, type: "list" });
+}
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
 <BaseLayout title={concept.data.title} description={concept.data.definition}>
   <article class="concept-detail">
-    <header class="spec-header border-box content">
-      <h1>{concept.data.title}</h1>
-      <dl class="spec-meta mono">
-        <div>
-          <dt>Definition:</dt>
-          <dd>{concept.data.definition}</dd>
-        </div>
-        <div>
-          <dt>Status:</dt>
-          <dd>
-            <span class={`status status-${concept.data.status.toLowerCase().replace(/\s+/g, '-')}`}>
-            {concept.data.status}
-            </span>
-          </dd>
-        </div>
-        <div>
-          <dt>Maturity:</dt>
-          <dd>{concept.data.maturity}</dd>
-        </div>
-        <div>
-          <dt>Last Updated:</dt>
-          <dd><time datetime={concept.data.lastUpdated.toISOString()}>{concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
-        </div>
-        {concept.data.tags && concept.data.tags.length > 0 && (
-          <div>
-            <dt>Tags:</dt>
-            <dd>{concept.data.tags.join(', ')}</dd>
-          </div>
-        )}
-        {concept.data.related_concepts && concept.data.related_concepts.length > 0 && (
-          <div>
-            <dt>Related:</dt>
-            <dd>{concept.data.related_concepts.join(', ')}</dd>
-          </div>
-        )}
-      </dl>
-    </header>
+    <SpecHeader 
+      title={concept.data.title} 
+      description={concept.data.definition}
+      status={concept.data.status}
+      metadata={metadata} 
+    />
 
     <div class="prose content-prose">
       <Content />

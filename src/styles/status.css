@@ -1,10 +1,36 @@
-.status {
-  border: solid 1px;
-  padding: 4px 8px;
+.status,
+.status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  border: 1px solid transparent;
   border-radius: 6px;
 }
+.status-draft,
 .status-proposed {
   background-color: var(--c-warning);
   color: var(--c-text-primary);
   border-color: var(--c-warning);
+}
+
+.status-live {
+  background-color: var(--c-success);
+  color: white;
+  border-color: var(--c-success);
+}
+
+.status-experimental {
+  background-color: var(--c-error);
+  color: white;
+  border-color: var(--c-error);
+}
+
+.status-deprecated {
+  background-color: var(--c-text-primary);
+  color: var(--c-bg-page);
+  border-color: var(--c-text-primary);
 }

@@ -1,0 +1,10 @@
+footer {
+  border-top: 1px solid var(--c-border);
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--c-text-secondary);
+  text-transform: uppercase;
+  margin-top: auto; /* Push to bottom if flex container */
+}

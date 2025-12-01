@@ -3,32 +3,32 @@ title: "AGENTS.md Specification"
 description: "The definitive guide to the AGENTS.md file, including philosophy, anatomy, and implementation strategy."
 lastUpdated: 2025-11-27
 tags: ["governance", "agents", "specification"]
-status: "Proposed"
+status: "Live"
 ---
 
 ## DEFINITION
 
-The Context Artifact, standardized as `AGENTS.md`, is a machine-readable governance file located at the root of a software repository. It acts as a persistent "System Prompt Injection," converting abstract architectural intent into strict algorithmic constraints.
+`AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for context and instructions—such as build steps, tests, and conventions—that help AI coding agents work effectively on a project.
 
-Unlike README.md or CONTRIBUTORS.md, which are designed for human onboarding, AGENTS.md is aimed at the Token Economy of a Large Language Model (LLM). It serves as a bridge that closes the contextual gap between human implicit knowledge and agentic stochastic behavior.
+We align with the [agents.md specification](https://agents.md), treating this file as the authoritative source of truth for agentic behavior within the ASDLC.
 
 ## CORE PHILOSOPHY
 
-**1\. Context is Code**
+**1. A README for Agents**
 
-In an agentic workflow, intelligence is treated as a commodity, while context serves as the primary differentiator. Therefore, AGENTS.md should be managed with the same level of rigor as production software:
+Just as `README.md` is for humans, `AGENTS.md` is for agents. It complements existing documentation by containing the detailed context—build commands, strict style guides, and test instructions—that agents need but might clutter a human-facing README.
 
-- **Version Controlled**: Changes must be tracked through pull requests (PRs).
-- **Immutable**: It serves as the "Ground Truth" for the session.
-- **Falsifiable**: It should include clear criteria for determining pass or fail outcomes for agent behavior.
+**2. Context is Code**
 
-**2\. Token Economy**
+In the ASDLC, we treat `AGENTS.md` with the same rigor as production software:
 
-Modern models have large context windows (over 200,000 tokens); however, attention tends to degrade with length, leading to the “Lost in the Middle” phenomenon. A well-structured AGENTS.md document optimizes the Signal-to-Noise Ratio. It emphasizes imperative instructions rather than conversational prose and uses structural markers, such as XML tags and headers, to direct the model’s attention more effectively.
+- **Version Controlled**: Tracked via git and PRs.
+- **Falsifiable**: Contains clear success criteria for agent actions.
+- **Optimized**: Structured to maximize signal-to-noise ratio for LLM context windows, preventing "Lost in the Middle" issues.
 
-## Best Practices & ANATOMY
+## ASDLC IMPLEMENTATION STRATEGY
 
-A valid AGENTS.md is not a "Context Dump" of documentation. It is a segmented database of rules, mapped to the specific reasoning stages of the agent.
+While the [agents.md](https://agents.md) standard provides the format, the ASDLC defines a specific strict implementation to ensure reliability. We structure our `AGENTS.md` not just as a list of tips, but as a segmented database of rules.
 
 ### 1. Identity Anchoring (The Persona)
 
