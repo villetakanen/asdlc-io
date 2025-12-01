@@ -1,4 +1,5 @@
 ---
+import StatusBadge from "../../components/StatusBadge.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Avionics Design System";
@@ -228,17 +229,14 @@ const description =
       
       <h3>Status Badge</h3>
       <p>Monospace badges for status indicators:</p>
-      <pre><code>.status-badge {`{`}
-  display: inline-block;
-  background: var(--c-text-primary);
-  color: var(--c-bg-page);
-  padding: 2px 6px;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-family: var(--f-mono);
-  font-size: 0.85rem;
-{`}`}</code></pre>
+      <div class="border-box" style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <StatusBadge status="Draft" />
+        <StatusBadge status="Proposed" />
+        <StatusBadge status="Live" />
+        <StatusBadge status="Deprecated" />
+        <StatusBadge status="Experimental" />
+      </div>
+      <pre><code>&lt;StatusBadge status="Live" /&gt;</code></pre>
 
       <hr>
 

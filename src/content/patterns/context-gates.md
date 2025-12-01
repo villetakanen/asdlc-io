@@ -5,7 +5,7 @@ status: "Experimental"
 publishDate: 2025-11-25
 ---
 
-# The Cognitive Filter
+## The Cognitive Filter
 
 In the architecture of autonomous AI agents, Context Gates function as a "cognitive throttle" or filtration system that manages the information flow between an agent's vast history and its immediate working memory. As an agent performs complex, multi-step tasks, it generates a massive trail of logs: observations, tool outputs, internal monologues, and errors. Feeding this entire raw history into the LLM for every subsequent decision results in "context pollution," where the signal-to-noise ratio drops, causing the model to get distracted, hallucinate, or fixate on irrelevant past details. The context gate acts as the decision-maker that determines strictly what information is relevant to the current sub-task.
 

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
+import StatusBadge from "../../components/StatusBadge.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -46,9 +47,7 @@ const structuredDataProps = {
         <div>
           <dt>Status:</dt>
           <dd>
-            <span class={`status status-${practice.data.status.toLowerCase().replace(/\s+/g, '-')}`}>
-            {practice.data.status}
-            </span>
+            <StatusBadge status={practice.data.status} />
           </dd>
         </div>
         <div>

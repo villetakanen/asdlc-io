@@ -14,17 +14,17 @@ maturity: Standard
 lastUpdated: 2025-11-26
 ---
 
-# Definition
+## Definition
 
 The Agentic Software Development Life Cycle (ASDLC) is a cybernetic methodology where software is produced through the active co-operation of human engineers and AI agents. Unlike "Co-pilot" workflows (L1) or "Full Autonomy" (L5), ASDLC operates on L3 Conditional Autonomy—a "Fighter Jet" model where the Agent acts as the Pilot executing maneuvers, and the Human acts as the Instructor-in-the-Cockpit.
 
-# Core Philosophy
+## Core Philosophy
 
 Transitioning to ASDLC requires acknowledging that compute is cheap, but novelty and correctness are expensive.
 
 Agents are probabilistic engines that naturally drift toward the "average" solution found in their training data (Regression to the Mean). The Instructor's role is not to write code, but to define failure boundaries and inject the strategic intent that forces the agent out of mediocrity.
 
-# The Cybernetic Loop
+## The Cybernetic Loop
 
 The lifecycle replaces the linear CI/CD pipeline with a high-frequency feedback loop:
 
@@ -36,6 +36,6 @@ The lifecycle replaces the linear CI/CD pipeline with a high-frequency feedback 
 
 **Course Correction (HITL)**: The Instructor intervenes on technically correct but "generic" solutions to enforce architectural novelty.
 
-# Strategic Value
+## Strategic Value
 
 We treat agents as capable but junior partners. We do not automate the "hard" work; we use agents to amplify human capability by offloading the "easy" work at massive scale.
