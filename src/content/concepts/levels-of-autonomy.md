@@ -9,7 +9,7 @@ related_concepts:
   - guardrails
   - context-gates
 maturity: Standard
-status: Proposed
+status: Live
 lastUpdated: 2025-11-28
 ---
 
