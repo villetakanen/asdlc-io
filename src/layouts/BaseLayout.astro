@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import SEOMetadata from "../components/SEOMetadata.astro";
 
 interface Props {
   title: string;
@@ -10,14 +11,6 @@ interface Props {
 }
 
 const { title, description, image } = Astro.props;
-
-// SEO metadata
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const defaultDescription =
-  "Agentic Software Development Life Cycle - A knowledge base for AI-augmented software engineering.";
-const metaDescription = description || defaultDescription;
-const ogImage = image || new URL("/og-default.svg", Astro.site).toString();
-const pageTitle = `${title} | ASDLC.io`;
 ---
 
 <!doctype html>
@@ -25,30 +18,9 @@ const pageTitle = `${title} | ASDLC.io`;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/asdlc.svg" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO Metadata -->
-    <title>{pageTitle}</title>
-    <meta name="description" content={metaDescription} />
-    <meta name="author" content="ASDLC.io Contributors" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={metaDescription} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="ASDLC.io" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={metaDescription} />
-    <meta name="twitter:image" content={ogImage} />
+    <SEOMetadata title={title} description={description} image={image} />
 
     <!-- 100% privacy-first analytics -->
     <script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

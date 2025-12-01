@@ -12,14 +12,19 @@ const sortedConcepts = concepts.sort((a, b) => a.data.title.localeCompare(b.data
 const sortedPatterns = patterns.sort((a, b) => a.data.title.localeCompare(b.data.title));
 
 const today = new Date().toISOString().split("T")[0];
+
+import SEOMetadata from "../components/SEOMetadata.astro";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASDLC.io Field Manual</title>
+    <SEOMetadata 
+      title="Field Manual" 
+      description="A single-page, printable compilation of all ASDLC concepts and patterns." 
+      type="article"
+    />
     <style>
         /* Print-specific overrides */
         @media print {

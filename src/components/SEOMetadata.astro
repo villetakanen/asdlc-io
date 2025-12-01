@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+}
+
+const { title, description, image, type = "website" } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const defaultDescription =
+  "Agentic Software Development Life Cycle - A knowledge base for AI-augmented software engineering.";
+const metaDescription = description || defaultDescription;
+const ogImage = image || new URL("/og-default.svg", Astro.site).toString();
+const pageTitle = `${title} | ASDLC.io`;
+---
+
+<!-- SEO Metadata -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#f4f4f0" />
+<title>{pageTitle}</title>
+<meta name="description" content={metaDescription} />
+<meta name="author" content="ASDLC.io Contributors" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={metaDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="ASDLC.io" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={metaDescription} />
+<meta name="twitter:image" content={ogImage} />
