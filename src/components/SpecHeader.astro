@@ -1,0 +1,52 @@
+---
+import StatusBadge from "./StatusBadge.astro";
+
+export interface MetadataItem {
+  label: string;
+  value: string | string[] | Date | number;
+  type?: "text" | "status" | "complexity" | "date" | "link" | "list";
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  status?: string;
+  metadata: MetadataItem[];
+}
+
+const { title, description, status, metadata } = Astro.props;
+---
+
+<header class="spec-header border-box content">
+  <h1>{title}</h1>
+  <dl class="spec-meta mono">
+    <div class="spec-row">
+      <dt>Description</dt>
+      <dd>{description || "—"}</dd>
+    </div>
+    <div class="spec-row">
+      <dt>Status</dt>
+      <dd><StatusBadge status={status || "Draft"} /></dd>
+    </div>
+    {metadata.map((item) => (
+      <div class="spec-row">
+        <dt>{item.label}</dt>
+        <dd>
+          {item.type === 'status' && <StatusBadge status={item.value as string} />}
+          {item.type === 'complexity' && <span class="spec-badge">{item.value}</span>}
+          {item.type === 'date' && (
+            <time datetime={(item.value as Date).toISOString()}>
+              {(item.value as Date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+          )}
+          {item.type === 'link' && (
+            <a href={item.href} target="_blank" rel="noopener noreferrer">{item.value}</a>
+          )}
+          {item.type === 'list' && (Array.isArray(item.value) ? item.value.join(', ') : item.value)}
+          {(!item.type || item.type === 'text') && item.value}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</header>

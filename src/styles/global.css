@@ -2,7 +2,9 @@
 @import "./hamburger.css";
 @import "./status.css";
 @import "./prose.css";
-@import "./page-details.css";
+@import "./components/spec-card.css";
+@import "./components/spec-metadata.css";
+@import "./components/footer.css";
 
 :root {
   /* --- The Avionics Palette (International Safety) --- */

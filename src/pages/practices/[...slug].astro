@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
-import StatusBadge from "../../components/StatusBadge.astro";
+import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -31,38 +31,26 @@ const structuredDataProps = {
   dateModified: practice.data.lastUpdated.toISOString(),
   url: canonicalURL.toString(),
 };
+
+const metadata: MetadataItem[] = [
+  { label: "Last Updated", value: practice.data.lastUpdated, type: "date" },
+];
+
+if (practice.data.tags && practice.data.tags.length > 0) {
+  metadata.push({ label: "Tags", value: practice.data.tags, type: "list" });
+}
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
 <BaseLayout title={practice.data.title} description={practice.data.description}>
   <article class="practice-detail">
-    <header class="spec-header border-box content">
-      <h1>{practice.data.title}</h1>
-      <dl class="spec-meta mono">
-        <div>
-          <dt>Description:</dt>
-          <dd>{practice.data.description}</dd>
-        </div>
-        <div>
-          <dt>Status:</dt>
-          <dd>
-            <StatusBadge status={practice.data.status} />
-          </dd>
-        </div>
-        <div>
-          <dt>Last Updated:</dt>
-          <dd><time datetime={practice.data.lastUpdated.toISOString()}>{practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
-        </div>
-        {practice.data.tags && practice.data.tags.length > 0 && (
-          <div>
-            <dt>Tags:</dt>
-            <dd>{practice.data.tags.join(', ')}</dd>
-          </div>
-        )}
-
-      </dl>
-    </header>
+    <SpecHeader 
+      title={practice.data.title} 
+      description={practice.data.description}
+      status={practice.data.status}
+      metadata={metadata} 
+    />
 
     <div class="prose content-prose">
       <Content />

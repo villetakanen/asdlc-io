@@ -1,10 +1,23 @@
 ---
+import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Avionics Design System";
 const description =
   "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
+
+const simpleMetadata: MetadataItem[] = [
+  { label: "Version", value: "1.0.0" },
+  { label: "Author", value: "System" },
+];
+
+const complexMetadata: MetadataItem[] = [
+  { label: "Complexity", value: "High", type: "complexity" },
+  { label: "Last Updated", value: new Date(), type: "date" },
+  { label: "Tags", value: ["UI", "Component"], type: "list" },
+  { label: "Link", value: "View Source", type: "link", href: "#" },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -237,6 +250,28 @@ const description =
         <StatusBadge status="Experimental" />
       </div>
       <pre><code>&lt;StatusBadge status="Live" /&gt;</code></pre>
+
+      <h3>Spec Header</h3>
+      <p>Standardized header for specification pages (Concepts, Patterns, Practices). Supports data-driven metadata rendering.</p>
+      
+      <div style="margin-bottom: 1rem;">
+        <SpecHeader 
+          title="Example Specification" 
+          description="A standardized header component for specification pages."
+          status="Live"
+          metadata={complexMetadata} 
+        />
+      </div>
+
+      <pre><code>&lt;SpecHeader 
+  title="Example Specification" 
+  description="A standardized header component..."
+  status="Live"
+  metadata={[
+    { label: "Complexity", value: "High", type: "complexity" },
+    /* ... */
+  ]} 
+/&gt;</code></pre>
 
       <hr>
 

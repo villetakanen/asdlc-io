@@ -1,0 +1,37 @@
+.spec-meta {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+}
+
+.spec-meta dt {
+  padding: 0.75rem 0;
+  color: var(--c-text-secondary);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.spec-meta dd {
+  padding: 0.75rem 0;
+  color: var(--c-text-primary);
+}
+
+@media (max-width: 600px) {
+  .spec-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .spec-meta dt {
+    padding-bottom: 0;
+    font-size: 0.75rem;
+  }
+
+  .spec-meta dd {
+    padding-top: 0.25rem;
+  }
+}

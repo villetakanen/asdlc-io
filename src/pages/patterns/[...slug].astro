@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
+import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -30,35 +31,32 @@ const structuredDataProps = {
   complexity: pattern.data.complexity,
   url: canonicalURL.toString(),
 };
+
+const metadata: MetadataItem[] = [
+  { label: "Complexity", value: pattern.data.complexity, type: "complexity" },
+  { label: "Published", value: pattern.data.publishDate, type: "date" },
+];
+
+if (pattern.data.diagram_source) {
+  metadata.push({
+    label: "Diagram",
+    value: "View Source",
+    type: "link",
+    href: pattern.data.diagram_source,
+  });
+}
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
 <BaseLayout title={pattern.data.title} description={`Architectural pattern: ${pattern.data.title}`}>
   <article class="pattern-detail">
-    <header class="spec-header border-box content">
-      <h1>{pattern.data.title}</h1>
-      <dl class="spec-meta mono">
-        <div>
-          <dt>Complexity:</dt>
-          <dd class="spec-badge">{pattern.data.complexity}</dd>
-        </div>
-        <div>
-          <dt>Status:</dt>
-          <dd class="spec-badge">{pattern.data.status}</dd>
-        </div>
-        <div>
-          <dt>Published:</dt>
-          <dd><time datetime={pattern.data.publishDate.toISOString()}>{pattern.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></dd>
-        </div>
-        {pattern.data.diagram_source && (
-          <div>
-            <dt>Diagram:</dt>
-            <dd><a href={pattern.data.diagram_source} target="_blank" rel="noopener noreferrer">View Source</a></dd>
-          </div>
-        )}
-      </dl>
-    </header>
+    <SpecHeader 
+      title={pattern.data.title} 
+      description={`Architectural pattern: ${pattern.data.title}`}
+      status={pattern.data.status}
+      metadata={metadata} 
+    />
 
     <div class="prose content-prose">
       <Content />
