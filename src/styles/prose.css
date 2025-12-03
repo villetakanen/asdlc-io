@@ -110,6 +110,7 @@
   background: transparent;
   padding: 0;
 }
-.prose blockquote h2:first-child {
+.prose blockquote h2:first-child,
+.prose blockquote h3:first-child {
   margin-top: 0;
 }
