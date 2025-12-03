@@ -1,0 +1,30 @@
+/* --- Global Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--c-bg-page);
+  color: var(--c-text-primary);
+  font-family: var(--f-sans);
+  line-height: 1.6;
+  font-size: 16px;
+  /* The "Swiss" tightness */
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  /* Top Safety Strip */
+  border-top: 6px solid var(--c-brand);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Utilities --- */
+.border-box {
+  border: 1px solid var(--c-border);
+  padding: var(--s-gap);
+}

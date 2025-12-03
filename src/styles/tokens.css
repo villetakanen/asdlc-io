@@ -1,0 +1,36 @@
+:root {
+  /* --- The Avionics Palette (International Safety) --- */
+  --c-bg-page: #f4f4f0; /* Warm, off-white concrete/paper */
+  --c-bg-surface: #ebebe6; /* Slightly darker, for cards or headers */
+  --c-border: #d1d1c7; /* Visible, structural grey */
+
+  /* The Text */
+  --c-text-primary: #111111; /* Soft black, like high-quality toner */
+  --c-text-secondary: #585855;
+
+  /* --- Branding --- */
+  --c-brand: #f04e30; /* Safety Orange */
+  --c-brand-hover: #d13a1e;
+
+  /* --- Functional / Status Indicators --- */
+  --c-success: #00703c; /* DIN Standard Green */
+  --c-warning: #ffb400; /* Signal Yellow */
+  --c-error: #cc0000; /* Switch Red */
+
+  /* --- Code Syntax Highlighting Base --- */
+  --c-code-bg: #ebebe6;
+  --c-code-text: #2a2a2a;
+
+  /* --- Fonts & Spacing --- */
+  --f-sans: "Archivo", sans-serif;
+  --f-mono: "B612 Mono", monospace;
+  --s-grid: 24px;
+  --s-gap: 1.5rem;
+  --s-container: 800px;
+
+  /* --- Legacy Mappings --- */
+  --c-bg: var(--c-bg-page);
+  --c-fg: var(--c-text-primary);
+  --c-dim: var(--c-text-secondary);
+  --c-accent: var(--c-brand);
+}

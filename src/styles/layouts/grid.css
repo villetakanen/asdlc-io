@@ -1,0 +1,61 @@
+/* --- CSS Grid Layout System --- */
+:root {
+  --s-grid-unit: 0.5em;
+  --s-gutter-min: var(--s-grid-unit);
+  --s-gutter-max: 9.7ch;
+  --s-content-max: 67ch;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--s-gutter-min), 1fr)
+    [breakout-start] minmax(var(--s-gutter-min), var(--s-gutter-max))
+    [content-start] min(100% - (4 * var(--s-grid-unit)), var(--s-content-max))
+    [content-end]
+    minmax(var(--s-gutter-min), var(--s-gutter-max)) [breakout-end]
+    minmax(var(--s-gutter-min), 1fr) [full-end];
+  /* Add vertical spacing */
+  padding-block: var(--s-gap);
+}
+
+.grid-layout > * {
+  grid-column: content;
+}
+
+.grid-layout > .breakout {
+  grid-column: breakout;
+}
+
+.grid-layout > .full {
+  grid-column: full;
+  width: 100%;
+}
+
+/* --- Prose Integration with Grid --- */
+/* Flatten prose container so children participate in the main grid */
+.grid-layout > .prose,
+.grid-layout > * > .prose,
+.grid-layout > * > * > .prose {
+  display: contents;
+}
+
+.grid-layout > article {
+  display: contents;
+}
+.grid-layout > article > * {
+  grid-column: content;
+}
+
+/* Default prose children to content column */
+.prose > * {
+  grid-column: content;
+}
+
+/* Force tables to breakout */
+.prose > table,
+.prose > :has(> table) {
+  grid-column: breakout !important;
+  width: 100%;
+  max-width: 100%;
+}
