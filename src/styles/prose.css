@@ -51,9 +51,13 @@
   background: var(--c-bg-surface);
 }
 
-.grid-layout > article .prose > img {
+.grid-layout > article .prose > figure {
   grid-column: breakout;
   max-width: 100%;
+}
+.prose figure figcaption {
+  text-align: center;
+  font-family: var(--f-mono);
 }
 
 .prose th {
