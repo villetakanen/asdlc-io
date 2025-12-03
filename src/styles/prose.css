@@ -4,6 +4,7 @@
   max-width: 65ch;
   line-height: 1.7;
   counter-reset: chapter; /* reset chapter numbering for each prose block */
+  display: contents;
 }
 
 .prose p {
@@ -43,9 +44,16 @@
   font-size: 0.9rem;
   border: 1px solid var(--c-border);
 }
-
+.grid-layout > article .prose > table {
+  grid-column: breakout;
+}
 .prose thead {
   background: var(--c-bg-surface);
+}
+
+.grid-layout > article .prose > img {
+  grid-column: breakout;
+  max-width: 100%;
 }
 
 .prose th {
