@@ -1,7 +1,7 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "diagrams": "node scripts/generate-diagrams.mjs",
     "check": "astro check",
     "lint": "biome check --write .",
     "format": "biome format --write ."
@@ -16,6 +17,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.16.0",
+    "playwright": "^1.57.0",
+    "rehype-mermaid": "^3.0.0",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
@@ -23,6 +26,8 @@
     "@biomejs/biome": "^2.3.7",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
+    "@mermaid-js/mermaid-cli": "^11.12.0",
+    "glob": "^13.0.0",
     "lefthook": "^2.0.4"
   }
 }

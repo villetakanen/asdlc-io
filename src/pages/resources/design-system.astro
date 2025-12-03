@@ -1,4 +1,5 @@
 ---
+import ColorSwatch from "../../components/ColorSwatch.astro";
 import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -6,11 +7,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Avionics Design System";
 const description =
   "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
-
-const simpleMetadata: MetadataItem[] = [
-  { label: "Version", value: "1.0.0" },
-  { label: "Author", value: "System" },
-];
 
 const complexMetadata: MetadataItem[] = [
   { label: "Complexity", value: "High", type: "complexity" },
@@ -40,94 +36,34 @@ const complexMetadata: MetadataItem[] = [
         <div class="color-group">
           <h4>Background & Structure</h4>
           <div class="color-swatches">
-            <div class="color-swatch">
-              <div class="swatch" style="background: #f4f4f0; border: 1px solid #d1d1c7;"></div>
-              <div class="swatch-label">
-                <code>--c-bg-page</code>
-                <span>#f4f4f0</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #ebebe6; border: 1px solid #d1d1c7;"></div>
-              <div class="swatch-label">
-                <code>--c-bg-surface</code>
-                <span>#ebebe6</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #d1d1c7;"></div>
-              <div class="swatch-label">
-                <code>--c-border</code>
-                <span>#d1d1c7</span>
-              </div>
-            </div>
+            <ColorSwatch token="--c-bg-page" value="#f4f4f0" />
+            <ColorSwatch token="--c-bg-surface" value="#ebebe6" />
+            <ColorSwatch token="--c-border" value="#d1d1c7" />
           </div>
         </div>
 
         <div class="color-group">
           <h4>Text</h4>
           <div class="color-swatches">
-            <div class="color-swatch">
-              <div class="swatch" style="background: #111111;"></div>
-              <div class="swatch-label">
-                <code>--c-text-primary</code>
-                <span>#111111</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #585855;"></div>
-              <div class="swatch-label">
-                <code>--c-text-secondary</code>
-                <span>#585855</span>
-              </div>
-            </div>
+            <ColorSwatch token="--c-text-primary" value="#111111" />
+            <ColorSwatch token="--c-text-secondary" value="#585855" />
           </div>
         </div>
 
         <div class="color-group">
           <h4>Brand</h4>
           <div class="color-swatches">
-            <div class="color-swatch">
-              <div class="swatch" style="background: #f04e30;"></div>
-              <div class="swatch-label">
-                <code>--c-brand</code>
-                <span>#f04e30</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #d13a1e;"></div>
-              <div class="swatch-label">
-                <code>--c-brand-hover</code>
-                <span>#d13a1e</span>
-              </div>
-            </div>
+            <ColorSwatch token="--c-brand" value="#f04e30" />
+            <ColorSwatch token="--c-brand-hover" value="#d13a1e" />
           </div>
         </div>
 
         <div class="color-group">
           <h4>Status Indicators</h4>
           <div class="color-swatches">
-            <div class="color-swatch">
-              <div class="swatch" style="background: #00703c;"></div>
-              <div class="swatch-label">
-                <code>--c-success</code>
-                <span>#00703c</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #ffb400;"></div>
-              <div class="swatch-label">
-                <code>--c-warning</code>
-                <span>#ffb400</span>
-              </div>
-            </div>
-            <div class="color-swatch">
-              <div class="swatch" style="background: #cc0000;"></div>
-              <div class="swatch-label">
-                <code>--c-error</code>
-                <span>#cc0000</span>
-              </div>
-            </div>
+            <ColorSwatch token="--c-success" value="#00703c" label="Success" />
+            <ColorSwatch token="--c-warning" value="#ffb400" label="Warning" />
+            <ColorSwatch token="--c-error" value="#cc0000" label="Error" />
           </div>
         </div>
       </div>

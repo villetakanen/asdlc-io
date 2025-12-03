@@ -185,6 +185,13 @@ code {
   display: contents;
 }
 
+.grid-layout > article {
+  display: contents;
+}
+.grid-layout > article > * {
+  grid-column: content;
+}
+
 /* Default prose children to content column */
 .prose > * {
   grid-column: content;
