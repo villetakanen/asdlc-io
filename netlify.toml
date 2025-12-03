@@ -1,3 +1,6 @@
 [build]
-  command = "pnpm exec playwright install && pnpm build"
+  command = "pnpm exec playwright install chromium && pnpm build"
   publish = "dist"
+
+[build.environment]
+  PLAYWRIGHT_BROWSERS_PATH = "0"
