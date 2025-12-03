@@ -34,6 +34,6 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/mermaid-1764754405366-48gdkdy1h.svg" alt="Context Gating for Desing System Integrity" />
+  <img src="/mermaid/experience-modeling-fig-1.svg" alt="Context Gating for Desing System Integrity" />
   <figcaption>Context Gating for Desing System Integrity</figcaption>
 </figure>

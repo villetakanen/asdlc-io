@@ -18,21 +18,26 @@ async function generateDiagrams() {
 
   for (const file of files) {
     let content = fs.readFileSync(file, 'utf-8');
-    // Match ```mermaid but NOT ```mermaid-source or other suffixes
-    const mermaidRegex = /```mermaid(?![-\w])([\s\S]*?)```/g;
+    // Match ```mermaid block AND optional following <figure>...</figure>
+    const mermaidRegex = /```mermaid(?![-\w])([\s\S]*?)```(?:\s*<figure class="mermaid-diagram">[\s\S]*?<\/figure>)?/g;
     let match;
-    let updatedContent = content;
+    let newContent = '';
+    let lastIndex = 0;
+    let diagramIndex = 1;
     let hasChanges = false;
+    const baseName = path.basename(file, '.md').replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
 
     // Find all mermaid blocks
     while ((match = mermaidRegex.exec(content)) !== null) {
+      // Append content before this match
+      newContent += content.slice(lastIndex, match.index);
+      
       const mermaidCode = match[1].trim();
-      const diagramId = `mermaid-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      const mmdFile = `${diagramId}.mmd`;
-      const svgFileName = `${diagramId}.svg`;
+      const mmdFile = `${baseName}-fig-${diagramIndex}.mmd`;
+      const svgFileName = `${baseName}-fig-${diagramIndex}.svg`;
       const outputPath = path.resolve(PUBLIC_MERMAID_DIR, svgFileName);
 
-      console.log(`Generating diagram for ${file}...`);
+      console.log(`Generating diagram ${diagramIndex} for ${file}...`);
 
       // Extract caption if present
       let caption = '';
@@ -51,7 +56,7 @@ async function generateDiagrams() {
         // Clean up temp files
         fs.unlinkSync(mmdFile);
         
-        const replacement = `\`\`\`mermaid-source
+        const replacement = `\`\`\`mermaid
 ${mermaidCode}
 \`\`\`
 
@@ -60,18 +65,25 @@ ${mermaidCode}
   ${caption ? `<figcaption>${caption}</figcaption>` : ''}
 </figure>`;
 
-        updatedContent = updatedContent.replace(match[0], replacement);
+        newContent += replacement;
         hasChanges = true;
 
       } catch (error) {
         console.error(`Failed to generate diagram for ${file}:`, error);
+        // If failed, keep original content for this block
+        newContent += match[0];
         if (fs.existsSync(mmdFile)) fs.unlinkSync(mmdFile);
-        if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
       }
+      
+      lastIndex = mermaidRegex.lastIndex;
+      diagramIndex++;
     }
+    
+    // Append remaining content
+    newContent += content.slice(lastIndex);
 
     if (hasChanges) {
-      fs.writeFileSync(file, updatedContent);
+      fs.writeFileSync(file, newContent);
       console.log(`Updated ${file}`);
     }
   }

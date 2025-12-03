@@ -59,6 +59,9 @@
   text-align: center;
   font-family: var(--f-mono);
 }
+.prose pre.language-mermaid {
+  display: none;
+}
 
 .prose th {
   text-align: left;
