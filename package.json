@@ -16,6 +16,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.16.0",
+    "playwright": "^1.57.0",
+    "rehype-mermaid": "^3.0.0",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
