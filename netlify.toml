@@ -1,0 +1,3 @@
+[build]
+  command = "pnpm exec playwright install --with-deps && pnpm build"
+  publish = "dist"
