@@ -12,3 +12,5 @@ commit-msg:
   commands:
     commitlint:
       run: npx commitlint --edit {1}
+    verify-ds-freeze:
+      run: node scripts/verify-ds-freeze.cjs {1}

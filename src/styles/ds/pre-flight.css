@@ -1,0 +1,63 @@
+/* 
+  Pre-flight: A modern CSS reset.
+  Inspired by Tailwind CSS Preflight and modern best practices.
+*/
+
+/* 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4) */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin. */
+* {
+  margin: 0;
+}
+
+/* 3. Allow percentage-based heights in the application. */
+html,
+body {
+  height: 100%;
+}
+
+/* Typographic improvements! */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 4. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5. Remove built-in form typography styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 6. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 7. Create a root stacking context */
+#root,
+#__next {
+  isolation: isolate;
+}

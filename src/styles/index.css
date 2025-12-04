@@ -1,0 +1,7 @@
+/* 
+  Global Entrypoint
+  Imports the Design System and any application-specific overrides.
+*/
+
+@import "./ds/index.css";
+@import "./ds/content-prose.css";
