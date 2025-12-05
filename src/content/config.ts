@@ -11,7 +11,7 @@ export const articleSchema = z.object({
   lastUpdated: z.coerce.date(),
   status: z.enum(["Draft", "Proposed", "Live", "Deprecated", "Experimental"]).default("Draft"),
   maturity: z.enum(["Proposed", "Standard", "Deprecated", "Experimental"]).optional(),
-  supersededBy: z.string().optional(),
+  supersededBy: z.array(z.string()).optional(),
   relatedIds: z.array(z.string()).optional(),
 });
 export type ArticleData = z.infer<typeof articleSchema>;

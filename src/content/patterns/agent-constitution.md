@@ -2,6 +2,7 @@
 title: "Agent Constitution"
 complexity: "Medium"
 status: "Experimental"
+maturity: "Experimental"
 lastUpdated: 2025-12-05
 ---
 

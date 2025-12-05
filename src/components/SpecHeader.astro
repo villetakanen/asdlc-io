@@ -34,6 +34,19 @@ if (data.tags && data.tags.length > 0) {
       <dt>Status</dt>
       <dd><StatusBadge status={status} /></dd>
     </div>
+    {status === "Deprecated" && data.supersededBy && data.supersededBy.length > 0 && (
+      <div class="spec-row">
+        <dt>Superseded By</dt>
+        <dd>
+          {data.supersededBy.map((link, index) => (
+            <>
+              <a href={`/${link}`}>{link}</a>
+              {index < data.supersededBy!.length - 1 && ", "}
+            </>
+          ))}
+        </dd>
+      </div>
+    )}
     {metadataFields.map((field) => (
       <div class="spec-row">
         <dt>{field.key === 'lastUpdated' ? 'Last Updated' : field.key.charAt(0).toUpperCase() + field.key.slice(1)}</dt>
