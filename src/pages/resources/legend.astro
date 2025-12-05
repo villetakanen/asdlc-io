@@ -1,0 +1,10 @@
+---
+import { Content, frontmatter } from "../../content/resources/legend.md";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <article class="prose content">
+    <Content />
+  </article>
+</BaseLayout>

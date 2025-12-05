@@ -1,0 +1,41 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+}
+
+const { title, description, heading } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <h1>{heading}</h1>
+    <div class="prose definition-prose">
+      <slot name="definition" />
+    </div>
+
+    <div class="spec-grid">
+      <slot />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .definition-prose {
+    margin-bottom: 3rem;
+    max-width: 65ch;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--s-gap);
+  }
+</style>
