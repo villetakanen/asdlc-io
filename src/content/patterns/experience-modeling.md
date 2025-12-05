@@ -5,7 +5,7 @@ tags:
   - ASDLC
   - Design System
   - Methodology
-related_concepts:
+relatedIds:
   - agentic-sdlc
   - context-engineering
   - guardrails

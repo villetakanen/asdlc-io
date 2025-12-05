@@ -1,9 +1,9 @@
 ---
 title: "Guardrails"
-definition: "In the context of asdlc.io, the term 'Guardrail' is deprecated in favor of a split-architecture approach: Gates and Constitutions."
+description: "In the context of asdlc.io, the term 'Guardrail' is deprecated in favor of a split-architecture approach: Gates and Constitutions."
 tags: ["Disambiguation", "Architecture"]
 maturity: "Deprecated"
-related_concepts: ["context-gates"]
+relatedIds: ["context-gates"]
 lastUpdated: 2025-11-25
 ---
 

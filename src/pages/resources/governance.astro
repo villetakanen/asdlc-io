@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Content Governance Standard" description="Standards for Frontmatter Schema and Content Governance in the ASDLC repository.">
+    <h1>Content Governance Standard</h1>
+
+    <div class="prose">
+        <p>
+            This document defines the Frontmatter Schema and Content Governance standard for the ASDLC repository to standardize how metadata is tracked programmatically.
+        </p>
+
+        <h2>Frontmatter Schema</h2>
+        <p>
+            All content files must adhere to the following schema.
+        </p>
+
+        <h3>Required Fields</h3>
+        <ul>
+            <li><code>title</code> (String): The title of the content.</li>
+            <li><code>description</code> (String): A brief description of the content (max 200 chars).</li>
+            <li><code>lastUpdated</code> (Date): The date the content was last updated.</li>
+            <li><code>status</code> (Enum): One of <code>Draft</code>, <code>Proposed</code>, <code>Live</code>, <code>Deprecated</code>, <code>Experimental</code>.</li>
+        </ul>
+
+        <h3>Optional Fields</h3>
+        <ul>
+            <li><code>tags</code> (List of Strings): Tags for categorization.</li>
+            <li><code>maturity</code> (Enum): One of <code>Proposed</code>, <code>Standard</code>, <code>Deprecated</code>, <code>Experimental</code>.</li>
+            <li><code>supersededBy</code> (String): The slug of the content that supersedes this one.</li>
+            <li><code>relatedIds</code> (List of Strings): A list of slugs for related content.</li>
+        </ul>
+
+        <h2>Deprecation Rule</h2>
+        <p>
+            If a piece of content is deprecated, the following rules apply:
+        </p>
+        <ul>
+            <li>If <code>status</code> is set to <code>Deprecated</code>, then <code>supersededBy</code> is <strong>REQUIRED</strong>.</li>
+            <li>The content body should be retained for historical context but must be marked with a warning callout.</li>
+        </ul>
+
+        <h2>Experimental Rule</h2>
+        <p>
+            For content marked as experimental:
+        </p>
+        <ul>
+            <li>Must include a "Stability Warning" callout at the top of the body.</li>
+        </ul>
+    </div>
+</BaseLayout>
