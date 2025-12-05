@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
-import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
+import SpecHeader from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -26,36 +26,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
   title: concept.data.title,
-  description: concept.data.definition,
-  keywords: concept.data.tags.join(", "),
+  description: concept.data.description,
+  keywords: concept.data.tags?.join(", "),
   dateModified: concept.data.lastUpdated.toISOString(),
-  maturity: concept.data.maturity,
   url: canonicalURL.toString(),
 };
-
-const metadata: MetadataItem[] = [
-  { label: "Maturity", value: concept.data.maturity },
-  { label: "Last Updated", value: concept.data.lastUpdated, type: "date" },
-];
-
-if (concept.data.tags && concept.data.tags.length > 0) {
-  metadata.push({ label: "Tags", value: concept.data.tags, type: "list" });
-}
-
-if (concept.data.related_concepts && concept.data.related_concepts.length > 0) {
-  metadata.push({ label: "Related", value: concept.data.related_concepts, type: "list" });
-}
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
-<BaseLayout title={concept.data.title} description={concept.data.definition}>
+<BaseLayout title={concept.data.title} description={concept.data.description}>
   <article class="concept-detail">
-    <SpecHeader 
-      title={concept.data.title} 
-      description={concept.data.definition}
-      status={concept.data.status}
-      metadata={metadata} 
+    <SpecHeader
+      data={concept.data}
     />
 
     <div class="prose content-prose">
@@ -63,5 +46,3 @@ if (concept.data.related_concepts && concept.data.related_concepts.length > 0) {
     </div>
   </article>
 </BaseLayout>
-
-

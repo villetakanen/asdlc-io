@@ -1,5 +1,8 @@
 # PBI-24: The Legend (Meta-Page)
 
+> Status: Done
+
+
 ## Goal
 Harden the meta-structure of the ASDLC Body of Knowledge by creating a "Legend & Taxonomy" page. This will serve as a single source of truth for what "Experimental" or "L3 Autonomy" means in the context of document headers, ensuring users trust the stability of the material they are reading.
 

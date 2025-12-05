@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import { Content as Definition } from "../../components/definitions/practices.md";
 import SpecCard from "../../components/SpecCard.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionIndex from "../../layouts/CollectionIndex.astro";
 
 const practices = await getCollection("practices");
 const sortedPractices = practices.sort(
@@ -9,31 +10,19 @@ const sortedPractices = practices.sort(
 );
 ---
 
-<BaseLayout title="Practices" description="Practical implementation guides, specifications, and step-by-step tutorials for adopting ASDLC workflows.">
-  <section>
-    <h1>Practices & Implementation Guides</h1>
+<CollectionIndex
+  title="Practices"
+  description="Practical implementation guides, specifications, and step-by-step tutorials for adopting ASDLC workflows."
+  heading="Practices & Implementation Guides"
+>
+  <Definition slot="definition" />
 
-    <div class="spec-grid">
-      {sortedPractices.map((practice) => (
-        <SpecCard
-          title={practice.data.title}
-          url={`/practices/${practice.id}`}
-          meta={`${practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-          tags={practice.data.tags || []}
-        />
-      ))}
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  h1 {
-    margin-bottom: 2rem;
-  }
-
-  .spec-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--s-gap);
-  }
-</style>
+  {sortedPractices.map((practice) => (
+    <SpecCard
+      title={practice.data.title}
+      url={`/practices/${practice.id}`}
+      meta={`${practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+      tags={practice.data.tags || []}
+    />
+  ))}
+</CollectionIndex>

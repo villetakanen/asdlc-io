@@ -1,39 +1,31 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+export const articleSchema = z.object({
+  title: z.string(),
+  description: z
+    .string()
+    .max(200, "Definition must be < 200 chars for quick scanning.")
+    .default(""),
+  tags: z.array(z.string()).optional(),
+  lastUpdated: z.coerce.date(),
+  status: z.enum(["Draft", "Proposed", "Live", "Deprecated", "Experimental"]).default("Draft"),
+});
+export type ArticleData = z.infer<typeof articleSchema>;
+
 const concepts = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/concepts" }),
-  schema: z.object({
-    title: z.string(),
-    definition: z.string().max(200, "Definition must be < 200 chars for quick scanning."),
-    tags: z.array(z.string()),
-    related_concepts: z.array(z.string()).optional(),
-    maturity: z.enum(["Theoretical", "Experimental", "Standard", "Deprecated"]),
-    lastUpdated: z.coerce.date(),
-    status: z.enum(["Draft", "Proposed", "Live", "Deprecated"]).default("Draft"),
-  }),
+  schema: articleSchema,
 });
 
 const patterns = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/patterns" }),
-  schema: z.object({
-    title: z.string(),
-    complexity: z.enum(["Low", "Medium", "High"]),
-    status: z.enum(["Draft", "Proposed", "Live", "Experimental"]),
-    diagram_source: z.string().optional(),
-    publishDate: z.coerce.date(),
-  }),
+  schema: articleSchema,
 });
 
 const practices = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/practices" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    lastUpdated: z.coerce.date(),
-    status: z.enum(["Draft", "Proposed", "Live", "Deprecated"]),
-    tags: z.array(z.string()).optional(),
-  }),
+  schema: articleSchema,
 });
 
 export const collections = { concepts, patterns, practices };

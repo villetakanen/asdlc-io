@@ -1,19 +1,13 @@
 ---
 import ColorSwatch from "../../components/ColorSwatch.astro";
-import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
+import SpecHeader from "../../components/SpecHeader.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
+import { articleSchema } from "../../content/config";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Avionics Design System";
 const description =
   "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
-
-const complexMetadata: MetadataItem[] = [
-  { label: "Complexity", value: "High", type: "complexity" },
-  { label: "Last Updated", value: new Date(), type: "date" },
-  { label: "Tags", value: ["UI", "Component"], type: "list" },
-  { label: "Link", value: "View Source", type: "link", href: "#" },
-];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -21,17 +15,17 @@ const complexMetadata: MetadataItem[] = [
     <header class="spec-header border-box content">
       <h1>Avionics Design System</h1>
       <p class="lead">
-        The visual and structural foundation of ASDLC.io. Inspired by industrial specification documents, 
+        The visual and structural foundation of ASDLC.io. Inspired by industrial specification documents,
         flight manuals, and international safety standards.
       </p>
     </header>
 
     <div class="prose content-prose">
-      
+
       <h2>01. // Color Palette</h2>
-      
+
       <p>The Avionics palette is built around <strong>International Safety</strong> colors—high-contrast, immediately recognizable, and functional.</p>
-      
+
       <div class="color-palette breakout">
         <div class="color-group">
           <h4>Background & Structure</h4>
@@ -67,22 +61,22 @@ const complexMetadata: MetadataItem[] = [
           </div>
         </div>
       </div>
-      
+
       <h3>Background Colors</h3>
       <pre><code>--c-bg-page: #f4f4f0;    /* Warm, off-white concrete/paper */
 --c-bg-surface: #ebebe6; /* Slightly darker, for cards or headers */
 --c-border: #d1d1c7;     /* Visible, structural grey */</code></pre>
-      
+
       <p><strong>Usage:</strong> <code>--c-bg-page</code> for main page background, <code>--c-bg-surface</code> for cards and headers, <code>--c-border</code> for borders and dividers.</p>
-      
+
       <h3>Text Colors</h3>
       <pre><code>--c-text-primary: #111111;   /* Soft black, like high-quality toner */
 --c-text-secondary: #585855; /* Muted grey for secondary information */</code></pre>
-      
+
       <h3>Brand Colors</h3>
       <pre><code>--c-brand: #f04e30;       /* Safety Orange */
 --c-brand-hover: #d13a1e; /* Darker orange for hover states */</code></pre>
-      
+
       <h3>Status Indicators</h3>
       <pre><code>/* Success (DIN Standard Green) */
 --c-success: #00703c;
@@ -96,18 +90,18 @@ const complexMetadata: MetadataItem[] = [
       <hr>
 
       <h2>02. // Typography</h2>
-      
+
       <p>The Avionics typography system uses two carefully selected typefaces to create a technical, authoritative feel.</p>
-      
+
       <h3>Font Families</h3>
       <pre><code>--f-sans: "Archivo", sans-serif;  /* Variable font with industrial character */
 --f-mono: "B612 Mono", monospace; /* Aviation-grade monospace */</code></pre>
-      
+
       <p><strong>Archivo</strong> is a variable font designed for industrial and technical applications. <strong>B612 Mono</strong> was designed by Airbus for cockpit displays.</p>
-      
+
       <h3>Heading Styles</h3>
       <p>All headings use uppercase transformation and expanded width for maximum impact:</p>
-      
+
       <pre><code>h1, h2, h3 {`{`}
   font-weight: 700;
   text-transform: uppercase;
@@ -145,9 +139,9 @@ const complexMetadata: MetadataItem[] = [
       <hr>
 
       <h2>03. // Layout System</h2>
-      
+
       <p>The Avionics layout system uses a sophisticated CSS Grid approach for responsive, content-focused layouts.</p>
-      
+
       <h3>Spacing Tokens</h3>
       <pre><code>--s-grid: 24px;       /* Base grid unit */
 --s-gap: 1.5rem;      /* Standard gap between elements */
@@ -155,9 +149,9 @@ const complexMetadata: MetadataItem[] = [
 
       <h3>Grid Layout System</h3>
       <p>The grid layout creates three named columns for flexible content placement:</p>
-      
+
       <pre><code>--s-content-max: 67ch; /* Optimal reading width */</code></pre>
-      
+
       <p>This creates three content zones:</p>
       <ol>
         <li><strong>content</strong> (67ch max): Default for body text, optimal reading width</li>
@@ -168,14 +162,14 @@ const complexMetadata: MetadataItem[] = [
       <hr>
 
       <h2>04. // Components</h2>
-      
+
       <h3>Border Box</h3>
       <p>A utility class for bordered containers:</p>
       <pre><code>.border-box {`{`}
   border: 1px solid var(--c-border);
   padding: var(--s-gap);
 {`}`}</code></pre>
-      
+
       <h3>Status Badge</h3>
       <p>Monospace badges for status indicators:</p>
       <div class="border-box" style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -189,32 +183,37 @@ const complexMetadata: MetadataItem[] = [
 
       <h3>Spec Header</h3>
       <p>Standardized header for specification pages (Concepts, Patterns, Practices). Supports data-driven metadata rendering.</p>
-      
+
       <div style="margin-bottom: 1rem;">
-        <SpecHeader 
-          title="Example Specification" 
-          description="A standardized header component for specification pages."
-          status="Live"
-          metadata={complexMetadata} 
+        <SpecHeader
+          data={articleSchema.parse(
+            {
+              title: "Example Specification",
+              description: "A standardized header component for specification pages.",
+              status: "Live",
+              lastUpdated: new Date(),
+              tags: ["example", "demo"],
+            }
+          )}
         />
       </div>
 
-      <pre><code>&lt;SpecHeader 
-  title="Example Specification" 
-  description="A standardized header component..."
-  status="Live"
-  metadata={[
-    { label: "Complexity", value: "High", type: "complexity" },
-    /* ... */
-  ]} 
+      <pre><code>&lt;SpecHeader
+  data={articleSchema.parse({
+    title: "Example Specification",
+    description: "A standardized header component...",
+    status: "Live",
+    lastUpdated: new Date(),
+    tags: ["example"]
+  })}
 /&gt;</code></pre>
 
       <hr>
 
       <h2>05. // Accessibility</h2>
-      
+
       <p>The Avionics design system is built with accessibility as a core principle:</p>
-      
+
       <h3>Color Contrast</h3>
       <p>All text colors meet WCAG AA standards:</p>
       <ul>
@@ -222,7 +221,7 @@ const complexMetadata: MetadataItem[] = [
         <li>Secondary text on page background: 6.8:1 (AA)</li>
         <li>Brand color on page background: 4.7:1 (AA for large text)</li>
       </ul>
-      
+
       <h3>Semantic HTML</h3>
       <ul>
         <li>Proper heading hierarchy (H1 → H2 → H3)</li>
@@ -233,7 +232,7 @@ const complexMetadata: MetadataItem[] = [
       <hr>
 
       <h2>06. // Best Practices</h2>
-      
+
       <h3>Do's</h3>
       <ul>
         <li>✅ Use CSS custom properties for all colors and spacing</li>
@@ -242,7 +241,7 @@ const complexMetadata: MetadataItem[] = [
         <li>✅ Maintain heading hierarchy (one H1 per page)</li>
         <li>✅ Use monospace font for technical/metadata content</li>
       </ul>
-      
+
       <h3>Don'ts</h3>
       <ul>
         <li>❌ Don't use arbitrary color values—use design tokens</li>
@@ -255,7 +254,7 @@ const complexMetadata: MetadataItem[] = [
       <hr>
 
       <h2>07. // File References</h2>
-      
+
       <p>The design system is implemented across these files:</p>
       <ul>
         <li><code>ds/index.css</code> - Design System entrypoint</li>
@@ -268,5 +267,3 @@ const complexMetadata: MetadataItem[] = [
     </div>
   </article>
 </BaseLayout>
-
-

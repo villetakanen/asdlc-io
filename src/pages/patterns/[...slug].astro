@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
-import SpecHeader, { type MetadataItem } from "../../components/SpecHeader.astro";
+import SpecHeader from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -27,35 +27,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const structuredDataProps = {
   title: pattern.data.title,
   description: `Architectural pattern: ${pattern.data.title}`,
-  datePublished: pattern.data.publishDate.toISOString(),
-  complexity: pattern.data.complexity,
+  datePublished: pattern.data.lastUpdated.toISOString(),
+  dateModified: pattern.data.lastUpdated.toISOString(),
+
   url: canonicalURL.toString(),
 };
-
-const metadata: MetadataItem[] = [
-  { label: "Complexity", value: pattern.data.complexity, type: "complexity" },
-  { label: "Published", value: pattern.data.publishDate, type: "date" },
-];
-
-if (pattern.data.diagram_source) {
-  metadata.push({
-    label: "Diagram",
-    value: "View Source",
-    type: "link",
-    href: pattern.data.diagram_source,
-  });
-}
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
 <BaseLayout title={pattern.data.title} description={`Architectural pattern: ${pattern.data.title}`}>
   <article class="pattern-detail">
-    <SpecHeader 
-      title={pattern.data.title} 
-      description={`Architectural pattern: ${pattern.data.title}`}
-      status={pattern.data.status}
-      metadata={metadata} 
+    <SpecHeader
+      data={pattern.data}
     />
 
     <div class="prose content-prose">
@@ -63,5 +47,3 @@ if (pattern.data.diagram_source) {
     </div>
   </article>
 </BaseLayout>
-
-
