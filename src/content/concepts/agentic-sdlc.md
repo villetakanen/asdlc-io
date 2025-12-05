@@ -1,11 +1,11 @@
 ---
 title: Agentic SDLC
-definition: A cybernetic framework for software engineering that couples human intent with agentic execution, shifting from manual coding to high-frequency orchestration and instructor-led verification.
+description: A cybernetic framework for software engineering that couples human intent with agentic execution, shifting from manual coding to high-frequency orchestration and instructor-led verification.
 tags:
   - Core
   - SDLC
   - Methodology
-related_concepts:
+relatedIds:
   - context-engineering
   - model-context-protocol
   - guardrails

@@ -1,21 +1,26 @@
 ---
+import type { ArticleData } from "../content/config";
 import StatusBadge from "./StatusBadge.astro";
 
-export interface MetadataItem {
-  label: string;
-  value: string | string[] | Date | number;
-  type?: "text" | "status" | "complexity" | "date" | "link" | "list";
-  href?: string;
-}
-
 interface Props {
-  title: string;
-  description?: string;
-  status?: string;
-  metadata: MetadataItem[];
+  data: ArticleData;
 }
 
-const { title, description, status, metadata } = Astro.props;
+const { data } = Astro.props;
+
+// Extract fields we display explicitly
+const { title, description, status } = data;
+
+// Get remaining metadata fields to loop over
+const metadataFields: Array<{ key: string; value: unknown }> = [];
+
+// Add lastUpdated (always present)
+metadataFields.push({ key: "lastUpdated", value: data.lastUpdated });
+
+// Add tags if present
+if (data.tags && data.tags.length > 0) {
+  metadataFields.push({ key: "tags", value: data.tags });
+}
 ---
 
 <header class="spec-header border-box content">
@@ -27,24 +32,31 @@ const { title, description, status, metadata } = Astro.props;
     </div>
     <div class="spec-row">
       <dt>Status</dt>
-      <dd><StatusBadge status={status || "Draft"} /></dd>
+      <dd><StatusBadge status={status} /></dd>
     </div>
-    {metadata.map((item) => (
+    {status === "Deprecated" && data.supersededBy && data.supersededBy.length > 0 && (
       <div class="spec-row">
-        <dt>{item.label}</dt>
+        <dt>Superseded By</dt>
         <dd>
-          {item.type === 'status' && <StatusBadge status={item.value as string} />}
-          {item.type === 'complexity' && <span class="spec-badge">{item.value}</span>}
-          {item.type === 'date' && (
-            <time datetime={(item.value as Date).toISOString()}>
-              {(item.value as Date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          {data.supersededBy.map((link, index) => (
+            <>
+              <a href={`/${link}`}>{link}</a>
+              {index < data.supersededBy!.length - 1 && ", "}
+            </>
+          ))}
+        </dd>
+      </div>
+    )}
+    {metadataFields.map((field) => (
+      <div class="spec-row">
+        <dt>{field.key === 'lastUpdated' ? 'Last Updated' : field.key.charAt(0).toUpperCase() + field.key.slice(1)}</dt>
+        <dd>
+          {field.key === 'lastUpdated' && field.value instanceof Date && (
+            <time datetime={field.value.toISOString()}>
+              {field.value.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
           )}
-          {item.type === 'link' && (
-            <a href={item.href} target="_blank" rel="noopener noreferrer">{item.value}</a>
-          )}
-          {item.type === 'list' && (Array.isArray(item.value) ? item.value.join(', ') : item.value)}
-          {(!item.type || item.type === 'text') && item.value}
+          {field.key === 'tags' && Array.isArray(field.value) && field.value.join(', ')}
         </dd>
       </div>
     ))}

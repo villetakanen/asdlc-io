@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import { Content as Definition } from "../../components/definitions/concepts.md";
 import SpecCard from "../../components/SpecCard.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import CollectionIndex from "../../layouts/CollectionIndex.astro";
 
 const concepts = await getCollection("concepts");
 const sortedConcepts = concepts.sort(
@@ -9,31 +10,19 @@ const sortedConcepts = concepts.sort(
 );
 ---
 
-<BaseLayout title="Concepts" description="Explore the core definitions, taxonomies, and theoretical foundations that underpin the Agentic Software Development Life Cycle.">
-  <section>
-    <h1>Defined Concepts</h1>
+<CollectionIndex
+  title="Concepts"
+  description="Explore the core definitions, taxonomies, and theoretical foundations that underpin the Agentic SDLC."
+  heading="Defined Concepts"
+>
+  <Definition slot="definition" />
 
-    <div class="spec-grid">
-      {sortedConcepts.map((concept) => (
-        <SpecCard
-          title={concept.data.title}
-          url={`/concepts/${concept.id}`}
-          meta={`${concept.data.maturity} | ${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-          tags={concept.data.tags}
-        />
-      ))}
-    </div>
-  </section>
-</BaseLayout>
-
-<style>
-  h1 {
-    margin-bottom: 2rem;
-  }
-
-  .spec-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--s-gap);
-  }
-</style>
+  {sortedConcepts.map((concept) => (
+    <SpecCard
+      title={concept.data.title}
+      url={`/concepts/${concept.id}`}
+      meta={`${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+      tags={concept.data.tags}
+    />
+  ))}
+</CollectionIndex>

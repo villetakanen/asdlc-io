@@ -1,0 +1,14 @@
+/* --- Banner Components --- */
+
+.banner-warning {
+  background: var(--c-warning);
+  color: var(--c-text-primary);
+  padding: 0.75rem;
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}

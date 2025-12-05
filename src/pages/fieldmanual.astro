@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import "../styles/global.css";
+import "../styles/index.css";
 import { version } from "../../package.json";
 
 // Fetch collections
@@ -20,9 +20,9 @@ import SEOMetadata from "../components/SEOMetadata.astro";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <SEOMetadata 
-      title="Field Manual" 
-      description="A single-page, printable compilation of all ASDLC concepts and patterns." 
+    <SEOMetadata
+      title="Field Manual"
+      description="A single-page, printable compilation of all ASDLC concepts and patterns."
       type="article"
     />
     <style>
@@ -191,7 +191,7 @@ import SEOMetadata from "../components/SEOMetadata.astro";
         return (
             <article class="chapter" id={entry.id}>
                 <h2 class="chapter-title">{entry.data.title}</h2>
-                <span class="chapter-meta">ID: {entry.id} // Maturity: {entry.data.maturity}</span>
+                <span class="chapter-meta">ID: {entry.id}</span>
                 <div class="prose">
                     <Content />
                 </div>
