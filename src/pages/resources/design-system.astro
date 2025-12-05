@@ -138,9 +138,18 @@ const description =
 
       <hr>
 
+      <hr>
+
       <h2>03. // Layout System</h2>
 
       <p>The Avionics layout system uses a sophisticated CSS Grid approach for responsive, content-focused layouts.</p>
+
+      <h3>Prose Contexts</h3>
+      <p>We distinguish between generic prose and article content:</p>
+      <ul>
+        <li><code>.prose</code>: Generic typography styles for any text block.</li>
+        <li><code>.content-prose</code>: Enhanced styles for long-form articles, including specific spacing for headings and lists.</li>
+      </ul>
 
       <h3>Spacing Tokens</h3>
       <pre><code>--s-grid: 24px;       /* Base grid unit */
@@ -158,6 +167,14 @@ const description =
         <li><strong>breakout</strong>: Wider zone for tables, code blocks, images</li>
         <li><strong>full</strong>: Full-width zone for backgrounds, hero sections</li>
       </ol>
+
+      <h3>Spec Grid</h3>
+      <p>A responsive grid for card collections (Concepts, Patterns, Practices):</p>
+      <pre><code>.spec-grid {`{`}
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--s-gap);
+{`}`}</code></pre>
 
       <hr>
 
@@ -207,6 +224,15 @@ const description =
     tags: ["example"]
   })}
 /&gt;</code></pre>
+
+      <h3>Warning Banner</h3>
+      <p>Used for critical system-wide alerts (e.g., Alpha Release warning).</p>
+      <div class="banner-warning" style="margin-bottom: 1rem;">
+        SYSTEM ALERT: EXAMPLE WARNING BANNER
+      </div>
+      <pre><code>&lt;div class="banner-warning"&gt;
+  SYSTEM ALERT: EXAMPLE WARNING BANNER
+&lt;/div&gt;</code></pre>
 
       <hr>
 
@@ -260,7 +286,12 @@ const description =
         <li><code>ds/index.css</code> - Design System entrypoint</li>
         <li><code>ds/tokens.css</code> - Design tokens</li>
         <li><code>ds/base.css</code> - Base styles</li>
-        <li><code>ds/prose.css</code> - Typography and formatting</li>
+        <li><code>ds/pre-flight.css</code> - Modern reset</li>
+        <li><code>ds/typography.css</code> - Typography rules</li>
+        <li><code>ds/prose.css</code> - Generic prose styles</li>
+        <li><code>ds/content-prose.css</code> - Article-specific prose styles</li>
+        <li><code>ds/layouts/grid.css</code> - Main grid layout</li>
+        <li><code>ds/layouts/spec-grid.css</code> - Card grid layout</li>
         <li><code>ds/components/*.css</code> - Component styles</li>
       </ul>
 

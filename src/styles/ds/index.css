@@ -11,6 +11,7 @@
 
 /* Layouts */
 @import "./layouts/grid.css";
+@import "./layouts/spec-grid.css";
 
 /* Components */
 @import "./components/site-header.css";
@@ -18,4 +19,5 @@
 @import "./components/status.css";
 @import "./components/spec-card.css";
 @import "./components/spec-metadata.css";
+@import "./components/banner.css";
 @import "./components/footer.css";
