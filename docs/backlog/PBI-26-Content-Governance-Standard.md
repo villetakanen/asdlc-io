@@ -7,7 +7,7 @@ Define the Frontmatter Schema and Content Governance standard for the ASDLC repo
 We need to standardize how we track metadata programmatically to enable features like "Deprecation Warnings" or "Stale Content" flags in the future.
 
 ## Requirements
-- **Target Artifact**: `content/meta/governance.md`
+- **Target Artifact**: `src/pages/resources/governance.astro`
 - **Role**: DevOps Engineer / Content Ops
 - **Content**:
     - **Frontmatter Schema**: Define using standard types (String, Date, Enum).
@@ -18,11 +18,12 @@ We need to standardize how we track metadata programmatically to enable features
         - Content body should be retained for historical context but marked with a warning callout.
     - **Experimental Rule**:
         - Must include a "Stability Warning" callout at the top of the body.
-- **Format**: Markdown specification document.
+- **Format**: Astro page (NOT a content collection, NOT a markdown file).
 
 ## Implementation Plan
-- [ ] Create `content/meta/governance.md` with the schema and rules.
+- [ ] Create `src/pages/resources/governance.astro` with the schema and rules documentation.
 
 ## Verification
-- **File Existence**: Verify `content/meta/governance.md` exists.
+- **File Existence**: Verify `src/pages/resources/governance.astro` exists.
 - **Content Check**: Ensure schema, deprecation rules, and experimental rules are defined as requested.
+- **Build Check**: Run `pnpm check` to ensure no type errors.
