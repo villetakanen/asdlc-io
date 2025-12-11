@@ -32,7 +32,7 @@ While the [agents.md](https://agents.md) standard provides the format, the ASDLC
 
 ### 1. Identity Anchoring (The Persona)
 
-Establishes the specific expertise required to prune the model's search space. Without this, the model reverts to the "average" developer found in its training data.
+Establishes the specific expertise required to prune the model's search space. Without this, the model reverts to the "average" developer found in its training data. For detailed examples of defining multiple personas, see [Agent Personas](./agent-personas).
 
 Bad: "You are a coding assistant."
 
