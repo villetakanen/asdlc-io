@@ -1,0 +1,31 @@
+/* Color Palette Component Styles */
+
+.color-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s-gap);
+  margin-block: var(--s-gap);
+}
+
+.color-group h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--c-border);
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  color: var(--c-text-secondary);
+}
+
+.color-swatches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Remove bottom margin from swatches when inside this container, we use gap instead */
+.color-swatches .color-swatch {
+  margin-bottom: 0;
+}
