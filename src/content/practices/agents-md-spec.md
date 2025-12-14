@@ -38,7 +38,20 @@ Bad: "You are a coding assistant."
 
 Good: "You are a Principal Systems Engineer specializing in Go 1.22, gRPC, and high-throughput concurrency patterns. You favor composition over inheritance."
 
-### 2. Operational Grounding (The Tech Stack)
+### 2. Contextual Alignment (The Mission)
+
+A concise, high-level summary of the project’s purpose and business domain. This is often formatted as a blockquote at the top of the file to "set the stage" for the agent's session.
+
+- **Why:** LLMs are stateless. A 50-token description differentiates a "User" in a banking app (high security/compliance) from a "User" in a casual game (low friction), reducing the need for corrective follow-up prompts.
+    
+- **Format:** Focus on the "What" and "Why," not the narrative history.
+    
+
+**Example:**
+
+> **Project:** "ZenTask" - A minimalist productivity app. **Core Philosophy:** Local-first data architecture; offline support is mandatory.
+
+### 3. Operational Grounding (The Tech Stack)
 
 Explicitly defines the software environment to prevent "Library Hallucination." This section must be exhaustive regarding key dependencies and restrictive regarding alternatives.
 
@@ -46,7 +59,7 @@ Explicitly defines the software environment to prevent "Library Hallucination." 
 - Directive: "Styling: Tailwind CSS only. Do not use CSS Modules or Emotion."
 - Directive: "State: Zustand only. Do not use Redux."
 
-### 3. Behavioral Boundaries (Context Gates)
+### 4. Behavioral Boundaries (Context Gates)
 
 Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, or _constitution_. As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
 the _constitution_ with explicit and deterministic _quality gates_ enforced by tests, linters, and CI/CD pipelines.
@@ -63,7 +76,32 @@ Example: "Ask before running database migrations or deleting files."
 
 Example: "Never commit secrets, API keys, or .env files."
 
-### 4. The Command Registry
+### 5. Semantic Directory Mapping
+
+When documenting the codebase structure in AGENTS.md, prefer Annotated YAML over ASCII trees.
+
+- **Use Valid Syntax:** Ensure the block allows an LLM to parse the structure as a dictionary.
+- **Annotate Key Files:** do not just list files; map them to a brief string describing their responsibility. This acts as a 'map legend' for the Agent, allowing it to route coding tasks to the correct file without needing to scan the file content first.
+- **Omit Noise:** Only include directories and files relevant to the Agent's operation or the architectural scope.
+
+**Example:**
+
+```yaml
+directory_map:
+  src:
+    # Core Application Logic
+    main.py: "Application entry point; initializes the Agent Orchestrator"
+    
+    agents:
+      # Individual Agent definitions
+      base_agent.py: "Abstract base class defining the 'step()' and 'memory' interfaces"
+    
+    utils:
+      # Shared libraries
+      llm_client.py: "Wrapper for OpenAI/Anthropic APIs with retry logic"
+```
+
+### 6. The Command Registry
 
 A lookup table mapping intent to execution. Agents often default to standard commands (npm test) which may fail in custom environments (make test-unit). The Registry forces specific tool usage.
 
@@ -74,7 +112,7 @@ A lookup table mapping intent to execution. Agents often default to standard com
 | **Lint** | pnpm lint --fix | Self-correction enabled |
 
 
-### 5. Implementation notes
+### 7. Implementation notes
 
 XML-Tagging for Semantic Parsing
 
@@ -102,6 +140,9 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
 ```md
 # AGENTS.md - Context & Rules for AI Agents
 
+> **Project Mission:** High-throughput gRPC service for processing real-time financial transactions.
+> **Core Constraints:** Zero-trust security model, ACID compliance required for all writes.
+
 ## 1. Identity & Persona
 - **Role:** Senior Systems Engineer
 - **Specialization:** High-throughput distributed systems in Go.
@@ -127,8 +168,20 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
 | **Lint** | `golangci-lint run` | Must pass before commit |
 | **Gen** | `make proto` | Regenerates gRPC stubs |
 
-## 5. Coding Standards
-\```xml
+## 5. Development Map
+```yaml
+directory_map:
+  api:
+    proto: "Protocol Buffers definitions (Source of Truth)"
+  cmd:
+    server: "Main entry point, dependency injection wire-up"
+  internal:
+    biz: "Business logic and domain entities (Pure Go)"
+    data: "Data access layer (Postgres + pgx)"
+```
+
+## 6. Coding Standards
+```xml
 <rule_set name="Concurrency">
   <instruction>Use `errgroup` for managing goroutines. Avoid bare `go` routines.</instruction>
   <example>
@@ -136,9 +189,9 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
     <good>g.Go(func() error {... })</good>
   </example>
 </rule_set>
-\`\`\`
+```
 
-## 6. Context References
+## 7. Context References
 - **Database Schema:** Read `@database/schema.sql`
 - **API Contracts:** Read `@api/v1/service.proto`
 ```
