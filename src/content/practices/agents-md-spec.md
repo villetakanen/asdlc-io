@@ -76,7 +76,32 @@ Example: "Ask before running database migrations or deleting files."
 
 Example: "Never commit secrets, API keys, or .env files."
 
-### 5. The Command Registry
+### 5. Semantic Directory Mapping
+
+When documenting the codebase structure in AGENTS.md, prefer Annotated YAML over ASCII trees.
+
+- **Use Valid Syntax:** Ensure the block allows an LLM to parse the structure as a dictionary.
+- **Annotate Key Files:** do not just list files; map them to a brief string describing their responsibility. This acts as a 'map legend' for the Agent, allowing it to route coding tasks to the correct file without needing to scan the file content first.
+- **Omit Noise:** Only include directories and files relevant to the Agent's operation or the architectural scope.
+
+**Example:**
+
+```yaml
+directory_map:
+  src:
+    # Core Application Logic
+    main.py: "Application entry point; initializes the Agent Orchestrator"
+    
+    agents:
+      # Individual Agent definitions
+      base_agent.py: "Abstract base class defining the 'step()' and 'memory' interfaces"
+    
+    utils:
+      # Shared libraries
+      llm_client.py: "Wrapper for OpenAI/Anthropic APIs with retry logic"
+```
+
+### 6. The Command Registry
 
 A lookup table mapping intent to execution. Agents often default to standard commands (npm test) which may fail in custom environments (make test-unit). The Registry forces specific tool usage.
 
@@ -87,7 +112,7 @@ A lookup table mapping intent to execution. Agents often default to standard com
 | **Lint** | pnpm lint --fix | Self-correction enabled |
 
 
-### 6. Implementation notes
+### 7. Implementation notes
 
 XML-Tagging for Semantic Parsing
 
@@ -143,7 +168,19 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
 | **Lint** | `golangci-lint run` | Must pass before commit |
 | **Gen** | `make proto` | Regenerates gRPC stubs |
 
-## 5. Coding Standards
+## 5. Development Map
+```yaml
+directory_map:
+  api:
+    proto: "Protocol Buffers definitions (Source of Truth)"
+  cmd:
+    server: "Main entry point, dependency injection wire-up"
+  internal:
+    biz: "Business logic and domain entities (Pure Go)"
+    data: "Data access layer (Postgres + pgx)"
+```
+
+## 6. Coding Standards
 ```xml
 <rule_set name="Concurrency">
   <instruction>Use `errgroup` for managing goroutines. Avoid bare `go` routines.</instruction>
@@ -154,7 +191,7 @@ To maximize adherence, use pseudo-XML tags to encapsulate rules. This creates a 
 </rule_set>
 ```
 
-## 6. Context References
+## 7. Context References
 - **Database Schema:** Read `@database/schema.sql`
 - **API Contracts:** Read `@api/v1/service.proto`
 ```
