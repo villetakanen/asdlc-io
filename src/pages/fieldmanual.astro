@@ -3,13 +3,33 @@ import { getCollection, render } from "astro:content";
 import "../styles/index.css";
 import { version } from "../../package.json";
 
+// Status priority order for sorting
+const statusOrder: Record<string, number> = {
+  Live: 1,
+  Draft: 2,
+  Experimental: 3,
+  Proposed: 4,
+  Deprecated: 5,
+};
+
+// Sort by status first, then alphabetically by title
+function sortByStatus<T extends { data: { status: string; title: string } }>(a: T, b: T): number {
+  const statusA = statusOrder[a.data.status] || 99;
+  const statusB = statusOrder[b.data.status] || 99;
+
+  if (statusA !== statusB) return statusA - statusB;
+  return a.data.title.localeCompare(b.data.title);
+}
+
 // Fetch collections
 const concepts = await getCollection("concepts");
 const patterns = await getCollection("patterns");
+const practices = await getCollection("practices");
 
-// Sort collections (alphabetical by title)
-const sortedConcepts = concepts.sort((a, b) => a.data.title.localeCompare(b.data.title));
-const sortedPatterns = patterns.sort((a, b) => a.data.title.localeCompare(b.data.title));
+// Sort collections (status-based, then alphabetical)
+const sortedConcepts = concepts.sort(sortByStatus);
+const sortedPatterns = patterns.sort(sortByStatus);
+const sortedPractices = practices.sort(sortByStatus);
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -154,6 +174,21 @@ import SEOMetadata from "../components/SEOMetadata.astro";
             margin-bottom: 2rem;
             display: block;
         }
+
+        .chapter-description {
+            font-size: 1.1rem;
+            color: var(--c-text-secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+            max-width: 80ch;
+            line-height: 1.5;
+        }
+
+        @media print {
+            .chapter-description {
+                color: #666 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -170,28 +205,40 @@ import SEOMetadata from "../components/SEOMetadata.astro";
     <!-- Table of Contents -->
     <div class="toc no-print">
         <h2>Table of Contents</h2>
-        <h3>Part I: Concepts</h3>
-        <ul>
-            {sortedConcepts.map(entry => (
-                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
-            ))}
-        </ul>
-        <h3>Part II: Patterns</h3>
+        <h3>Part I: Patterns</h3>
         <ul>
             {sortedPatterns.map(entry => (
                 <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
             ))}
         </ul>
+        <h3>Part II: Practices</h3>
+        <ul>
+            {sortedPractices.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
+        <h3>Appendix: Concepts</h3>
+        <ul>
+            {sortedConcepts.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
     </div>
 
-    <!-- Part I: Concepts -->
-    <h1 class="section-header">Part I: Concepts</h1>
-    {sortedConcepts.map(async (entry) => {
+    <!-- Part I: Patterns -->
+    <h1 class="section-header">Part I: Patterns</h1>
+    {sortedPatterns.map(async (entry) => {
         const { Content } = await render(entry);
         return (
             <article class="chapter" id={entry.id}>
                 <h2 class="chapter-title">{entry.data.title}</h2>
-                <span class="chapter-meta">ID: {entry.id}</span>
+                {entry.data.description && (
+                    <p class="chapter-description">{entry.data.description}</p>
+                )}
+                <span class="chapter-meta">
+                    Status: {entry.data.status} |
+                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
+                </span>
                 <div class="prose">
                     <Content />
                 </div>
@@ -199,14 +246,41 @@ import SEOMetadata from "../components/SEOMetadata.astro";
         );
     })}
 
-    <!-- Part II: Patterns -->
-    <h1 class="section-header">Part II: Patterns</h1>
-    {sortedPatterns.map(async (entry) => {
+    <!-- Part II: Practices -->
+    <h1 class="section-header">Part II: Practices</h1>
+    {sortedPractices.map(async (entry) => {
         const { Content } = await render(entry);
         return (
             <article class="chapter" id={entry.id}>
                 <h2 class="chapter-title">{entry.data.title}</h2>
-                <span class="chapter-meta">ID: {entry.id} // Status: {entry.data.status}</span>
+                {entry.data.description && (
+                    <p class="chapter-description">{entry.data.description}</p>
+                )}
+                <span class="chapter-meta">
+                    Status: {entry.data.status} |
+                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
+                </span>
+                <div class="prose">
+                    <Content />
+                </div>
+            </article>
+        );
+    })}
+
+    <!-- Appendix: Concepts -->
+    <h1 class="section-header">Appendix: Concepts</h1>
+    {sortedConcepts.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+            <article class="chapter" id={entry.id}>
+                <h2 class="chapter-title">{entry.data.title}</h2>
+                {entry.data.description && (
+                    <p class="chapter-description">{entry.data.description}</p>
+                )}
+                <span class="chapter-meta">
+                    Status: {entry.data.status} |
+                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
+                </span>
                 <div class="prose">
                     <Content />
                 </div>

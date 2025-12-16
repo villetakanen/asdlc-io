@@ -1,6 +1,6 @@
 # PBI-33: Field Manual Section Order Restructure
 
-> Status: Open
+> Status: Done
 
 ## Goal
 Reorder the Field Manual sections to prioritize actionable content (Patterns, Practices) over theoretical reference material (Concepts), treating Concepts as an appendix.
@@ -98,6 +98,27 @@ By restructuring to **Patterns → Practices → Concepts**, we align with field
 - **Dependency**: This PBI can be done in parallel with PBI-34 (adding Practices), but both should reference the same section order
 - The term "Appendix" signals to readers that Concepts are reference material, not primary content
 - No changes to CSS or styling are required—only HTML structure reordering
+
+## Completion Notes
+
+**Completed:** 2025-12-16
+
+**Implementation Summary:**
+- Reordered Table of Contents to show: Part I: Patterns, Appendix: Concepts
+- Reordered page body sections to render: Patterns first, Concepts last (as appendix)
+- Updated section headers: "Part I: Patterns" and "Appendix: Concepts"
+- Note: Part II: Practices placeholder was intentionally omitted - will be added in PBI-34
+
+**Verification:**
+- ✅ `pnpm check` passes (0 errors, 0 warnings)
+- ✅ `pnpm build` succeeds
+- ✅ ToC displays: Part I: Patterns → Appendix: Concepts
+- ✅ Page body renders: Patterns first (5 articles), then Concepts last (8 articles)
+- ✅ All anchor links functional (#agentic-double-diamond, #levels-of-autonomy, etc.)
+- ✅ Section headers correctly labeled "Part I" and "Appendix"
+
+**Files Modified:**
+- `src/pages/fieldmanual.astro` - Reordered ToC and section rendering
 
 ## Related
 - Spec: `/docs/specs/field-manual.md`

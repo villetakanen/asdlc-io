@@ -1,6 +1,6 @@
 # PBI-36: Field Manual Standardize Chapter Metadata
 
-> Status: Open
+> Status: Done
 
 ## Goal
 Standardize the chapter metadata display across all three Field Manual collections (Patterns, Practices, Concepts), ensuring consistent information presentation and removing the redundant ID field.
@@ -120,6 +120,36 @@ Status: Live | Last Updated: 2025-01-23
 - The existing `.chapter-meta` CSS class already handles font family (monospace) and color (secondary text)
 - No new CSS is required—only HTML template changes
 - The `entry.id` is still used for the anchor (`id={entry.id}`), just not displayed to users
+
+## Completion Notes
+
+**Completed:** 2025-12-16
+
+**Implementation Summary:**
+- Removed `ID` field from all chapter metadata displays (Patterns, Practices, Concepts)
+- Added `Status` field to all collections (previously missing from Concepts)
+- Added `Last Updated` field to all collections (previously missing from all)
+- Standardized format: `Status: {status} | Last Updated: {YYYY-MM-DD}` across all three sections
+- Used `toISOString().split('T')[0]` for consistent date formatting
+- Maintained `.chapter-meta` CSS class for styling consistency
+
+**Verification:**
+- ✅ `pnpm check` passes (0 errors, 0 warnings)
+- ✅ `pnpm build` succeeds
+- ✅ All Patterns display: "Status: {status} | Last Updated: {date}"
+- ✅ All Practices display: "Status: {status} | Last Updated: {date}"
+- ✅ All Concepts display: "Status: {status} | Last Updated: {date}"
+- ✅ No `ID:` fields remain in chapter metadata (only in article content where appropriate)
+- ✅ Metadata format is consistent across all 15 articles (5 patterns, 2 practices, 8 concepts)
+
+**Sample Metadata Verified:**
+- Pattern: "Status: Draft | Last Updated: 2025-12-13" (Agentic Double Diamond)
+- Pattern: "Status: Experimental | Last Updated: 2025-12-05" (Agent Constitution)
+- Practice: "Status: Live | Last Updated: 2025-12-11" (Agent Personas)
+- Concept: "Status: Live | Last Updated: 2025-01-21" (Levels of Autonomy)
+
+**Files Modified:**
+- `src/pages/fieldmanual.astro` - Updated all three chapter templates to display Status and Last Updated
 
 ## Related
 - Spec: `/docs/specs/field-manual.md`

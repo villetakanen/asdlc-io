@@ -1,6 +1,6 @@
 # PBI-32: Field Manual Status-Based Sorting
 
-> Status: Open
+> Status: Done
 
 ## Goal
 Implement status-based sorting for all content collections in the Field Manual, prioritizing production-ready content (Live) over experimental or deprecated material.
@@ -75,6 +75,27 @@ function sortByStatus<T extends { data: { status: string; title: string } }>(
 - This PBI does NOT add the Practices collection (that's PBI-34)
 - The sorting function should be reusable for all three collections
 - TypeScript strict mode must be maintained (no `any` types)
+
+## Completion Notes
+
+**Completed:** 2025-12-16
+
+**Implementation Summary:**
+- Created `sortByStatus()` function with status priority order (Live → Draft → Experimental → Proposed → Deprecated)
+- Applied status-based sorting to `concepts` collection
+- Applied status-based sorting to `patterns` collection
+- Function is ready for `practices` collection (will be used in PBI-34)
+
+**Verification:**
+- ✅ `pnpm check` passes (0 errors, 0 warnings)
+- ✅ `pnpm lint` passes (1 unrelated warning in grid.css)
+- ✅ `pnpm build` succeeds
+- ✅ Concepts ToC shows: Live first (Levels of Autonomy), Deprecated last (Guardrails)
+- ✅ Patterns ToC shows: Draft articles first (alphabetically), then Experimental, then Proposed
+- ✅ Alphabetical ordering maintained within same status groups
+
+**Files Modified:**
+- `src/pages/fieldmanual.astro` - Added sortByStatus function and applied to collections
 
 ## Related
 - Spec: `/docs/specs/field-manual.md`

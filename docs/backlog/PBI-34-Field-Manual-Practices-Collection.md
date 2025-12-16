@@ -1,6 +1,6 @@
 # PBI-34: Field Manual Add Practices Collection
 
-> Status: Open
+> Status: Done
 
 ## Goal
 Add the Practices collection to the Field Manual, ensuring all three knowledge base collections (Patterns, Practices, Concepts) are represented in the unified document.
@@ -111,6 +111,33 @@ const sortedPractices = practices.sort(sortByStatus);
   - `agents-md-spec.md` (Status: not verified)
 - The Practices collection uses the same `articleSchema` as Patterns and Concepts, so no schema changes are needed
 - Description and metadata display should match the format used for Patterns (to be standardized in PBI-35)
+
+## Completion Notes
+
+**Completed:** 2025-12-16
+
+**Implementation Summary:**
+- Fetched `practices` collection using `getCollection("practices")`
+- Applied `sortByStatus()` function to practices (reusing from PBI-32)
+- Added "Part II: Practices" section to page body between Patterns and Concepts
+- Added "Part II: Practices" to Table of Contents with links to both practice articles
+- Both practice articles rendered with chapter structure (title, metadata, content)
+
+**Verification:**
+- ✅ `pnpm check` passes (0 errors, 0 warnings)
+- ✅ `pnpm build` succeeds
+- ✅ ToC displays three sections: Part I: Patterns → Part II: Practices → Appendix: Concepts
+- ✅ Practices section contains 2 articles: "Agent Personas" and "AGENTS.md Specification"
+- ✅ Both practices have status "Live" and are sorted alphabetically
+- ✅ All anchor links functional (#agent-personas, #agents-md-spec)
+- ✅ Print CSS applies correctly to practices section
+
+**Current Practice Articles:**
+- Agent Personas (Status: Live)
+- AGENTS.md Specification (Status: Live)
+
+**Files Modified:**
+- `src/pages/fieldmanual.astro` - Added practices fetching, sorting, ToC entry, and section rendering
 
 ## Related
 - Spec: `/docs/specs/field-manual.md`

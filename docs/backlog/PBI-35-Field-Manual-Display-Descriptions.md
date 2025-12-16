@@ -1,6 +1,6 @@
 # PBI-35: Field Manual Display Article Descriptions
 
-> Status: Open
+> Status: Done
 
 ## Goal
 Display the `description` field from article frontmatter in Field Manual chapter headers, providing readers with immediate context about each article's purpose before diving into the full content.
@@ -115,6 +115,33 @@ Adding descriptions to the Field Manual improves scannability—readers can quic
 - If descriptions are missing, that's a content issue (not a code issue), but the build should still succeed
 - Description display is separate from metadata standardization (PBI-36), though both affect the chapter header
 - The `max-width: 80ch` ensures readability even on wide screens
+
+## Completion Notes
+
+**Completed:** 2025-12-16
+
+**Implementation Summary:**
+- Added `.chapter-description` CSS class with appropriate styling (1.1rem, italic, secondary color)
+- Added print-specific CSS to ensure descriptions remain readable in print output
+- Updated all three chapter templates (Patterns, Practices, Concepts) to render descriptions
+- Conditional rendering ensures empty descriptions don't create blank paragraphs
+- Applied max-width (80ch) for optimal readability
+
+**Verification:**
+- ✅ `pnpm check` passes (0 errors, 0 warnings)
+- ✅ `pnpm build` succeeds
+- ✅ Descriptions appear below titles in all sections (Patterns, Practices, Concepts)
+- ✅ Styling matches design system (uses CSS variables)
+- ✅ Print CSS applies appropriate color (#666 for readability)
+- ✅ Empty descriptions gracefully omitted (no blank paragraphs)
+
+**Sample Descriptions Verified:**
+- Pattern: "The Spec" - "A living document pattern that serves as the permanent source of truth for features..."
+- Practice: "Agent Personas" - "A guide on how to add multiple personas to an AGENTS.md file, with examples."
+- Concept: (descriptions visible for all 8 concept articles)
+
+**Files Modified:**
+- `src/pages/fieldmanual.astro` - Added CSS and description rendering to all chapter templates
 
 ## Related
 - Spec: `/docs/specs/field-manual.md`
