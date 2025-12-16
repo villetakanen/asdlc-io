@@ -127,17 +127,58 @@ A common anti-pattern is defining quality rules (like "Latency < 200ms") inside 
 
 If the rule lives in the ticket, it dies when the ticket is closed. By forcing the rule into `spec.md`, we ensure that an Agent refactoring the code 6 months later still sees the latency constraint.
 
-**Example Timeline:**
+**Example process**
+
+```mermaid
+flowchart LR
+  %% caption: Context Gating of Feature Assembly using The Spec
+  A[/spec.md/]
+
+  B[\pbi-101.md\]
+  C[\pbi-203.md\]
+  D[\pbi-420.md\]
+
+  B1[[FEATURE ASSEMBLY]]
+  C1[[FEATURE ASSEMBLY]]
+  D1[[FEATURE ASSEMBLY]]
+
+  E{GATE}
+
+  F[[MIGRATION]]
+
+  A --> B
+  A --> C
+  A --> D
+
+  B --> B1
+  C --> C1
+  D --> D1
+
+  B1 --> E
+  C1 --> E
+  D1 --> E
+
+  A --> |Context|E
+
+  E --> F
+```
+
+<figure class="mermaid-diagram">
+  <img src="/mermaid/the-spec-fig-1.svg" alt="Context Gating of Feature Assembly using The Spec" />
+  <figcaption>Context Gating of Feature Assembly using The Spec</figcaption>
+</figure>
+
+_
 
 ```/dev/null/timeline-example.md#L1-8
 Sprint 1: PBI-101 "Build notification system"
   → Creates `/plans/notifications/spec.md` with initial contract
 
-Sprint 3: PBI-215 "Add SMS fallback"
+Sprint 3: PBI-203 "Add SMS fallback"
   → Updates spec.md with new transport rules
-  → PBI-215 is closed, but the spec persists
+  → PBI-203 is closed, but the spec persists
 
-Sprint 8: PBI-412 "Refactor notification queue"
+Sprint 8: PBI-420 "Refactor notification queue"
   → Agent reads spec.md, sees SMS rules still apply
 ```
 
