@@ -109,8 +109,8 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/the-spec-fig-1.svg" alt="Specs as context for Feature Assembly and quality gates" />
-  <figcaption>Specs provide context for PBIs and define acceptance criteria at quality gates</figcaption>
+  <img src="/mermaid/the-spec-fig-1.svg" alt="Mermaid Diagram" />
+  
 </figure>
 
 ## Anatomy
