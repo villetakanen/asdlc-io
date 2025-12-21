@@ -76,8 +76,95 @@ const corsHeaders = {
 - [ ] Invalid JSON returns `-32700` error
 - [ ] Edge function config exports `path: "/mcp"`
 - [ ] No Node.js-specific APIs used (Deno-compatible only)
+- [ ] Unit tests exist at `/netlify/edge-functions/mcp.test.ts`
+- [ ] All tests pass (`pnpm test:run`)
 
 ## Testing
+**Unit Tests:**
+Create `/netlify/edge-functions/mcp.test.ts`:
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { createMockRequest, assertJsonRpcError } from '../../src/mcp/test-helpers';
+import handler from './mcp';
+
+describe('MCP Edge Function', () => {
+  describe('HTTP Method Routing', () => {
+    it('handles GET requests for SSE', async () => {
+      const req = createMockRequest('GET', 'http://localhost/mcp');
+      const res = await handler(req);
+      
+      expect(res.status).toBe(200);
+      expect(res.headers.get('Content-Type')).toBe('text/event-stream');
+    });
+
+    it('handles POST requests for JSON-RPC', async () => {
+      const body = { jsonrpc: '2.0', id: 1, method: 'initialize' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      
+      expect(res.status).toBe(200);
+      expect(res.headers.get('Content-Type')).toContain('application/json');
+    });
+
+    it('handles OPTIONS requests for CORS', async () => {
+      const req = createMockRequest('OPTIONS', 'http://localhost/mcp');
+      const res = await handler(req);
+      
+      expect(res.status).toBe(204);
+      expect(res.headers.get('Access-Control-Allow-Origin')).toBe('*');
+      expect(res.headers.get('Access-Control-Allow-Methods')).toContain('POST');
+    });
+
+    it('rejects unsupported methods', async () => {
+      const req = createMockRequest('PUT', 'http://localhost/mcp');
+      const res = await handler(req);
+      
+      expect(res.status).toBe(405);
+    });
+  });
+
+  describe('Error Handling', () => {
+    it('returns parse error for invalid JSON', async () => {
+      const req = new Request('http://localhost/mcp', {
+        method: 'POST',
+        body: 'invalid json',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const res = await handler(req);
+      const json = await res.json();
+      
+      assertJsonRpcError(json);
+      expect(json.error.code).toBe(-32700);
+    });
+
+    it('returns invalid request for malformed JSON-RPC', async () => {
+      const body = { method: 'test' }; // Missing jsonrpc and id
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      assertJsonRpcError(json);
+      expect(json.error.code).toBe(-32600);
+    });
+  });
+
+  describe('CORS Headers', () => {
+    it('includes CORS headers in all responses', async () => {
+      const req = createMockRequest('POST', 'http://localhost/mcp', {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+      });
+      const res = await handler(req);
+      
+      expect(res.headers.get('Access-Control-Allow-Origin')).toBe('*');
+    });
+  });
+});
+```
+
+**Manual Verification:**
 **Manual Verification:**
 ```bash
 # Test SSE stream
@@ -99,10 +186,10 @@ curl -X OPTIONS https://mcp.asdlc.io/mcp -v
 - Do not import from `@modelcontextprotocol/sdk` — it assumes Node.js runtime
 
 ## Dependencies
-- None (foundational PBI)
+- PBI-42: Test Infrastructure Setup (provides test helpers)
 
 ## Blocked By
-- None
+- PBI-42 (needs test utilities)
 
 ## Blocks
 - PBI-38: MCP Protocol Handler (needs entry point to route to)

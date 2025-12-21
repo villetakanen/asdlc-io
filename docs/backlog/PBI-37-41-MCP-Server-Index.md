@@ -72,7 +72,22 @@ Configure Netlify Edge Functions for deployment.
 
 ---
 
+### PBI-42: Test Infrastructure Setup
+**Status:** Ready  
+**Priority:** P0 (Foundational)  
+**Effort:** Small  
+**Dependencies:** None
+
+Set up Vitest testing infrastructure with test helpers and utilities.
+
+**Deliverable:** `vitest.config.ts`, test scripts, `/src/mcp/test-helpers.ts`
+
+---
+
 ## Implementation Order
+
+### Phase 0: Test Infrastructure
+0. **PBI-42** - Test Infrastructure Setup (must be first)
 
 ### Phase 1: Foundation (Parallel Development)
 These can be developed simultaneously by different developers or in any order:
@@ -90,20 +105,23 @@ These can be developed simultaneously by different developers or in any order:
 ## Dependency Graph
 
 ```
-PBI-39 (Content) ──────────────┐
-                               │
-PBI-37 (Entry Point) ──┐       ├─→ PBI-40 (Tools) ──┐
-                       │       │                     │
-PBI-38 (Protocol) ─────┴───────┘                     ├─→ PBI-41 (Deploy)
-                                                     │
-                       ┌─────────────────────────────┘
-                       │
-                       └─→ MCP Server Live
+PBI-42 (Test Infra) ────┬───────────────────────┐
+                        │                       │
+                        ├─→ PBI-39 (Content) ───┤
+                        │                       │
+                        ├─→ PBI-37 (Entry) ─┐   ├─→ PBI-40 (Tools) ──┐
+                        │                   │   │                     │
+                        └─→ PBI-38 (Protocol)───┘                     ├─→ PBI-41 (Deploy)
+                                                                      │
+                                        ┌─────────────────────────────┘
+                                        │
+                                        └─→ MCP Server Live
 ```
 
 ## Definition of Done (Epic)
 
-- [ ] All five PBIs completed and merged
+- [ ] All six PBIs completed and merged
+- [ ] All tests passing (`pnpm test:run`)
 - [ ] `GET https://asdlc.io/mcp` returns SSE stream
 - [ ] `POST https://asdlc.io/mcp` accepts JSON-RPC
 - [ ] `tools/list` returns three tool definitions
@@ -141,12 +159,13 @@ PBI-38 (Protocol) ─────┴───────┘                    
 
 | PBI | Effort | Hours (Est.) |
 |-----|--------|--------------|
+| PBI-42 | Small | 1-2 |
 | PBI-37 | Small | 2-3 |
 | PBI-38 | Medium | 3-4 |
 | PBI-39 | Medium | 3-4 |
 | PBI-40 | Medium | 2-3 |
 | PBI-41 | Small | 1-2 |
-| **Total** | | **11-16** |
+| **Total** | | **12-18** |
 
 ## Notes
 
