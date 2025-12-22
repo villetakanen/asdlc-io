@@ -1,4 +1,4 @@
-import type { ContentService } from "./content";
+import type { ContentService } from "./content.ts";
 
 export interface McpTool {
   name: string;

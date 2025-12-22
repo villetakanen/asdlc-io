@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { createMockRequest, assertJsonRpcError } from '../../src/mcp/test-helpers';
-import handler from '../../netlify/edge-functions/mcp';
+import { createMockRequest, assertJsonRpcError } from '../../src/mcp/test-helpers.ts';
+import handler from '../../netlify/edge-functions/mcp.ts';
 
 describe('MCP Edge Function', () => {
   describe('HTTP Method Routing', () => {

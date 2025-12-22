@@ -1,5 +1,5 @@
-import type { ContentService } from "./content";
-import { handleToolCall, TOOLS } from "./tools";
+import type { ContentService } from "./content.ts";
+import { handleToolCall, TOOLS } from "./tools.ts";
 
 export interface JsonRpcRequest {
   jsonrpc: "2.0";
