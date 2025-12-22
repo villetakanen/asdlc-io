@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ContentService, parseFrontmatter } from "./content";
+import { ContentService, parseFrontmatter } from "../../src/mcp/content";
 
 describe("Content Reading Utilities", () => {
   describe("parseFrontmatter", () => {

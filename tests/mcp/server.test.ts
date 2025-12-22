@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { ContentService } from "./content";
-import { McpServer } from "./server";
+import { ContentService } from "../../src/mcp/content";
+import { McpServer } from "../../src/mcp/server";
 
 describe("McpServer", () => {
   const mockFiles: Record<string, string> = {

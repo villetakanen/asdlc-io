@@ -4,7 +4,7 @@ import {
   assertJsonRpcSuccess,
   createJsonRpcRequest,
   createMockRequest,
-} from "./test-helpers";
+} from "../../src/mcp/test-helpers";
 
 describe("Test Helpers", () => {
   describe("createMockRequest", () => {
