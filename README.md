@@ -36,7 +36,18 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| `pnpm astro -- --help` | Get help using the Astro CLI                   |
+| `pnpm test:run`           | Run all unit tests                             |
+| `pnpm test:mcp-preview <url>` | Test MCP server on a remote deployment       |
+
+## 🤖 Model Context Protocol (MCP)
+
+This project implements an MCP server that exposes the ASDLC knowledge base.
+
+- **Endpoint**: `/mcp` (Netlify Edge Function)
+- **Transport**: HTTP with SSE (Server-Sent Events)
+- **Local Testing**: `netlify dev` -> `http://localhost:8888/mcp`
+- **Verification**: Use `pnpm test:mcp-preview <url>` to verify remote deployments.
 
 ## 👀 Want to learn more?
 

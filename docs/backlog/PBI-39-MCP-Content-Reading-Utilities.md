@@ -143,28 +143,198 @@ function isCacheValid(entry: CacheEntry): boolean {
 - [ ] Results sorted by lastUpdated descending
 - [ ] Uses Deno-compatible APIs only (no Node.js fs)
 - [ ] YAML parsing uses `https://deno.land/std/yaml/`
+- [ ] Unit tests exist at `/src/mcp/content.test.ts`
+- [ ] All tests pass (`pnpm test:run`)
 
 ## Testing
 **Unit Tests:**
+Create `/src/mcp/content.test.ts`:
+
 ```typescript
-// Test status filtering
-const articles = await listArticles();
-const statuses = articles.map(a => a.status);
-expect(statuses).not.toContain("Draft");
-expect(statuses).not.toContain("Proposed");
-expect(statuses).not.toContain("Deprecated");
+import { describe, it, expect, beforeAll } from 'vitest';
+import { listArticles, getArticle, searchArticles } from './content';
 
-// Test category filter
-const patterns = await listArticles({ category: "patterns" });
-expect(patterns.every(a => a.category === "patterns")).toBe(true);
+describe('Content Reading Utilities', () => {
+  describe('listArticles', () => {
+    it('returns only Live and Experimental articles', async () => {
+      const articles = await listArticles();
+      
+      expect(articles.length).toBeGreaterThan(0);
+      const statuses = articles.map(a => a.status);
+      expect(statuses).not.toContain('Draft');
+      expect(statuses).not.toContain('Proposed');
+      expect(statuses).not.toContain('Deprecated');
+    });
 
-// Test get article
-const article = await getArticle("context-engineering");
-expect(article?.content).toContain("# "); // Has markdown content
+    it('filters by category', async () => {
+      const patterns = await listArticles({ category: 'patterns' });
+      
+      expect(patterns.length).toBeGreaterThan(0);
+      expect(patterns.every(a => a.category === 'patterns')).toBe(true);
+    });
 
-// Test nonexistent article
-const missing = await getArticle("does-not-exist");
-expect(missing).toBeNull();
+    it('limits results', async () => {
+      const articles = await listArticles({ limit: 3 });
+      
+      expect(articles.length).toBeLessThanOrEqual(3);
+    });
+
+    it('sorts by lastUpdated descending', async () => {
+      const articles = await listArticles();
+      
+      if (articles.length > 1) {
+        const dates = articles.map(a => new Date(a.lastUpdated).getTime());
+        for (let i = 0; i < dates.length - 1; i++) {
+          expect(dates[i]).toBeGreaterThanOrEqual(dates[i + 1]);
+        }
+      }
+    });
+
+    it('includes required metadata fields', async () => {
+      const articles = await listArticles({ limit: 1 });
+      
+      expect(articles.length).toBeGreaterThan(0);
+      const article = articles[0];
+      expect(article).toHaveProperty('slug');
+      expect(article).toHaveProperty('category');
+      expect(article).toHaveProperty('title');
+      expect(article).toHaveProperty('description');
+      expect(article).toHaveProperty('tags');
+      expect(article).toHaveProperty('lastUpdated');
+      expect(article).toHaveProperty('status');
+    });
+  });
+
+  describe('getArticle', () => {
+    it('returns article with full content for valid slug', async () => {
+      // First get a valid slug
+      const articles = await listArticles({ limit: 1 });
+      expect(articles.length).toBeGreaterThan(0);
+      
+      const slug = articles[0].slug;
+      const article = await getArticle(slug);
+      
+      expect(article).not.toBeNull();
+      expect(article!.slug).toBe(slug);
+      expect(article!.content).toBeDefined();
+      expect(article!.content.length).toBeGreaterThan(0);
+    });
+
+    it('returns null for non-existent article', async () => {
+      const article = await getArticle('does-not-exist-123456');
+      expect(article).toBeNull();
+    });
+
+    it('filters out Draft articles', async () => {
+      // Assuming there's a draft article in the content
+      // This tests the critical filtering requirement
+      const article = await getArticle('draft-concept');
+      // Should return null if draft-concept has status Draft
+      // If no such article exists, this test passes
+      expect(article === null || article.status !== 'Draft').toBe(true);
+    });
+
+    it('includes all metadata in returned article', async () => {
+      const articles = await listArticles({ limit: 1 });
+      const article = await getArticle(articles[0].slug);
+      
+      expect(article).toMatchObject({
+        slug: expect.any(String),
+        category: expect.any(String),
+        title: expect.any(String),
+        description: expect.any(String),
+        tags: expect.any(Array),
+        lastUpdated: expect.any(String),
+        status: expect.stringMatching(/^(Live|Experimental)$/),
+        content: expect.any(String),
+      });
+    });
+  });
+
+  describe('searchArticles', () => {
+    it('finds articles by title match', async () => {
+      const articles = await listArticles({ limit: 1 });
+      const searchTerm = articles[0].title.substring(0, 5).toLowerCase();
+      
+      const results = await searchArticles(searchTerm);
+      
+      expect(results.length).toBeGreaterThan(0);
+    });
+
+    it('finds articles by tag match', async () => {
+      const articles = await listArticles({ limit: 10 });
+      const articleWithTags = articles.find(a => a.tags.length > 0);
+      
+      if (articleWithTags) {
+        const tag = articleWithTags.tags[0];
+        const results = await searchArticles(tag);
+        
+        expect(results.length).toBeGreaterThan(0);
+        expect(results.some(r => r.slug === articleWithTags.slug)).toBe(true);
+      }
+    });
+
+    it('returns metadata only by default', async () => {
+      const results = await searchArticles('the');
+      
+      if (results.length > 0) {
+        expect(results[0]).not.toHaveProperty('content');
+      }
+    });
+
+    it('includes content when requested', async () => {
+      const results = await searchArticles('the', true);
+      
+      if (results.length > 0) {
+        expect(results[0]).toHaveProperty('content');
+        expect(results[0].content).toBeDefined();
+      }
+    });
+
+    it('sorts results by relevance', async () => {
+      const results = await searchArticles('engineering');
+      
+      // Results should be sorted by score (descending)
+      // Can't easily test scoring without implementation details
+      expect(results).toBeInstanceOf(Array);
+    });
+
+    it('only searches Live and Experimental articles', async () => {
+      const results = await searchArticles('');
+      const statuses = results.map(r => r.status);
+      
+      expect(statuses).not.toContain('Draft');
+      expect(statuses).not.toContain('Proposed');
+      expect(statuses).not.toContain('Deprecated');
+    });
+  });
+
+  describe('Status Filtering', () => {
+    it('never returns Draft articles in any function', async () => {
+      const listed = await listArticles();
+      const searched = await searchArticles('');
+      
+      const allStatuses = [...listed, ...searched].map(a => a.status);
+      expect(allStatuses).not.toContain('Draft');
+    });
+
+    it('never returns Proposed articles in any function', async () => {
+      const listed = await listArticles();
+      const searched = await searchArticles('');
+      
+      const allStatuses = [...listed, ...searched].map(a => a.status);
+      expect(allStatuses).not.toContain('Proposed');
+    });
+
+    it('never returns Deprecated articles in any function', async () => {
+      const listed = await listArticles();
+      const searched = await searchArticles('');
+      
+      const allStatuses = [...listed, ...searched].map(a => a.status);
+      expect(allStatuses).not.toContain('Deprecated');
+    });
+  });
+});
 ```
 
 ## Notes
@@ -174,10 +344,10 @@ expect(missing).toBeNull();
 - Tags in frontmatter are arrays, not comma-separated strings (unlike the blog)
 
 ## Dependencies
-- None (data layer, no dependencies on other MCP PBIs)
+- PBI-42: Test Infrastructure Setup (provides test helpers)
 
 ## Blocked By
-- None (can be developed first)
+- PBI-42 (needs test utilities)
 
 ## Blocks
 - PBI-40: MCP Tool Implementations (uses these utilities)

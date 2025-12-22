@@ -207,31 +207,163 @@ All errors return `isError: true` with descriptive message:
 - [ ] Search results are sorted by score, then by date
 - [ ] `include_content: true` includes markdown in search results
 - [ ] All responses use MCP content format: `{ content: [{ type: "text", text: "..." }] }`
+- [ ] Unit tests exist at `/src/mcp/tools.test.ts`
+- [ ] All tests pass (`pnpm test:run`)
 
 ## Testing
-**Integration Tests:**
+**Unit Tests:**
+Create `/src/mcp/tools.test.ts`:
+
 ```typescript
-// Test list_articles
-const list = await executeTool("list_articles", { limit: 3 });
-expect(list.isError).toBeUndefined();
-const articles = JSON.parse(list.content[0].text);
-expect(articles.length).toBeLessThanOrEqual(3);
+import { describe, it, expect } from 'vitest';
+import { executeTool } from './tools';
 
-// Test get_article success
-const article = await executeTool("get_article", { slug: "context-engineering" });
-expect(article.isError).toBeUndefined();
-const parsed = JSON.parse(article.content[0].text);
-expect(parsed.content).toBeDefined();
+describe('MCP Tool Implementations', () => {
+  describe('list_articles tool', () => {
+    it('returns all articles without filters', async () => {
+      const result = await executeTool('list_articles', {});
+      
+      expect(result.isError).toBeUndefined();
+      expect(result.content).toHaveLength(1);
+      expect(result.content[0].type).toBe('text');
+      
+      const articles = JSON.parse(result.content[0].text);
+      expect(Array.isArray(articles)).toBe(true);
+      expect(articles.length).toBeGreaterThan(0);
+    });
 
-// Test get_article not found
-const missing = await executeTool("get_article", { slug: "nonexistent" });
-expect(missing.isError).toBe(true);
+    it('filters by category', async () => {
+      const result = await executeTool('list_articles', { category: 'patterns' });
+      
+      expect(result.isError).toBeUndefined();
+      const articles = JSON.parse(result.content[0].text);
+      expect(articles.every((a: any) => a.category === 'patterns')).toBe(true);
+    });
 
-// Test search
-const search = await executeTool("search_articles", { query: "engineering" });
-expect(search.isError).toBeUndefined();
-const results = JSON.parse(search.content[0].text);
-expect(results.length).toBeGreaterThan(0);
+    it('limits results', async () => {
+      const result = await executeTool('list_articles', { limit: 3 });
+      
+      expect(result.isError).toBeUndefined();
+      const articles = JSON.parse(result.content[0].text);
+      expect(articles.length).toBeLessThanOrEqual(3);
+    });
+
+    it('returns only Live and Experimental articles', async () => {
+      const result = await executeTool('list_articles', {});
+      
+      const articles = JSON.parse(result.content[0].text);
+      const statuses = articles.map((a: any) => a.status);
+      expect(statuses).not.toContain('Draft');
+      expect(statuses).not.toContain('Proposed');
+      expect(statuses).not.toContain('Deprecated');
+    });
+  });
+
+  describe('get_article tool', () => {
+    it('returns article with full content for valid slug', async () => {
+      // First get a valid slug
+      const listResult = await executeTool('list_articles', { limit: 1 });
+      const articles = JSON.parse(listResult.content[0].text);
+      const slug = articles[0].slug;
+      
+      const result = await executeTool('get_article', { slug });
+      
+      expect(result.isError).toBeUndefined();
+      const article = JSON.parse(result.content[0].text);
+      expect(article.slug).toBe(slug);
+      expect(article.content).toBeDefined();
+      expect(article.content.length).toBeGreaterThan(0);
+    });
+
+    it('returns error for non-existent article', async () => {
+      const result = await executeTool('get_article', { slug: 'nonexistent-123' });
+      
+      expect(result.isError).toBe(true);
+      expect(result.content[0].text).toContain('not found');
+    });
+
+    it('returns error for missing slug parameter', async () => {
+      const result = await executeTool('get_article', {});
+      
+      expect(result.isError).toBe(true);
+      expect(result.content[0].text).toContain('Missing required parameter: slug');
+    });
+  });
+
+  describe('search_articles tool', () => {
+    it('finds articles by search query', async () => {
+      const result = await executeTool('search_articles', { query: 'engineering' });
+      
+      expect(result.isError).toBeUndefined();
+      const articles = JSON.parse(result.content[0].text);
+      expect(Array.isArray(articles)).toBe(true);
+    });
+
+    it('returns metadata only by default', async () => {
+      const result = await executeTool('search_articles', { query: 'the' });
+      
+      const articles = JSON.parse(result.content[0].text);
+      if (articles.length > 0) {
+        expect(articles[0]).not.toHaveProperty('content');
+      }
+    });
+
+    it('includes content when requested', async () => {
+      const result = await executeTool('search_articles', {
+        query: 'engineering',
+        include_content: true,
+      });
+      
+      const articles = JSON.parse(result.content[0].text);
+      if (articles.length > 0) {
+        expect(articles[0]).toHaveProperty('content');
+      }
+    });
+
+    it('returns error for missing query parameter', async () => {
+      const result = await executeTool('search_articles', {});
+      
+      expect(result.isError).toBe(true);
+      expect(result.content[0].text).toContain('Missing required parameter: query');
+    });
+
+    it('only returns Live and Experimental articles', async () => {
+      const result = await executeTool('search_articles', { query: '' });
+      
+      const articles = JSON.parse(result.content[0].text);
+      const statuses = articles.map((a: any) => a.status);
+      expect(statuses).not.toContain('Draft');
+      expect(statuses).not.toContain('Proposed');
+      expect(statuses).not.toContain('Deprecated');
+    });
+  });
+
+  describe('Error Handling', () => {
+    it('returns error for unknown tool', async () => {
+      const result = await executeTool('unknown_tool', {});
+      
+      expect(result.isError).toBe(true);
+      expect(result.content[0].text).toContain('Unknown tool');
+    });
+  });
+
+  describe('Response Format', () => {
+    it('uses MCP content format for all responses', async () => {
+      const result = await executeTool('list_articles', {});
+      
+      expect(result).toHaveProperty('content');
+      expect(Array.isArray(result.content)).toBe(true);
+      expect(result.content[0]).toHaveProperty('type', 'text');
+      expect(result.content[0]).toHaveProperty('text');
+    });
+
+    it('serializes responses as JSON', async () => {
+      const result = await executeTool('list_articles', { limit: 1 });
+      
+      expect(() => JSON.parse(result.content[0].text)).not.toThrow();
+    });
+  });
+});
 ```
 
 ## Notes
@@ -243,9 +375,11 @@ expect(results.length).toBeGreaterThan(0);
 ## Dependencies
 - PBI-38: MCP Protocol Handler (calls `executeTool`)
 - PBI-39: Content Reading Utilities (provides `listArticles`, `getArticle`, `searchArticles`)
+- PBI-42: Test Infrastructure Setup (provides test helpers)
 
 ## Blocked By
-- PBI-39: Content Reading Utilities (must exist first)
+- PBI-39 (must exist first)
+- PBI-42 (needs test utilities)
 
 ## Blocks
 - None (final implementation layer)

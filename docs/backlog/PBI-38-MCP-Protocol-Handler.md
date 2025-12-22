@@ -134,26 +134,186 @@ const tools = [
 - [ ] Notifications (requests without `id`) return `null` (no response)
 - [ ] All responses include `jsonrpc: "2.0"` and matching `id`
 - [ ] No Node.js-specific APIs used
+- [ ] Unit tests exist at `/src/mcp/server.test.ts`
+- [ ] All tests pass (`pnpm test:run`)
 
 ## Testing
 **Unit Tests:**
-```typescript
-// Test initialize
-const result = await handleMethod({
-  jsonrpc: "2.0",
-  id: 1,
-  method: "initialize",
-  params: { clientInfo: { name: "test" } },
-});
-expect(result.result.name).toBe("asdlc-knowledge-base");
+Create `/src/mcp/server.test.ts`:
 
-// Test unknown method
-const error = await handleMethod({
-  jsonrpc: "2.0",
-  id: 2,
-  method: "unknown/method",
+```typescript
+import { describe, it, expect } from 'vitest';
+import { handleMethod } from './server';
+import { assertJsonRpcSuccess, assertJsonRpcError } from './test-helpers';
+
+describe('MCP Protocol Handler', () => {
+  describe('initialize method', () => {
+    it('returns server info with correct structure', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+        params: { clientInfo: { name: 'test-client', version: '1.0.0' } },
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcSuccess(result!);
+      expect(result!.result).toHaveProperty('name', 'asdlc-knowledge-base');
+      expect(result!.result).toHaveProperty('protocolVersion', '2024-11-05');
+      expect(result!.result).toHaveProperty('capabilities');
+      expect(result!.result.capabilities).toHaveProperty('tools');
+    });
+
+    it('includes version in server info', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcSuccess(result!);
+      expect(result!.result).toHaveProperty('version');
+      expect(typeof result!.result.version).toBe('string');
+    });
+  });
+
+  describe('notifications/initialized method', () => {
+    it('returns null for notification (no response)', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        method: 'notifications/initialized',
+      });
+
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('tools/list method', () => {
+    it('returns all three tool definitions', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/list',
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcSuccess(result!);
+      expect(result!.result.tools).toHaveLength(3);
+      
+      const toolNames = result!.result.tools.map((t: any) => t.name);
+      expect(toolNames).toContain('list_articles');
+      expect(toolNames).toContain('get_article');
+      expect(toolNames).toContain('search_articles');
+    });
+
+    it('includes inputSchema for each tool', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/list',
+      });
+
+      assertJsonRpcSuccess(result!);
+      const tools = result!.result.tools;
+      
+      for (const tool of tools) {
+        expect(tool).toHaveProperty('name');
+        expect(tool).toHaveProperty('description');
+        expect(tool).toHaveProperty('inputSchema');
+        expect(tool.inputSchema).toHaveProperty('type', 'object');
+        expect(tool.inputSchema).toHaveProperty('properties');
+      }
+    });
+  });
+
+  describe('tools/call method', () => {
+    it('delegates to tool implementations', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/call',
+        params: {
+          name: 'list_articles',
+          arguments: { limit: 5 },
+        },
+      });
+
+      expect(result).not.toBeNull();
+      // Will be fully tested after PBI-40
+    });
+
+    it('returns error for missing tool name', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/call',
+        params: {
+          arguments: {},
+        },
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcError(result!);
+      expect(result!.error.code).toBe(-32602);
+    });
+
+    it('returns error for unknown tool', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'tools/call',
+        params: {
+          name: 'nonexistent_tool',
+          arguments: {},
+        },
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcError(result!);
+      expect(result!.error.code).toBe(-32602);
+    });
+  });
+
+  describe('Error Handling', () => {
+    it('returns method not found for unknown methods', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'unknown/method',
+      });
+
+      expect(result).not.toBeNull();
+      assertJsonRpcError(result!);
+      expect(result!.error.code).toBe(-32601);
+      expect(result!.error.message).toContain('unknown/method');
+    });
+  });
+
+  describe('Response Format', () => {
+    it('includes jsonrpc 2.0 in all responses', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'initialize',
+      });
+
+      expect(result).not.toBeNull();
+      expect(result!.jsonrpc).toBe('2.0');
+    });
+
+    it('includes matching id in responses', async () => {
+      const result = await handleMethod({
+        jsonrpc: '2.0',
+        id: 'test-id-123',
+        method: 'initialize',
+      });
+
+      expect(result).not.toBeNull();
+      expect(result!.id).toBe('test-id-123');
+    });
+  });
 });
-expect(error.error.code).toBe(-32601);
 ```
 
 ## Notes
@@ -164,9 +324,10 @@ expect(error.error.code).toBe(-32601);
 
 ## Dependencies
 - PBI-37: MCP Edge Function Entry Point (calls this handler)
+- PBI-42: Test Infrastructure Setup (provides test helpers)
 
 ## Blocked By
-- None (can be developed in parallel with PBI-37)
+- PBI-42 (needs test utilities)
 
 ## Blocks
 - PBI-40: MCP Tool Implementations (this handler routes to tools)
