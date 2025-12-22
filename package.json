@@ -1,18 +1,24 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "prebuild": "node scripts/generate-mcp-index.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "diagrams": "node scripts/generate-diagrams.mjs",
     "check": "astro check",
     "lint": "biome check --write .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:mcp-preview": "node scripts/test-deploy-preview.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -27,7 +33,9 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@mermaid-js/mermaid-cli": "^11.12.0",
+    "@vitest/ui": "^4.0.16",
     "glob": "^13.0.0",
-    "lefthook": "^2.0.4"
+    "lefthook": "^2.0.4",
+    "vitest": "^4.0.16"
   }
 }

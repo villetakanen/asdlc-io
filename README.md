@@ -1,43 +1,68 @@
-# Astro Starter Kit: Minimal
+# ASDLC.io: Determinism over Vibes
 
-```sh
-pnpm create astro@latest -- --template minimal
+**ASDLC.io** is the definitive knowledge base for the **Agentic Software Development Life Cycle (ASDLC)**. It provides a structured repository of concepts, patterns, and practices designed to bring engineering rigor to the collaboration between human developers and AI agents.
+
+---
+
+## 🌪️ The Philosophy
+
+In the era of AI-assisted development, we reject "vibe coding" — the practice of blindly accepting LLM outputs without validation. Instead, ASDLC.io advocates for:
+
+- **Schema-First Development**: Defining data contracts (Zod) before generating content.
+- **Strict Logic**: Enforcing code quality and architectural rules at the source.
+- **Docs-as-Code**: Maintaining the knowledge base with the same rigor as production software.
+
+## 🧞 Key Features
+
+- **Model Context Protocol (MCP)**: A built-in server that allows AI agents to directly browse and search this knowledge base via the `/mcp` endpoint.
+- **Content Layer Architecture**: Powered by Astro 5.x for lightning-fast, schema-validated static content.
+- **Edge Deployment**: MCP functionality runs on Netlify Edge Functions for global availability.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js**: v18.x or higher
+- **pnpm**: The exclusive package manager for this project
+
+### Installation
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+pnpm dev
 ```
+Starts the local dev server at `localhost:4321`.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Build & Index
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+pnpm build
+```
+Generates the static site and pre-builds the **MCP Article Manifest** (`src/mcp/articles.json`).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🤖 Model Context Protocol (MCP)
 
-## 🧞 Commands
+This project is more than just a website; it is an MCP server.
 
-All commands are run from the root of the project, from a terminal:
+- **Endpoint**: `https://asdlc.io/mcp`
+- **Transport**: HTTP with Server-Sent Events (SSE).
+- **Architecture**: Powered by a build-time manifest to ensure compatibility with Edge runtimes.
+- **Verification**: Run `pnpm test:mcp-preview <url>` to verify a deployment.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## 🧪 Testing & Validation
 
-## 👀 Want to learn more?
+All logic is strictly tested using **Vitest**.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+pnpm test:run
+```
+Runs the consolidated test suite located in `./tests`.
+
+## 🤖 AI Contributor Protocol
+
+If you are an AI agent contributing to this project, please read [AGENTS.md](./AGENTS.md) first for detailed personas, coding standards, and operational boundaries.
