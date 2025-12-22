@@ -3,8 +3,8 @@ title: "Living Specs"
 description: "Practical guide to creating and maintaining specs that evolve alongside your codebase."
 tags: ["Documentation", "Spec-Driven Development", "Living Documentation"]
 relatedIds: ["Specs", "The PBI", "Context Engineering"]
-status: "Draft"
-lastUpdated: 2025-01-15
+status: "Experimental"
+lastUpdated: 2025-12-22
 ---
 
 ## Overview
@@ -22,6 +22,12 @@ Create a spec when starting work that involves:
 **Cross-Team Dependencies** — Any feature that other teams will integrate with, requiring clear contract definitions.
 
 **Don't create specs for:** Simple bug fixes, trivial UI changes, configuration updates, or dependency bumps.
+
+## Spec granularity
+
+A spec should be detailed enough to serve as a contract for the feature, but not so detailed that it becomes a maintenance burden.
+
+Some spec features, like gherkin scenarios, are not always necessary if the feature is simple or well-understood. 
 
 ## When to Update a Spec
 
