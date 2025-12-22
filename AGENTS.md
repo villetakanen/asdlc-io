@@ -107,10 +107,11 @@ Use these exact commands. Do not guess.
 |**Type Check**|`pnpm check`|Runs Astro/TS type validation (0 errors allowed)|
 |**Lint/Format**|`pnpm lint`|Runs Biome checks|
 |**Preview**|`pnpm preview`|Serves the production build locally|
-|**Astro CLI Help**|`pnpm astro -- --help`|Get help using the Astro CLI|
-|**Unit Tests**|`pnpm test:run`|Run all unit tests|
+|**Astro CLI Help**| `pnpm astro -- --help` | Get help using the Astro CLI                   |
+|**Unit Tests**| `pnpm test:run`           | Run all unit tests (located in `./tests`)      |
+|**Build Index**| `node scripts/generate-mcp-index.mjs` | Pre-generates article manifest for MCP |
 |**Update**|`pnpm outdated`|Checks dependency currency|
-|**MCP Preview**|`pnpm test:mcp-preview <url>`|Tests MCP server on a remote URL|
+|**MCP Preview**| `pnpm test:mcp-preview <url>` | Test MCP server on a remote deployment       |
 
 ## 🤖 Model Context Protocol (MCP)
 
@@ -118,6 +119,8 @@ This project implements an MCP server that exposes the ASDLC knowledge base.
 
 - **Endpoint**: `/mcp` (Netlify Edge Function)
 - **Transport**: HTTP with SSE (Server-Sent Events)
+- **Architecture**: Uses a build-time manifest (`src/mcp/articles.json`) generated from `src/content`.
+- **Pre-requisite**: Run `node scripts/generate-mcp-index.mjs` (or `pnpm build` which runs it via `prebuild`).
 - **Local Testing**: `netlify dev` -> `http://localhost:8888/mcp`
 - **Verification**: Use `pnpm test:mcp-preview <url>` to verify remote deployments.
 
