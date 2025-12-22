@@ -74,7 +74,33 @@ async function testRemoteProtocol(baseUrl) {
         throw new Error(`Invalid tools/list response: ${JSON.stringify(listData)}`);
     }
 
-    console.log('\n✨ All remote verification phases passed!\n');
+    // 4. Test POST (JSON-RPC) - tools/call (list_articles)
+    console.log('\n--- Phase 4: JSON-RPC tools/call list_articles (POST) ---');
+    const callPayload = {
+      jsonrpc: '2.0',
+      id: 3,
+      method: 'tools/call',
+      params: {
+        name: 'list_articles',
+        arguments: {}
+      }
+    };
+    
+    const callRes = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(callPayload)
+    });
+    
+    const callData = await callRes.json();
+    if (callData.result?.content?.[0]?.text) {
+        console.log('✅ Articles retrieved successfully:');
+        console.log('\n' + callData.result.content[0].text + '\n');
+    } else {
+        throw new Error(`Invalid tools/call list_articles response: ${JSON.stringify(callData)}`);
+    }
+
+    console.log('✨ All remote verification phases passed!\n');
 
   } catch (error) {
     console.error(`\n❌ Verification failed: ${error.message}\n`);

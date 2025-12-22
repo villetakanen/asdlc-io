@@ -11,7 +11,6 @@
 import type { Config } from 'https://edge.netlify.com';
 import { ContentService } from '../../src/mcp/content.ts';
 import { McpServer } from '../../src/mcp/server.ts';
-
 // CORS headers for all responses
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -19,23 +18,8 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-/**
- * Deno-specific File System implementations for ContentService
- */
-
-async function readDir(path: string): Promise<string[]> {
-  const entries: string[] = [];
-  // @ts-ignore: Deno is available in Netlify Edge runtime
-  for await (const entry of Deno.readDir(path)) {
-    if (entry.isFile) entries.push(entry.name);
-  }
-  return entries;
-}
-
-async function readFile(path: string): Promise<string> {
-  // @ts-ignore: Deno is available in Netlify Edge runtime
-  return await Deno.readTextFile(path);
-}
+// @ts-ignore: JSON import
+import articles from '../../src/mcp/articles.json' with { type: 'json' };
 
 // Global instances (lazy-loaded to allow testing in Node)
 let contentService: ContentService;
@@ -43,7 +27,7 @@ let mcpServer: McpServer;
 
 function getMcpServer() {
   if (!mcpServer) {
-    contentService = new ContentService('./src/content', readFile, readDir);
+    contentService = new ContentService(articles as any);
     mcpServer = new McpServer(contentService);
   }
   return mcpServer;

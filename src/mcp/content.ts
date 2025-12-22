@@ -61,98 +61,36 @@ export function parseFrontmatter(markdown: string): { data: Record<string, any>;
 }
 
 export class ContentService {
-  constructor(
-    private baseDir: string = "./src/content",
-    private readFile: (path: string) => Promise<string>,
-    private readDir: (path: string) => Promise<string[]>,
-  ) {}
+  constructor(private articles: Article[]) {}
 
   /**
-   * List all articles with status 'Live' or 'Experimental'
+   * List all articles (filtering is already done in generate-mcp-index.mjs)
    */
   async listArticles(): Promise<Omit<Article, "content">[]> {
-    const collections = ["concepts", "patterns", "practices"] as const;
-    const articles: Omit<Article, "content">[] = [];
-
-    for (const collection of collections) {
-      try {
-        const fullPath = `${this.baseDir}/${collection}`;
-        const files = await this.readDir(fullPath);
-
-        for (const file of files) {
-          if (!file.endsWith(".md")) continue;
-
-          const slug = file.replace(/\.md$/, "");
-          const filePath = `${fullPath}/${file}`;
-          const rawContent = await this.readFile(filePath);
-          const { data } = parseFrontmatter(rawContent);
-
-          // Filtering: Only 'Live' or 'Experimental'
-          if (data.status === "Live" || data.status === "Experimental") {
-            articles.push({
-              slug,
-              collection,
-              title: data.title || slug,
-              description: data.description || "",
-              status: data.status,
-              tags: data.tags || [],
-            });
-          }
-        }
-      } catch (e) {
-        // Collection might not exist or be empty, skip it
-        console.warn(`Warning: Could not read collection ${collection}:`, e);
-      }
-    }
-
-    return articles;
+    return this.articles.map(({ content, ...rest }) => rest);
   }
 
   /**
-   * Get a single article by slug, across all collections.
-   * Returns null if not found or not Live/Experimental.
+   * Get a single article by slug.
    */
   async getArticleBySlug(slug: string): Promise<Article | null> {
-    const collections = ["concepts", "patterns", "practices"] as const;
-
-    for (const collection of collections) {
-      const filePath = `${this.baseDir}/${collection}/${slug}.md`;
-      try {
-        const rawContent = await this.readFile(filePath);
-        const { data, content } = parseFrontmatter(rawContent);
-
-        if (data.status === "Live" || data.status === "Experimental") {
-          return {
-            slug,
-            collection,
-            title: data.title || slug,
-            description: data.description || "",
-            status: data.status,
-            content,
-            tags: data.tags || [],
-          };
-        }
-      } catch {
-        // Not in this collection, continue to next
-      }
-    }
-
-    return null;
+    return this.articles.find((a) => a.slug === slug) || null;
   }
 
   /**
    * Simple keyword search across articles
    */
   async searchArticles(query: string): Promise<Omit<Article, "content">[]> {
-    const all = await this.listArticles();
     const lowerQuery = query.toLowerCase();
 
-    return all.filter(
-      (article) =>
-        article.title.toLowerCase().includes(lowerQuery) ||
-        article.description.toLowerCase().includes(lowerQuery) ||
-        article.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
-        article.slug.toLowerCase().includes(lowerQuery),
-    );
+    return this.articles
+      .filter(
+        (article) =>
+          article.title?.toLowerCase().includes(lowerQuery) ||
+          article.description?.toLowerCase().includes(lowerQuery) ||
+          article.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
+          article.slug?.toLowerCase().includes(lowerQuery),
+      )
+      .map(({ content, ...rest }) => rest);
   }
 }

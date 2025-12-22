@@ -26,48 +26,29 @@ tags: [tag1, tag2]
   });
 
   describe("ContentService", () => {
-    const mockFiles: Record<string, string> = {
-      "./src/content/concepts/c1.md": "---\ntitle: Concept 1\nstatus: Live\n---\nC1",
-      "./src/content/concepts/c2.md": "---\ntitle: Concept 2\nstatus: Draft\n---\nC2",
-      "./src/content/patterns/p1.md": "---\ntitle: Pattern 1\nstatus: Experimental\n---\nP1",
-    };
+    const mockArticles: any[] = [
+      { slug: "c1", collection: "concepts", title: "Concept 1", status: "Live", content: "C1" },
+      { slug: "p1", collection: "patterns", title: "Pattern 1", status: "Experimental", content: "P1" },
+    ];
 
-    const mockReadDir = async (path: string) => {
-      if (path.includes("concepts")) return ["c1.md", "c2.md"];
-      if (path.includes("patterns")) return ["p1.md"];
-      if (path.includes("practices")) return [];
-      return [];
-    };
+    const contentService = new ContentService(mockArticles);
 
-    const mockReadFile = async (path: string) => {
-      if (mockFiles[path]) return mockFiles[path];
-      throw new Error("File not found");
-    };
-
-    const service = new ContentService("./src/content", mockReadFile, mockReadDir);
-
-    it("should list only Live and Experimental articles", async () => {
-      const articles = await service.listArticles();
+    it("should list articles", async () => {
+      const articles = await contentService.listArticles();
       expect(articles).toHaveLength(2);
       expect(articles.map((a) => a.slug)).toContain("c1");
       expect(articles.map((a) => a.slug)).toContain("p1");
-      expect(articles.map((a) => a.slug)).not.toContain("c2");
     });
 
     it("should get a single article by slug", async () => {
-      const article = await service.getArticleBySlug("c1");
+      const article = await contentService.getArticleBySlug("c1");
       expect(article).not.toBeNull();
       expect(article?.title).toBe("Concept 1");
       expect(article?.content.trim()).toBe("C1");
     });
 
-    it("should return null for Draft articles", async () => {
-      const article = await service.getArticleBySlug("c2");
-      expect(article).toBeNull();
-    });
-
     it("should search articles", async () => {
-      const results = await service.searchArticles("Pattern");
+      const results = await contentService.searchArticles("Pattern");
       expect(results).toHaveLength(1);
       expect(results[0].slug).toBe("p1");
     });

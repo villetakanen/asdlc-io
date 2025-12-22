@@ -3,23 +3,12 @@ import { ContentService } from "../../src/mcp/content.ts";
 import { McpServer } from "../../src/mcp/server.ts";
 
 describe("McpServer", () => {
-  const mockFiles: Record<string, string> = {
-    "./src/content/concepts/c1.md": "---\ntitle: Concept 1\nstatus: Live\n---\nC1",
-    "./src/content/patterns/p1.md": "---\ntitle: Pattern 1\nstatus: Experimental\n---\nP1",
-  };
+  const mockArticles: any[] = [
+    { slug: "c1", collection: "concepts", title: "Concept 1", status: "Live", content: "C1" },
+    { slug: "p1", collection: "patterns", title: "Pattern 1", status: "Experimental", content: "P1" },
+  ];
 
-  const mockReadDir = async (path: string) => {
-    if (path.includes("concepts")) return ["c1.md"];
-    if (path.includes("patterns")) return ["p1.md"];
-    return [];
-  };
-
-  const mockReadFile = async (path: string) => {
-    if (mockFiles[path]) return mockFiles[path];
-    throw new Error("File not found");
-  };
-
-  const contentService = new ContentService("./src/content", mockReadFile, mockReadDir);
+  const contentService = new ContentService(mockArticles);
   const server = new McpServer(contentService);
 
   it("should handle initialize request", async () => {
