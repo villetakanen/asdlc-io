@@ -136,16 +136,17 @@ The knowledge base is exposed via an MCP (Model Context Protocol) server at `/mc
 The following rules use XML structure to optimize your attention mechanism. Adhere strictly.
 
 ```xml
-<coding_standard name="Explicit Component Imports">
+<rule_set name="Explicit Component Imports">
   <instruction> Astro does not auto-import components. You must explicitly import every component, layout, or utility used in the frontmatter. 
   </instruction> 
-  <anti_pattern>
+  <example>
+    <bad>
 --- 
 // Missing imports 
 --- 
 <Card title="Hello" />
-  </anti_pattern> 
-  <preferred_pattern> 
+    </bad> 
+  <good> 
 --- 
 import Card from '../components/Card.astro'; 
 import Layout from '../layouts/Layout.astro'; 
@@ -153,13 +154,14 @@ import Layout from '../layouts/Layout.astro';
 <Layout> 
   <Card title="Hello" />
 </Layout>
-  </preferred_pattern>
-</coding_standard>
+  </good>
+  </example>
+</rule_set>
 
 
-<coding_standard name="Modern Content Layer"> <instruction> Use the Astro 5+ `glob` loader for content collections. Do not use the legacy `content` folder pattern unless strictly necessary for migration. </instruction> <anti_pattern> const blog = defineCollection({ type: 'content', // Legacy schema: ... }); </anti_pattern> <preferred_pattern> import { glob } from 'astro/loaders'; const blog = defineCollection({ loader: glob({ pattern: '**/*.md', base: './src/content/blog' }), schema: ... }); </preferred_pattern> </coding_standard>
+<rule_set name="Modern Content Layer"> <instruction> Use the Astro 5+ `glob` loader for content collections. Do not use the legacy `content` folder pattern unless strictly necessary for migration. </instruction> <example> <bad> const blog = defineCollection({ type: 'content', // Legacy schema: ... }); </bad> <good> import { glob } from 'astro/loaders'; const blog = defineCollection({ loader: glob({ pattern: '**/*.md', base: './src/content/blog' }), schema: ... }); </good> </example> </rule_set>
 
-<coding_standard name="Design System Integrity"> <instruction> Do not introduce Tailwind classes or arbitrary hex codes. Use the CSS variables defined in `global.css` to maintain the "Industrial" aesthetic. </instruction> <anti_pattern> <div class="text-gray-500 font-bold">...</div> </anti_pattern> <preferred_pattern> <div class="spec-label">...</div> <style> .spec-label { color: var(--color-text-muted); font-family: var(--font-mono); } </style> </preferred_pattern> </coding_standard>
+<rule_set name="Design System Integrity"> <instruction> Do not introduce Tailwind classes or arbitrary hex codes. Use the CSS variables defined in `global.css` to maintain the "Industrial" aesthetic. </instruction> <example> <bad> <div class="text-gray-500 font-bold">...</div> </bad> <good> <div class="spec-label">...</div> <style> .spec-label { color: var(--color-text-muted); font-family: var(--font-mono); } </style> </good> </example> </rule_set>
 ```
 
 ## 7. External Agent Submission Guidelines
@@ -184,3 +186,9 @@ Before generating ANY recommendations, external agents MUST read:
 - **Reflexion:** If a build fails, analyze the error, update your plan, and retry. Do not loop blindly.
     
 - **Scope:** Do not "fix" unrelated files. Stick to the PBI.
+
+## 8. Context References
+- **Data Schema:** Read `src/content/config.ts`
+- **Design Tokens:** Read `src/styles/global.css`
+- **Project Config:** Read `astro.config.mjs`
+- **Dependencies:** Read `package.json`
