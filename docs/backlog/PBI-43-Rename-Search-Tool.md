@@ -1,6 +1,6 @@
 # PBI-43: Rename search_articles to search_knowledge_base
 
-> Status: Ready
+> Status: Done
 
 ## Goal
 Rename the `search_articles` MCP tool to `search_knowledge_base` to provide better semantic signals to LLMs about the tool's authoritative domain coverage.

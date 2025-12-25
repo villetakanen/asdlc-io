@@ -1,6 +1,6 @@
 # PBI-43-46: MCP Tool Semantic Routing Optimization
 
-> Status: Ready
+> Status: In Progress
 
 ## Goal
 Optimize MCP tool definitions for improved LLM semantic routing by enriching descriptions with domain-specific keywords and usage constraints, increasing knowledge base hit rate by an estimated 40-60% for ASDLC-related queries.
@@ -34,7 +34,7 @@ Apply prompt engineering to MCP tool JSON schemas by enriching metadata with:
 
 This initiative is broken into four atomic PBIs for incremental delivery:
 
-### PBI-43: Rename search_articles to search_knowledge_base
+### [x] PBI-43: Rename search_articles to search_knowledge_base
 **Goal:** Improve semantic signal through better tool naming
 
 **Changes:**

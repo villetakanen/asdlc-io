@@ -31,7 +31,7 @@ export const TOOLS: McpTool[] = [
     },
   },
   {
-    name: "search_articles",
+    name: "search_knowledge_base",
     description: "Search for articles in the knowledge base using a keyword query.",
     inputSchema: {
       type: "object",
@@ -72,7 +72,7 @@ export async function handleToolCall(
       };
     }
 
-    case "search_articles": {
+    case "search_knowledge_base": {
       const { query } = params;
       if (!query) throw new Error("Missing parameter: query");
       const articles = await contentService.searchArticles(query);
