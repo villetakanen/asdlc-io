@@ -3,11 +3,10 @@ import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/patterns.md";
 import SpecCard from "../../components/SpecCard.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
+import { sortItemsByStatusAndDate } from "../../utils/content";
 
 const patterns = await getCollection("patterns");
-const sortedPatterns = patterns.sort(
-  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
-);
+const sortedPatterns = sortItemsByStatusAndDate(patterns);
 ---
 
 <CollectionIndex
@@ -21,8 +20,9 @@ const sortedPatterns = patterns.sort(
     <SpecCard
       title={pattern.data.title}
       url={`/patterns/${pattern.id}`}
-      meta={`${pattern.data.status} | ${pattern.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-      tags={[pattern.data.status]}
+      status={pattern.data.status}
+      meta={`${pattern.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
+      tags={pattern.data.tags}
     />
   ))}
 </CollectionIndex>

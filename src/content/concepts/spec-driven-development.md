@@ -4,7 +4,7 @@ description: A methodology that prioritizes precise, machine-readable specificat
 tags:
   - Core
   - Standards
-maturity: Proposed
+status: Experimental
 lastUpdated: 2025-12-09
 ---
 

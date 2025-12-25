@@ -3,11 +3,10 @@ import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/practices.md";
 import SpecCard from "../../components/SpecCard.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
+import { sortItemsByStatusAndDate } from "../../utils/content";
 
 const practices = await getCollection("practices");
-const sortedPractices = practices.sort(
-  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
-);
+const sortedPractices = sortItemsByStatusAndDate(practices);
 ---
 
 <CollectionIndex
@@ -21,6 +20,7 @@ const sortedPractices = practices.sort(
     <SpecCard
       title={practice.data.title}
       url={`/practices/${practice.id}`}
+      status={practice.data.status}
       meta={`${practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
       tags={practice.data.tags || []}
     />

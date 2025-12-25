@@ -1,17 +1,23 @@
 ---
+import StatusBadge from "./StatusBadge.astro";
+
 interface Props {
   title: string;
   url: string;
   meta: string;
+  status?: string;
   tags?: string[];
 }
 
-const { title, url, meta, tags } = Astro.props;
+const { title, url, meta, status, tags } = Astro.props;
 ---
 
 <a href={url} class="spec-card">
   <div class="spec-card__header">
-    <h3>{title}</h3>
+    <div class="spec-card__title-row">
+      <h3>{title}</h3>
+      {status && <StatusBadge status={status} />}
+    </div>
     <span class="spec-card__meta mono">{meta}</span>
   </div>
   {tags && tags.length > 0 && (
@@ -22,5 +28,19 @@ const { title, url, meta, tags } = Astro.props;
     </div>
   )}
 </a>
+
+<style>
+  .spec-card__title-row {
+    display: flex;
+    justify_content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .spec-card__title-row h3 {
+    margin-bottom: 0;
+  }
+</style>
 
 
