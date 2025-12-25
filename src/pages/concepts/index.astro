@@ -3,11 +3,10 @@ import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/concepts.md";
 import SpecCard from "../../components/SpecCard.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
+import { sortItemsByStatusAndDate } from "../../utils/content";
 
 const concepts = await getCollection("concepts");
-const sortedConcepts = concepts.sort(
-  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
-);
+const sortedConcepts = sortItemsByStatusAndDate(concepts);
 ---
 
 <CollectionIndex
@@ -21,6 +20,7 @@ const sortedConcepts = concepts.sort(
     <SpecCard
       title={concept.data.title}
       url={`/concepts/${concept.id}`}
+      status={concept.data.status}
       meta={`${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
       tags={concept.data.tags}
     />

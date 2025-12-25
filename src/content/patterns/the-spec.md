@@ -4,7 +4,7 @@ description: "Living documents that serve as the permanent source of truth for f
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
 relatedIds: ["The PBI", "Feature Assembly", "Experience Modeling", "Context Engineering"]
 maturity: "Standard"
-status: "Draft"
+status: "Live"
 lastUpdated: 2025-01-15
 ---
 
