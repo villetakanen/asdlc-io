@@ -1,6 +1,6 @@
 # PBI-46: Enrich list_articles Tool Description
 
-> Status: Ready
+> Status: Done
 
 ## Goal
 Enrich the `list_articles` tool description with ASDLC expansion and use case guidance for consistency with other optimized tools.

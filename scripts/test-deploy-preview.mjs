@@ -68,8 +68,20 @@ async function testRemoteProtocol(baseUrl) {
     });
     
     const listData = await listRes.json();
-    if (listData.result?.tools?.length >= 3) {
-        console.log(`✅ Tools found: ${listData.result.tools.map(t => t.name).join(', ')}`);
+    const tools = listData.result?.tools || [];
+    
+    if (tools.length >= 3) {
+        console.log(`✅ Tools found: ${tools.map(t => t.name).join(', ')}`);
+        
+        // Assertions for name changes and enrichment
+        const hasRenamedTool = tools.some(t => t.name === 'search_knowledge_base');
+        const searchTool = tools.find(t => t.name === 'search_knowledge_base');
+        const hasEnrichment = searchTool?.description?.includes('ASDLC (Agentic Software Development Life Cycle)');
+        
+        if (!hasRenamedTool) throw new Error('FAIL: Tool "search_knowledge_base" not found in list');
+        if (!hasEnrichment) throw new Error('FAIL: Tool "search_knowledge_base" is missing semantic enrichment');
+        
+        console.log('✅ Tool renaming and semantic enrichment verified in metadata');
     } else {
         throw new Error(`Invalid tools/list response: ${JSON.stringify(listData)}`);
     }
@@ -98,6 +110,32 @@ async function testRemoteProtocol(baseUrl) {
         console.log('\n' + callData.result.content[0].text + '\n');
     } else {
         throw new Error(`Invalid tools/call list_articles response: ${JSON.stringify(callData)}`);
+    }
+
+    // 5. Test POST (JSON-RPC) - tools/call (search_knowledge_base)
+    console.log('\n--- Phase 5: JSON-RPC tools/call search_knowledge_base (POST) ---');
+    const searchPayload = {
+      jsonrpc: '2.0',
+      id: 4,
+      method: 'tools/call',
+      params: {
+        name: 'search_knowledge_base',
+        arguments: { query: 'context' }
+      }
+    };
+    
+    const searchRes = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(searchPayload)
+    });
+    
+    const searchData = await searchRes.json();
+    if (searchData.result?.content?.[0]?.text) {
+        console.log('✅ Search results retrieved successfully:');
+        console.log('\n' + searchData.result.content[0].text + '\n');
+    } else {
+        throw new Error(`Invalid tools/call search_knowledge_base response: ${JSON.stringify(searchData)}`);
     }
 
     console.log('✨ All remote verification phases passed!\n');

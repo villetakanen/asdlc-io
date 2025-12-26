@@ -1,6 +1,6 @@
 # PBI-45: Add Usage Constraints to get_article Tool
 
-> Status: Ready
+> Status: Done
 
 ## Goal
 Add explicit usage constraints to the `get_article` tool description to prevent LLMs from guessing slug values, which causes 404 errors and poor user experience.

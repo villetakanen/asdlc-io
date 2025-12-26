@@ -13,7 +13,8 @@ export interface McpTool {
 export const TOOLS: McpTool[] = [
   {
     name: "list_articles",
-    description: "List all Live and Experimental articles in the ASDLC knowledge base.",
+    description:
+      "Lists all available articles in the ASDLC (Agentic Software Development Life Cycle) Knowledge Base with metadata (title, description, tags, status). Returns only Live and Experimental content. Use this to browse available topics or get an overview of the knowledge base structure.",
     inputSchema: {
       type: "object",
       properties: {},
@@ -21,22 +22,32 @@ export const TOOLS: McpTool[] = [
   },
   {
     name: "get_article",
-    description: "Get the full content of a specific article by its slug.",
+    description:
+      "Retrieves the full markdown content of a specific concept or pattern. Use this ONLY after you have performed a search using 'search_knowledge_base' and have a valid 'slug' from the search results. Do not attempt to guess slug names.",
     inputSchema: {
       type: "object",
       properties: {
-        slug: { type: "string", description: "The unique identifier (slug) of the article." },
+        slug: {
+          type: "string",
+          description:
+            "The exact slug value from a search result (e.g., 'context-engineering', 'agent-directives'). Do not construct or guess slug values.",
+        },
       },
       required: ["slug"],
     },
   },
   {
     name: "search_knowledge_base",
-    description: "Search for articles in the knowledge base using a keyword query.",
+    description:
+      "The primary search tool for the ASDLC (Agentic Software Development Life Cycle) Knowledge Base. Use this tool whenever the user asks about AI collaboration, Agent Directives, Schema-First Development, Determinism over Vibes, Type Safety, Conventional Commits, or configuring LLM workflows. This tool searches across all 'Concepts' and 'Patterns' in the knowledge base.",
     inputSchema: {
       type: "object",
       properties: {
-        query: { type: "string", description: "The search query string." },
+        query: {
+          type: "string",
+          description:
+            "A specific development topic or keyword (e.g., 'Vibe Coding', 'Agent Directives', 'Zod Schemas', 'Context Engineering').",
+        },
       },
       required: ["query"],
     },

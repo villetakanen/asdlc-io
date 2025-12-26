@@ -1,6 +1,6 @@
 # PBI-44: Enrich search_knowledge_base Tool Description
 
-> Status: Ready
+> Status: Done
 
 ## Goal
 Enrich the `search_knowledge_base` tool description with domain-specific keywords and semantic anchors to improve LLM routing accuracy for ASDLC-related queries.

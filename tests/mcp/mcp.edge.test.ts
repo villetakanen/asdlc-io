@@ -143,4 +143,99 @@ describe('MCP Edge Function', () => {
       expect(res.headers.get('Access-Control-Allow-Origin')).toBe('*');
     });
   });
+
+  describe('search_knowledge_base tool description enrichment', () => {
+    it('includes ASDLC expansion and domain keywords', async () => {
+      const body = { jsonrpc: '2.0', id: 2, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const searchTool = json.result.tools.find((t: any) => t.name === 'search_knowledge_base');
+      
+      expect(searchTool).toBeDefined();
+      expect(searchTool.description).toContain('ASDLC (Agentic Software Development Life Cycle)');
+      expect(searchTool.description).toContain('Agent Directives');
+      expect(searchTool.description).toContain('Determinism over Vibes');
+      expect(searchTool.description).toContain('Schema-First Development');
+      expect(searchTool.description).toContain('Type Safety');
+      expect(searchTool.description).toContain('Conventional Commits');
+      expect(searchTool.description).toContain('AI collaboration');
+      expect(searchTool.description).toContain('Concepts');
+      expect(searchTool.description).toContain('Patterns');
+    });
+
+    it('includes concrete examples in query parameter', async () => {
+      const body = { jsonrpc: '2.0', id: 3, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const searchTool = json.result.tools.find((t: any) => t.name === 'search_knowledge_base');
+      const queryParam = searchTool.inputSchema.properties.query;
+      
+      expect(queryParam.description).toContain('Vibe Coding');
+      expect(queryParam.description).toContain('Agent Directives');
+      expect(queryParam.description).toContain('Zod Schemas');
+      expect(queryParam.description).toContain('Context Engineering');
+    });
+  });
+
+  describe('get_article tool constraint enforcement', () => {
+    it('includes search-first constraint in description', async () => {
+      const body = { jsonrpc: '2.0', id: 4, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const getTool = json.result.tools.find((t: any) => t.name === 'get_article');
+      
+      expect(getTool).toBeDefined();
+      expect(getTool.description).toContain('ONLY after');
+      expect(getTool.description).toContain('search_knowledge_base');
+      expect(getTool.description).toContain('Do not attempt to guess slug names');
+    });
+
+    it('includes slug format examples and warnings', async () => {
+      const body = { jsonrpc: '2.0', id: 5, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const getTool = json.result.tools.find((t: any) => t.name === 'get_article');
+      const slugParam = getTool.inputSchema.properties.slug;
+      
+      expect(slugParam.description).toContain('exact slug value');
+      expect(slugParam.description).toContain('Do not construct or guess');
+      expect(slugParam.description).toMatch(/context-engineering|agent-directives/);
+    });
+  });
+
+  describe('list_articles tool description enrichment', () => {
+    it('includes ASDLC expansion and metadata clarification', async () => {
+      const body = { jsonrpc: '2.0', id: 6, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const listTool = json.result.tools.find((t: any) => t.name === 'list_articles');
+      
+      expect(listTool).toBeDefined();
+      expect(listTool.description).toContain('ASDLC (Agentic Software Development Life Cycle)');
+      expect(listTool.description).toContain('metadata');
+      expect(listTool.description).toContain('Live and Experimental');
+    });
+
+    it('includes use case guidance', async () => {
+      const body = { jsonrpc: '2.0', id: 7, method: 'tools/list' };
+      const req = createMockRequest('POST', 'http://localhost/mcp', body);
+      const res = await handler(req);
+      const json = await res.json();
+      
+      const listTool = json.result.tools.find((t: any) => t.name === 'list_articles');
+      
+      expect(listTool.description).toContain('browse');
+      expect(listTool.description).toContain('overview');
+    });
+  });
 });

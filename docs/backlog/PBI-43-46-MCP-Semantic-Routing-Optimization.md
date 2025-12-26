@@ -1,6 +1,6 @@
 # PBI-43-46: MCP Tool Semantic Routing Optimization
 
-> Status: In Progress
+> Status: Done
 
 ## Goal
 Optimize MCP tool definitions for improved LLM semantic routing by enriching descriptions with domain-specific keywords and usage constraints, increasing knowledge base hit rate by an estimated 40-60% for ASDLC-related queries.
@@ -43,7 +43,7 @@ This initiative is broken into four atomic PBIs for incremental delivery:
 
 **Acceptance:** Tool rename complete, tests pass, old name returns error
 
-### PBI-44: Enrich search_knowledge_base Description
+### [x] PBI-44: Enrich search_knowledge_base Description
 **Goal:** Add domain keywords for improved routing accuracy (core value delivery)
 
 **Changes:**
@@ -53,7 +53,7 @@ This initiative is broken into four atomic PBIs for incremental delivery:
 
 **Acceptance:** Description includes all semantic anchors, MCP Inspector shows enriched metadata
 
-### PBI-45: Add Usage Constraints to get_article
+### [x] PBI-45: Add Usage Constraints to get_article
 **Goal:** Prevent LLM anti-pattern of guessing slugs
 
 **Changes:**
@@ -63,7 +63,7 @@ This initiative is broken into four atomic PBIs for incremental delivery:
 
 **Acceptance:** Description includes constraints, LLM performs search-first flow
 
-### PBI-46: Enrich list_articles Description
+### [x] PBI-46: Enrich list_articles Description
 **Goal:** Complete optimization across all tools for consistency
 
 **Changes:**
