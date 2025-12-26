@@ -129,7 +129,7 @@ The knowledge base is exposed via an MCP (Model Context Protocol) server at `/mc
 
 - `list_articles`: Lists all Live/Experimental articles.
 - `get_article(slug)`: Retrieves full markdown content.
-- `search_articles(query)`: Reaches across collections by keyword.
+- `search_knowledge_base(query)`: Reaches across collections by keyword.
 
 ## 7. Coding Standards & Patterns
 

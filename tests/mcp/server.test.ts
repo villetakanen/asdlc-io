@@ -80,10 +80,24 @@ describe("McpServer", () => {
     expect(response.result.content[0].text).toContain("not found");
   });
 
-  it("should call search_articles tool", async () => {
+  it("should call search_knowledge_base tool", async () => {
     const response = await server.handleRequest({
       jsonrpc: "2.0",
       id: 6,
+      method: "tools/call",
+      params: {
+        name: "search_knowledge_base",
+        arguments: { query: "Pattern" },
+      },
+    });
+
+    expect(response.result.content[0].text).toContain("Pattern 1");
+  });
+
+  it("should return error for old tool name search_articles", async () => {
+    const response = await server.handleRequest({
+      jsonrpc: "2.0",
+      id: 6.1,
       method: "tools/call",
       params: {
         name: "search_articles",
@@ -91,7 +105,8 @@ describe("McpServer", () => {
       },
     });
 
-    expect(response.result.content[0].text).toContain("Pattern 1");
+    expect(response.error).toBeDefined();
+    expect(response.error?.code).toBe(-32603); // handleToolCall throws, causing -32603 in server.ts
   });
 
   it("should return error for unknown method", async () => {
