@@ -2,7 +2,8 @@
 title: "Context Gates"
 complexity: "Medium"
 status: "Proposed"
-lastUpdated: 2025-12-11
+relatedIds: ["model-routing", "agentic-sdlc", "context-engineering"]
+lastUpdated: 2025-12-27
 ---
 
 ## Definition

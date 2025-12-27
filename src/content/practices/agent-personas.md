@@ -1,14 +1,17 @@
 ---
 title: "Agent Personas"
 description: "A guide on how to add multiple personas to an AGENTS.md file, with examples."
-lastUpdated: 2025-12-11
+lastUpdated: 2025-12-27
 tags: ["agents", "personas", "guide"]
+relatedIds: ["model-routing", "context-engineering", "agents-md-spec"]
 status: "Live"
 ---
 
 ## Overview
 
 Defining clear personas for your agents is crucial for ensuring they understand their role, trigger constraints, and goals. This guide demonstrates how to structure multiple personas within your `AGENTS.md` file.
+
+Personas are a context engineering practice—they scope agent work by defining boundaries and focus, not by role-playing. When combined with [Model Routing](/patterns/model-routing), personas can also specify which computational tool (LLM) to use for each type of work.
 
 For the full specification of the `AGENTS.md` file, see the [AGENTS.md Specification](./agents-md-spec).
 
@@ -58,3 +61,37 @@ Below are the personas we use, serving as a template for your own `AGENTS.md`.
   - **Testing:** Ensure all changes pass `pnpm check` and `pnpm lint`
   - **Document progress:** Update the relevant PBI in `docs/backlog/` with status and notes.md after completing tasks.
 ```
+
+## Model Routing and Personas
+
+Personas define **what work to do** and **how to scope it**. [Model Routing](/patterns/model-routing) is a separate practice that defines **which computational tool to use**.
+
+### Current State (December 2025)
+
+AI-assisted IDEs (Cursor, Windsurf, Claude Code) do **not** automatically select models based on persona definitions. Model selection is manual.
+
+### Best Practice: Keep Them Separate
+
+**Don't add model profiles to `AGENTS.md`** - It adds noise to the context window without providing automation value.
+
+Instead:
+1. **Keep personas focused** on triggers, goals, and guidelines
+2. **Use Model Routing separately** - Manually select models based on the task characteristics
+3. **Reference the pattern** when deciding which model to use
+
+### Matching Personas to Model Profiles
+
+When you invoke a persona, choose your model based on the work type:
+
+| Persona Type | Typical Work | Recommended Profile |
+|---|---|---|
+| Lead / Architect | System design, specs, architectural decisions | High Reasoning |
+| Developer / Implementation | Code generation, refactoring, tests | High Throughput |
+| Documentation Analyst | Legacy code analysis, comprehensive docs | Massive Context |
+
+The workflow:
+1. **Identify the persona** needed for your task
+2. **Select the appropriate model** manually in your IDE
+3. **Invoke the persona** with your prompt
+
+This keeps `AGENTS.md` lean and focused on scoping agent work, while model selection remains a deliberate engineering decision.
