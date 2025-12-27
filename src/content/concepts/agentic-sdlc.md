@@ -10,6 +10,7 @@ relatedIds:
   - model-context-protocol
   - guardrails
   - levels-of-autonomy
+  - model-routing
 maturity: Standard
 lastUpdated: 2025-11-26
 ---
