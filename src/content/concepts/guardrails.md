@@ -17,11 +17,11 @@ Standard definitions of "Guardrails" conflate two opposing engineering concepts:
 
 ## The ASDLC Definition
 
-To resolve this, we map "Guardrails" to the **Agent Constitution** and **Gates** (e.g. Quality Gates, Firewalls).
+To resolve this, we map "Guardrails" to the **Agent Constitution** and **Gates** (Quality Gates, Review Gates, Acceptance Gates).
 
-> **Note:** This is distinct from **[Context Gates](/patterns/context-gates)**, which act as a cognitive throttle for the context window rather than a hard compliance check for output.
+> **Note:** See [Context Gates](/concepts/context-gates) for the full three-tier validation architecture: Quality Gates (deterministic), Review Gates (probabilistic/adversarial), and Acceptance Gates (human-in-the-loop).
 
-The Agent Constitution is a set of probabilistic, semantic instructions acting as the model's "internal conscience." Unlike a firewall that passively intercepts errors, the Constitution actively steers the agent's intent, ensuring it understands how to act correctly to avoid colliding with hard infrastructure.
+The Agent Constitution is a set of probabilistic, semantic instructions acting as the model's "internal conscience." Unlike gates that validate output after generation, the Constitution actively steers the agent's intent, ensuring it understands how to act correctly to avoid producing invalid output.
 
 ## Comparison of Controls
 
