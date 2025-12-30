@@ -1,6 +1,6 @@
 ---
 title: Levels of Autonomy
-description: A taxonomy of agentic behavior in software engineering, ranging from assistive tools (L1) to fully autonomous engineers (L5), with ASDLC standardized on L3 (Conditional Autonomy).
+description: "SAE-inspired taxonomy for AI agent autonomy in software development, from L1 (assistive) to L5 (full), standardized at L3 conditional autonomy."
 tags:
   - Taxonomy
   - Standards

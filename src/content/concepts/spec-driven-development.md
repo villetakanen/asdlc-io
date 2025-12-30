@@ -1,6 +1,6 @@
 ---
 title: Spec-Driven Development (SDD)
-description: A methodology that prioritizes precise, machine-readable specifications to guide AI-driven software development, ensuring clarity and reliability in engineering outcomes.
+description: "Methodology where machine-readable specs define contracts before code, inverting traditional workflows to prevent agent hallucination and drift."
 tags:
   - Core
   - Standards

@@ -1,6 +1,6 @@
 ---
 title: Legend & Taxonomy
-description: Definitions of statuses, maturities, and content types used in this documentation.
+description: "Reference guide defining status levels (Draft/Proposed/Live), maturity stages (Experimental/Standard), and content categories used throughout ASDLC.io."
 ---
 
 # Legend & Taxonomy

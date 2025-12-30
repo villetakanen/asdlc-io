@@ -1,5 +1,6 @@
 ---
 title: "Agent Constitution"
+description: "Prime directives that align agent behavior with system goals before action, acting as driver training vs. context gates as brakes."
 complexity: "Medium"
 status: "Experimental"
 maturity: "Experimental"

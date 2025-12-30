@@ -1,6 +1,6 @@
 ---
 title: Agentic SDLC
-description: A cybernetic framework for software engineering that couples human intent with agentic execution, shifting from manual coding to high-frequency orchestration and instructor-led verification.
+description: "A cybernetic SDLC where AI agents execute code while humans define constraints and verify output, operating at L3 conditional autonomy."
 tags:
   - Core
   - SDLC

@@ -1,6 +1,6 @@
 ---
 title: "Guardrails"
-description: "In the context of asdlc.io, the term 'Guardrail' is deprecated in favor of a split-architecture approach: Gates and Constitutions."
+description: "Deprecated concept superseded by Context Gates (deterministic validation) and Agent Constitution (probabilistic steering)."
 tags: ["Disambiguation", "Architecture"]
 maturity: "Deprecated"
 status: "Deprecated"

@@ -1,6 +1,6 @@
 ---
 title: Model Context Protocol (MCP)
-description: An open standard functioning as a universal connector between AI assistants and external systems, standardizing interactions with data repositories and tools.
+description: "Open standard for connecting AI agents to data sources and tools, enabling real-time 'just-in-time' context vs. stale vector databases."
 tags:
   - Infrastructure
   - Standards
