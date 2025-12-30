@@ -4,7 +4,6 @@ description: "Transforming the classic design thinking framework into a computat
 tags: ["Design", "Methodology", "Requirements", "Agents"]
 lastUpdated: 2025-12-13
 status: "Draft"
-maturity: "Proposed"
 ---
 
 # Agentic Double Diamond

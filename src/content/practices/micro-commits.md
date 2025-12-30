@@ -2,7 +2,7 @@
 title: "Micro-Commits"
 description: "Ultra-granular commit practice for agentic workflows, treating version control as reversible save points."
 tags: ["Version Control", "Git", "Safety", "Rollback"]
-relatedIds: ["The PBI", "Context Gates", "Agentic SDLC"]
+relatedIds: ["patterns/the-pbi", "concepts/context-gates", "concepts/agentic-sdlc"]
 status: "Live"
 lastUpdated: 2025-12-27
 ---

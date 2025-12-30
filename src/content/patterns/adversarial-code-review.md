@@ -2,8 +2,7 @@
 title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
-relatedIds: ["Context Gates", "The Spec", "Model Routing", "Agentic Double Diamond", "Agent Constitution"]
-maturity: "Experimental"
+relatedIds: ["concepts/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution"]
 status: "Proposed"
 lastUpdated: 2025-12-27
 ---

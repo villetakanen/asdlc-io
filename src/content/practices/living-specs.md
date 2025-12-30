@@ -2,7 +2,7 @@
 title: "Living Specs"
 description: "Practical guide to creating and maintaining specs that evolve alongside your codebase."
 tags: ["Documentation", "Spec-Driven Development", "Living Documentation"]
-relatedIds: ["Specs", "The PBI", "Context Engineering"]
+relatedIds: ["patterns/the-spec", "patterns/the-pbi", "concepts/context-engineering"]
 status: "Experimental"
 lastUpdated: 2025-12-22
 ---

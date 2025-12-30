@@ -2,7 +2,7 @@
 title: "Context Gates"
 complexity: "Medium"
 status: "Proposed"
-relatedIds: ["model-routing", "agentic-sdlc", "context-engineering"]
+relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "patterns/adversarial-code-review"]
 lastUpdated: 2025-12-27
 ---
 

@@ -21,6 +21,22 @@ metadataFields.push({ key: "lastUpdated", value: data.lastUpdated });
 if (data.tags && data.tags.length > 0) {
   metadataFields.push({ key: "tags", value: data.tags });
 }
+
+// Add relatedIds if present
+if (data.relatedIds && data.relatedIds.length > 0) {
+  metadataFields.push({ key: "relatedIds", value: data.relatedIds });
+}
+
+// Helper function to format relatedId links
+// "patterns/the-spec" -> { href: "/patterns/the-spec", text: "the-spec" }
+function formatRelatedId(id: string) {
+  const parts = id.split("/");
+  const slug = parts[parts.length - 1];
+  return {
+    href: `/${id}`,
+    text: slug,
+  };
+}
 ---
 
 <header class="spec-header border-box content">
@@ -49,7 +65,7 @@ if (data.tags && data.tags.length > 0) {
     )}
     {metadataFields.map((field) => (
       <div class="spec-row">
-        <dt>{field.key === 'lastUpdated' ? 'Last Updated' : field.key.charAt(0).toUpperCase() + field.key.slice(1)}</dt>
+        <dt>{field.key === 'lastUpdated' ? 'Last Updated' : field.key === 'relatedIds' ? 'Related' : field.key.charAt(0).toUpperCase() + field.key.slice(1)}</dt>
         <dd>
           {field.key === 'lastUpdated' && field.value instanceof Date && (
             <time datetime={field.value.toISOString()}>
@@ -57,6 +73,19 @@ if (data.tags && data.tags.length > 0) {
             </time>
           )}
           {field.key === 'tags' && Array.isArray(field.value) && field.value.join(', ')}
+          {field.key === 'relatedIds' && Array.isArray(field.value) && (
+            <>
+              {(field.value as string[]).map((id, index) => {
+                const formatted = formatRelatedId(id);
+                return (
+                  <>
+                    <a href={formatted.href}>{formatted.text}</a>
+                    {index < (field.value as string[]).length - 1 && ", "}
+                  </>
+                );
+              })}
+            </>
+          )}
         </dd>
       </div>
     ))}

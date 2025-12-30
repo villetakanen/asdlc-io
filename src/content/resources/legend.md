@@ -1,12 +1,12 @@
 ---
 title: Legend & Taxonomy
-description: Definitions of statuses, maturities, and content types used in this documentation.
+description: "Reference guide defining status levels (Draft/Proposed/Live/Experimental) and content categories used throughout ASDLC.io."
 ---
 
 # Legend & Taxonomy
 
 ## How to read these docs
-This documentation uses specific statuses and maturity levels to indicate the stability and reliability of the content. Use this legend to understand the state of each document.
+This documentation uses specific status levels to indicate the stability and reliability of the content. Use this legend to understand the state of each document.
 
 ## Status Definitions
 
@@ -14,15 +14,9 @@ This documentation uses specific statuses and maturity levels to indicate the st
 | :--- | :--- |
 | **Draft** | Internal only, subject to major rewrites. |
 | **Proposed** | Open for community RFC, content is stable but consensus is pending. |
-| **Live** | Ratified standard. |
-| **Deprecated** | No longer recommended; replaced by newer patterns. |
-
-## Maturity Levels
-
-| Maturity | Definition |
-| :--- | :--- |
+| **Live** | Ratified standard, production-ready. |
 | **Experimental** | Emerging pattern, high risk of change, "use at own risk." |
-| **Standard** | Proven in production, stable API/Structure. |
+| **Deprecated** | No longer recommended; replaced by newer patterns. |
 
 ## Core Categories
 

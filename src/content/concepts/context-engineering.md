@@ -2,8 +2,7 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality. In ASDLC, it is codified in the `AGENTS.md` files."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["Prompt Design", "Token Optimization"]
-maturity: "Experimental"
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec"]
 lastUpdated: 2025-01-23
 ---
 
@@ -14,7 +13,7 @@ Context Engineering is the systematic approach to designing and structuring the 
 While `[asdlc.io](asdlc.io)` focuses on software, Context Engineering is domain-agnostic.
 * **In Design:** It is the design system tokens and Figma layer naming conventions explicitly fed to a UI agent.
 * **In Law:** It is the "brief" that restricts a paralegal agent to specific case law precedents.
-* **In SDLC:** It is the `AGENTS.md` file that forces an implementation pattern.
+* **In SDLC:** It is the `AGENTS.md` file that steers the agent towards an implementation pattern.
 
 Anywhere agents operate, context is the constraint that turns raw intelligence into specific value.
 

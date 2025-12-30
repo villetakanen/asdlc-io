@@ -3,7 +3,7 @@ title: "Agent Personas"
 description: "A guide on how to add multiple personas to an AGENTS.md file, with examples."
 lastUpdated: 2025-12-27
 tags: ["agents", "personas", "guide"]
-relatedIds: ["model-routing", "context-engineering", "agents-md-spec"]
+relatedIds: ["patterns/model-routing", "concepts/context-engineering", "practices/agents-md-spec"]
 status: "Live"
 ---
 

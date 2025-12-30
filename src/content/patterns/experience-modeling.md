@@ -6,10 +6,9 @@ tags:
   - Design System
   - Methodology
 relatedIds:
-  - agentic-sdlc
-  - context-engineering
-  - guardrails
-maturity: Standard
+  - concepts/agentic-sdlc
+  - concepts/context-engineering
+  - concepts/guardrails
 status: Proposed
 lastUpdated: 2025-12-02
 ---

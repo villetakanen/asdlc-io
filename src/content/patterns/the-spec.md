@@ -2,8 +2,7 @@
 title: "Specs"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
-relatedIds: ["The PBI", "Feature Assembly", "Experience Modeling", "Context Engineering", "Model Routing"]
-maturity: "Standard"
+relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing"]
 status: "Live"
 lastUpdated: 2025-01-15
 ---
