@@ -2,7 +2,7 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality. In ASDLC, it is codified in the `AGENTS.md` files."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: []
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec"]
 lastUpdated: 2025-01-23
 ---
 

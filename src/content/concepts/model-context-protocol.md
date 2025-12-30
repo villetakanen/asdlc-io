@@ -4,6 +4,7 @@ description: "Open standard for connecting AI agents to data sources and tools, 
 tags:
   - Infrastructure
   - Standards
+relatedIds: ["concepts/context-engineering", "patterns/the-spec", "patterns/the-pbi", "practices/agents-md-spec"]
 lastUpdated: 2025-11-25
 ---
 

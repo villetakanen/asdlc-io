@@ -3,6 +3,7 @@ title: "AGENTS.md Specification"
 description: "The definitive guide to the AGENTS.md file, including philosophy, anatomy, and implementation strategy."
 lastUpdated: 2025-11-27
 tags: ["governance", "agents", "specification"]
+relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
 status: "Live"
 ---
 
