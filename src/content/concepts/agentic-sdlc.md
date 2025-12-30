@@ -23,7 +23,7 @@ The Agentic Software Development Life Cycle (ASDLC) is a cybernetic methodology 
 
 Transitioning to ASDLC requires acknowledging that compute is cheap, but novelty and correctness are expensive.
 
-Agents are probabilistic engines that naturally drift toward the "average" solution found in their training data (Regression to the Mean). The Instructor's role is not to write code, but to define failure boundaries and inject the strategic intent that forces the agent out of mediocrity.
+Agents are probabilistic engines that naturally drift toward the "average" solution found in their training data (Regression to the Mean). The Instructor's role is not to write code, but to define failure boundaries (Determinism) and inject the strategic intent (Steering) that guides the agent out of mediocrity.
 
 ## The Cybernetic Loop
 

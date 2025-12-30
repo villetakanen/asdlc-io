@@ -6,11 +6,15 @@
 
 ## 🌪️ The Philosophy
 
-In the era of AI-assisted development, we reject "vibe coding" — the practice of blindly accepting LLM outputs without validation. Instead, ASDLC.io advocates for:
+In the era of AI-assisted development, we reject "vibe coding" — the practice of blindly accepting LLM outputs without validation. Instead, ASDLC.io advocates for **Determinism over Vibes**:
+
+Fluency in agentic coding requires both mastery of steering (vibes) and the implementation of deterministic tools.
 
 - **Schema-First Development**: Defining data contracts (Zod) before generating content.
 - **Strict Logic**: Enforcing code quality and architectural rules at the source.
 - **Docs-as-Code**: Maintaining the knowledge base with the same rigor as production software.
+
+**Determinism arises from tools, not prompts.** `AGENTS.md` steers the agent, but only schemas and tests ensure compliance.
 
 ## 🧞 Key Features
 
