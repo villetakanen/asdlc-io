@@ -6,11 +6,11 @@ tags:
   - SDLC
   - Methodology
 relatedIds:
-  - context-engineering
-  - model-context-protocol
-  - guardrails
-  - levels-of-autonomy
-  - model-routing
+  - concepts/context-engineering
+  - concepts/model-context-protocol
+  - concepts/guardrails
+  - concepts/levels-of-autonomy
+  - patterns/model-routing
 maturity: Standard
 lastUpdated: 2025-11-26
 ---

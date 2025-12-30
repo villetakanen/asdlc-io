@@ -2,7 +2,7 @@
 title: "The PBI"
 description: "A transient execution unit that defines the delta (change) while pointing to permanent context (The Spec), optimized for agent consumption and bounded agency."
 tags: ["Agile", "Product Backlog Item", "Spec-Driven Development", "Bounded Agency"]
-relatedIds: ["The Spec", "Spec-Driven Development", "Context Engineering", "Levels of Autonomy", "Micro-Commits"]
+relatedIds: ["patterns/the-spec", "concepts/spec-driven-development", "concepts/context-engineering", "concepts/levels-of-autonomy", "practices/micro-commits"]
 status: "Draft"
 lastUpdated: 2025-12-27
 ---

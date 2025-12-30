@@ -5,9 +5,9 @@ tags:
   - Taxonomy
   - Standards
 relatedIds:
-  - agentic-sdlc
-  - guardrails
-  - context-gates
+  - concepts/agentic-sdlc
+  - concepts/guardrails
+  - concepts/context-gates
 maturity: Standard
 status: Live
 lastUpdated: 2025-11-28

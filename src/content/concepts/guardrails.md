@@ -4,8 +4,8 @@ description: "In the context of asdlc.io, the term 'Guardrail' is deprecated in 
 tags: ["Disambiguation", "Architecture"]
 maturity: "Deprecated"
 status: "Deprecated"
-supersededBy: ['concepts/context-gates', 'patterns/agents-md-spec']
-relatedIds: ["context-gates"]
+supersededBy: ['concepts/context-gates', 'practices/agents-md-spec']
+relatedIds: ["concepts/context-gates"]
 lastUpdated: 2025-11-25
 ---
 
