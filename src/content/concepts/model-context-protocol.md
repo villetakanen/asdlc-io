@@ -4,7 +4,6 @@ description: "Open standard for connecting AI agents to data sources and tools, 
 tags:
   - Infrastructure
   - Standards
-maturity: Standard
 lastUpdated: 2025-11-25
 ---
 

@@ -4,7 +4,6 @@ description: "The implementation phase where PBIs are executed against Specs, va
 tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development"]
 relatedIds: ["patterns/the-spec", "patterns/the-pbi", "concepts/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
 status: "Draft"
-maturity: "Experimental"
 lastUpdated: 2025-12-30
 ---
 

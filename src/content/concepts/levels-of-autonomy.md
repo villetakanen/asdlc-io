@@ -8,7 +8,6 @@ relatedIds:
   - concepts/agentic-sdlc
   - concepts/guardrails
   - concepts/context-gates
-maturity: Standard
 status: Live
 lastUpdated: 2025-11-28
 ---

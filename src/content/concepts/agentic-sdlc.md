@@ -11,7 +11,6 @@ relatedIds:
   - concepts/guardrails
   - concepts/levels-of-autonomy
   - patterns/model-routing
-maturity: Standard
 lastUpdated: 2025-11-26
 ---
 

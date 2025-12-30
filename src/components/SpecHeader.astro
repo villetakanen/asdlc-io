@@ -22,11 +22,6 @@ if (data.tags && data.tags.length > 0) {
   metadataFields.push({ key: "tags", value: data.tags });
 }
 
-// Add maturity if present
-if (data.maturity) {
-  metadataFields.push({ key: "maturity", value: data.maturity });
-}
-
 // Add relatedIds if present
 if (data.relatedIds && data.relatedIds.length > 0) {
   metadataFields.push({ key: "relatedIds", value: data.relatedIds });
@@ -78,7 +73,6 @@ function formatRelatedId(id: string) {
             </time>
           )}
           {field.key === 'tags' && Array.isArray(field.value) && field.value.join(', ')}
-          {field.key === 'maturity' && typeof field.value === 'string' && field.value}
           {field.key === 'relatedIds' && Array.isArray(field.value) && (
             <>
               {(field.value as string[]).map((id, index) => {

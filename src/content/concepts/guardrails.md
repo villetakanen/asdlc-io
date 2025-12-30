@@ -2,7 +2,6 @@
 title: "Guardrails"
 description: "Deprecated concept superseded by Context Gates (deterministic validation) and Agent Constitution (probabilistic steering)."
 tags: ["Disambiguation", "Architecture"]
-maturity: "Deprecated"
 status: "Deprecated"
 supersededBy: ['concepts/context-gates', 'practices/agents-md-spec']
 relatedIds: ["concepts/context-gates"]

@@ -3,7 +3,6 @@ title: "The 4D Framework (Anthropic)"
 description: "A cognitive model codifying four essential competencies—Delegation, Description, Discernment, and Diligence—for effective and responsible generative AI use."
 tags: ["AI Fluency", "Human-AI Collaboration", "Cognitive Model", "Prompt Engineering"]
 relatedIds: ["concepts/context-engineering", "concepts/guardrails", "concepts/spec-driven-development"]
-maturity: "Standard"
 lastUpdated: 2025-12-15
 ---
 

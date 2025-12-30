@@ -9,7 +9,6 @@ relatedIds:
   - concepts/agentic-sdlc
   - concepts/context-engineering
   - concepts/guardrails
-maturity: Standard
 status: Proposed
 lastUpdated: 2025-12-02
 ---
