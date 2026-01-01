@@ -16,6 +16,12 @@ SDD inverts control. Instead of code serving as the source of documentation, the
 
 In the era of Agentic tools, SDD addresses the issue of "vibe coding," in which LLMs generate code from vague prompts. By grounding workflows in schemas, state machines, and contracts, SDD converts probabilistic outputs into reliable engineering artifacts.
 
+> [!WARNING]
+> **The Figma Trap**
+> A beautiful mockup is not a specification; it is a suggestion. Mockups typically demonstrate the "happy path" but hide the edge cases, error states, and data consistency strictures where production bugs live.
+>
+> **Never** treat a visual design as a complete technical requirement. AI agents given only mockups will hallucinate implementations for the missing logical layers.
+
 ## SDD in the ASDLC
 
 In the Agentic Software Development Life Cycle (ASDLC), we suggest using SDD as a comprehensive lifecycle-constraint system rather than merely for code generation. Specifications generate code, model the domain, and enforce architectural governance.
