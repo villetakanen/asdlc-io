@@ -3,6 +3,25 @@
 > **Project Mission:** Build `asdlc.io`, the definitive knowledge base for Agentic Software Development Life Cycle patterns.
 > **Core Constraints:** Content-First architecture (HTML > JS). Strict Type Safety (Zod schemas). Docs-as-Code rigor. No Tailwind.
 
+## 1.0. Project Vision & Mission
+
+> **Mission**: Build the definitive playbook for the Industrialization of Knowledge Work.
+
+ASDLC documents the transition from craft-based software development to industrial-scale agentic systems. We're not building "AI coding assistants"—we're documenting the blueprints for the **software factory**.
+
+**Core Principles:**
+- **Agents are the logistic layer** — They move information, verify specs, execute tests
+- **Context is the supply chain** — Information delivered Just-in-Time to the right station
+- **Determinism > Vibes** — Schemas, not ambiguity; contracts, not guesses
+
+**Your Role as Agent:**
+You are not a "faster developer." You are a specialized station in the factory. Your work must be:
+- **Deterministic** — Fulfill schemas, don't hallucinate
+- **Verifiable** — Pass gates, don't drift
+- **Reproducible** — Follow specs, don't improvise
+
+**Full vision:** `@docs/vision.md` | **Framework definition:** [Agentic SDLC concept](/concepts/agentic-sdlc)
+
 ## 1. Agent Roles & Personas
 *When assigned a task, adopt the Persona that best fits the request.*
 

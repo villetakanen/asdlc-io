@@ -4,15 +4,35 @@
 
 ---
 
-## 🌪️ The Philosophy
+## 🌪️ Philosophy: The Industrialization of Software
 
-In the era of AI-assisted development, we reject "vibe coding" — the practice of blindly accepting LLM outputs without validation. Instead, ASDLC.io advocates for **Determinism over Vibes**:
+> "Agentic architecture is the conveyor belt for knowledge work."
 
-Fluency in agentic coding requires both mastery of steering (vibes) and the implementation of deterministic tools.
+For 50 years, software development has been a **Craft**—dependent on individual artisans, manual tooling, and implicit knowledge. ASDLC.io documents the principles, patterns, and standards for transitioning to **Industrial** software engineering.
 
-- **Schema-First Development**: Defining data contracts (Zod) before generating content.
-- **Strict Logic**: Enforcing code quality and architectural rules at the source.
-- **Docs-as-Code**: Maintaining the knowledge base with the same rigor as production software.
+### The Core Insight
+
+**Agents do not replace humans; they industrialize execution.**
+
+Just as robotic arms automate welding without replacing manufacturing expertise, agents automate high-friction parts of knowledge work (logistics, syntax, verification) while humans focus on intent, architecture, and governance.
+
+### What This Means
+
+- **Agents are the logistic layer** — Moving information, verifying specs, executing tests
+- **Context is the supply chain** — Just-in-Time delivery of requirements, schemas, and code
+- **Standardization is mandatory** — Schemas, typed interfaces, deterministic protocols
+
+We're not building "AI coding assistants." We're documenting the blueprints for the **software factory**.
+
+**Read the full vision:** [docs/vision.md](./docs/vision.md)
+
+### Determinism over Vibes
+
+Fluency in agentic coding requires both mastery of steering (vibes) and the implementation of deterministic tools:
+
+- **Schema-First Development**: Defining data contracts (Zod) before generating content
+- **Strict Logic**: Enforcing code quality and architectural rules at the source
+- **Docs-as-Code**: Maintaining the knowledge base with the same rigor as production software
 
 **Determinism arises from tools, not prompts.** `AGENTS.md` steers the agent, but only schemas and tests ensure compliance.
 
