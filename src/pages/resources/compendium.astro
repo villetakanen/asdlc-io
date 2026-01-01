@@ -1,50 +1,21 @@
 ---
 import { getCollection, render } from "astro:content";
-import "../styles/index.css";
-import { version } from "../../package.json";
+import "../../styles/index.css";
+import SEOMetadata from "../../components/SEOMetadata.astro";
 
-import mcpArticles from "../mcp/articles.json";
-
-// Status priority order for sorting
-const statusOrder: Record<string, number> = {
-  Live: 1,
-  Draft: 2,
-  Experimental: 3,
-  Proposed: 4,
-  Deprecated: 5,
-  // Fallback for any unknown status
-};
-
-// Sort by status first, then alphabetically by title
-function sortByStatus<T extends { data: { status: string; title: string } }>(a: T, b: T): number {
-  const statusA = statusOrder[a.data.status] || 99;
-  const statusB = statusOrder[b.data.status] || 99;
-
-  if (statusA !== statusB) return statusA - statusB;
-  return a.data.title.localeCompare(b.data.title);
-}
-
-// Fetch collections
+// Fetch all collections
 const concepts = await getCollection("concepts");
 const patterns = await getCollection("patterns");
 const practices = await getCollection("practices");
 
-// Create lookup set of MCP article slugs
-const mcpSlugs = new Set(mcpArticles.map((a) => a.slug));
+// Alphabetical sort descending from title
+const sortAlpha = (a: any, b: any) => a.data.title.localeCompare(b.data.title);
 
-// Filter collections to only include articles present in MCP
-const filteredConcepts = concepts.filter((entry) => mcpSlugs.has(entry.id));
-const filteredPatterns = patterns.filter((entry) => mcpSlugs.has(entry.id));
-const filteredPractices = practices.filter((entry) => mcpSlugs.has(entry.id));
-
-// Sort filtered collections (status-based, then alphabetical)
-const sortedConcepts = filteredConcepts.sort(sortByStatus);
-const sortedPatterns = filteredPatterns.sort(sortByStatus);
-const sortedPractices = filteredPractices.sort(sortByStatus);
+const sortedConcepts = concepts.sort(sortAlpha);
+const sortedPatterns = patterns.sort(sortAlpha);
+const sortedPractices = practices.sort(sortAlpha);
 
 const today = new Date().toISOString().split("T")[0];
-
-import SEOMetadata from "../components/SEOMetadata.astro";
 ---
 
 <!DOCTYPE html>
@@ -52,8 +23,8 @@ import SEOMetadata from "../components/SEOMetadata.astro";
 <head>
     <meta charset="UTF-8">
     <SEOMetadata
-      title="Field Manual"
-      description="A single-page, printable compilation of all ASDLC concepts and patterns."
+      title="Article Compendium"
+      description="Alphabetically-sorted compilation of all ASDLC articles for bulk download and scraping."
       type="article"
     />
     <style>
@@ -64,8 +35,8 @@ import SEOMetadata from "../components/SEOMetadata.astro";
             }
 
             body {
-                border-top: none !important; /* Remove safety strip for print if desired, or keep it */
-                background-color: white !important; /* Save ink */
+                border-top: none !important;
+                background-color: white !important;
                 color: black !important;
             }
 
@@ -87,14 +58,13 @@ import SEOMetadata from "../components/SEOMetadata.astro";
                 color: black !important;
             }
 
-            /* Ensure background colors for code blocks/callouts print */
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
         }
 
-        /* Screen styles for the manuscript view */
+        /* Screen styles (Reusing Field Manual styles) */
         body {
             max-width: 900px;
             margin: 0 auto;
@@ -123,10 +93,35 @@ import SEOMetadata from "../components/SEOMetadata.astro";
             letter-spacing: -0.02em;
         }
 
+        .cover-subtitle {
+             font-size: 1.5rem;
+             font-family: var(--f-sans);
+             margin-bottom: 1rem;
+             color: var(--c-text-primary);
+        }
+
         .cover-meta {
             font-family: var(--f-mono);
             color: var(--c-text-secondary);
             font-size: 1.25rem;
+        }
+
+        .preamble {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: var(--c-bg-surface);
+            border: 1px solid var(--c-border);
+            font-family: var(--f-mono);
+        }
+
+        .preamble p {
+            margin-bottom: 1rem;
+        }
+
+        .preamble p:last-child {
+            margin-bottom: 0;
         }
 
         .toc {
@@ -203,83 +198,54 @@ import SEOMetadata from "../components/SEOMetadata.astro";
     </style>
 </head>
 <body>
-
-    <!-- Cover Page -->
     <div class="cover-page">
-        <h1 class="cover-title">ASDLC.io<br> Field Manual</h1>
+        <h1 class="cover-title">ASDLC.io<br> Article Compendium</h1>
+        <p class="cover-subtitle">Alphabetic Listing for Programmatic Access</p>
         <div class="cover-meta">
-            <p>Version: {version}</p>
             <p>Generated: {today}</p>
         </div>
+    </div>
+
+    <div class="preamble">
+        <p>
+            This is an alphabetically-sorted compilation of all ASDLC articles 
+            (Concepts, Patterns, Practices) in a single page. This resource is 
+            optimized for bulk download, scraping, or feeding to LLMs for 
+            comprehensive analysis.
+        </p>
+        <p>
+            Unlike the <a href="/fieldmanual">Field Manual</a>, which is organized 
+            for readability and follows a curated structure, this compendium is 
+            intentionally unstructured—a raw alphabetic listing for programmatic 
+            consumption.
+        </p>
     </div>
 
     <!-- Table of Contents -->
     <div class="toc no-print">
         <h2>Table of Contents</h2>
-        <h3>Part I: Patterns</h3>
-        <ul>
-            {sortedPatterns.map(entry => (
-                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
-            ))}
-        </ul>
-        <h3>Part II: Practices</h3>
-        <ul>
-            {sortedPractices.map(entry => (
-                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
-            ))}
-        </ul>
-        <h3>Appendix: Concepts</h3>
+        <h3>Concepts</h3>
         <ul>
             {sortedConcepts.map(entry => (
                 <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
             ))}
         </ul>
+        <h3>Patterns</h3>
+        <ul>
+            {sortedPatterns.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
+        <h3>Practices</h3>
+        <ul>
+            {sortedPractices.map(entry => (
+                <li><a href={`#${entry.id}`}>{entry.data.title}</a></li>
+            ))}
+        </ul>
     </div>
 
-    <!-- Part I: Patterns -->
-    <h1 class="section-header">Part I: Patterns</h1>
-    {sortedPatterns.map(async (entry) => {
-        const { Content } = await render(entry);
-        return (
-            <article class="chapter" id={entry.id}>
-                <h2 class="chapter-title">{entry.data.title}</h2>
-                {entry.data.description && (
-                    <p class="chapter-description">{entry.data.description}</p>
-                )}
-                <span class="chapter-meta">
-                    Status: {entry.data.status} |
-                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
-                </span>
-                <div class="prose">
-                    <Content />
-                </div>
-            </article>
-        );
-    })}
-
-    <!-- Part II: Practices -->
-    <h1 class="section-header">Part II: Practices</h1>
-    {sortedPractices.map(async (entry) => {
-        const { Content } = await render(entry);
-        return (
-            <article class="chapter" id={entry.id}>
-                <h2 class="chapter-title">{entry.data.title}</h2>
-                {entry.data.description && (
-                    <p class="chapter-description">{entry.data.description}</p>
-                )}
-                <span class="chapter-meta">
-                    Status: {entry.data.status} |
-                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
-                </span>
-                <div class="prose">
-                    <Content />
-                </div>
-            </article>
-        );
-    })}
-
-    <!-- Appendix: Concepts -->
-    <h1 class="section-header">Appendix: Concepts</h1>
+    <!-- Render all collections alphabetically -->
+    <h1 class="section-header">Concepts (A-Z)</h1>
     {sortedConcepts.map(async (entry) => {
         const { Content } = await render(entry);
         return (
@@ -299,5 +265,44 @@ import SEOMetadata from "../components/SEOMetadata.astro";
         );
     })}
 
+    <h1 class="section-header">Patterns (A-Z)</h1>
+    {sortedPatterns.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+            <article class="chapter" id={entry.id}>
+                <h2 class="chapter-title">{entry.data.title}</h2>
+                {entry.data.description && (
+                    <p class="chapter-description">{entry.data.description}</p>
+                )}
+                <span class="chapter-meta">
+                    Status: {entry.data.status} |
+                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
+                </span>
+                <div class="prose">
+                    <Content />
+                </div>
+            </article>
+        );
+    })}
+
+    <h1 class="section-header">Practices (A-Z)</h1>
+    {sortedPractices.map(async (entry) => {
+        const { Content } = await render(entry);
+        return (
+            <article class="chapter" id={entry.id}>
+                <h2 class="chapter-title">{entry.data.title}</h2>
+                {entry.data.description && (
+                    <p class="chapter-description">{entry.data.description}</p>
+                )}
+                <span class="chapter-meta">
+                    Status: {entry.data.status} |
+                    Last Updated: {entry.data.lastUpdated.toISOString().split('T')[0]}
+                </span>
+                <div class="prose">
+                    <Content />
+                </div>
+            </article>
+        );
+    })}
 </body>
 </html>

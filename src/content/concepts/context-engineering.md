@@ -17,6 +17,17 @@ While `[asdlc.io](asdlc.io)` focuses on software, Context Engineering is domain-
 
 Anywhere agents operate, context is the constraint that turns raw intelligence into specific value.
 
+## The Requirements Gap
+
+> "If you can't explain what you want to a human developer, you won't explain it well to an AI model either."
+
+AI is changing how we code, but it hasn't changed the fundamental truth that bad requirements produce bad software. In fact, it has raised the bar for clarity.
+
+*   **Human Developers** will ask clarifying questions when requirements are vague ("What happens if the payment fails?").
+*   **AI Models** will simply *build something* based on probability. You will only discover it's wrong when it breaks in production.
+
+Therefore, "Prompt Engineering" is often a misnomer. It is simply **Requirements Engineering** applied to a non-human entity that cannot intuit missing business logic.
+
 ## The Core Principles
 
 In an agentic workflow, the "bot" is a commodity. The intelligence doesn't live in the model; it lives in the context we provide. Therefore, Context is a software asset. It must be treated with the same rigor as production code.
