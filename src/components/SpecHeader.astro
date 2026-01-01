@@ -22,9 +22,13 @@ if (data.tags && data.tags.length > 0) {
   metadataFields.push({ key: "tags", value: data.tags });
 }
 
-// Add relatedIds if present
+// Add relatedIds if present (exclude items in supersededBy)
 if (data.relatedIds && data.relatedIds.length > 0) {
-  metadataFields.push({ key: "relatedIds", value: data.relatedIds });
+  const supersededBySet = new Set(data.supersededBy || []);
+  const filteredRelatedIds = data.relatedIds.filter((id) => !supersededBySet.has(id));
+  if (filteredRelatedIds.length > 0) {
+    metadataFields.push({ key: "relatedIds", value: filteredRelatedIds });
+  }
 }
 
 // Helper function to format relatedId links
@@ -54,12 +58,15 @@ function formatRelatedId(id: string) {
       <div class="spec-row">
         <dt>Superseded By</dt>
         <dd>
-          {data.supersededBy.map((link, index) => (
-            <>
-              <a href={`/${link}`}>{link}</a>
-              {index < data.supersededBy!.length - 1 && ", "}
-            </>
-          ))}
+          {data.supersededBy.map((link, index) => {
+            const formatted = formatRelatedId(link);
+            return (
+              <>
+                <a href={formatted.href}>{formatted.text}</a>
+                {index < data.supersededBy!.length - 1 && ", "}
+              </>
+            );
+          })}
         </dd>
       </div>
     )}

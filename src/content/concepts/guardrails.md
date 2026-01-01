@@ -1,32 +1,60 @@
 ---
 title: "Guardrails"
-description: "Deprecated concept superseded by Context Gates (deterministic validation) and Agent Constitution (probabilistic steering)."
+description: "Why we deprecated the term 'Guardrails' in favor of strict separation between deterministic Context Gates and probabilistic Agent Constitutions."
 tags: ["Disambiguation", "Architecture"]
 status: "Deprecated"
-supersededBy: ['concepts/context-gates', 'practices/agents-md-spec']
+supersededBy: ['concepts/context-gates', 'patterns/agent-constitution']
 relatedIds: ["concepts/context-gates"]
-lastUpdated: 2025-11-25
+lastUpdated: 2026-01-01
 ---
 
-> ⚠️ **Deprecated**: This concept has been superseded by [Context Gates](/concepts/context-gates) and [AGENTS.md Specification](/patterns/agents-md-spec). This page is retained for historical comparison.
+> ⚠️ **Deprecated**: This concept has been superseded by [Context Gates](/concepts/context-gates) and [Agent Constitution](/patterns/agent-constitution).
 
-## The Industry Conflict
+## The Ambiguity Problem
 
-Standard definitions of "Guardrails" conflate two opposing engineering concepts: architectural firewalls (deterministic) and prompt engineering (probabilistic). This ambiguity leads to agents that are "safe" but functionally paralyzed.
+In the broader AI industry, "Guardrails" has become a "suitcase word"—a single term packed with too many conflicting meanings. It conflates **architectural firewalls** (hard rules) with **prompt engineering** (soft influence).
 
-## The ASDLC Definition
+This ambiguity leads to fragile systems where engineers try to fix logic errors with prompt tuning (which is unreliable) or restrict creativity with rigid code blocks (which is stifling).
 
-To resolve this, we map "Guardrails" to the **Agent Constitution** and **Gates** (Quality Gates, Review Gates, Acceptance Gates).
+## Standard Definitions
 
-> **Note:** See [Context Gates](/concepts/context-gates) for the full three-tier validation architecture: Quality Gates (deterministic), Review Gates (probabilistic/adversarial), and Acceptance Gates (human-in-the-loop).
+Broadly, industry implementations of "Guardrails" typically fall into two buckets:
+1. **Input/Output Filtering:** Deterministic systems that intercept and block messages based on policy (e.g., NVIDIA NeMo).
+2. **Behavioral Constraint:** Probabilistic techniques (prompting/tuning) to prevent the model from deviating from its persona.
 
-The Agent Constitution is a set of probabilistic, semantic instructions acting as the model's "internal conscience." Unlike gates that validate output after generation, the Constitution actively steers the agent's intent, ensuring it understands how to act correctly to avoid producing invalid output.
+## The ASDLC Interpretation
 
-## Comparison of Controls
+To resolve this ambiguity, we have deprecated "Guardrails" in favor of strictly separating the concept into two distinct mechanisms: **The Brakes** and **The Driver**.
 
-| Feature | Gates (Standard "Guardrails") | Agent Constitution (ASDLC) |
+### 1. Context Gates (The Brakes)
+These are **deterministic** validation layers. Just as car brakes function regardless of what the driver "thinks," Gates trigger regardless of the LLM's intent.
+* **Supersedes:** Input/Output filtering, Schema validation.
+* **See:** [Context Gates](/concepts/context-gates)
+
+### 2. Agent Constitution (The Driver)
+These are **probabilistic** steering instructions. They are the training and rules the "driver" (LLM) carries in its head to make good decisions.
+* **Supersedes:** Prompt injection defense, Tone enforcement.
+* **See:** [Agent Constitution](/patterns/agent-constitution)
+
+### Comparison of Controls
+
+| Feature | Context Gates | Agent Constitution |
 | :--- | :--- | :--- |
 | **Nature** | Deterministic (Binary) | Probabilistic (Semantic) |
-| **Location** | External (Firewall) | Internal (Context Window) |
-| **Goal** | Intercept failure | Steer intent |
-| **Analogy** | The brakes on a car | The driver's training |
+| **Location** | External (Firewall/Code) | Internal (Context Window) |
+| **Goal** | **Correctness** (Prevent errors) | **Alignment** (Steer intent) |
+| **Failure Mode** | Exception / Rejection | Hallucination / Bad Style |
+| **Analogy** | The Brakes | The Driver's Training |
+
+## Superseding Concepts
+
+This concept has been superseded by:
+* **[Context Gates](/concepts/context-gates)** — Deterministic validation layers.
+* **[Agent Constitution](/patterns/agent-constitution)** — Probabilistic steering instructions.
+
+See also:
+* [AGENTS.md Specification](/practices/agents-md-spec) — Implementation guide.
+
+## References
+
+* **[NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails)** – An example of the standard industry approach that mixes these concerns, which we explicitly avoid in ASDLC.
