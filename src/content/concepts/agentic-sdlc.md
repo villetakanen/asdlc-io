@@ -1,28 +1,46 @@
 ---
 title: Agentic SDLC
-description: "A cybernetic SDLC where AI agents execute code while humans define constraints and verify output, operating at L3 conditional autonomy."
+description: "Framework for industrializing software development where agents serve as the logistic layer while humans design, govern, and optimize the flow."
 tags:
   - Core
   - SDLC
   - Methodology
+  - Industrialization
 relatedIds:
   - concepts/context-engineering
   - concepts/model-context-protocol
-  - concepts/guardrails
+  - concepts/context-gates
   - concepts/levels-of-autonomy
   - patterns/model-routing
-lastUpdated: 2025-11-26
+  - patterns/the-spec
+lastUpdated: 2026-01-01
+status: Live
 ---
 
 ## Definition
 
-The Agentic Software Development Life Cycle (ASDLC) is a cybernetic methodology where software is produced through the active co-operation of human engineers and AI agents. Unlike "Co-pilot" workflows (L1) or "Full Autonomy" (L5), ASDLC operates on L3 Conditional Autonomy—a "Fighter Jet" model where the Agent acts as the Pilot executing maneuvers, and the Human acts as the Instructor-in-the-Cockpit.
+The Agentic Software Development Life Cycle (ASDLC) is a framework for industrializing software engineering. It represents the shift from craft-based development (individual artisans, manual tooling, implicit knowledge) to industrial-scale production (standardized processes, agent orchestration, deterministic protocols).
 
-## Core Philosophy
+> "Agentic architecture is the conveyor belt for knowledge work." — _Scenario 26_
 
-Transitioning to ASDLC requires acknowledging that compute is cheap, but novelty and correctness are expensive.
+ASDLC is not about "AI coding assistants" that make developers 10% faster. It's about building the **software factory**—systems where agents serve as the architecture of labor while humans design, govern, and optimize the flow.
 
-Agents are probabilistic engines that naturally drift toward the "average" solution found in their training data (Regression to the Mean). The Instructor's role is not to write code, but to define failure boundaries (Determinism) and inject the strategic intent (Steering) that guides the agent out of mediocrity.
+## The Industrial Thesis
+
+**Agents do not replace humans; they industrialize execution.**
+
+Just as robotic arms automate welding without replacing manufacturing expertise, agents automate high-friction parts of knowledge work (logistics, syntax, verification) while humans focus on intent, architecture, and governance.
+
+In this model:
+- **Agents are the logistic layer** — Moving information, verifying specs, executing tests
+- **Context is the supply chain** — Just-in-Time delivery of requirements, schemas, and code
+- **Standardization is mandatory** — Schemas, typed interfaces, deterministic protocols replace "vibes"
+
+## The Cybernetic Model
+
+ASDLC operates at [L3 Conditional Autonomy](/concepts/levels-of-autonomy)—a "Fighter Jet" model where the Agent acts as the Pilot executing maneuvers, and the Human acts as the Instructor-in-the-Cockpit.
+
+**Key Insight:** Compute is cheap, but novelty and correctness are expensive. Agents naturally drift toward the "average" solution (Regression to the Mean). The Instructor's role is not to write code, but to define failure boundaries (Determinism) and inject strategic intent (Steering) that guides agents out of mediocrity.
 
 ## The Cybernetic Loop
 
@@ -36,6 +54,19 @@ The lifecycle replaces the linear CI/CD pipeline with a high-frequency feedback 
 
 **Course Correction (HITL)**: The Instructor intervenes on technically correct but "generic" solutions to enforce architectural novelty.
 
-## Strategic Value
+## Strategic Pillars
 
-We treat agents as capable but junior partners. We do not automate the "hard" work; we use agents to amplify human capability by offloading the "easy" work at massive scale.
+### Factory Architecture (Orchestration)
+Projects structured with agents as connective tissue, moving from monolithic context windows to discrete, specialized stations (Planning, Spec-Definition, Implementation, Review).
+
+### Standardized Parts (Determinism)
+Schema-First Development where agents fulfill contracts, not guesses. `AGENTS.md`, `specs/`, and strict linting serve as the "jigs" and "molds" that constrain agent output.
+
+### Quality Control (Governance)
+Automated, rigorous inspection through Probabilistic Unit Tests and Human-in-the-Loop (HITL) gates. Trust the _process_, not just the output.
+
+## ASDLC Usage
+
+Full project vision: [/docs/vision.md](../../docs/vision.md)
+
+Applied in: [Specs](/patterns/the-spec), [AGENTS.md Specification](/practices/agents-md-spec), [Context Gates](/concepts/context-gates), [Model Routing](/patterns/model-routing)
