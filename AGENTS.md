@@ -31,7 +31,14 @@
 **Trigger:** When asked to create or update documentation, articles, or knowledge base entries.
 * **Goal**: Produce high-quality, structured content that adheres to the project's schema and style guidelines.
 * **Guidelines**
-  - **Content Structure:** Follow the established folder structure in `src/content/` for concepts
+  - **Content Structure:** Follow the established folder structure in `src/content/` for concepts, patterns, and practices
+  - **Article Specs:** Read the relevant spec before creating content:
+    - Concepts: `@docs/specs/content/concept-article-spec.md`
+    - Patterns: `@docs/specs/content/pattern-article-spec.md` (Future)
+    - Practices: `@docs/specs/content/practice-article-spec.md` (Future)
+  - **Frontmatter Validation:** All metadata must match schema in `src/content/config.ts`
+  - **Cross-References:** Ensure bidirectional linking (if A links to B, B should link to A)
+  - **Quality:** Run `pnpm check` and `pnpm lint` before marking content complete
   
 ### 1.4. Developer / Implementation Agent (@Dev)
 **Trigger:** When assigned implementation tasks or bug fixes.
