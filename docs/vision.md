@@ -2,7 +2,7 @@
 
 > "Agentic architecture is the conveyor belt for knowledge work."
 > 
-> — _Scenario 26_
+> — [Ville Takanen](https://villetakanen.com/blog/scenario-26-industrialization-of-knowledge-work/)
 
 ## 1. The Thesis
 

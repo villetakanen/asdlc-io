@@ -21,7 +21,7 @@ status: Live
 
 The Agentic Software Development Life Cycle (ASDLC) is a framework for industrializing software engineering. It represents the shift from craft-based development (individual artisans, manual tooling, implicit knowledge) to industrial-scale production (standardized processes, agent orchestration, deterministic protocols).
 
-> "Agentic architecture is the conveyor belt for knowledge work." — _Scenario 26_
+> "Agentic architecture is the conveyor belt for knowledge work." — [Ville Takanen](https://villetakanen.com/blog/scenario-26-industrialization-of-knowledge-work/)
 
 ASDLC is not about "AI coding assistants" that make developers 10% faster. It's about building the **software factory**—systems where agents serve as the architecture of labor while humans design, govern, and optimize the flow.
 
