@@ -1,0 +1,268 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Getting Started with ASDLC"
+  description="A practical guide to implementing the Agentic Software Development Life Cycle in your team."
+>
+  <article class="prose">
+    <h1>Getting Started with ASDLC</h1>
+
+    <section>
+      <h2>What Is This?</h2>
+      <p>
+        ASDLC (Agentic Software Development Life Cycle) is a framework for building software with AI agents—not as toys or assistants, but as industrial infrastructure.
+      </p>
+      <p>
+        We reject "vibe coding." We reject copy-pasting ChatGPT output and hoping it works. Instead, we treat agent-assisted development with the same rigor as any serious engineering discipline: schemas, contracts, gates, and governance.
+      </p>
+      <blockquote>
+        <p>"Agentic architecture is the conveyor belt for knowledge work."</p>
+      </blockquote>
+      <p>
+        If that sounds like overkill for your weekend project, it probably is. ASDLC is for teams building production software who want deterministic, repeatable outcomes from non-deterministic AI systems.
+      </p>
+    </section>
+
+    <section>
+      <h2>The Core Idea</h2>
+      <p>
+        <strong>Agents don't replace developers. They industrialize execution.</strong>
+      </p>
+      <p>
+        Think automotive manufacturing: robotic arms automate welding, but they don't replace the need for manufacturing expertise. Someone still designs the car, optimizes the assembly line, and ensures quality control.
+      </p>
+      <p>
+        ASDLC defines three layers:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Function</th>
+            <th>Human Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Context</strong></td>
+            <td>The supply chain—requirements, schemas, specs delivered just-in-time</td>
+            <td>Curator</td>
+          </tr>
+          <tr>
+            <td><strong>Agents</strong></td>
+            <td>The logistics layer—moving information, generating code, running tests</td>
+            <td>Operator</td>
+          </tr>
+          <tr>
+            <td><strong>Gates</strong></td>
+            <td>Quality control—deterministic checks + human oversight</td>
+            <td>Governor</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The human contribution shifts from <em>writing code</em> to <em>designing systems, defining contracts, and governing output</em>.
+      </p>
+    </section>
+
+    <section>
+      <h2>The Five-Minute Version</h2>
+      <p>
+        If you remember nothing else:
+      </p>
+      <ol>
+        <li>
+          <strong>Write specs before code.</strong> The <a href="/patterns/the-spec">Spec</a> is the permanent source of truth. Agents read it; code fulfills it. No spec, no build.
+        </li>
+        <li>
+          <strong>Treat context as code.</strong> Your <a href="/practices/agents-md-spec">AGENTS.md</a> file is version-controlled, peer-reviewed, and optimized for agent consumption. It's not a suggestion box.
+        </li>
+        <li>
+          <strong>Use gates, not hope.</strong> <a href="/concepts/context-gates">Context Gates</a> enforce quality at three levels: deterministic (compilers, tests), probabilistic (AI review), and human (strategic fit).
+        </li>
+        <li>
+          <strong>Separate state from delta.</strong> The Spec defines <em>how it works</em> (state). The <a href="/patterns/the-pbi">PBI</a> defines <em>what changes</em> (delta). Don't conflate them.
+        </li>
+        <li>
+          <strong>Commit constantly.</strong> <a href="/practices/micro-commits">Micro-Commits</a> are save points. When an agent generates garbage in file 4 of 10, you can rollback without losing everything.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Learning Paths</h2>
+
+      <h3>Path A: "I want to understand the philosophy"</h3>
+      <p>Start with the concepts that define the methodology:</p>
+      <ol>
+        <li>
+          <strong><a href="/concepts/agentic-sdlc">Agentic SDLC</a></strong> — The manifesto. Why industrialization, why L3 autonomy, why determinism over vibes.
+        </li>
+        <li>
+          <strong><a href="/concepts/levels-of-autonomy">Levels of Autonomy</a></strong> — The SAE-inspired scale. We standardize at L3 (Conditional)—agents execute, humans instruct.
+        </li>
+        <li>
+          <strong><a href="/concepts/context-engineering">Context Engineering</a></strong> — Why context is your most valuable asset, not the model.
+        </li>
+        <li>
+          <strong><a href="/concepts/4d-framework">The 4D Framework</a></strong> — Anthropic's model: Delegation, Description, Discernment, Diligence.
+        </li>
+      </ol>
+
+      <h3>Path B: "I want to ship something today"</h3>
+      <p>Start with the practices you can implement immediately:</p>
+      <ol>
+        <li>
+          <strong><a href="/practices/agents-md-spec">AGENTS.md Specification</a></strong> — Create the file that steers every agent in your repo. 30 minutes.
+        </li>
+        <li>
+          <strong><a href="/practices/living-specs">Living Specs</a></strong> — Write your first spec. Template included. 1 hour.
+        </li>
+        <li>
+          <strong><a href="/practices/pbi-authoring">PBI Authoring</a></strong> — Structure work items agents can actually execute. 30 minutes.
+        </li>
+        <li>
+          <strong><a href="/practices/micro-commits">Micro-Commits</a></strong> — Change your git habits. Immediate.
+        </li>
+      </ol>
+
+      <h3>Path C: "I want to design the whole system"</h3>
+      <p>Understand how the pieces connect:</p>
+      <ol>
+        <li>
+          <strong><a href="/concepts/spec-driven-development">Spec-Driven Development</a></strong> — The overarching methodology.
+        </li>
+        <li>
+          <strong><a href="/patterns/the-spec">The Spec</a></strong> + <strong><a href="/patterns/the-pbi">The PBI</a></strong> — State vs. delta, permanent vs. transient.
+        </li>
+        <li>
+          <strong><a href="/concepts/context-gates">Context Gates</a></strong> — Input filtering, output validation, the three-tier system.
+        </li>
+        <li>
+          <strong><a href="/practices/feature-assembly">Feature Assembly</a></strong> — How PBIs execute against specs and pass through gates.
+        </li>
+        <li>
+          <strong><a href="/patterns/adversarial-code-review">Adversarial Code Review</a></strong> — Using a Critic Agent to validate Builder output.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Quick Reference</h2>
+
+      <h3>Key Artifacts</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Artifact</th>
+            <th>Location</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>AGENTS.md</code></td>
+            <td>Repo root</td>
+            <td>Agent constitution, tech stack, commands</td>
+          </tr>
+          <tr>
+            <td><code>plans/{"{feature}"}/spec.md</code></td>
+            <td>Per feature</td>
+            <td>Permanent source of truth</td>
+          </tr>
+          <tr>
+            <td><code>tasks/PBI-XXX.md</code></td>
+            <td>Backlog</td>
+            <td>Transient execution unit</td>
+          </tr>
+          <tr>
+            <td><code>ARCHITECTURE.md</code></td>
+            <td>Repo root</td>
+            <td>Global system constraints</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>The Gate Hierarchy</h3>
+      <pre><code>Quality Gates (Deterministic)
+    ↓ Pass
+Review Gates (Probabilistic - Critic Agent)
+    ↓ Pass
+Acceptance Gates (Human-in-the-Loop)
+    ↓ Approve
+Merge</code></pre>
+
+      <h3>Model Routing Cheat Sheet</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Task Type</th>
+            <th>Model Profile</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Architecture, specs, debugging</td>
+            <td>High Reasoning</td>
+            <td>o3-pro, DeepSeek V3.2</td>
+          </tr>
+          <tr>
+            <td>Code generation, refactoring</td>
+            <td>High Throughput</td>
+            <td>Gemini Flash, Claude Haiku</td>
+          </tr>
+          <tr>
+            <td>Legacy analysis, large context</td>
+            <td>Massive Context</td>
+            <td>Gemini Pro (5M), Claude Sonnet</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>What ASDLC Is Not</h2>
+      <ul>
+        <li><strong>Not a prompt library.</strong> We don't collect "awesome prompts." We define systems.</li>
+        <li><strong>Not a tool recommendation.</strong> Cursor, Claude Code, Windsurf—use what works. The methodology is tool-agnostic.</li>
+        <li><strong>Not about replacing developers.</strong> It's about changing <em>what developers do</em>: less typing, more designing.</li>
+        <li><strong>Not magic.</strong> Agents are probabilistic. They drift toward mediocrity. ASDLC provides the constraints that keep them useful.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Next Steps</h2>
+      <ol>
+        <li><strong>Read the <a href="/concepts/agentic-sdlc">Agentic SDLC</a> overview</strong> — Understand the thesis.</li>
+        <li><strong>Add <code>AGENTS.md</code> to your repo</strong> — Use the <a href="/practices/agents-md-spec#reference-template">template</a>.</li>
+        <li><strong>Write one spec</strong> — Pick a feature, follow the <a href="/practices/living-specs">Living Specs</a> guide.</li>
+        <li><strong>Try the loop</strong> — Spec → PBI → Implementation → Gate → Merge.</li>
+      </ol>
+      <p>
+        Questions? The methodology is documented. The patterns are linked. Start building.
+      </p>
+    </section>
+
+    <section>
+      <h2>MCP Access</h2>
+      <p>
+        This knowledge base is MCP-compatible. Connect your agent to:
+      </p>
+      <pre><code>https://asdlc.io/mcp</code></pre>
+      <p>
+        Tools available:
+      </p>
+      <ul>
+        <li><code>search_knowledge_base</code> — Find relevant patterns and concepts</li>
+        <li><code>get_article</code> — Retrieve full article content</li>
+        <li><code>list_articles</code> — Browse available content</li>
+      </ul>
+      <p>
+        Your agent can query ASDLC patterns directly during development.
+      </p>
+    </section>
+  </article>
+</BaseLayout>
