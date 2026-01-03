@@ -27,9 +27,19 @@ In the ASDLC, we treat `AGENTS.md` with the same rigor as production software:
 - **Falsifiable**: Contains clear success criteria for agent actions.
 - **Optimized**: Structured to maximize signal-to-noise ratio for LLM context windows, preventing "Lost in the Middle" issues.
 
+## Format Philosophy
+
+The structures in this specification (YAML maps, XML standards, tiered boundaries) are optimized for large teams and complex codebases. For smaller projects:
+
+- A simple markdown list may suffice
+- Focus on the *concepts* (persona, boundaries, commands) rather than exact syntax
+- Iterate on what produces best adherence from your specific model
+
+The goal is signal density, not format compliance. Overly rigid specs create adoption friction. Let teams scale complexity to their needs.
+
 ## ASDLC IMPLEMENTATION STRATEGY
 
-While the [agents.md](https://agents.md) standard provides the format, the ASDLC defines a specific strict implementation to ensure reliability. We structure our `AGENTS.md` not just as a list of tips, but as a segmented database of rules.
+While the [agents.md](https://agents.md) standard provides the format, the ASDLC recommends a structured implementation to ensure reliability. We present our `AGENTS.md` format not just as a list of tips, but as a segmented database of rules. This is *one* valid implementation strategy, particularly suited for rigorous engineering environments.
 
 ### 1. Identity Anchoring (The Persona)
 
