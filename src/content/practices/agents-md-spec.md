@@ -39,16 +39,39 @@ The goal is signal density, not format compliance. Overly rigid specs create ado
 
 ## TOOL-SPECIFIC CONSIDERATIONS
 
-Different AI coding tools look for different filenames. While `AGENTS.md` is the standard, some tools require specific naming:
+Different AI coding tools look for different filenames. While `AGENTS.md` is the emerging standard, some tools require specific naming:
 
 | Tool | Expected Filename | Notes |
 | :--- | :--- | :--- |
-| **Cursor** | `AGENTS.md` | Native support |
-| **Windsurf** | `AGENTS.md` | Native support |
+| **Cursor** | `.cursorrules` | Also reads `AGENTS.md` |
+| **Windsurf** | `.windsurfrules` | Also reads `AGENTS.md` |
 | **Claude Code** | `CLAUDE.md` | Does not read `AGENTS.md`; case-sensitive |
 | **Codex** | `AGENTS.md` | Native support |
+| **Zed** | `.rules` | Priority-based; reads `AGENTS.md` at lower priority |
+| **VS Code / Copilot** | `AGENTS.md` | Requires `chat.useAgentsMdFile` setting enabled |
 
-**Recommendation:** Create a symlink to support multiple tools without duplicating content:
+### Zed Priority Order
+
+Zed uses the first matching file from this list:
+1. `.rules`
+2. `.cursorrules`
+3. `.windsurfrules`
+4. `.clinerules`
+5. `.github/copilot-instructions.md`
+6. `AGENT.md`
+7. `AGENTS.md`
+8. `CLAUDE.md`
+9. `GEMINI.md`
+
+### VS Code Configuration
+
+VS Code requires explicit opt-in for `AGENTS.md` support:
+- Enable `chat.useAgentsMdFile` setting to use `AGENTS.md`
+- Enable `chat.useNestedAgentsMdFiles` for subfolder-specific instructions
+
+### Recommendation
+
+Create a symlink to support Claude Code without duplicating content:
 
 ```bash
 ln -s AGENTS.md CLAUDE.md
