@@ -37,6 +37,25 @@ The structures in this specification (YAML maps, XML standards, tiered boundarie
 
 The goal is signal density, not format compliance. Overly rigid specs create adoption friction. Let teams scale complexity to their needs.
 
+## TOOL-SPECIFIC CONSIDERATIONS
+
+Different AI coding tools look for different filenames. While `AGENTS.md` is the standard, some tools require specific naming:
+
+| Tool | Expected Filename | Notes |
+| :--- | :--- | :--- |
+| **Cursor** | `AGENTS.md` | Native support |
+| **Windsurf** | `AGENTS.md` | Native support |
+| **Claude Code** | `CLAUDE.md` | Does not read `AGENTS.md`; case-sensitive |
+| **Codex** | `AGENTS.md` | Native support |
+
+**Recommendation:** Create a symlink to support multiple tools without duplicating content:
+
+```bash
+ln -s AGENTS.md CLAUDE.md
+```
+
+This ensures Claude Code users get the same guidance while maintaining a single source of truth. Note that Claude Code also supports `CLAUDE.local.md` for personal preferences that shouldn't be version-controlled.
+
 ## ASDLC IMPLEMENTATION STRATEGY
 
 While the [agents.md](https://agents.md) standard provides the format, the ASDLC recommends a structured implementation to ensure reliability. We present our `AGENTS.md` format not just as a list of tips, but as a segmented database of rules. This is *one* valid implementation strategy, particularly suited for rigorous engineering environments.
