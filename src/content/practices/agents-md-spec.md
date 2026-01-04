@@ -27,9 +27,61 @@ In the ASDLC, we treat `AGENTS.md` with the same rigor as production software:
 - **Falsifiable**: Contains clear success criteria for agent actions.
 - **Optimized**: Structured to maximize signal-to-noise ratio for LLM context windows, preventing "Lost in the Middle" issues.
 
+## Format Philosophy
+
+The structures in this specification (YAML maps, XML standards, tiered boundaries) are optimized for large teams and complex codebases. For smaller projects:
+
+- A simple markdown list may suffice
+- Focus on the *concepts* (persona, boundaries, commands) rather than exact syntax
+- Iterate on what produces best adherence from your specific model
+
+The goal is signal density, not format compliance. Overly rigid specs create adoption friction. Let teams scale complexity to their needs.
+
+## TOOL-SPECIFIC CONSIDERATIONS
+
+Different AI coding tools look for different filenames. While `AGENTS.md` is the emerging standard, some tools require specific naming:
+
+| Tool | Expected Filename | Notes |
+| :--- | :--- | :--- |
+| **Cursor** | `.cursorrules` | Also reads `AGENTS.md` |
+| **Windsurf** | `.windsurfrules` | Also reads `AGENTS.md` |
+| **Claude Code** | `CLAUDE.md` | Does not read `AGENTS.md`; case-sensitive |
+| **Codex** | `AGENTS.md` | Native support |
+| **Zed** | `.rules` | Priority-based; reads `AGENTS.md` at lower priority |
+| **VS Code / Copilot** | `AGENTS.md` | Requires `chat.useAgentsMdFile` setting enabled |
+
+### Zed Priority Order
+
+Zed uses the first matching file from this list:
+1. `.rules`
+2. `.cursorrules`
+3. `.windsurfrules`
+4. `.clinerules`
+5. `.github/copilot-instructions.md`
+6. `AGENT.md`
+7. `AGENTS.md`
+8. `CLAUDE.md`
+9. `GEMINI.md`
+
+### VS Code Configuration
+
+VS Code requires explicit opt-in for `AGENTS.md` support:
+- Enable `chat.useAgentsMdFile` setting to use `AGENTS.md`
+- Enable `chat.useNestedAgentsMdFiles` for subfolder-specific instructions
+
+### Recommendation
+
+Create a symlink to support Claude Code without duplicating content:
+
+```bash
+ln -s AGENTS.md CLAUDE.md
+```
+
+This ensures Claude Code users get the same guidance while maintaining a single source of truth. Note that Claude Code also supports `CLAUDE.local.md` for personal preferences that shouldn't be version-controlled.
+
 ## ASDLC IMPLEMENTATION STRATEGY
 
-While the [agents.md](https://agents.md) standard provides the format, the ASDLC defines a specific strict implementation to ensure reliability. We structure our `AGENTS.md` not just as a list of tips, but as a segmented database of rules.
+While the [agents.md](https://agents.md) standard provides the format, the ASDLC recommends a structured implementation to ensure reliability. We present our `AGENTS.md` format not just as a list of tips, but as a segmented database of rules. This is *one* valid implementation strategy, particularly suited for rigorous engineering environments.
 
 ### 1. Identity Anchoring (The Persona)
 
