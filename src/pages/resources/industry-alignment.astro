@@ -104,6 +104,56 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <p><strong>ASDLC Response:</strong> <a href="/concepts/product-thinking">Product Thinking</a> concept article—why Specs exist to force product thinking before code generation</p>
     </div>
 
+    <h3>Rasmus Widing: Product Requirement Prompts (PRPs)</h3>
+    <div class="citation">
+      <p><strong>Source:</strong> <a href="https://github.com/Wirasm/PRPs-agentic-eng" target="_blank" rel="noopener">GitHub</a> (2024-2025) and LinkedIn</p>
+      <p><strong>Role:</strong> Engineering Leader; Creator of PRP methodology</p>
+      <p><strong>Thesis:</strong> "What's the minimum viable specification an AI coding agent needs to plausibly ship production-ready code in one pass?" PRPs are "PRD + curated codebase intelligence + agent runbook."</p>
+      <p><strong>Core Principles:</strong></p>
+      <ol>
+        <li><strong>Plan before you prompt</strong> — Structure thinking before invoking AI</li>
+        <li><strong>Context is everything</strong> — Comprehensive docs and examples enable quality output</li>
+        <li><strong>Scope to what the model can reliably do</strong> — Bounded execution units</li>
+      </ol>
+      <p><strong>PRP Structure:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>PRP Component</th>
+            <th>ASDLC Equivalent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Goal (what needs building)</td>
+            <td><a href="/patterns/the-spec">The Spec</a> — "What"</td>
+          </tr>
+          <tr>
+            <td>Why (business value)</td>
+            <td><a href="/concepts/product-thinking">Product Thinking</a></td>
+          </tr>
+          <tr>
+            <td>Success Criteria</td>
+            <td><a href="/concepts/context-gates">Context Gates</a></td>
+          </tr>
+          <tr>
+            <td>All Needed Context</td>
+            <td><a href="/concepts/context-engineering">Context Engineering</a></td>
+          </tr>
+          <tr>
+            <td>Implementation Blueprint</td>
+            <td><a href="/patterns/the-pbi">The PBI</a></td>
+          </tr>
+          <tr>
+            <td>Validation Loop</td>
+            <td><a href="/concepts/context-gates">Quality Gates</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Key Quote:</strong> "Simple idea. Hard to do consistently. That's where the skill is."</p>
+      <p><strong>ASDLC Response:</strong> <a href="/concepts/product-requirement-prompt">Product Requirement Prompt</a> concept article mapping PRP to ASDLC terminology</p>
+    </div>
+
     <h2>Industry Data Points</h2>
 
     <h3>Google: 30% AI-Generated Code</h3>

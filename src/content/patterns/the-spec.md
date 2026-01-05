@@ -142,7 +142,16 @@ For detailed structure, examples, and templates, see the [Living Specs Practice 
 
 **[Context Engineering](/concepts/context-engineering)** — Specs are structured context assets optimized for agent consumption, with predictable sections (Blueprint, Contract) for efficient extraction.
 
+## Industry Validation
+
+The Spec pattern has emerged independently across the industry under different names. Notably, Rasmus Widing's **Product Requirement Prompt (PRP)** methodology defines the same structure: Goal + Why + Success Criteria + Context + Implementation Blueprint + Validation Loop.
+
+His core principles—"Plan before you prompt," "Context is everything," "Scope to what the model can reliably do"—mirror ASDLC's Spec-Driven Development philosophy.
+
+See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Industry Alignment](/resources/industry-alignment) for convergent frameworks.
+
 ## References
 
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
 - [Living Documentation (Martin Fowler)](https://martinfowler.com/bliki/LivingDocumentation.html)
+- [PRPs: Agentic Engineering (Rasmus Widing)](https://github.com/Wirasm/PRPs-agentic-eng) — Practitioner-validated implementation of spec-driven agentic development

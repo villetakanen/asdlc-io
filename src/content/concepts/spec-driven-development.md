@@ -15,6 +15,8 @@ Spec-Driven Development (SDD) means defining the "What" and the "Why" first. Thi
 SDD inverts control. Instead of code serving as the source of documentation, the Spec becomes the authority. Code must then fulfill this Spec.
 
 > **Contrast:** For the anti-pattern SDD addresses, see [Vibe Coding](/concepts/vibe-coding).
+> 
+> **See Also:** [Product Requirement Prompts (PRPs)](/concepts/product-requirement-prompt) — A practitioner-validated implementation of SDD principles.
 
 In the era of Agentic tools, SDD addresses the issue of "vibe coding," in which LLMs generate code from vague prompts. By grounding workflows in schemas, state machines, and contracts, SDD converts probabilistic outputs into reliable engineering artifacts.
 
