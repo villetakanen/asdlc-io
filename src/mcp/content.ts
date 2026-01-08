@@ -5,6 +5,20 @@
  * Compatible with both Node.js (test) and Deno (Netlify Edge).
  */
 
+export interface Reference {
+  type: "website" | "paper" | "book" | "podcast" | "video" | "repository" | "standard";
+  title: string;
+  url?: string;
+  author?: string;
+  authors?: string[];
+  publisher?: string;
+  published?: string;
+  accessed?: string;
+  isbn?: string;
+  doi?: string;
+  annotation: string;
+}
+
 export interface Article {
   slug: string;
   collection: "concepts" | "patterns" | "practices";
@@ -13,12 +27,16 @@ export interface Article {
   status: "Draft" | "Proposed" | "Live" | "Deprecated" | "Experimental";
   content: string;
   tags?: string[];
+  references?: Reference[];
 }
 
 /**
  * Simple Frontmatter parser (regex-based to avoid dependencies)
  */
-export function parseFrontmatter(markdown: string): { data: Record<string, any>; content: string } {
+export function parseFrontmatter(markdown: string): {
+  data: Record<string, any>;
+  content: string;
+} {
   const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) {
     return { data: {}, content: markdown };

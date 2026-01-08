@@ -7,6 +7,12 @@ tags:
   - Standards
 status: Experimental
 lastUpdated: 2026-01-01
+references:
+  - type: "website"
+    title: "EventModeling.org"
+    url: "https://eventmodeling.org/"
+    accessed: 2026-01-08
+    annotation: "The official home of the Event Modeling methodology, defining the complete framework for event-centric system design."
 ---
 
 ## Definition
@@ -34,7 +40,3 @@ Event Modeling forces implicit business rules to become explicit. By defining th
 Event Modeling acts as a bridge between **Visual Design** (what it looks like) and **Technical Architecture** (how it works).
 
 It does not replace functional requirements; rather, it validates them. A feature is only considered "defined" when there is a complete path mapped from the user's view, through the command, to the stored event, and back to the view. This "closed loop" guarantees that every pixel on the screen is backed by real data.
-
-## References
-
-* [EventModeling.org](https://eventmodeling.org/) - The official home of the methodology.

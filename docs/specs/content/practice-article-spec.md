@@ -77,6 +77,7 @@ tags: ["Tag1", "Tag2"]                   # 2-5 tags
 relatedIds: ["patterns/foo", "practices/bar"]  # Related patterns AND practices
 lastUpdated: 2025-01-15                  # ISO 8601 date
 status: "Live"                           # Live | Experimental | Draft | Proposed | Deprecated
+references?: []                          # External sources (see Article References spec)
 ---
 ```
 

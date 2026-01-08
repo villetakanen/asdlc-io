@@ -77,6 +77,7 @@ tags: ["Tag1", "Tag2"]                   # 2-5 tags
 relatedIds: ["patterns/foo", "practices/bar"]  # Related patterns AND practices
 lastUpdated: 2025-01-15                  # ISO 8601 date
 status: "Live"                           # Live | Experimental | Draft | Proposed | Deprecated
+references?: []                          # External sources (see Article References spec)
 ---
 ```
 
@@ -190,16 +191,7 @@ To create a spec, first identify the feature domain, then create a markdown file
 - Link to the practice(s) that implement this pattern
 - Explain the nature of the relationship
 
-#### 7. References (Optional)
 
-**Section** linking to external sources.
-
-**Format:**
-```markdown
-## References
-
-- [Source Name](https://example.com) — Brief annotation
-```
 
 ### Content Guidelines
 

@@ -5,6 +5,13 @@ tags: ["Documentation", "Spec-Driven Development", "Living Documentation"]
 relatedIds: ["patterns/the-spec", "patterns/the-pbi", "concepts/context-engineering"]
 status: "Experimental"
 lastUpdated: 2025-12-22
+references:
+  - type: "website"
+    title: "Living Documentation"
+    url: "https://martinfowler.com/bliki/LivingDocumentation.html"
+    author: "Martin Fowler"
+    accessed: 2026-01-08
+    annotation: "Martin Fowler's definition of Living Documentation, the foundation for keeping documentation synchronized with code."
 ---
 
 ## Overview
@@ -166,8 +173,6 @@ Implemented in `src/types/Notification.ts` using Zod validation.
 
 **Solution:** Reference canonical sources with file paths. Only include minimal examples to illustrate patterns.
 
-## References
-
+See also:
 - [Specs Pattern](/patterns/the-spec) — Conceptual foundation
 - [The PBI](/patterns/the-pbi) — Execution units that reference specs
-- [Living Documentation (Martin Fowler)](https://martinfowler.com/bliki/LivingDocumentation.html)

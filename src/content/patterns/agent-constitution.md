@@ -3,7 +3,8 @@ title: "Agent Constitution"
 description: "Prime directives that align agent behavior with system goals before action, acting as driver training vs. context gates as brakes."
 complexity: "Medium"
 status: "Experimental"
-lastUpdated: 2025-12-05
+relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec"]
+lastUpdated: 2026-01-08
 ---
 
 ## The Prime Directives

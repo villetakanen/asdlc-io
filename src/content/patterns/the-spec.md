@@ -5,6 +5,19 @@ tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Cont
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing"]
 status: "Live"
 lastUpdated: 2025-01-15
+references:
+  - type: "website"
+    title: "Living Documentation"
+    url: "https://martinfowler.com/bliki/LivingDocumentation.html"
+    author: "Martin Fowler"
+    accessed: 2026-01-08
+    annotation: "Martin Fowler's definition of Living Documentation, the foundation for keeping documentation synchronized with code."
+  - type: "repository"
+    title: "PRPs: Agentic Engineering"
+    url: "https://github.com/Wirasm/PRPs-agentic-eng"
+    author: "Rasmus Widing"
+    accessed: 2026-01-08
+    annotation: "Practitioner-validated implementation of spec-driven agentic development, demonstrating convergent evolution with ASDLC principles."
 ---
 
 ## Definition
@@ -150,8 +163,5 @@ His core principles—"Plan before you prompt," "Context is everything," "Scope 
 
 See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Industry Alignment](/resources/industry-alignment) for convergent frameworks.
 
-## References
-
+See also:
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
-- [Living Documentation (Martin Fowler)](https://martinfowler.com/bliki/LivingDocumentation.html)
-- [PRPs: Agentic Engineering (Rasmus Widing)](https://github.com/Wirasm/PRPs-agentic-eng) — Practitioner-validated implementation of spec-driven agentic development

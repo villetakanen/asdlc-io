@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
+import ArticleReferences from "../../components/ArticleReferences.astro";
 import SpecHeader from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -45,5 +46,7 @@ const structuredDataProps = {
     <div class="prose content-prose">
       <Content />
     </div>
+
+    <ArticleReferences references={pattern.data.references} />
   </article>
 </BaseLayout>

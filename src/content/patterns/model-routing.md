@@ -2,9 +2,17 @@
 title: "Model Routing"
 description: "Strategic assignment of LLM models to SDLC phases based on reasoning capability versus execution speed."
 tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture"]
-relatedIds: ["concepts/agentic-sdlc", "concepts/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering"]
+relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering"]
 status: "Live"
 lastUpdated: 2025-12-27
+references:
+  - type: "website"
+    title: "My LLM Coding Workflow Going into 2026"
+    url: "https://addyo.substack.com/p/my-llm-coding-workflow-going-into"
+    author: "Addy Osmani"
+    published: 2026-01-01
+    accessed: 2026-01-08
+    annotation: "Addy Osmani's workflow guide emphasizing pragmatic model selection and mid-task model switching patterns based on reasoning needs."
 ---
 
 ## Definition
@@ -45,12 +53,7 @@ We categorize models into three capability profiles aligned with [Agentic SDLC](
 
 This ensures that the computational tool's capability profile matches the task's computational requirements and the degree of human verification needed.
 
-## References
-
-### Framework Patterns
+See also:
 - [Agent Personas](/practices/agent-personas) — Context engineering practice for scoping agent work, extended by model routing
 - [The Spec](/patterns/the-spec) — The artifact produced by High Reasoning models in the planning phase
 - [Context Engineering](/concepts/context-engineering) — The practice of structuring context for optimal LLM performance
-
-### External Resources
-- [My LLM Coding Workflow Going into 2026](https://addyo.substack.com/p/my-llm-coding-workflow-going-into) — Addy Osmani's workflow guide emphasizing pragmatic model selection and mid-task model switching patterns

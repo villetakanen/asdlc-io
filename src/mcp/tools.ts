@@ -23,7 +23,7 @@ export const TOOLS: McpTool[] = [
   {
     name: "get_article",
     description:
-      "Retrieves the full markdown content of a specific concept or pattern. Use this ONLY after you have performed a search using 'search_knowledge_base' and have a valid 'slug' from the search results. Do not attempt to guess slug names.",
+      "Retrieves the full markdown content of a specific concept or pattern, including structured references (citations, papers, books, etc.) when available. Use this ONLY after you have performed a search using 'search_knowledge_base' and have a valid 'slug' from the search results. Do not attempt to guess slug names.",
     inputSchema: {
       type: "object",
       properties: {
@@ -74,12 +74,54 @@ export async function handleToolCall(
       const article = await contentService.getArticleBySlug(slug);
       if (!article) {
         return {
-          content: [{ type: "text", text: `Article '${slug}' not found or not available.` }],
+          content: [
+            {
+              type: "text",
+              text: `Article '${slug}' not found or not available.`,
+            },
+          ],
           isError: true,
         };
       }
+
+      // Build article response with content and references
+      let response = `# ${article.title}\n\n${article.content}`;
+
+      // Append structured references if present
+      if (article.references && article.references.length > 0) {
+        response += "\n\n## References\n\n";
+        article.references.forEach((ref, index) => {
+          response += `${index + 1}. **${ref.title}**\n`;
+          if (ref.authors && ref.authors.length > 0) {
+            response += `   Authors: ${ref.authors.join(", ")}\n`;
+          } else if (ref.author) {
+            response += `   Author: ${ref.author}\n`;
+          }
+          if (ref.published) {
+            response += `   Published: ${ref.published}\n`;
+          }
+          if (ref.url) {
+            response += `   URL: ${ref.url}\n`;
+          }
+          if (ref.publisher) {
+            response += `   Publisher: ${ref.publisher}\n`;
+          }
+          if (ref.isbn) {
+            response += `   ISBN: ${ref.isbn}\n`;
+          }
+          if (ref.doi) {
+            response += `   DOI: ${ref.doi}\n`;
+          }
+          if (ref.accessed) {
+            response += `   Accessed: ${ref.accessed}\n`;
+          }
+          response += `   Type: ${ref.type}\n`;
+          response += `   ${ref.annotation}\n\n`;
+        });
+      }
+
       return {
-        content: [{ type: "text", text: `# ${article.title}\n\n${article.content}` }],
+        content: [{ type: "text", text: response }],
       };
     }
 
@@ -89,7 +131,12 @@ export async function handleToolCall(
       const articles = await contentService.searchArticles(query);
       const text = articles.map((a) => `- [${a.slug}] ${a.title}: ${a.description}`).join("\n");
       return {
-        content: [{ type: "text", text: text || `No articles found matching '${query}'.` }],
+        content: [
+          {
+            type: "text",
+            text: text || `No articles found matching '${query}'.`,
+          },
+        ],
       };
     }
 

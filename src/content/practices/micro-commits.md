@@ -2,9 +2,17 @@
 title: "Micro-Commits"
 description: "Ultra-granular commit practice for agentic workflows, treating version control as reversible save points."
 tags: ["Version Control", "Git", "Safety", "Rollback"]
-relatedIds: ["patterns/the-pbi", "concepts/context-gates", "concepts/agentic-sdlc"]
+relatedIds: ["patterns/the-pbi", "patterns/context-gates", "concepts/agentic-sdlc"]
 status: "Live"
 lastUpdated: 2025-12-27
+references:
+  - type: "website"
+    title: "My LLM Coding Workflow Going into 2026"
+    url: "https://addyo.substack.com/p/my-llm-coding-workflow-going-into"
+    author: "Addy Osmani"
+    published: 2026-01-01
+    accessed: 2026-01-08
+    annotation: "Addy Osmani's practical guide emphasizing commits as 'save points in a game', validating the micro-commit approach for LLM workflows."
 ---
 
 ## Definition
@@ -143,7 +151,7 @@ git rebase -i HEAD~5
 
 This preserves detailed history during development while creating clean history for long-term maintenance.
 
-**Trade-off:** Squashing removes granular rollback points. Only squash after validation passes [Quality Gates](/concepts/context-gates).
+**Trade-off:** Squashing removes granular rollback points. Only squash after validation passes [Quality Gates](/patterns/context-gates).
 
 ## Relationship to The PBI
 
@@ -161,12 +169,7 @@ This preserves detailed history during development while creating clean history 
 
 This makes PBI progress traceable and reversible.
 
-## References
-
-### Framework Patterns
+See also:
 - [The PBI](/patterns/the-pbi) — Atomic execution units that map to commit sequences
-- [Context Gates](/concepts/context-gates) — Validation checkpoints that rely on granular commits
+- [Context Gates](/patterns/context-gates) — Validation checkpoints that rely on granular commits
 - [Agentic SDLC](/concepts/agentic-sdlc) — The cybernetic loop where micro-commits enable rapid iteration
-
-### External Resources
-- [My LLM Coding Workflow Going into 2026](https://addyo.substack.com/p/my-llm-coding-workflow-going-into) — Addy Osmani's practical guide emphasizing commits as "save points in a game"

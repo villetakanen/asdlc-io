@@ -5,6 +5,30 @@ tags: ["Product Management", "Engineering Culture", "AI Era"]
 status: "Experimental"
 relatedIds: ["concepts/spec-driven-development", "patterns/the-spec", "concepts/vibe-coding"]
 lastUpdated: 2025-01-05
+references:
+  - type: "book"
+    title: "Product Driven: Creating Products Customers Love Through Product-Led Growth"
+    author: "Matt Watson"
+    published: 2023-01-01
+    annotation: "Comprehensive framework for product-thinking engineers, defining how to build products customers actually want."
+  - type: "website"
+    title: "Vibe coders perform better than the average software engineer"
+    url: "https://www.linkedin.com/posts/mattwatson_vibe-coders-perform-better-than-the-average-activity-7286106547847921664-8Xvr"
+    author: "Matt Watson"
+    published: 2026-01-15
+    accessed: 2026-01-08
+    annotation: "LinkedIn post arguing that vibe coders succeed because traditional software training missed product thinking fundamentals."
+  - type: "website"
+    title: "Product Thinking Frameworks"
+    url: "https://www.linkedin.com/in/shreyasdoshi/"
+    author: "Shreyas Doshi"
+    accessed: 2026-01-08
+    annotation: "Mental models and frameworks for evaluating product decisions from a product management perspective."
+  - type: "book"
+    title: "Empowered: Ordinary People, Extraordinary Products"
+    author: "Marty Cagan"
+    published: 2020-12-03
+    annotation: "Defining the difference between product teams (empowered to solve problems) and feature teams (told what to build)."
 ---
 
 ## Definition
@@ -158,13 +182,6 @@ Success measured by tickets closed, not problems solved. Optimizes for speed of 
 
 **"Stay In Your Lane" Enforcement:**
 Engineers punished for thinking beyond their assigned component. Prevents system-level thinking required for good product decisions.
-
-## References
-
-- **Matt Watson**, *Product Driven* (2023) — Comprehensive framework for product-thinking engineers
-- **Matt Watson**, LinkedIn (January 2026) — "Vibe coders perform better than the average software engineer because we trained engineers the wrong way"
-- **Shreyas Doshi**, Product thinking frameworks — Mental models for evaluating product decisions
-- **Marty Cagan**, *Empowered* (2020) — Product teams vs feature teams
 
 See also:
 - [Industry Alignment](/resources/industry-alignment) — External voices on the product thinking shift

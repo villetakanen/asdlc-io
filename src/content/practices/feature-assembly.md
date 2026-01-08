@@ -2,14 +2,14 @@
 title: "Feature Assembly"
 description: "The implementation phase where PBIs are executed against Specs, validated through quality gates, and integrated into the codebase."
 tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development"]
-relatedIds: ["patterns/the-spec", "patterns/the-pbi", "concepts/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
+relatedIds: ["patterns/the-spec", "patterns/the-pbi", "patterns/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
 status: "Draft"
 lastUpdated: 2025-12-30
 ---
 
 ## Definition
 
-**Feature Assembly** is the implementation phase in the Agentic SDLC where [PBIs](/patterns/the-pbi) (Product Backlog Items) are executed by agents or developers using [The Spec](/patterns/the-spec) as the authoritative source of truth. Unlike traditional development where implementation details drift from requirements, Feature Assembly enforces strict contract validation through [Context Gates](/concepts/context-gates) before code enters the codebase.
+**Feature Assembly** is the implementation phase in the Agentic SDLC where [PBIs](/patterns/the-pbi) (Product Backlog Items) are executed by agents or developers using [The Spec](/patterns/the-spec) as the authoritative source of truth. Unlike traditional development where implementation details drift from requirements, Feature Assembly enforces strict contract validation through [Context Gates](/patterns/context-gates) before code enters the codebase.
 
 This is where the "Delta" (PBI) meets the "State" (Spec), and the output is verified code that provably satisfies documented contracts.
 
@@ -108,7 +108,7 @@ async function updatePreferences(data: unknown) {
 
 ### Phase 3: Quality Gates
 
-Before code can be merged, it must pass through a three-tier validation system defined in [Context Gates](/concepts/context-gates):
+Before code can be merged, it must pass through a three-tier validation system defined in [Context Gates](/patterns/context-gates):
 
 #### Quality Gates (Deterministic - Required)
 
@@ -369,11 +369,10 @@ This practice is currently manual orchestration. Automation opportunities:
 
 **Assembly Metrics Dashboard** — Real-time tracking of gate pass rates and cycle time
 
-## References
-
+See also:
 - [The Spec](/patterns/the-spec) — The authoritative source of truth
 - [The PBI](/patterns/the-pbi) — The execution trigger
-- [Context Gates](/concepts/context-gates) — The three-tier validation system
+- [Context Gates](/patterns/context-gates) — The three-tier validation system
 - [Experience Modeling](/patterns/experience-modeling) — The design system consumed during assembly
 - [Spec-Driven Development](/concepts/spec-driven-development) — The overarching methodology
 - [Adversarial Code Review](/patterns/adversarial-code-review) — The review gate pattern
