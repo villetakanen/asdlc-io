@@ -163,9 +163,7 @@ This pattern is implemented by:
 
 **Creates Clear Contracts** — Each gate type has explicit pass/fail criteria, making verification deterministic where possible and explicit where probabilistic.
 
-## References
-
-### Framework Patterns
+See also:
 - [Adversarial Code Review](/patterns/adversarial-code-review) — Review Gate implementation
 - [Constitutional Review](/patterns/constitutional-review) — Dual-contract Review Gate
 - [The Spec](/patterns/the-spec) — Contract source for Review Gates

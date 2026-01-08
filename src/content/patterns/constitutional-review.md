@@ -5,6 +5,14 @@ tags: ["Code Review", "Architecture", "Agent Constitution", "Quality Gates", "Ve
 relatedIds: ["patterns/adversarial-code-review", "patterns/agent-constitution", "patterns/the-spec", "patterns/context-gates", "practices/constitutional-review-implementation"]
 status: "Experimental"
 lastUpdated: 2026-01-08
+references:
+  - type: "website"
+    title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
+    url: "https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/"
+    author: "Carlos Lassala"
+    published: 2026-01-05
+    accessed: 2026-01-08
+    annotation: "Production validation showing constitutional violations caught after passing quality gates, demonstrating real-world effectiveness of this pattern."
 ---
 
 ## Definition
@@ -163,20 +171,10 @@ For step-by-step implementation guidance, see:
 
 - [Constitutional Review Implementation](/practices/constitutional-review-implementation) — How to configure Critic Agent prompts, document architectural constraints, and integrate with your workflow
 
-## References
-
-### Framework Patterns
+See also:
 - [Adversarial Code Review](/patterns/adversarial-code-review) — The base pattern this extends
 - [Agent Constitution](/patterns/agent-constitution) — The source of architectural truth
 - [The Spec](/patterns/the-spec) — The source of functional truth
 - [Context Gates](/patterns/context-gates) — The architectural checkpoint system
-
-### Related Concepts
 - [Agentic SDLC](/concepts/agentic-sdlc) — The verification phase where this operates
 - [Context Engineering](/concepts/context-engineering) — How to structure constitutional constraints for LLMs
-
-### Implementing Practices
-- [Constitutional Review Implementation](/practices/constitutional-review-implementation) — Step-by-step guide for implementing this pattern
-
-### External Validation
-- [A Method for AI-Assisted Pull Request Reviews](https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/) (Carlos Lassala, January 2026) — Production validation showing constitutional violations caught after passing quality gates

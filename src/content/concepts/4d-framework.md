@@ -5,6 +5,13 @@ tags: ["AI Fluency", "Human-AI Collaboration", "Cognitive Model", "Prompt Engine
 relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "patterns/context-gates"]
 status: "Live"
 lastUpdated: 2026-02-01
+references:
+  - type: "website"
+    title: "Anthropic AI Fluency Course"
+    url: "https://anthropic.skilljar.com/page/ai-fluency"
+    author: "Anthropic"
+    accessed: 2026-01-08
+    annotation: "Original source of the 4D Framework for effective generative AI use, teaching the core competencies needed for human-AI collaboration."
 ---
 
 ## Definition
@@ -75,7 +82,3 @@ These four dimensions are not sequential steps but concurrent concerns. Every AI
 Applied in: [AGENTS.md Specification](/practices/agents-md-spec), [Context Engineering](/concepts/context-engineering), [Context Gates](/patterns/context-gates)
 
 The 4D dimensions map to ASDLC constructs: Delegation → agent autonomy levels, Description → context engineering, Discernment → context gates, Diligence → guardrail protocols.
-
-## References
-
-- [Anthropic AI Fluency Course](https://anthropic.skilljar.com/page/ai-fluency) — Original source of the framework

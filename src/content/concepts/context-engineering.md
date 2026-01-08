@@ -4,6 +4,20 @@ description: "Context Engineering is the practice of structuring information to 
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
 relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec"]
 lastUpdated: 2025-01-23
+references:
+  - type: "website"
+    title: "OpenAI Best Practices for Prompt Engineering"
+    url: "https://platform.openai.com/docs/guides/prompt-engineering"
+    author: "OpenAI"
+    published: 2024-01-15
+    accessed: 2026-01-08
+    annotation: "Foundational guidance on structuring prompts and context for optimal LLM performance."
+  - type: "website"
+    title: "Constitutional AI Documentation"
+    url: "https://www.anthropic.com/index/constitutional-ai-harmlessness-from-ai-feedback"
+    author: "Anthropic"
+    accessed: 2026-01-08
+    annotation: "Documentation on Anthropic's approach to AI alignment and context-based safety constraints."
 ---
 
 ## Overview
@@ -82,8 +96,3 @@ Use clear delimiters (e.g., XML tags, markdown sections) to separate different t
 - Supervisor Agent Pattern
 - Chain of Thought Reasoning
 - Few-Shot Learning
-
-## References
-
-- OpenAI Best Practices for Prompt Engineering
-- Anthropic's Constitutional AI Documentation

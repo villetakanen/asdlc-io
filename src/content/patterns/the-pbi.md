@@ -86,7 +86,6 @@ When a PBI requires another to complete first, the dependency is declared explic
 
 **[PBI Authoring](/practices/pbi-authoring)** — The practice for writing effective PBIs, including templates and lifecycle.
 
-## References
-
+See also:
 - [Spec-Driven Development](/concepts/spec-driven-development) — The overarching methodology
 - [Context Gates](/patterns/context-gates) — Validation checkpoints for PBI completion

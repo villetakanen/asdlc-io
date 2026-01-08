@@ -302,8 +302,7 @@ what they hate, what they wish existed.]
 2. [Heuristic]
 ```
 
-## References
-
+See also:
 - [Product Vision](/patterns/product-vision) — The pattern this practice implements
 - [AGENTS.md Specification](/practices/agents-md-spec) — How to structure the constitution file
 - [Agent Personas](/practices/agent-personas) — Adjusting vision context per agent type

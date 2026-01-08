@@ -131,8 +131,7 @@ All visual preferences, no product opinion. "We like blue and sans-serif fonts" 
 
 **[Agent Personas](/practices/agent-personas)** — Different personas may need different vision depth. A copywriting agent needs full voice guidance; a database migration agent needs minimal product context.
 
-## References
-
+See also:
 - [Agent Constitution](/patterns/agent-constitution) — Behavioral alignment pattern
 - [The Spec](/patterns/the-spec) — Feature contract pattern
 - [AGENTS.md Specification](/practices/agents-md-spec) — Constitution implementation practice

@@ -6,6 +6,13 @@ status: "Deprecated"
 supersededBy: ['patterns/context-gates', 'patterns/agent-constitution']
 relatedIds: ["patterns/context-gates"]
 lastUpdated: 2026-01-01
+references:
+  - type: "repository"
+    title: "NeMo Guardrails"
+    url: "https://github.com/NVIDIA/NeMo-Guardrails"
+    author: "NVIDIA"
+    accessed: 2026-01-08
+    annotation: "An example of the standard industry approach that mixes deterministic and probabilistic controls, which we explicitly avoid in ASDLC."
 ---
 
 > ⚠️ **Deprecated**: This concept has been superseded by [Context Gates](/patterns/context-gates) and [Agent Constitution](/patterns/agent-constitution).
@@ -54,7 +61,3 @@ This concept has been superseded by:
 
 See also:
 * [AGENTS.md Specification](/practices/agents-md-spec) — Implementation guide.
-
-## References
-
-* **[NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails)** – An example of the standard industry approach that mixes these concerns, which we explicitly avoid in ASDLC.

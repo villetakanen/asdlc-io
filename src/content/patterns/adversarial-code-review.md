@@ -233,9 +233,7 @@ This pattern is currently manual but has clear automation paths:
 
 As agent orchestration tooling matures, this pattern may move from Experimental to Standard.
 
-## References
-
-### Framework Patterns
+See also:
 - [Context Gates](/patterns/context-gates) — The architectural checkpoint pattern this implements
 - [The Spec](/patterns/the-spec) — The source of truth the Critic validates against
 - [Model Routing](/patterns/model-routing) — How to assign different models to Builder and Critic roles

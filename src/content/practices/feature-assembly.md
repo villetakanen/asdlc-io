@@ -369,8 +369,7 @@ This practice is currently manual orchestration. Automation opportunities:
 
 **Assembly Metrics Dashboard** — Real-time tracking of gate pass rates and cycle time
 
-## References
-
+See also:
 - [The Spec](/patterns/the-spec) — The authoritative source of truth
 - [The PBI](/patterns/the-pbi) — The execution trigger
 - [Context Gates](/patterns/context-gates) — The three-tier validation system

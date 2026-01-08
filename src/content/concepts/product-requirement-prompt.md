@@ -5,6 +5,19 @@ tags: ["Industry Term", "Spec-Driven Development", "Context Engineering"]
 status: "Experimental"
 relatedIds: ["concepts/spec-driven-development", "patterns/the-spec", "patterns/the-pbi", "concepts/context-engineering"]
 lastUpdated: 2025-01-05
+references:
+  - type: "repository"
+    title: "PRPs: Agentic Engineering"
+    url: "https://github.com/Wirasm/PRPs-agentic-eng"
+    author: "Rasmus Widing"
+    accessed: 2026-01-08
+    annotation: "Original methodology and templates for Product Requirement Prompts, defining the framework for AI-ready specifications."
+  - type: "website"
+    title: "Rasmus Widing - LinkedIn Profile"
+    url: "https://www.linkedin.com/in/rasmuswiding/"
+    author: "Rasmus Widing"
+    accessed: 2026-01-08
+    annotation: "Creator of PRP methodology, providing context on the convergent evolution with ASDLC principles."
 ---
 
 ## Definition
@@ -65,13 +78,8 @@ Applied in:
 - [The Spec](/patterns/the-spec) — ASDLC's permanent specification pattern
 - [The PBI](/patterns/the-pbi) — ASDLC's transient execution unit
 
-## References
-
-- [PRPs: Agentic Engineering (GitHub)](https://github.com/Wirasm/PRPs-agentic-eng) — Original methodology and templates
-- [Rasmus Widing (LinkedIn)](https://www.linkedin.com/in/rasmuswiding/) — Creator of PRP methodology
-- [Industry Alignment](/resources/industry-alignment) — Convergent frameworks in agentic development
-
 See also:
+- [Industry Alignment](/resources/industry-alignment) — Convergent frameworks in agentic development
 - [Spec-Driven Development](/concepts/spec-driven-development) — ASDLC's foundational methodology
 - [The Spec](/patterns/the-spec) — ASDLC's specification pattern
 - [Vibe Coding](/concepts/vibe-coding) — The anti-pattern both PRP and SDD address

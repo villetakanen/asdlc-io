@@ -5,6 +5,26 @@ tags: ["Disambiguation", "AI", "Code Quality", "Anti-Pattern"]
 status: "Experimental"
 relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy"]
 lastUpdated: 2025-01-05
+references:
+  - type: "podcast"
+    title: "Claude Code and the Future of AI-Assisted Development"
+    url: "https://peterman.fm/boris-cherny"
+    author: "Boris Cherny"
+    publisher: "The Peterman Podcast"
+    published: 2025-12-01
+    annotation: "Claude Code creator's framework for disciplined AI-assisted development, discussing the balance between automation and rigor."
+  - type: "website"
+    title: "Forrester Research on AI-Generated Code Technical Debt"
+    author: "Forrester Research"
+    published: 2024-01-01
+    accessed: 2026-01-08
+    annotation: "Technical debt predictions and analysis for AI-generated code in production systems."
+  - type: "website"
+    title: "Google's AI-Generated Code Adoption Metrics"
+    author: "Google"
+    published: 2024-01-01
+    accessed: 2026-01-08
+    annotation: "Industry data on Google's 30% AI-generated code adoption rate and analysis of copy-paste versus refactor patterns."
 ---
 
 ## Definition
@@ -88,12 +108,6 @@ Applied in:
 - [Spec-Driven Development](/concepts/spec-driven-development) — The production-grade alternative to vibe coding
 - [Context Gates](/patterns/context-gates) — Deterministic enforcement layer
 - [Levels of Autonomy](/concepts/levels-of-autonomy) — Human oversight model (L3: "Hands Off, Eyes On")
-
-## References
-
-- **Boris Cherny**, *The Peterman Podcast* (December 2025) — Claude Code creator's framework for disciplined AI-assisted development
-- **Forrester Research** (2024) — Technical debt predictions for AI-generated code
-- **Industry Data** — Google's 30% AI-generated code adoption, copy-paste vs refactor metrics
 
 See also:
 - [Industry Alignment](/resources/industry-alignment) — External voices converging on ASDLC principles

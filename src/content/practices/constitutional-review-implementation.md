@@ -376,15 +376,11 @@ jobs:
 - Identify gaps in agent training
 - Measure constitutional compliance over time
 
-## References
-
-### Framework Patterns
+See also:
 - [Constitutional Review](/patterns/constitutional-review) — The pattern this practice implements
 - [Adversarial Code Review](/patterns/adversarial-code-review) — The base review pattern
 - [Agent Constitution](/patterns/agent-constitution) — Source of architectural truth
 - [The Spec](/patterns/the-spec) — Source of functional truth
-
-### Related Practices
 - [AGENTS.md Specification](/practices/agents-md-spec) — How to document the Constitution
 - [Feature Assembly](/practices/feature-assembly) — The full workflow where this practice fits
 
