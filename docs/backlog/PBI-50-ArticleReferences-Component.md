@@ -109,6 +109,15 @@ Component should normalize `author` to `authors` array internally for consistent
 }
 ```
 
+**Design System Documentation:**
+
+Added live demo to `src/pages/resources/design-system.astro`:
+- Example references showcasing all major reference types
+- Live rendered component in Components section
+- Code example showing usage
+- Features list documenting key capabilities
+- Consistent with existing component documentation pattern (StatusBadge, SpecHeader)
+
 **Next Steps:**
 - PBI-51: Already complete (layout integration done in this PBI)
 - PBI-52: Update MCP server to include references in responses

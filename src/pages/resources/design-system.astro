@@ -1,4 +1,5 @@
 ---
+import ArticleReferences from "../../components/ArticleReferences.astro";
 import ColorSwatch from "../../components/ColorSwatch.astro";
 import SpecHeader from "../../components/SpecHeader.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
@@ -8,6 +9,38 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const title = "Avionics Design System";
 const description =
   "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
+
+// Example references for ArticleReferences demo
+const exampleReferences = [
+  {
+    type: "website" as const,
+    title: "OpenAI Best Practices for Prompt Engineering",
+    url: "https://platform.openai.com/docs/guides/prompt-engineering",
+    author: "OpenAI",
+    published: new Date("2024-01-15"),
+    accessed: new Date("2026-01-08"),
+    annotation:
+      "Foundational guidance on structuring prompts for LLMs, covering prompt engineering techniques and best practices.",
+  },
+  {
+    type: "paper" as const,
+    title: "Constitutional AI: Harmlessness from AI Feedback",
+    url: "https://arxiv.org/abs/2212.08073",
+    authors: ["Yuntao Bai", "Saurav Kadavath", "Sandipan Kundu", "Amanda Askell"],
+    published: new Date("2022-12-15"),
+    annotation:
+      "Introduces the constitutional training methodology underpinning Claude's behavior and safety constraints.",
+  },
+  {
+    type: "book" as const,
+    title: "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+    author: "Eric Evans",
+    isbn: "978-0321125217",
+    published: new Date("2003-08-22"),
+    annotation:
+      "Seminal work on modeling complex domains in software through strategic design patterns.",
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -233,6 +266,35 @@ const description =
       <pre><code>&lt;div class="banner-warning"&gt;
   SYSTEM ALERT: EXAMPLE WARNING BANNER
 &lt;/div&gt;</code></pre>
+
+      <h3>Article References</h3>
+      <p>Structured reference component for citing external sources in APA-inspired format. Supports 7 reference types: website, paper, book, podcast, video, repository, and standard.</p>
+
+      <div style="margin-bottom: 1rem;">
+        <ArticleReferences references={exampleReferences} />
+      </div>
+
+      <pre><code>&lt;ArticleReferences references={[
+  {
+    type: "website",
+    title: "OpenAI Best Practices for Prompt Engineering",
+    url: "https://platform.openai.com/docs/guides/prompt-engineering",
+    author: "OpenAI",
+    published: new Date("2024-01-15"),
+    accessed: new Date("2026-01-08"),
+    annotation: "Foundational guidance on structuring prompts..."
+  },
+  // ... more references
+]} /&gt;</code></pre>
+
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>APA-inspired citation format: Author (Year). <em>Title</em>. Metadata.</li>
+        <li>Semantic HTML with <code>&lt;cite&gt;</code>, <code>&lt;ol&gt;</code>, and proper accessibility</li>
+        <li>Automatic handling of missing optional fields</li>
+        <li>External links with <code>rel="external noopener"</code></li>
+        <li>Required <code>accessed</code> date for website references (validated in schema)</li>
+      </ul>
 
       <hr>
 
