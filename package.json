@@ -35,6 +35,7 @@
     "@mermaid-js/mermaid-cli": "^11.12.0",
     "@vitest/ui": "^4.0.16",
     "glob": "^13.0.0",
+    "gray-matter": "^4.0.3",
     "lefthook": "^2.0.4",
     "vitest": "^4.0.16"
   }
