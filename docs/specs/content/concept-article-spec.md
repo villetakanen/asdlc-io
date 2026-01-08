@@ -72,7 +72,6 @@ For concepts borrowed from industry-standard usage (e.g., "Context Engineering",
 4. **ASDLC Usage** (Required) — How we use/interpret this term in our framework
 5. **Applications** (Optional) — Where is this used generally?
 6. **Best Practices / Anti-Patterns** (Optional) — General guidance
-7. **References** (Optional) — External sources
 
 ---
 
@@ -87,7 +86,6 @@ For concepts that clarify overloaded terms or redirect deprecated terminology (e
 3. **Standard Definitions** (Required) — What does the industry mean by this term?
 4. **The ASDLC Interpretation** (Required) — How we resolve the ambiguity
 5. **Superseding Concepts** (Required if Deprecated) — Links to preferred terms
-6. **References** (Optional) — Sources for standard definitions
 
 ---
 
@@ -105,6 +103,7 @@ lastUpdated: 2025-01-15                  # ISO 8601 date (YYYY-MM-DD)
 status: "Live"                           # Live | Experimental | Draft | Proposed | Deprecated
 maturity?: "Standard"                    # Optional: Proposed | Standard | Deprecated | Experimental
 supersededBy?: ["concepts/new-id"]       # REQUIRED if status: Deprecated
+references?: []                          # REQUIRED for external sources (see Article References spec)
 ---
 ```
 
@@ -292,24 +291,7 @@ See also:
 
 ---
 
-#### 8. References (Optional)
 
-**Section** linking to external authoritative sources.
-
-**Format:**
-```markdown
-## References
-
-- [Source Name](https://example.com) — Brief annotation
-- [Standard/Paper](https://example.com) — Why this is authoritative
-```
-
-**Requirements:**
-- Link to industry-standard sources (not ASDLC-specific content)
-- Prefer academic papers, standards bodies, or established frameworks
-- Verify links are not 404s
-
----
 
 ### Content Guidelines
 
@@ -370,6 +352,10 @@ See also:
 - **Problem:** External links to 404s or outdated sources
 - **Solution:** Verify all external links during creation and quarterly reviews
 
+**The Inline Markdown Reference**
+- **Problem:** Usage of `## References` section in markdown body
+- **Solution:** Move all external references to frontmatter `references` array
+
 ---
 
 ## Contract
@@ -408,6 +394,7 @@ See also:
 - [ ] External references verified (no 404s)
 - [ ] Mermaid diagrams generated if used (`pnpm diagrams`)
 - [ ] Deprecated concepts include `supersededBy` in frontmatter
+- [ ] No `## References` section in markdown body (use frontmatter)
 
 ### Regression Guardrails
 
