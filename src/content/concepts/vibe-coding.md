@@ -3,7 +3,7 @@ title: "Vibe Coding"
 description: "Natural language code generation without formal specs—powerful for prototyping, problematic for production systems."
 tags: ["Disambiguation", "AI", "Code Quality", "Anti-Pattern"]
 status: "Experimental"
-relatedIds: ["concepts/spec-driven-development", "concepts/context-gates", "concepts/levels-of-autonomy"]
+relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy"]
 lastUpdated: 2025-01-05
 ---
 
@@ -86,7 +86,7 @@ In ASDLC, vibe coding is recognized as a legitimate operational mode for bounded
 
 Applied in:
 - [Spec-Driven Development](/concepts/spec-driven-development) — The production-grade alternative to vibe coding
-- [Context Gates](/concepts/context-gates) — Deterministic enforcement layer
+- [Context Gates](/patterns/context-gates) — Deterministic enforcement layer
 - [Levels of Autonomy](/concepts/levels-of-autonomy) — Human oversight model (L3: "Hands Off, Eyes On")
 
 ## References
@@ -98,4 +98,4 @@ Applied in:
 See also:
 - [Industry Alignment](/resources/industry-alignment) — External voices converging on ASDLC principles
 - [Spec-Driven Development](/concepts/spec-driven-development) — ASDLC's production-grade methodology
-- [Context Gates](/concepts/context-gates) — Deterministic enforcement layer
+- [Context Gates](/patterns/context-gates) — Deterministic enforcement layer

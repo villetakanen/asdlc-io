@@ -2,7 +2,7 @@
 title: "Micro-Commits"
 description: "Ultra-granular commit practice for agentic workflows, treating version control as reversible save points."
 tags: ["Version Control", "Git", "Safety", "Rollback"]
-relatedIds: ["patterns/the-pbi", "concepts/context-gates", "concepts/agentic-sdlc"]
+relatedIds: ["patterns/the-pbi", "patterns/context-gates", "concepts/agentic-sdlc"]
 status: "Live"
 lastUpdated: 2025-12-27
 ---
@@ -143,7 +143,7 @@ git rebase -i HEAD~5
 
 This preserves detailed history during development while creating clean history for long-term maintenance.
 
-**Trade-off:** Squashing removes granular rollback points. Only squash after validation passes [Quality Gates](/concepts/context-gates).
+**Trade-off:** Squashing removes granular rollback points. Only squash after validation passes [Quality Gates](/patterns/context-gates).
 
 ## Relationship to The PBI
 
@@ -165,7 +165,7 @@ This makes PBI progress traceable and reversible.
 
 ### Framework Patterns
 - [The PBI](/patterns/the-pbi) — Atomic execution units that map to commit sequences
-- [Context Gates](/concepts/context-gates) — Validation checkpoints that rely on granular commits
+- [Context Gates](/patterns/context-gates) — Validation checkpoints that rely on granular commits
 - [Agentic SDLC](/concepts/agentic-sdlc) — The cybernetic loop where micro-commits enable rapid iteration
 
 ### External Resources

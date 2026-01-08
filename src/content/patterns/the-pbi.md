@@ -89,4 +89,4 @@ When a PBI requires another to complete first, the dependency is declared explic
 ## References
 
 - [Spec-Driven Development](/concepts/spec-driven-development) — The overarching methodology
-- [Context Gates](/concepts/context-gates) — Validation checkpoints for PBI completion
+- [Context Gates](/patterns/context-gates) — Validation checkpoints for PBI completion

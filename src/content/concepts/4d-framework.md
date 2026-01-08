@@ -2,7 +2,7 @@
 title: "The 4D Framework (Anthropic)"
 description: "A cognitive model codifying four essential competencies—Delegation, Description, Discernment, and Diligence—for effective generative AI use."
 tags: ["AI Fluency", "Human-AI Collaboration", "Cognitive Model", "Prompt Engineering"]
-relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "concepts/context-gates"]
+relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "patterns/context-gates"]
 status: "Live"
 lastUpdated: 2026-02-01
 ---
@@ -72,7 +72,7 @@ These four dimensions are not sequential steps but concurrent concerns. Every AI
 
 ## ASDLC Usage
 
-Applied in: [AGENTS.md Specification](/practices/agents-md-spec), [Context Engineering](/concepts/context-engineering), [Context Gates](/concepts/context-gates)
+Applied in: [AGENTS.md Specification](/practices/agents-md-spec), [Context Engineering](/concepts/context-engineering), [Context Gates](/patterns/context-gates)
 
 The 4D dimensions map to ASDLC constructs: Delegation → agent autonomy levels, Description → context engineering, Discernment → context gates, Diligence → guardrail protocols.
 

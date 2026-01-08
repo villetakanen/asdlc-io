@@ -51,10 +51,10 @@ PRP components map directly to ASDLC concepts—a case of convergent evolution i
 |---------------|------------------|
 | Goal | [The Spec](/patterns/the-spec) — Blueprint |
 | Why | [Product Thinking](/concepts/product-thinking) |
-| Success Criteria | [Context Gates](/concepts/context-gates) |
+| Success Criteria | [Context Gates](/patterns/context-gates) |
 | All Needed Context | [Context Engineering](/concepts/context-engineering) |
 | Implementation Blueprint | [The PBI](/patterns/the-pbi) |
-| Validation Loop | [Context Gates](/concepts/context-gates) — Quality Gates |
+| Validation Loop | [Context Gates](/patterns/context-gates) — Quality Gates |
 
 In ASDLC terms, a PRP is equivalent to **The Spec + The PBI + curated Context Engineering**—bundled into a single artifact optimized for agent consumption.
 

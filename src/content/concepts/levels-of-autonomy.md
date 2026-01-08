@@ -7,7 +7,7 @@ tags:
 relatedIds:
   - concepts/agentic-sdlc
   - concepts/guardrails
-  - concepts/context-gates
+  - patterns/context-gates
 status: Live
 lastUpdated: 2025-11-28
 ---

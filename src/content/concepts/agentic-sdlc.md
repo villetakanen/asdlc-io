@@ -9,7 +9,7 @@ tags:
 relatedIds:
   - concepts/context-engineering
   - concepts/model-context-protocol
-  - concepts/context-gates
+  - patterns/context-gates
   - concepts/levels-of-autonomy
   - patterns/model-routing
   - patterns/the-spec
@@ -69,4 +69,4 @@ Automated, rigorous inspection through Probabilistic Unit Tests and Human-in-the
 
 Full project vision: [/docs/vision.md](../../docs/vision.md)
 
-Applied in: [Specs](/patterns/the-spec), [AGENTS.md Specification](/practices/agents-md-spec), [Context Gates](/concepts/context-gates), [Model Routing](/patterns/model-routing)
+Applied in: [Specs](/patterns/the-spec), [AGENTS.md Specification](/practices/agents-md-spec), [Context Gates](/patterns/context-gates), [Model Routing](/patterns/model-routing)
