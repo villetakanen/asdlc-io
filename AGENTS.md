@@ -81,8 +81,12 @@ You are not a "faster developer." You are a specialized station in the factory. 
 ## 3. Semantic Directory Mapping
 ```yaml
 directory_map:
+  plans:
+    "{feature-domain}":
+      spec.md: "Living feature specification (see /practices/living-specs)"
   docs:
     backlog: "Open Product Backlog Items (PBIs)"
+    specs: "Meta-specs for content authoring standards (how to write articles)"
     reports: "Project state reports and retrospectives"
   src:
     components: "Reusable UI components"
