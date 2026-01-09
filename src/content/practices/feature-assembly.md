@@ -1,10 +1,16 @@
 ---
 title: "Feature Assembly"
 description: "The implementation phase where PBIs are executed against Specs, validated through quality gates, and integrated into the codebase."
-tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development"]
+tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development", "Observability"]
 relatedIds: ["patterns/the-spec", "patterns/the-pbi", "patterns/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
 status: "Draft"
-lastUpdated: 2025-12-30
+lastUpdated: 2026-01-09
+references:
+  - type: "video"
+    title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
+    url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
+    publisher: "Vanishing Gradients"
+    annotation: "Source material for Plan Verification and Observability First principles. Explains the Specify → Plan → Execute workflow."
 ---
 
 ## Definition
@@ -71,6 +77,27 @@ The agent or developer begins by loading the necessary context:
 #   - Spec: /plans/notifications/spec.md
 #   - Scope: src/api/notifications/
 ```
+
+### Phase 1a: Plan Verification
+
+Before implementation begins, verify the agent's proposed execution plan.
+
+Modern coding agents generate an internal execution plan before writing code. This plan must be reviewed—blind approval is a common failure mode.
+
+**The Vibe Check:**
+- Does the agent's plan explicitly reference the Spec?
+- A plan that says "I will implement the feature" without citing spec sections is a red flag
+
+**The Logic Check:**
+- Does the agent propose to change **State** (the Spec) or just **Delta** (the Code)?
+- Implementation should only modify code, not silently redefine requirements
+
+**The Observability First Rule:**
+- Before implementing complex logic, ensure the plan includes adding logs or traces
+- The agent should "instrument itself" to prove the code path is reachable before attempting to fix business logic
+
+> [!IMPORTANT]
+> If the plan is vague ("I will fix the bug"), reject it. Demand a specific file-level plan before execution proceeds.
 
 ### Phase 2: Implementation
 

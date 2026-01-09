@@ -5,6 +5,13 @@ lastUpdated: 2025-11-27
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
 status: "Live"
+lastUpdated: 2026-01-09
+references:
+  - type: "video"
+    title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
+    url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
+    publisher: "Vanishing Gradients"
+    annotation: "Source material for the Context Anchor concept. Explains how persistent context files ground AI agents across sessions."
 ---
 
 ## DEFINITION
@@ -26,6 +33,14 @@ In the ASDLC, we treat `AGENTS.md` with the same rigor as production software:
 - **Version Controlled**: Tracked via git and PRs.
 - **Falsifiable**: Contains clear success criteria for agent actions.
 - **Optimized**: Structured to maximize signal-to-noise ratio for LLM context windows, preventing "Lost in the Middle" issues.
+
+**3. The Context Anchor (Long-Term Memory)**
+
+AGENTS.md solves the "Context Amnesia" problem. Agents are stateless—each new session starts with blank context. Without grounding, the agent reverts to generic training weights, forgetting project-specific patterns and lessons learned.
+
+The `AGENTS.md` file acts as persistent "standing orders" for the agent across different sessions. By documenting your research tools, coding styles, architectural decisions, and accumulated lessons here, you prevent session-to-session drift.
+
+This transforms `AGENTS.md` from a simple configuration file into the project's **institutional memory** for AI collaboration.
 
 ## Format Philosophy
 
