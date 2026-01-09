@@ -18,6 +18,27 @@ references:
     author: "Rasmus Widing"
     accessed: 2026-01-08
     annotation: "Practitioner-validated implementation of spec-driven agentic development, demonstrating convergent evolution with ASDLC principles."
+  - type: "website"
+    title: "Martin Fowler Fragment: January 8, 2026"
+    url: "https://martinfowler.com/fragments/2026-01-08.html"
+    author: "Martin Fowler"
+    published: 2022-12-22
+    accessed: 2026-01-09
+    annotation: "Commentary on Anthropic research and Kent Beck's critique of spec-driven approaches."
+  - type: "website"
+    title: "Kent Beck on Spec-Driven Development"
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7413956151144542208/"
+    author: "Kent Beck"
+    published: 2026-01-08
+    accessed: 2026-01-09
+    annotation: "Critique that specs must accommodate learning during implementation—addressed by iterative refinement."
+  - type: "paper"
+    title: "How AI is Transforming Work at Anthropic"
+    url: "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic"
+    author: "Saffron Huang et al."
+    published: 2025-12-02
+    accessed: 2026-01-09
+    annotation: "Research validating the cold start problem and context transfer challenges in AI-assisted development."
 ---
 
 ## Definition
@@ -154,6 +175,23 @@ For detailed structure, examples, and templates, see the [Living Specs Practice 
 **[Experience Modeling](/patterns/experience-modeling)** — Experience models capture user journeys; specs capture the technical contracts that implement those journeys.
 
 **[Context Engineering](/concepts/context-engineering)** — Specs are structured context assets optimized for agent consumption, with predictable sections (Blueprint, Contract) for efficient extraction.
+
+## Iterative Spec Refinement
+
+Kent Beck critiques spec-driven approaches that assume "you aren't going to learn anything during implementation." This is valid—specs are not waterfall artifacts.
+
+**The refinement cycle:**
+
+1. **Initial Spec** — Capture known constraints (API contracts, quality targets, anti-patterns)
+2. **Implementation Discovery** — Agent or human encounters edge cases, performance issues, or missing requirements
+3. **Spec Update** — New constraints committed alongside the code that revealed them
+4. **Verification** — Gate validates implementation against updated spec
+5. **Repeat**
+
+This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec doesn't prevent learning—it captures learnings so agents can act on them in future sessions.
+
+> "Large Language Models give us great leverage—but they only work if we focus on learning and understanding."
+> — Unmesh Joshi, via Martin Fowler
 
 ## Industry Validation
 
