@@ -4,14 +4,14 @@ description: "Verification pattern that validates implementation against both fu
 tags: ["Code Review", "Architecture", "Agent Constitution", "Quality Gates", "Verification"]
 relatedIds: ["patterns/adversarial-code-review", "patterns/agent-constitution", "patterns/the-spec", "patterns/context-gates", "practices/constitutional-review-implementation"]
 status: "Experimental"
-lastUpdated: 2026-01-08
+lastUpdated: 2026-01-09
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
     url: "https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/"
-    author: "Carlos Lassala"
+    author: "Claudio Lassala"
     published: 2026-01-05
-    accessed: 2026-01-08
+    accessed: 2026-01-09
     annotation: "Production validation showing constitutional violations caught after passing quality gates, demonstrating real-world effectiveness of this pattern."
 ---
 
@@ -140,7 +140,7 @@ The Constitutional Review Gate catches architectural violations that pass functi
 
 ## Validated in Practice
 
-**Case Study: Carlos Lassala (January 2026)**
+**Case Study: Claudio Lassala (January 2026)**
 
 A production implementation caught a constitutional violation that passed all other gates:
 
