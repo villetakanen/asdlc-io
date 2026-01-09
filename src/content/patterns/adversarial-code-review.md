@@ -4,7 +4,15 @@ description: "Consensus verification pattern using a secondary Critic Agent to r
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
 relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review"]
 status: "Experimental"
-lastUpdated: 2026-01-08
+lastUpdated: 2026-01-09
+references:
+  - type: "website"
+    title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
+    url: "https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/"
+    author: "Claudio Lassala"
+    published: 2026-01-05
+    accessed: 2026-01-09
+    annotation: "Production implementation validating the pattern's effectiveness in catching silent performance bugs and architectural violations."
 ---
 
 ## Definition
@@ -128,7 +136,7 @@ This leverages the strengths of each model class: speed for generation, reasonin
 
 ## Validated in Practice
 
-**Case Study: Carlos Lassala (January 2026)**
+**Case Study: Claudio Lassala (January 2026)**
 
 A production implementation validated this pattern's effectiveness:
 
@@ -244,5 +252,4 @@ See also:
 - [Agentic SDLC](/concepts/agentic-sdlc) — The Verification phase where this pattern operates
 - [Levels of Autonomy](/concepts/levels-of-autonomy) — L3 autonomy requires verification before human review
 
-### External Validation
-- [A Method for AI-Assisted Pull Request Reviews](https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/) (Carlos Lassala, January 2026) — Production implementation validating the pattern's effectiveness in catching silent performance bugs and architectural violations
+

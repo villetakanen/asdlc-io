@@ -4,7 +4,13 @@ description: "How to write Product Backlog Items that agents can read, execute, 
 tags: ["Agile", "Product Backlog Item", "Workflow", "Agent Execution"]
 relatedIds: ["patterns/the-pbi", "patterns/the-spec", "practices/living-specs"]
 status: "Live"
-lastUpdated: 2025-01-02
+lastUpdated: 2026-01-09
+references:
+  - type: "video"
+    title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
+    url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
+    publisher: "Vanishing Gradients"
+    annotation: "Source material for the 'Prompt for the Plan' tip. Explains the Specify → Plan → Execute workflow."
 ---
 
 ## Definition
@@ -60,6 +66,11 @@ As a user, I want to manage my notification preferences so that I can control wh
 ```
 
 The second example requires interpretation. The first is executable.
+
+> [!TIP]
+> **Prompt for the Plan.** Even if your tool handles planning automatically, explicitly instruct the agent to output its plan for review. This forces the Specify → Plan → Execute loop.
+>
+> **Example Directive:** "Analyze the Spec, propose a step-by-step plan including which files you will touch, and wait for my approval before editing files."
 
 ### Step 3: Add Context Pointers
 
