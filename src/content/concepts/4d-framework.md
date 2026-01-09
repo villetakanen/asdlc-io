@@ -12,6 +12,13 @@ references:
     author: "Anthropic"
     accessed: 2026-01-08
     annotation: "Original source of the 4D Framework for effective generative AI use, teaching the core competencies needed for human-AI collaboration."
+  - type: "paper"
+    title: "How AI is Transforming Work at Anthropic"
+    url: "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic"
+    author: "Saffron Huang et al."
+    published: 2026-01-09
+    accessed: 2026-01-09
+    annotation: "Internal study of 132 engineers quantifying the 4D dimensions in practice: delegation patterns, cold start problems, the paradox of supervision, and human-owned decision categories."
 ---
 
 ## Definition
