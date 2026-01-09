@@ -25,6 +25,13 @@ references:
     published: 2024-01-01
     accessed: 2026-01-08
     annotation: "Industry data on Google's 30% AI-generated code adoption rate and analysis of copy-paste versus refactor patterns."
+  - type: "paper"
+    title: "How AI is Transforming Work at Anthropic"
+    url: "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic"
+    author: "Saffron Huang et al."
+    published: 2025-12-02
+    accessed: 2026-01-09
+    annotation: "Research showing engineers vibe code themselves into corners, with cleanup overhead exceeding initial velocity."
 ---
 
 ## Definition
@@ -76,6 +83,15 @@ Boris Cherny (Principal Engineer, Anthropic; creator of Claude Code) warns: **"Y
 
 > **"Speed is seductive. Maintainability is survival."**  
 > — Boris Cherny, *The Peterman Podcast* (December 2025)
+
+### Vibe Coded Into a Corner
+
+Anthropic's internal research found that engineers who spend *more* time on Claude-assisted tasks often do so because they "vibe code themselves into a corner"—generating code without specs until debugging and cleanup overhead exceeds the initial velocity gains.
+
+> "When producing output is so easy and fast, it gets harder and harder to actually take the time to learn something."
+> — Anthropic engineer
+
+This creates a debt spiral: vibe coding is fast until it isn't, and by then the context needed to fix issues was never documented.
 
 ### Regression to the Mean
 
