@@ -3,7 +3,7 @@ title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
 relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec"]
-lastUpdated: 2026-01-09
+lastUpdated: 2026-01-10
 status: "Live"
 references:
   - type: "website"
@@ -26,6 +26,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Research identifying the cold start problem as the primary blocker in AI-assisted development."
+  - type: "paper"
+    title: "InfiAgent: An Infinite-Horizon Framework for General-Purpose Autonomous Agents"
+    url: "https://arxiv.org/abs/2601.03204"
+    author: "Chenglin Yu, Yuchen Wang, Songmiao Wang, Hongxia Yang, Ming Li"
+    published: 2026-01-06
+    accessed: 2026-01-10
+    annotation: "Empirical validation of file-centric state management for long-horizon agent stability."
 ---
 
 ## Definition
@@ -89,3 +96,22 @@ Applied in:
 3. **Provide clear success criteria**: Define what "good" looks like to reduce probabilistic guessing.
 4. **Include negative examples**: Explicitly stating what *not* to do is often more effective than generic constraints.
 5. **Test with minimal viable context**: Start small and add context only when the agent fails, to avoid "distractor" noise.
+
+## Bounded Context Reconstruction
+
+Recent research formalizes a key principle in file-centric agent design: context windows are not memory. The InfiAgent framework (Yu et al., 2026) demonstrates that agent performance degrades severely when relying on compressed long-context prompts, even with strong models.
+
+Their formulation:
+
+```
+c_bounded_t = g(Fₜ, a_{t-k:t-1})
+```
+
+Where:
+- `Fₜ` = persistent state (files in the workspace)
+- `a_{t-k:t-1}` = fixed window of recent actions (typically k=10)
+- `g(·)` = deterministic context-construction function
+
+**Key finding**: Replacing file-centric state with compressed context dropped task completion from 80/80 to 27.7/80 average, even with Claude 4.5 Sonnet. Long context is not a substitute for persistent state.
+
+This validates a core ASDLC claim: treat context as a reconstructed view of authoritative file state, not as accumulating conversation history.

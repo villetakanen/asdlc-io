@@ -4,7 +4,7 @@ description: "The definitive guide to the AGENTS.md file, including philosophy, 
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
 status: "Live"
-lastUpdated: 2026-01-09
+lastUpdated: 2026-01-10
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
@@ -92,6 +92,23 @@ ln -s AGENTS.md CLAUDE.md
 ```
 
 This ensures Claude Code users get the same guidance while maintaining a single source of truth. Note that Claude Code also supports `CLAUDE.local.md` for personal preferences that shouldn't be version-controlled.
+
+## ECOSYSTEM TOOLS
+
+As AGENTS.md adoption grows, tools emerge to bridge compatibility gaps between different coding assistants and enforce standards across heterogeneous environments.
+
+### Ruler
+
+[Ruler](https://github.com/intellectronica/ruler) is a meta-tool that synthesizes agent instructions from multiple sources (AGENTS.md, .cursorrules, project conventions) and injects them into coding assistants that may not natively support the AGENTS.md standard.
+
+**Key capabilities:**
+- **Cross-platform normalization**: Translates AGENTS.md into assistant-specific formats
+- **Multi-source aggregation**: Combines rules from various config files into unified context
+- **Dynamic injection**: Ensures consistent agent behavior across tools like Cursor, Windsurf, and Claude Code
+
+**Use case:** Teams using multiple coding assistants (e.g., some developers on Cursor, others on Claude Code) can maintain a single source of truth in AGENTS.md while Ruler handles distribution to tool-specific formats.
+
+This demonstrates ecosystem maturity: when third-party tools emerge to solve interoperability problems, the standard has achieved meaningful adoption.
 
 ## ASDLC IMPLEMENTATION STRATEGY
 
