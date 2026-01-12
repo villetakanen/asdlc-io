@@ -23,7 +23,7 @@ Review follows the knowledge hierarchy (terminology → structure → execution)
 
 | # | Article | Archetype | Status |
 |:--|:--------|:----------|:-------|
-| 1 | `context-engineering.md` | A (Industry Term) | [ ] |
+| 1 | `context-engineering.md` | A (Industry Term) | [x] |
 | 2 | `mermaid.md` | A (Industry Term) | [ ] |
 | 3 | `gherkin.md` | A (Industry Term) | [ ] |
 | 4 | `behavior-driven-development.md` | A (Industry Term) | [ ] |
@@ -72,11 +72,24 @@ For each article, verify:
 - [ ] External references verified (no 404s)
 - [ ] Mermaid diagrams generated if used
 
+**Dictionary Focus (Concepts only):**
+- [ ] Article stays within 600-1200 words (pillar-appropriate)
+- [ ] No "how-to" / Practice content bleeding into Concept (move to linked Practice)
+- [ ] Generic "Applications" lists removed (too vague for dictionary)
+- [ ] Research deep-dives condensed to callouts or moved to separate articles
+- [ ] Every section serves the dictionary purpose: define term, explain characteristics, link to ASDLC usage
+
 **Cross-Article Consistency:**
 - [ ] `relatedIds` are accurate and bidirectional
 - [ ] No semantic overlap or conflicts with other Live articles
 - [ ] Terminology usage consistent across all articles
 - [ ] Pattern ↔ Practice linkage correct
+
+**Holistic KB Fit:**
+- [ ] Article functions as proper pillar/node in knowledge graph (outbound links match conceptual relationships)
+- [ ] "Relationship to Patterns" or equivalent section explains *why* connections matter, not just lists them
+- [ ] Disambiguation concepts linked where terminology overlaps (e.g., Guardrails → Context Gates)
+- [ ] Cross-layer references present (Concepts ↔ Patterns ↔ Practices)
 
 **LLM/MCP Consumability:**
 - [ ] Article appears in MCP `get_article` output
@@ -154,7 +167,7 @@ None — this is an editorial review task.
 
 | Session | Date | Articles Reviewed | Issues Found |
 |:--------|:-----|:------------------|:-------------|
-| 1 | — | — | — |
+| 1 | 2026-01-12 | context-engineering.md | Fixed broken URL, expanded relatedIds (6 articles), added Relationship to Patterns section, linked Guardrails disambiguation, **trimmed from 987→650 words** (removed Applications, Best Practices, condensed research callout) |
 
 **Major Findings:**
 
