@@ -2,9 +2,9 @@
 title: "Specs"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
-relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing"]
+relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin"]
 status: "Live"
-lastUpdated: 2025-01-15
+lastUpdated: 2026-01-12
 references:
   - type: "website"
     title: "Living Documentation"
@@ -162,7 +162,9 @@ Defines **verification rules** that exist independently of any specific task.
 
 - **Definition of Done** — Observable success criteria
 - **Regression Guardrails** — Invariants that must never break
-- **Scenarios** — Gherkin-style journeys for E2E tests
+- **Scenarios** — [Gherkin](/concepts/gherkin)-style behavioral specifications
+
+The Contract section implements [Behavior-Driven Development](/concepts/behavior-driven-development) principles: scenarios define *what* behavior is expected without dictating *how* to implement it. This allows agents to interpret intent dynamically while providing clear verification criteria.
 
 For detailed structure, examples, and templates, see the [Living Specs Practice Guide](/practices/living-specs).
 
@@ -175,6 +177,8 @@ For detailed structure, examples, and templates, see the [Living Specs Practice 
 **[Experience Modeling](/patterns/experience-modeling)** — Experience models capture user journeys; specs capture the technical contracts that implement those journeys.
 
 **[Context Engineering](/concepts/context-engineering)** — Specs are structured context assets optimized for agent consumption, with predictable sections (Blueprint, Contract) for efficient extraction.
+
+**[Behavior-Driven Development](/concepts/behavior-driven-development)** — BDD provides the methodology for the Contract section. [Gherkin](/concepts/gherkin) scenarios serve as "specifications of behavior" that guide agent reasoning and define acceptance criteria.
 
 ## Iterative Spec Refinement
 
@@ -203,3 +207,5 @@ See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the 
 
 See also:
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
+- [Behavior-Driven Development](/concepts/behavior-driven-development) — The methodology behind Contract scenarios
+- [Gherkin](/concepts/gherkin) — Syntax guidance for writing behavioral specifications

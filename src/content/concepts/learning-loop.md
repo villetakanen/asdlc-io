@@ -6,12 +6,14 @@ tags:
   - Methodology
   - Learning
 relatedIds:
+  - concepts/ooda-loop
   - concepts/vibe-coding
   - concepts/spec-driven-development
   - patterns/context-gates
+  - patterns/ralph-loop
   - practices/living-specs
-status: Experimental
-lastUpdated: 2026-01-09
+status: Live
+lastUpdated: 2026-01-12
 references:
   - type: "website"
     title: "Martin Fowler Fragment: January 8, 2026"
@@ -54,6 +56,19 @@ The Learning Loop preserves discoveries as machine-readable context, enabling co
 
 Each iteration builds on the last. The spec grows smarter, and agents inherit the learnings of every previous session.
 
+## OODA Foundation
+
+The Learning Loop is an application of the [OODA Loop](/concepts/ooda-loop) to software development:
+
+| Learning Loop Phase | OODA Equivalent |
+|---------------------|------------------|
+| **Explore** | Observe + Act (gather information through building) |
+| **Learn** | Orient (interpret what was discovered) |
+| **Crystallize** | Decide (commit learnings to persistent format) |
+| **Verify** | Observe (confirm crystallized constraints via gates) |
+
+The key insight: in software development, **Orient and Observe are interleaved**. You often can't observe relevant constraints until you've built something that reveals them. The Learning Loop makes this explicit by treating Explore as a legitimate phase rather than a deviation from the plan.
+
 ## Key Characteristics
 
 ### Not Waterfall
@@ -71,19 +86,40 @@ Learnings must be captured in formats agents can consume: schemas, constraints i
 > "The real capability—our ability to respond to change—comes not from how fast we can produce code, but from how deeply we understand the system we are shaping."
 > — Unmesh Joshi
 
+## Automation: The Ralph Loop
+
+The Learning Loop describes an iterative cycle that typically involves human judgment at each phase. The [Ralph Loop](/patterns/ralph-loop) automates this cycle for tasks with machine-verifiable completion criteria:
+
+| Learning Loop Phase | Ralph Loop Implementation |
+|---------------------|---------------------------|
+| **Explore** | Agent implements based on PBI/Spec |
+| **Learn** | Agent reads error logs, test failures, build output |
+| **Crystallize** | Agent updates progress.txt; commits to Git |
+| **Verify** | External tools (Jest, tsc, Docker) confirm success |
+
+When verification fails, Ralph automatically re-enters Explore with the learned context. The loop continues until external verification passes or iteration limit is reached.
+
+**Key difference:** The Learning Loop expects human judgment in the Learn and Crystallize phases. The Ralph Loop requires that "learning" be expressible as observable state (error logs, test results) and "crystallization" be automatic (Git commits, progress files).
+
+Ralph Loops work best when success criteria are machine-verifiable (tests pass, builds complete). For tasks requiring human judgment—ambiguous requirements, architectural decisions, product direction—the Learning Loop remains the appropriate model.
+
 ## ASDLC Usage
 
 In ASDLC, the Learning Loop connects several core concepts:
 
+- **OODA Loop** — The foundational cognitive model the Learning Loop implements
 - **Vibe Coding** is the Explore phase (valid for prototyping and discovery)
 - **Living Specs** capture the Crystallize phase
 - **Context Gates** enforce the Verify phase
+- **Ralph Loop** — Automated implementation for machine-verifiable tasks
 - **PBIs** trigger iteration through the loop
 
 Applied in:
+- [OODA Loop](/concepts/ooda-loop) — The cognitive model foundation
 - [Spec-Driven Development](/concepts/spec-driven-development) — Iterative refinement of specs
 - [Living Specs](/practices/living-specs) — Maintenance of captured learnings
 - [Context Gates](/patterns/context-gates) — Verification checkpoints
+- [Ralph Loop](/patterns/ralph-loop) — Automated terminal implementation
 
 ## Anti-Patterns
 

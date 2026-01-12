@@ -341,7 +341,48 @@ const exampleReferences = [
 
       <hr>
 
-      <h2>07. // File References</h2>
+      <h2>07. // Diagrams</h2>
+
+      <p>Mermaid diagrams use the Avionics palette for visual consistency. Diagrams are authored in markdown and generated to SVG.</p>
+
+      <h3>Theme Variables</h3>
+      <p>Key mermaid theme variables mapped to design tokens:</p>
+      <pre><code>primaryColor: #f04e30    /* --c-brand (nodes) */
+clusterBkg: #ebebe6      /* --c-bg-surface (subgraphs) */
+clusterBorder: #d1d1c7   /* --c-border */
+textColor: #111111       /* --c-text-primary */
+fontFamily: "B612 Mono"  /* --f-mono */</code></pre>
+
+      <h3>Generation Workflow</h3>
+      <ol>
+        <li>Write <code>```mermaid</code> block in markdown article</li>
+        <li>Run <code>pnpm diagrams</code> to generate SVG</li>
+        <li>Script outputs to <code>public/mermaid/&#123;slug&#125;-fig-&#123;n&#125;.svg</code></li>
+        <li>Script adds <code>&lt;figure&gt;</code> reference after mermaid block</li>
+      </ol>
+
+      <h3>Example Flowchart</h3>
+      <pre><code>```mermaid
+flowchart LR
+    subgraph "Input Layer"
+        A["Source"]
+    end
+    
+    subgraph "Processing"
+        B["Transform"]
+        C["Validate"]
+        B --> C
+    end
+    
+    A --> B
+    C --> D["Output"]
+```</code></pre>
+
+      <p><strong>Result:</strong> Nodes use Safety Orange (#f04e30), subgraphs use warm grey (#ebebe6), text uses primary black (#111111).</p>
+
+      <hr>
+
+      <h2>08. // File References</h2>
 
       <p>The design system is implemented across these files:</p>
       <ul>
@@ -355,6 +396,7 @@ const exampleReferences = [
         <li><code>ds/layouts/grid.css</code> - Main grid layout</li>
         <li><code>ds/layouts/spec-grid.css</code> - Card grid layout</li>
         <li><code>ds/components/*.css</code> - Component styles</li>
+        <li><code>mermaid.json</code> - Mermaid diagram theme configuration</li>
       </ul>
 
     </div>
