@@ -11,7 +11,7 @@ relatedIds:
   - concepts/yaml
   - concepts/context-engineering
   - patterns/the-spec
-lastUpdated: 2026-01-12
+lastUpdated: 2026-01-13
 status: "Live"
 references:
   - type: "website"
@@ -84,34 +84,6 @@ flowchart LR
   
 </figure>
 
-## Mermaid in ASDLC
-
-### Spec Diagrams
-
-The [Spec](/patterns/the-spec) pattern uses Mermaid to visualize feature architecture and assembly flows. Diagrams are embedded in markdown and rendered to SVG via `pnpm diagrams`.
-
-### Design System Integration
-
-ASDLC diagrams use the Avionics design system palette:
-
-| Element | Color | Token |
-|---------|-------|-------|
-| Nodes | `#f04e30` | `--c-brand` |
-| Subgraphs | `#ebebe6` | `--c-bg-surface` |
-| Borders | `#d1d1c7` | `--c-border` |
-| Text | `#111111` | `--c-text-primary` |
-
-Configuration lives in `mermaid.json` at the project root.
-
-### Generation Workflow
-
-1. Write ` ```mermaid ` code block in markdown
-2. Run `pnpm diagrams` to generate SVG
-3. Script outputs to `public/mermaid/{slug}-fig-{n}.svg`
-4. Script adds `<figure>` reference after the mermaid block
-
-This produces static SVGs that render consistently across browsers and export cleanly to PDF.
-
 ## ASDLC Usage
 
 Mermaid serves as the **process specification language** in ASDLC, completing the specification triad:
@@ -122,26 +94,28 @@ Mermaid serves as the **process specification language** in ASDLC, completing th
 | **[YAML](/concepts/yaml)** | Structure | Schemas, configuration |
 | **Mermaid** | Process | Flowcharts, sequences |
 
-Applied in:
-- [The Spec](/patterns/the-spec) — Assembly flow diagrams
-- [Context Engineering](/concepts/context-engineering) — Context flow visualization
-- Design System — Component documentation
+**Why Mermaid for Specs:**
+
+Text-based diagrams solve a critical problem in agentic development: visual documentation that agents can read, modify, and version-control. Unlike image-based diagrams that become stale context, Mermaid diagrams are:
+
+- **Agent-modifiable** — LLMs can update flows as requirements change
+- **Diffable** — Changes appear in code review alongside logic changes
+- **Living** — Part of the spec, not a separate artifact that drifts
+
+**Relationship to Patterns:**
+
+- **[The Spec](/patterns/the-spec)** — Specs embed Mermaid to visualize feature architecture and state flows
+- **[Context Engineering](/concepts/context-engineering)** — Diagrams as structured, machine-readable context
 
 ## Anti-Patterns
 
-| Anti-Pattern | Description | Failure Mode |
-|--------------|-------------|--------------|
-| **Box Soup** | Too many nodes without grouping | Unreadable; no hierarchy |
-| **Arrow Spaghetti** | Excessive cross-connections | Confusing; hard to follow |
-| **No Labels** | Edges without descriptive text | Ambiguous relationships |
-| **Static Screenshots** | Images instead of text diagrams | Not version-controllable; decay |
-| **Over-Detailed** | Including implementation details | Noise; maintenance burden |
+| Anti-Pattern | Description |
+|--------------|-------------|
+| **Box Soup** | Too many nodes without grouping |
+| **Arrow Spaghetti** | Excessive cross-connections |
+| **No Labels** | Edges without descriptive text |
+| **Static Screenshots** | Images instead of text diagrams |
 
-## Best Practices
+> [!TIP]
+> **Key practices:** Group with subgraphs, label edges, use `flowchart LR` for process flows, limit to <15 nodes per diagram.
 
-1. **Group with Subgraphs** — Partition logical regions for clarity
-2. **Label Edges** — Describe what flows between nodes
-3. **Left-to-Right Flow** — Use `flowchart LR` for process flows
-4. **Top-to-Bottom Hierarchy** — Use `flowchart TB` for hierarchies
-5. **Limit Complexity** — If a diagram needs >15 nodes, split it
-6. **Use Design Tokens** — Configure colors via `mermaid.json`, not inline

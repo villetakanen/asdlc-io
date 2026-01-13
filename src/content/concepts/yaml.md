@@ -8,6 +8,7 @@ tags:
   - Syntax
 relatedIds:
   - concepts/gherkin
+  - concepts/mermaid
   - concepts/context-engineering
   - patterns/the-spec
   - practices/agents-md-spec
