@@ -1,19 +1,31 @@
 ---
 title: "Agent Personas"
 description: "A guide on how to add multiple personas to an AGENTS.md file, with examples."
-lastUpdated: 2025-12-27
+lastUpdated: 2026-01-13
 tags: ["agents", "personas", "guide"]
 relatedIds: ["patterns/model-routing", "concepts/context-engineering", "practices/agents-md-spec"]
 status: "Live"
 ---
 
-## Overview
+## Definition
 
 Defining clear personas for your agents is crucial for ensuring they understand their role, trigger constraints, and goals. This guide demonstrates how to structure multiple personas within your `AGENTS.md` file.
 
 Personas are a context engineering practice—they scope agent work by defining boundaries and focus, not by role-playing. When combined with [Model Routing](/patterns/model-routing), personas can also specify which computational tool (LLM) to use for each type of work.
 
 For the full specification of the `AGENTS.md` file, see the [AGENTS.md Specification](./agents-md-spec).
+
+## When to Use
+
+**Use this practice when:**
+- Your `AGENTS.md` is becoming a monolith of conflicting instructions
+- You have distinct workflows (e.g., Coding vs. Writing vs. Architecting)
+- You need to support specialized sub-agents with narrow scopes
+- You are hitting context window limits with a single generic instruction set
+
+**Skip this practice when:**
+- Variable roles are handled purely by "Model Routing" (manual model selection)
+- The project is simple enough for a single "General Developer" persona
 
 ## How to Add Multiple Personas
 

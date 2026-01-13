@@ -48,10 +48,10 @@ Review follows the knowledge hierarchy (terminology → structure → execution)
 
 | # | Article | Implements Pattern | Status |
 |:--|:--------|:-------------------|:-------|
-| 11 | `micro-commits.md` | *(TBD / standalone)* | [ ] |
-| 12 | `pbi-authoring.md` | `the-pbi.md` | [ ] |
-| 13 | `agent-personas.md` | `model-routing.md` | [ ] |
-| 14 | `agents-md-spec.md` | `agent-constitution.md` | [ ] |
+| 11 | `micro-commits.md` | *(TBD / standalone)* | [x] |
+| 12 | `pbi-authoring.md` | `the-pbi.md` | [x] |
+| 13 | `agent-personas.md` | `model-routing.md` | [x] |
+| 14 | `agents-md-spec.md` | `agent-constitution.md` | [x] |
 
 ## Acceptance Criteria
 
@@ -106,11 +106,11 @@ For each article, verify:
 
 ### Global Completion Criteria
 
-- [ ] All 14 Live articles reviewed
-- [ ] Inconsistencies logged and fixed
-- [ ] `pnpm check` passes
-- [ ] `pnpm build` succeeds
-- [ ] All MCP tests pass
+- [x] All 14 Live articles reviewed
+- [x] Inconsistencies logged and fixed
+- [x] `pnpm check` passes
+- [x] `pnpm build` succeeds
+- [x] All MCP tests pass
 
 ## Review Process
 
@@ -163,7 +163,7 @@ None — this is an editorial review task.
 ## Deliverables
 
 1. All 14 Live articles reviewed and updated
-2. This PBI fully checked off
+2. This PBI fully checked off [x]
 3. Optional: Summary of major findings/patterns in Implementation Notes below
 
 ---
@@ -190,6 +190,10 @@ None — this is an editorial review task.
 | 12 | 2026-01-13 | ralph-loop.md (Pattern) | **1166 words** - **Promoted: Experimental → Live**. Exceeds all Live standards: complete structure (Definition, Problem, Solution, Anatomy, Relationships), industry validation (Huntley + research paper), comprehensive Anti-Patterns (6), Guardrails section, OODA mapping, Mermaid diagram. |
 
 | 16 | 2026-01-13 | product-vision.md (Pattern) | **1057 words** - **Promoted: Draft → Live**. Strong concept for preventing "vibe convergence". Includes 5-part anatomy, clear anti-patterns, and context hierarchy placement. Added validation from Marty Cagan (SVPG) and Lenny Rachitsky regarding "Product Sense" in AI era. |
+| 17 | 2026-01-13 | pbi-authoring.md (Practice) | **Trial Review**: Verified full compliance. contains all required sections including 'When to Use', 6-step process, templates, and fault tolerance (Methodology Depth). No structural changes required. |
+| 18 | 2026-01-13 | micro-commits.md (Practice) | **Review**: Added 'When to Use' section. Updated date. Validated strong alignment with 'The PBI' and 'Context Gates' patterns. |
+| 19 | 2026-01-13 | agent-personas.md (Practice) | **Review**: Renamed 'Overview' to 'Definition', added 'When to Use'. Good integration with Model Routing. |
+| 20 | 2026-01-13 | agents-md-spec.md (Practice) | **Review**: Added 'When to Use' section. Reference Template is extremely valuable. Strong 'Core Philosophy' section. |
 
 
 
@@ -250,4 +254,6 @@ Successfully established bidirectional linking for the specification triad:
 
 **Follow-up PBIs Created:**
 
-*(List any new PBIs spawned from this review)*
+- **PBI-Next:** Promote `model-routing.md` to Live (Add Anatomy, Anti-Patterns, Trade-offs).
+- **PBI-Next:** Promote `adversarial-code-review.md` to Live (Review completed, pending approval).
+- **PBI-Next:** Promote `constitutional-review.md` to Live (Review completed, pending approval).

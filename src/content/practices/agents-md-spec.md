@@ -4,7 +4,7 @@ description: "The definitive guide to the AGENTS.md file, including philosophy, 
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
 status: "Live"
-lastUpdated: 2026-01-10
+lastUpdated: 2026-01-13
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
@@ -18,6 +18,18 @@ references:
 `AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for context and instructions—such as build steps, tests, and conventions—that help AI coding agents work effectively on a project.
 
 We align with the [agents.md specification](https://agents.md), treating this file as the authoritative source of truth for agentic behavior within the ASDLC.
+
+## When to Use
+
+**Use this practice when:**
+- Establishing a new repository for AI-assisted development
+- Onboarding new AI tools (Cursor, Windsurf, Claude) to an existing project
+- You need to standardize agent behavior across a team
+- AI agents are hallucinating dependencies or breaking architectural rules
+
+**Skip this practice when:**
+- The project is a temporary script or throwaway prototype
+- You are not using any agentic tools or LLM assistants
 
 ## CORE PHILOSOPHY
 
