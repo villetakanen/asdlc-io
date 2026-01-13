@@ -13,7 +13,7 @@ relatedIds:
   - concepts/spec-driven-development
   - patterns/the-spec
   - patterns/context-gates
-lastUpdated: 2026-01-12
+lastUpdated: 2026-01-13
 status: "Live"
 references:
   - type: "website"
@@ -68,33 +68,6 @@ BDD adapts to this by:
 - Allowing agents to determine *how* to achieve specified behavior
 - Providing **semantic anchors** that constrain the reasoning space without over-specifying
 
-## BDD and the Spec Pattern
-
-In ASDLC, BDD principles are implemented through the [Spec](/patterns/the-spec) pattern:
-
-| BDD Component | Spec Implementation |
-|---------------|---------------------|
-| Feature description | Spec Context section |
-| Business rules | Blueprint constraints |
-| Acceptance scenarios | Contract section (Gherkin scenarios) |
-| Step definitions | Agent tool calls and verification functions |
-
-The Spec's Contract section explicitly uses "Gherkin-style journeys for E2E tests"—this is BDD applied to agentic context.
-
-## Evolution: Evaluation-Driven Development
-
-As AI systems require multi-dimensional evaluation beyond binary pass/fail, BDD is evolving toward Evaluation-Driven Development (EDD):
-
-| Dimension | Metric | Purpose |
-|-----------|--------|---------|
-| **Grounding** | LLM-as-a-Judge score | Is response based on source data? |
-| **Alignment** | Prompt-following accuracy | Did agent follow specific instructions? |
-| **Safety** | Toxicity/bias detection | Is output harmful or discriminatory? |
-| **Factuality** | Hallucination detection | Is information accurate? |
-| **Performance** | Latency, token efficiency | Is system performant and cost-effective? |
-
-This aligns with ASDLC's [Learning Loop](/concepts/learning-loop)—evaluation results crystallize into updated specifications through the same Explore→Learn→Crystallize cycle.
-
 ## ASDLC Usage
 
 BDD's value in agentic development is **semantic anchoring**. When an agent is given a Gherkin scenario, it receives a "specification of behavior" that:
@@ -105,17 +78,15 @@ BDD's value in agentic development is **semantic anchoring**. When an agent is g
 
 This is why BDD scenarios belong in Specs, not just test suites. They're not just verification artifacts—they're **functional blueprints** that guide agent reasoning.
 
-Applied in:
+**Implementation via the Spec Pattern:**
+
+| BDD Component | Spec Implementation |
+|---------------|---------------------|
+| Feature description | Spec Context section |
+| Business rules | Blueprint constraints |
+| Acceptance scenarios | Contract section ([Gherkin](/concepts/gherkin) scenarios) |
+
+**Applied in:**
 - [The Spec](/patterns/the-spec) — Implements BDD through Blueprint (constraints) and Contract (scenarios)
 - [Context Gates](/patterns/context-gates) — BDD scenarios define verification criteria at gates
-- [Living Specs](/practices/living-specs) — BDD scenarios are maintained as living documentation
 
-## Anti-Patterns
-
-| Anti-Pattern | Description | Failure Mode |
-|--------------|-------------|--------------|
-| **Implementation Leakage** | Scenarios that specify *how* instead of *what* | Over-constrained agents; brittle specifications |
-| **UI-Coupled Scenarios** | "Click button X, enter text Y" instead of behavioral intent | Breaks when UI changes; not agent-friendly |
-| **Scenario Explosion** | Exhaustive scenarios for every edge case | Unmaintainable; agents can't prioritize |
-| **Tech Jargon** | Scenarios written in developer language | Business stakeholders can't validate |
-| **Fire-and-Forget** | Writing scenarios once, never updating | Context amnesia; specs drift from reality |

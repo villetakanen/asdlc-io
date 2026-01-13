@@ -26,10 +26,10 @@ Review follows the knowledge hierarchy (terminology → structure → execution)
 | 1 | `context-engineering.md` | A (Industry Term) | [x] |
 | 2 | `mermaid.md` | A (Industry Term) | [x] |
 | 3 | `gherkin.md` | A (Industry Term) | [x] |
-| 4 | `behavior-driven-development.md` | A (Industry Term) | [ ] |
-| 5 | `4d-framework.md` | A (Industry Term) | [ ] |
-| 6 | `ooda-loop.md` | A (Industry Term) | [ ] |
-| 7 | `yaml.md` | A (Industry Term) | [ ] |
+| 4 | `behavior-driven-development.md` | A (Industry Term) | [x] |
+| 5 | `4d-framework.md` | A (Industry Term) | [x] |
+| 6 | `ooda-loop.md` | A (Industry Term) | [x] |
+| 7 | `yaml.md` | A (Industry Term) | [x] |
 
 ---
 
@@ -169,7 +169,11 @@ None — this is an editorial review task.
 |:--------|:-----|:------------------|:-------------|
 | 1 | 2026-01-12 | context-engineering.md | Fixed broken URL, expanded relatedIds (6 articles), added Relationship to Patterns section, linked Guardrails disambiguation, **trimmed from 987→650 words** (removed Applications, Best Practices, condensed research callout) |
 | 2 | 2026-01-13 | mermaid.md | Merged redundant sections (Mermaid in ASDLC + ASDLC Usage), condensed Best Practices to callout, **trimmed from 644→463 words**, added bidirectional relatedIds to the-spec, gherkin, yaml |
-| 3 | 2026-01-13 | gherkin.md | Merged redundant sections (Gherkin in ASDLC Specs + ASDLC Usage), removed extensive Best Practices examples, **trimmed from 968→754 words** |
+| 3 | 2026-01-13 | gherkin.md | Removed 'Why Gherkin Works for Agents' and 'Anti-Patterns' sections (superfluous for SEO pillar), **trimmed from 968→480 words** |
+| 4 | 2026-01-13 | behavior-driven-development.md | Removed 'Evolution: EDD' (speculative) and 'Anti-Patterns', merged 'BDD and the Spec Pattern' into 'ASDLC Usage', **trimmed from 782→531 words** |
+| 5 | 2026-01-13 | 4d-framework.md | Fixed future date typo (2026-02-01 → 2026-01-13). Article already well-structured at **639 words** |
+| 6 | 2026-01-13 | ooda-loop.md | **818 words** - well-structured. OODA vs Single-Shot section is valuable ASDLC-specific content; anti-patterns are ASDLC-specific. No structural changes. |
+| 7 | 2026-01-13 | yaml.md | Merged 'YAML in ASDLC' into 'ASDLC Usage', removed Anti-Patterns and Best Practices, **trimmed from 575→374 words**. **Phase 1 (Concepts) complete.** |
 
 **Major Findings:**
 

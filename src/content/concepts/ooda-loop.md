@@ -12,7 +12,7 @@ relatedIds:
   - concepts/levels-of-autonomy
   - patterns/context-gates
   - practices/agents-md-spec
-lastUpdated: 2026-01-12
+lastUpdated: 2026-01-13
 status: "Live"
 references:
   - type: "book"
