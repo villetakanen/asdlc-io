@@ -4,7 +4,7 @@ description: "Living documents that serve as the permanent source of truth for f
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid"]
 status: "Live"
-lastUpdated: 2026-01-12
+lastUpdated: 2026-01-13
 references:
   - type: "website"
     title: "Living Documentation"
@@ -197,6 +197,7 @@ This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec 
 > "Large Language Models give us great leverage—but they only work if we focus on learning and understanding."
 > — Unmesh Joshi, via Martin Fowler
 
+
 ## Industry Validation
 
 The Spec pattern has emerged independently across the industry under different names. Notably, Rasmus Widing's **Product Requirement Prompt (PRP)** methodology defines the same structure: Goal + Why + Success Criteria + Context + Implementation Blueprint + Validation Loop.
@@ -209,3 +210,5 @@ See also:
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
 - [Behavior-Driven Development](/concepts/behavior-driven-development) — The methodology behind Contract scenarios
 - [Gherkin](/concepts/gherkin) — Syntax guidance for writing behavioral specifications
+
+

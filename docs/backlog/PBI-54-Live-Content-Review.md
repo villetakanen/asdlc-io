@@ -37,7 +37,7 @@ Review follows the knowledge hierarchy (terminology → structure → execution)
 
 | # | Article | Linked Practice | Status |
 |:--|:--------|:----------------|:-------|
-| 8 | `the-spec.md` | `living-specs.md` | [ ] |
+| 8 | `the-spec.md` | `living-specs.md` | [x] |
 | 9 | `model-routing.md` | `agent-personas.md` | [ ] |
 | 10 | `the-pbi.md` | `pbi-authoring.md` | [ ] |
 
@@ -78,6 +78,14 @@ For each article, verify:
 - [ ] Generic "Applications" lists removed (too vague for dictionary)
 - [ ] Research deep-dives condensed to callouts or moved to separate articles
 - [ ] Every section serves the dictionary purpose: define term, explain characteristics, link to ASDLC usage
+
+**Methodology Depth (Patterns/Practices only):**
+- [ ] Industry validation included where available (proves pattern/practice works)
+- [ ] Anti-patterns section present (shows what NOT to do)
+- [ ] Comprehensive coverage (not trimmed for SEO/dictionary purposes)
+- [ ] Trade-offs and alternatives discussed where relevant
+- [ ] Research backing or external practitioner validation cited
+- [ ] Length appropriate for complete understanding (typically 800-1500+ words for patterns)
 
 **Cross-Article Consistency:**
 - [ ] `relatedIds` are accurate and bidirectional
@@ -174,6 +182,8 @@ None — this is an editorial review task.
 | 5 | 2026-01-13 | 4d-framework.md | Fixed future date typo (2026-02-01 → 2026-01-13). Article already well-structured at **639 words** |
 | 6 | 2026-01-13 | ooda-loop.md | **818 words** - well-structured. OODA vs Single-Shot section is valuable ASDLC-specific content; anti-patterns are ASDLC-specific. No structural changes. |
 | 7 | 2026-01-13 | yaml.md | Merged 'YAML in ASDLC' into 'ASDLC Usage', removed Anti-Patterns and Best Practices, **trimmed from 575→374 words**. **Phase 1 (Concepts) complete.** |
+| 8 | 2026-01-13 | the-spec.md (Pattern) | **1188 words** - Restored Industry Validation section. Patterns are methodology payload (not SEO pillars) - validation and depth are valuable. No changes needed. |
+| 9 | 2026-01-13 | pattern-spec.md + PBI-54 | **Spec amendments:** Added "Not SEO Pillars" section to pattern-spec.md clarifying patterns are methodology payload (comprehensive, validated, depth over brevity). Added "Methodology Depth" checklist to PBI for Patterns/Practices review. |
 
 **Major Findings:**
 

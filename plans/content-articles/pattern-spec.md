@@ -11,6 +11,17 @@ Pattern articles describe **architectural solutions**—reusable structural desi
 - **Reusable Design** — Can be instantiated across different contexts
 - **Problem-Solution Pairing** — Clear problem statement with structural response
 
+**Not SEO Pillars:**
+
+Unlike Concepts (which serve as SEO pillars with dictionary-style definitions), Patterns are **methodology payload**—comprehensive documentation of ASDLC's architectural solutions. Patterns should be:
+
+- **Well-studied** — Include validation, research, alternative approaches, industry convergence
+- **Comprehensive** — As long as needed for clarity (typically 800-1500+ words)
+- **Practitioner-focused** — Depth over brevity; include anti-patterns, validation, trade-offs
+- **Validated** — Show convergent evolution, external practitioner work, or research backing
+
+Quality in patterns comes from thoroughness and proven effectiveness, not from minimizing word count.
+
 **What Patterns Define:**
 - The **shape** of a solution (anatomy, components, relationships)
 - The **problem** it solves (context, forces, constraints)
