@@ -2,7 +2,7 @@
 title: "AGENTS.md Specification"
 description: "The definitive guide to the AGENTS.md file, including philosophy, anatomy, and implementation strategy."
 tags: ["governance", "agents", "specification"]
-relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
+relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution"]
 status: "Live"
 lastUpdated: 2026-01-13
 references:
@@ -157,7 +157,7 @@ Explicitly defines the software environment to prevent "Library Hallucination." 
 
 ### 4. Behavioral Boundaries (Context Gates)
 
-Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, or _constitution_. As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
+Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, forming the [Agent Constitution](/patterns/agent-constitution). As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
 the _constitution_ with explicit and deterministic _quality gates_ enforced by tests, linters, and CI/CD pipelines.
 
 **Tier 1 (Constitutive - ALWAYS): Non-negotiable standards.**
