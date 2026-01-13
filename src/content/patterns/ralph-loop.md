@@ -15,7 +15,7 @@ relatedIds:
   - patterns/adversarial-code-review
   - patterns/the-spec
 lastUpdated: 2026-01-12
-status: "Experimental"
+status: "Live"
 references:
   - type: "website"
     title: "Understanding the Ralph Loop"

@@ -33,13 +33,14 @@ Review follows the knowledge hierarchy (terminology → structure → execution)
 
 ---
 
-### Phase 2: Patterns (3 Live Articles)
+### Phase 2: Patterns (2 Live Articles)
 
 | # | Article | Linked Practice | Status |
 |:--|:--------|:----------------|:-------|
 | 8 | `the-spec.md` | `living-specs.md` | [x] |
-| 9 | `model-routing.md` | `agent-personas.md` | [ ] |
-| 10 | `the-pbi.md` | `pbi-authoring.md` | [ ] |
+| 9 | `model-routing.md` *(→ Experimental)* | `agent-personas.md` | [x] |
+| 10 | `the-pbi.md` | `pbi-authoring.md` | [x] |
+
 
 ---
 
@@ -184,10 +185,68 @@ None — this is an editorial review task.
 | 7 | 2026-01-13 | yaml.md | Merged 'YAML in ASDLC' into 'ASDLC Usage', removed Anti-Patterns and Best Practices, **trimmed from 575→374 words**. **Phase 1 (Concepts) complete.** |
 | 8 | 2026-01-13 | the-spec.md (Pattern) | **1188 words** - Restored Industry Validation section. Patterns are methodology payload (not SEO pillars) - validation and depth are valuable. No changes needed. |
 | 9 | 2026-01-13 | pattern-spec.md + PBI-54 | **Spec amendments:** Added "Not SEO Pillars" section to pattern-spec.md clarifying patterns are methodology payload (comprehensive, validated, depth over brevity). Added "Methodology Depth" checklist to PBI for Patterns/Practices review. |
+| 10 | 2026-01-13 | model-routing.md (Pattern) | **498 words** - Changed status: Live → Experimental. Pattern has valuable content (capability profiles) but lacks depth for Live status: missing Anatomy, Anti-Patterns, Trade-offs per Methodology Depth standards. |
+| 11 | 2026-01-13 | the-pbi.md (Pattern) | **619 words** - Borderline. Has Anatomy section (better than model-routing) but missing Anti-Patterns, trade-offs, industry validation, references. **Kept Live** as core ASDLC pattern but needs expansion. |
+| 12 | 2026-01-13 | ralph-loop.md (Pattern) | **1166 words** - **Promoted: Experimental → Live**. Exceeds all Live standards: complete structure (Definition, Problem, Solution, Anatomy, Relationships), industry validation (Huntley + research paper), comprehensive Anti-Patterns (6), Guardrails section, OODA mapping, Mermaid diagram. |
+
+| 16 | 2026-01-13 | product-vision.md (Pattern) | **1057 words** - **Promoted: Draft → Live**. Strong concept for preventing "vibe convergence". Includes 5-part anatomy, clear anti-patterns, and context hierarchy placement. Added validation from Marty Cagan (SVPG) and Lenny Rachitsky regarding "Product Sense" in AI era. |
+
+
+
 
 **Major Findings:**
 
-*(Document systemic issues or patterns observed across multiple articles)*
+### 1. Concepts ≠ Patterns (Critical Discovery)
+
+**Concepts are SEO Pillars:**
+- Dictionary-style definitions (600-1200 words target)
+- Optimize for search visibility and terminology clarity
+- Trim: Anti-patterns (documented in sources), Best Practices (how-to content), speculative sections
+- Example: Removed "Evolution: EDD" from BDD, "Why Gherkin Works" from Gherkin
+
+**Patterns are Methodology Payload:**
+- Comprehensive architectural documentation (800-1500+ words typical)
+- Optimize for practitioner understanding and validation
+- Keep: Industry validation, anti-patterns, trade-offs, research backing, depth
+- Example: Restored "Industry Validation" in The Spec after initially removing it
+
+**Impact:** Updated `pattern-spec.md` to clarify this distinction and added "Methodology Depth" checklist to PBI.
+
+### 2. Common Redundancy Pattern
+
+**Pattern Found:** "X in ASDLC" + "ASDLC Usage" sections with significant overlap
+- Observed in: mermaid.md, gherkin.md, yaml.md
+- Solution: Merge into single "ASDLC Usage" section
+
+### 3. Hallucinated Implementation Details
+
+**Pattern Found:** Repo-specific implementation details presented as methodology
+- Example: mermaid.md referenced `pnpm diagrams` and `mermaid.json` as if part of ASDLC methodology
+- Solution: Focus on methodology principles (why Mermaid for specs) not repo tooling
+
+### 4. Word Count Reductions (Concepts Only)
+
+Total concept articles trimmed: **5,413 → 3,955 words (-27%)**
+- Largest reduction: gherkin.md (968→480, -50%)
+- No reduction needed: ooda-loop.md, 4d-framework.md (already well-structured)
+
+### 5. Specification Triad
+
+Successfully established bidirectional linking for the specification triad:
+- Gherkin ↔ YAML ↔ Mermaid
+- All three now cross-reference in both frontmatter (`relatedIds`) and body content
+
+### 6. Status Management
+
+**Lesson:** Patterns that lack required depth should be demoted to Experimental, not kept as Live.
+
+**Case:** `model-routing.md` was Live with 498 words, missing Anatomy, Anti-Patterns, Trade-offs.
+- **Action:** Demoted to Experimental
+- **Rationale:** Experimental = "valuable but needs expansion" - allows references while signaling incomplete status
+- **Alternative considered:** Draft (too harsh for functional, referenced content)
+
+**Impact:** Live status now means "meets Methodology Depth standards" for patterns.
+
 
 **Follow-up PBIs Created:**
 
