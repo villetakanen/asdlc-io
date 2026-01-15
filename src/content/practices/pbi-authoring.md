@@ -4,7 +4,7 @@ description: "How to write Product Backlog Items that agents can read, execute, 
 tags: ["Agile", "Product Backlog Item", "Workflow", "Agent Execution"]
 relatedIds: ["patterns/the-pbi", "patterns/the-spec", "practices/living-specs"]
 status: "Live"
-lastUpdated: 2026-01-09
+lastUpdated: 2026-01-13
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"

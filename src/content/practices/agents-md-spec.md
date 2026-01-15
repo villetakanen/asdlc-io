@@ -2,9 +2,9 @@
 title: "AGENTS.md Specification"
 description: "The definitive guide to the AGENTS.md file, including philosophy, anatomy, and implementation strategy."
 tags: ["governance", "agents", "specification"]
-relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas"]
+relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution"]
 status: "Live"
-lastUpdated: 2026-01-09
+lastUpdated: 2026-01-13
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
@@ -18,6 +18,18 @@ references:
 `AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for context and instructions—such as build steps, tests, and conventions—that help AI coding agents work effectively on a project.
 
 We align with the [agents.md specification](https://agents.md), treating this file as the authoritative source of truth for agentic behavior within the ASDLC.
+
+## When to Use
+
+**Use this practice when:**
+- Establishing a new repository for AI-assisted development
+- Onboarding new AI tools (Cursor, Windsurf, Claude) to an existing project
+- You need to standardize agent behavior across a team
+- AI agents are hallucinating dependencies or breaking architectural rules
+
+**Skip this practice when:**
+- The project is a temporary script or throwaway prototype
+- You are not using any agentic tools or LLM assistants
 
 ## CORE PHILOSOPHY
 
@@ -93,6 +105,23 @@ ln -s AGENTS.md CLAUDE.md
 
 This ensures Claude Code users get the same guidance while maintaining a single source of truth. Note that Claude Code also supports `CLAUDE.local.md` for personal preferences that shouldn't be version-controlled.
 
+## ECOSYSTEM TOOLS
+
+As AGENTS.md adoption grows, tools emerge to bridge compatibility gaps between different coding assistants and enforce standards across heterogeneous environments.
+
+### Ruler
+
+[Ruler](https://github.com/intellectronica/ruler) is a meta-tool that synthesizes agent instructions from multiple sources (AGENTS.md, .cursorrules, project conventions) and injects them into coding assistants that may not natively support the AGENTS.md standard.
+
+**Key capabilities:**
+- **Cross-platform normalization**: Translates AGENTS.md into assistant-specific formats
+- **Multi-source aggregation**: Combines rules from various config files into unified context
+- **Dynamic injection**: Ensures consistent agent behavior across tools like Cursor, Windsurf, and Claude Code
+
+**Use case:** Teams using multiple coding assistants (e.g., some developers on Cursor, others on Claude Code) can maintain a single source of truth in AGENTS.md while Ruler handles distribution to tool-specific formats.
+
+This demonstrates ecosystem maturity: when third-party tools emerge to solve interoperability problems, the standard has achieved meaningful adoption.
+
 ## ASDLC IMPLEMENTATION STRATEGY
 
 While the [agents.md](https://agents.md) standard provides the format, the ASDLC recommends a structured implementation to ensure reliability. We present our `AGENTS.md` format not just as a list of tips, but as a segmented database of rules. This is *one* valid implementation strategy, particularly suited for rigorous engineering environments.
@@ -128,7 +157,7 @@ Explicitly defines the software environment to prevent "Library Hallucination." 
 
 ### 4. Behavioral Boundaries (Context Gates)
 
-Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, or _constitution_. As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
+Replaces vague "Guardrails" with a "Three-Tiered Boundary" system, forming the [Agent Constitution](/patterns/agent-constitution). As the models are probabilistic, absolute prohibitions are unrealistic. Instead, this system categorizes rules by severity and required action. These rules are aimed to reducing the likelihood of critical errors. Note that you should always complement
 the _constitution_ with explicit and deterministic _quality gates_ enforced by tests, linters, and CI/CD pipelines.
 
 **Tier 1 (Constitutive - ALWAYS): Non-negotiable standards.**

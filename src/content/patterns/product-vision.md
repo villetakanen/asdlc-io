@@ -3,8 +3,24 @@ title: "Product Vision"
 description: "A structured vision document that transmits product taste and point-of-view to agents, preventing convergence toward generic outputs."
 tags: ["Context Engineering", "Product Design", "Agent Alignment"]
 relatedIds: ["patterns/agent-constitution", "patterns/the-spec", "concepts/context-engineering", "practices/product-vision-authoring", "practices/agents-md-spec", "practices/living-specs", "practices/agent-personas", "concepts/vibe-coding"]
-status: "Draft"
-lastUpdated: 2025-01-05
+status: "Live"
+lastUpdated: 2026-01-13
+references:
+  - type: "video"
+    title: "Product Management in the Era of AI"
+    url: "https://www.youtube.com/watch?v=kYsqp21jXkU"
+    author: "Marty Cagan"
+    publisher: "Silicon Valley Product Group"
+    published: 2024-04-15
+    accessed: 2026-01-13
+    annotation: "Validates the thesis that AI increases, rather than decreases, the need for strong product vision and strategy."
+  - type: "website"
+    title: "How to develop product sense"
+    url: "https://www.lennysnewsletter.com/p/how-to-develop-product-sense"
+    author: "Lenny Rachitsky"
+    published: 2023-05-09
+    accessed: 2026-01-13
+    annotation: "Defines the 'taste' skill that Product Vision attempts to encode for agents."
 ---
 
 ## Definition
@@ -92,6 +108,23 @@ The Constitution shapes *behavior*. The Vision shapes *judgment*. The Specs shap
 Not every project needs a separate `VISION.md`. For smaller products or early-stage teams, the vision can live as a preamble in `AGENTS.md`. For complex products with detailed voice guidelines and taste references, a separate file prevents crowding out operational context.
 
 See [Product Vision Authoring](/practices/product-vision-authoring) for guidance on the inline vs. separate decision, templates, and maintenance practices.
+
+## Validated in Practice
+
+### Industry Validation
+
+**Marty Cagan (Silicon Valley Product Group)**
+In the AI era, Cagan argues that **product vision** is more critical than ever. As AI lowers the cost of building features, differentiation shifts from "ability to ship" to "ability to solve value risks." Without a strong vision, AI teams build "features that work" rather than "products that matter."
+
+> "It will be easier to build features, but harder to build the *right* features." — Marty Cagan
+
+**Lenny Rachitsky (Product Sense)**
+Rachitsky defines "product sense" as the ability to consistently craft products with intended impact. `VISION.md` is essentially **codified product sense**—explicitly documenting the intuition that senior PMs use to steer teams, so that agents (who lack intuition) can simulate it.
+
+### The Scientific Basis: Countering Regression to the Mean
+LLMs are probabilistic engines trained to predict the most likely next token. By definition, "most likely" means "most average."
+
+Without external constraint, an agent will always drift toward the [Regression to the Mean](https://en.wikipedia.org/wiki/Regression_towards_the_mean). A Product Vision acts as a **forcing function**, artificially skewing the probability distribution toward specific, non-average choices (e.g., "playful" over "professional," "dense" over "simple").
 
 ## Anti-Patterns
 

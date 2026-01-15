@@ -2,8 +2,8 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec"]
-lastUpdated: 2026-01-09
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec"]
+lastUpdated: 2026-01-12
 status: "Live"
 references:
   - type: "website"
@@ -26,6 +26,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Research identifying the cold start problem as the primary blocker in AI-assisted development."
+  - type: "paper"
+    title: "InfiAgent: An Infinite-Horizon Framework for General-Purpose Autonomous Agents"
+    url: "https://arxiv.org/abs/2601.03204"
+    author: "Chenglin Yu, Yuchen Wang, Songmiao Wang, Hongxia Yang, Ming Li"
+    published: 2026-01-06
+    accessed: 2026-01-10
+    annotation: "Empirical validation of file-centric state management for long-horizon agent stability."
 ---
 
 ## Definition
@@ -69,23 +76,18 @@ In ASDLC, context is treated as version-controlled code, not ephemeral prompts.
 
 **Context vs Guardrails:**
 
-A distinction exists between `Guardrails` (Safety) and `Context` (Utility). Currently, many `AGENTS.md` files contain defensive instructions like "Do not delete files outside this directory" or "Do not output raw secrets." This is likely a transitional state. OpenAI, Anthropic, Google, and platform wrappers are racing to bake these safety constraints directly into the inference layer. Soon, telling an agent "Don't leak API keys" will be as redundant as telling a compiler "Optimize for speed."
+A distinction exists between [Guardrails](/concepts/guardrails) (Safety) and Context (Utility). Currently, many `AGENTS.md` files contain defensive instructions like "Do not delete files outside this directory" or "Do not output raw secrets." This is likely a transitional state. OpenAI, Anthropic, Google, and platform wrappers are racing to bake these safety constraints directly into the inference layer. Soon, telling an agent "Don't leak API keys" will be as redundant as telling a compiler "Optimize for speed."
 
-Applied in:
+**Relationship to Patterns:**
+
+- **[Specs](/patterns/the-spec)** — Specs are context engineering in document form. The Blueprint and Contract sections are structured context optimized for agent consumption.
+- **[Context Gates](/patterns/context-gates)** — Checkpoints where context is validated, injected, or filtered before agent action.
+- **[OODA Loop](/concepts/ooda-loop)** — Context Engineering is *engineering the Orient phase*. The quality of agent decisions depends on context quality.
+- **[4D Framework](/concepts/4d-framework)** — The "Description" dimension maps directly to Context Engineering: transferring goals, constraints, and data structures to the agent.
+
+**Applied in:**
 - [AGENTS.md Specification](/practices/agents-md-spec) — The practical application of context engineering in repositories.
-- [Context Gates](/concepts/context-gates) — Checkpoints where context is validated or injected.
 - [Model Context Protocol](/concepts/model-context-protocol) — The standard for serving context to agents.
 
-## Applications
-
-- **Code Generation**: Provide file structure, type definitions, and examples
-- **Content Creation**: Supply style guides, templates, and domain knowledge
-- **Data Analysis**: Include schema definitions, sample data, and output formats
-
-## Best Practices
-
-1. **Front-load critical information**: LLMs prioritize the beginning and end of the context window.
-2. **Use consistent formatting**: Delimiters (XML tags, markdown sections) help models separate distinct information types.
-3. **Provide clear success criteria**: Define what "good" looks like to reduce probabilistic guessing.
-4. **Include negative examples**: Explicitly stating what *not* to do is often more effective than generic constraints.
-5. **Test with minimal viable context**: Start small and add context only when the agent fails, to avoid "distractor" noise.
+> [!NOTE]
+> **Research Validation (InfiAgent, 2026):** File-centric state management outperforms compressed long-context prompts. Replacing persistent file state with accumulated conversation history dropped task completion from 80/80 to 27.7/80 average, even with Claude 4.5 Sonnet. This validates treating context as a reconstructed view of authoritative file state, not as conversation memory.

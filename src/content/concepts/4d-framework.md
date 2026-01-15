@@ -4,7 +4,7 @@ description: "A cognitive model codifying four essential competencies—Delegati
 tags: ["AI Fluency", "Human-AI Collaboration", "Cognitive Model", "Prompt Engineering"]
 relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "patterns/context-gates"]
 status: "Live"
-lastUpdated: 2026-02-01
+lastUpdated: 2026-01-13
 references:
   - type: "website"
     title: "Anthropic AI Fluency Course"

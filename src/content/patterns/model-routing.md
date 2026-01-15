@@ -3,8 +3,8 @@ title: "Model Routing"
 description: "Strategic assignment of LLM models to SDLC phases based on reasoning capability versus execution speed."
 tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture"]
 relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering"]
-status: "Live"
-lastUpdated: 2025-12-27
+status: "Experimental"
+lastUpdated: 2026-01-13
 references:
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"

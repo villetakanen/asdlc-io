@@ -4,10 +4,16 @@
     "primaryColor": "#f04e30",
     "primaryTextColor": "#EEEEEE",
     "primaryBorderColor": "#f04e30",
+    "secondaryColor": "#ebebe6",
+    "tertiaryColor": "#f4f4f0",
     "lineColor": "#111111",
-    "edgeLabelBackground": "#111111",
-    "edgeLabelTextColor": "#000000",
+    "textColor": "#111111",
+    "mainBkg": "#f04e30",
+    "clusterBkg": "#ebebe6",
+    "clusterBorder": "#d1d1c7",
+    "edgeLabelBackground": "#f4f4f0",
+    "edgeLabelTextColor": "#111111",
     "fontFamily": "\"B612 Mono\", monospace"
   },
-  "themeCSS": ".edgePath .path { stroke-width: 3px; }"
+  "themeCSS": ".edgePath .path { stroke-width: 3px; } .cluster rect { rx: 4px; ry: 4px; } .edgeLabel { color: #111111 !important; } .edgeLabel span, .edgeLabel p { color: #111111 !important; }"
 }

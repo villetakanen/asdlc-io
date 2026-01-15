@@ -4,7 +4,7 @@ description: "Ultra-granular commit practice for agentic workflows, treating ver
 tags: ["Version Control", "Git", "Safety", "Rollback"]
 relatedIds: ["patterns/the-pbi", "patterns/context-gates", "concepts/agentic-sdlc"]
 status: "Live"
-lastUpdated: 2025-12-27
+lastUpdated: 2026-01-13
 references:
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"
@@ -19,7 +19,19 @@ references:
 
 **Micro-Commits** is the practice of committing code changes at much higher frequency than traditional development workflows. Each discrete task—often a single function, test, or file—receives its own commit.
 
-When working with LLM-generated code, commits become "save points in a game": checkpoints that enable instant rollback when probabilistic outputs introduce bugs or architectural drift.
+When working with LLM-generated code, commits become "save points in a game": Checkpoints that enable instant rollback when probabilistic outputs introduce bugs or architectural drift.
+
+## When to Use
+
+**Use this practice when:**
+- Working with LLMs to generate code (preventing "vibe convergence")
+- Refactoring complex logic where regression risk is high
+- Conducting experimental "spikes" that might need total rollback
+- Trying to isolate specific AI changes for audit or debugging
+
+**Skip this practice when:**
+- Making trivial documentation fixes (typos)
+- The work is entirely manual and low-risk
 
 ## The Problem: Coarse-Grained Commits in Agentic Workflows
 

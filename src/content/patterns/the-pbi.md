@@ -4,7 +4,7 @@ description: "A transient execution unit that defines the delta (change) while p
 tags: ["Agile", "Product Backlog Item", "Spec-Driven Development", "Bounded Agency"]
 relatedIds: ["patterns/the-spec", "practices/pbi-authoring", "concepts/spec-driven-development"]
 status: "Live"
-lastUpdated: 2025-01-02
+lastUpdated: 2026-01-13
 ---
 
 ## Definition
