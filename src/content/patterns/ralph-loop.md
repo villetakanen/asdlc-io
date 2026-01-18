@@ -1,6 +1,6 @@
 ---
 title: "Ralph Loop"
-description: "A persistence pattern that turns AI coding agents into autonomous, self-correcting workers by treating failure as feedback and iterating until external verification passes."
+description: "Persistence pattern enabling autonomous agent iteration until external verification passes, treating failure as feedback rather than termination."
 tags:
   - Agent Architecture
   - Automation
@@ -30,6 +30,13 @@ references:
     published: 2023-10-03
     accessed: 2026-01-12
     annotation: "Research demonstrating LLM self-correction limitations without external feedback."
+  - type: "website"
+    title: "Dev Workflows as Code"
+    url: "https://medium.com/nick-tune-tech-strategy-blog/dev-workflows-as-code-fab70d44b6ab"
+    author: "Nick Tune"
+    published: 2026-01-16
+    accessed: 2026-01-18
+    annotation: "Proposes composable step abstractions for deterministic loops."
 ---
 
 ## Definition
@@ -172,7 +179,7 @@ The cycle repeats until external verification passes.
 
 **[The Spec](/patterns/the-spec)** — Completion promises require machine-verifiable success criteria. Well-structured Specs with Gherkin scenarios are ideal Ralph inputs.
 
-**Implementation:** Ralph Loops are typically implemented via CLI plugins (e.g., claude-code/ralph-wiggum) or standalone orchestrators. Specific tooling guidance is TBD.
+**[Workflow as Code](/practices/workflow-as-code)** — The practice for implementing Ralph Loops using typed step abstractions rather than prompt-based orchestration. Provides deterministic control flow with the agent invoked only for probabilistic tasks.
 
 ## Anti-Patterns
 
@@ -195,3 +202,13 @@ The cycle repeats until external verification passes.
 | Token Waste | Exact completion promise requirements |
 | Logic Drift | Frequent Git commits each iteration |
 | Cost Overrun | API cost tracking per session |
+
+See also:
+- [Workflow as Code](/practices/workflow-as-code) — Implementation practice for deterministic loop orchestration
+- [Context Gates](/patterns/context-gates) — The checkpoint pattern applied at iteration boundaries
+- [Adversarial Code Review](/patterns/adversarial-code-review) — Generator/Judge separation this pattern enforces
+
+### Related Concepts
+- [OODA Loop](/concepts/ooda-loop) — The cybernetic framework Ralph mechanizes
+- [Learning Loop](/concepts/learning-loop) — The feedback cycle automated by external verification
+- [Levels of Autonomy](/concepts/levels-of-autonomy) — L3-L4 autonomy enabled by this pattern

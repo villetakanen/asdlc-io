@@ -3,8 +3,23 @@ title: "Context Gates"
 description: "Architectural checkpoints that filter input context and validate output artifacts between phases of work to prevent cognitive overload and ensure system integrity."
 tags: ["Architecture", "Quality Gates", "Context Engineering", "Validation"]
 status: "Experimental"
-relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "patterns/adversarial-code-review", "patterns/constitutional-review"]
-lastUpdated: 2026-01-08
+relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code"]
+lastUpdated: 2026-01-18
+references:
+  - type: "website"
+    title: "A Method for AI-Assisted Pull Request Reviews"
+    url: "https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/"
+    author: "Claudio Lassala"
+    published: 2026-01-05
+    accessed: 2026-01-09
+    annotation: "Production implementation validating Review Gates' effectiveness in catching architectural violations through adversarial review."
+  - type: "website"
+    title: "Dev Workflows as Code"
+    url: "https://medium.com/nick-tune-tech-strategy-blog/dev-workflows-as-code-fab70d44b6ab"
+    author: "Nick Tune"
+    published: 2026-01-16
+    accessed: 2026-01-18
+    annotation: "Validates the need for deterministic orchestration and hard enforcement boundaries to prevent 'tipsy wobbling' agents."
 ---
 
 ## Definition
@@ -17,7 +32,7 @@ Unlike "Guardrails," which conflate prompt engineering with hard constraints, Co
 
 Without architectural checkpoints, agentic systems suffer from two critical failures:
 
-**Context Pollution** — Agents accumulate massive conversation histories (observations, tool outputs, internal monologues, errors). When transitioning between sessions or tasks, feeding the entire context creates cognitive overload. Signal-to-noise ratio drops, and agents lose focus on the current objective.
+**Context Pollution** — Agents accumulate massive conversation histories (observations, tool outputs, internal monologues, errors). When transitioning between sessions or tasks, feeding the entire context creates cognitive overload. Signal-to-noise ratio drops, and agents lose focus on the current objective—Nick Tune describes this as the agent becoming **"tipsy wobbling from side-to-side."**
 
 **Unvalidated Outputs** — Code that passes automated tests can still violate semantic contracts (spec requirements, architectural constraints, security policies). Without probabilistic validation layers, implementation shortcuts and silent failures slip through to production.
 
@@ -121,6 +136,19 @@ Subjective checks requiring human strategic judgment.
 - Visual QA (are spacings and layout visually balanced?)
 - Strategic fit (does this feature solve the user's problem?)
 
+#### Workflow Enforcement (Denial Gates)
+Mechanisms that actively **block** agents from bypassing the defined process.
+
+- **Type:** Client-Side Hook / Middleware
+- **Nature:** Prevention
+- **Question:** "Are you allowed to do this?"
+- **Enforcement:** Hard block (exit code 1)
+
+**Examples:**
+- `git push` hook: "Blocked. You must use the `submit-pr` tool which runs verification first."
+- Shell wrapper: Prevents agent from accessing production database credentials.
+
+
 ## Gate Taxonomy
 
 | Feature | Summary Gates (Input) | Context Filtering (Input) | Quality Gates (Output) | Review Gates (Output) | Acceptance Gates (Output) |
@@ -143,13 +171,11 @@ Subjective checks requiring human strategic judgment.
 
 **[Agent Constitution](/patterns/agent-constitution)** — Provides architectural constraints that Constitutional Review validates against.
 
-## Implementing Practices
+**[Ralph Loop](/patterns/ralph-loop)** — Applies Context Gates at iteration boundaries, using context rotation and progress files to prevent cognitive overload across autonomous loops.
 
-This pattern is implemented by:
+**[Feature Assembly](/practices/feature-assembly)** — The practice that uses all three Output Gates (Quality, Review, Acceptance) in the verification pipeline.
 
-- **[Feature Assembly](/practices/feature-assembly)** — Uses all three Output Gates (Quality, Review, Acceptance) in the verification pipeline
-- **[Adversarial Code Review](/patterns/adversarial-code-review)** — Implements Review Gates using Critic Agents
-- **Context Handoff Practice** (TBD) — Would implement Summary Gates for session transitions
+**[Workflow as Code](/practices/workflow-as-code)** — The practice for implementing gate enforcement programmatically rather than via prompt instructions.
 
 ## Strategic Value
 
@@ -174,6 +200,3 @@ See also:
 - [Agentic SDLC](/concepts/agentic-sdlc) — The lifecycle where gates create phase boundaries
 - [Context Engineering](/concepts/context-engineering) — The practice of structuring context
 - [Guardrails](/concepts/guardrails) — Disambiguated term this pattern replaces
-
-### External Validation
-- [A Method for AI-Assisted Pull Request Reviews](https://lassala.net/2026/01/05/a-method-for-ai-assisted-pull-request-reviews-aligning-code-with-business-value/) (Carlos Lassala, January 2026) — Production implementation validating Review Gates' effectiveness in catching architectural violations through adversarial review

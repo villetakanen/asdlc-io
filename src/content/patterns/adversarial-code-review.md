@@ -13,6 +13,13 @@ references:
     published: 2026-01-05
     accessed: 2026-01-09
     annotation: "Production implementation validating the pattern's effectiveness in catching silent performance bugs and architectural violations."
+  - type: "website"
+    title: "Dev Workflows as Code"
+    url: "https://medium.com/nick-tune-tech-strategy-blog/dev-workflows-as-code-fab70d44b6ab"
+    author: "Nick Tune"
+    published: 2026-01-16
+    accessed: 2026-01-18
+    annotation: "Demonstrates programmatic implementation of subagents using Claude Code SDK."
 ---
 
 ## Definition
@@ -238,6 +245,28 @@ This pattern is currently manual but has clear automation paths:
 **IDE Integration** — Real-time critique as code is written, similar to linting but spec-aware.
 
 **Multi-Agent Orchestration** — Automated handoff between Builder and Critic until PASS is achieved.
+    
+### Programmatic Orchestration (Workflow as Code)
+
+To scale this pattern, move from manual prompt-pasting to code-based orchestration (e.g., using the Claude Code SDK).
+
+**Convention-Based Loading:**
+Store reviewer agent prompts in a standard directory (e.g., `.claude/agents/`) and load them dynamically:
+
+```typescript
+// Load the specific reviewer agent
+const reviewerPrompt = await fs.readFile(`.claude/agents/${agentName}.md`);
+
+// Spawn subagent via SDK
+const reviewResult = await claude.query({
+  prompt: reviewerPrompt,
+  context: { spec, diff },
+  outputFormat: { type: 'json_schema', schema: ReviewSchema }
+});
+```
+
+This allows you to treat Critic Agents as **standardized, version-controlled functions** in your build pipeline.
+
 
 As agent orchestration tooling matures, this pattern may move from Experimental to Standard.
 
