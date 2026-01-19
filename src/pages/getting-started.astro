@@ -247,22 +247,29 @@ Merge</code></pre>
     </section>
 
     <section>
-      <h2>MCP Access</h2>
+      <h2>Accessing the Knowledge Base</h2>
       <p>
-        This knowledge base is MCP-compatible. Connect your agent to:
+        Stay grounded in official ASDLC patterns and practices through two primary agent-ready interfaces:
+      </p>
+
+      <h3>1. Model Context Protocol (MCP)</h3>
+      <p>
+        The ASDLC Knowledge Base is a live MCP server. Connect your agent to:
       </p>
       <pre><code>https://asdlc.io/mcp</code></pre>
       <p>
-        Tools available:
+        Tools available: <code>search_knowledge_base</code>, <code>get_article</code>, <code>list_articles</code>.
+      </p>
+
+      <h3>2. Downloadable Static Skill</h3>
+      <p>
+        For offline, local-first, or air-gapped workflows, use the <strong>Downloadable Static Skill</strong>. This is a self-contained bundle of the Knowledge Base with relative links and agent-optimized manifest.
       </p>
       <ul>
-        <li><code>search_knowledge_base</code> — Find relevant patterns and concepts</li>
-        <li><code>get_article</code> — Retrieve full article content</li>
-        <li><code>list_articles</code> — Browse available content</li>
+        <li><strong>Download</strong>: <a href="/asdlc-skill.zip">asdlc-skill.zip</a></li>
+        <li><strong>Setup</strong>: Extract into <code>.asdlc/</code> or <code>.cursorrules/</code> in your repo.</li>
+        <li><strong>Usage</strong>: Point your agent to the <code>SKILL.md</code> manifest as a context anchor.</li>
       </ul>
-      <p>
-        Your agent can query ASDLC patterns directly during development.
-      </p>
     </section>
   </article>
 </BaseLayout>

@@ -140,6 +140,7 @@ Use these exact commands. Do not guess.
 |**Astro CLI Help**| `pnpm astro -- --help` | Get help using the Astro CLI                   |
 |**Unit Tests**| `pnpm test:run`           | Run all unit tests (located in `./tests`)      |
 |**Build Index**| `node scripts/generate-mcp-index.mjs` | Pre-generates article manifest for MCP |
+|**Build Skill**| `pnpm build:skill`        | Generates downloadable static skill in `dist/skill/` |
 |**Render Diagrams**| `pnpm diagrams` | Renders mermaid code blocks to SVG in `public/mermaid/` |
 |**Update**|`pnpm outdated`|Checks dependency currency|
 |**MCP Preview**| `pnpm test:mcp-preview <url>` | Test MCP server on a remote deployment       |
@@ -154,6 +155,16 @@ This project implements an MCP server that exposes the ASDLC knowledge base.
 - **Pre-requisite**: Run `node scripts/generate-mcp-index.mjs` (or `pnpm build` which runs it via `prebuild`).
 - **Local Testing**: `netlify dev` -> `http://localhost:8888/mcp`
 - **Verification**: Use `pnpm test:mcp-preview <url>` to verify remote deployments.
+
+## 📦 Downloadable Static Skill
+
+A self-contained version of the knowledge base for offline or local-first use.
+
+- **Build Command**: `pnpm build:skill`
+- **Output**: `dist/skill/` (A structured markdown bundle)
+- **Transformations**: Rewrites internal links to relative paths and adds status headers.
+- **Entry Point**: `dist/skill/SKILL.md` (Manifest for agents)
+- **Filtering**: Only includes `Live` and `Experimental` articles.
 
 ## 6. MCP Knowledge Base
 The knowledge base is exposed via an MCP (Model Context Protocol) server at `/mcp`. Agents can use these tools to self-research the project:
