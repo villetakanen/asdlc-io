@@ -1,12 +1,12 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && pnpm build:skill",
     "prebuild": "node scripts/generate-mcp-index.mjs",
     "preview": "astro preview",
     "astro": "astro",
@@ -18,7 +18,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:mcp-preview": "node scripts/test-deploy-preview.mjs"
+    "test:mcp-preview": "node scripts/test-deploy-preview.mjs",
+    "build:skill": "node scripts/build-skill.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

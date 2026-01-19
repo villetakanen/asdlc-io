@@ -3,7 +3,7 @@ title: "Product Requirement Prompt (PRP)"
 description: "A structured methodology combining PRD, codebase context, and agent runbook—the minimum spec for production-ready AI code."
 tags: ["Industry Term", "Spec-Driven Development", "Context Engineering"]
 status: "Experimental"
-relatedIds: ["concepts/spec-driven-development", "patterns/the-spec", "patterns/the-pbi", "concepts/context-engineering"]
+relatedIds: ["concepts/spec-driven-development", "patterns/product-vision", "patterns/the-spec", "patterns/the-pbi", "concepts/context-engineering"]
 lastUpdated: 2025-01-05
 references:
   - type: "repository"
@@ -44,7 +44,9 @@ A complete PRP includes six components:
 |-----------|---------|
 | **Goal** | What needs building |
 | **Why** | Business value and impact justification |
-| **Success Criteria** | Measurable checkpoints |
+| **Success Criteria** | **States** that indicate completion (not activities) |
+| **Health Metrics** | Non-regression constraints (what must *not* degrade) |
+| **Strategic Context** | Trade-offs & priorities (from **Product Vision**) |
 | **All Needed Context** | Documentation references, file paths, code snippets |
 | **Implementation Blueprint** | Task breakdown and pseudocode |
 | **Validation Loop** | Multi-level testing (syntax, unit, integration) |
@@ -65,6 +67,8 @@ PRP components map directly to ASDLC concepts—a case of convergent evolution i
 | Goal | [The Spec](/patterns/the-spec) — Blueprint |
 | Why | [Product Thinking](/concepts/product-thinking) |
 | Success Criteria | [Context Gates](/patterns/context-gates) |
+| Health Metrics | [The Spec](/patterns/the-spec) — Non-Functional Reqs / Constraints |
+| Strategic Context | [Product Vision](/patterns/product-vision) — Runtime Injection |
 | All Needed Context | [Context Engineering](/concepts/context-engineering) |
 | Implementation Blueprint | [The PBI](/patterns/the-pbi) |
 | Validation Loop | [Context Gates](/patterns/context-gates) — Quality Gates |

@@ -39,6 +39,7 @@ Fluency in agentic coding requires both mastery of steering (vibes) and the impl
 ## 🧞 Key Features
 
 - **Model Context Protocol (MCP)**: A built-in server that allows AI agents to directly browse and search this knowledge base via the `/mcp` endpoint.
+- **Downloadable Static Skill**: A self-contained bundle of the knowledge base designed for offline or local-first agentic workflows.
 - **Content Layer Architecture**: Powered by Astro 5.x for lightning-fast, schema-validated static content.
 - **Edge Deployment**: MCP functionality runs on Netlify Edge Functions for global availability.
 
@@ -68,6 +69,13 @@ Starts the local dev server at `localhost:4321`.
 pnpm build
 ```
 Generates the static site and pre-builds the **MCP Article Manifest** (`src/mcp/articles.json`).
+
+### Build Downloadable Skill
+
+```bash
+pnpm build:skill
+```
+Generates the static skill artifact at `dist/skill/`. (Zip packaging implemented in PBI-59).
 
 ## 🤖 Model Context Protocol (MCP)
 

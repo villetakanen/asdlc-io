@@ -1,10 +1,10 @@
 ---
 title: "Agent Constitution"
 description: "Persistent, high-level directives that shape agent behavior and decision-making before action."
-complexity: "Medium"
+tags: ["Agent Architecture", "System Prompts", "Alignment", "Governance"]
 status: "Live"
-relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop"]
-lastUpdated: 2026-01-13
+relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop", "patterns/adversarial-code-review", "practices/workflow-as-code"]
+lastUpdated: 2026-01-19
 references:
   - type: "paper"
     title: "Constitutional AI: Harmlessness from AI Feedback"
@@ -16,16 +16,33 @@ references:
     url: "https://docs.anthropic.com/en/docs/system-prompts"
     publisher: "Anthropic"
     accessed: 2026-01-13
-    annotation: "Official documentation on using system prompts to define agent persona and constraints."
+    annotation: "Defines the model for Constitutional AI: training a harmless assistant via self-critique based on a constitution."
+  - type: "website"
+    title: "Intent Engineering Framework for AI Agents"
+    url: "https://www.productcompass.pm/p/intent-engineering-framework-for-ai-agents"
+    author: "Paweł Huryn"
+    published: 2024-04-30
+    accessed: 2026-01-19
+    annotation: "Provides the taxonomy for 'Steering Constraints' (Constitution) vs 'Hard Constraints' (Orchestration/Hook)."
 ---
 
-## The Prime Directives
+## Definition
 
 An **Agent Constitution** is a set of high-level principles or "Prime Directives" injected into an agent's system prompt to align its intent and behavior with system goals.
 
 The concept originates from Anthropic's [Constitutional AI](https://arxiv.org/abs/2212.08073) research, which proposed training models to be "Helpful, Honest, and Harmless" (HHH) using a written constitution rather than human labels alone. In the ASDLC, we adapt this alignment technique to **System Prompt Engineering**—using the Constitution to define the "Superego" of our coding agents.
 
-## The Driver Training Analogy
+## The Problem: Infinite Flexibility
+    
+Without a Constitution, an Agent is purely probabilistic. It will optimize for being "helpful" to the immediate prompt user, often sacrificing long-term system integrity.
+
+If a prompt says "Implement this fast," a helpful agent might skip tests. A Constitutional Agent would refuse: "I cannot skip tests because Principle #3 forbids merging unverified code."
+
+## The Solution: Proactive Behavioral Alignment
+
+The Constitution shapes agent behavior **before** action occurs—unlike reactive mechanisms (tests, gates) that catch problems after the fact.
+
+### The Driver Training Analogy
 
 To understand the difference between a Constitution and other control mechanisms, consider the analogy of driving a car:
 
@@ -40,6 +57,24 @@ In the [OODA Loop](/concepts/ooda-loop) (Observe-Orient-Decide-Act), the Constit
 When an agent **Observes** the world (reads code, sees a user request), the Constitution acts as a filter for how it interprets those observations.
 *   A "Helpful" Constitution might interpret a vague request as an opportunity to guess and assist.
 *   A "Skeptical" Constitution might interpret the same vague request as a risk to be flagged.
+
+## Taxonomy: Steering vs. Hard Constraints
+
+It is critical to distinguish what the Constitution *can* enforce (Steering) from what it *must* rely on external systems to enforce (Hard).
+
+### Steering Constraints (Soft)
+These live in the **System Prompt** or **AGENTS.md**. They influence the model's reasoning, tone, and risk preference.
+- "Be concise."
+- "Prefer composition over inheritance."
+- "Ask clarifying questions when ambiguous."
+
+### Hard Constraints (Orchestration)
+These live in the **Runtime Environment** (Hooks, API limits, Docker containers). They physically prevent the agent from taking restricted actions.
+- "Cannot access production database credentials."
+- "Cannot git push without passing automated tests."
+- "Cannot access files outside `/src`."
+
+The Agent Constitution is primarily about **Steering Constraints** that govern *behavior*, while [Context Gates](/patterns/context-gates) and [Workflow as Code](/practices/workflow-as-code) implement the **Hard Constraints**.
 
 ## Anatomy of a Constitution
 
@@ -111,8 +146,25 @@ Constitutions must be tuned. If they are too strict, the agent becomes paralyzed
 *   *Bad*: "Be secure."
 *   *Good*: "Never concatenate strings to build SQL queries. Use parameterized queries only."
 
-## Related Patterns
+## Relationship to Other Patterns
 
-*   **[Constitutional Review](/patterns/constitutional-review)**: The practice of using a Critic agent to review code specifically against the Agent Constitution.
-*   **[Context Gates](/patterns/context-gates)**: The deterministic checks that back up the probabilistic Constitution.
-*   **[Context Engineering](/concepts/context-engineering)**: The broader discipline of managing what goes into the prompt window.
+**[Constitutional Review](/patterns/constitutional-review)** — The pattern for using a Critic agent to review code specifically against the Agent Constitution.
+
+**[Context Gates](/patterns/context-gates)** — The deterministic checks that back up the probabilistic Constitution. Hard Constraints implemented via orchestration.
+
+**[Adversarial Code Review](/patterns/adversarial-code-review)** — Uses persona-specific Constitutions (Builder vs Critic) to create dialectic review processes.
+
+**[The Spec](/patterns/the-spec)** — Defines task-specific requirements, while the Constitution defines global behavioral guidelines.
+
+**[AGENTS.md Specification](/practices/agents-md-spec)** — The practice for documenting and maintaining your Agent Constitution.
+
+**[Workflow as Code](/practices/workflow-as-code)** — Implements Hard Constraints programmatically, complementing the Constitution's Steering Constraints.
+
+See also:
+- [Constitutional Review](/patterns/constitutional-review) — Enforcement via Critic agents
+- [Context Gates](/patterns/context-gates) — Hard constraint implementation
+- [AGENTS.md Specification](/practices/agents-md-spec) — Documentation practice
+
+### Related Concepts
+- [OODA Loop](/concepts/ooda-loop) — The Constitution operates in the Orient phase
+- [Context Engineering](/concepts/context-engineering) — The broader discipline of managing prompt context

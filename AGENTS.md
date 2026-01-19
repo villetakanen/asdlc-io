@@ -52,9 +52,9 @@ You are not a "faster developer." You are a specialized station in the factory. 
 * **Guidelines**
   - **Content Structure:** Follow the established folder structure in `src/content/` for concepts, patterns, and practices
   - **Article Specs:** Read the relevant spec before creating content:
-    - Concepts: `@docs/specs/content/concept-article-spec.md`
-    - Patterns: `@docs/specs/content/pattern-article-spec.md` (Future)
-    - Practices: `@docs/specs/content/practice-article-spec.md` (Future)
+    - Concepts: `plans/content-articles/concept-spec.md`
+    - Patterns: `plans/content-articles/pattern-spec.md`
+    - Practices: `plans/content-articles/practice-spec.md`
   - **Frontmatter Validation:** All metadata must match schema in `src/content/config.ts`
   - **Cross-References:** Ensure bidirectional linking (if A links to B, B should link to A)
   - **Quality:** Run `pnpm check` and `pnpm lint` before marking content complete
@@ -140,6 +140,8 @@ Use these exact commands. Do not guess.
 |**Astro CLI Help**| `pnpm astro -- --help` | Get help using the Astro CLI                   |
 |**Unit Tests**| `pnpm test:run`           | Run all unit tests (located in `./tests`)      |
 |**Build Index**| `node scripts/generate-mcp-index.mjs` | Pre-generates article manifest for MCP |
+|**Build Skill**| `pnpm build:skill`        | Generates downloadable static skill in `dist/skill/` |
+|**Render Diagrams**| `pnpm diagrams` | Renders mermaid code blocks to SVG in `public/mermaid/` |
 |**Update**|`pnpm outdated`|Checks dependency currency|
 |**MCP Preview**| `pnpm test:mcp-preview <url>` | Test MCP server on a remote deployment       |
 
@@ -153,6 +155,16 @@ This project implements an MCP server that exposes the ASDLC knowledge base.
 - **Pre-requisite**: Run `node scripts/generate-mcp-index.mjs` (or `pnpm build` which runs it via `prebuild`).
 - **Local Testing**: `netlify dev` -> `http://localhost:8888/mcp`
 - **Verification**: Use `pnpm test:mcp-preview <url>` to verify remote deployments.
+
+## 📦 Downloadable Static Skill
+
+A self-contained version of the knowledge base for offline or local-first use.
+
+- **Build Command**: `pnpm build:skill`
+- **Output**: `dist/skill/` (A structured markdown bundle)
+- **Transformations**: Rewrites internal links to relative paths and adds status headers.
+- **Entry Point**: `dist/skill/SKILL.md` (Manifest for agents)
+- **Filtering**: Only includes `Live` and `Experimental` articles.
 
 ## 6. MCP Knowledge Base
 The knowledge base is exposed via an MCP (Model Context Protocol) server at `/mcp`. Agents can use these tools to self-research the project:
@@ -217,7 +229,37 @@ Before generating ANY recommendations, external agents MUST read:
     
 - **Scope:** Do not "fix" unrelated files. Stick to the PBI.
 
-## 8. Context References
+## 8. Mermaid Diagram Convention
+
+Content articles use **dual mermaid representation**: a `mermaid` code block for source, followed by a `<figure>` element referencing the pre-rendered SVG.
+
+**Why both?** The code block is the source of truth (editable). The `<figure>` displays the pre-rendered SVG for fast page loads. Run `pnpm diagrams` to regenerate SVGs from code blocks.
+
+**Example:**
+```markdown
+## Architecture
+
+` ` `mermaid
+flowchart LR
+    A --> B
+` ` `
+
+<figure class="mermaid-diagram">
+  <img src="/mermaid/pattern-name-fig-1.svg" alt="Mermaid Diagram" />
+</figure>
+```
+
+**Workflow:**
+1. Edit the `mermaid` code block
+2. Run `pnpm diagrams` to regenerate SVGs
+3. Commit both the markdown and updated SVG
+
+**Do NOT:**
+- Remove one representation thinking it's duplicate
+- Edit the SVG directly (it's generated)
+- Forget to run `pnpm diagrams` after editing mermaid blocks
+
+## 9. Context References
 - **Data Schema:** Read `src/content/config.ts`
 - **Design Tokens:** Read `src/styles/global.css`
 - **Project Config:** Read `astro.config.mjs`
