@@ -18,6 +18,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Research showing 0-20% full delegation, 4.1 human turns per session, and exclusively human-owned high-level design decisions."
+  - type: "website"
+    title: "Intent Engineering Framework for AI Agents"
+    url: "https://www.productcompass.pm/p/intent-engineering-framework-for-ai-agents"
+    author: "Paweł Huryn"
+    published: 2024-04-30
+    accessed: 2026-01-19
+    annotation: "Validates L2 as 'Guarded Autonomy' and L3 as 'Proposal-First' autonomy."
 ---
 
 ## Definition
