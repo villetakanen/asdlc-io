@@ -1,10 +1,10 @@
 ---
 title: "Model Routing"
 description: "Strategic assignment of LLM models to SDLC phases based on reasoning capability versus execution speed."
-tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture"]
-relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering"]
+tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture", "Economics"]
+relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering", "practices/workflow-as-code"]
 status: "Experimental"
-lastUpdated: 2026-01-13
+lastUpdated: 2026-01-26
 references:
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"
@@ -13,6 +13,13 @@ references:
     published: 2026-01-01
     accessed: 2026-01-08
     annotation: "Addy Osmani's workflow guide emphasizing pragmatic model selection and mid-task model switching patterns based on reasoning needs."
+  - type: "website"
+    title: "The Mythical LLM: Why Rumors of the Death of Software are Premature"
+    author: "Dan Cripe"
+    published: 2026-01-20
+    url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
+    accessed: 2026-01-24
+    annotation: "Documents latency, cost, and reliability constraints from enterprise practice."
 ---
 
 ## Definition
@@ -43,6 +50,37 @@ We categorize models into three capability profiles aligned with [Agentic SDLC](
 
 *Model examples current as of December 27, 2025. The LLM landscape evolves rapidly—validate capabilities and availability before implementation.*
 
+## Operational Economics
+
+Model routing decisions must account for economic constraints, not just capability profiles.
+
+### The Three Constraints
+
+| Constraint | LLM Reality | Implication |
+|------------|-------------|-------------|
+| **Latency** | Simple LLM calls: 1-5s. Agentic operations: 10-100s+ | LLMs cannot be in hot paths requiring sub-second response |
+| **Cost** | LLM inference: 10-100x traditional compute | Reserve LLM spend for tasks requiring genuine reasoning |
+| **Reliability** | Probabilistic outputs require verification | Factor verification overhead into productivity calculations |
+
+> "The counter-argument is that labor is the real cost. From my experience, it remains to be seen in which specific tasks LLMs actually save time."
+> — Dan Cripe
+
+### The Sweet Spot
+
+**LLMs excel at:**
+- High ambiguity tasks requiring interpretation
+- Generation of novel content or code
+- Format/language transformation
+- Latency-tolerant background processing
+
+**Use deterministic code for:**
+- Hot paths requiring <100ms response
+- High-volume operations (millions/day)
+- Binary correctness (auth, financial calculations)
+- Deterministic workflows (routing, validation, state machines)
+
+[Context Gates](/patterns/context-gates) should be deterministic, not LLM-based. See [Workflow as Code](/practices/workflow-as-code) for orchestration patterns.
+
 ## Relationship to Levels of Autonomy
 
 [Levels of Autonomy](/concepts/levels-of-autonomy) define human oversight requirements. Model Routing complements this by matching computational capability to task characteristics:
@@ -52,8 +90,3 @@ We categorize models into three capability profiles aligned with [Agentic SDLC](
 - **Exploratory analysis** (L2 with discovery focus) → Massive Context models
 
 This ensures that the computational tool's capability profile matches the task's computational requirements and the degree of human verification needed.
-
-See also:
-- [Agent Personas](/practices/agent-personas) — Context engineering practice for scoping agent work, extended by model routing
-- [The Spec](/patterns/the-spec) — The artifact produced by High Reasoning models in the planning phase
-- [Context Engineering](/concepts/context-engineering) — The practice of structuring context for optimal LLM performance

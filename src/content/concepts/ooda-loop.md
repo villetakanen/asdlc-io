@@ -10,6 +10,7 @@ relatedIds:
   - concepts/learning-loop
   - concepts/context-engineering
   - concepts/levels-of-autonomy
+  - concepts/feedback-loop-compression
   - patterns/context-gates
   - practices/agents-md-spec
 lastUpdated: 2026-01-13
