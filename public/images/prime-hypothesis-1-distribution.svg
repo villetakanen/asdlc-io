@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&amp;family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap');
+
+      .text-sans { font-family: "Archivo", sans-serif; }
+      .text-mono { font-family: "B612 Mono", monospace; }
+    </style>
+    <!-- Pattern: Lined Grey -->
+    <pattern id="pattern-lines" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#585855" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <!--
+    Simplified Curve Logic using Cubic Bezier (C) commands
+    Start Point: (50, 379)
+    5% Boundary: (235.5, 318)
+    Peak (Mean): (400, 140)
+    95% Boundary: (564.5, 318)
+    End Point: (750, 379)
+    Base Y: 380
+  -->
+
+  <!-- Region 1: < 5% (Lined Grey) -->
+  <!-- Curve from Start to 5% boundary, then close shape to axis -->
+  <path d="M 50 380 L 50 379 C 140 379, 200 360, 235.5 318 L 235.5 380 Z" fill="url(#pattern-lines)" stroke="none"/>
+
+  <!-- Region 2: 5% to Mean (Lighter Grey) -->
+  <!-- Curve from 5% boundary to Peak, then close shape to axis -->
+  <path d="M 235.5 380 L 235.5 318 C 270 260, 350 140, 400 140 L 400 380 Z" fill="#ebebe6" stroke="none"/>
+
+  <!-- Region 3: Mean to 95% (Orange) -->
+  <!-- Curve from Peak to 95% boundary, then close shape to axis -->
+  <path d="M 400 380 L 400 140 C 450 140, 530 260, 564.5 318 L 564.5 380 Z" fill="#f04e30" fill-opacity="0.9" stroke="none"/>
+
+  <!-- Region 4: > 95% (Black) -->
+  <!-- Curve from 95% boundary to End, then close shape to axis -->
+  <path d="M 564.5 380 L 564.5 318 C 600 360, 660 379, 750 379 L 750 380 Z" fill="#111111" stroke="none"/>
+
+  <!-- Main Curve Outline (Smooth continuous stroke on top) -->
+  <path d="M 50 379 C 140 379, 200 360, 235.5 318 C 270 260, 350 140, 400 140 C 450 140, 530 260, 564.5 318 C 600 360, 660 379, 750 379" fill="none" stroke="#111111" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Axes -->
+  <line x1="50" y1="380" x2="750" y2="380" stroke="#111111" stroke-width="2"/>
+  <line x1="50" y1="380" x2="50" y2="50" stroke="#111111" stroke-width="2"/>
+
+  <!-- Vertical Markers & Labels -->
+  <!-- 5% Line -->
+  <line x1="235.5" y1="395" x2="235.5" y2="50" stroke="#111111" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
+  <text x="235.5" y="410" class="text-mono" fill="#585855" font-size="12" text-anchor="middle" font-weight="bold">5%</text>
+
+  <!-- Mean Line -->
+  <line x1="400" y1="395" x2="400" y2="50" stroke="#111111" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
+  <text x="400" y="410" class="text-mono" fill="#585855" font-size="12" text-anchor="middle" font-weight="bold">Mean</text>
+
+  <!-- 95% Line -->
+  <line x1="564.5" y1="395" x2="564.5" y2="50" stroke="#111111" stroke-width="1" stroke-dasharray="4 4" opacity="0.7"/>
+  <text x="564.5" y="410" class="text-mono" fill="#585855" font-size="12" text-anchor="middle" font-weight="bold">95%</text>
+
+  <!-- Area Titles -->
+  <!-- 1. 100% Vibes -->
+  <text x="140" y="420" class="text-sans" fill="#111111" font-size="14" font-weight="bold" text-anchor="middle">
+    <tspan x="140" dy="0">100%</tspan>
+    <tspan x="140" dy="1.2em">Vibes</tspan>
+  </text>
+
+  <!-- 2. Selective Methodology -->
+  <text x="320" y="420" class="text-sans" fill="#111111" font-size="14" font-weight="bold" text-anchor="middle">
+    <tspan x="320" dy="0">Selective</tspan>
+    <tspan x="320" dy="1.2em">methodology</tspan>
+  </text>
+
+  <!-- 3. Full ASDLC -->
+  <text x="480" y="420" class="text-sans" fill="#111111" font-size="14" font-weight="bold" text-anchor="middle">
+    <tspan x="480" dy="0">Full</tspan>
+    <tspan x="480" dy="1.2em">ASDLC</tspan>
+  </text>
+
+  <!-- 4. 100% Code -->
+  <text x="660" y="420" class="text-sans" fill="#111111" font-size="14" font-weight="bold" text-anchor="middle">
+    <tspan x="660" dy="0">100%</tspan>
+    <tspan x="660" dy="1.2em">Code</tspan>
+  </text>
+
+  <!-- Logo (Upper Right) -->
+  <svg x="670" y="10" width="80" height="80" viewBox="0 0 128 128">
+    <polygon fill="#f04e30" points="38.9 91.8 63.1 22.6 128 22.6 128 91.8 38.9 91.8"/>
+    <g>
+      <path fill="#111111" d="M19.7,91.8L52.5,6.4h22.9l32.9,85.4h-20l-6.1-16.8h-37.2l-6.1,16.8h-19.2ZM50.3,60h26.5l-7.6-21c-.3-.9-.7-2-1.2-3.3-.5-1.3-.9-2.7-1.4-4.3-.5-1.6-1-3.1-1.4-4.7-.5-1.5-.9-2.9-1.3-4.2h-.7c-.4,1.6-1,3.4-1.6,5.5-.7,2.1-1.3,4.2-2,6.1-.7,2-1.2,3.5-1.6,4.8l-7.6,21Z"/>
+      <g>
+        <path fill="#111111" d="M29.6,121.6c-1.3,0-2.6-.1-3.8-.4-1.2-.3-2.3-.7-3.2-1.3-.9-.6-1.6-1.4-2.2-2.3-.5-.9-.8-2-.8-3.2s0-.3,0-.4c0-.1,0-.2,0-.3h4.5s0,.1,0,.3c0,.1,0,.2,0,.3,0,.8.2,1.4.7,1.9.4.5,1.1,1,1.9,1.2.8.3,1.8.4,2.9.4s1.4,0,2-.1c.6,0,1.1-.2,1.5-.4.4-.2.8-.4,1.1-.6.3-.2.5-.5.6-.8s.2-.6.2-1c0-.7-.2-1.2-.6-1.7-.4-.4-1-.8-1.7-1.1s-1.5-.6-2.4-.8c-.9-.2-1.8-.5-2.7-.7-.9-.3-1.8-.6-2.7-.9-.9-.4-1.7-.8-2.4-1.3-.7-.5-1.3-1.1-1.7-1.9-.4-.8-.6-1.7-.6-2.8s.2-2.1.7-2.9c.5-.8,1.1-1.5,2-2.1.9-.5,1.9-.9,3-1.2,1.1-.3,2.4-.4,3.8-.4s2.5.1,3.6.4c1.1.3,2.1.7,2.9,1.2.9.6,1.5,1.3,2,2.1s.7,1.9.7,3.1v.4h-4.4v-.3c0-.7-.2-1.2-.6-1.7-.4-.5-1-.8-1.7-1.1-.7-.3-1.6-.4-2.5-.4s-1.9,0-2.7.3c-.7.2-1.3.5-1.7.9-.4.4-.6.8-.6,1.4s.2,1.1.6,1.4c.4.4,1,.7,1.7,1,.7.3,1.5.5,2.4.8.9.2,1.8.5,2.7.7.9.3,1.8.6,2.7.9.9.3,1.7.8,2.4,1.3.7.5,1.3,1.2,1.7,1.9.4.8.6,1.7.6,2.7,0,1.8-.4,3.2-1.3,4.3s-2,1.9-3.6,2.3c-1.5.5-3.2.7-5.2.7Z"/>
+        <path fill="#111111" d="M43.7,121.2v-23.7h9.5c2.4,0,4.4.4,6.1,1.3,1.7.9,3,2.1,3.9,3.9.9,1.7,1.4,4,1.4,6.7s-.5,4.9-1.4,6.7c-.9,1.7-2.2,3-3.9,3.9-1.7.9-3.7,1.3-6.1,1.3h-9.5ZM48.2,117.4h5c1.1,0,2.1-.2,2.9-.5.9-.3,1.6-.8,2.1-1.4.6-.6,1-1.4,1.3-2.4.3-1,.4-2.1.4-3.3v-.7c0-1.3-.1-2.4-.4-3.4-.3-1-.7-1.7-1.3-2.4-.6-.6-1.3-1.1-2.1-1.4-.9-.3-1.8-.5-2.9-.5h-5v16Z"/>
+        <path fill="#111111" d="M68.8,121.2v-23.7h4.5v19.8h11.9v3.9h-16.3Z"/>
+        <path fill="#111111" d="M97.9,121.6c-2.4,0-4.5-.4-6.2-1.3s-3-2.2-3.9-4-1.4-4.1-1.4-7c0-4.2,1-7.2,3-9.2,2-2,4.8-3,8.4-3s3.7.3,5.3,1c1.6.7,2.8,1.7,3.8,3s1.4,3.1,1.4,5.1h-4.6c0-1.1-.2-2.1-.7-2.9s-1.2-1.4-2.1-1.8c-.9-.4-1.9-.6-3-.6s-2.9.3-3.9.9c-1,.6-1.8,1.5-2.3,2.7-.5,1.2-.7,2.7-.7,4.4v.8c0,1.8.2,3.3.7,4.5.5,1.2,1.3,2.1,2.3,2.7,1,.6,2.3.9,3.9.9s2.2-.2,3.1-.6c.9-.4,1.6-1,2.1-1.8s.7-1.8.7-2.9h4.4c0,2.1-.5,3.8-1.4,5.1-.9,1.3-2.2,2.3-3.7,3-1.6.7-3.3,1-5.3,1Z"/>
+      </g>
+    </g>
+  </svg>
+</svg>

@@ -37,6 +37,13 @@ references:
     published: 2026-01-16
     accessed: 2026-01-18
     annotation: "Proposes composable step abstractions for deterministic loops."
+  - type: "website"
+    title: "The Mythical LLM: Why Rumors of the Death of Software are Premature"
+    author: "Dan Cripe"
+    published: 2026-01-20
+    url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
+    accessed: 2026-01-24
+    annotation: "Critique of unbounded Ralph Loop usage: 'Who the hell wants to maintain 100,000,000 lines of crappy code?'"
 ---
 
 ## Definition
@@ -82,6 +89,16 @@ flowchart LR
 </figure>
 
 Both lanes start from the same well-structured PBI/Spec and converge at Adversarial Review. The Ralph Loop lane operates autonomously, with human oversight at review boundaries rather than every iteration.
+
+> [!WARNING]
+> **The "100 Million Lines" Anti-Pattern**
+> 
+> Ralph Loop enables persistence, not quality. Using Ralph Loop for unbounded code generation without specs produces what Dan Cripe calls "100 million lines of crappy code"—technically functional but architecturally incoherent and unmaintainable.
+> 
+> Ralph Loop is a *persistence mechanism*, not a *development methodology*. It must be bounded by:
+> - **Exit criteria** defined in [The Spec](/patterns/the-spec)
+> - **Verification gates** that check architectural coherence, not just compilation
+> - **Scope limits** that prevent unbounded iteration
 
 ## The Problem: Human-in-the-Loop Bottleneck
 
@@ -192,6 +209,20 @@ The cycle repeats until external verification passes.
 | **No Context Rotation** | Letting context window fill without rotation | Context rot; degraded reasoning |
 | **No Progress Files** | Fresh iterations re-discover completed work | Wasted tokens; repeated mistakes |
 
+### Unbounded Generation
+
+Running Ralph Loop without scope constraints produces volume without value. Each iteration may "fix" the immediate error while introducing architectural drift. Over time, the codebase becomes:
+
+- **Internally inconsistent**: Different modules make different assumptions
+- **Unmaintainable**: No human understands the full system
+- **Expensive to verify**: Review time exceeds generation time
+
+### Missing Architectural Verification
+
+Ralph Loop's default exit criteria (tests pass, compilation succeeds) don't verify architectural coherence. A loop that only checks "does it work?" will happily generate code that violates design patterns, duplicates logic, or introduces subtle inconsistencies.
+
+**Mitigation**: Combine Ralph Loop with [Constitutional Review](/patterns/constitutional-review) to verify outputs against architectural principles, not just functional requirements.
+
 ## Guardrails
 
 | Risk | Mitigation |
@@ -203,12 +234,4 @@ The cycle repeats until external verification passes.
 | Logic Drift | Frequent Git commits each iteration |
 | Cost Overrun | API cost tracking per session |
 
-See also:
-- [Workflow as Code](/practices/workflow-as-code) — Implementation practice for deterministic loop orchestration
-- [Context Gates](/patterns/context-gates) — The checkpoint pattern applied at iteration boundaries
-- [Adversarial Code Review](/patterns/adversarial-code-review) — Generator/Judge separation this pattern enforces
 
-### Related Concepts
-- [OODA Loop](/concepts/ooda-loop) — The cybernetic framework Ralph mechanizes
-- [Learning Loop](/concepts/learning-loop) — The feedback cycle automated by external verification
-- [Levels of Autonomy](/concepts/levels-of-autonomy) — L3-L4 autonomy enabled by this pattern

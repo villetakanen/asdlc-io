@@ -13,7 +13,7 @@ relatedIds:
   - patterns/ralph-loop
   - practices/living-specs
 status: Live
-lastUpdated: 2026-01-12
+lastUpdated: 2026-01-26
 references:
   - type: "website"
     title: "Martin Fowler Fragment: January 8, 2026"
@@ -36,6 +36,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Internal study showing how engineers balance AI velocity with understanding."
+  - type: "website"
+    title: "\"You Had One Job\": Why Twenty Years of DevOps Has Failed to Do it"
+    url: "https://www.honeycomb.io/blog/you-had-one-job-why-twenty-years-of-devops-has-failed-to-do-it"
+    author: "Charity Majors"
+    published: 2026-01-22
+    accessed: 2026-01-26
+    annotation: "Industry validation of the Learning Loop—proposes identical 'deploy → observe → validate → learn → iterate' cycle as the AI-enabled future of software development."
 ---
 
 ## Definition

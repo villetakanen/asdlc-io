@@ -32,6 +32,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Research showing engineers vibe code themselves into corners, with cleanup overhead exceeding initial velocity."
+  - type: "website"
+    title: "The Mythical LLM: Why Rumors of the Death of Software are Premature"
+    author: "Dan Cripe"
+    published: 2026-01-20
+    url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
+    accessed: 2026-01-24
+    annotation: "Enterprise architect's critique of vibe coding for production systems. Documents spending 100M tokens on architectural drift fixes and argues the quality gap is 'fundamental to how current LLMs work.'"
 ---
 
 ## Definition
@@ -83,6 +90,11 @@ Boris Cherny (Principal Engineer, Anthropic; creator of Claude Code) warns: **"Y
 
 > **"Speed is seductive. Maintainability is survival."**  
 > — Boris Cherny, *The Peterman Podcast* (December 2025)
+
+> [!NOTE]
+> **The 100 Million Token Lesson**
+> 
+> Dan Cripe, a 25-year enterprise software veteran, documented spending 100 million tokens on a frontier model attempting to fix its own architectural mistakes—not syntax errors, but fundamental design pattern violations. His diagnosis: "LLMs are pattern matchers, not architects. They generate code that looks like the code they were trained on: code written to solve an immediate problem, not code designed to be maintainable as part of a larger system."
 
 ### Vibe Coded Into a Corner
 
