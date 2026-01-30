@@ -11,9 +11,10 @@ references:
     url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
     publisher: "Vanishing Gradients"
     annotation: "Source material for the Context Anchor concept. Explains how persistent context files ground AI agents across sessions."
-  - type: "article"
+  - type: "website"
     title: "AGENTS.md outperforms skills in our agent evals"
     url: "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals"
+    accessed: 2026-01-30
     publisher: "Vercel"
     annotation: "Empirical validation of passive context approach. Compressed 8KB AGENTS.md achieved 100% pass rate on Next.js 16 API evals vs 79% for skills with explicit instructions. Demonstrates value of 'retrieval-led reasoning' over training data."
 ---
