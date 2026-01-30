@@ -15,7 +15,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         ASDLC (Agentic Software Development Life Cycle) is a framework for building software with AI agents—not as toys or assistants, but as industrial infrastructure.
       </p>
       <p>
-        We reject "vibe coding." We reject copy-pasting ChatGPT output and hoping it works. Instead, we treat agent-assisted development with the same rigor as any serious engineering discipline: schemas, contracts, gates, and governance.
+        We reject "<a href="/concepts/vibe-coding">vibe coding</a>." We reject copy-pasting ChatGPT output and hoping it works. Instead, we treat agent-assisted development with the same rigor as any serious engineering discipline: schemas, contracts, gates, and governance.
       </p>
       <blockquote>
         <p>"Agentic architecture is the conveyor belt for knowledge work."</p>
@@ -146,6 +146,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <li>
           <strong><a href="/patterns/adversarial-code-review">Adversarial Code Review</a></strong> — Using a Critic Agent to validate Builder output.
         </li>
+        <li>
+          <strong><a href="/patterns/the-adr">The ADR</a></strong> — Architecture Decision Records as immutable context for agents.
+        </li>
       </ol>
     </section>
 
@@ -182,6 +185,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <td>Repo root</td>
             <td>Global system constraints</td>
           </tr>
+          <tr>
+            <td><code>docs/adrs/</code></td>
+            <td>Repo root</td>
+            <td>Architecture Decision Records</td>
+          </tr>
         </tbody>
       </table>
 
@@ -207,17 +215,17 @@ Merge</code></pre>
           <tr>
             <td>Architecture, specs, debugging</td>
             <td>High Reasoning</td>
-            <td>o3-pro, DeepSeek V3.2</td>
+            <td>Gemini 3 Deep Think, DeepSeek V3.2</td>
           </tr>
           <tr>
             <td>Code generation, refactoring</td>
             <td>High Throughput</td>
-            <td>Gemini Flash, Claude Haiku</td>
+            <td>Gemini 3 Flash, Llama 4 Scout, Claude Haiku 4.5</td>
           </tr>
           <tr>
             <td>Legacy analysis, large context</td>
             <td>Massive Context</td>
-            <td>Gemini Pro (5M), Claude Sonnet</td>
+            <td>Gemini 3 Pro (5M), Claude 4.5 Sonnet (500k)</td>
           </tr>
         </tbody>
       </table>
@@ -239,6 +247,7 @@ Merge</code></pre>
         <li><strong>Read the <a href="/concepts/agentic-sdlc">Agentic SDLC</a> overview</strong> — Understand the thesis.</li>
         <li><strong>Add <code>AGENTS.md</code> to your repo</strong> — Use the <a href="/practices/agents-md-spec#reference-template">template</a>.</li>
         <li><strong>Write one spec</strong> — Pick a feature, follow the <a href="/practices/living-specs">Living Specs</a> guide.</li>
+        <li><strong>Draft an ADR</strong> — Document a key decision using the <a href="/patterns/the-adr">ADR pattern</a>.</li>
         <li><strong>Try the loop</strong> — Spec → PBI → Implementation → Gate → Merge.</li>
       </ol>
       <p>
