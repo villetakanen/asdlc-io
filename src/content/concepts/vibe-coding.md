@@ -39,6 +39,13 @@ references:
     url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
     accessed: 2026-01-24
     annotation: "Enterprise architect's critique of vibe coding for production systems. Documents spending 100M tokens on architectural drift fixes and argues the quality gap is 'fundamental to how current LLMs work.'"
+  - type: "website"
+    title: "Calm Coding: The Workflow That Makes Vibecoding Survivable"
+    url: "https://oc2sf.com/blog/calm-coding-vibecoding-survivable.html"
+    author: "Jan (OC2SF)"
+    published: 2026-02-01
+    accessed: 2026-02-04
+    annotation: "Governance framework positioning 'Calm Coding' as the disciplined counterpart to vibecoding. Introduces 'The Hype-Man Problem' — LLMs enabling bad decisions with high conviction. Key quote: 'Velocity without direction isn't speed. It's drift.'"
 ---
 
 ## Definition

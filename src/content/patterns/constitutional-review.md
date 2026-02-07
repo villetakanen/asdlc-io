@@ -3,8 +3,8 @@ title: "Constitutional Review"
 description: "Verification pattern that validates implementation against both functional requirements (Spec) and architectural values (Constitution)."
 tags: ["Code Review", "Architecture", "Agent Constitution", "Quality Gates", "Verification"]
 relatedIds: ["patterns/adversarial-code-review", "patterns/agent-constitution", "patterns/the-spec", "patterns/context-gates", "practices/constitutional-review-implementation"]
-status: "Experimental"
-lastUpdated: 2026-01-09
+status: "Live"
+lastUpdated: 2026-01-31
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"

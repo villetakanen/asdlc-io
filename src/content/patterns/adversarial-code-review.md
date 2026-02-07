@@ -3,8 +3,8 @@ title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
 relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review"]
-status: "Experimental"
-lastUpdated: 2026-01-09
+status: "Live"
+lastUpdated: 2026-01-31
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
@@ -20,6 +20,13 @@ references:
     published: 2026-01-16
     accessed: 2026-01-18
     annotation: "Demonstrates programmatic implementation of subagents using Claude Code SDK."
+  - type: "website"
+    title: "Calm Coding: The Workflow That Makes Vibecoding Survivable"
+    url: "https://oc2sf.com/blog/calm-coding-vibecoding-survivable.html"
+    author: "Jan (OC2SF)"
+    published: 2026-02-01
+    accessed: 2026-02-04
+    annotation: "External validation of session separation. Key insight: 'The agent that wrote the code is compromised. It knows what it built. It'll rationalize.'"
 ---
 
 ## Definition

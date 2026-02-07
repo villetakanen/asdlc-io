@@ -11,6 +11,13 @@ references:
     url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
     publisher: "Vanishing Gradients"
     annotation: "Source material for Plan Verification and Observability First principles. Explains the Specify → Plan → Execute workflow."
+  - type: "website"
+    title: "Calm Coding: The Workflow That Makes Vibecoding Survivable"
+    url: "https://oc2sf.com/blog/calm-coding-vibecoding-survivable.html"
+    author: "Jan (OC2SF)"
+    published: 2026-02-01
+    accessed: 2026-02-04
+    annotation: "Validates the assembly workflow with the 'multi-agent team' structure (Architect/Reviewer/Tester) and contract-first sequencing."
 ---
 
 ## Definition
@@ -99,7 +106,19 @@ Modern coding agents generate an internal execution plan before writing code. Th
 > [!IMPORTANT]
 > If the plan is vague ("I will fix the bug"), reject it. Demand a specific file-level plan before execution proceeds.
 
-### Phase 2: Implementation
+### Phase 1b: Breakdown & Sequencing
+
+Break the implementation into atomic steps that can be verified independently. This defines the [Micro-Commits](/practices/micro-commits) sequence.
+
+**The Atomic Sequence (Standard Order):**
+1.  **Refine Contracts** — If the PBI reveals a gap, update the Spec *first*. Implementation creates learning; capture that learning in the Spec immediately.
+2.  **Define Types/Schemas** — Code the interface (TypeSafe contract).
+3.  **Test Data** — Generate inputs/fixtures matching the schema.
+4.  **Test Cases** — Write tests that use the data and fail (Red).
+5.  **Implementation** — Write logic to make tests pass (Green).
+6.  **Integration** — Wire it into the main app.
+
+Each step is a "save point" (commit). If you find a spec bug in step 5, go back to step 1, fix the spec, and continue. Code and Spec must remain in sync.
 
 Code is generated or written to satisfy the PBI requirements while adhering to spec contracts.
 
@@ -249,6 +268,17 @@ Feature Assembly is the **execution** of the Spec's contracts.
 
 [PBIs](/patterns/the-pbi) are the transient execution triggers. Feature Assembly is what happens when a PBI is executed.
 
+**Atomicity Rule:**
+**1 PBI = 1 Atomic Feature Assembly.**
+
+If a feature requires multiple large steps (e.g., "Create Database Schema" AND "Build API" AND "Build UI"), these should be **separate PBIs**, not one giant assembly.
+
+- **PBI-101:** Create User Schema & Migrations (Output: Database Ready)
+- **PBI-102:** User API Endpoints (Output: API Ready)
+- **PBI-103:** User Profile UI (Output: Feature Complete)
+
+This prevents "Giant Commit Syndrome" and keeps context windows manageable.
+
 **The Flow:**
 ```
 PBI → Feature Assembly → Quality Gates → Integration → Spec Update (if needed)
@@ -395,6 +425,19 @@ This practice is currently manual orchestration. Automation opportunities:
 **Real-Time Compliance** — IDE plugin shows spec violations as code is written
 
 **Assembly Metrics Dashboard** — Real-time tracking of gate pass rates and cycle time
+
+## Relationship to Micro-Commits
+
+[Micro-Commits](/practices/micro-commits) are the "save points" of Feature Assembly.
+
+**One Step = One Commit:**
+- Defined the schema? **Commit.**
+- Generated test data? **Commit.**
+- Wrote failing test? **Commit.**
+- Passed the test? **Commit.**
+- Wiring failed? **Revert to previous commit.**
+
+This granularity enables safety. If the LLM hallucinates during implementation (Step 4), you only roll back Step 4, keeping your schemas and tests.
 
 See also:
 - [The Spec](/patterns/the-spec) — The authoritative source of truth
