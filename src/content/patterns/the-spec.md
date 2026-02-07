@@ -39,6 +39,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-09
     annotation: "Research validating the cold start problem and context transfer challenges in AI-assisted development."
+  - type: "website"
+    title: "Calm Coding: The Workflow That Makes Vibecoding Survivable"
+    url: "https://oc2sf.com/blog/calm-coding-vibecoding-survivable.html"
+    author: "Jan (OC2SF)"
+    published: 2026-02-01
+    accessed: 2026-02-04
+    annotation: "Mandates a 'Written Contract' (Spec) before any code is generated. Validates ASDLC's core thesis: 'You can't debug what was never designed.'"
 ---
 
 ## Definition

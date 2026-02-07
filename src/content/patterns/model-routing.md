@@ -3,9 +3,19 @@ title: "Model Routing"
 description: "Strategic assignment of LLM models to SDLC phases based on reasoning capability versus execution speed."
 tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture", "Economics"]
 relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering", "practices/workflow-as-code"]
-status: "Experimental"
-lastUpdated: 2026-01-26
+status: "Live"
+lastUpdated: 2026-01-31
 references:
+  - type: "paper"
+    title: "RouteLLM: Learning to Route LLMs with Preference Data"
+    url: "https://arxiv.org/abs/2406.18665"
+    publisher: "LMSYS"
+    annotation: "Foundational research on using matrix factorization for routing, demonstrating Pareoto-optimal trade-offs."
+  - type: "paper"
+    title: "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance"
+    url: "https://arxiv.org/abs/2305.05176"
+    publisher: "Stanford University"
+    annotation: "Introduces the cascading routing architecture to minimize cost."
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"
     url: "https://addyo.substack.com/p/my-llm-coding-workflow-going-into"
@@ -24,69 +34,110 @@ references:
 
 ## Definition
 
-**Model Routing** is the strategic assignment of different Large Language Models (LLMs) to different phases of the software development lifecycle based on their capability profile.
+**Model Routing** is the strategic assignment of different Large Language Models (LLMs) to different phases or tasks based on their capability profile.
 
-Different computational tasks have different performance characteristics. Model Routing matches model capabilities to task requirements: **reasoning depth** during design phases and **speed with large context windows** during implementation phases.
+In a monolithic architecture, a user asking for a simple boolean definition incurs the same high cost and latency as a user requesting a complex strategic analysis. Model routing rationalizes this by shifting model selection from a design-time decision to a runtime optimization problem.
 
-This is a tool selection strategy, not a delegation strategy. Engineers remain accountable for output quality while selecting the appropriate computational tool for each phase.
+## The Iron Triangle
 
-## The Problem: Single-Model Inefficiency
+Effective routing systems operate by manipulating the trade-offs between three competing constraints:
 
-Using one model for all phases creates a mismatch between computational capability and task requirements.
+1.  **Quality**: Semantic accuracy, reasoning depth, instruction following.
+2.  **Cost**: Operational expenditure (OpEx) per token.
+3.  **Latency**: Time-To-First-Token (TTFT) and total generation time.
 
-High-speed models struggle with architectural decisions requiring deep constraint satisfaction. Reasoning models are too slow for high-volume implementation tasks. Models with massive context windows are expensive when you only need to process small, focused changes.
+By dynamically swapping models, routers decouple these variables. A system can achieve "frontier-class" average quality at "efficient-class" average cost by routing only the most difficult 10-20% of queries to the expensive model.
 
-Each model class optimizes for different performance characteristics. Using the wrong one wastes either quality (insufficient reasoning) or resources (excessive capability for simple tasks).
+## Taxonomy of Routing Architectures
 
-## The Solution: Capability-Based Assignment
+We identify five primary patterns for implementing model routing:
 
-We categorize models into three capability profiles aligned with [Agentic SDLC](/concepts/agentic-sdlc) phases:
+### 1. Semantic Routing (Embedding-Based)
+Uses vector similarity to map broad intents to specific routes.
+*   **Mechanism**: Encoder $\rightarrow$ Vector Search $\rightarrow$ Threshold Check.
+*   **Use Case**: RAG topic selection, intent classification.
 
-| Capability Profile | Optimization | Primary Use Cases | Model Examples |
-|---|---|---|---|
-| **High Reasoning** | Deep logic, high latency, "System 2" thinking | Writing [Specs](/patterns/the-spec), architectural decisions, logic debugging, security analysis | Gemini 3 Deep Think, DeepSeek V3.2, OpenAI o3-pro |
-| **High Throughput** | Speed, low latency, real-time execution | Code generation, refactoring, unit tests, UI implementation | Gemini 3 Flash, Llama 4 Scout, Claude Haiku 4.5 |
-| **Massive Context** | Repository-scale context (500k-5M tokens) | Documentation analysis, codebase navigation, legacy system understanding | Gemini 3 Pro (5M tokens), Claude 4.5 Sonnet (500k), GPT-5 (RAG-native) |
+### 2. Predictive Routing (Classifier-Based)
+Uses a trained classifier (Bert, XGBoost, or Matrix Factorization like RouteLLM) to predict the probability that a weak model can successfully answer the query.
+*   **Mechanism**: `P(Success|WeakModel) > Threshold ? Weak : Strong`.
+*   **Use Case**: General purpose query optimization.
 
-*Model examples current as of December 27, 2025. The LLM landscape evolves rapidly—validate capabilities and availability before implementation.*
+### 3. Cascading Routing (Waterfall)
+A "fail-up" pattern that prioritizes cost.
+*   **Mechanism**: Try Weak Model $\rightarrow$ Validation Gate (Low Confidence?) $\rightarrow$ Strong Model.
+*   **Use Case**: Code generation where syntax errors can trigger escalation.
+
+### 4. Probabilistic Routing (Contextual Bandits)
+Uses Reinforcement Learning to adapt routing weights based on user feedback or judge evaluation.
+*   **Use Case**: High-scale production systems with drifting query distributions.
+
+### 5. Agentic Routing (Tool Use)
+Structural routing where a dispatcher agent utilizes tools to delegate work.
+*   **Mechanism**: LLM outputs structured JSON choice (e.g., `{"tool": "sql_agent"}`).
+*   **Use Case**: Complex multi-step workflows.
+
+## Anatomy
+
+A complete routing system consists of three components:
+
+### 1. The Model Registry
+A configuration defining the available models and their capabilities.
+*   **Strong/Frontier**: High reasoning, expensive (e.g., Claude 3.5 Sonnet, GPT-4o, DeepSeek V3).
+*   **Weak/Efficient**: High speed, cheap (e.g., Haiku, Llama-3-8B, GPT-4o-mini).
+*   **Specialist**: Domain-optimized (e.g., StarCoder for SQL, Med-PaLM).
+
+### 2. The Router (Gateway vs. Application)
+*   **Gateway Layer**: Centralized proxy (e.g., LiteLLM, Cloudflare AI Gateway). Handles auth, rate limits, and simple rule-based routing.
+*   **Application Layer**: Library-based logic (e.g., LangChain RunnableBranch). Handles logic requiring deep context (session history, variable state).
+
+### 3. The Calibration
+The specific thresholds or weights used to make decisions. These must be tuned against a "Preference Dataset" (pairs of queries and optimal model choices).
 
 ## Operational Economics
-
-Model routing decisions must account for economic constraints, not just capability profiles.
-
-### The Three Constraints
-
-| Constraint | LLM Reality | Implication |
-|------------|-------------|-------------|
-| **Latency** | Simple LLM calls: 1-5s. Agentic operations: 10-100s+ | LLMs cannot be in hot paths requiring sub-second response |
-| **Cost** | LLM inference: 10-100x traditional compute | Reserve LLM spend for tasks requiring genuine reasoning |
-| **Reliability** | Probabilistic outputs require verification | Factor verification overhead into productivity calculations |
-
-> "The counter-argument is that labor is the real cost. From my experience, it remains to be seen in which specific tasks LLMs actually save time."
-> — Dan Cripe
 
 ### The Sweet Spot
 
 **LLMs excel at:**
-- High ambiguity tasks requiring interpretation
-- Generation of novel content or code
-- Format/language transformation
-- Latency-tolerant background processing
+*   High ambiguity tasks requiring interpretation
+*   Generation of novel content
+*   Format/language transformation
 
 **Use deterministic code for:**
-- Hot paths requiring <100ms response
-- High-volume operations (millions/day)
-- Binary correctness (auth, financial calculations)
-- Deterministic workflows (routing, validation, state machines)
+*   Hot paths requiring <100ms response
+*   High-volume operations
+*   Binary correctness (auth, financial calculations)
 
-[Context Gates](/patterns/context-gates) should be deterministic, not LLM-based. See [Workflow as Code](/practices/workflow-as-code) for orchestration patterns.
+## Anti-Patterns
+
+### The Monolith
+**Description**: Reliance on a single "Frontier" model for all tasks.
+**Consequence**: Excessive cost and latency for simple tasks; inability to scale.
+
+### Silent Drift
+**Description**: Hard-coded routing rules (e.g., "if length > 50") that degrade as user behavior changes.
+**Consequence**: Routing becomes incorrectly optimized, sending hard queries to weak models.
+**Fix**: Use probabilistic routing or periodic recalibration.
+
+### Context Stuffing
+**Description**: Overloading a single prompt with instructions instead of routing to specialized tools/agents.
+**Consequence**: "Lost in the Middle" phenomenon; higher hallucination rates.
+
+## Trade-offs
+
+| Dimension | Implications |
+| :--- | :--- |
+| **Latency Overhead** | The router itself adds latency (20-50ms for embeddings, 200ms+ for LLM routers). If the weak model saves 300ms but the router takes 400ms, you have negative ROI. |
+| **Complexity** | Maintaining a router adds a control plane that can fail. It requires monitoring and dataset maintenance. |
+| **Consistency** | Using multiple models can lead to inconsistent "tone" or formatting across a user session. |
 
 ## Relationship to Levels of Autonomy
 
-[Levels of Autonomy](/concepts/levels-of-autonomy) define human oversight requirements. Model Routing complements this by matching computational capability to task characteristics:
+[Levels of Autonomy](/concepts/levels-of-autonomy) define human oversight requirements. Model Routing matches computational capability to task characteristics:
 
-- **Complex architectural decisions** (L3 with high uncertainty) → High Reasoning models
-- **Well-specified implementation tasks** (L3 with clear contracts) → High Throughput models
-- **Exploratory analysis** (L2 with discovery focus) → Massive Context models
+*   **Complex architectural decisions** (L3) $\rightarrow$ High Reasoning models
+*   **Well-specified implementation tasks** (L3) $\rightarrow$ High Throughput models
+*   **Exploratory analysis** (L2) $\rightarrow$ Massive Context models
 
-This ensures that the computational tool's capability profile matches the task's computational requirements and the degree of human verification needed.
+Applied in:
+*   [Agentic SDLC](/concepts/agentic-sdlc) — Optimization of the factory floor.
+*   [Adversarial Code Review](/patterns/adversarial-code-review) — using different models for Builder vs Critic.
