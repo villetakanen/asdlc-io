@@ -146,7 +146,7 @@ Use these exact commands. Do not guess.
 |**Preview**|`pnpm preview`|Serves the production build locally|
 |**Astro CLI Help**| `pnpm astro -- --help` | Get help using the Astro CLI                   |
 |**Unit Tests**| `pnpm test:run`           | Run all unit tests (located in `./tests`)      |
-|**Build Index**| `node scripts/generate-mcp-index.mjs` | Pre-generates article manifest for MCP |
+|**Build Index**| `pnpm build:mcp-index` | Pre-generates article manifest + Fuse search index for MCP |
 |**Build Skill**| `pnpm build:skill`        | Generates downloadable static skill in `dist/skill/` |
 |**Render Diagrams**| `pnpm diagrams` | Renders mermaid code blocks to SVG in `public/mermaid/` |
 |**Update**|`pnpm outdated`|Checks dependency currency|

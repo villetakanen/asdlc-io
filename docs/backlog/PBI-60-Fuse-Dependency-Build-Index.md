@@ -1,6 +1,6 @@
 # PBI-60: Build-Time Fuse.js Index Generation
 
-> Status: Ready
+> Status: Done
 
 ## Directive
 

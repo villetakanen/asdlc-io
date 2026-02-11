@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# generated Fuse.js search index
+src/mcp/fuse-index.json
 
 # Logs
 logs
