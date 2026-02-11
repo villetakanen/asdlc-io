@@ -2,7 +2,7 @@
 
 > Epic: MCP Fuzzy Search
 > Spec: `plans/mcp-server/mcp-search.md`
-> Status: Ready
+> Status: Done
 
 ## Overview
 

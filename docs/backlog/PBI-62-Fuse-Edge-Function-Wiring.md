@@ -1,6 +1,6 @@
 # PBI-62: Wire Pre-built Fuse Index in Edge Function
 
-> Status: Ready
+> Status: Done
 
 ## Directive
 
