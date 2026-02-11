@@ -259,7 +259,7 @@ The constructor accepts an optional pre-built index. In production, the edge fun
 ### Edge Function Changes (`mcp.ts`)
 
 ```typescript
-import fuseIndexData from "../../src/mcp/fuse-index.json" assert { type: "json" };
+import fuseIndexData from "../../src/mcp/fuse-index.json" with { type: "json" };
 import Fuse from "fuse.js";
 
 // ... existing code ...
