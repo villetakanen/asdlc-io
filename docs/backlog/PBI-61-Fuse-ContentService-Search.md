@@ -1,6 +1,6 @@
 # PBI-61: Fuse.js Fuzzy Search in ContentService
 
-> Status: Ready
+> Status: Done
 
 ## Directive
 
