@@ -6,8 +6,8 @@ lastUpdated: 2026-02-12
 tags: ["AI", "Culture", "Process", "Dynamics"]
 relatedIds: ["concepts/vibe-coding", "concepts/agentic-sdlc"]
 references:
-  - { title: "AI is a High-Pass Filter for Software Quality", author: "Bryan Finster", url: "https://bryanfinster.substack.com/p/ai-is-a-high-pass-filter-for-software", type: "website", accessed: 2026-02-12 }
-  - { title: "Agile in the AI Era: Why 'Boring' Architecture Is Your Secret Weapon", author: "Raf Lefever", url: "https://www.linkedin.com/pulse/agile-ai-era-why-boring-architecture-your-secret-weapon-lefever-ravne/", type: "website", accessed: 2026-02-12 }
+  - { title: "AI is a High-Pass Filter for Software Quality", author: "Bryan Finster", url: "https://bryanfinster.substack.com/p/ai-is-a-high-pass-filter-for-software", type: "website", accessed: 2026-02-12, annotation: "Original article defining the 'High-Pass Filter' concept." }
+  - { title: "Agile in the AI Era: Why 'Boring' Architecture Is Your Secret Weapon", author: "Raf Lefever", url: "https://www.linkedin.com/pulse/agile-ai-era-why-boring-architecture-your-secret-weapon-lefever-ravne/", type: "website", accessed: 2026-02-12, annotation: "Discussion on how 'boring' structured architecture enables AI agents." }
 ---
 
 ## Definition
