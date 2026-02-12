@@ -186,4 +186,5 @@ Engineers punished for thinking beyond their assigned component. Prevents system
 See also:
 - [Industry Alignment](/resources/industry-alignment) — External voices on the product thinking shift
 - [Spec-Driven Development](/concepts/spec-driven-development) — How ASDLC encodes product thinking
+- [Adversarial Requirement Review](/patterns/adversarial-requirement-review) — The verification pattern that operationalizes product thinking
 - [Vibe Coding](/concepts/vibe-coding) — What happens when product thinking is absent

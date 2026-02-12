@@ -1,0 +1,60 @@
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&amp;family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap');
+    .background { fill: #ffffff; }
+    .shape { fill: none; stroke: #d1d1c7; stroke-width: 2; }
+    .label { font-family: "Archivo", sans-serif; font-size: 14px; fill: #111111; text-anchor: middle; font-weight: bold; }
+    .sub-label { font-family: "B612 Mono", monospace; font-size: 12px; fill: #585855; text-anchor: middle; }
+    .brand-accent { fill: #f04e30; }
+    .phase-line { stroke: #d1d1c7; stroke-dasharray: 4; }
+  </style>
+  
+  <!-- Background -->
+  <rect width="800" height="300" class="background" />
+  
+  <!-- Diamond 1: Discover / Define -->
+  <!-- Start Point -->
+  <circle cx="50" cy="150" r="4" class="brand-accent" />
+  
+  <!-- The Diamond Shape -->
+  <path d="M50 150 L200 50 L350 150 L200 250 Z" class="shape" />
+  
+  <!-- Diamond 2: Develop / Deliver -->
+  <path d="M350 150 L500 50 L650 150 L500 250 Z" class="shape" />
+  
+  <!-- Run Phase: The Line -->
+  <line x1="650" y1="150" x2="780" y2="150" class="shape" />
+  <circle cx="780" cy="150" r="4" class="brand-accent" />
+
+  <!-- Vertical Divider Lines -->
+  <line x1="200" y1="50" x2="200" y2="250" class="phase-line" />
+  <line x1="350" y1="50" x2="350" y2="250" class="phase-line" />
+  <line x1="500" y1="50" x2="500" y2="250" class="phase-line" />
+  <line x1="650" y1="50" x2="650" y2="250" class="phase-line" />
+
+  <!-- Labels: DISCOVER -->
+  <text x="125" y="40" class="label">DISCOVER</text>
+  <text x="125" y="270" class="sub-label">Research &amp;</text>
+  <text x="125" y="285" class="sub-label">Insight</text>
+
+  <!-- Labels: DEFINE -->
+  <text x="275" y="40" class="label">DEFINE</text>
+  <text x="275" y="270" class="sub-label">Strategy &amp;</text>
+  <text x="275" y="285" class="sub-label">Planning</text>
+
+  <!-- Labels: DEVELOP -->
+  <text x="425" y="40" class="label">SPEC</text>
+  <text x="425" y="270" class="sub-label">Constitution</text>
+  <text x="425" y="285" class="sub-label">&amp; Context</text>
+
+  <!-- Labels: DELIVER -->
+  <text x="575" y="40" class="label">ASSEMBLE</text>
+  <text x="575" y="270" class="sub-label">Generation</text>
+  <text x="575" y="285" class="sub-label">&amp; Verify</text>
+
+  <!-- Labels: RUN -->
+  <text x="715" y="40" class="label">RUN</text>
+  <text x="715" y="140" class="sub-label">Operations</text>
+  <text x="715" y="170" class="sub-label">&amp; Scale</text>
+
+</svg>

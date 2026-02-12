@@ -1,141 +1,122 @@
 ---
 title: "Agentic Double Diamond"
-description: "Transforming the classic design thinking framework into a computational pipeline."
-tags: ["Design", "Methodology", "Requirements", "Agents"]
-lastUpdated: 2025-12-13
-status: "Draft"
+description: "A computational framework transforming the classic design thinking model into an executable pipeline of context verification and assembly."
+tags: ["Design", "Methodology", "Requirements", "Agents", "Architecture"]
+relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review"]
+references:
+  - { title: "The Double Diamond", author: "Design Council", url: "https://www.designcouncil.org.uk/our-work/skills-learning/tools-frameworks/framework-for-innovation-design-council-s-evolved-double-diamond/", type: "website", annotation: "Origin of the Diverge-Converge model.", accessed: 2026-02-12 }
+  - { title: "Software Craftsmanship in the AI Era", author: "Codurance", url: "https://www.codurance.com/", type: "website", annotation: "Source of the 'Spec is Code' philosophy.", accessed: 2026-02-12 }
+  - { title: "Before I Ask AI to Build, I Ask It to Challenge", author: "Daniel Donbavand", url: "https://danieldonbavand.com/2026/02/12/before-i-ask-ai-to-build-i-ask-it-to-challenge/", type: "website", annotation: "Source of the Adversarial Requirement Review pattern.", accessed: 2026-02-12 }
+lastUpdated: 2026-02-12
+status: "Experimental"
 ---
 
-# Agentic Double Diamond
 
-## Summary
 
-The **Agentic Double Diamond** transforms the classic design thinking framework from a workshop-based activity into a **computational pipeline**. Instead of producing static artifacts (PDFs, slide decks, sticky notes) for human interpretation, this pattern uses agents to ingest raw data and output structured, machine-readable "Context Feeds" (Vectors, JSON, Gherkin) that drive downstream Coder and QA agents.
+## Definition
 
-## The Context
+The **Agentic Double Diamond** is a computational framework that transforms the traditional design thinking model (Discover, Define, Develop, Deliver) into an executable pipeline where every phase produces machine-readable context rather than static artifacts.
 
-In a traditional SDLC, the "Double Diamond" (Discover, Define, Develop, Deliver) is often a bottleneck of unstructured data.
+![Agentic Double Diamond Diagram](/images/agentic-double-diamond.svg)
 
-1. **Lossy Handoffs:** Insights from the _Discover_ phase are summarized into powerpoints, losing the raw fidelity needed for edge-case testing.
-    
-2. **Static Deliverables:** _Deliver_ produces Figma files or flat specs. An AI Coding Agent cannot "look" at a Figma file and understand the _intent_ behind a hover state or a complex validation rule without explicit text description.
-    
-3. **The "Gap of Silence":** Once design is handed off, the "User Voice" is silent until UAT.
-    
+In this model, the **Spec** becomes the primary source code, and "Coding" becomes an automated assembly step. The human role shifts from *Implementation* to *Context Engineering* and *Verification*.
 
-In the [Agentic SDLC](/concepts/agentic-sdlc), we treat Design not as drawing screens, but as [Context Engineering](/concepts/context-engineering). The goal is to build the "Truth" that the build agents will execute.
+## The Problem: Lossy Handoffs
 
-## The Pattern
+Traditional software development suffers from signal degradation at every handoff:
 
-The Cybernetic Double Diamond reimagines the two diamonds as **Context Furnaces**:
+1.  **The "Gap of Silence"**: Insights from the *Discover* phase are summarized into PowerPoints or tickets, stripping away the raw evidence needed for edge-case validation.
+2.  **Static Deliverables**: The *Define* phase produces Figma files or flat requirements. To an AI, these are unstructured blobs. Use of "Vibe Coding" creates functionality that feels right but fails under rigorous scrutiny.
+3.  **Verification Lag**: We typically only verify if we built the *thing right* (Testing) after weeks of coding. We rarely verify if we are building the *right thing* (Strategy) until it's too late.
 
-- **Diamond 1 (Problem Space):** Ingests raw chaos $\rightarrow$ Refines it into **Computational Truth** (Models, Personas, Vectors).
-    
-- **Diamond 2 (Solution Space):** Ingests Truth $\rightarrow$ Generates **Executable Specifications** (Prototypes, Tokens, Criteria).
-    
+The result is a "Build Trap" where we efficiently ship features that solve the wrong problems.
 
-### Phase 1: Discover (The Sensor Network)
+## The Solution: A Computational Pipeline
 
-_Traditional:_ User interviews, market research, sticky notes on a wall. _Agentic:_ Massive automated ingestion and pattern matching.
+The Agentic Double Diamond reimagines the two diamonds not as workshop phases, but as **Context Furnaces**. Each furnace ingests raw, unstructured input and refines it into a stricter, more deterministic state.
 
-**The Workflow:** Instead of a manual research sprint, we deploy a **Sensor Network** of Harvester Agents.
+*   **Diamond 1 (Problem Space):** Ingests Chaos $\rightarrow$ Refines to **Insight**.
+*   **Diamond 2 (Solution Space):** Ingests Insight $\rightarrow$ Refines to **Implementation**.
 
-- **Harvester Agents** scrape target data sources (App Store reviews, competitor documentation, internal support tickets, Reddit threads) 24/7.
-    
-- **Pattern Seer Agents** cluster thousands of unstructured inputs into "Insight Nodes" using semantic analysis.
-    
+Crucially, we introduce **Adversarial Gates** at the convergence points of each diamond to stop "Solution Pollution"—the tendency to rush into building without a valid problem definition.
 
-**Output Artifact:** `research_vectors.json`
+## Anatomy
 
-> A vector store containing weighted pain points, frequency analysis, and raw user quotes linked by semantic relevance.
+The pattern consists of four computational phases and one operational phase (Run).
 
-### Phase 2: Define (The Simulator)
+### Phase 1: DISCOVER (The Sensor Network)
+*From Chaos to Signal.*
 
-_Traditional:_ Static Personas (PDFs), Journey Maps. _Agentic:_ Active User Simulators and Living Requirements.
+Instead of manual research sprints, we use agents to ingest broad signals (user feedback, logs, market data) and cluster them into patterns.
 
-**The Workflow:** We use the data from Phase 1 to fine-tune **Synthetic User Agents** (see [Agent Personas](/practices/agent-personas)).
+**Context Output:** `Problem Graph` (A structured map of user needs and pain points).
 
-- **The Persona Bot:** You do not read a persona; you _interrogate_ it. This is an LLM agent with a specific system prompt derived from the research vectors.
-    
-    - _Prompt:_ "You are Sarah, a busy CFO. Based on the ingested logs, how would you react to a 3-step 2FA process?"
-        
-- **The Spec Crystallizer:** An agent that converts abstract user needs into formal logic constraints.
-    
+*   **Practices:**
+    *   **[Experience Modeling](/patterns/experience-modeling)**: Defining the domain language and user journey.
+    *   **[Context Engineering](/concepts/context-engineering)**: Structuring the raw input for analysis.
 
-**Output Artifact:** `persona_definition.yaml` & `problem_graph.json`
+### Phase 2: DEFINE (The Strategy Engine)
+*From Signal to Insight.*
 
-> A serialized definition of the user that QA agents can later use to "test" the software, and a knowledge graph linking business goals to user pain points.
+We crystallize the signals into a coherent strategy. This is where **Product Thinking** applies constraint satisfaction to select the *right* problem to solve.
 
-### Phase 3: Develop (The Generative Studio)
+**Human Role:** **Thought Leader** (Deciding what matters).
+**Agent Role:** **Thought Partner** (Challenging assumptions).
 
-_Traditional:_ Manual Wireframing, Prototyping. _Agentic:_ Multi-modal generation and adversarial simulation.
+**Context Output:** `Strategy Document` & `Validated Problem Statement`.
 
-**The Workflow:**
+*   **Gate 1 (The Checkpoint):** **[Adversarial Requirement Review](/practices/adversarial-requirement-review)**.
+    *   Before writing a single line of a Spec, an Adversarial Agent challenges the strategy constraints. If it fails, we loop back to Discover.
 
-- **UI Architect Agents:** Generate component variants based on the organization's Design System (tokens) and the _Problem Graph_.
-    
-- **The Critic (Hostile Agent):** An agent that adopts the _Synthetic User_ persona and tries to "reject" the proposed UI flows before a human ever sees them. It validates the design against the `research_vectors.json`.
-    
+### Phase 3: SPEC (The New Coding)
+*From Insight to Blueprint.*
 
-**Output Artifact:** `design_tokens.json` & `behavioral_prototype.js`
+This is the most significant shift. In the Agentic SDLC, **Spec Writing IS Coding**. The Spec is the permanent, living source of truth. It defines the "What" (Behavior) and the "How" (Architecture) in a format rigorous enough for agents to execute.
 
-> Design-as-Code. Figma designs are instantly converted to JSON tokens and React component scaffolds.
+**Context Output:** **[The Spec](/patterns/the-spec)** (Context, Blueprint, Contract).
 
-### Phase 4: Deliver (The Context Feed)
+*   **Practices:**
+    *   **[Spec-Driven Development](/concepts/spec-driven-development)**: The methodology of writing specs first.
+    *   **[Living Specs](/practices/living-specs)**: Treating documentation as code.
 
-_Traditional:_ Handoff meetings, Jira tickets. _Agentic:_ Compilation of the "Blueprints" for the Agentic SDLC.
+### Phase 4: ASSEMBLE (The Agentic Manufactory)
+*From Blueprint to Assembly.*
 
-**The Workflow:** This phase is purely about **Packaging**. The goal is to create a "Feature Manifest" that the Coder Agents can consume without hallucination.
+Agents ingest the Spec and "assemble" the implementation. This phase is highly automated. The agents generate code, tests, and documentation that adhere strictly to the Spec.
 
-- **The Translator:** Reads the visual design and behavioral prototypes to write **Gherkin Syntax (Given/When/Then)**.
-    
-- **The PBI Slicer:** Breaks down the "Big Feature" into atomic, dependency-mapped Product Backlog Items (PBIs).
-    
+**Human Role:** Verifier (Reviewing the assembly against the Spec).
+**Agent Role:** Builder (Implementation).
 
-**Output Artifact:** `feature_manifest.zip`
+**Context Output:** `Source Code`, `Tests`, `Micro-Commits`.
 
-> A package containing the "Truth" for the build agents:
-> 
-> 1. `requirements.md` (The narrative)
->     
-> 2. `acceptance_criteria.feature` (The test logic)
->     
-> 3. `mockup_context.json` (The visual specs)
->     
+*   **Gate 2 (The Checkpoint):** **[Adversarial Code Review](/practices/adversarial-code-review)**.
+    *   An independent Critic Agent verifies the assembled code against the Spec's Contracts. It catches edge cases and architectural violations that unit tests might miss.
+    *   See also: **[Micro-Commits](/practices/micro-commits)** and **[Feature Assembly](/practices/feature-assembly)**.
 
-## Artifact Example: The Feature Manifest
+### Phase 5: RUN (The Feedback Loop)
+*From Assembly to Signal.*
 
-When the "Deliver" phase is complete, the Design Agent commits a manifest to the repository. This triggers the **Coder Agent**.
+The software operates in production, generating new signals (usage data, errors, feedback) that feed back into Phase 1, closing the loop.
 
-**`manifests/feature-one-click-checkout/requirements.md`**
+*   **Practices:**
+    *   **[Feedback Loop Compression](/concepts/feedback-loop-compression)**: Minimizing the time between "Run" and "Discover".
+    *   **[Production Readiness Gap](/concepts/production-readiness-gap)**: Managing the transition from prototype to production.
 
-```markdown
-# Feature: One-Click Checkout
-## Insight Source
-- Linked to Insight ID: #INS-882 (Users abandon cart due to form fatigue)
-- Priority Score: 9.2 (Calculated by Impact/Effort Agent)
+## Relationship to Other Patterns
 
-## Synthetic User Validation
-- Persona "Sarah" Acceptance Rate: 95%
-- Persona "Mike" Acceptance Rate: 88% (Concern: "Where is the receipt?")
-```
+*   **[Product Thinking](/concepts/product-thinking)**: The mindset that drives the *Discover/Define* phases.
+*   **[The Spec](/patterns/the-spec)**: The central artifact connecting *Define* to *Assemble*.
+*   **[Agent Constitution](/patterns/agent-constitution)**: The set of laws that govern agent behavior throughout the pipeline.
+*   **[Context Gates](/concepts/context-gates)**: The architectural pattern implemented by the Adversarial Reviews.
 
-**`manifests/feature-one-click-checkout/acceptance_criteria.feature`**
+## Anti-Patterns
 
-```feature
-Feature: One Click Checkout
-  Scenario: User has stored payment
-    GIVEN user_id IS "valid"
-    AND payment_method IS "stored"
-    WHEN button "Buy Now" is_clicked
-    THEN system MUST process_transaction WITHIN 2000ms
-    AND system MUST NOT show "Confirmation Modal"
-```
+### The Vibe Coding Shortcut
+**Problem:** Skipping the *Define* and *Spec* phases to jump straight to *Assemble* (Vibe Coding).
+**Consequence:** Fast "sugar-high" shipping of features that crumble under production complexity because they lack structural integrity.
 
-## Benefits
+### The Static Spec
+**Problem:** Treating Phase 3 as a "PDF generation" step.
+**Consequence:** The Spec drifts from reality immediately. In this pattern, the Spec must be a **Living Spec** in the repo, or the automated assembly fails.
 
-1. **Zero Translation Loss:** The "Spec" is code before the code is written.
-    
-2. **Adversarial Resilience:** Designs are "tested" by Synthetic Users before development begins.
-    
-3. **Living Context:** The logic is traceable back to the raw research vector (e.g., "Why is this button red?" -> "Because 400 support tickets complained about visibility").
+
