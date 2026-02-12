@@ -282,6 +282,7 @@ See also:
 - [The Spec](/patterns/the-spec) — The source of truth the Critic validates against
 - [Model Routing](/patterns/model-routing) — How to assign different models to Builder and Critic roles
 - [Agentic Double Diamond](/patterns/agentic-double-diamond) — The design-phase Critic pattern this extends
+- [Adversarial Requirement Review](/patterns/adversarial-requirement-review) — The upstream verification pattern for problem definitions
 - [Agent Constitution](/patterns/agent-constitution) — How to frame Critic behavior as adversarial
 
 ### Related Concepts

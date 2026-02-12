@@ -9,7 +9,7 @@
 
 // @ts-ignore: External Netlify Edge types
 import type { Config } from 'https://edge.netlify.com';
-import { ContentService } from '../../src/mcp/content.ts';
+import { ContentService, type Article } from '../../src/mcp/content.ts';
 import { McpServer } from '../../src/mcp/server.ts';
 // CORS headers for all responses
 const CORS_HEADERS = {
@@ -20,6 +20,9 @@ const CORS_HEADERS = {
 
 // @ts-ignore: JSON import
 import articles from '../../src/mcp/articles.json' with { type: 'json' };
+// @ts-ignore: JSON import
+import fuseIndexData from '../../src/mcp/fuse-index.json' with { type: 'json' };
+import Fuse from 'fuse.js';
 
 // Global instances (lazy-loaded to allow testing in Node)
 let contentService: ContentService;
@@ -27,7 +30,10 @@ let mcpServer: McpServer;
 
 function getMcpServer() {
   if (!mcpServer) {
-    contentService = new ContentService(articles as any);
+    const fuseIndex = Fuse.parseIndex<Article>(
+      fuseIndexData as unknown as Parameters<typeof Fuse.parseIndex>[0],
+    );
+    contentService = new ContentService(articles as Article[], fuseIndex);
     mcpServer = new McpServer(contentService);
   }
   return mcpServer;

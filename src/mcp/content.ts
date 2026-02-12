@@ -1,9 +1,11 @@
 /**
- * Content Reading Utilities (PBI-39)
+ * Content Reading Utilities (PBI-39, PBI-61)
  *
  * Provides functions to read, parse, and filter ASDLC knowledge base articles.
  * Compatible with both Node.js (test) and Deno (Netlify Edge).
  */
+
+import Fuse from "fuse.js";
 
 export interface Reference {
   type: "website" | "paper" | "book" | "podcast" | "video" | "repository" | "standard";
@@ -29,6 +31,23 @@ export interface Article {
   tags?: string[];
   references?: Reference[];
 }
+
+/** Pre-built Fuse index type (extracted from constructor signature) */
+type FusePrebuiltIndex = NonNullable<ConstructorParameters<typeof Fuse>[2]>;
+
+const FUSE_OPTIONS = {
+  keys: [
+    { name: "title", weight: 1.0 },
+    { name: "tags", weight: 0.8 },
+    { name: "slug", weight: 0.6 },
+    { name: "description", weight: 0.4 },
+    { name: "content", weight: 0.2 },
+  ],
+  threshold: 0.4,
+  includeScore: true,
+  ignoreLocation: true,
+  minMatchCharLength: 2,
+};
 
 /**
  * Simple Frontmatter parser (regex-based to avoid dependencies)
@@ -79,7 +98,16 @@ export function parseFrontmatter(markdown: string): {
 }
 
 export class ContentService {
-  constructor(private articles: Article[]) {}
+  private fuse: Fuse<Article>;
+
+  constructor(
+    private articles: Article[],
+    fuseIndex?: FusePrebuiltIndex,
+  ) {
+    this.fuse = fuseIndex
+      ? (new Fuse(articles, FUSE_OPTIONS, fuseIndex) as Fuse<Article>)
+      : new Fuse(articles, FUSE_OPTIONS);
+  }
 
   /**
    * List all articles (filtering is already done in generate-mcp-index.mjs)
@@ -96,19 +124,10 @@ export class ContentService {
   }
 
   /**
-   * Simple keyword search across articles
+   * Fuzzy search across articles using Fuse.js (PBI-61)
    */
   async searchArticles(query: string): Promise<Omit<Article, "content">[]> {
-    const lowerQuery = query.toLowerCase();
-
-    return this.articles
-      .filter(
-        (article) =>
-          article.title?.toLowerCase().includes(lowerQuery) ||
-          article.description?.toLowerCase().includes(lowerQuery) ||
-          article.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
-          article.slug?.toLowerCase().includes(lowerQuery),
-      )
-      .map(({ content, ...rest }) => rest);
+    const results = this.fuse.search(query);
+    return results.map(({ item: { content, ...rest } }) => rest);
   }
 }

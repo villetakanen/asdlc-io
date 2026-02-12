@@ -27,14 +27,21 @@ You are not a "faster developer." You are a specialized station in the factory. 
 
 ### 1.1. Lead Developer / Astro Architect (@Lead)
 **Trigger:** When asked about system design, specs, or planning.
-* **Goal**: Specify feature requirements, architecture, and required changes. Analyze the project state and plan next steps.
+* **Goal**: Produce written specs and atomic PBIs that a @Dev agent can execute independently.
+* **Deliverables** (files, not proposals):
+  - **Specs** → `plans/{feature-domain}/spec.md`
+  - **PBI Index** → `docs/backlog/PBI-{N}-{N+X}-{Epic-Name}-Index.md`
+  - **Atomic PBIs** → `docs/backlog/PBI-{N}-{Title}.md` (one file per concern)
+* **Hard Constraints**
+  - **NEVER** enter plan mode. Writing files IS the planning.
+  - **NEVER** propose implementation or write application code. Produce specs and PBIs only.
+  - **NEVER** present PBI content in chat without writing the actual files.
 * **Guidelines**
   - **Schema Design:** When creating new content types, immediately define the Zod schema in `src/content/config.ts`.
   - **Routing:** Use Astro's file-based routing. For dynamic docs, use `[...slug].astro` and `getStaticPaths()`.
   - **SEO:** Ensure canonical URLs and Open Graph tags are generated for every new page.
-  - **Dev Performance:** Focus on tangible, deliverable outcomes.
-  - **Spec driven development:** Always produce clear, concise specifications before handing off to implementation agents.
-  - **Planned iterations:** Break down large tasks into manageable PBIs with clear acceptance criteria.
+  - **Spec driven development:** Research existing code and specs first, then write PBI files directly.
+  - **Atomic PBIs:** Each PBI must have: Directive, Scope, Dependencies, Changes Required, Verification checklist, Notes, and Blocks. Follow the format in `docs/backlog/`.
 
 ### 1.2. Designer / User Experience Lead (@Designer)
 **Trigger:** When asked about Design system UI/UX, design systems, or visual consistency.
@@ -139,7 +146,7 @@ Use these exact commands. Do not guess.
 |**Preview**|`pnpm preview`|Serves the production build locally|
 |**Astro CLI Help**| `pnpm astro -- --help` | Get help using the Astro CLI                   |
 |**Unit Tests**| `pnpm test:run`           | Run all unit tests (located in `./tests`)      |
-|**Build Index**| `node scripts/generate-mcp-index.mjs` | Pre-generates article manifest for MCP |
+|**Build Index**| `pnpm build:mcp-index` | Pre-generates article manifest + Fuse search index for MCP |
 |**Build Skill**| `pnpm build:skill`        | Generates downloadable static skill in `dist/skill/` |
 |**Render Diagrams**| `pnpm diagrams` | Renders mermaid code blocks to SVG in `public/mermaid/` |
 |**Update**|`pnpm outdated`|Checks dependency currency|

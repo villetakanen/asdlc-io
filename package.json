@@ -1,7 +1,7 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.12.0",
+  "version": "0.14.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
@@ -19,11 +19,13 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:mcp-preview": "node scripts/test-deploy-preview.mjs",
-    "build:skill": "node scripts/build-skill.mjs"
+    "build:skill": "node scripts/build-skill.mjs",
+    "build:mcp-index": "node scripts/generate-mcp-index.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.16.0",
+    "fuse.js": "^7.0.0",
     "playwright": "^1.57.0",
     "rehype-mermaid": "^3.0.0",
     "typescript": "^5.5.3"
