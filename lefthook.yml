@@ -14,3 +14,9 @@ commit-msg:
       run: npx commitlint --edit {1}
     verify-ds-freeze:
       run: node scripts/verify-ds-freeze.cjs {1}
+
+pre-push:
+  parallel: false
+  commands:
+    build-check:
+      run: pnpm build
