@@ -13,6 +13,7 @@ relatedIds:
   - concepts/levels-of-autonomy
   - patterns/model-routing
   - patterns/the-spec
+  - concepts/ai-amplification
 lastUpdated: 2026-01-01
 status: Live
 ---
@@ -35,6 +36,7 @@ In this model:
 - **Agents are the logistic layer** — Moving information, verifying specs, executing tests
 - **Context is the supply chain** — Just-in-Time delivery of requirements, schemas, and code
 - **Standardization is mandatory** — Schemas, typed interfaces, deterministic protocols replace "vibes"
+- **AI Amplification** — Agents act as a "High-Pass Filter" for process maturity: they accelerate good practices but amplify the chaos of bad ones.
 
 ## The Cybernetic Model
 

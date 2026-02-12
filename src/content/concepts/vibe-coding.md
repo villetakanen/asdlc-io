@@ -46,6 +46,13 @@ references:
     published: 2026-02-01
     accessed: 2026-02-04
     annotation: "Governance framework positioning 'Calm Coding' as the disciplined counterpart to vibecoding. Introduces 'The Hype-Man Problem' — LLMs enabling bad decisions with high conviction. Key quote: 'Velocity without direction isn't speed. It's drift.'"
+  - type: "website"
+    title: "Software Craftsmanship in the AI Era"
+    author: "Codurance"
+    url: "https://www.codurance.com/publications/software-craftsmanship-in-the-ai-era"
+    published: 2024-05-23
+    accessed: 2026-02-12
+    annotation: "Analysis of how speed without discipline creates 'legacy code in record time,' and why AI increases rather than decreases the need for TDD and solid design principles."
 ---
 
 ## Definition
@@ -81,6 +88,10 @@ When specifications exist only in the prompt history (or the engineer's head), f
 ### Copy-Paste Culture
 
 2024 marked the first year in industry history where **copy-pasted code exceeded refactored code**. This is a direct symptom of vibe coding: when generating fresh code is faster than understanding existing code, engineers default to regeneration over refactoring.
+
+### Legacy Code in Record Time
+
+As [Codurance](/concepts/vibe-coding#references) notes, speed without craftsmanship leads to "Legacy Code in record time." When AI generates code faster than a human can understand it, the codebase immediately becomes "legacy"—code that developers are afraid to touch because they don't understand its underlying intent or guarantees.
 
 The result is systemic duplication. The same logic appears in fifteen places with fifteen slightly different implementations, none validated against a shared contract.
 

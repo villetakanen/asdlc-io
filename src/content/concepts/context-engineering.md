@@ -33,6 +33,13 @@ references:
     published: 2026-01-06
     accessed: 2026-01-10
     annotation: "Empirical validation of file-centric state management for long-horizon agent stability."
+  - type: "website"
+    title: "Agile in the AI Era: Why 'Boring' Architecture Is Your Secret Weapon"
+    url: "https://www.linkedin.com/pulse/agile-ai-era-why-boring-architecture-your-secret-weapon-lefever-ravne/"
+    author: "Raf Lefever"
+    published: 2026-02-10
+    accessed: 2026-02-12
+    annotation: "Argues that domain-driven structure ('Screaming Architecture') is critical context for AI agents."
 ---
 
 ## Definition
@@ -61,6 +68,12 @@ Context Engineering solves cold start by making tacit knowledge explicit, machin
 **The Requirements Gap**
 
 "Prompt Engineering" is often a misnomer. It is simply **Requirements Engineering** applied to a non-human entity that cannot intuit missing business logic. Human developers ask clarifying questions when requirements are vague ("What happens if the payment fails?"). AI models build something based on probability. Errors generally surface only when the system breaks in production.
+
+**Screaming Architecture**
+
+Context Engineering extends to the filesystem itself. As [Raf Lefever](/concepts/context-engineering#references) notes, "If your code-base doesn't scream its domain, AI will whisper nonsense."
+
+A well-structured filesystem (e.g., `src/features/checkout/core-logic`) provides implicit context to the LLM about intent and boundaries. A generic filesystem (`src/utils`, `src/managers`) forces the LLM to guess. In ASDLC, we optimize directory structures to be "training wheels" for the agent.
 
 **Core Attributes**
 
