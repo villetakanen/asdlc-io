@@ -2,7 +2,7 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec"]
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop"]
 lastUpdated: 2026-01-12
 status: "Live"
 references:
@@ -97,6 +97,7 @@ A distinction exists between [Guardrails](/concepts/guardrails) (Safety) and Con
 - **[Context Gates](/patterns/context-gates)** — Checkpoints where context is validated, injected, or filtered before agent action.
 - **[OODA Loop](/concepts/ooda-loop)** — Context Engineering is *engineering the Orient phase*. The quality of agent decisions depends on context quality.
 - **[4D Framework](/concepts/4d-framework)** — The "Description" dimension maps directly to Context Engineering: transferring goals, constraints, and data structures to the agent.
+- **[Agent Optimization Loop](/patterns/agent-optimization-loop)** — The process of verifying context quality by running agents against scenarios.
 
 **Applied in:**
 - [AGENTS.md Specification](/practices/agents-md-spec) — The practical application of context engineering in repositories.

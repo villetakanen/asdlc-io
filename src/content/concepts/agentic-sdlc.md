@@ -14,6 +14,8 @@ relatedIds:
   - patterns/model-routing
   - patterns/the-spec
   - concepts/ai-amplification
+  - patterns/agent-optimization-loop
+  - concepts/provenance
 lastUpdated: 2026-01-01
 status: Live
 ---
@@ -37,6 +39,7 @@ In this model:
 - **Context is the supply chain** — Just-in-Time delivery of requirements, schemas, and code
 - **Standardization is mandatory** — Schemas, typed interfaces, deterministic protocols replace "vibes"
 - **AI Amplification** — Agents act as a "High-Pass Filter" for process maturity: they accelerate good practices but amplify the chaos of bad ones.
+- **Provenance is Value** — In a world of infinite code, value shifts to [Provenance](/concepts/provenance): the audit trail of who steered the agent and how it was verified.
 
 ## The Cybernetic Model
 
@@ -67,8 +70,11 @@ Schema-First Development where agents fulfill contracts, not guesses. `AGENTS.md
 ### Quality Control (Governance)
 Automated, rigorous inspection through Probabilistic Unit Tests and Human-in-the-Loop (HITL) gates. Trust the _process_, not just the output.
 
+### The Agent Factory (Meta-Optimization)
+The underlying machinery that builds the agents themselves. While the [Ralph Loop](/patterns/ralph-loop) produces code, the [Agent Optimization Loop](/patterns/agent-optimization-loop) produces better agents by testing them against **Scenarios** rather than static benchmarks.
+
 ## ASDLC Usage
 
 Full project vision: [/docs/vision.md](../../docs/vision.md)
 
-Applied in: [Specs](/patterns/the-spec), [AGENTS.md Specification](/practices/agents-md-spec), [Context Gates](/patterns/context-gates), [Model Routing](/patterns/model-routing)
+Applied in: [Specs](/patterns/the-spec), [AGENTS.md Specification](/practices/agents-md-spec), [Context Gates](/patterns/context-gates), [Model Routing](/patterns/model-routing), [Agent Optimization Loop](/patterns/agent-optimization-loop)
