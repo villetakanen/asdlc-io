@@ -4,7 +4,12 @@ description: "Run a content engineering review on a prompt or URL against the AS
 
 # Content Engineering Review Workflow
 
-This workflow activates the **Content Engineer (@Content)** persona to critically assess new content against the existing ASDLC Knowledge Base. It ensures that new additions are consistent, non-duplicative, and structurally sound.
+This workflow activates the **Content Critic** (a subset of Content Engineer) to critically assess new content against the existing ASDLC Knowledge Base.
+
+**The Prime Directive:**
+> **Burden of Proof:** The Knowledge Base is the Incumbent Truth. New content must *prove* it is better, more accurate, or more useful than what exists. We do not regress to the mean by accepting every new article as fact.
+
+It ensures that new additions are consistent, non-duplicative, and structurally sound.
 
 ## Prerequisites
 
@@ -41,7 +46,29 @@ The agent must first "load" the relevant context from the ASDLC Knowledge Base t
         *   `plans/content-articles/practice-spec.md` (Operations)
     *   *Goal:* Verify if the source material fits a Pattern (Shape), Practice (Steps), or Concept (Idea).
 
-### 2. Gap Analysis (The Difference Engine)
+### 2. Adversarial Assessment (The Gatekeeper)
+
+Before accepting the content, we must stress-test it against our current maturity.
+
+1.  **Regression Check:**
+    *   Does this input propose a simpler/naive solution that we have already evolved past?
+    *   *Example:* Article suggests "Just use Context", we already have "Context Gates".
+    *   *Verdict:* **REGRESSIVE**. Reject or frame as "Basic Level".
+
+2.  **Evidence Check:**
+    *   Is this opinion or empirical fact?
+    *   *Action:* Distinguish "Subjective Best Practice" from "Objective Benchmark".
+
+3.  **Context Match:**
+    *   Does this apply to our specific constraints (Agentic, High-Maturity, Industrial)?
+    *   *Verdict:* **MISMATCH**. Reject if it solves a problem we don't have.
+
+4.  **Truth Arbitration:**
+    *   In case of conflict, the Knowledge Base is the **Incumbent**.
+    *   The Input must provide **Superior Evidence** to displace existing patterns.
+    *   *If Conflict:* Highlight it. Do not overwrite without explicit "Supersedes" decision.
+
+### 3. Gap Analysis (The Difference Engine)
 
 Compare the "Source Material" against the "Loaded Context".
 
@@ -51,18 +78,26 @@ Compare the "Source Material" against the "Loaded Context".
 
 2.  **Conflict Check:**
     *   Does the source material contradict established ASDLC principles (e.g., "Vibe Coding" vs "Determinism")?
-    *   *If YES:* Highlight the conflict. If the source is valid, recommend **SYNTHESIS** (updating the principle). If invalid, recommend **REJECTION** or **FRAMING** (as an Anti-Pattern).
+    *   *If YES:* Default to **REJECT**. Only recommend **SYNTHESIS** if the input offers a superior dialectic execution.
 
 3.  **Missing Link Check:**
     *   Does the source fill a known gap? (e.g., "How to write a PBI" when we only have "The PBI" pattern).
     *   *If YES:* Recommendation is **CREATE NEW PRACTICE**.
 
-### 3. Synthesis & Recommendation (The Output)
+### 4. Synthesis & Recommendation (The Output)
 
 Generate a `Content Review Report` with the following sections:
 
 #### A. Executive Summary
-A brief assessment of the source material's value and fit within ASDLC.
+*   **Verdict:** [accepted | rejected | synthesized | disputed]
+*   **Confidence:** [High/Medium/Low]
+*   **Assessment:** Brief summary of value vs risk.
+
+#### B. Critical Analysis (New)
+*   **Incumbent Pattern:** [Existing Pattern Name]
+*   **Challenger Input:** [New Idea]
+*   **Analysis:** Why the Challenger is better/worse/different.
+*   **Regression Risk:** Is this a step backward?
 
 #### B. Knowledge Graph Impact
 *   **Existing Nodes Touched:** List of articles that relate to this content.
