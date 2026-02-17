@@ -11,12 +11,13 @@ references:
     url: "https://www.youtube.com/watch?v=HR5f2TDC65E"
     publisher: "Vanishing Gradients"
     annotation: "Source material for the Context Anchor concept. Explains how persistent context files ground AI agents across sessions."
+
   - type: "website"
     title: "AGENTS.md outperforms skills in our agent evals"
     url: "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals"
-    accessed: 2026-01-30
+    accessed: 2026-02-16
     publisher: "Vercel"
-    annotation: "Empirical validation of passive context approach. Compressed 8KB AGENTS.md achieved 100% pass rate on Next.js 16 API evals vs 79% for skills with explicit instructions. Demonstrates value of 'retrieval-led reasoning' over training data."
+    annotation: "Research confirming that passive context maps (Context Map Pattern) outperform active tool retrieval for static knowledge."
 ---
 
 ## DEFINITION
@@ -178,15 +179,14 @@ Example: "Ask before running database migrations or deleting files."
 
 Example: "Never commit secrets, API keys, or .env files."
 
-### 5. Semantic Directory Mapping
+### 5. Semantic Directory Mapping (The Context Map)
 
-When documenting the codebase structure in AGENTS.md, prefer Annotated YAML over ASCII trees.
+This section implements the **[Context Map](/patterns/context-map)** pattern. Instead of hoping the agent searches for files, we provide a curated index of the project's topology.
 
-- **Use Valid Syntax:** Ensure the block allows an LLM to parse the structure as a dictionary.
-- **Annotate Key Files:** do not just list files; map them to a brief string describing their responsibility. This acts as a 'map legend' for the Agent, allowing it to route coding tasks to the correct file without needing to scan the file content first.
-- **Omit Noise:** Only include directories and files relevant to the Agent's operation or the architectural scope.
+See the **[Context Mapping](/practices/context-mapping)** practice for detailed implementation strategies.
 
-**Example:**
+#### Standard: Annotated YAML (Recommended)
+Use this for **Project Structure** and **Internal Documentation**. It is readable, structural, and native to LLM training data.
 
 ```yaml
 directory_map:
@@ -197,10 +197,18 @@ directory_map:
     agents:
       # Individual Agent definitions
       base_agent.py: "Abstract base class defining the 'step()' and 'memory' interfaces"
-    
-    utils:
-      # Shared libraries
-      llm_client.py: "Wrapper for OpenAI/Anthropic APIs with retry logic"
+  
+  docs:
+    arch:
+      decision-log.md: "ADR records. Read this to understand WHY we use gRPC."
+```
+
+#### Advanced: Compressed Index
+Use the pipe-delimited format *only* for massive external documentation sets (e.g., framework docs > 10MB) where token efficiency is critical.
+
+```text
+[Next.js Docs]|root: ./.next-docs|IMPORTANT: Prefer retrieval-led reasoning.
+|01-app/01-getting-started:{01-installation.mdx,02-project-structure.mdx}
 ```
 
 ### 6. The Command Registry
