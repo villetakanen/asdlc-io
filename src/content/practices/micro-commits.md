@@ -152,6 +152,21 @@ git revert <commit-hash>
 
 This is only safe because micro-commits isolate changes.
 
+#### Claude Code Checkpoints and /rewind
+
+Claude Code's built-in checkpoint system complements micro-commits with session-level rollback. Before each file edit, Claude Code automatically snapshots the code state. The `/rewind` command (or double-tap Esc) opens a menu showing each prompt from the session, with three restore options:
+
+- **Restore code and conversation** — revert both to that point
+- **Restore code only** — revert files while keeping the conversation context
+- **Restore conversation only** — reset Claude's context while keeping code changes
+
+This is especially useful when an LLM takes a wrong architectural turn — you can rewind the conversation context (preventing the model from reinforcing its own mistakes) while selectively keeping or discarding code changes.
+
+> [!WARNING]
+> **Key limitation:** Checkpoints only track edits made through Claude's file editing tools. Changes made via bash commands (`rm`, `mv`, `cp`) are not tracked. This is why micro-commits to Git remain essential — checkpoints are "local undo," Git is "permanent history."
+
+See: [Checkpointing — Claude Code Docs](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#checkpointing)
+
 ### 5. Tidy History for Comprehension
 
 Granular commits create noisy history. Before merging to main, optionally squash related commits into logical units:

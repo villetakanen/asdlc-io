@@ -2,7 +2,7 @@
 title: "Specs"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
-relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid"]
+relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance"]
 status: "Live"
 lastUpdated: 2026-01-13
 references:
@@ -53,6 +53,14 @@ references:
 A **Spec** is the permanent source of truth for a feature. It defines *how* the system works (Design) and *how* we know it works (Quality).
 
 Unlike traditional tech specs or PRDs that are "fire and forget," specs are **living documents**. They reside in the repository alongside the code and evolve with every change to the feature.
+
+## The Economy of Code
+
+> "Talk is cheap. Show me the code." — Linus Torvalds, 2000
+
+In the AI era, this economic reality has flipped. **Code is cheap. Show me the talk.**
+
+Generating 10,000 lines of code is now effectively free. The high-value activity is no longer *typing semantics*, but **articulating intent**. The Spec is that articulation—the "Expensive Talk" that directs the cheap labor of code generation. Without a Spec, you have infinite [Provenance](/concepts/provenance)-free code ("slop").
 
 ## The Problem: Context Amnesia
 
