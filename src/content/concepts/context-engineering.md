@@ -3,7 +3,7 @@ title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
 relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map"]
-lastUpdated: 2026-01-12
+lastUpdated: 2026-02-18
 status: "Live"
 references:
   - type: "website"
@@ -46,6 +46,13 @@ references:
     accessed: 2026-02-16
     author: "Vercel"
     annotation: "Validation of passive context mapping over active tool retrieval for static knowledge."
+  - type: "paper"
+    title: "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"
+    url: "https://arxiv.org/abs/2602.11988"
+    author: "Thibaud Gloaguen, Niels Mündler, Mark Müller, Veselin Raychev, Martin Vechev"
+    publisher: "ETH Zurich / LogicStar.ai"
+    published: 2026-02-13
+    annotation: "Empirical study showing that unnecessary context file instructions increase agent reasoning cost and reduce task success rates. Agents follow instructions faithfully — making constraint minimalism a performance concern, not just an aesthetic one."
 ---
 
 ## Definition
@@ -88,6 +95,19 @@ While ASDLC focuses on software development, Context Engineering is domain-agnos
 Context Engineering extends to the filesystem itself. As [Raf Lefever](/concepts/context-engineering#references) notes, "If your code-base doesn't scream its domain, AI will whisper nonsense."
 
 A well-structured filesystem (e.g., `src/features/checkout/core-logic`) provides implicit context to the LLM about intent and boundaries. A generic filesystem (`src/utils`, `src/managers`) forces the LLM to guess. In ASDLC, we optimize directory structures to be "training wheels" for the agent.
+
+### Toolchain as Context Reduction
+
+Context Engineering is typically framed as a question of what to *put in* context. Equally important is what to *leave out*.
+
+Every constraint enforced deterministically by the toolchain is context that does not need to be in the prompt. A well-configured `biome.json` silently eliminates an entire class of style instructions. A strict `tsconfig.json` makes type safety rules unnecessary to state. Treat your linter, formatter, and type checker configurations as upstream context engineering — they narrow the solution space before the agent ever sees the prompt.
+
+This principle has empirical support. Gloaguen et al. (2026) found that agents follow context file instructions faithfully, which means unnecessary instructions impose a real cost: broader exploration, more reasoning tokens, higher inference cost — without improving task outcomes. The implication is that bloated context files are not neutral; they are actively harmful.
+
+**The decision hierarchy for any constraint:**
+1. Can a runtime gate enforce it? → Use the gate
+2. Can a toolchain config enforce it? → Use the config
+3. Neither? → It belongs in context
 
 ## Distinctions
 

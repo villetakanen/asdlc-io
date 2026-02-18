@@ -4,8 +4,15 @@ description: "Persistent, high-level directives that shape agent behavior and de
 tags: ["Agent Architecture", "System Prompts", "Alignment", "Governance"]
 status: "Live"
 relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop", "patterns/adversarial-code-review", "practices/workflow-as-code"]
-lastUpdated: 2026-01-19
+lastUpdated: 2026-02-18
 references:
+  - type: "paper"
+    title: "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"
+    url: "https://arxiv.org/abs/2602.11988"
+    author: "Thibaud Gloaguen, Niels Mündler, Mark Müller, Veselin Raychev, Martin Vechev"
+    publisher: "ETH Zurich / LogicStar.ai"
+    published: 2026-02-13
+    annotation: "Empirical study showing minimal context files outperform verbose ones."
   - type: "paper"
     title: "Constitutional AI: Harmlessness from AI Feedback"
     url: "https://arxiv.org/abs/2212.08073"
@@ -33,7 +40,7 @@ An **Agent Constitution** is a set of high-level principles or "Prime Directives
 The concept originates from Anthropic's [Constitutional AI](https://arxiv.org/abs/2212.08073) research, which proposed training models to be "Helpful, Honest, and Harmless" (HHH) using a written constitution rather than human labels alone. In the ASDLC, we adapt this alignment technique to **System Prompt Engineering**—using the Constitution to define the "Superego" of our coding agents.
 
 ## The Problem: Infinite Flexibility
-    
+
 Without a Constitution, an Agent is purely probabilistic. It will optimize for being "helpful" to the immediate prompt user, often sacrificing long-term system integrity.
 
 If a prompt says "Implement this fast," a helpful agent might skip tests. A Constitutional Agent would refuse: "I cannot skip tests because Principle #3 forbids merging unverified code."
@@ -58,23 +65,46 @@ When an agent **Observes** the world (reads code, sees a user request), the Cons
 *   A "Helpful" Constitution might interpret a vague request as an opportunity to guess and assist.
 *   A "Skeptical" Constitution might interpret the same vague request as a risk to be flagged.
 
-## Taxonomy: Steering vs. Hard Constraints
+## Taxonomy: Steering vs. Deterministic Constraints
 
-It is critical to distinguish what the Constitution *can* enforce (Steering) from what it *must* rely on external systems to enforce (Hard).
+It is critical to distinguish what the Constitution *can* enforce (Steering) from what external systems enforce deterministically (Hard). Hard constraints split into two distinct categories:
 
-### Steering Constraints (Soft)
-These live in the **System Prompt** or **AGENTS.md**. They influence the model's reasoning, tone, and risk preference.
-- "Be concise."
+### 1. Steering Constraints (Probabilistic)
+Live in the **system prompt / agents.md**. Influence the model's reasoning, tone, and risk preference. The agent self-polices these — they are probabilistic, not guaranteed.
+
+- "Ask before guessing on ambiguous specs."
+- "Explain your plan before writing code."
 - "Prefer composition over inheritance."
-- "Ask clarifying questions when ambiguous."
 
-### Hard Constraints (Orchestration)
-These live in the **Runtime Environment** (Hooks, API limits, Docker containers). They physically prevent the agent from taking restricted actions.
-- "Cannot access production database credentials."
-- "Cannot git push without passing automated tests."
-- "Cannot access files outside `/src`."
+### 2. Toolchain Constraints (Deterministic — Repo)
+Live in **tool configuration files** (biome.json, tsconfig, .golangci.yml, ESLint, etc.). Enforced by the toolchain on every run, regardless of agent behavior. The tool is the enforcement mechanism — not the agent.
 
-The Agent Constitution is primarily about **Steering Constraints** that govern *behavior*, while [Context Gates](/patterns/context-gates) and [Workflow as Code](/practices/workflow-as-code) implement the **Hard Constraints**.
+- No `var` in TypeScript → tsconfig / Biome
+- Import order → ESLint / Biome
+- Type errors → tsconfig strict mode
+- Formatting → Prettier / Biome
+
+**Restating Toolchain Constraints in agents.md is an antipattern.** It implies the agent is the enforcement mechanism when it is not, and research shows agents will follow these instructions faithfully — adding reasoning cost and broader exploration without improving outcomes (Gloaguen et al., 2026).
+
+### 3. Orchestration Constraints (Deterministic — Runtime)
+Live in the **runtime environment** (hooks, CI pipelines, Docker containers, API limits). Physically prevent the agent from taking restricted actions.
+
+- Cannot push without passing automated tests
+- Cannot access production database credentials
+- Cannot access files outside `/src`
+
+## The Decision Rule
+
+Before adding any rule to agents.md, ask: **can a tool or runtime already enforce this?**
+
+```
+Can a linter/formatter enforce it?  → put it in tool config, not agents.md
+Can a CI gate enforce it?           → put it in the pipeline, not agents.md
+Can a hook enforce it?              → put it in the hook, not agents.md
+None of the above?                  → agents.md is the right home
+```
+
+The Constitution is for the judgment layer — the things that require reasoning to uphold. Everything else has a more reliable home.
 
 ## Anatomy of a Constitution
 
@@ -117,34 +147,9 @@ One of the most powerful applications of a Constitution is the **Critique-and-Re
 
 This allows the agent to fix violations (e.g., "I used `any` type, but the Constitution forbids it") *before* the user ever sees the code.
 
-## Persona-Specific Constitutions
+## Periodic Auditing
 
-Defining different Constitutions for different roles enables [Adversarial Code Review](/patterns/adversarial-code-review).
-
-### 1. The Builder (Optimist)
-> "Your goal is to be helpful and productive. Write code that solves the user's problem. If the spec is slightly vague, make a reasonable guess to keep momentum going. Prioritize clean, readable implementation."
-
-### 2. The Critic (Pessimist)
-> "Your goal is to be a skeptical gatekeeper. Assume the code is broken or insecure until proven otherwise. Do not be helpful; be accurate. If the spec is vague, reject the code and demand clarification. Prioritize correctness and edge-case handling."
-
-By running the same prompt through these two different Constitutions, you generate a dialectic process that uncovers issues a single "neutral" agent would miss.
-
-## Implementation
-
-### 1. Documentation
-The industry standard for documenting your Agent Constitution is [AGENTS.md](/practices/agents-md-spec). This file lives in your repository root and serves as the source of truth for your agents.
-
-### 2. Injection
-Inject the Constitution into the **System Prompt** of your LLM interaction.
-*   **System Prompt**: `{{AGENT_CONSTITUTION}} \n\n You are an AI assistant...`
-*   **User Prompt**: `{{TASK_SPEC}}`
-
-### 3. Tuning
-Constitutions must be tuned. If they are too strict, the agent becomes paralyzed (refusing to code because "it might be insecure"). If too loose, the agent halts for every minor ambiguity.
-
-**The "Be Good" Trap**: Avoid vague directives like "Write good code."
-*   *Bad*: "Be secure."
-*   *Good*: "Never concatenate strings to build SQL queries. Use parameterized queries only."
+As the toolchain evolves (dependency upgrades, new linter rules, stricter tsconfig), previously necessary Constitution rules may become redundant. Auditing agents.md for toolchain-redundant rules should be part of dependency upgrade reviews.
 
 ## Relationship to Other Patterns
 
@@ -159,12 +164,3 @@ Constitutions must be tuned. If they are too strict, the agent becomes paralyzed
 **[AGENTS.md Specification](/practices/agents-md-spec)** — The practice for documenting and maintaining your Agent Constitution.
 
 **[Workflow as Code](/practices/workflow-as-code)** — Implements Hard Constraints programmatically, complementing the Constitution's Steering Constraints.
-
-See also:
-- [Constitutional Review](/patterns/constitutional-review) — Enforcement via Critic agents
-- [Context Gates](/patterns/context-gates) — Hard constraint implementation
-- [AGENTS.md Specification](/practices/agents-md-spec) — Documentation practice
-
-### Related Concepts
-- [OODA Loop](/concepts/ooda-loop) — The Constitution operates in the Orient phase
-- [Context Engineering](/concepts/context-engineering) — The broader discipline of managing prompt context

@@ -4,7 +4,7 @@ description: "Define agentic workflows in deterministic code rather than prompts
 tags: ["Orchestration", "Determinism", "TypeScript", "Automation"]
 relatedIds: ["patterns/context-gates", "patterns/ralph-loop", "patterns/model-routing"]
 status: "Experimental"
-lastUpdated: 2026-01-18
+lastUpdated: 2026-02-18
 references:
   - type: "website"
     title: "Dev Workflows as Code"
@@ -173,6 +173,50 @@ export async function execute(ctx: WorkflowContext): Promise<StepResult> {
   return { type: 'success', data: ctx.history };
 }
 ```
+
+## Workflows as Persona Carriers
+
+### Persona Injection via Workflow
+
+Workflows are the natural home for session-scoped persona injection. Rather than loading all persona definitions into agents.md on every session, define the persona as part of the workflow context — it gets injected precisely when needed and is absent when it isn't.
+
+A code review workflow injects the Critic persona. An implementation workflow injects the Dev persona. A spec workflow injects the Lead persona. This is more precise than always-on loading, and avoids the cost of agents following instructions that are irrelevant to the current task.
+
+**Example: Review workflow with Critic persona**
+
+```yaml
+# .claude/workflows/review.yaml
+name: Constitutional Review
+trigger: "@review"
+context:
+  - .claude/skills/critic.md      # Critic persona — injected here, not in agents.md
+  - docs/backlog/current-pbi.md   # The spec being reviewed
+  - AGENTS.md                     # Project-level judgment boundaries
+steps:
+  - validate_against_spec
+  - constitutional_review
+  - produce_report
+```
+
+**Example: Implementation workflow with Dev persona**
+
+```yaml
+# .claude/workflows/implement.yaml
+name: Implementation
+trigger: "@implement"
+context:
+  - .claude/skills/dev.md         # Dev persona — only loaded for implementation tasks
+  - docs/backlog/current-pbi.md   # The PBI being implemented
+  - AGENTS.md                     # Project-level judgment boundaries
+steps:
+  - review_pbi
+  - plan
+  - implement
+  - run_tests
+  - update_pbi_status
+```
+
+The key property: `AGENTS.md` contains only project-level judgment. The persona is carried by the workflow and injected at invocation. This keeps agents.md stable and minimal, while delivering the right behavioral context for each task type.
 
 ## Common Mistakes
 
