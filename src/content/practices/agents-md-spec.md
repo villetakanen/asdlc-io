@@ -264,11 +264,22 @@ Invoke via skill: @Lead, @Dev, @Critic
 Definitions: `.claude/skills/`
 
 ## Context Map
+
+Map out the project structure. Omit platform-, framework-, tooling-, library-, and framework-specific defaults the Agent can infer from the repository tooling and configuration.
+
 ```yaml
-api/proto:    "Protobuf definitions — source of truth for all contracts"
-cmd/server:   "Entry point, dependency injection"
-internal/biz: "Business logic and domain entities (pure Go)"
-internal/data: "Data access layer (Postgres + pgx)"
-docs/adr:     "Architecture decisions — read before making structural changes"
+monorepo: pnpm workspaces
+
+packages:
+  apps/web: Next.js frontend
+  apps/api: Express REST API, used by the apps/web and an external mobile app
+  packages/ui: shared component library (consumed by web)
+  packages/db: Prisma schema, client, migrations — import from here, not direct prisma calls
+  packages/types: shared TypeScript types
+
+notable:
+  scripts/: repo-wide dev tooling, not shipped
+  .env.example: canonical env vars reference, shipped with non-sensitive examples
 ```
-```
+
+_The key discipline: only list dirs/files that would surprise someone who knows the framework. Standard Next.js folders like src/app are borderline — include them only if your layout deviates from convention._
