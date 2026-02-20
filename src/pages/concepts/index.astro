@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/concepts.md";
-import SpecCard from "../../components/SpecCard.astro";
+import SpecCardList from "../../components/SpecCardList.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
 import { sortItemsByStatusAndDate } from "../../utils/content";
 
@@ -16,13 +16,5 @@ const sortedConcepts = sortItemsByStatusAndDate(concepts);
 >
   <Definition slot="definition" />
 
-  {sortedConcepts.map((concept) => (
-    <SpecCard
-      title={concept.data.title}
-      url={`/concepts/${concept.id}`}
-      status={concept.data.status}
-      meta={`${concept.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-      tags={concept.data.tags}
-    />
-  ))}
+  <SpecCardList items={sortedConcepts} collection="concepts" />
 </CollectionIndex>

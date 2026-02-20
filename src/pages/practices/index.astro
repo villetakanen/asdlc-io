@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/practices.md";
-import SpecCard from "../../components/SpecCard.astro";
+import SpecCardList from "../../components/SpecCardList.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
 import { sortItemsByStatusAndDate } from "../../utils/content";
 
@@ -16,13 +16,5 @@ const sortedPractices = sortItemsByStatusAndDate(practices);
 >
   <Definition slot="definition" />
 
-  {sortedPractices.map((practice) => (
-    <SpecCard
-      title={practice.data.title}
-      url={`/practices/${practice.id}`}
-      status={practice.data.status}
-      meta={`${practice.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-      tags={practice.data.tags || []}
-    />
-  ))}
+  <SpecCardList items={sortedPractices} collection="practices" />
 </CollectionIndex>

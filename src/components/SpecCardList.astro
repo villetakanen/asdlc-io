@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import SpecCard from "./SpecCard.astro";
+
+type ArticleEntry =
+  | CollectionEntry<"concepts">
+  | CollectionEntry<"patterns">
+  | CollectionEntry<"practices">;
+
+interface Props {
+  items: ArticleEntry[];
+  collection: "concepts" | "patterns" | "practices";
+}
+
+const { items, collection } = Astro.props;
+---
+
+{
+  items.map((item) => (
+    <SpecCard
+      title={item.data.title}
+      description={item.data.description}
+      url={`/${collection}/${item.id}`}
+      status={item.data.status}
+      meta={`${item.data.lastUpdated.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`}
+      tags={item.data.tags || []}
+    />
+  ))
+}

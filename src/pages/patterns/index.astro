@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Content as Definition } from "../../components/definitions/patterns.md";
-import SpecCard from "../../components/SpecCard.astro";
+import SpecCardList from "../../components/SpecCardList.astro";
 import CollectionIndex from "../../layouts/CollectionIndex.astro";
 import { sortItemsByStatusAndDate } from "../../utils/content";
 
@@ -16,13 +16,5 @@ const sortedPatterns = sortItemsByStatusAndDate(patterns);
 >
   <Definition slot="definition" />
 
-  {sortedPatterns.map((pattern) => (
-    <SpecCard
-      title={pattern.data.title}
-      url={`/patterns/${pattern.id}`}
-      status={pattern.data.status}
-      meta={`${pattern.data.lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`}
-      tags={pattern.data.tags}
-    />
-  ))}
+  <SpecCardList items={sortedPatterns} collection="patterns" />
 </CollectionIndex>
