@@ -1,7 +1,7 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
@@ -26,7 +26,6 @@
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.16.0",
     "fuse.js": "^7.0.0",
-    "playwright": "^1.57.0",
     "rehype-mermaid": "^3.0.0",
     "typescript": "^5.5.3"
   },
@@ -36,10 +35,12 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@mermaid-js/mermaid-cli": "^11.12.0",
+    "@playwright/test": "^1.58.2",
     "@vitest/ui": "^4.0.16",
     "glob": "^13.0.0",
     "gray-matter": "^4.0.3",
     "lefthook": "^2.0.4",
+    "playwright": "^1.58.2",
     "vitest": "^4.0.16"
   }
 }

@@ -1,5 +1,7 @@
 # build output
 dist/
+test-results
+
 # generated types
 .astro/
 # generated Fuse.js search index

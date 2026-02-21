@@ -1,6 +1,7 @@
 ---
 import ArticleReferences from "../../components/ArticleReferences.astro";
 import ColorSwatch from "../../components/ColorSwatch.astro";
+import SpecCard from "../../components/SpecCard.astro";
 import SpecHeader from "../../components/SpecHeader.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import { articleSchema } from "../../content/config";
@@ -230,6 +231,29 @@ const exampleReferences = [
         <StatusBadge status="Experimental" />
       </div>
       <pre><code>&lt;StatusBadge status="Live" /&gt;</code></pre>
+
+      <h3>Spec Card (Article Card)</h3>
+      <p>Card component for index pages representing a single article item. Includes an optional description snippet.</p>
+      
+      <div style="margin-bottom: 1rem;">
+        <SpecCard 
+          title="Context Engineering" 
+          description="A set of practices designed to optimize what an AI agent 'sees' when solving a problem. It aims to reduce noise, establish invariants, and provide 'Just-in-Time' knowledge."
+          url="#"
+          meta="Oct 12, 2026"
+          status="Live"
+          tags={["context", "agentic-sdlc"]}
+        />
+      </div>
+
+      <pre><code>&lt;SpecCard 
+  title="Context Engineering" 
+  description="A set of practices designed to optimize what an AI agent 'sees'..."
+  url="/concepts/context-engineering"
+  meta="Oct 12, 2026"
+  status="Live"
+  tags={`{["context", "agentic-sdlc"]}`}
+/&gt;</code></pre>
 
       <h3>Spec Header</h3>
       <p>Standardized header for specification pages (Concepts, Patterns, Practices). Supports data-driven metadata rendering.</p>

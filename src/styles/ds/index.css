@@ -1,4 +1,4 @@
-/* 
+/*
   Design System Entrypoint
   This file aggregates all styles managed by the Experience Model.
 */
@@ -8,6 +8,7 @@
 @import "./base.css";
 @import "./typography.css";
 @import "./prose.css";
+@import "./fig.css";
 
 /* Layouts */
 @import "./layouts/grid.css";

@@ -3,7 +3,7 @@ title: "Agent Optimization Loop"
 description: "The recursive process of using feedback from scenarios to continuously tune agent prompts, context, and tools."
 tags: ["Meta-Pattern", "Optimization", "Agent Engineering", "Factory"]
 relatedIds: ["patterns/ralph-loop", "concepts/context-engineering", "concepts/agentic-sdlc", "concepts/learning-loop"]
-lastUpdated: 2026-02-15
+lastUpdated: 2026-02-21
 status: "Experimental"
 references:
   - title: "From Software Factories to Agent Factories: When Agents Build Agents"
@@ -59,6 +59,18 @@ When the agent fails a scenario, we do not just fix the code (that's the Ralph L
     *   Did it hallucinate a tool? -> Fix Tool definition.
 
 This creates a compounding asset: an agent that gets smarter about *this specific codebase* over time.
+
+## Offline vs Online Evolution
+
+The Agent Optimization Loop manifests in two distinct modes:
+
+### Offline Factory Optimization (Current Focus)
+Optimization occurs asynchronously through explicit integration testing (Scenarios). Humans or meta-evaluators analyze failures and update the version-controlled context (Specs, `AGENTS.md`) and rerun. This guarantees determinism and peer review but has higher latency.
+
+### Online Context Evolution (Experimental)
+Often called "Continual Learning in Token Space," where an agent natively reflects over its past trajectories (e.g., distilling sessions into an `AGENTS.md` update or generating a new skill file automatically). While this enables rapid adaptation, it risks uncontrolled drift if the agent infers the wrong lesson from a failure. 
+
+In ASDLC, we treat Online Evolution as an *input* to Offline Optimization: agents can suggest updates to the context, but these updates must pass deterministic Architectural Review before becoming canonical.
 
 ## Relationship to Other Patterns
 

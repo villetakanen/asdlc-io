@@ -14,7 +14,7 @@ relatedIds:
   - patterns/context-gates
   - patterns/adversarial-code-review
   - patterns/the-spec
-lastUpdated: 2026-01-12
+lastUpdated: 2026-02-21
 status: "Live"
 references:
   - type: "website"
@@ -174,6 +174,17 @@ P(C) = 1 - (1 - p_success)^n
 ```
 
 As n increases (often up to 50 iterations), probability of handling complex bugs approaches 1.
+
+### 6. Map-Reduce (Initializer + Sub-Agents)
+
+For inherently parallel tasks or massive operations, a single Ralph Loop iterating sequentially becomes a bottleneck.
+
+**The Solution:** The Initializer + Sub-Agents pattern.
+- **Initializer Agent:** Performs the Discover/Define phase, establishing a central progress tracker or plan file (e.g., a file listing 50 database migrations to perform).
+- **Sub-Agents:** The Initializer delegates chunks of the plan to isolated sub-agents. Each sub-agent runs its own Ralph Loop on a specific task with a highly focused, isolated context window.
+- **Coordination:** Progress is merged via git history, orchestrated by a multi-agent harness or merge queue.
+
+This pattern limits context bloat by isolating the action space. The fast sub-agents execute tightly scoped tasks, while the Initializer maintains the strategic overview.
 
 ## OODA Loop Mapping
 
