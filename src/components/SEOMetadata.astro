@@ -13,7 +13,7 @@ const defaultDescription =
   "Agentic Software Development Life Cycle - A knowledge base for AI-augmented software engineering.";
 const metaDescription = description || defaultDescription;
 const ogImage = image || new URL("/og-default.svg", Astro.site).toString();
-const pageTitle = `${title} | ASDLC.io`;
+const pageTitle = title.includes("ASDLC.io") ? title : `${title} | ASDLC.io`;
 ---
 
 <!-- SEO Metadata -->

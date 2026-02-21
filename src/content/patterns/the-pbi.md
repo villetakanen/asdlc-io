@@ -68,6 +68,45 @@ The PBI is not a request for conversation—it's a constrained optimization prob
 
 ## Atomicity & Concurrency
 
+```mermaid
+---
+title: Spec-flow
+---
+flowchart LR
+  T1 -->|/ralpt| FA1
+  T2 -->|/dev| FA2
+  T3 --> FA3
+  subgraph Spec
+    SA([Intent]) -->|/spec| SB[spec.md]
+    SB -->|/review| SA
+    SB -->|'plan.1'| T1[PBI.1]
+    SB -->|'plan.2'| T2[PBI.2]
+    SB -->|'plan.3'| T3[PBI.3]
+  end
+  subgraph Feaure Assembly 1
+    FA1[[Ralph loop]] -->
+    FA1.1{gates} -->|FAIL|FA1
+  end
+  subgraph Feaure Assembly 2
+    FA2[/develop/] -->|'/review'| FA2.1
+    FA2.1[/Adversarial Review/] -->|PASS| FA2.2
+    FA2.1 -->|FAIL| FA2
+    FA2.2{gates} -->|FAIL| FA2
+  end
+  subgraph Feaure Assembly 3
+    FA3([Craftmanship]) -->
+    FA3.1{gates} -->|FAIL|FA3
+  end
+  FA1.1 -->|PASS|E(((DONE)))
+  FA2.2 -->|PASS|E
+  FA3.1 -->|PASS|E
+```
+
+<figure class="mermaid-diagram">
+  <img src="/mermaid/the-pbi-fig-1.svg" alt="Mermaid Diagram" />
+  
+</figure>
+
 In swarm execution (multiple agents working in parallel), each PBI must be:
 
 **Atomic:** The PBI delivers a complete, working increment. No partial states. If the agent stops mid-task, either the full change lands or nothing does.

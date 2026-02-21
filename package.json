@@ -1,7 +1,7 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.17.2",
+  "version": "0.18.0",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",

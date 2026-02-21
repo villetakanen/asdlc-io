@@ -193,6 +193,11 @@ stateDiagram-v2
     Rejected --> [*]
 ```
 
+<figure class="mermaid-diagram">
+  <img src="/mermaid/adr-authoring-fig-1.svg" alt="Mermaid Diagram" />
+  
+</figure>
+
 ### Superseding an ADR
 
 When a decision is replaced:

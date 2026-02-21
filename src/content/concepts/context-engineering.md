@@ -2,8 +2,8 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map"]
-lastUpdated: 2026-02-18
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading"]
+lastUpdated: 2026-02-21
 status: "Live"
 references:
   - type: "website"
@@ -109,6 +109,18 @@ This principle has empirical support. Gloaguen et al. (2026) found that agents f
 2. Can a toolchain config enforce it? → Use the config
 3. Neither? → It belongs in context
 
+### Multi-Layer Action Spaces and Economics
+
+The cost and latency of agent orchestration scale directly with context size. As agents take on larger tasks, explicit definition of massive MCP (Model Context Protocol) toolsets bloats the context window.
+
+**The Solution:** Push actions from the tool-calling layer to the OS layer. By equipping agents with a basic "Virtual Computer" (shell and filesystem access), they can interact with command-line utilities implicitly rather than parsing dozens of explicit JSON schema definitions. This action space offloading dramatically improves the economics of "Prompt Caching," making high-capacity agent loops viable.
+
+### The "Learned Context Management" Fallacy
+
+Some theories suggest that "The Bitter Lesson" applies to context—that as foundational models scale, they will natively learn to manage their own memory streams, rendering explicit file-centric state and Context Gates obsolete.
+
+**In ASDLC, we dispute this.** Relying on a probabilistic model's native "attention mechanism" to remember a critical business constraint from 30 turns ago is a regression to "Vibe Coding." Explicit, deterministically structured context ensures the system fulfills contracts, rather than drifting on the model's statistical average.
+
 ## Distinctions
 
 ### Context vs Guardrails
@@ -128,6 +140,7 @@ In ASDLC, context is treated as version-controlled code, not ephemeral prompts.
 - [Context Gates](/patterns/context-gates) — Checkpoints where context is validated.
 - [Context Map](/patterns/context-map) — The structural pattern for organizing context.
 - [Agent Optimization Loop](/patterns/agent-optimization-loop) — Verifying context quality.
+- [Context Offloading](/practices/context-offloading) — Operational practice for preventing context rot.
 
 > [!NOTE]
 > **Research Validation (InfiAgent, 2026):** File-centric state management outperforms compressed long-context prompts. Replacing persistent file state with accumulated conversation history dropped task completion from 80/80 to 27.7/80 average, even with Claude 4.5 Sonnet. This validates treating context as a reconstructed view of authoritative file state, not as conversation memory.
