@@ -16,6 +16,7 @@ relatedIds:
   - concepts/ai-amplification
   - patterns/agent-optimization-loop
   - concepts/provenance
+  - concepts/extreme-programming
 lastUpdated: 2026-01-01
 status: Live
 ---

@@ -2,7 +2,7 @@
 title: "Agentic Double Diamond"
 description: "A computational framework transforming the classic design thinking model into an executable pipeline of context verification and assembly."
 tags: ["Design", "Methodology", "Requirements", "Agents", "Architecture"]
-relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review"]
+relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review", "concepts/extreme-programming"]
 references:
   - { title: "The Double Diamond", author: "Design Council", url: "https://www.designcouncil.org.uk/our-work/skills-learning/tools-frameworks/framework-for-innovation-design-council-s-evolved-double-diamond/", type: "website", annotation: "Origin of the Diverge-Converge model.", accessed: 2026-02-12 }
   - { title: "Software Craftsmanship in the AI Era", author: "Codurance", url: "https://www.codurance.com/", type: "website", annotation: "Source of the 'Spec is Code' philosophy.", accessed: 2026-02-12 }
