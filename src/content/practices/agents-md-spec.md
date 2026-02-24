@@ -2,7 +2,7 @@
 title: "AGENTS.md Specification"
 description: "The definitive guide to the AGENTS.md file, focusing on minimal, high-signal context for AI agents."
 tags: ["governance", "agents", "specification"]
-relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution"]
+relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution", "concepts/context-anchoring"]
 status: "Live"
 lastUpdated: 2026-02-18
 references:
@@ -71,17 +71,23 @@ Not a list of what Biome enforces.
 | Session-scoped persona | Critic, Builder | skill or workflow file |
 | Task-specific style | API naming for this module | The Spec / PBI |
 
-### 3. The Context Anchor (Long-Term Memory)
+### 3. Avoiding the Pink Elephant Problem
+
+Agents are highly susceptible to [Context Anchoring](/concepts/context-anchoring) (the "Pink Elephant Problem"). Telling an LLM what *not* to do ensures that the concept is front-and-center in its attention mechanism. If your `AGENTS.md` says "do not use tRPC", the agent might still reach for it because the token `tRPC` is highly active in the context window.
+
+For this reason, treat `AGENTS.md` as a **diagnostic tool** for codebase friction. Every instruction added to steer the agent away from a mistake is a signal of structural friction. The ideal response is to fix the underlying ambiguity—for example, by actually deleting the legacy utilities or adding a linter rule—and then delete the instruction from the context file.
+
+### 4. The Context Anchor (Long-Term Memory)
 
 What agents.md *does* own is persistent judgment — the things that can't be expressed by a linter or a type checker. Agents are stateless. Without grounding, each session reverts to generic training weights. agents.md carries the project's **institutional judgment** for AI collaboration: how to resolve ambiguity, what to ask before acting, which architectural values to uphold.
 
 This is stable, rarely-changing content. If your agents.md changes often, it is probably carrying content that belongs elsewhere.
 
-### 4. A README for Agents
+### 5. A README for Agents
 
 Just as `README.md` is for humans, `AGENTS.md` is for agents. It complements existing documentation by containing the context agents need that is not already discoverable from the repo structure, toolchain config, or existing docs.
 
-### 5. Context is Code
+### 6. Context is Code
 
 In the ASDLC, we treat `AGENTS.md` with the same rigor as production software:
 - **Version Controlled**: Tracked via git and PRs
