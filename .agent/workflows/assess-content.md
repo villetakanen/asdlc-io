@@ -84,7 +84,19 @@ Compare the "Source Material" against the "Loaded Context".
     *   Does the source fill a known gap? (e.g., "How to write a PBI" when we only have "The PBI" pattern).
     *   *If YES:* Recommendation is **CREATE NEW PRACTICE**.
 
-### 4. Synthesis & Recommendation (The Output)
+### 4. Human-in-the-Loop Review (The Feedback Loop)
+
+**Critical:** Before finalizing the report, the agent MUST pause and present the proposed Action Plan and Knowledge Graph Impact to the human user for review.
+
+1.  **Draft Presentation:**
+    *   Present the findings (Verdict, Nodes Touched, Action Plan) to the user using `notify_user` or directly in chat.
+    *   *Prompt the User:* "Do you agree with this assessment? Are there other nodes in the knowledge graph we should touch?"
+
+2.  **Incorporate Feedback:**
+    *   Amend the Action Plan based on the user's feedback (e.g., if the user suggests an additional article to update, add it to Strategy 1).
+    *   *Attribution:* Explicitly label any additions born from this discussion as "Added following human review" to maintain accountability and trace provenance.
+
+### 5. Synthesis & Recommendation (The Output)
 
 Generate a `Content Review Report` with the following sections:
 
@@ -99,11 +111,12 @@ Generate a `Content Review Report` with the following sections:
 *   **Analysis:** Why the Challenger is better/worse/different.
 *   **Regression Risk:** Is this a step backward?
 
-#### B. Knowledge Graph Impact
+#### C. Knowledge Graph Impact
 *   **Existing Nodes Touched:** List of articles that relate to this content.
 *   **New Nodes Proposed:** List of potential new Articles (Concepts/Patterns/Practices).
+*   **Human Feedback Applied:** Brief summary of how the human review altered the initial scope (e.g., "Added agent-personas.md update based on human feedback").
 
-#### C. Action Plan
+#### D. Action Plan
 Select the best strategy or combination of strategies:
 
 *   **STRATEGY 1: INTEGRATE (Update Existing)**
@@ -138,7 +151,12 @@ If a new article is recommended, provide a **stub** following the appropriate Sp
 1. Search KB for "testing", "patterns"
 2. Reads "adversarial-code-review.md"
 3. Compares input to existing pattern
-4. Generates Report: "This article introduces 'Fuzz Testing by Agents'. Recommendation: 
+4. Presents draft: "I recommend creating agentic-fuzzing and updating adversarial review."
+5. User says: "Also update the CI/CD pipeline concept."
+6. Generates Final Report: "This article introduces 'Fuzz Testing by Agents'. Recommendation: 
+   - Create `practices/agentic-fuzzing.md`
+   - Update `patterns/adversarial-code-review.md` to link to it as a specialized practice.
+   - *Following human review:* Update `concepts/ci-cd-pipeline.md` to mention fuzzing gates."
    - Create `practices/agentic-fuzzing.md`
    - Update `patterns/adversarial-code-review.md` to link to it as a specialized practice."
 ```

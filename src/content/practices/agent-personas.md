@@ -13,6 +13,12 @@ references:
     publisher: "ETH Zurich / LogicStar.ai"
     published: 2026-02-13
     annotation: "Agents follow instructions they receive faithfully — loading irrelevant persona definitions increases reasoning cost without improving outcomes. Supports session-scoped persona injection over always-on loading."
+  - type: "website"
+    title: "AI-Driven Development Framework"
+    url: "https://effectivedelivery.io/p/ai-driven-development-framework"
+    author: "Effective Delivery"
+    accessed: 2026-02-25
+    annotation: "A concrete example of using 6 distinct agent personas (e.g., Architect, UI Reviewer) mapped to specific workflow phases."
 ---
 
 ## Definition
@@ -140,3 +146,14 @@ Keep them separate. Do not add model profiles to persona definitions — it adds
 | Developer / Implementation | Code generation, refactoring | High Throughput |
 | Critic / Reviewer | Constitutional review, security | High Reasoning |
 | Content / Docs | Documentation, KB entries | Massive Context |
+
+## Industry Implementations
+
+The [Effective Delivery AI-driven framework](https://effectivedelivery.io/p/ai-driven-development-framework) provides a concrete example of mapping the core ASDLC personas to specific phases of the Double Diamond using VS Code and GitHub Copilot. Their workflow defines 6 specific agent personas:
+
+- **Business Analyst:** Extracts and organizes knowledge (maps to early *Discover/Define* phases). 
+- **Architect:** Creates solution blueprints (maps to our `@Lead` persona).
+- **Software Engineer / Frontend Software Engineer:** Generates and refactors code (maps to our `@Dev` persona).
+- **UI Reviewer / Code Reviewer:** Verifies implementation against Figma/specs (maps to our `@Critic` persona).
+
+This kind of specialization is a practical implementation of the persona registry pattern, allowing different agent definitions to be invoked depending on the current phase of the delivery workflow.
