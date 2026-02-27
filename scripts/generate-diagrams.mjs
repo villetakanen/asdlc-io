@@ -9,7 +9,9 @@ const MERMAID_CONFIG = 'mermaid.json';
 const PUBLIC_MERMAID_DIR = 'public/mermaid';
 
 async function generateDiagrams() {
-  const files = await glob(`${CONTENT_DIR}/**/*.md`);
+  const contentFiles = await glob(`${CONTENT_DIR}/**/*.md`);
+  const pageFiles = await glob('src/pages/**/*.md');
+  const files = [...contentFiles, ...pageFiles];
 
   // Ensure public/mermaid directory exists
   if (!fs.existsSync(PUBLIC_MERMAID_DIR)) {

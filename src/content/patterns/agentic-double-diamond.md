@@ -2,12 +2,13 @@
 title: "Agentic Double Diamond"
 description: "A computational framework transforming the classic design thinking model into an executable pipeline of context verification and assembly."
 tags: ["Design", "Methodology", "Requirements", "Agents", "Architecture"]
-relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review"]
+relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review", "concepts/extreme-programming"]
 references:
   - { title: "The Double Diamond", author: "Design Council", url: "https://www.designcouncil.org.uk/our-work/skills-learning/tools-frameworks/framework-for-innovation-design-council-s-evolved-double-diamond/", type: "website", annotation: "Origin of the Diverge-Converge model.", accessed: 2026-02-12 }
   - { title: "Software Craftsmanship in the AI Era", author: "Codurance", url: "https://www.codurance.com/", type: "website", annotation: "Source of the 'Spec is Code' philosophy.", accessed: 2026-02-12 }
   - { title: "Before I Ask AI to Build, I Ask It to Challenge", author: "Daniel Donbavand", url: "https://danieldonbavand.com/2026/02/12/before-i-ask-ai-to-build-i-ask-it-to-challenge/", type: "website", annotation: "Source of the Adversarial Requirement Review pattern.", accessed: 2026-02-12 }
-lastUpdated: 2026-02-12
+  - { title: "AI-Driven Development Framework", author: "Effective Delivery", url: "https://effectivedelivery.io/p/ai-driven-development-framework", type: "website", annotation: "A practical implementation of the Agentic Double Diamond using GitHub Copilot showing a 30-40% speed increase.", accessed: 2026-02-25 }
+lastUpdated: 2026-02-25
 status: "Experimental"
 ---
 
@@ -118,5 +119,16 @@ The software operates in production, generating new signals (usage data, errors,
 ### The Static Spec
 **Problem:** Treating Phase 3 as a "PDF generation" step.
 **Consequence:** The Spec drifts from reality immediately. In this pattern, the Spec must be a **Living Spec** in the repo, or the automated assembly fails.
+
+## Industry Implementations
+
+The Agentic Double Diamond is a theoretical model that maps closely to emerging industry practices. A concrete example is the [Effective Delivery AI-driven framework](https://effectivedelivery.io/p/ai-driven-development-framework), which observed a 30-40% development speed increase using a 4-phase "copilot-collections" workflow that tightly aligns with our phases:
+
+1. **Research $\rightarrow$ Discover:** Agents build context around a task and source related information.
+2. **Plan $\rightarrow$ Define / Spec:** Agents create a structured implementation plan with clear acceptance criteria.
+3. **Implement $\rightarrow$ Assemble:** Specialized engineers (Frontend/Backend) execute against the agreed plan.
+4. **Review $\rightarrow$ Assemble (Verification Gate):** Critic agents perform structured code reviews, verifying against Figma designs or the implementation plan.
+
+This workflow demonstrates that creating specialized context furnaces (their Research/Plan phases) before implementation leads to measurable, significant gains over standard "vibe coding" with a single LLM prompt.
 
 

@@ -30,6 +30,11 @@ references:
     url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
     accessed: 2026-01-24
     annotation: "Documents latency, cost, and reliability constraints from enterprise practice."
+  - type: "paper"
+    title: "SWE-Protégé: Learning to Selectively Collaborate With an Expert Unlocks Small Language Models as Software Engineering Agents"
+    url: "https://arxiv.org/abs/2602.22124"
+    publisher: "arXiv"
+    annotation: "Provides empirical validation for explicit Escalation Routing, using an agentic RL-trained SLM that knows when to request guidance from an expert model to prevent degenerative looping."
 ---
 
 ## Definition
@@ -65,7 +70,8 @@ Uses a trained classifier (Bert, XGBoost, or Matrix Factorization like RouteLLM)
 ### 3. Cascading Routing (Waterfall)
 A "fail-up" pattern that prioritizes cost.
 *   **Mechanism**: Try Weak Model $\rightarrow$ Validation Gate (Low Confidence?) $\rightarrow$ Strong Model.
-*   **Use Case**: Code generation where syntax errors can trigger escalation.
+*   **Advanced Mechanism (Escalation)**: Train/prompt the Weak Model (SLM) to actively recognize stalled states or uncertainty and explicitly request guidance from the Strong Model (as demonstrated by SWE-Protégé).
+*   **Use Case**: Code generation where syntax errors can trigger escalation, or sequential workflows where the primary model is an SLM.
 
 ### 4. Probabilistic Routing (Contextual Bandits)
 Uses Reinforcement Learning to adapt routing weights based on user feedback or judge evaluation.
@@ -73,7 +79,7 @@ Uses Reinforcement Learning to adapt routing weights based on user feedback or j
 
 ### 5. Agentic Routing (Tool Use)
 Structural routing where a dispatcher agent utilizes tools to delegate work.
-*   **Mechanism**: LLM outputs structured JSON choice (e.g., `{"tool": "sql_agent"}`).
+*   **Mechanism**: LLM outputs structured JSON choice (e.g., `{"tool": "sql_agent"}`). This includes **Self-Escalation** where an agent uses a tool to route the task back to an overwatch or expert model.
 *   **Use Case**: Complex multi-step workflows.
 
 ## Anatomy

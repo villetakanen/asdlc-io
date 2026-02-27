@@ -2,8 +2,8 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading"]
-lastUpdated: 2026-02-21
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading", "concepts/context-anchoring"]
+lastUpdated: 2026-02-24
 status: "Live"
 references:
   - type: "website"
@@ -103,6 +103,8 @@ Context Engineering is typically framed as a question of what to *put in* contex
 Every constraint enforced deterministically by the toolchain is context that does not need to be in the prompt. A well-configured `biome.json` silently eliminates an entire class of style instructions. A strict `tsconfig.json` makes type safety rules unnecessary to state. Treat your linter, formatter, and type checker configurations as upstream context engineering — they narrow the solution space before the agent ever sees the prompt.
 
 This principle has empirical support. Gloaguen et al. (2026) found that agents follow context file instructions faithfully, which means unnecessary instructions impose a real cost: broader exploration, more reasoning tokens, higher inference cost — without improving task outcomes. The implication is that bloated context files are not neutral; they are actively harmful.
+
+Furthermore, agents are highly susceptible to [Context Anchoring](/concepts/context-anchoring). Telling an LLM what *not* to do ensures that the concept is front-and-center in its attention mechanism. If your `AGENTS.md` says "do not use tRPC", the agent might still reach for it because the token `tRPC` is highly active in the context window.
 
 **The decision hierarchy for any constraint:**
 1. Can a runtime gate enforce it? → Use the gate

@@ -13,6 +13,7 @@ relatedIds:
   - concepts/spec-driven-development
   - patterns/the-spec
   - patterns/context-gates
+  - concepts/extreme-programming
 lastUpdated: 2026-01-13
 status: "Live"
 references:
