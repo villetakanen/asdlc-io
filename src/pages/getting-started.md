@@ -8,9 +8,9 @@ description: A practical guide to implementing the Agentic Software Development 
 
 ASDLC (Agentic Software Development Life Cycle) is a framework for building software with AI agents—not as toys or assistants, but as industrial infrastructure.
 
-We reject "[vibe coding](/concepts/vibe-coding)." We reject copy-pasting ChatGPT output and hoping it works. Instead, we treat agent-assisted development with the same rigor as any serious engineering discipline: schemas, contracts, gates, and governance.
+Vibe coding is powerful for exploration and prototyping. Production requires more. When code must be maintained, extended, and trusted, you need schemas, contracts, gates, and governance. ASDLC provides the methodology for that transition.
 
-> "Agentic architecture is the conveyor belt for knowledge work."
+> "Agentic architecture is the conveyor belt for knowledge work." <br> -- Ville Takane
 
 If that sounds like overkill for your weekend project, it probably is. ASDLC is for teams building production software who want deterministic, repeatable outcomes from non-deterministic AI systems.
 
@@ -25,25 +25,27 @@ Think automotive manufacturing: robotic arms automate welding, but they don't re
   <figcaption>In the ASDLC, the <strong>Spec</strong> becomes the primary source code, and "Delivery" becomes an automated <strong>assembly</strong> step. The human role shifts from <i>Crafting</i> to Engineering.</figcaption>
 </figure>
 
+## How It Works?
+
 ASDLC defines three layers:
 
 | Layer | Function | Human Role |
 |-------|----------|------------|
-| **Context** | The supply chain—requirements, schemas, specs delivered just-in-time | Curator |
+| **Context** | The supply chain—requirements, schemas, specs delivered just-in-time | Editor |
 | **Agents** | The logistics layer—moving information, generating code, running tests | Operator |
 | **Gates** | Quality control—deterministic checks + human oversight | Governor |
 
-The human contribution shifts from *writing code* to *designing systems, defining contracts, and governing output*.
+The human contribution shifts from *writing code* to *designing systems, defining contracts, and verifying output*.
 
-## The Five-Minute Version
+### The Five-Minute Version
 
 If you remember nothing else:
 
 1. **Write specs before code.** The [Spec](/patterns/the-spec) is the permanent source of truth. Agents read it; code fulfills it. No spec, no build.
-2. **Treat context as code.** Your [AGENTS.md](/practices/agents-md-spec) file is version-controlled, peer-reviewed, and optimized for agent consumption. It's not a suggestion box.
+2. **Treat context as code.** Your [AGENTS.md](/practices/agents-md-spec) file is version-controlled, peer-reviewed, and optimized for agent consumption.
 3. **Use gates, not hope.** [Context Gates](/concepts/context-gates) enforce quality at three levels: deterministic (compilers, tests), probabilistic (AI review), and human (strategic fit).
 4. **Separate state from delta.** The Spec defines *how it works* (state). The [PBI](/patterns/the-pbi) defines *what changes* (delta). Don't conflate them.
-5. **Commit constantly.** [Micro-Commits](/practices/micro-commits) are save points. When an agent generates garbage in file 4 of 10, you can rollback without losing everything.
+5. **Commit constantly.** [Micro-Commits](/practices/micro-commits) are save points. When an agent generates garbage in file 4 of 10, you roll back without losing everything.
 
 ## Learning Paths
 
@@ -54,7 +56,7 @@ Start with the concepts that define the methodology:
 1. **[Agentic SDLC](/concepts/agentic-sdlc)** — The manifesto. Why industrialization, why L3 autonomy, why determinism over vibes.
 2. **[Levels of Autonomy](/concepts/levels-of-autonomy)** — The SAE-inspired scale. We standardize at L3 (Conditional)—agents execute, humans instruct.
 3. **[Context Engineering](/concepts/context-engineering)** — Why context is your most valuable asset, not the model.
-4. **[The 4D Framework](/concepts/4d-framework)** — Anthropic's model: Delegation, Description, Discernment, Diligence.
+4. **[Vibe Coding](/concepts/vibe-coding)** — Where unstructured generation works, where it doesn't, and how ASDLC bridges the gap.
 
 ### Path B: "I want to ship something today"
 
@@ -64,6 +66,7 @@ Start with the practices you can implement immediately:
 2. **[Living Specs](/practices/living-specs)** — Write your first spec. Template included. 1 hour.
 3. **[PBI Authoring](/practices/pbi-authoring)** — Structure work items agents can actually execute. 30 minutes.
 4. **[Micro-Commits](/practices/micro-commits)** — Change your git habits. Immediate.
+5.  **[Adversarial Code Review](/practices/adversarial-code-review)** — Validate agent output against your spec using a Critic Agent. 15 minutes.
 
 ### Path C: "I want to design the whole system"
 
@@ -72,9 +75,9 @@ Understand how the pieces connect:
 1. **[Spec-Driven Development](/concepts/spec-driven-development)** — The overarching methodology.
 2. **[The Spec](/patterns/the-spec)** + **[The PBI](/patterns/the-pbi)** — State vs. delta, permanent vs. transient.
 3. **[Context Gates](/concepts/context-gates)** — Input filtering, output validation, the three-tier system.
-4. **[Feature Assembly](/practices/feature-assembly)** — How PBIs execute against specs and pass through gates.
-5. **[Adversarial Code Review](/patterns/adversarial-code-review)** — Using a Critic Agent to validate Builder output.
-6. **[The ADR](/patterns/the-adr)** — Architecture Decision Records as immutable context for agents.
+4. **[Adversarial Code Review](/patterns/adversarial-code-review)** — Using a Critic Agent to validate Builder output.
+5. **[The ADR](/patterns/the-adr)** — Architecture Decision Records as immutable context for agents.
+
 
 ## Quick Reference
 
@@ -90,23 +93,36 @@ Understand how the pieces connect:
 
 ### The Gate Hierarchy
 
-```
-Quality Gates (Deterministic)
-    ↓ Pass
-Review Gates (Probabilistic - Critic Agent)
-    ↓ Pass
-Acceptance Gates (Human-in-the-Loop)
-    ↓ Approve
-Merge
+ADSLC recommends a 3 tier "guardrail" system with deterministic quality gates, probabilistic review gates, and human-in-the-loop acceptance gates.
+
+```mermaid
+flowchart LR
+  subgraph Deterministic
+    QG["Quality Gates"]
+  end
+  subgraph Probabilistic
+    RG["Review Gates"]
+  end
+  subgraph Human-in-the-Loop
+    AG["Acceptance Gates"]
+  end
+  subgraph 0
+    M["Merge"]
+  end
+  
+
+    QG -->|"Pass"| RG
+    RG -->|"Pass"| AG
+    AG -->|"Approve"| M
 ```
 
-### Model Routing Cheat Sheet
+See the article [Conext Gates](http://localhost:4321/patterns/context-gates]) for additional details on the gate hierarchy.
 
-| Task Type | Model Profile | Examples |
-|-----------|--------------|----------|
-| Architecture, specs, debugging | High Reasoning | Gemini 3 Deep Think, DeepSeek V3.2 |
-| Code generation, refactoring | High Throughput | Gemini 3 Flash, Llama 4 Scout, Claude Haiku 4.5 |
-| Legacy analysis, large context | Massive Context | Gemini 3 Pro (5M), Claude 4.5 Sonnet (500k) |
+<figure class="mermaid-diagram">
+  <img src="/mermaid/getting-started-fig-1.svg" alt="Mermaid Diagram" />
+  
+</figure>
+
 
 ## What ASDLC Is Not
 
