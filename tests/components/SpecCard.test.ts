@@ -15,18 +15,18 @@ describe('SpecCard Component', () => {
       },
     });
 
-    // Check title
-    expect(result).toContain('<h3>Test Pattern</h3>');
+    // Check title (h3 may have extra Astro attributes)
+    expect(result).toMatch(/<h3[^>]*>Test Pattern<\/h3>/);
     // Check url
     expect(result).toContain('href="/patterns/test-pattern"');
     // Check status (StatusBadge renders a span with class status-badge)
     expect(result).toContain('Live');
     // Check meta
-    expect(result).toContain('<span class="spec-card__meta mono">Oct 12, 2026</span>');
+    expect(result).toMatch(/<span class="spec-card__meta mono"[^>]*>Oct 12, 2026<\/span>/);
     // Check tags
-    expect(result).toContain('<span class="spec-card__tag mono">test</span>');
-    expect(result).toContain('<span class="spec-card__tag mono">pattern</span>');
-    
+    expect(result).toMatch(/<span class="spec-card__tag mono"[^>]*>test<\/span>/);
+    expect(result).toMatch(/<span class="spec-card__tag mono"[^>]*>pattern<\/span>/);
+
     // Should NOT contain a description element
     expect(result).not.toContain('spec-card__description');
   });
@@ -43,7 +43,7 @@ describe('SpecCard Component', () => {
       },
     });
 
-    // Check description is rendered
-    expect(result).toContain('<p class="spec-card__description">This is a test summary for the new article card design.</p>');
+    // Check description is rendered (p tag may have extra Astro attributes)
+    expect(result).toMatch(/<p class="spec-card__description"[^>]*>This is a test summary for the new article card design\.<\/p>/);
   });
 });
