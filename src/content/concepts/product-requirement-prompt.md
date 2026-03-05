@@ -83,7 +83,7 @@ Applied in:
 - [The PBI](/patterns/the-pbi) — ASDLC's transient execution unit
 
 See also:
-- [Industry Alignment](/resources/industry-alignment) — Convergent frameworks in agentic development
+- [Industry Alignment](/resources/further-reading) — Convergent frameworks in agentic development
 - [Spec-Driven Development](/concepts/spec-driven-development) — ASDLC's foundational methodology
 - [The Spec](/patterns/the-spec) — ASDLC's specification pattern
 - [Vibe Coding](/concepts/vibe-coding) — The anti-pattern both PRP and SDD address

@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Further Reading"
+  description="A curated feed of thought-leadership articles, external voices, and convergent frameworks aligning with ASDLC principles."
+>
+  <h1>Further Reading</h1>
+
+  <div class="prose">
+    <p class="intro">
+      This feed tracks external thought-leadership, articles, and frameworks that align with 
+      ASDLC principles, but don't necessarily constitute structural evidence. We log 
+      convergent thinking from engineers, researchers, and organizations navigating 
+      agentic development as we synthesize them.
+    </p>
+
+    <div class="feed-entry">
+      <h2>The AI Triangle: The Bottleneck Nobody Priced In</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://alexbond.info/blog/2026-02-ai-triangle/" target="_blank" rel="noopener">Alex Bond</a></span>
+      </div>
+      <p>
+        Provides excellent qualitative validation of the ASDLC's core thesis that the bottleneck in software engineering is shifting from <em>generation</em> to <em>verification</em>. It identifies that as the effort of coding goes down, the cognitive load of verification (checking architectural integrity, reviewing PRs from AI agents) goes up. This thoroughly supports our emphasis on deterministic enforcement using Context Gates.
+      </p>
+      <blockquote>
+        "The bottleneck shifts from doing to checking, and checking doesn’t get faster just because the doing did."
+      </blockquote>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Is software engineering still a craft?</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://www.swarmia.com/blog/is-software-engineering-still-craft/" target="_blank" rel="noopener">Swarmia Blog</a></span>
+      </div>
+      <p>
+        Explores the human impact of the shift from craft-based development to industrial-scale 
+        agentic production. It acts as qualitative validation of the ASDLC "industrialization" 
+        thesis, mirroring the assertion that AI creates a "factory production line" feeling 
+        versus a traditional "craft." It explicitly warns against vibe-coding production systems 
+        and emphasizes that rigorous engineering practices still apply.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Boris Cherny: Plan-and-Iterate Discipline</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://peterman.fm/boris-cherny" target="_blank" rel="noopener">The Peterman Podcast</a></span>
+        <span><strong>Role:</strong> Principal Engineer, Anthropic; Creator of Claude Code</span>
+      </div>
+      <p>
+        Advocates for a disciplined AI workflow: Ask the model to generate a plan first, 
+        implement in small iterative steps, and write by hand where you have strong technical 
+        opinions. This closely mirrors ASDLC's <strong>Spec-Driven Development</strong> and 
+        <strong>Context Gates</strong>. 
+      </p>
+      <blockquote>
+        "Speed is seductive. Maintainability is survival."
+      </blockquote>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Matt Watson: Product Thinking as Core Competency</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> LinkedIn and <em>Product Driven</em></span>
+        <span><strong>Role:</strong> 5x Founder & CTO, CEO of Full Scale</span>
+      </div>
+      <p>
+        Argues that "vibe coders" outperform average engineers because they focus on 
+        product outcomes, not just implementation. In an AI world where "just build this" 
+        work is automated, human engineers must decide what matters.
+      </p>
+      <blockquote>
+        "For years, we rewarded engineers for staying in their lane, closing tickets, and not rocking the boat. Then we act surprised when they don't think like owners... Product thinking isn't a bonus skill anymore. In an AI world, it's the job."
+      </blockquote>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Rasmus Widing: Product Requirement Prompts (PRPs)</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://github.com/Wirasm/PRPs-agentic-eng" target="_blank" rel="noopener">GitHub</a></span>
+        <span><strong>Role:</strong> Engineering Leader; Creator of PRP methodology</span>
+      </div>
+      <p>
+        Defines the minimum viable specification an AI agent needs to ship production-ready 
+        code in one pass: "PRD + curated codebase intelligence + agent runbook." 
+        His principles—plan before you prompt, context is everything, and scope to what the 
+        model can do reliably—mirror ASDLC's <strong>Spec-Driven Development</strong> philosophy.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Industry Data Points: The Technical Debt Warning</h2>
+      <div class="meta">
+        <span><strong>Sources:</strong> Google, Anthropic, Forrester Research</span>
+      </div>
+      <p>
+        Various data points highlighting the risks of agentic development without discipline:
+      </p>
+      <ul>
+        <li><strong>Google (2024):</strong> Approximately 30% of code is AI-generated, leading to the first year where copy-pasted code exceeded refactored code.</li>
+        <li><strong>Anthropic:</strong> Claude Code adoption led to a 70% productivity increase, validating agentic power when structured properly.</li>
+        <li><strong>Forrester:</strong> Predicts 75% of tech leaders will face moderate-to-severe technical debt by 2026 due to speed prioritized over maintainability in AI-assisted development.</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .intro {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: var(--c-bg-surface);
+    border-left: 4px solid var(--c-brand);
+  }
+
+  .feed-entry {
+    background: var(--c-bg-surface);
+    border: 1px solid var(--c-border);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .feed-entry h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .meta span {
+    display: flex;
+    align-items: center;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--c-brand);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+</style>

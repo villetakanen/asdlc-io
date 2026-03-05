@@ -16,7 +16,9 @@ references:
 
 ## Overview
 
-This guide provides practical instructions for implementing the [Specs](/patterns/the-spec) pattern. While the pattern describes *what* specs are and *why* they matter, this guide focuses on *how* to create and maintain them.
+This guide provides practical instructions for implementing the [Specs](/patterns/the-spec) pattern as a **`spec-anchored`** methodology. 
+
+In the spectrum of [Spec-Driven Development](/concepts/spec-driven-development), ASDLC explicitly targets the `spec-anchored` maturity level—where specs remain the architectural source of truth for a feature's lifecycle, but determinisim is preserved by retaining code. While the pattern describes *what* specs are and *why* they matter, this guide focuses on *how* to create and maintain them.
 
 ## When to Create a Spec
 
@@ -70,6 +72,11 @@ Organize specs by **feature domain**, not by sprint or ticket number.
 - File name: always `spec.md`
 - Location: `/plans/{feature-domain}/spec.md`
 - Scope: one spec per independently evolvable feature
+
+**Context Separation:**
+Maintain a strict separation between global constitutional context and feature-level functional specifications:
+- **`ARCHITECTURE.md` (Memory Bank):** Contains the cross-cutting, global rules, principles, and tech stack choices that apply to *every* agent session.
+- **`/plans/*/spec.md` (Functional Spec):** Contains the specific behavioral contracts, business logic, and localized architecture for a single domain. 
 
 ## Maintenance Protocol
 

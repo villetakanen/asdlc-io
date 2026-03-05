@@ -28,7 +28,7 @@ references:
 
 ## Definition
 
-`AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for the minimal, human-authored context that agents need to work effectively on a project — things that are not already expressed by the repo itself.
+`AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for the minimal, **human-authored** context that agents need to work effectively on a project — things that are not already expressed by the repo itself.
 
 We align with the [agents.md specification](https://agents.md), treating this file as the authoritative source of truth for agentic behavior within the ASDLC.
 
@@ -42,7 +42,7 @@ We align with the [agents.md specification](https://agents.md), treating this fi
 
 **Skip this practice when:**
 - The project is a temporary script or throwaway prototype
-- You are not using any agentic tools or LLM assistants
+- The project tech stack and structure is very commo or obvious.
 
 ## Core Philosophy
 
@@ -157,7 +157,7 @@ A concise description of the project's purpose and constraints. This differentia
 
 ### 2. Toolchain Registry
 
-The minimal reference to what tools are in play and how to invoke them. **Do not describe what the tools enforce** — that is already in their config files.
+The minimal reference to what non-standard tools are in play and how to invoke them. **Do not describe what the tools enforce** — that is already in their config files.
 
 | Intent | Command | Notes |
 |---|---|---|
@@ -168,7 +168,7 @@ The minimal reference to what tools are in play and how to invoke them. **Do not
 
 ### 3. Judgment Boundaries
 
-The behavioral rules that cannot be expressed by a tool. These are the core value of agents.md — the steering constraints that shape how the agent reasons, not what the linter catches. Use the three-tier system:
+The behavioral rules that cannot be expressed by a tool or through a **skill** — the steering constraints that shape how the agent reasons, not what the linter catches. Use the three-tier system:
 
 **NEVER (Hard judgment limits):**
 - Never commit secrets, tokens, or `.env` files
@@ -183,11 +183,11 @@ The behavioral rules that cannot be expressed by a tool. These are the core valu
 - Explain your plan before writing code
 - Handle all errors explicitly — never swallow exceptions silently
 
-Note: If a rule here overlaps with something your toolchain enforces (e.g., linting rules, type errors), remove it from agents.md. The tool is the enforcement mechanism, not the agent.
+Note: If a rule here overlaps with something your toolchain or harness enforces (e.g., skill, linting rules, type errors), remove it from agents.md. The tool is the enforcement mechanism, not the agent.
 
 ### 4. Available Personas (Registry Only)
 
-If your project uses multiple agent personas, list them by name and invocation. **Full persona definitions live in skill/workflow files**, not inline here. Loading all persona definitions on every session is wasteful when only one is active at a time.
+If your project uses multiple agent personas, list them by name and invocation. **Full persona definitions live in skill/workflow files**, not inline here. Loading all persona definitions on every session is wasteful when only one is active at a time. 
 
 ```md
 ## Personas
@@ -202,7 +202,9 @@ Senior Systems Engineer — Go 1.22, gRPC, high-throughput concurrency.
 Favor explicit error handling and composition over inheritance.
 ```
 
-### 5. Context Map (Optional)
+### 5. Context Map
+
+*Use inly when the project structure is complex or the agents constantly stumbles finding files*
 
 A structural index of the codebase for architectural orientation. This is most valuable for onboarding new sessions, spec writing, error triage, and ADR authoring — not primarily as a file-navigation aid for delivery tasks. Keep it high-level; agents can discover file-level details themselves.
 
@@ -222,7 +224,9 @@ Periodically review agents.md for content that has migrated to the toolchain. Co
 
 ## On LLM-Generated Context Files
 
-Most agent tools offer a `/init` or equivalent command that auto-generates an agents.md. **Treat this as a starting draft, not a finished file.** Gloaguen et al. (2026) found LLM-generated context files consistently reduce agent performance and inflate cost. The mechanism: agents follow the generated instructions faithfully, which broadens exploration and increases reasoning cost without improving task outcomes. The generated file is a useful inventory — use it to identify what *might* belong in agents.md, then apply the Toolchain First principle to strip everything that belongs elsewhere.
+Most agent tools offer a `/init` or equivalent command that auto-generates an agents.md. **Treat this as an example of everything that might not need to be in the constitution. This is the context the agent was able to find out independently.**
+
+Gloaguen et al. (2026) found LLM-generated context files consistently reduce agent performance and inflate cost. The mechanism: agents follow the generated instructions faithfully, which broadens exploration and increases reasoning cost without improving task outcomes. The generated file is a useful inventory — use it to identify what *might* belong in agents.md, then apply the Toolchain First principle to strip everything that belongs elsewhere.
 
 ## Format Philosophy
 

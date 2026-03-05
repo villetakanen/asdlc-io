@@ -46,6 +46,20 @@ references:
     published: 2026-02-01
     accessed: 2026-02-04
     annotation: "Mandates a 'Written Contract' (Spec) before any code is generated. Validates ASDLC's core thesis: 'You can't debug what was never designed.'"
+  - type: "website"
+    title: "Using spec-driven development with Claude Code"
+    url: "https://heeki.medium.com/using-spec-driven-development-with-claude-code-4a1ebe5d9f29"
+    author: "Heeki Park"
+    published: 2026-03-01
+    accessed: 2026-03-03
+    annotation: "Practitioner case study demonstrating spec-driven development workflows and modular task breakdowns."
+  - type: "website"
+    title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
+    url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"
+    author: "Birgitta Böckeler"
+    published: 2025-01-21
+    accessed: 2026-03-03
+    annotation: "Defines the maturity levels of SDD (spec-first, spec-anchored, spec-as-source) and highlights MDD regression risks."
 ---
 
 ## Definition
@@ -53,6 +67,8 @@ references:
 A **Spec** is the permanent source of truth for a feature. It defines *how* the system works (Design) and *how* we know it works (Quality).
 
 Unlike traditional tech specs or PRDs that are "fire and forget," specs are **living documents**. They reside in the repository alongside the code and evolve with every change to the feature.
+
+Crucially, The Spec pattern adheres to a **`spec-anchored`** philosophy. The spec defines the architectural intent and boundaries, but **deterministic code** remains the ultimate source of truth for runtime logic. Attempting to use a spec as the absolute only source artifact (`spec-as-source`) to 100% generate a codebase is an anti-pattern that sacrifices the agent control loop and regresses to [Model-Driven Development](/concepts/model-driven-development) failures.
 
 ## The Economy of Code
 
@@ -219,7 +235,7 @@ The Spec pattern has emerged independently across the industry under different n
 
 His core principles—"Plan before you prompt," "Context is everything," "Scope to what the model can reliably do"—mirror ASDLC's Spec-Driven Development philosophy.
 
-See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Industry Alignment](/resources/industry-alignment) for convergent frameworks.
+See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Further Reading](/resources/further-reading) for convergent frameworks.
 
 See also:
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
