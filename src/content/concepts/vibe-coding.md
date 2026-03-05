@@ -156,6 +156,6 @@ Applied in:
 - [Levels of Autonomy](/concepts/levels-of-autonomy) — Human oversight model (L3: "Hands Off, Eyes On")
 
 See also:
-- [Industry Alignment](/resources/industry-alignment) — External voices converging on ASDLC principles
+- [Industry Alignment](/resources/further-reading) — External voices converging on ASDLC principles
 - [Spec-Driven Development](/concepts/spec-driven-development) — ASDLC's production-grade methodology
 - [Context Gates](/patterns/context-gates) — Deterministic enforcement layer

@@ -184,7 +184,7 @@ Success measured by tickets closed, not problems solved. Optimizes for speed of 
 Engineers punished for thinking beyond their assigned component. Prevents system-level thinking required for good product decisions.
 
 See also:
-- [Industry Alignment](/resources/industry-alignment) — External voices on the product thinking shift
+- [Industry Alignment](/resources/further-reading) — External voices on the product thinking shift
 - [Spec-Driven Development](/concepts/spec-driven-development) — How ASDLC encodes product thinking
 - [Adversarial Requirement Review](/patterns/adversarial-requirement-review) — The verification pattern that operationalizes product thinking
 - [Vibe Coding](/concepts/vibe-coding) — What happens when product thinking is absent

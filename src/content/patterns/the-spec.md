@@ -235,7 +235,7 @@ The Spec pattern has emerged independently across the industry under different n
 
 His core principles—"Plan before you prompt," "Context is everything," "Scope to what the model can reliably do"—mirror ASDLC's Spec-Driven Development philosophy.
 
-See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Industry Alignment](/resources/industry-alignment) for convergent frameworks.
+See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Further Reading](/resources/further-reading) for convergent frameworks.
 
 See also:
 - [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices

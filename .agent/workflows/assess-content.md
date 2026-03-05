@@ -58,6 +58,7 @@ Before accepting the content, we must stress-test it against our current maturit
 2.  **Evidence Check:**
     *   Is this opinion or empirical fact?
     *   *Action:* Distinguish "Subjective Best Practice" from "Objective Benchmark".
+    *   *Note:* If the content is "thought leadership" or opinion but highly aligned philosophically with ASDLC, consider recommending it for the **Further Reading** log rather than rejecting it.
 
 3.  **Context Match:**
     *   Does this apply to our specific constraints (Agentic, High-Maturity, Industrial)?
@@ -134,6 +135,9 @@ Select the best strategy or combination of strategies:
 *   **STRATEGY 4: REJECT / ARCHIVE**
     *   "Content is redundant with `patterns/A.md`. No action needed."
 
+*   **STRATEGY 5: LOG AS THOUGHT LEADERSHIP**
+    *   "Content aligns philosophically but lacks structural evidence. Recommend extracting quotes/themes and logging as an entry in `src/pages/resources/further-reading.astro`."
+
 #### D. draft-content.md (Optional)
 If a new article is recommended, provide a **stub** following the appropriate Spec (Concept/Pattern/Practice) including:
 *   Title & Description
@@ -156,7 +160,18 @@ If a new article is recommended, provide a **stub** following the appropriate Sp
 6. Generates Final Report: "This article introduces 'Fuzz Testing by Agents'. Recommendation: 
    - Create `practices/agentic-fuzzing.md`
    - Update `patterns/adversarial-code-review.md` to link to it as a specialized practice.
-   - *Following human review:* Update `concepts/ci-cd-pipeline.md` to mention fuzzing gates."
    - Create `practices/agentic-fuzzing.md`
-   - Update `patterns/adversarial-code-review.md` to link to it as a specialized practice."
+   - Update `patterns/adversarial-code-review.md` to link to it as a specialized practice.
+   - *Following human review:* Update `concepts/ci-cd-pipeline.md` to mention fuzzing gates."
+
+# Alternate Example (Thought Leadership Input)
+"Assess this article: https://example.com/why-agents-need-rules"
+
+# Agent runs workflow:
+1. Search KB for "rules", "agents"
+2. Determines article heavily aligns with "context gates" but provides no new technical pattern.
+3. Presents draft: "I recommend logging this as thought leadership."
+4. Generates Final Report: "This article is an excellent philosophical validation of Context Gates. Recommendation:
+   - **STRATEGY 5: LOG AS THOUGHT LEADERSHIP**
+   - Add summary and key quote to `src/pages/resources/further-reading.astro`."
 ```
