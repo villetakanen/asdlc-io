@@ -2,7 +2,7 @@
 title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
-relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review"]
+relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance"]
 status: "Live"
 lastUpdated: 2026-01-31
 references:
@@ -49,15 +49,15 @@ LLMs are probabilistic text generators trained to be helpful. When asked "Check 
 
 If the same computational session writes and reviews code, the "review" provides minimal independent validation.
 
-## The Solution: Separated Roles
+## The Solution: Separated Roles (and Parallel Critique)
 
-To create effective verification, separate the generation and critique roles:
+To create effective verification, separate the generation and critique roles. Advanced implementations also utilize **parallel multi-model critique** to find overlapping issues before synthesizing the results.
 
 **The Builder** — Optimizes for implementation throughput (e.g., Gemini 3 Flash, Claude Haiku 4.5). Generates code from the PBI and Spec.
 
-**The Critic** — Optimizes for logical consistency and constraint satisfaction (e.g., Gemini 3 Deep Think, DeepSeek V3.2). Validates code against Spec contracts without rewriting.
+**The Critic Lanes** — A set of independent models (e.g., an illustrative "Tri-Model Lane" approach with independent Architect, SecOps, and QA personas) optimized for specific validation dimensions. Models must have strict [Provenance](/concepts/provenance) identity separation so their actions are audited independently.
 
-The Critic does not generate alternative implementations. It acts as a gatekeeper, producing either **PASS** or a list of **spec violations** that must be addressed.
+The Critics do not generate alternative implementations. They act as gatekeepers, producing either **PASS** or a list of **spec violations** that must be addressed.
 
 ## The Workflow
 
@@ -73,13 +73,13 @@ The Builder Agent implements the PBI according to the Spec.
 
 **Critical:** Start a new AI session or chat thread for critique. This clears conversation drift and forces the Critic to evaluate only the artifacts (Spec + Diff), not the Builder's reasoning process.
 
-If using the same model, close the current chat and open a fresh session. If using [Model Routing](/patterns/model-routing), switch to a High Reasoning model.
+If using the same model, close the current chat and open a fresh session. If using [Model Routing](/patterns/model-routing), switch to High Reasoning models for parallel critique.
 
 ### 3. Critique Phase
 
-Feed the Spec and the code diff to the Critic Agent with adversarial framing:
+Feed the Spec and the code diff to the Critic Agents with adversarial framing. Advanced factories run these in parallel lanes using specialized prompts (for example, the Architect persona below):
 
-**System Prompt:**
+**System Prompt (Architect Critic Example):**
 ```
 You are a rigorous Code Reviewer validating implementation against contracts.
 
@@ -107,9 +107,15 @@ Output Format:
 This transforms critique from "reject" to "here's how to fix it."
 ```
 
+### 3b. Moderator Synthesis (For Parallel Critique)
+
+When a pattern incorporates multiple parallel Critics, a **Moderator** role becomes an architectural requirement to prevent alert fatigue and conflicting directives. 
+
+The essential shape of this architecture structurally separates the read-only analysis (performed by the parallel Critics) from the synthesis and write actions (performed exclusively by the Moderator). The Moderator acts as a deduplication and prioritization layer, ensuring the Builder agent receives a single, unified checklist of violations rather than a barrage of uncoordinated feedback.
+
 ### 4. Verdict
 
-**If PASS:** Code moves to human Acceptance Gate (L3 review for strategic fit).
+**If PASS (or resolved by Synthesis):** Code moves to human Acceptance Gate (L3 review for strategic fit).
 
 **If FAIL:** Violations are fed back to Builder as a new task: "Address these spec violations before proceeding."
 
@@ -134,7 +140,7 @@ Use [Model Routing](/patterns/model-routing) to assign models by capability prof
 | Role | Model Profile | Rationale |
 |------|---------------|-----------|
 | Builder | High Throughput | Fast code generation with strong syntax knowledge |
-| Critic | High Reasoning | Deep logic evaluation, constraint satisfaction, edge case discovery |
+| Critic(s) | High Reasoning | Deep logic evaluation, constraint satisfaction, edge case discovery. Can be broken into specialized lanes (Arch, QA, SecOps). |
 
 This leverages the strengths of each model class: speed for generation, reasoning depth for validation.
 

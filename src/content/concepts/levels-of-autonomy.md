@@ -11,6 +11,13 @@ relatedIds:
 status: Live
 lastUpdated: 2026-01-09
 references:
+  - type: "website"
+    title: "Built by agents, tested by agents, trusted by whom?"
+    url: "https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/"
+    author: "Eran Kahana"
+    published: 2026-02-08
+    accessed: 2026-03-09
+    annotation: "Provides legal and regulatory analysis on how L4/L5 autonomy creates an unpriced liability gap and accelerates skill atrophy due to the Paradox of Supervision."
   - type: "paper"
     title: "How AI is Transforming Work at Anthropic"
     url: "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic"
@@ -39,7 +46,7 @@ The scale identifies where the **Context Gate** (the boundary of human oversight
 | :--- | :--- | :--- | :--- | :--- |
 | **L1** | Assistive | Autocomplete, Chatbots. Zero state retention. | Driver. Hands on wheel 100% of time. | Distraction / Minor Syntax Errors |
 | **L2** | Task-Based | "Fix this function." Single-file context. | Reviewer. Checks output before commit. | Logic bugs within a single file. |
-| **L3** | Conditional | "Implement this feature." Multi-file orchestration. | Instructor. Defines constraints & intervenes on "drift." | Regression to the Mean (Mediocrity). |
+| **L3** | Conditional | "Implement this feature." Multi-file orchestration. | Change Owner. Validates CI/CD, footprint, & intervenes on drift. | Regression to the Mean (Mediocrity). |
 | **L4** | High | "Manage this backlog." Self-directed planning. | Auditor. Post-hoc analysis. | Silent Failure. Strategic drift over time. |
 | **L5** | Full | "Run this company." | Consumer. Passive beneficiary. | Existential alignment drift. |
 
@@ -51,7 +58,7 @@ The software autonomy scale maps directly to SAE J3016, the automotive standard 
 | :--- | :--- | :--- |
 | **L1** | L1 (Driver Assist) | **Hands On, Feet On.** AI nudges the wheel (Lane Keep) or gas (Cruise), but Human drives. |
 | **L2** | L2 (Partial) | **Hands On (mostly).** AI handles steering and speed in bursts, but Human monitors constantly. |
-| **L3** | L3 (Conditional) | **Hands Off, Eyes On.** AI executes the maneuver (The Drive). Human is the Instructor ready to grab the wheel immediately. |
+| **L3** | L3 (Conditional) | **Hands Off, Eyes On.** AI executes the maneuver (The Drive). Human is the Owner ready to intervene if it leaves the paved path. |
 | **L4** | L4 (High) | **Mind Off.** Sleeping in the back seat within a geo-fenced area. Dangerous if the "fence" (Context) breaks. |
 | **L5** | L5 (Full) | **No Steering Wheel.** The vehicle has no manual controls. |
 
@@ -64,7 +71,7 @@ ASDLC standardizes practices for **Level 3 (Conditional Autonomy)** in software 
 > 
 > At L4, agents operate for days without human intervention but lack the strategic foresight needed to maintain system integrity. This results in **Silent Drift**—the codebase continues to function technically but gradually deteriorates into an unmanageable state.
 > 
-> Mitigation strategies exist (Advanced Context Gates, architectural health monitoring), but these solutions require further validation.
+> While advanced verification environments like the [AI Software Factory](/concepts/ai-software-factory) offer technical mitigations against drift, eliminating human code review introduces severe, unpriced **Governance Threats** (including Liability and Disclosure gaps) that make L4 operations high-risk for enterprise compliance.
 
 > [!NOTE]
 > **Empirical Support for L3**

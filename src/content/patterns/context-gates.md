@@ -128,7 +128,7 @@ Subjective checks requiring human strategic judgment.
 - **Type:** Human Review (HITL)
 - **Nature:** Subjective / Strategic
 - **Question:** "Is it the right thing?"
-- **Purpose:** Ensure solution solves actual user problem and aligns with product vision
+- **Purpose:** Ensure solution solves actual user problem and aligns with product vision. Empowers the human to act as a *Change Owner* rather than a syntax auditor.
 
 **Examples:**
 - Brand tone check (does copy sound like us?)

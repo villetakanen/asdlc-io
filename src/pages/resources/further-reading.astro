@@ -17,6 +17,49 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="feed-entry">
+      <h2>Built by agents, tested by agents, trusted by whom?</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/" target="_blank" rel="noopener">Stanford Law (Eran Kahana)</a></span>
+      </div>
+      <p>
+        A legal and regulatory critique of the "Dark Factory" non-interactive software development model. It highlights that traditional software accountability mechanisms—product liability, professional licensing, and algorithmic audits—break down when human code review is entirely eliminated. It introduces the critical concepts of the Liability Gap, Disclosure Gap, and Contractual Gap inherent in sustained <a href="/concepts/levels-of-autonomy">L4 Autonomy</a> operations.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>The Agentic Software Factory</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://dev.to/uenyioha/the-agentic-software-factory-how-ai-teams-debate-code-and-secure-enterprise-infrastructure-9eh" target="_blank" rel="noopener">Dev.to (Ugo Enyioha)</a></span>
+      </div>
+      <p>
+        An empirical case study detailing a multi-agent factory building security features into an enterprise identity server. It provides structural validation for <a href="/patterns/adversarial-code-review">Adversarial Code Review</a> by using three distinct models in parallel, demonstrating that "models are better adversaries than collaborators." It also highlights the critical operational need for <a href="/concepts/provenance">Identity Separation</a> (giving distinct models their own API credentials) for auditability.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Microsoft's Agent Factory</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://www.madrona.com/microsofts-agent-factory-the-future-of-ai-software-with-evp-of-core-ai-jay-parikh/" target="_blank" rel="noopener">Madrona Partners (feat. Jay Parikh)</a></span>
+      </div>
+      <p>
+        An interview with Microsoft's EVP of Core AI that validates the shift toward an <a href="/concepts/ai-software-factory">Agent Factory</a> model. Parikh notes that tracking lines of AI-generated code is the wrong metric; the true industrial goal is eliminating "run the business" technical debt to free humans for creative architecture. He also underscores the limitations of one-dimensional evaluations versus empirical, multi-dimensional "lived experience" in tracking agent value.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Software Factories and the Agentic Moment</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://simonwillison.net/2026/Feb/7/software-factory/" target="_blank" rel="noopener">Simon Willison / StrongDM</a></span>
+      </div>
+      <p>
+        Provides a look into a "Dark Factory" where AI teams build software without any human code review. It details replacing boolean test success with <strong>Probabilistic Satisfaction</strong> across thousands of <strong>Holdout Scenarios</strong>, enabled by <strong>Digital Twins</strong> of external services. This serves as critical validation for how an <a href="/concepts/ai-software-factory">AI Software Factory</a> can safely operate at L4 Autonomy without drifting.
+      </p>
+      <blockquote>
+        "Because much of the software we grow itself has an agentic component, we transitioned from boolean definitions of success (“the test suite is green”) to a probabilistic and empirical one... We use the term satisfaction to quantify this validation: of all the observed trajectories through all the scenarios, what fraction of them likely satisfy the user?"
+      </blockquote>
+    </div>
+
+    <div class="feed-entry">
       <h2>Spec-Driven Development / Shifting Responsibility</h2>
       <div class="meta">
         <span><strong>Source:</strong> <a href="https://dylanivanbrown.github.io/blog/2026/02/27/spec-driven-development/" target="_blank" rel="noopener">Dylan Brown</a></span>

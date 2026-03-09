@@ -46,7 +46,9 @@ Provenance is enforced through three mechanisms:
 
 1.  **Intent Provenance (The Spec)**: Every change must trace back to a defined PBI or Spec. No "random acts of coding."
 2.  **Verification Provenance (Context Gates)**: Every state transition is gated by a verifiable check (e.g., "Verified by `architect-agent` using `checklist-v1`").
-3.  **Audit Provenance (Micro-Commits)**: Granular commits reveal the *step-by-step* reasoning of the agent, rather than a giant "slop" PR.
+3.  **Audit Provenance (Identity & Tracking)**: The granular chain of custody showing who did what.
+    *   **Micro-Commits**: Granular, step-by-step reasoning rather than a single giant AI slop PR.
+    *   **Identity Separation**: When orchestrating autonomous factories, models must operate under distinct, cryptographically isolated credentials (e.g., unique API tokens per agent persona). This ensures that every timeline comment is explicitly attributed to a specific model's reasoning pathway, aiding in deterministic compliance tracking rather than blending multiple actors into a generic `bot-admin` account.
 
 **Applied in:**
 *   [The Spec](/patterns/the-spec) — The primary artifact of Intent Provenance.
