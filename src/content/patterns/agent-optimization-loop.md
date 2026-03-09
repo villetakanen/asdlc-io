@@ -12,6 +12,12 @@ references:
     type: "website"
     annotation: "Origin of the Agent Factory and Optimization Loop concepts."
     accessed: 2026-02-15
+  - title: "Software Factories and the Agentic Moment: Probabilistic Satisfaction"
+    author: "StrongDM"
+    url: "https://factory.strongdm.ai/techniques/probabilistic-satisfaction"
+    type: "website"
+    annotation: "Explains shifting from boolean tests to empirical probabilistic satisfaction."
+    accessed: 2026-03-09
 ---
 
 ## Definition
@@ -59,6 +65,9 @@ When the agent fails a scenario, we do not just fix the code (that's the Ralph L
     *   Did it hallucinate a tool? -> Fix Tool definition.
 
 This creates a compounding asset: an agent that gets smarter about *this specific codebase* over time.
+
+### Probabilistic Satisfaction & Holdouts
+In mature setups (such as an [AI Software Factory](/concepts/ai-software-factory)), evaluation shifts from boolean definitions of success ("the test suite is green") to empirical **Probabilistic Satisfaction**. Agents are evaluated against thousands of **Holdout Scenarios**—simulated user stories explicitly hidden from the agent during implementation. This prevents the agent from overfitting or "cheating" the tests, ensuring generalized competence.
 
 ## Offline vs Online Evolution
 

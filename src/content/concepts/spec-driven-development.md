@@ -51,6 +51,13 @@ references:
     published: 2025-01-21
     accessed: 2026-03-03
     annotation: "Defines the maturity levels of SDD (spec-first, spec-anchored, spec-as-source) and highlights MDD regression risks."
+  - type: "website"
+    title: "Spec-Driven Development"
+    url: "https://dylanivanbrown.github.io/blog/2026/02/27/spec-driven-development/"
+    author: "Dylan Brown"
+    published: 2026-02-27
+    accessed: 2026-03-09
+    annotation: "Validates the dangers of the `spec-as-source` anti-pattern by highlighting how distancing engineers from detail causes 'Context Rot'."
 ---
 
 ## Definition
