@@ -1,5 +1,6 @@
 ---
 import { version } from "../../package.json";
+import { Content as AccessKnowledgeBase } from "../components/definitions/access-knowledge-base.md";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -103,25 +104,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <section>
       <h2>Access the Knowledge Base</h2>
-      <p>
-        Stay grounded in official ASDLC patterns and practices through two primary agent-ready interfaces:
-      </p>
-      
-      <h3>1. Model Context Protocol (MCP)</h3>
-      <p>
-        AI agents can connect directly to browse, search, and retrieve ASDLC content via the `/mcp` endpoint.
-      </p>
-      <p>
-        Server Endpoint: <code>https://asdlc.io/mcp</code>
-      </p>
-
-      <h3>2. Downloadable Static Skill</h3>
-      <p>
-        For offline or local-first workflows, download the self-contained Knowledge Base bundle. Drop it into your project to give your local agent "ASDLC superpowers".
-      </p>
-      <p>
-        <a href="/asdlc-skill.zip" class="button">Download Skill (ZIP)</a>
-      </p>
+      <AccessKnowledgeBase />
     </section>
 
     <section class="border-box" style="margin-top: 2rem; background: #f9f9f9;">
