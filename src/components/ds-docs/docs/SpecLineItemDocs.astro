@@ -21,6 +21,7 @@ const { isolatedComponentId } = Astro.props;
 
   <ul>
     <li><strong>Root element:</strong> Semantic <code>&lt;a&gt;</code> tag — the entire row is clickable.</li>
+    <li><strong>Context:</strong> Must be placed inside a <code>&lt;li&gt;</code> within a <code>&lt;ul&gt;</code> for correct list semantics.</li>
     <li><strong>Status badge:</strong> Optional <code>StatusBadge</code> rendered inline with the title.</li>
     <li><strong>Meta &amp; tags:</strong> Right-aligned, monospace-styled secondary information.</li>
   </ul>
@@ -30,35 +31,47 @@ const { isolatedComponentId } = Astro.props;
     <div class="example">
       <h4 class="text-heading-3">Example</h4>
       <p>This is the listing of patterns, that are live!</p>
-      <SpecLineItem
-        title="Living Specs"
-        url="/practices/living-specs"
-        meta="Dec 22, 2025"
-        status="Experimental"
-        tags={["documentation", "spec-driven-development"]}
-      />
-      <SpecLineItem
-        title="Context Engineering"
-        url="/concepts/context-engineering"
-        meta="Oct 12, 2026"
-        status="Live"
-      />
-      <SpecLineItem
-        title="Micro-Commits"
-        url="/practices/micro-commits"
-        meta="Jan 5, 2026"
-        status="Live"
-        tags={["workflow"]}
-      />
+      <ul class="spec-line-list">
+        <li>
+          <SpecLineItem
+            title="Living Specs"
+            url="/practices/living-specs"
+            meta="Dec 22, 2025"
+            status="Experimental"
+            tags={["documentation", "spec-driven-development"]}
+          />
+        </li>
+        <li>
+          <SpecLineItem
+            title="Context Engineering"
+            url="/concepts/context-engineering"
+            meta="Oct 12, 2026"
+            status="Live"
+          />
+        </li>
+        <li>
+          <SpecLineItem
+            title="Micro-Commits"
+            url="/practices/micro-commits"
+            meta="Jan 5, 2026"
+            status="Live"
+            tags={["workflow"]}
+          />
+        </li>
+      </ul>
     </div>
   </div>
 
-  <pre><code>{`<SpecLineItem
-  title="Living Specs"
-  url="/practices/living-specs"
-  meta="Dec 22, 2025"
-  status="Experimental"
-  tags={["documentation", "spec-driven-development"]}
-/>`}</code></pre>
+  <pre><code>{`<ul class="spec-line-list">
+  <li>
+    <SpecLineItem
+      title="Living Specs"
+      url="/practices/living-specs"
+      meta="Dec 22, 2025"
+      status="Experimental"
+      tags={["documentation", "spec-driven-development"]}
+    />
+  </li>
+</ul>`}</code></pre>
 </div>
 )}
