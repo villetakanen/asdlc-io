@@ -20,7 +20,8 @@
     "test:coverage": "vitest run --coverage",
     "test:mcp-preview": "node scripts/test-deploy-preview.mjs",
     "build:skill": "node scripts/build-skill.mjs",
-    "build:mcp-index": "node scripts/generate-mcp-index.mjs"
+    "build:mcp-index": "node scripts/generate-mcp-index.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

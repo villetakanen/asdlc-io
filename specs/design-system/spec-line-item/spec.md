@@ -25,8 +25,47 @@ The `SpecLineItem` component provides a dense, scannable list view for directory
 ### Definition of Done
 - [ ] Ensure the component renders as a dense row in directory lists without breaking spacing.
 - [ ] Ensure hover and focus states provide visual feedback (e.g., `background-color: var(--c-bg-surface)`).
-- [ ] Component is documented in ``/resources/design-system/components/spec-line-item`` with an active example and code snippet.
+- [ ] Component is documented in `/resources/design-system/components/spec-line-item` with an active example and code snippet.
 
 ### Regression Guardrails
 - Must always consume standard design tokens for borders and backgrounds.
 - Contrast ratios on meta text and tags must pass WCAG AA standards.
+- The root element must be a semantic `<a>` tag — not a `<div>` with an onclick handler.
+- Must not introduce outer margins that break stacking in flex/grid containers.
+
+### Scenarios
+
+```gherkin
+Feature: SpecLineItem Component
+
+  Scenario: Renders as a dense row with all metadata
+    Given a SpecLineItem with title "Context Gates", status "Live", and tags ["Architecture"]
+    When it is rendered in a directory list
+    Then the title "Context Gates" should be visible as a link
+    And a StatusBadge showing "Live" should appear next to the title
+    And the tag "Architecture" should be displayed
+    And the entire row should be a single clickable link
+
+  Scenario: Hover state provides visual feedback
+    Given a SpecLineItem is rendered
+    When the user hovers over it
+    Then the background color should change to var(--c-bg-surface)
+
+  Scenario: Focus state is keyboard-accessible
+    Given a SpecLineItem is rendered
+    When the user tabs to it with the keyboard
+    Then a visible focus indicator should appear
+    And pressing Enter should navigate to the linked URL
+
+  Scenario: Stacks without spacing conflicts
+    Given multiple SpecLineItems are rendered in a flex column
+    Then they should stack densely without unexpected gaps
+    And no outer margin from the component should disrupt the container layout
+
+  Scenario: Renders gracefully with optional props omitted
+    Given a SpecLineItem with only title and url provided
+    When it is rendered
+    Then the title should be visible as a link
+    And no StatusBadge or tags should be rendered
+    And the layout should not break or show empty space
+```

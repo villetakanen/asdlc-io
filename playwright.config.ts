@@ -14,7 +14,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm dev',
+    command: 'pnpm preview',
     url: 'http://localhost:4321',
     reuseExistingServer: true,
   },

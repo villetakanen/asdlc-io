@@ -47,3 +47,40 @@ The design system page uses a catch-all dynamic route (`[...section].astro`) wit
 - [ ] Components must pass `pnpm check` and `pnpm lint`.
 - [ ] The overview page shows the Design Philosophy section; isolated views do not.
 - [ ] The navigation bar is visible on all routes with correct active state.
+
+### Regression Guardrails
+- All color values must reference CSS variables from `src/styles/ds/tokens.css`. No hex codes, rgb(), or named colors in component styles.
+- All font declarations must use `var(--f-sans)` or `var(--f-mono)`. No font-family literals.
+- The design system page must not use `border-box` or `spec-header` classes on its outer structure.
+- `pnpm build` must generate static HTML for all design system routes without errors.
+
+### Scenarios
+
+```gherkin
+Feature: Avionics Design System Documentation
+
+  Scenario: Overview page displays Design Philosophy
+    Given I navigate to "/resources/design-system"
+    Then I should see the heading "Avionics Design System"
+    And I should see the heading "Design Philosophy"
+    And I should see two introductory paragraphs describing the industrial vision
+    And I should see all 8 section contents rendered with separators
+
+  Scenario: Overview page shows navigation with active state
+    Given I navigate to "/resources/design-system"
+    Then the navigation bar should be visible
+    And the "Overview" link should have the active state
+    And links to all 8 sections should be present
+
+  Scenario: Component uses only design tokens
+    Given a new component is added to the design system
+    When it declares color, font, or spacing values
+    Then all values must reference CSS variables from tokens.css
+    And no hardcoded hex codes, rgb(), or font-family literals are present
+
+  Scenario: New component is documented
+    Given a new component is added to the design system
+    Then a documentation page must exist at "/resources/design-system/components/{name}"
+    And it must include a live rendered example
+    And it must include a code snippet showing usage
+```

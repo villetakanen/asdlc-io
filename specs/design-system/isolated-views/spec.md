@@ -51,3 +51,46 @@ Each component doc lives in `src/components/ds-docs/docs/{ComponentName}Docs.ast
 - Build execution must pre-render all valid `[section]` paths (no SSR).
 - Invalid sections must return a 404.
 - The `<h1>` and philosophy paragraphs must NOT appear on isolated section/component views.
+- The navigation bar must render on every route (overview, section, and component).
+- Each section component must receive `isIsolated` and `isolatedComponentId` props.
+
+### Scenarios
+
+```gherkin
+Feature: Isolated Design System Views
+
+  Scenario: Section isolation renders only the target section
+    Given I navigate to "/resources/design-system/typography"
+    Then the Typography section content should be visible
+    And no other section content (Colors, Layout, Components, etc.) should be in the DOM
+    And the navigation bar should be visible
+    And the "Typography" link should have the active state
+
+  Scenario: Overview renders all sections
+    Given I navigate to "/resources/design-system"
+    Then all 8 section contents should be rendered
+    And horizontal rule separators should appear between sections
+    And the "Overview" link should have the active state
+
+  Scenario: Component sub-route isolates a single component doc
+    Given I navigate to "/resources/design-system/components/border-box"
+    Then only the Border Box component documentation should be visible
+    And other component docs (Status Badge, Spec Card, etc.) should not be in the DOM
+    And the "Components" link should have the active state
+
+  Scenario: Philosophy section is hidden on isolated views
+    Given I navigate to "/resources/design-system/colors"
+    Then the "Avionics Design System" h1 should not be in the DOM
+    And the "Design Philosophy" h2 should not be in the DOM
+    And the introductory paragraphs should not be in the DOM
+
+  Scenario: Invalid section returns 404
+    Given I navigate to "/resources/design-system/nonexistent"
+    Then the server should return a 404 response
+
+  Scenario: Static build generates all valid paths
+    When I run "pnpm build"
+    Then HTML files should be generated for all 8 section routes
+    And HTML files should be generated for all 7 component sub-routes
+    And an HTML file should be generated for the overview route
+```
