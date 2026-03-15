@@ -8,7 +8,8 @@ The Avionics Design System ensures that the ASDLC knowledge base retains a consi
 ### Architecture
 - **Design Tokens:** Located in `src/styles/ds/tokens.css`
 - **Global Styles:** Located in `src/styles/global.css`
-- **Live Documentation:** `src/pages/resources/design-system.astro`
+- **Routing/Structure:** [Isolated Design System Views](./isolated-views/spec.md)
+- **Live Documentation:** `src/pages/resources/design-system.astro` (Index hub)
 
 ### Components
 - **[SpecLineItem](./spec-line-item/spec.md)** - Dense index directory list item.
