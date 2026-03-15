@@ -1,94 +1,54 @@
 ---
-import StatusBadge from "./StatusBadge.astro";
-
 interface Props {
   title: string;
   url: string;
-  meta?: string;
-  status?: string;
-  tags?: string[];
-  headingLevel?: "h2" | "h3" | "h4" | "h5" | "h6";
+  description?: string;
 }
 
-const { title, url, meta, status, tags, headingLevel = "h3" } = Astro.props;
-const TitleTag = headingLevel;
+const { title, url, description } = Astro.props;
 ---
 
 <a href={url} class="spec-list-item">
-  <div class="spec-list-item__content">
-    <div class="spec-list-item__title-group">
-      <TitleTag class="spec-list-item__title">{title}</TitleTag>
-      {status && <StatusBadge status={status} />}
-    </div>
-    
-    <div class="spec-list-item__meta-group">
-      {tags && tags.length > 0 && (
-        <div class="spec-list-item__tags">
-          {tags.map((tag) => (
-            <span class="spec-list-item__tag mono">{tag}</span>
-          ))}
-        </div>
-      )}
-      {meta && <span class="spec-list-item__meta mono">{meta}</span>}
-    </div>
-  </div>
+  <span class="spec-list-item__title">{title}</span>
+  {description && <span class="spec-list-item__desc mono">{description}</span>}
 </a>
 
 <style>
   .spec-list-item {
-    display: block;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
     text-decoration: none;
     color: inherit;
-    border-bottom: 1px solid var(--c-border);
-    padding: 1rem var(--s-gap);
-    transition: background-color 0.2s ease;
+    padding: 0.25rem 0;
+    transition: color 0.15s ease;
   }
 
-  .spec-list-item:hover,
+  .spec-list-item:hover {
+    color: var(--c-brand);
+  }
+
   .spec-list-item:focus-visible {
-    background-color: var(--c-bg-surface);
-  }
-
-  .spec-list-item__content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--s-gap);
-  }
-
-  .spec-list-item__title-group {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
   }
 
   .spec-list-item__title {
-    margin: 0;
-    font-size: 1.125rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    white-space: nowrap;
   }
 
-  .spec-list-item__meta-group {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
-  .spec-list-item__tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .spec-list-item__tag,
-  .spec-list-item__meta {
-    font-size: 0.8125rem;
+  .spec-list-item__desc {
+    font-size: 0.75rem;
     color: var(--c-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .spec-list-item:hover .spec-list-item__tag,
-  .spec-list-item:hover .spec-list-item__meta {
-    color: inherit;
+  .spec-list-item:hover .spec-list-item__desc {
+    color: var(--c-brand);
+    opacity: 0.7;
   }
 </style>

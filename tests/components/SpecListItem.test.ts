@@ -3,36 +3,27 @@ import { expect, test, describe } from 'vitest';
 import SpecListItem from '../../src/components/SpecListItem.astro';
 
 describe('SpecListItem Component', () => {
-  test('renders as a dense row with title, status, tags, and meta', async () => {
+  test('renders with title and description', async () => {
     const container = await AstroContainer.create();
     const result = await container.renderToString(SpecListItem, {
       props: {
         title: 'Context Gates',
         url: '/patterns/context-gates',
-        meta: 'Mar 15, 2026',
-        status: 'Live',
-        tags: ['Architecture', 'Governance'],
+        description: 'Input filtering and output validation',
       },
     });
 
     // Root element is a semantic <a> tag
     expect(result).toMatch(/<a[^>]*href="\/patterns\/context-gates"[^>]*class="spec-list-item"/);
 
-    // Title renders in an h3 by default
-    expect(result).toMatch(/<h3[^>]*class="spec-list-item__title"[^>]*>Context Gates<\/h3>/);
+    // Title is rendered
+    expect(result).toMatch(/<span[^>]*class="spec-list-item__title"[^>]*>Context Gates<\/span>/);
 
-    // Status badge is present
-    expect(result).toContain('Live');
-
-    // Tags are rendered with mono class
-    expect(result).toMatch(/<span class="spec-list-item__tag mono"[^>]*>Architecture<\/span>/);
-    expect(result).toMatch(/<span class="spec-list-item__tag mono"[^>]*>Governance<\/span>/);
-
-    // Meta date is rendered
-    expect(result).toMatch(/<span class="spec-list-item__meta mono"[^>]*>Mar 15, 2026<\/span>/);
+    // Description is rendered
+    expect(result).toMatch(/<span[^>]*class="spec-list-item__desc mono"[^>]*>Input filtering and output validation<\/span>/);
   });
 
-  test('renders gracefully with only required props (title and url)', async () => {
+  test('renders with title only when description is omitted', async () => {
     const container = await AstroContainer.create();
     const result = await container.renderToString(SpecListItem, {
       props: {
@@ -45,11 +36,8 @@ describe('SpecListItem Component', () => {
     expect(result).toContain('href="/concepts/minimal"');
     expect(result).toContain('Minimal Item');
 
-    // No status badge or tags rendered
-    expect(result).not.toContain('status-badge');
-    expect(result).not.toContain('spec-list-item__tag');
-    // The meta-group wrapper exists but no meta span with content
-    expect(result).not.toMatch(/<span[^>]*class="spec-list-item__meta mono"/);
+    // No description rendered
+    expect(result).not.toContain('spec-list-item__desc');
   });
 
   test('root element is a semantic <a> tag, not a div', async () => {
@@ -61,22 +49,22 @@ describe('SpecListItem Component', () => {
       },
     });
 
-    // The first meaningful element should be an <a> with class spec-list-item
     expect(result).toMatch(/<a[^>]*class="spec-list-item"/);
-    // Should not have a wrapping div with onclick
     expect(result).not.toMatch(/<div[^>]*onclick/);
   });
 
-  test('respects custom headingLevel prop', async () => {
+  test('does not render status, tags, or meta fields', async () => {
     const container = await AstroContainer.create();
     const result = await container.renderToString(SpecListItem, {
       props: {
-        title: 'Custom Heading',
-        url: '/concepts/heading',
-        headingLevel: 'h2',
+        title: 'Clean Item',
+        url: '/concepts/clean',
+        description: 'A clean item',
       },
     });
 
-    expect(result).toMatch(/<h2[^>]*class="spec-list-item__title"[^>]*>Custom Heading<\/h2>/);
+    expect(result).not.toContain('status-badge');
+    expect(result).not.toContain('spec-list-item__tag');
+    expect(result).not.toContain('spec-list-item__meta');
   });
 });

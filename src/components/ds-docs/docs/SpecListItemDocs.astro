@@ -15,47 +15,39 @@ const { isolatedComponentId } = Astro.props;
     url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-list-item"}
     isIsolated={!!isolatedComponentId}
   />
-  <p>Dense, horizontal row component for displaying long directory lists of concept or pattern items. Designed to scale better vertically than standard grid cards.</p>
+  <p>Dense row component for directory listings. Designed for use in status-grouped lists where items need to be scanned quickly by title.</p>
 
-  <p>Each row renders as a single semantic <code>&lt;a&gt;</code> tag containing the title, an optional status badge, tags, and meta text (usually a date). The component stacks without spacing conflicts in flex or grid containers.</p>
+  <p>Each row renders as a single semantic <code>&lt;a&gt;</code> tag with a title and optional description. Status, tags, and dates are intentionally omitted — status is communicated by the parent grouping; everything else lives on the detail page.</p>
 
   <ul>
     <li><strong>Root element:</strong> Semantic <code>&lt;a&gt;</code> tag — the entire row is clickable.</li>
-    <li><strong>Context:</strong> Must be placed inside a <code>&lt;li&gt;</code> within a <code>&lt;ul&gt;</code> for correct list semantics.</li>
-    <li><strong>Status badge:</strong> Optional <code>StatusBadge</code> rendered inline with the title.</li>
-    <li><strong>Meta &amp; tags:</strong> Right-aligned, monospace-styled secondary information.</li>
+    <li><strong>Context:</strong> Must be placed inside a <code>&lt;li&gt;</code> within a <code>&lt;ul class="spec-list"&gt;</code> for correct list semantics.</li>
+    <li><strong>Description:</strong> Optional secondary text for disambiguation when titles are similar.</li>
   </ul>
-
 
   <div class="example-container">
     <div class="example">
       <h4 class="text-heading-3">Example</h4>
-      <p>This is the listing of patterns, that are live!</p>
+      <p>A listing of live patterns:</p>
       <ul class="spec-list">
         <li>
           <SpecListItem
             title="Living Specs"
             url="/practices/living-specs"
-            meta="Dec 22, 2025"
-            status="Experimental"
-            tags={["documentation", "spec-driven-development"]}
+            description="A practice for maintaining specifications as living documents that evolve with the codebase."
           />
         </li>
         <li>
           <SpecListItem
             title="Context Engineering"
             url="/concepts/context-engineering"
-            meta="Oct 12, 2026"
-            status="Live"
+            description="Optimizing what an AI agent 'sees' when solving a problem."
           />
         </li>
         <li>
           <SpecListItem
             title="Micro-Commits"
             url="/practices/micro-commits"
-            meta="Jan 5, 2026"
-            status="Live"
-            tags={["workflow"]}
           />
         </li>
       </ul>
@@ -67,9 +59,7 @@ const { isolatedComponentId } = Astro.props;
     <SpecListItem
       title="Living Specs"
       url="/practices/living-specs"
-      meta="Dec 22, 2025"
-      status="Experimental"
-      tags={["documentation", "spec-driven-development"]}
+      description="A practice for maintaining specifications..."
     />
   </li>
 </ul>`}</code></pre>
