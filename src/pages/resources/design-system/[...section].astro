@@ -1,0 +1,169 @@
+---
+import Accessibility from "../../../components/ds-docs/Accessibility.astro";
+import BestPractices from "../../../components/ds-docs/BestPractices.astro";
+// Import all sections
+import ColorPalette from "../../../components/ds-docs/ColorPalette.astro";
+import Components from "../../../components/ds-docs/Components.astro";
+import Diagrams from "../../../components/ds-docs/Diagrams.astro";
+import FileReferences from "../../../components/ds-docs/FileReferences.astro";
+import LayoutSystem from "../../../components/ds-docs/LayoutSystem.astro";
+import Typography from "../../../components/ds-docs/Typography.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const sections = [
+    { id: "colors", component: ColorPalette, title: "Color Palette" },
+    { id: "typography", component: Typography, title: "Typography" },
+    { id: "layout", component: LayoutSystem, title: "Layout System" },
+    { id: "components", component: Components, title: "Components" },
+    { id: "accessibility", component: Accessibility, title: "Accessibility" },
+    { id: "best-practices", component: BestPractices, title: "Best Practices" },
+    { id: "diagrams", component: Diagrams, title: "Diagrams" },
+    { id: "file-references", component: FileReferences, title: "File References" },
+  ];
+
+  const componentsList = [
+    { id: "border-box", title: "Border Box" },
+    { id: "status-badge", title: "Status Badge" },
+    { id: "spec-card", title: "Spec Card" },
+    { id: "spec-list-item", title: "Spec List Item" },
+    { id: "spec-header", title: "Spec Header" },
+    { id: "warning-banner", title: "Warning Banner" },
+    { id: "article-references", title: "Article References" },
+  ];
+
+  const paths = sections.map((s) => ({
+    params: { section: s.id as string | undefined },
+    props: {
+      sections,
+      currentId: s.id as string | undefined,
+      subId: undefined as string | undefined,
+    },
+  }));
+
+  componentsList.forEach((c) => {
+    paths.push({
+      params: { section: `components/${c.id}` },
+      props: { sections, currentId: "components", subId: c.id },
+    });
+  });
+
+  // Provide the index route where section is undefined (shows all)
+  paths.push({
+    params: { section: undefined },
+    props: { sections, currentId: undefined, subId: undefined },
+  });
+
+  return paths;
+}
+
+const { sections, currentId, subId } = Astro.props;
+const activeSection = currentId ? sections.find((s) => s.id === currentId) : null;
+const ComponentsToRender = activeSection ? [activeSection] : sections;
+
+let title = "Avionics Design System";
+if (subId) {
+  const cName = subId
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  title = `Avionics Design System: Components / ${cName}`;
+} else if (activeSection) {
+  title = `Avionics Design System: ${activeSection.title}`;
+}
+
+const description =
+  "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="design-system">
+    <section class="prose content">
+      {!currentId && (
+        <>
+          <h1>Avionics Design System</h1>
+          <h2>Design Philosophy</h2>
+          <p class="lead">
+            The ASDLC.io design system abandons the generic, ephemeral aesthetic of modern tech startups in favor of a "Timeless Industrial" vision. Inspired by the high-precision engineering of Dieter Rams' Braun designs, classic Kodak packaging, and aerospace flight manuals, the interface is built to feel authoritative, tactile, and meticulously engineered. We treat Agentic SDLC not as a fleeting trend, but as an established, rigorous discipline. This maturity is reflected through a brutalist, specification-sheet aesthetic that values structural clarity and utilitarian purpose, framing the site not as a blog, but as a definitive "Flight Manual" for machine intelligence.
+          </p>
+          <p class="lead">
+            To execute this "Avionics" aesthetic, the system is rooted in a highly deliberate, constrained set of typographic and color choices. The typography pairs the commanding, wide-stanced Archivo sans-serif with B612 Mono—a monospace font originally engineered for Airbus cockpits—ensuring that every code block and data table feels like a critical manifest entry. The "International Safety" color palette rejects harsh digital whites and clinical blues, opting instead for a warm, physical paper background (#F4F4F0) and a soft, toner-like black (#111111). Punctuated by a single, high-visibility Safety Orange (#F04E30), these elements work together to transform standard web documentation into a robust, heavy-industry control panel.
+          </p>
+        </>
+      )}
+
+    </section>
+
+    <nav class="ds-nav" aria-label="Design System Navigation">
+      <ul class="ds-nav-list">
+        <li>
+          <a href="/resources/design-system" class={!currentId ? "active" : ""}>Overview</a>
+        </li>
+        {sections.map(s => (
+          <li>
+            <a href={`/resources/design-system/${s.id}`} class={currentId === s.id ? "active" : ""}>
+              {s.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="prose content-prose">
+      {ComponentsToRender.map(s => {
+        const Comp = s.component;
+        return (
+          <div class="ds-section" id={s.id}>
+            <Comp isIsolated={!!currentId} isolatedComponentId={subId} />
+            {ComponentsToRender.length > 1 && <hr />}
+          </div>
+        );
+      })}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .ds-nav {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-top: 1px dashed var(--c-border);
+    border-bottom: 1px dashed var(--c-border);
+  }
+  
+  .ds-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .ds-nav-list a {
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-family: var(--f-mono);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .ds-nav-list a:hover {
+    color: var(--c-text-primary);
+    background-color: var(--c-bg-surface);
+  }
+  
+  .ds-nav-list a.active {
+    color: var(--c-brand);
+    font-weight: 700;
+    background-color: var(--c-bg-surface);
+  }
+  
+  .ds-section {
+    margin-bottom: 2rem;
+  }
+</style>

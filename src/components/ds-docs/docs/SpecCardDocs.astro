@@ -1,0 +1,40 @@
+---
+import SpecCard from "../../SpecCard.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "spec-card") && (
+<div class="ds-component-block" id="spec-card">
+  <DsComponentHeader
+    title="Spec Card (Article Card)"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-card"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>Card component for index pages representing a single article item. Includes an optional description snippet.</p>
+
+  <div style="margin-bottom: 1rem;">
+    <SpecCard 
+      title="Context Engineering" 
+      description="A set of practices designed to optimize what an AI agent 'sees' when solving a problem. It aims to reduce noise, establish invariants, and provide 'Just-in-Time' knowledge."
+      url="#"
+      meta="Oct 12, 2026"
+      status="Live"
+      tags={["context", "agentic-sdlc"]}
+    />
+  </div>
+
+  <pre><code>{`<SpecCard 
+  title="Context Engineering" 
+  description="A set of practices designed to optimize what an AI agent 'sees'..."
+  url="/concepts/context-engineering"
+  meta="Oct 12, 2026"
+  status="Live"
+  tags={["context", "agentic-sdlc"]}
+/>`}</code></pre>
+</div>
+)}

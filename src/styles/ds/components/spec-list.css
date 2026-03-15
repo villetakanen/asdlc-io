@@ -1,0 +1,14 @@
+/* --- Spec List (SpecListItem container) --- */
+.spec-list,
+.prose .spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spec-list > li,
+.prose .spec-list > li {
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
+}

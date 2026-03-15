@@ -1,0 +1,67 @@
+---
+import SpecListItem from "../../SpecListItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "spec-list-item") && (
+<div class="ds-component-block" id="spec-list-item">
+  <DsComponentHeader
+    title="Spec List Item"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-list-item"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>Dense row component for directory listings. Designed for use in status-grouped lists where items need to be scanned quickly by title.</p>
+
+  <p>Each row renders as a single semantic <code>&lt;a&gt;</code> tag with a title and optional description. Status, tags, and dates are intentionally omitted — status is communicated by the parent grouping; everything else lives on the detail page.</p>
+
+  <ul>
+    <li><strong>Root element:</strong> Semantic <code>&lt;a&gt;</code> tag — the entire row is clickable.</li>
+    <li><strong>Context:</strong> Must be placed inside a <code>&lt;li&gt;</code> within a <code>&lt;ul class="spec-list"&gt;</code> for correct list semantics.</li>
+    <li><strong>Description:</strong> Optional secondary text for disambiguation when titles are similar.</li>
+  </ul>
+
+  <div class="example-container">
+    <div class="example">
+      <h4 class="text-heading-3">Example</h4>
+      <p>A listing of live patterns:</p>
+      <ul class="spec-list">
+        <li>
+          <SpecListItem
+            title="Living Specs"
+            url="/practices/living-specs"
+            description="A practice for maintaining specifications as living documents that evolve with the codebase."
+          />
+        </li>
+        <li>
+          <SpecListItem
+            title="Context Engineering"
+            url="/concepts/context-engineering"
+            description="Optimizing what an AI agent 'sees' when solving a problem."
+          />
+        </li>
+        <li>
+          <SpecListItem
+            title="Micro-Commits"
+            url="/practices/micro-commits"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <pre><code>{`<ul class="spec-list">
+  <li>
+    <SpecListItem
+      title="Living Specs"
+      url="/practices/living-specs"
+      description="A practice for maintaining specifications..."
+    />
+  </li>
+</ul>`}</code></pre>
+</div>
+)}

@@ -1,0 +1,32 @@
+---
+import DsSectionHeader from "./DsSectionHeader.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<DsSectionHeader
+  title="Accessibility"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/accessibility"}
+  isIsolated={isIsolated}
+/>
+
+<p>The Avionics design system is built with accessibility as a core principle:</p>
+
+<h3>Color Contrast</h3>
+<p>All text colors meet WCAG AA standards:</p>
+<ul>
+  <li>Primary text on page background: 14.5:1 (AAA)</li>
+  <li>Secondary text on page background: 6.8:1 (AA)</li>
+  <li>Brand color on page background: 4.7:1 (AA for large text)</li>
+</ul>
+
+<h3>Semantic HTML</h3>
+<ul>
+  <li>Proper heading hierarchy (H1 → H2 → H3)</li>
+  <li>Semantic elements (<code>&lt;article&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>)</li>
+  <li>ARIA labels where appropriate</li>
+</ul>

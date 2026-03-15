@@ -1,0 +1,25 @@
+---
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "warning-banner") && (
+<div class="ds-component-block" id="warning-banner">
+  <DsComponentHeader
+    title="Warning Banner"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/warning-banner"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>Used for critical system-wide alerts (e.g., Alpha Release warning).</p>
+  <div class="banner-warning" style="margin-bottom: 1rem;">
+    SYSTEM ALERT: EXAMPLE WARNING BANNER
+  </div>
+  <pre><code>&lt;div class="banner-warning"&gt;
+  SYSTEM ALERT: EXAMPLE WARNING BANNER
+&lt;/div&gt;</code></pre>
+</div>
+)}

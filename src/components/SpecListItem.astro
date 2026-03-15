@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  description?: string;
+}
+
+const { title, url, description } = Astro.props;
+---
+
+<a href={url} class="spec-list-item">
+  <span class="spec-list-item__title">{title}</span>
+  {description && <span class="spec-list-item__desc mono">{description}</span>}
+</a>
+
+<style>
+  .spec-list-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.25rem 0;
+    transition: color 0.15s ease;
+  }
+
+  .spec-list-item:hover {
+    color: var(--c-brand);
+  }
+
+  .spec-list-item:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 2px;
+  }
+
+  .spec-list-item__title {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+
+  .spec-list-item__desc {
+    font-size: 0.75rem;
+    color: var(--c-text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .spec-list-item:hover .spec-list-item__desc {
+    color: var(--c-brand);
+    opacity: 0.7;
+  }
+</style>

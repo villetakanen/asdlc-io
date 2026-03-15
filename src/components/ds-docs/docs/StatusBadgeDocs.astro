@@ -1,0 +1,28 @@
+---
+import StatusBadge from "../../StatusBadge.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "status-badge") && (
+<div class="ds-component-block" id="status-badge">
+  <DsComponentHeader
+    title="Status Badge"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/status-badge"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>Monospace badges for status indicators:</p>
+  <div class="border-box" style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+    <StatusBadge status="Draft" />
+    <StatusBadge status="Proposed" />
+    <StatusBadge status="Live" />
+    <StatusBadge status="Deprecated" />
+    <StatusBadge status="Experimental" />
+  </div>
+  <pre><code>&lt;StatusBadge status="Live" /&gt;</code></pre>
+</div>
+)}

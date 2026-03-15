@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  isIsolated?: boolean;
+}
+const { title, url, isIsolated = false } = Astro.props;
+const linkText = isIsolated ? "← All Components" : "Isolate →";
+---
+
+<div class="ds-component-header">
+  <h3>{title}</h3>
+  <a href={url} class="ds-component-btn mono">{linkText}</a>
+</div>
+
+<style>
+  .ds-component-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .ds-component-header h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .ds-component-btn {
+    font-size: 0.75rem;
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .ds-component-btn:hover {
+    color: var(--c-brand);
+    border-color: var(--c-brand);
+  }
+</style>

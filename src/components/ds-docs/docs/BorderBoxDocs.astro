@@ -1,0 +1,23 @@
+---
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "border-box") && (
+<div class="ds-component-block" id="border-box">
+  <DsComponentHeader
+    title="Border Box"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/border-box"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>A utility class for bordered containers:</p>
+  <pre><code>{`.border-box {
+  border: 1px solid var(--c-border);
+  padding: var(--s-gap);
+}`}</code></pre>
+</div>
+)}

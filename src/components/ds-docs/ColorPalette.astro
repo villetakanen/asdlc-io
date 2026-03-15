@@ -1,0 +1,79 @@
+---
+import ColorSwatch from "../ColorSwatch.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<DsSectionHeader
+  title="Color Palette"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/colors"}
+  isIsolated={isIsolated}
+/>
+
+<p>The Avionics palette is built around <strong>International Safety</strong> colors—high-contrast, immediately recognizable, and functional.</p>
+
+<div class="color-palette breakout">
+  <div class="color-group">
+    <h4>Background & Structure</h4>
+    <div class="color-swatches">
+      <ColorSwatch token="--c-bg-page" value="#f4f4f0" />
+      <ColorSwatch token="--c-bg-surface" value="#ebebe6" />
+      <ColorSwatch token="--c-border" value="#d1d1c7" />
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h4>Text</h4>
+    <div class="color-swatches">
+      <ColorSwatch token="--c-text-primary" value="#111111" />
+      <ColorSwatch token="--c-text-secondary" value="#585855" />
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h4>Brand</h4>
+    <div class="color-swatches">
+      <ColorSwatch token="--c-brand" value="#f04e30" />
+      <ColorSwatch token="--c-brand-hover" value="#d13a1e" />
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h4>Status Indicators</h4>
+    <div class="color-swatches">
+      <ColorSwatch token="--c-success" value="#00703c" label="Success" />
+      <ColorSwatch token="--c-warning" value="#ffb400" label="Warning" />
+      <ColorSwatch token="--c-error" value="#cc0000" label="Error" />
+    </div>
+  </div>
+</div>
+
+<h3>Background Colors</h3>
+<pre><code>--c-bg-page: #f4f4f0;    /* Warm, off-white concrete/paper */
+--c-bg-surface: #ebebe6; /* Slightly darker, for cards or headers */
+--c-border: #d1d1c7;     /* Visible, structural grey */</code></pre>
+
+<p><strong>Usage:</strong> <code>--c-bg-page</code> for main page background, <code>--c-bg-surface</code> for cards and headers, <code>--c-border</code> for borders and dividers.</p>
+
+<h3>Text Colors</h3>
+<pre><code>--c-text-primary: #111111;   /* Soft black, like high-quality toner */
+--c-text-secondary: #585855; /* Muted grey for secondary information */</code></pre>
+
+<h3>Brand Colors</h3>
+<pre><code>--c-brand: #f04e30;       /* Safety Orange */
+--c-brand-hover: #d13a1e; /* Darker orange for hover states */</code></pre>
+
+<h3>Status Indicators</h3>
+<pre><code>/* Success (DIN Standard Green) */
+--c-success: #00703c;
+
+/* Warning (Signal Yellow) */
+--c-warning: #ffb400;
+
+/* Error (Switch Red) */
+--c-error: #cc0000;</code></pre>

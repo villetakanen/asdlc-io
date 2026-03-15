@@ -1,0 +1,33 @@
+---
+import DsSectionHeader from "./DsSectionHeader.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<DsSectionHeader
+  title="Best Practices"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/best-practices"}
+  isIsolated={isIsolated}
+/>
+
+<h3>Do's</h3>
+<ul>
+  <li>✅ Use CSS custom properties for all colors and spacing</li>
+  <li>✅ Follow the grid layout system for consistent spacing</li>
+  <li>✅ Use semantic HTML elements</li>
+  <li>✅ Maintain heading hierarchy (one H1 per page)</li>
+  <li>✅ Use monospace font for technical/metadata content</li>
+</ul>
+
+<h3>Don't's</h3>
+<ul>
+  <li>❌ Don't use arbitrary color values—use design tokens</li>
+  <li>❌ Don't skip heading levels (H1 → H3)</li>
+  <li>❌ Don't use multiple H1s on a single page</li>
+  <li>❌ Don't override font families without good reason</li>
+  <li>❌ Don't create layouts outside the grid system</li>
+</ul>
