@@ -32,6 +32,7 @@ export const articleSchema = z.object({
     .max(200, "Definition must be < 200 chars for quick scanning.")
     .default(""),
   tags: z.array(z.string()).optional(),
+  publishedDate: z.coerce.date().optional(),
   lastUpdated: z.coerce.date(),
   status: z.enum(["Draft", "Proposed", "Live", "Deprecated", "Experimental"]).default("Draft"),
   supersededBy: z.array(z.string()).optional(),

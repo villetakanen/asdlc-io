@@ -29,6 +29,7 @@ const structuredDataProps = {
   title: pattern.data.title,
   description: pattern.data.description,
   keywords: pattern.data.tags?.join(", "),
+  datePublished: (pattern.data.publishedDate ?? pattern.data.lastUpdated).toISOString(),
   dateModified: pattern.data.lastUpdated.toISOString(),
   url: canonicalURL.toString(),
 };

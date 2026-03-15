@@ -16,14 +16,16 @@ Both layers must faithfully reflect the article's frontmatter. A GEO audit revea
 **Data Flow:**
 
 ```
-src/content/{collection}/*.md  (frontmatter: title, description, tags)
+src/content/{collection}/*.md  (frontmatter: title, description, tags, publishedDate?, lastUpdated)
         │
         ▼
 src/pages/{collection}/[...slug].astro  (builds structuredDataProps)
         │
         ├──► StructuredData.astro  →  <script type="application/ld+json">
-        │      • description → Schema.org `description`
-        │      • tags        → Schema.org `keywords`
+        │      • description     → Schema.org `description`
+        │      • tags            → Schema.org `keywords`
+        │      • publishedDate ?? lastUpdated → Schema.org `datePublished`
+        │      • lastUpdated     → Schema.org `dateModified`
         │
         └──► BaseLayout  →  SEOMetadata.astro
                • description → <meta name="description">
@@ -122,7 +124,7 @@ The fix is a 3-line change in `src/pages/patterns/[...slug].astro`:
 
 Reference the concepts route (`src/pages/concepts/[...slug].astro:28-34`) as the canonical example — the fix makes patterns match concepts exactly.
 
-Also note: the patterns route includes `datePublished` (line 31) while concepts and practices only include `dateModified`. Since both map to `lastUpdated`, consider aligning to `dateModified` only for consistency — but this is a separate concern from the bug fix.
+**`datePublished` fallback:** All three routes compute `datePublished` as `publishedDate ?? lastUpdated`. The `publishedDate` field is optional in `articleSchema` (`src/content/config.ts`). Articles that don't set it get `lastUpdated` as both values. Articles that do set `publishedDate` get distinct dates — preferred by Google's rich results guidelines.
 
 ## Resources
 
