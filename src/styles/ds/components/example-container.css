@@ -1,0 +1,22 @@
+/* --- Example Container (Design System docs) --- */
+/* Breaks out of content column to full viewport width */
+.example-container {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--c-bg-surface);
+  padding-block: var(--s-gap);
+  margin-block: var(--s-gap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-container > * {
+  width: min(100% - 2 * var(--s-gap), var(--s-content-max));
+}
+
+.example-container > .example {
+  background: var(--c-bg-page);
+  border: 1px solid var(--c-border);
+  border-radius: 4px;
+}

@@ -17,24 +17,44 @@ const { isolatedComponentId } = Astro.props;
   />
   <p>Dense, horizontal row component for displaying long directory lists of concept or pattern items. Designed to scale better vertically than standard grid cards.</p>
 
-  <div class="border-box" style="margin-bottom: 1rem; padding: 0;">
-    <SpecLineItem 
-      title="Living Specs" 
-      url="/practices/living-specs"
-      meta="Dec 22, 2025"
-      status="Experimental"
-      tags={["documentation", "spec-driven-development"]}
-    />
-    <SpecLineItem 
-      title="Context Engineering" 
-      url="/concepts/context-engineering"
-      meta="Oct 12, 2026"
-      status="Live"
-    />
+  <p>Each row renders as a single semantic <code>&lt;a&gt;</code> tag containing the title, an optional status badge, tags, and meta text (usually a date). The component stacks without spacing conflicts in flex or grid containers.</p>
+
+  <ul>
+    <li><strong>Root element:</strong> Semantic <code>&lt;a&gt;</code> tag — the entire row is clickable.</li>
+    <li><strong>Status badge:</strong> Optional <code>StatusBadge</code> rendered inline with the title.</li>
+    <li><strong>Meta &amp; tags:</strong> Right-aligned, monospace-styled secondary information.</li>
+  </ul>
+
+
+  <div class="example-container">
+    <div class="example">
+      <h4 class="text-heading-3">Example</h4>
+      <p>This is the listing of patterns, that are live!</p>
+      <SpecLineItem
+        title="Living Specs"
+        url="/practices/living-specs"
+        meta="Dec 22, 2025"
+        status="Experimental"
+        tags={["documentation", "spec-driven-development"]}
+      />
+      <SpecLineItem
+        title="Context Engineering"
+        url="/concepts/context-engineering"
+        meta="Oct 12, 2026"
+        status="Live"
+      />
+      <SpecLineItem
+        title="Micro-Commits"
+        url="/practices/micro-commits"
+        meta="Jan 5, 2026"
+        status="Live"
+        tags={["workflow"]}
+      />
+    </div>
   </div>
 
-  <pre><code>{`<SpecLineItem 
-  title="Living Specs" 
+  <pre><code>{`<SpecLineItem
+  title="Living Specs"
   url="/practices/living-specs"
   meta="Dec 22, 2025"
   status="Experimental"
