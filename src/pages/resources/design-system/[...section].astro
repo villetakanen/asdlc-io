@@ -78,29 +78,36 @@ const description =
 
 <BaseLayout title={title} description={description}>
   <article class="design-system">
-    <header class="spec-header border-box content">
-      <h1>Avionics Design System</h1>
-      <p class="lead">
-        The visual and structural foundation of ASDLC.io. Inspired by industrial specification documents,
-        flight manuals, and international safety standards.
-      </p>
+    <section class="prose content">
+      {!currentId && (
+        <>
+          <h1>Avionics Design System</h1>
+          <h2>Design Philosophy</h2>
+          <p class="lead">
+            The ASDLC.io design system abandons the generic, ephemeral aesthetic of modern tech startups in favor of a "Timeless Industrial" vision. Inspired by the high-precision engineering of Dieter Rams' Braun designs, classic Kodak packaging, and aerospace flight manuals, the interface is built to feel authoritative, tactile, and meticulously engineered. We treat Agentic SDLC not as a fleeting trend, but as an established, rigorous discipline. This maturity is reflected through a brutalist, specification-sheet aesthetic that values structural clarity and utilitarian purpose, framing the site not as a blog, but as a definitive "Flight Manual" for machine intelligence.
+          </p>
+          <p class="lead">
+            To execute this "Avionics" aesthetic, the system is rooted in a highly deliberate, constrained set of typographic and color choices. The typography pairs the commanding, wide-stanced Archivo sans-serif with B612 Mono—a monospace font originally engineered for Airbus cockpits—ensuring that every code block and data table feels like a critical manifest entry. The "International Safety" color palette rejects harsh digital whites and clinical blues, opting instead for a warm, physical paper background (#F4F4F0) and a soft, toner-like black (#111111). Punctuated by a single, high-visibility Safety Orange (#F04E30), these elements work together to transform standard web documentation into a robust, heavy-industry control panel.
+          </p>
+        </>
+      )}
 
-      {/* Internal Navigation Menu */}
-      <nav class="ds-nav" aria-label="Design System Navigation">
-        <ul class="ds-nav-list">
+    </section>
+
+    <nav class="ds-nav" aria-label="Design System Navigation">
+      <ul class="ds-nav-list">
+        <li>
+          <a href="/resources/design-system" class={!currentId ? "active" : ""}>Overview</a>
+        </li>
+        {sections.map(s => (
           <li>
-            <a href="/resources/design-system" class={!currentId ? "active" : ""}>Overview</a>
+            <a href={`/resources/design-system/${s.id}`} class={currentId === s.id ? "active" : ""}>
+              {s.title}
+            </a>
           </li>
-          {sections.map(s => (
-            <li>
-              <a href={`/resources/design-system/${s.id}`} class={currentId === s.id ? "active" : ""}>
-                {s.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+        ))}
+      </ul>
+    </nav>
 
     <div class="prose content-prose">
       {ComponentsToRender.map(s => {
@@ -119,8 +126,11 @@ const description =
 <style>
   .ds-nav {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     border-top: 1px dashed var(--c-border);
+    border-bottom: 1px dashed var(--c-border);
   }
   
   .ds-nav-list {

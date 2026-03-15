@@ -25,7 +25,7 @@ The `SpecLineItem` component provides a dense, scannable list view for directory
 ### Definition of Done
 - [ ] Ensure the component renders as a dense row in directory lists without breaking spacing.
 - [ ] Ensure hover and focus states provide visual feedback (e.g., `background-color: var(--c-bg-surface)`).
-- [ ] Component is documented in `src/pages/resources/design-system.astro` with an active example and code snippet.
+- [ ] Component is documented in ``/resources/design-system/components/spec-line-item`` with an active example and code snippet.
 
 ### Regression Guardrails
 - Must always consume standard design tokens for borders and backgrounds.

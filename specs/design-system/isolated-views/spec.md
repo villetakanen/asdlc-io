@@ -3,29 +3,51 @@
 ## Blueprint
 
 ### Context
-The current Avionics Design System documentation lives entirely on a single, monolithic page (`src/pages/resources/design-system.astro`). As the design system grows with new components (like `SpecLineItem`, `SpecCard`, etc.), the page becomes overwhelming for both human browsing and agent context ingestion.
-
-By isolating sections via dynamic routing (`[section].astro`), we allow agents and users to deep-link directly to the specific tokens, layouts, or components they need, adhering to the principles of Context Engineering (providing exactly the necessary context without overwhelming the window).
+The Avionics Design System documentation uses dynamic routing to allow agents and users to deep-link directly to the specific tokens, layouts, or components they need. This adheres to Context Engineering principles — providing exactly the necessary context without overwhelming the window.
 
 ### Architecture
-- **Routing:** Implement a new dynamic route, e.g., `src/pages/resources/design-system/[section].astro` (or moved to `src/pages/design-system/[section].astro` if replacing the monolithic page entirely).
-- **Data Source:** To support `getStaticPaths()`, the design system sections must either be:
-  1. Extracted into individual MD/MDX files under a `content/design-system/` collection.
-  2. Maintained as discrete Astro components (e.g., `src/components/ds-docs/Typography.astro`) mapped to strict routes in a static array.
-- **Layout:** The isolated view should share the same `BaseLayout` or a specialized DS layout containing a sidebar navigation menu to jump between other isolated sections.
+- **Routing:** Catch-all dynamic route at `src/pages/resources/design-system/[...section].astro`.
+- **Data Source:** Design system sections are discrete Astro components in `src/components/ds-docs/` mapped to routes via a static array in `getStaticPaths()`.
+- **Layout:** Uses `BaseLayout` with a standalone `<nav>` element for section navigation.
+
+### Route Structure
+
+| Route | `currentId` | `subId` | Renders |
+|---|---|---|---|
+| `/resources/design-system` | `undefined` | `undefined` | Philosophy intro + nav + all 8 sections |
+| `/resources/design-system/colors` | `"colors"` | `undefined` | Nav + ColorPalette only |
+| `/resources/design-system/components` | `"components"` | `undefined` | Nav + all component docs |
+| `/resources/design-system/components/border-box` | `"components"` | `"border-box"` | Nav + BorderBox docs only |
+
+### Sections (8 total)
+1. `colors` → `ColorPalette.astro`
+2. `typography` → `Typography.astro`
+3. `layout` → `LayoutSystem.astro`
+4. `components` → `Components.astro` (with sub-routes for individual components)
+5. `accessibility` → `Accessibility.astro`
+6. `best-practices` → `BestPractices.astro`
+7. `diagrams` → `Diagrams.astro`
+8. `file-references` → `FileReferences.astro`
+
+### Component Sub-Routes (7 total)
+`border-box`, `status-badge`, `spec-card`, `spec-line-item`, `spec-header`, `warning-banner`, `article-references`
+
+Each component doc lives in `src/components/ds-docs/docs/{ComponentName}Docs.astro`.
 
 ### Anti-Patterns
-- **Client-Side Filtering:** Do not render the entire monolithic page and rely on JavaScript or CSS `display: none` to hide sections. This breaks GEO (Generative Engine Optimization) because agents will still scrape the entire DOM tree, defeating the purpose of context isolation.
-- **Copy Pasting Layouts:** Do not duplicate the wrapper code for every section. Utilize standard Astro layouts with slots for the dynamic content.
+- **Client-Side Filtering:** Do not render the entire monolithic page and rely on JavaScript or CSS `display: none` to hide sections. This breaks GEO because agents will still scrape the entire DOM tree, defeating the purpose of context isolation.
+- **Copy Pasting Layouts:** Do not duplicate the wrapper code for every section. The single `[...section].astro` route handles all paths.
 
 ## Contract
 
 ### Definition of Done
-- [ ] A dynamic route `.../design-system/[section].astro` exists.
-- [ ] Accessing a specific section URL (e.g., `/design-system/typography`) returns ONLY the typography documentation in the DOM.
-- [ ] A navigation mechanism exists to move between sections.
-- [ ] The monolithic overview page is either refactored to act strictly as an index hub referencing the sections, or represents the default "Introduction" view.
+- [x] A dynamic route `.../design-system/[...section].astro` exists.
+- [x] Accessing a specific section URL (e.g., `/resources/design-system/typography`) returns ONLY the typography documentation in the DOM.
+- [x] A navigation mechanism exists to move between sections.
+- [x] The overview page acts as an index hub with the Design Philosophy intro, showing all sections.
+- [x] Individual component views are accessible via `/resources/design-system/components/{name}`.
 
 ### Regression Guardrails
 - Build execution must pre-render all valid `[section]` paths (no SSR).
 - Invalid sections must return a 404.
+- The `<h1>` and philosophy paragraphs must NOT appear on isolated section/component views.
