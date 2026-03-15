@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../../SpecLineItem.astro";
+import SpecListItem from "../../SpecListItem.astro";
 import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
@@ -8,11 +8,11 @@ interface Props {
 const { isolatedComponentId } = Astro.props;
 ---
 
-{(!isolatedComponentId || isolatedComponentId === "spec-line-item") && (
-<div class="ds-component-block" id="spec-line-item">
+{(!isolatedComponentId || isolatedComponentId === "spec-list-item") && (
+<div class="ds-component-block" id="spec-list-item">
   <DsComponentHeader
-    title="Spec Line Item"
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-line-item"}
+    title="Spec List Item"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-list-item"}
     isIsolated={!!isolatedComponentId}
   />
   <p>Dense, horizontal row component for displaying long directory lists of concept or pattern items. Designed to scale better vertically than standard grid cards.</p>
@@ -31,9 +31,9 @@ const { isolatedComponentId } = Astro.props;
     <div class="example">
       <h4 class="text-heading-3">Example</h4>
       <p>This is the listing of patterns, that are live!</p>
-      <ul class="spec-line-list">
+      <ul class="spec-list">
         <li>
-          <SpecLineItem
+          <SpecListItem
             title="Living Specs"
             url="/practices/living-specs"
             meta="Dec 22, 2025"
@@ -42,7 +42,7 @@ const { isolatedComponentId } = Astro.props;
           />
         </li>
         <li>
-          <SpecLineItem
+          <SpecListItem
             title="Context Engineering"
             url="/concepts/context-engineering"
             meta="Oct 12, 2026"
@@ -50,7 +50,7 @@ const { isolatedComponentId } = Astro.props;
           />
         </li>
         <li>
-          <SpecLineItem
+          <SpecListItem
             title="Micro-Commits"
             url="/practices/micro-commits"
             meta="Jan 5, 2026"
@@ -62,9 +62,9 @@ const { isolatedComponentId } = Astro.props;
     </div>
   </div>
 
-  <pre><code>{`<ul class="spec-line-list">
+  <pre><code>{`<ul class="spec-list">
   <li>
-    <SpecLineItem
+    <SpecListItem
       title="Living Specs"
       url="/practices/living-specs"
       meta="Dec 22, 2025"

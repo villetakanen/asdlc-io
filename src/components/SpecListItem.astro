@@ -14,28 +14,28 @@ const { title, url, meta, status, tags, headingLevel = "h3" } = Astro.props;
 const TitleTag = headingLevel;
 ---
 
-<a href={url} class="spec-line-item">
-  <div class="spec-line-item__content">
-    <div class="spec-line-item__title-group">
-      <TitleTag class="spec-line-item__title">{title}</TitleTag>
+<a href={url} class="spec-list-item">
+  <div class="spec-list-item__content">
+    <div class="spec-list-item__title-group">
+      <TitleTag class="spec-list-item__title">{title}</TitleTag>
       {status && <StatusBadge status={status} />}
     </div>
     
-    <div class="spec-line-item__meta-group">
+    <div class="spec-list-item__meta-group">
       {tags && tags.length > 0 && (
-        <div class="spec-line-item__tags">
+        <div class="spec-list-item__tags">
           {tags.map((tag) => (
-            <span class="spec-line-item__tag mono">{tag}</span>
+            <span class="spec-list-item__tag mono">{tag}</span>
           ))}
         </div>
       )}
-      {meta && <span class="spec-line-item__meta mono">{meta}</span>}
+      {meta && <span class="spec-list-item__meta mono">{meta}</span>}
     </div>
   </div>
 </a>
 
 <style>
-  .spec-line-item {
+  .spec-list-item {
     display: block;
     text-decoration: none;
     color: inherit;
@@ -44,31 +44,31 @@ const TitleTag = headingLevel;
     transition: background-color 0.2s ease;
   }
 
-  .spec-line-item:hover,
-  .spec-line-item:focus-visible {
+  .spec-list-item:hover,
+  .spec-list-item:focus-visible {
     background-color: var(--c-bg-surface);
   }
 
-  .spec-line-item__content {
+  .spec-list-item__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--s-gap);
   }
 
-  .spec-line-item__title-group {
+  .spec-list-item__title-group {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
   }
 
-  .spec-line-item__title {
+  .spec-list-item__title {
     margin: 0;
     font-size: 1.125rem;
   }
 
-  .spec-line-item__meta-group {
+  .spec-list-item__meta-group {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -76,19 +76,19 @@ const TitleTag = headingLevel;
     justify-content: flex-end;
   }
 
-  .spec-line-item__tags {
+  .spec-list-item__tags {
     display: flex;
     gap: 0.5rem;
   }
 
-  .spec-line-item__tag,
-  .spec-line-item__meta {
+  .spec-list-item__tag,
+  .spec-list-item__meta {
     font-size: 0.8125rem;
     color: var(--c-text-secondary);
   }
 
-  .spec-line-item:hover .spec-line-item__tag,
-  .spec-line-item:hover .spec-line-item__meta {
+  .spec-list-item:hover .spec-list-item__tag,
+  .spec-list-item:hover .spec-list-item__meta {
     color: inherit;
   }
 </style>

@@ -20,7 +20,7 @@ Read: `specs/design-system/isolated-views/spec.md`
 - [x] Extract 8 main Design System sections into isolated `.astro` components in `src/components/ds-docs/`.
 - [x] Refactor `src/components/ds-docs/Components.astro` into modular docs for sub-components in `src/components/ds-docs/docs/`.
 - [x] Implement catch-all dynamic routing in `src/pages/resources/design-system/[...section].astro`.
-- [x] Update `SpecLineItem` to handle isolation URL logic.
+- [x] Update `SpecListItem` to handle isolation URL logic.
 - [x] Delete monolithic `src/pages/resources/design-system.astro`.
 - [x] Standardize code escaping using template literals to resolve JSX parsing conflicts.
 

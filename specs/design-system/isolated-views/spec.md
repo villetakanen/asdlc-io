@@ -32,7 +32,7 @@ The Avionics Design System documentation uses dynamic routing to allow agents an
 8. `file-references` → `FileReferences.astro`
 
 ### Component Sub-Routes (7 total)
-`border-box`, `status-badge`, `spec-card`, `spec-line-item`, `spec-header`, `warning-banner`, `article-references`
+`border-box`, `status-badge`, `spec-card`, `spec-list-item`, `spec-header`, `warning-banner`, `article-references`
 
 Each component doc lives in `src/components/ds-docs/docs/{ComponentName}Docs.astro`.
 

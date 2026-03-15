@@ -25,7 +25,7 @@ A curated list for newcomers prioritizing the core architectural designs. We sho
 - **Specs**
 
 #### 3. The Pattern Directory
-A categorized list of patterns fetched dynamically from the collections. Because this list can grow long, these should be presented as dense row items (e.g., a new `SpecLineItem` component) rather than large grid cards.
+A categorized list of patterns fetched dynamically from the collections. Because this list can grow long, these should be presented as dense row items (e.g., a new `SpecListItem` component) rather than large grid cards.
 - **H3:** `Live Patterns` (Ready for production implementation)
 - **H3:** `Experimental & Draft Patterns` (Currently in testing or early formulation)
 

@@ -32,13 +32,13 @@ The design system page uses a catch-all dynamic route (`[...section].astro`) wit
    - On component routes (e.g., `/resources/design-system/components/border-box`): renders the Components section filtered to the specific component.
 
 ### Components
-- **[SpecLineItem](./spec-line-item/spec.md)** — Dense index directory list item. Used only on directory listing pages (concepts, patterns, practices indexes).
+- **[SpecListItem](./spec-list-item/spec.md)** — Dense index directory list item. Used only on directory listing pages (concepts, patterns, practices indexes).
 - **DsSectionHeader** (`src/components/ds-docs/DsSectionHeader.astro`) — Section heading for the 8 top-level DS sections. Renders a small "Isolate →" / "← Overview" button right-aligned above a full-width `<h2>`.
 - **DsComponentHeader** (`src/components/ds-docs/DsComponentHeader.astro`) — Component heading for individual component docs within the Components section. Renders an `<h3>` inline with a small "Isolate →" / "← All Components" button.
 
 ### Anti-Patterns
 - **Spec-sheet styling on non-article pages:** The design system page is a resource, not a content collection article. Do not use `border-box` or `spec-header` classes on its outer structure — those are reserved for the `SpecHeader` component on article detail pages.
-- **SpecLineItem as section headers:** Do not use `SpecLineItem` for section or component headings in the design system documentation. `SpecLineItem` is a list-item component designed for directory pages. Section headings use `DsSectionHeader`; component headings use `DsComponentHeader`.
+- **SpecListItem as section headers:** Do not use `SpecListItem` for section or component headings in the design system documentation. `SpecListItem` is a list-item component designed for directory pages. Section headings use `DsSectionHeader`; component headings use `DsComponentHeader`.
 - **Client-Side Filtering:** Do not render the entire page and hide sections with JS/CSS. Each route must render only its content in the DOM. See [Isolated Views spec](./isolated-views/spec.md).
 
 ## Contract
