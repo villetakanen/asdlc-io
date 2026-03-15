@@ -1,0 +1,40 @@
+# ASDLC.io
+
+> The definitive knowledge base for the Agentic Software Development Life Cycle — patterns, practices, and concepts for AI-augmented software engineering.
+
+## About
+
+ASDLC.io documents the transition from craft-based software development to industrial-scale agentic systems. Content is organized into three collections: Concepts (terminology), Patterns (architectural solutions), and Practices (operational processes).
+
+## License & Attribution
+
+All content is released under the [MIT License](https://github.com/villetakanen/asdlc-io/blob/main/LICENSE) (c) 2025 Ville Takanen.
+
+When citing ASDLC content, attribute as: "Source: ASDLC.io — [Article Title]" with a link to the canonical URL.
+
+## Machine Access
+
+- [MCP Server](https://asdlc.io/mcp): Model Context Protocol endpoint for programmatic access. Supports `list_articles`, `get_article`, and `search_knowledge_base` tools.
+- [Downloadable Skill](https://asdlc.io/asdlc-skill.zip): Static markdown bundle for offline/air-gapped agents.
+- [Sitemap](https://asdlc.io/sitemap-index.xml): Full page index.
+
+## Core Content
+
+- [Concepts](https://asdlc.io/concepts/): Terminology definitions (e.g., Context Engineering, Spec-Driven Development)
+- [Patterns](https://asdlc.io/patterns/): Architectural solutions (e.g., The Spec, Agent Constitution, Adversarial Code Review)
+- [Practices](https://asdlc.io/practices/): Operational processes (e.g., Living Specs, PBI Authoring, Micro-Commits)
+
+## Foundational Reading
+
+- [Agentic SDLC](https://asdlc.io/concepts/agentic-sdlc/): The framework definition
+- [Spec-Driven Development](https://asdlc.io/concepts/spec-driven-development/): Core methodology
+- [The Spec](https://asdlc.io/patterns/the-spec/): Living specification pattern
+- [Context Engineering](https://asdlc.io/concepts/context-engineering/): Structuring information for agent consumption
+- [Field Manual](https://asdlc.io/fieldmanual/): Collated single-page edition
+
+## Optional
+
+- [Getting Started](https://asdlc.io/getting-started/): Onboarding guide
+- [Design System](https://asdlc.io/resources/design-system/): Component documentation
+- [Compendium](https://asdlc.io/resources/compendium/): Full alphabetical article index
+- [Legend](https://asdlc.io/resources/legend/): Status and maturity definitions
