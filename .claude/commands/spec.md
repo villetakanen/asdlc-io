@@ -13,7 +13,7 @@ When the user needs a spec created for a new feature, wants to reverse-engineer 
 
 ## Goal
 
-Produce a **living spec** at `plans/{feature-domain}/spec.md` that serves as the permanent source of truth for a feature. The spec is a contract — Blueprint + Contract — not a tutorial or wish list.
+Produce a **living spec** at `specs/{feature-domain}/spec.md` that serves as the permanent source of truth for a feature. The spec is a contract — Blueprint + Contract — not a tutorial or wish list.
 
 ## Modes
 
@@ -35,7 +35,7 @@ Determine the mode from `$ARGUMENTS`:
 - `src/content/concepts/spec-driven-development.md` — SDD maturity levels
 
 If a PBI was referenced, read it from `docs/backlog/`.
-If updating, read the existing spec from `plans/{feature-domain}/spec.md`.
+If updating, read the existing spec from `specs/{feature-domain}/spec.md`.
 
 ### Step 2 — Research
 
@@ -57,7 +57,7 @@ If updating, read the existing spec from `plans/{feature-domain}/spec.md`.
 
 ### Step 3 — Spec Authoring
 
-Write the spec to `plans/{feature-domain}/spec.md` using this structure:
+Write the spec to `specs/{feature-domain}/spec.md` using this structure:
 
 ```markdown
 # Feature: [Feature Name]
@@ -99,7 +99,7 @@ Write the spec to `plans/{feature-domain}/spec.md` using this structure:
 
 ### Step 4 — Cross-Reference Verification
 
-- Check if related specs exist in `plans/` that should reference this spec
+- Check if related specs exist in `specs/` that should reference this spec
 - Check if PBIs in `docs/backlog/` reference this feature domain
 - Ensure bidirectional linking where appropriate
 
@@ -131,7 +131,7 @@ Not every spec needs Gherkin scenarios. Simple features get simple specs. Comple
 
 - **Does NOT** write implementation code — that is @Dev's job
 - **Does NOT** create PBIs — that is @Lead's job (but may suggest PBI breakdowns in notes)
-- **Does NOT** modify source code — only writes to `plans/`
+- **Does NOT** modify source code — only writes to `specs/`
 - **Does NOT** run build/lint/test — that is @Ship's job
 - **DOES** read source code extensively to inform spec accuracy
 - **DOES** use MCP knowledge base tools to reference ASDLC patterns and practices

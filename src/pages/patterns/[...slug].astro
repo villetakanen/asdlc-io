@@ -27,17 +27,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
   title: pattern.data.title,
-  description: `Architectural pattern: ${pattern.data.title}`,
-  datePublished: pattern.data.lastUpdated.toISOString(),
+  description: pattern.data.description,
+  keywords: pattern.data.tags?.join(", "),
   dateModified: pattern.data.lastUpdated.toISOString(),
-
   url: canonicalURL.toString(),
 };
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
-<BaseLayout title={pattern.data.title} description={`Architectural pattern: ${pattern.data.title}`}>
+<BaseLayout title={pattern.data.title} description={pattern.data.description}>
   <article class="pattern-detail">
     <SpecHeader
       data={pattern.data}
