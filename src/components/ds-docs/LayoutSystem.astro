@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 
 interface Props {
   isIsolated?: boolean;
@@ -8,11 +8,10 @@ interface Props {
 const { isIsolated = false } = Astro.props;
 ---
 
-<SpecLineItem 
-  title="03. // Layout System"
+<DsSectionHeader
+  title="Layout System"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/layout"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 
 <p>The Avionics layout system uses a sophisticated CSS Grid approach for responsive, content-focused layouts.</p>

@@ -1,5 +1,6 @@
 ---
 import SpecLineItem from "../../SpecLineItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -9,11 +10,10 @@ const { isolatedComponentId } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "spec-line-item") && (
 <div class="ds-component-block" id="spec-line-item">
-  <SpecLineItem 
-    title="Spec Line Item" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-line-item"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Spec Line Item"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-line-item"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>Dense, horizontal row component for displaying long directory lists of concept or pattern items. Designed to scale better vertically than standard grid cards.</p>
 

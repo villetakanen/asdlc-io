@@ -1,6 +1,6 @@
 ---
 import ColorSwatch from "../ColorSwatch.astro";
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 
 interface Props {
   isIsolated?: boolean;
@@ -9,11 +9,10 @@ interface Props {
 const { isIsolated = false } = Astro.props;
 ---
 
-<SpecLineItem 
-  title="01. // Color Palette"
+<DsSectionHeader
+  title="Color Palette"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/colors"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 
 <p>The Avionics palette is built around <strong>International Safety</strong> colors—high-contrast, immediately recognizable, and functional.</p>

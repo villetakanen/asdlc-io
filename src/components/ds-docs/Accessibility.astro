@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 
 interface Props {
   isIsolated?: boolean;
@@ -8,11 +8,10 @@ interface Props {
 const { isIsolated = false } = Astro.props;
 ---
 
-<SpecLineItem 
-  title="05. // Accessibility"
+<DsSectionHeader
+  title="Accessibility"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/accessibility"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 
 <p>The Avionics design system is built with accessibility as a core principle:</p>

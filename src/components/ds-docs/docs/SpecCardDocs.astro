@@ -1,6 +1,6 @@
 ---
 import SpecCard from "../../SpecCard.astro";
-import SpecLineItem from "../../SpecLineItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -10,11 +10,10 @@ const { isolatedComponentId } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "spec-card") && (
 <div class="ds-component-block" id="spec-card">
-  <SpecLineItem 
-    title="Spec Card (Article Card)" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-card"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Spec Card (Article Card)"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-card"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>Card component for index pages representing a single article item. Includes an optional description snippet.</p>
 

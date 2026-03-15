@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 
 interface Props {
   isIsolated?: boolean;
@@ -8,11 +8,10 @@ interface Props {
 const { isIsolated = false } = Astro.props;
 ---
 
-<SpecLineItem 
-  title="02. // Typography"
+<DsSectionHeader
+  title="Typography"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/typography"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 
 <p>The Avionics typography system uses two carefully selected typefaces to create a technical, authoritative feel.</p>

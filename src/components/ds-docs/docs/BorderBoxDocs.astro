@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../../SpecLineItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -9,11 +9,10 @@ const { isolatedComponentId } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "border-box") && (
 <div class="ds-component-block" id="border-box">
-  <SpecLineItem 
-    title="Border Box" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/border-box"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Border Box"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/border-box"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>A utility class for bordered containers:</p>
   <pre><code>{`.border-box {

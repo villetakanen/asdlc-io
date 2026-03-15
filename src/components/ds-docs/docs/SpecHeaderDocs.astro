@@ -1,7 +1,7 @@
 ---
 import { articleSchema } from "../../../content/config";
 import SpecHeader from "../../SpecHeader.astro";
-import SpecLineItem from "../../SpecLineItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -11,11 +11,10 @@ const { isolatedComponentId } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "spec-header") && (
 <div class="ds-component-block" id="spec-header">
-  <SpecLineItem 
-    title="Spec Header" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-header"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Spec Header"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-header"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>Standardized header for specification pages (Concepts, Patterns, Practices). Supports data-driven metadata rendering.</p>
 

@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 
 interface Props {
   isIsolated?: boolean;
@@ -8,11 +8,10 @@ interface Props {
 const { isIsolated = false } = Astro.props;
 ---
 
-<SpecLineItem 
-  title="07. // Diagrams"
+<DsSectionHeader
+  title="Diagrams"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/diagrams"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 
 <p>Mermaid diagrams use the Avionics palette for visual consistency. Diagrams are authored in markdown and generated to SVG.</p>

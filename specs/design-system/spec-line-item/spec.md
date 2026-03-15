@@ -3,7 +3,9 @@
 ## Blueprint
 
 ### Context
-The `SpecLineItem` component provides a dense, scannable list view for directory pages. As the number of patterns and concepts grows, the default `SpecCard` component consumes too much vertical space. This component solves the scaling limitation while retaining essential metadata (status, tags, last updated date) and interactivity required by the Avionics Design System.
+The `SpecLineItem` component provides a dense, scannable list view for directory pages (concepts, patterns, practices indexes). As the number of patterns and concepts grows, the default `SpecCard` component consumes too much vertical space. This component solves the scaling limitation while retaining essential metadata (status, tags, last updated date) and interactivity required by the Avionics Design System.
+
+**Scope:** This component is strictly for directory listing pages. It must not be used as section headings or navigation elements in the design system documentation — those use `DsSectionHeader` and `DsComponentHeader` respectively.
 
 ### Architecture
 - **Component File:** `src/components/SpecLineItem.astro`

@@ -1,6 +1,6 @@
 ---
 import ArticleReferences from "../../ArticleReferences.astro";
-import SpecLineItem from "../../SpecLineItem.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -11,11 +11,10 @@ const { isolatedComponentId, exampleReferences } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "article-references") && (
 <div class="ds-component-block" id="article-references">
-  <SpecLineItem 
-    title="Article References" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/article-references"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Article References"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/article-references"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>Structured reference component for citing external sources in APA-inspired format. Supports 7 reference types: website, paper, book, podcast, video, repository, and standard.</p>
 

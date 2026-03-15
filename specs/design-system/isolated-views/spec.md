@@ -9,6 +9,8 @@ The Avionics Design System documentation uses dynamic routing to allow agents an
 - **Routing:** Catch-all dynamic route at `src/pages/resources/design-system/[...section].astro`.
 - **Data Source:** Design system sections are discrete Astro components in `src/components/ds-docs/` mapped to routes via a static array in `getStaticPaths()`.
 - **Layout:** Uses `BaseLayout` with a standalone `<nav>` element for section navigation.
+- **Section Headers:** Each section uses `DsSectionHeader` which renders a small navigation button ("Isolate →" or "← Overview") right-aligned above a full-width `<h2>`. This preserves the standard heading underline while providing isolation navigation.
+- **Component Headers:** Each component doc uses `DsComponentHeader` which renders an `<h3>` inline with a small "Isolate →" / "← All Components" button.
 
 ### Route Structure
 

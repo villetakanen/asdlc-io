@@ -1,5 +1,5 @@
 ---
-import SpecLineItem from "../SpecLineItem.astro";
+import DsSectionHeader from "./DsSectionHeader.astro";
 import ArticleReferencesDocs from "./docs/ArticleReferencesDocs.astro";
 import BorderBoxDocs from "./docs/BorderBoxDocs.astro";
 import SpecCardDocs from "./docs/SpecCardDocs.astro";
@@ -47,11 +47,10 @@ const exampleReferences = [
 ---
 
 {!isolatedComponentId && (
-<SpecLineItem 
-  title="04. // Components"
+<DsSectionHeader
+  title="Components"
   url={isIsolated ? "/resources/design-system" : "/resources/design-system/components"}
-  tags={[isIsolated ? "View All" : "Isolate"]}
-  headingLevel="h2"
+  isIsolated={isIsolated}
 />
 )}
 

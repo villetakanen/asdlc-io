@@ -1,6 +1,6 @@
 ---
-import SpecLineItem from "../../SpecLineItem.astro";
 import StatusBadge from "../../StatusBadge.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
@@ -10,11 +10,10 @@ const { isolatedComponentId } = Astro.props;
 
 {(!isolatedComponentId || isolatedComponentId === "status-badge") && (
 <div class="ds-component-block" id="status-badge">
-  <SpecLineItem 
-    title="Status Badge" 
-    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/status-badge"} 
-    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
-    headingLevel="h3" 
+  <DsComponentHeader
+    title="Status Badge"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/status-badge"}
+    isIsolated={!!isolatedComponentId}
   />
   <p>Monospace badges for status indicators:</p>
   <div class="border-box" style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">

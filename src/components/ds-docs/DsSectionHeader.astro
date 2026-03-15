@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  isIsolated?: boolean;
+}
+const { title, url, isIsolated = false } = Astro.props;
+const linkText = isIsolated ? "← Overview" : "Isolate →";
+---
+
+<div class="ds-section-header">
+  <a href={url} class="ds-section-btn mono">{linkText}</a>
+</div>
+<h2 style="margin-top:0">{title}</h2>
+
+<style>
+  .ds-section-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -0.5rem;
+    margin-top: var(--s-grid);
+  }
+
+  .ds-section-btn {
+    font-size: 0.75rem;
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--c-border);
+    border-radius: 4px;
+    background: var(--c-bg-page);
+    transition: all 0.2s ease;
+  }
+
+  .ds-section-btn:hover {
+    color: var(--c-brand);
+    border-color: var(--c-brand);
+    background: var(--c-bg-surface);
+  }
+</style>
