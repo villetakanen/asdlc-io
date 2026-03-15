@@ -1,0 +1,53 @@
+---
+import SpecLineItem from "../SpecLineItem.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<SpecLineItem 
+  title="07. // Diagrams"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/diagrams"}
+  tags={[isIsolated ? "View All" : "Isolate"]}
+  headingLevel="h2"
+/>
+
+<p>Mermaid diagrams use the Avionics palette for visual consistency. Diagrams are authored in markdown and generated to SVG.</p>
+
+<h3>Theme Variables</h3>
+<p>Key mermaid theme variables mapped to design tokens:</p>
+<pre><code>primaryColor: #f04e30    /* --c-brand (nodes) */
+clusterBkg: #ebebe6      /* --c-bg-surface (subgraphs) */
+clusterBorder: #d1d1c7   /* --c-border */
+textColor: #111111       /* --c-text-primary */
+fontFamily: "B612 Mono"  /* --f-mono */</code></pre>
+
+<h3>Generation Workflow</h3>
+<ol>
+  <li>Write <code>```mermaid</code> block in markdown article</li>
+  <li>Run <code>pnpm diagrams</code> to generate SVG</li>
+  <li>Script outputs to <code>public/mermaid/&#123;slug&#125;-fig-&#123;n&#125;.svg</code></li>
+  <li>Script adds <code>&lt;figure&gt;</code> reference after mermaid block</li>
+</ol>
+
+<h3>Example Flowchart</h3>
+<pre><code>```mermaid
+flowchart LR
+    subgraph "Input Layer"
+        A["Source"]
+    end
+    
+    subgraph "Processing"
+        B["Transform"]
+        C["Validate"]
+        B --&gt; C
+    end
+    
+    A --&gt; B
+    C --&gt; D["Output"]
+```</code></pre>
+
+<p><strong>Result:</strong> Nodes use Safety Orange (#f04e30), subgraphs use warm grey (#ebebe6), text uses primary black (#111111).</p>

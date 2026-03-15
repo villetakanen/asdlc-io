@@ -1,0 +1,159 @@
+---
+import Accessibility from "../../../components/ds-docs/Accessibility.astro";
+import BestPractices from "../../../components/ds-docs/BestPractices.astro";
+// Import all sections
+import ColorPalette from "../../../components/ds-docs/ColorPalette.astro";
+import Components from "../../../components/ds-docs/Components.astro";
+import Diagrams from "../../../components/ds-docs/Diagrams.astro";
+import FileReferences from "../../../components/ds-docs/FileReferences.astro";
+import LayoutSystem from "../../../components/ds-docs/LayoutSystem.astro";
+import Typography from "../../../components/ds-docs/Typography.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const sections = [
+    { id: "colors", component: ColorPalette, title: "Color Palette" },
+    { id: "typography", component: Typography, title: "Typography" },
+    { id: "layout", component: LayoutSystem, title: "Layout System" },
+    { id: "components", component: Components, title: "Components" },
+    { id: "accessibility", component: Accessibility, title: "Accessibility" },
+    { id: "best-practices", component: BestPractices, title: "Best Practices" },
+    { id: "diagrams", component: Diagrams, title: "Diagrams" },
+    { id: "file-references", component: FileReferences, title: "File References" },
+  ];
+
+  const componentsList = [
+    { id: "border-box", title: "Border Box" },
+    { id: "status-badge", title: "Status Badge" },
+    { id: "spec-card", title: "Spec Card" },
+    { id: "spec-line-item", title: "Spec Line Item" },
+    { id: "spec-header", title: "Spec Header" },
+    { id: "warning-banner", title: "Warning Banner" },
+    { id: "article-references", title: "Article References" },
+  ];
+
+  const paths = sections.map((s) => ({
+    params: { section: s.id as string | undefined },
+    props: {
+      sections,
+      currentId: s.id as string | undefined,
+      subId: undefined as string | undefined,
+    },
+  }));
+
+  componentsList.forEach((c) => {
+    paths.push({
+      params: { section: `components/${c.id}` },
+      props: { sections, currentId: "components", subId: c.id },
+    });
+  });
+
+  // Provide the index route where section is undefined (shows all)
+  paths.push({
+    params: { section: undefined },
+    props: { sections, currentId: undefined, subId: undefined },
+  });
+
+  return paths;
+}
+
+const { sections, currentId, subId } = Astro.props;
+const activeSection = currentId ? sections.find((s) => s.id === currentId) : null;
+const ComponentsToRender = activeSection ? [activeSection] : sections;
+
+let title = "Avionics Design System";
+if (subId) {
+  const cName = subId
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  title = `Avionics Design System: Components / ${cName}`;
+} else if (activeSection) {
+  title = `Avionics Design System: ${activeSection.title}`;
+}
+
+const description =
+  "Comprehensive documentation of the ASDLC.io design system, including color palette, typography, layout system, and component patterns.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="design-system">
+    <header class="spec-header border-box content">
+      <h1>Avionics Design System</h1>
+      <p class="lead">
+        The visual and structural foundation of ASDLC.io. Inspired by industrial specification documents,
+        flight manuals, and international safety standards.
+      </p>
+
+      {/* Internal Navigation Menu */}
+      <nav class="ds-nav" aria-label="Design System Navigation">
+        <ul class="ds-nav-list">
+          <li>
+            <a href="/resources/design-system" class={!currentId ? "active" : ""}>Overview</a>
+          </li>
+          {sections.map(s => (
+            <li>
+              <a href={`/resources/design-system/${s.id}`} class={currentId === s.id ? "active" : ""}>
+                {s.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <div class="prose content-prose">
+      {ComponentsToRender.map(s => {
+        const Comp = s.component;
+        return (
+          <div class="ds-section" id={s.id}>
+            <Comp isIsolated={!!currentId} isolatedComponentId={subId} />
+            {ComponentsToRender.length > 1 && <hr />}
+          </div>
+        );
+      })}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .ds-nav {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--c-border);
+  }
+  
+  .ds-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .ds-nav-list a {
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-family: var(--f-mono);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .ds-nav-list a:hover {
+    color: var(--c-text-primary);
+    background-color: var(--c-bg-surface);
+  }
+  
+  .ds-nav-list a.active {
+    color: var(--c-brand);
+    font-weight: 700;
+    background-color: var(--c-bg-surface);
+  }
+  
+  .ds-section {
+    margin-bottom: 2rem;
+  }
+</style>

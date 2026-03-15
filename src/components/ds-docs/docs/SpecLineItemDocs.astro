@@ -1,0 +1,44 @@
+---
+import SpecLineItem from "../../SpecLineItem.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "spec-line-item") && (
+<div class="ds-component-block" id="spec-line-item">
+  <SpecLineItem 
+    title="Spec Line Item" 
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/spec-line-item"} 
+    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
+    headingLevel="h3" 
+  />
+  <p>Dense, horizontal row component for displaying long directory lists of concept or pattern items. Designed to scale better vertically than standard grid cards.</p>
+
+  <div class="border-box" style="margin-bottom: 1rem; padding: 0;">
+    <SpecLineItem 
+      title="Living Specs" 
+      url="/practices/living-specs"
+      meta="Dec 22, 2025"
+      status="Experimental"
+      tags={["documentation", "spec-driven-development"]}
+    />
+    <SpecLineItem 
+      title="Context Engineering" 
+      url="/concepts/context-engineering"
+      meta="Oct 12, 2026"
+      status="Live"
+    />
+  </div>
+
+  <pre><code>{`<SpecLineItem 
+  title="Living Specs" 
+  url="/practices/living-specs"
+  meta="Dec 22, 2025"
+  status="Experimental"
+  tags={["documentation", "spec-driven-development"]}
+/>`}</code></pre>
+</div>
+)}

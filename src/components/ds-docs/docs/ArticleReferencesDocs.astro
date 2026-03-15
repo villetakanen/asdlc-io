@@ -1,0 +1,48 @@
+---
+import ArticleReferences from "../../ArticleReferences.astro";
+import SpecLineItem from "../../SpecLineItem.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+  exampleReferences: any[];
+}
+const { isolatedComponentId, exampleReferences } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "article-references") && (
+<div class="ds-component-block" id="article-references">
+  <SpecLineItem 
+    title="Article References" 
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/article-references"} 
+    tags={[isolatedComponentId ? "View All" : "Isolate"]} 
+    headingLevel="h3" 
+  />
+  <p>Structured reference component for citing external sources in APA-inspired format. Supports 7 reference types: website, paper, book, podcast, video, repository, and standard.</p>
+
+  <div style="margin-bottom: 1rem;">
+    <ArticleReferences references={exampleReferences} />
+  </div>
+
+  <pre><code>{`<ArticleReferences references={[
+  {
+    type: "website",
+    title: "OpenAI Best Practices for Prompt Engineering",
+    url: "https://platform.openai.com/docs/guides/prompt-engineering",
+    author: "OpenAI",
+    published: new Date("2024-01-15"),
+    accessed: new Date("2026-01-08"),
+    annotation: "Foundational guidance on structuring prompts..."
+  },
+  // ... more references
+]} />`}</code></pre>
+
+  <p><strong>Features:</strong></p>
+  <ul>
+    <li>APA-inspired citation format: Author (Year). <em>Title</em>. Metadata.</li>
+    <li>Semantic HTML with <code>&lt;cite&gt;</code>, <code>&lt;ol&gt;</code>, and proper accessibility</li>
+    <li>Automatic handling of missing optional fields</li>
+    <li>External links with <code>rel="external noopener"</code></li>
+    <li>Required <code>accessed</code> date for website references (validated in schema)</li>
+  </ul>
+</div>
+)}

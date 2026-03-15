@@ -1,0 +1,31 @@
+---
+import SpecLineItem from "../SpecLineItem.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<SpecLineItem 
+  title="08. // File References"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/file-references"}
+  tags={[isIsolated ? "View All" : "Isolate"]}
+  headingLevel="h2"
+/>
+
+<p>The design system is implemented across these files:</p>
+<ul>
+  <li><code>ds/index.css</code> - Design System entrypoint</li>
+  <li><code>ds/tokens.css</code> - Design tokens</li>
+  <li><code>ds/base.css</code> - Base styles</li>
+  <li><code>ds/pre-flight.css</code> - Modern reset</li>
+  <li><code>ds/typography.css</code> - Typography rules</li>
+  <li><code>ds/prose.css</code> - Generic prose styles</li>
+  <li><code>ds/content-prose.css</code> - Article-specific prose styles</li>
+  <li><code>ds/layouts/grid.css</code> - Main grid layout</li>
+  <li><code>ds/layouts/spec-grid.css</code> - Card grid layout</li>
+  <li><code>ds/components/*.css</code> - Component styles</li>
+  <li><code>mermaid.json</code> - Mermaid diagram theme configuration</li>
+</ul>

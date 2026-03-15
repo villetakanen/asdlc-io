@@ -1,0 +1,61 @@
+---
+import SpecLineItem from "../SpecLineItem.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<SpecLineItem 
+  title="02. // Typography"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/typography"}
+  tags={[isIsolated ? "View All" : "Isolate"]}
+  headingLevel="h2"
+/>
+
+<p>The Avionics typography system uses two carefully selected typefaces to create a technical, authoritative feel.</p>
+
+<h3>Font Families</h3>
+<pre><code>--f-sans: "Archivo", sans-serif;  /* Variable font with industrial character */
+--f-mono: "B612 Mono", monospace; /* Aviation-grade monospace */</code></pre>
+
+<p><strong>Archivo</strong> is a variable font designed for industrial and technical applications. <strong>B612 Mono</strong> was designed by Airbus for cockpit displays.</p>
+
+<h3>Heading Styles</h3>
+<p>All headings use uppercase transformation and expanded width for maximum impact:</p>
+
+<pre><code>h1, h2, h3 {`{`}
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-variation-settings: "wdth" 110; /* Expanded width */
+{`}`}</code></pre>
+
+<table class="breakout">
+  <thead>
+    <tr>
+      <th>Element</th>
+      <th>Size</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>h1</code></td>
+      <td>2.5rem (40px)</td>
+      <td>Page titles, main headings (one per page)</td>
+    </tr>
+    <tr>
+      <td><code>h2</code></td>
+      <td>1.5rem (24px)</td>
+      <td>Major sections, chapter headings</td>
+    </tr>
+    <tr>
+      <td><code>h3</code></td>
+      <td>1.125rem (18px)</td>
+      <td>Subsections, technical labels (uses monospace)</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,50 @@
+---
+import SpecLineItem from "../SpecLineItem.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false } = Astro.props;
+---
+
+<SpecLineItem 
+  title="03. // Layout System"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/layout"}
+  tags={[isIsolated ? "View All" : "Isolate"]}
+  headingLevel="h2"
+/>
+
+<p>The Avionics layout system uses a sophisticated CSS Grid approach for responsive, content-focused layouts.</p>
+
+<h3>Prose Contexts</h3>
+<p>We distinguish between generic prose and article content:</p>
+<ul>
+  <li><code>.prose</code>: Generic typography styles for any text block.</li>
+  <li><code>.content-prose</code>: Enhanced styles for long-form articles, including specific spacing for headings and lists.</li>
+</ul>
+
+<h3>Spacing Tokens</h3>
+<pre><code>--s-grid: 24px;       /* Base grid unit */
+--s-gap: 1.5rem;      /* Standard gap between elements */
+--s-container: 800px; /* Maximum content width (legacy) */</code></pre>
+
+<h3>Grid Layout System</h3>
+<p>The grid layout creates three named columns for flexible content placement:</p>
+
+<pre><code>--s-content-max: 67ch; /* Optimal reading width */</code></pre>
+
+<p>This creates three content zones:</p>
+<ol>
+  <li><strong>content</strong> (67ch max): Default for body text, optimal reading width</li>
+  <li><strong>breakout</strong>: Wider zone for tables, code blocks, images</li>
+  <li><strong>full</strong>: Full-width zone for backgrounds, hero sections</li>
+</ol>
+
+<h3>Spec Grid</h3>
+<p>A responsive grid for card collections (Concepts, Patterns, Practices):</p>
+<pre><code>.spec-grid {`{`}
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--s-gap);
+{`}`}</code></pre>

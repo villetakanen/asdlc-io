@@ -1,0 +1,74 @@
+---
+import SpecLineItem from "../SpecLineItem.astro";
+import ArticleReferencesDocs from "./docs/ArticleReferencesDocs.astro";
+import BorderBoxDocs from "./docs/BorderBoxDocs.astro";
+import SpecCardDocs from "./docs/SpecCardDocs.astro";
+import SpecHeaderDocs from "./docs/SpecHeaderDocs.astro";
+import SpecLineItemDocs from "./docs/SpecLineItemDocs.astro";
+import StatusBadgeDocs from "./docs/StatusBadgeDocs.astro";
+import WarningBannerDocs from "./docs/WarningBannerDocs.astro";
+
+interface Props {
+  isIsolated?: boolean;
+  isolatedComponentId?: string;
+}
+const { isIsolated = false, isolatedComponentId } = Astro.props;
+
+const exampleReferences = [
+  {
+    type: "website" as const,
+    title: "OpenAI Best Practices for Prompt Engineering",
+    url: "https://platform.openai.com/docs/guides/prompt-engineering",
+    author: "OpenAI",
+    published: new Date("2024-01-15"),
+    accessed: new Date("2026-01-08"),
+    annotation:
+      "Foundational guidance on structuring prompts for LLMs, covering prompt engineering techniques and best practices.",
+  },
+  {
+    type: "paper" as const,
+    title: "Constitutional AI: Harmlessness from AI Feedback",
+    url: "https://arxiv.org/abs/2212.08073",
+    authors: ["Yuntao Bai", "Saurav Kadavath", "Sandipan Kundu", "Amanda Askell"],
+    published: new Date("2022-12-15"),
+    annotation:
+      "Introduces the constitutional training methodology underpinning Claude's behavior and safety constraints.",
+  },
+  {
+    type: "book" as const,
+    title: "Domain-Driven Design: Tackling Complexity in the Heart of Software",
+    author: "Eric Evans",
+    isbn: "978-0321125217",
+    published: new Date("2003-08-22"),
+    annotation:
+      "Seminal work on modeling complex domains in software through strategic design patterns.",
+  },
+];
+---
+
+{!isolatedComponentId && (
+<SpecLineItem 
+  title="04. // Components"
+  url={isIsolated ? "/resources/design-system" : "/resources/design-system/components"}
+  tags={[isIsolated ? "View All" : "Isolate"]}
+  headingLevel="h2"
+/>
+)}
+
+<div class="ds-components-list">
+  <BorderBoxDocs isolatedComponentId={isolatedComponentId} />
+  <StatusBadgeDocs isolatedComponentId={isolatedComponentId} />
+  <SpecCardDocs isolatedComponentId={isolatedComponentId} />
+  <SpecLineItemDocs isolatedComponentId={isolatedComponentId} />
+  <SpecHeaderDocs isolatedComponentId={isolatedComponentId} />
+  <WarningBannerDocs isolatedComponentId={isolatedComponentId} />
+  <ArticleReferencesDocs isolatedComponentId={isolatedComponentId} exampleReferences={exampleReferences} />
+</div>
+
+<style>
+  .ds-components-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+</style>
