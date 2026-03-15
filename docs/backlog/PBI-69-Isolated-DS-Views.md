@@ -1,4 +1,4 @@
-# PBI-69: Isolated Design System Views
+# PBI-69: Isolated Design System Views (Status: Completed)
 
 ## 1. Directive
 Refactor the Avionics Design System documentation from a single monolithic page into an isolated, section-by-section dynamic structure using Astro routing.
@@ -17,7 +17,12 @@ Read: `specs/design-system/isolated-views/spec.md`
 - Acts as the permanent architectural source of truth for the dynamic routing structure, ensuring context isolation for both humans and agents.
 
 ## 5. Changes Required
-*To be populated once the architectural approach (content collections vs component splitting) is decided.*
+- [x] Extract 8 main Design System sections into isolated `.astro` components in `src/components/ds-docs/`.
+- [x] Refactor `src/components/ds-docs/Components.astro` into modular docs for sub-components in `src/components/ds-docs/docs/`.
+- [x] Implement catch-all dynamic routing in `src/pages/resources/design-system/[...section].astro`.
+- [x] Update `SpecLineItem` to handle isolation URL logic.
+- [x] Delete monolithic `src/pages/resources/design-system.astro`.
+- [x] Standardize code escaping using template literals to resolve JSX parsing conflicts.
 
 ## 6. Verification
 - `pnpm dev` serves individual sections cleanly without loading the entire design system's DOM.
