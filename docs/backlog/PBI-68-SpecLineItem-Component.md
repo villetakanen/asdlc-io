@@ -11,7 +11,11 @@ Design and implement a new `SpecLineItem.astro` component for the Avionics Desig
 ## 3. Dependencies
 None.
 
-## 4. Changes Required
+## 4. Context
+Read: `specs/design-system/spec-line-item/spec.md`
+- Acts as the permanent architectural source of truth for this component's design and regression constraints.
+
+## 5. Changes Required
 
 ### A. Implement `SpecLineItem.astro`
 - **Props:** The component should accept `title` (string), `url` (string), `meta` (string, optional - usually a date), `status` (string, optional), and `tags` (string array, optional) - mirroring the API of `SpecCard`.
@@ -32,13 +36,13 @@ None.
 - Render a live example of the component using mock data (similar to the existing `SpecCard` demo).
 - Include the ````html` code snippet showing how to invoke it.
 
-## 5. Verification
+## 6. Verification
 - Run `pnpm dev` and navigate to `/resources/design-system` to visually verify the component matches the Avionics aesthetics.
 - Ensure hover states work and contrast rules pass WCAG AA standards.
 - Run `pnpm check` to verify TypeScript prop definitions.
 
-## 6. Notes
+## 7. Notes
 This PBI blocks PBI-66. The `SpecLineItem` is an execution mechanism required to fulfill the new Patterns Index layout specification without compromising the design system governance rule (Experience Modeling).
 
-## 7. Blockers
+## 8. Blockers
 None.
