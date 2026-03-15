@@ -1,20 +1,92 @@
 ---
 import { getCollection } from "astro:content";
-import { Content as Definition } from "../../components/definitions/patterns.md";
-import SpecCardList from "../../components/SpecCardList.astro";
-import CollectionIndex from "../../layouts/CollectionIndex.astro";
-import { sortItemsByStatusAndDate } from "../../utils/content";
+import SpecCard from "../../components/SpecCard.astro";
+import SpecListItem from "../../components/SpecListItem.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const patterns = await getCollection("patterns");
-const sortedPatterns = sortItemsByStatusAndDate(patterns);
+
+const foundationalSlugs = ["agentic-double-diamond", "adversarial-code-review", "the-spec"];
+const foundational = foundationalSlugs
+  .map((slug) => patterns.find((p) => p.id === slug))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined);
+
+const live = patterns
+  .filter((p) => p.data.status === "Live" && !foundationalSlugs.includes(p.id))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const experimental = patterns
+  .filter((p) => ["Experimental", "Draft", "Proposed"].includes(p.data.status))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
 
-<CollectionIndex
+<BaseLayout
   title="Patterns"
-  description="Discover proven architectural patterns and solutions for common challenges in agent-driven software development."
-  heading="Architectural Patterns"
+  description="Proven architectural patterns and structural solutions for agent-driven software development."
 >
-  <Definition slot="definition" />
+  <article class="prose">
+    <h1>Architectural Patterns</h1>
 
-  <SpecCardList items={sortedPatterns} collection="patterns" />
-</CollectionIndex>
+    <p>Patterns are reusable architectural designs and structural solutions to common problems. If agentic architecture is the conveyor belt for knowledge work, patterns are the factory blueprints. They describe the topology and relationships between agents, systems, and human operators.</p>
+
+    <h2>Start Here</h2>
+    <p>Three foundational patterns that define the core architecture.</p>
+
+    <div class="spec-grid">
+      {foundational.map((p) => (
+        <SpecCard
+          title={p.data.title}
+          description={p.data.description}
+          url={`/patterns/${p.id}`}
+          status={p.data.status}
+          meta={formatDate(p.data.lastUpdated)}
+          tags={p.data.tags || []}
+        />
+      ))}
+    </div>
+
+    {live.length > 0 && (
+      <>
+        <h2>Live Patterns</h2>
+        <ul class="spec-list">
+          {live.map((p) => (
+            <li>
+              <SpecListItem
+                title={p.data.title}
+                url={`/patterns/${p.id}`}
+                description={p.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {experimental.length > 0 && (
+      <>
+        <h2>Experimental &amp; Draft</h2>
+        <ul class="spec-list">
+          {experimental.map((p) => (
+            <li>
+              <SpecListItem
+                title={p.data.title}
+                url={`/patterns/${p.id}`}
+                description={p.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li><a href="/practices">Practices</a> — See patterns applied in real workflows.</li>
+      <li><a href="/getting-started">Getting Started</a> — Deploy the methodology from scratch.</li>
+      <li><a href="/resources">Resources</a> — Field manual, design system, and governance.</li>
+    </ul>
+  </article>
+</BaseLayout>
