@@ -1,6 +1,6 @@
 ---
-title: Levels of Autonomy
-description: "SAE-inspired taxonomy for AI agent autonomy in software development, from L1 (assistive) to L5 (full), standardized at L3 conditional autonomy."
+title: "Levels of Autonomy: L1–L5 AI Agent Autonomy Scale"
+description: "SAE-inspired taxonomy classifying AI agent autonomy from L1 assistive to L5 fully autonomous. Learn why L3 conditional autonomy is the current production ceiling and what each level means."
 tags:
   - Taxonomy
   - Standards
@@ -9,7 +9,8 @@ relatedIds:
   - concepts/guardrails
   - patterns/context-gates
 status: Live
-lastUpdated: 2026-01-09
+publishedDate: 2026-01-09
+lastUpdated: 2026-03-16
 references:
   - type: "website"
     title: "Built by agents, tested by agents, trusted by whom?"

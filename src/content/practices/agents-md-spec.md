@@ -1,10 +1,11 @@
 ---
-title: "AGENTS.md Specification"
-description: "The definitive guide to the AGENTS.md file, focusing on minimal, high-signal context for AI agents."
+title: "AGENTS.md Specification: A Research-Backed Guide"
+description: "Complete AGENTS.md specification with templates, section-by-section format guide, and research-backed rules for writing minimal, high-signal context files."
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution", "concepts/context-anchoring"]
 status: "Live"
-lastUpdated: 2026-02-18
+publishedDate: 2026-02-18
+lastUpdated: 2026-03-16
 references:
   - type: "paper"
     title: "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"

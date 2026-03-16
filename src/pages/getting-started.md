@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/ProseLayout.astro
-title: Getting Started with ASDLC
-description: A practical guide to implementing the Agentic Software Development Life Cycle in your team.
+title: "Getting Started with Agentic SDLC: Setup Guide"
+description: "Step-by-step guide to implementing the Agentic Software Development Life Cycle. Set up AGENTS.md, context gates, and agent personas to ship production software with AI agents."
 ---
 
 ## What Is This?
