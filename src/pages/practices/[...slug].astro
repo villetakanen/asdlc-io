@@ -28,7 +28,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const structuredDataProps = {
   title: practice.data.title,
   description: practice.data.description,
-  keywords: practice.data.tags ? practice.data.tags.join(", ") : "",
+  keywords: practice.data.tags?.join(", "),
+  datePublished: (practice.data.publishedDate ?? practice.data.lastUpdated).toISOString(),
   dateModified: practice.data.lastUpdated.toISOString(),
   url: canonicalURL.toString(),
 };

@@ -1,7 +1,8 @@
 ---
-title: "Agent Personas"
-description: "A guide on how to add multiple personas to an AGENTS.md file, with examples."
-lastUpdated: 2026-02-18
+title: "Agent Personas: Session-Scoped Roles for AI Agents"
+description: "How to define session-scoped agent personas as skill files — not bloated AGENTS.md sections. Includes ready-to-use samples for key personas."
+publishedDate: 2026-02-18
+lastUpdated: 2026-03-16
 tags: ["agents", "personas", "guide"]
 relatedIds: ["patterns/model-routing", "concepts/context-engineering", "practices/agents-md-spec"]
 status: "Live"

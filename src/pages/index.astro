@@ -1,12 +1,30 @@
 ---
 import { version } from "../../package.json";
 import { Content as AccessKnowledgeBase } from "../components/definitions/access-knowledge-base.md";
+import StructuredData from "../components/StructuredData.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const siteURL = Astro.site?.toString() ?? "https://asdlc.io/";
+const siteDescription =
+  "The playbook for industrializing software engineering. Patterns, practices, and standards for building the software factory.";
 ---
+
+<StructuredData type="Organization" data={{
+  name: "ASDLC.io",
+  url: siteURL,
+  logo: `${siteURL}asdlc.svg`,
+  description: siteDescription,
+}} />
+
+<StructuredData type="WebSite" data={{
+  name: "ASDLC.io",
+  url: siteURL,
+  description: siteDescription,
+}} />
 
 <BaseLayout
   title="ASDLC.io | The Agentic Software Development Life Cycle Framework"
-  description="The playbook for industrializing software engineering. Patterns, practices, and standards for building the software factory."
+  description={siteDescription}
 >
   <article class="prose">
     <div class="banner-warning">

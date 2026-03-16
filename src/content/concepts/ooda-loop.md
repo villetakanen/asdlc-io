@@ -1,6 +1,6 @@
 ---
-title: "OODA Loop"
-description: "The Observe-Orient-Decide-Act decision cycle—a strategic model from military combat adapted for autonomous agent behavior in software development."
+title: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"
+description: "How the OODA loop drives autonomous agent decision-making in software development. Includes Orient-dominant design, tempo compression, and practical implementation patterns."
 tags:
   - AI
   - Agent Architecture
@@ -13,7 +13,8 @@ relatedIds:
   - concepts/feedback-loop-compression
   - patterns/context-gates
   - practices/agents-md-spec
-lastUpdated: 2026-01-13
+publishedDate: 2026-01-13
+lastUpdated: 2026-03-16
 status: "Live"
 references:
   - type: "book"

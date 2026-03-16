@@ -18,5 +18,13 @@ commit-msg:
 pre-push:
   parallel: false
   commands:
+    llms-txt-limit:
+      glob: "public/llms.txt"
+      run: |
+        lines=$(wc -l < public/llms.txt | tr -d ' ')
+        if [ "$lines" -gt 100 ]; then
+          echo "ERROR: public/llms.txt is $lines lines (max 100)"
+          exit 1
+        fi
     build-check:
       run: pnpm build

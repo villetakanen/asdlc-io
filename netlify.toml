@@ -24,6 +24,11 @@
   status = 301
 
 [[redirects]]
+  from = "/concepts/ooda-loop"
+  to = "/concepts/ooda-loop/"
+  status = 301
+
+[[redirects]]
   from = "/manuscript"
   to = "/fieldmanual/"
   status = 301

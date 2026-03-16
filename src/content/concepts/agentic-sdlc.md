@@ -1,6 +1,6 @@
 ---
-title: Agentic SDLC
-description: "Framework for industrializing software development where agents serve as the logistic layer while humans design, govern, and optimize the flow."
+title: "Agentic SDLC: The Software Factory Framework"
+description: "Complete framework for industrializing software development with AI agents. Defines how agents serve as the logistic layer while humans design, govern, and optimize the production flow."
 tags:
   - Core
   - SDLC
@@ -17,7 +17,8 @@ relatedIds:
   - patterns/agent-optimization-loop
   - concepts/provenance
   - concepts/extreme-programming
-lastUpdated: 2026-01-01
+publishedDate: 2026-01-01
+lastUpdated: 2026-03-16
 status: Live
 ---
 
