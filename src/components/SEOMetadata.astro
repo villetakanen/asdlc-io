@@ -12,7 +12,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const defaultDescription =
   "Agentic Software Development Life Cycle - A knowledge base for AI-augmented software engineering.";
 const metaDescription = description || defaultDescription;
-const ogImage = image || new URL("/og-default.svg", Astro.site).toString();
+const ogImage = image || new URL("/asdlc.png", Astro.site).toString();
 const pageTitle = title.includes("ASDLC.io") ? title : `${title} | ASDLC.io`;
 ---
 
