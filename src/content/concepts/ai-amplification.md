@@ -2,6 +2,7 @@
 title: AI Amplification
 description: The principle that AI tools amplify existing engineering practices—making disciplined teams faster and chaotic teams fail sooner.
 status: Draft
+publishedDate: 2026-02-12
 lastUpdated: 2026-03-18
 tags: ["AI", "Culture", "Process", "Dynamics"]
 relatedIds: ["concepts/vibe-coding", "concepts/agentic-sdlc"]

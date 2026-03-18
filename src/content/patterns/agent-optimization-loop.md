@@ -3,6 +3,7 @@ title: "Agent Optimization Loop"
 description: "The recursive process of using feedback from scenarios to continuously tune agent prompts, context, and tools."
 tags: ["Meta-Pattern", "Optimization", "Agent Engineering", "Factory"]
 relatedIds: ["patterns/ralph-loop", "concepts/context-engineering", "concepts/agentic-sdlc", "concepts/learning-loop"]
+publishedDate: 2026-02-21
 lastUpdated: 2026-03-18
 status: "Experimental"
 references:

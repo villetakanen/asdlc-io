@@ -4,8 +4,16 @@ description: "Natural language code generation without formal specs—powerful f
 tags: ["Disambiguation", "AI", "Code Quality", "Anti-Pattern"]
 status: "Experimental"
 relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy"]
-lastUpdated: 2025-01-05
+publishedDate: 2025-01-05
+lastUpdated: 2026-03-18
 references:
+  - type: "website"
+    title: "Humans and Agents in Software Engineering Loops"
+    url: "https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents.html"
+    author: "Kief Morris"
+    published: 2026-03-04
+    accessed: 2026-03-18
+    annotation: "Morris's 'Humans Outside the Loop' critique validates the ASDLC position that unstructured agent delegation creates technical debt. Published on martinfowler.com."
   - type: "podcast"
     title: "Claude Code and the Future of AI-Assisted Development"
     url: "https://peterman.fm/boris-cherny"

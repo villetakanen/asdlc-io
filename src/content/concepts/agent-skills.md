@@ -5,6 +5,7 @@ tags:
   - Infrastructure
   - Workflows
 relatedIds: ["concepts/model-context-protocol", "concepts/context-engineering", "practices/agents-md-spec"]
+publishedDate: 2026-03-02
 lastUpdated: 2026-03-18
 references:
   - type: paper

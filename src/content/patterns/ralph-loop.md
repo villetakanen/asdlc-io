@@ -14,9 +14,17 @@ relatedIds:
   - patterns/context-gates
   - patterns/adversarial-code-review
   - patterns/the-spec
-lastUpdated: 2026-02-21
+publishedDate: 2026-02-21
+lastUpdated: 2026-03-18
 status: "Live"
 references:
+  - type: "website"
+    title: "Humans and Agents in Software Engineering Loops"
+    url: "https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents.html"
+    author: "Kief Morris"
+    published: 2026-03-04
+    accessed: 2026-03-18
+    annotation: "Direct citation of the Ralph Loop on martinfowler.com. Morris positions it within a three-loop taxonomy for human-agent collaboration."
   - type: "website"
     title: "Understanding the Ralph Loop"
     url: "https://ghuntley.com/ralph/"
