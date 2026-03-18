@@ -5,8 +5,14 @@ tags:
   - Infrastructure
   - Workflows
 relatedIds: ["concepts/model-context-protocol", "concepts/context-engineering", "practices/agents-md-spec"]
-lastUpdated: 2026-03-02
+lastUpdated: 2026-03-18
 references:
+  - type: paper
+    title: "SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?"
+    authors: ["Tingxu Han", "Yi Zhang", "Wei Song", "Chunrong Fang", "Zhenyu Chen", "Youcheng Sun", "Lijie Hu"]
+    url: "https://arxiv.org/abs/2603.15401"
+    published: 2026-03-19
+    annotation: "Controlled benchmark testing 49 skills across 565 tasks: 39/49 yielded zero improvement, average gain +1.2%, token overhead up to 451%. Empirically validates the ASDLC heuristic that only domain-aligned, task-specific skills deliver value."
   - type: website
     title: "Agent Skills Official Specification"
     author: "Anthropic / Agent Skills Contributors"
@@ -97,6 +103,8 @@ In Vercel's 2025 agent evaluations, they discovered that for foundational framew
 **The Heuristic:**
 * Use **`AGENTS.md`** for global constraints, repository architecture, and fundamental framework rules.
 * Use **Skills** for deep, task-specific, procedural workflows (e.g., "How to execute our deployment pipeline" or "How to perform an adversarial code review").
+
+This heuristic is empirically validated by [SWE-Skills-Bench (Han et al., 2026)](https://arxiv.org/abs/2603.15401), which tested 49 public skills against 565 real-world repository tasks. The results are stark: 39 of 49 skills yielded zero pass-rate improvement, with an average gain of only +1.2%. Token overhead ranged from modest savings to a 451% increase with no corresponding improvement. Three skills actively *degraded* performance (up to -10%) due to version mismatches conflicting with project-specific context. Only seven highly specialized, domain-aligned skills showed meaningful gains (up to +30%). The lesson: generic procedural knowledge injected without contextual fit is not merely useless — it is actively harmful, consuming tokens while introducing noise that competes with the project's own constraints.
 
 ### Skills vs. MCP
 
