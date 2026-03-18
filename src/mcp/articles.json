@@ -178,6 +178,15 @@
     "references": [
       {
         "type": "website",
+        "title": "Context Engineering: The Missing Discipline in AI-Assisted Development",
+        "url": "https://roadie.io/blog/context-engineering-ai-development/",
+        "author": "David Tuite",
+        "published": "2026-03-12T00:00:00.000Z",
+        "accessed": "2026-03-18T00:00:00.000Z",
+        "annotation": "Three-layer context model (Local/Repository/Organizational) with Spotify's Backstage-based implementation as case study. Product pitch for Roadie, but the layered framing and IDP-as-context-engine thesis are useful for enterprise audiences."
+      },
+      {
+        "type": "website",
         "title": "OpenAI Best Practices for Prompt Engineering",
         "url": "https://platform.openai.com/docs/guides/prompt-engineering",
         "author": "OpenAI",

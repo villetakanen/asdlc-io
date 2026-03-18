@@ -3,9 +3,16 @@ title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
 relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading", "concepts/context-anchoring"]
-lastUpdated: 2026-02-24
+lastUpdated: 2026-03-18
 status: "Live"
 references:
+  - type: "website"
+    title: "Context Engineering: The Missing Discipline in AI-Assisted Development"
+    url: "https://roadie.io/blog/context-engineering-ai-development/"
+    author: "David Tuite"
+    published: 2026-03-12
+    accessed: 2026-03-18
+    annotation: "Three-layer context model (Local/Repository/Organizational) with Spotify's Backstage-based implementation as case study. Product pitch for Roadie, but the layered framing and IDP-as-context-engine thesis are useful for enterprise audiences."
   - type: "website"
     title: "OpenAI Best Practices for Prompt Engineering"
     url: "https://platform.openai.com/docs/guides/prompt-engineering"
