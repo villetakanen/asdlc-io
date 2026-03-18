@@ -121,7 +121,7 @@ The PBI *references* the Spec for context and *updates* the Spec when it changes
 
 ```
 Sprint 1: PBI-101 "Build notification system"
-  → Creates /plans/notifications/spec.md
+  → Creates /specs/notifications/spec.md
   → Spec defines: "Deliver within 100ms via WebSocket"
 
 Sprint 3: PBI-203 "Add SMS fallback"

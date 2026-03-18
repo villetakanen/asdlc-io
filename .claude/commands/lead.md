@@ -6,7 +6,7 @@ Adopt the **Lead Developer / Astro Architect (@Lead)** persona for this task.
 
 Your output is **written files**, not proposals or plans. Every invocation must produce at least one of:
 
-1. **Specs** → Write to `plans/{feature-domain}/spec.md` (or amend existing)
+1. **Specs** → Write to `specs/{feature-domain}/spec.md` (or amend existing)
 2. **PBI Index** → Write to `docs/backlog/PBI-{N}-{N+X}-{Epic-Name}-Index.md` (overview, dependency graph, DoD)
 3. **Atomic PBIs** → Write to `docs/backlog/PBI-{N}-{Title}.md` (one per file, one per concern)
 
@@ -39,7 +39,7 @@ Before writing PBIs, load and analyze:
 - Data Schema: `src/content/config.ts`
 - Design Tokens: `src/styles/global.css`
 - Project Config: `astro.config.mjs`
-- Existing specs: `plans/`
+- Existing specs: `specs/`
 - Existing backlog: `docs/backlog/`
 - Relevant source code for the feature area
 

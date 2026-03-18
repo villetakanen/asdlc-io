@@ -41,9 +41,9 @@ The agent must first "load" the relevant context from the ASDLC Knowledge Base t
 4.  **Load Content Specs:**
     *   Read the relevant spec files to ensure any proposed content adheres to the "Shape" of the Knowledge Base.
     *   *Files:*
-        *   `plans/content-articles/concept-spec.md` (Definitions)
-        *   `plans/content-articles/pattern-spec.md` (Structures)
-        *   `plans/content-articles/practice-spec.md` (Operations)
+        *   `specs/content-articles/concept.md` (Definitions)
+        *   `specs/content-articles/pattern.md` (Structures)
+        *   `specs/content-articles/practice.md` (Operations)
     *   *Goal:* Verify if the source material fits a Pattern (Shape), Practice (Steps), or Concept (Idea).
 
 ### 2. Adversarial Assessment (The Gatekeeper)
@@ -125,7 +125,7 @@ Select the best strategy or combination of strategies:
     *   "Add reference to `concepts/Y.md`..."
 
 *   **STRATEGY 2: EXPAND (Create New)**
-    *   "Create `practices/Z.md` following `plans/content-articles/practice-spec.md`."
+    *   "Create `practices/Z.md` following `specs/content-articles/practice.md`."
     *   *Justification:* Why this warrants a standalone file.
 
 *   **STRATEGY 3: COMBINATION (Create + Integrate)**

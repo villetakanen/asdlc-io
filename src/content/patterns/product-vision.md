@@ -100,7 +100,7 @@ Product Vision sits between the Constitution and the Specs:
 |------|----------|---------|
 | Constitution | `AGENTS.md` | How agents behave (rules, constraints) |
 | **Vision** | `VISION.md` or inline | Who the product is (taste, voice, POV) |
-| Specs | `/plans/*.md` | What to build (contracts, criteria) |
+| Specs | `/specs/*.md` | What to build (contracts, criteria) |
 | Reference | `/docs/` | Full documentation, API specs, guides |
 
 The Constitution shapes *behavior*. The Vision shapes *judgment*. The Specs shape *output*.

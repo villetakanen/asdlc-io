@@ -86,7 +86,7 @@ Understand how the pieces connect:
 | Artifact | Location | Purpose |
 |----------|----------|---------|
 | `AGENTS.md` | Repo root | Agent constitution, tech stack, commands |
-| `plans/{feature}/spec.md` | Per feature | Permanent source of truth |
+| `specs/{feature}/spec.md` | Per feature | Permanent source of truth |
 | `tasks/PBI-XXX.md` | Backlog | Transient execution unit |
 | `ARCHITECTURE.md` | Repo root | Global system constraints |
 | `docs/adrs/` | Repo root | Architecture Decision Records |

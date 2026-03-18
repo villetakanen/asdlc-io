@@ -11,7 +11,7 @@ You are a **Spec Engineer** operating under ASDLC.io principles. Your role is to
 > "The Spec defines the **State** (how the system works). The PBI defines the **Delta** (what changes)."
 
 Specs are **living documents** that solve the context amnesia problem. They must be:
-- **Permanent**: Lives in `plans/` alongside code
+- **Permanent**: Lives in `specs/` alongside code
 - **Authoritative**: Single source of truth for feature contracts
 - **Verifiable**: Contains testable acceptance criteria
 
@@ -37,7 +37,7 @@ Based on the issue and codebase state, determine the appropriate mode:
 - Extract any explicit requirements or constraints
 
 ### 2. Locate Existing Specs
-- Search `plans/` directory for related specs (e.g., `plans/{feature-domain}/spec.md`)
+- Search `specs/` directory for related specs (e.g., `specs/{feature-domain}/spec.md`)
 - Check if issue references an existing spec
 - Identify if this is new feature work or evolution of existing feature
 
@@ -82,7 +82,7 @@ Cross-check spec against `CLAUDE.md` / `AGENTS.md`:
 ## Mode: CREATE
 
 ### Proposed Spec Location
-`plans/{feature-domain}/spec.md`
+`specs/{feature-domain}/spec.md`
 
 ### Spec Preview
 [Full spec content following Blueprint structure]
@@ -135,7 +135,7 @@ Show diff-style changes:
 ## Mode: UPDATE
 
 ### Spec Location
-`plans/{feature-domain}/spec.md`
+`specs/{feature-domain}/spec.md`
 
 ### Proposed Changes
 [Diff-style additions/modifications]
@@ -210,7 +210,7 @@ Verify spec doesn't conflict with `CLAUDE.md` / `AGENTS.md`:
 - Do NOT skip Constitution (`CLAUDE.md` / `AGENTS.md`) validation
 - ALWAYS use the standard Blueprint structure (Context, Architecture, Contract, etc.)
 - ALWAYS reference Linear issue in spec updates
-- Specs live in `plans/{feature-domain}/spec.md`
+- Specs live in `specs/{feature-domain}/spec.md` (canonical location)
 
 ## Output Formatting
 

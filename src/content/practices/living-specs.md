@@ -57,7 +57,7 @@ Organize specs by **feature domain**, not by sprint or ticket number.
 ```
 /project-root
 ├── ARCHITECTURE.md           # Global system rules
-├── plans/                    # Feature-level specs
+├── specs/                    # Feature-level specs
 │   ├── user-authentication/
 │   │   └── spec.md
 │   ├── payment-processing/
@@ -70,13 +70,13 @@ Organize specs by **feature domain**, not by sprint or ticket number.
 **Conventions:**
 - Directory name: kebab-case, matches the feature's conceptual name
 - File name: always `spec.md`
-- Location: `/plans/{feature-domain}/spec.md`
+- Location: `/specs/{feature-domain}/spec.md`
 - Scope: one spec per independently evolvable feature
 
 **Context Separation:**
 Maintain a strict separation between global constitutional context and feature-level functional specifications:
 - **`ARCHITECTURE.md` (Memory Bank):** Contains the cross-cutting, global rules, principles, and tech stack choices that apply to *every* agent session.
-- **`/plans/*/spec.md` (Functional Spec):** Contains the specific behavioral contracts, business logic, and localized architecture for a single domain. 
+- **`/specs/*/spec.md` (Functional Spec):** Contains the specific behavioral contracts, business logic, and localized architecture for a single domain.
 
 ## Maintenance Protocol
 
@@ -88,7 +88,7 @@ If code changes behavior, update the spec in the same commit. Add "Spec updated"
 git commit -m "feat(notifications): add SMS fallback
 
 - Implements SMS delivery when WebSocket fails
-- Updates /plans/notifications/spec.md with new transport layer"
+- Updates /specs/notifications/spec.md with new transport layer"
 ```
 
 ### Deprecation Over Deletion
@@ -112,7 +112,7 @@ Link code to specs and specs to code:
 
 ```typescript
 // Notification delivery must meet 100ms latency requirement
-// See: /plans/notifications/spec.md#contract
+// See: /specs/notifications/spec.md#contract
 ```
 
 ```markdown
