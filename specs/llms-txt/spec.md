@@ -29,7 +29,7 @@ For asdlc.io specifically, this serves three purposes:
 **Content sources:**
 - Site metadata: `astro.config.mjs` (`site: "https://asdlc.io"`)
 - License: `/LICENSE` (MIT, Ville Takanen 2025)
-- MCP endpoint: `/mcp` (see `specs/` or `plans/mcp-server/spec.md`)
+- MCP endpoint: `/mcp` (see `specs/mcp-server/spec.md`)
 - Article inventory: Content collections in `src/content/{concepts,patterns,practices}/`
 
 **Relationship to existing infrastructure:**
@@ -150,4 +150,4 @@ This is a suggested starting point — the actual content should be reviewed edi
 - [llmstxt.org](https://llmstxt.org/) — The llms.txt specification
 - [llms.txt State in 2026](https://www.aeo.press/ai/the-state-of-llms-txt-in-2026) — Adoption trends
 - `specs/structured-data/spec.md` — Related: Schema.org JSON-LD (another AEO layer)
-- `plans/mcp-server/spec.md` — Related: MCP server architecture
+- `specs/mcp-server/spec.md` — Related: MCP server architecture

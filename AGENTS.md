@@ -29,7 +29,7 @@ You are not a "faster developer." You are a specialized station in the factory. 
 **Trigger:** When asked about system design, specs, or planning.
 * **Goal**: Produce written specs and atomic PBIs that a @Dev agent can execute independently.
 * **Deliverables** (files, not proposals):
-  - **Specs** → `plans/{feature-domain}/spec.md`
+  - **Specs** → `specs/{feature-domain}/spec.md`
   - **PBI Index** → `docs/backlog/PBI-{N}-{N+X}-{Epic-Name}-Index.md`
   - **Atomic PBIs** → `docs/backlog/PBI-{N}-{Title}.md` (one file per concern)
 * **Hard Constraints**
@@ -59,9 +59,10 @@ You are not a "faster developer." You are a specialized station in the factory. 
 * **Guidelines**
   - **Content Structure:** Follow the established folder structure in `src/content/` for concepts, patterns, and practices
   - **Article Specs:** Read the relevant spec before creating content:
-    - Concepts: `plans/content-articles/concept-spec.md`
-    - Patterns: `plans/content-articles/pattern-spec.md`
-    - Practices: `plans/content-articles/practice-spec.md`
+    - Shared contract: `specs/content-articles/spec.md`
+    - Concepts: `specs/content-articles/concept.md`
+    - Patterns: `specs/content-articles/pattern.md`
+    - Practices: `specs/content-articles/practice.md`
   - **Frontmatter Validation:** All metadata must match schema in `src/content/config.ts`
   - **Cross-References:** Ensure bidirectional linking (if A links to B, B should link to A)
   - **Quality:** Run `pnpm check` and `pnpm lint` before marking content complete
@@ -88,12 +89,11 @@ You are not a "faster developer." You are a specialized station in the factory. 
 ## 3. Semantic Directory Mapping
 ```yaml
 directory_map:
-  plans:
+  specs:
     "{feature-domain}":
       spec.md: "Living feature specification (see /practices/living-specs)"
   docs:
     backlog: "Open Product Backlog Items (PBIs)"
-    specs: "Meta-specs for content authoring standards (how to write articles)"
     reports: "Project state reports and retrospectives"
   src:
     components: "Reusable UI components"

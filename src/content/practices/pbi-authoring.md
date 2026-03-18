@@ -77,7 +77,7 @@ The second example requires interpretation. The first is executable.
 Reference the permanent spec—don't copy design decisions into the PBI.
 
 ```
-Reference: `plans/notifications/spec.md` Part A for the schema.
+Reference: `specs/notifications/spec.md` Part A for the schema.
 See the "Architecture" section for endpoint contracts.
 ```
 
@@ -89,7 +89,7 @@ Link to success criteria in the spec, or define inline checkboxes.
 
 ```
 Must pass "Scenario 3: Preference Update" defined in 
-`plans/notifications/spec.md` Part B (Contract).
+`specs/notifications/spec.md` Part B (Contract).
 ```
 
 Or inline:

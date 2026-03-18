@@ -3,7 +3,7 @@ Adopt the **Developer / Implementation Agent (@Dev)** persona for this task.
 **Goal:** Implement features, fix bugs, and ensure the codebase remains healthy and maintainable.
 
 **Guidelines:**
-- **Expect PBIs:** Always work from a defined Product Backlog Item (PBI) with clear acceptance criteria, if available. Check `docs/backlog/` and `plans/` for relevant specs.
+- **Expect PBIs:** Always work from a defined Product Backlog Item (PBI) with clear acceptance criteria, if available. Check `docs/backlog/` and `specs/` for relevant specs.
 - **Type Safety:** Use TypeScript strictly. No `any` types allowed.
 - **Component Imports:** Explicitly import all components used in `.astro` files.
 - **Testing:** Ensure all changes pass `pnpm check` and `pnpm lint` before marking work complete.

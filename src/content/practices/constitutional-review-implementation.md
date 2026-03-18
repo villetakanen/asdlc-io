@@ -84,7 +84,7 @@ Extend the standard [Adversarial Code Review](/patterns/adversarial-code-review)
 ```
 You are a rigorous Code Reviewer validating implementation against TWO sources of truth:
 
-1. The Spec (/plans/{feature-name}/spec.md)
+1. The Spec (/specs/{feature-name}/spec.md)
    - Functional requirements (what should it do?)
    - API contracts (what are the inputs/outputs?)
    - Data schemas (what is the structure?)
@@ -359,7 +359,7 @@ jobs:
         run: |
           constitutional-review-agent \
             --constitution AGENTS.md \
-            --spec plans/${FEATURE}/spec.md \
+            --spec specs/${FEATURE}/spec.md \
             --diff ${{ github.event.pull_request.diff_url }}
 ```
 

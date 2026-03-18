@@ -81,7 +81,7 @@ The agent or developer begins by loading the necessary context:
 ```bash
 # PBI-427: Implement notification preferences API
 # Context:
-#   - Spec: /plans/notifications/spec.md
+#   - Spec: /specs/notifications/spec.md
 #   - Scope: src/api/notifications/
 ```
 
@@ -138,7 +138,7 @@ async function updatePreferences(data: any) {
 **Correct Pattern:**
 ```typescript
 // ✅ Implementing against spec contracts
-// See: /plans/notifications/spec.md#data-schema
+// See: /specs/notifications/spec.md#data-schema
 import { PreferencesSchema } from './schemas';
 
 async function updatePreferences(data: unknown) {
@@ -198,7 +198,7 @@ LLM-assisted validation using a Critic Agent (see [Adversarial Code Review](/pat
 ```bash
 # Run Critic Agent in fresh session
 critic-agent review \
-  --spec plans/notifications/spec.md \
+  --spec specs/notifications/spec.md \
   --diff src/api/notifications/preferences.ts \
   --output violations.json
 ```
@@ -287,7 +287,7 @@ PBI → Feature Assembly → Quality Gates → Integration → Spec Update (if n
 **Example:**
 1. PBI-427 says "Implement preferences API"
 2. Assembly phase builds `src/api/preferences.ts`
-3. Quality gates verify against `/plans/notifications/spec.md`
+3. Quality gates verify against `/specs/notifications/spec.md`
 4. Human accepts strategic fit
 5. Code merges, PBI-427 closes
 
@@ -299,7 +299,7 @@ Write tests that verify spec contracts before implementing:
 
 ```typescript
 // tests/api/preferences.test.ts
-// Validates: /plans/notifications/spec.md#contract
+// Validates: /specs/notifications/spec.md#contract
 
 describe('Preferences API', () => {
   it('should respond within 200ms', async () => {
@@ -323,7 +323,7 @@ Link code to spec sections explicitly:
 
 ```typescript
 // src/api/notifications/preferences.ts
-// Spec: /plans/notifications/spec.md
+// Spec: /specs/notifications/spec.md
 // Contract: "All updates must validate against PreferencesSchema"
 // Contract: "Response time must be <200ms"
 
