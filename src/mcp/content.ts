@@ -25,6 +25,7 @@ export interface Article {
   slug: string;
   collection: "concepts" | "patterns" | "practices";
   title: string;
+  longTitle?: string | null;
   description: string;
   status: "Draft" | "Proposed" | "Live" | "Deprecated" | "Experimental";
   content: string;

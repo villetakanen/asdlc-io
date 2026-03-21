@@ -31,7 +31,7 @@ let structuredData: JsonLdObject = {
 if (type === "TechArticle" || type === "Article") {
   structuredData = {
     ...structuredData,
-    headline: data.title || data.headline,
+    headline: data.longTitle || data.title || data.headline,
     description: data.description || data.definition,
     author: {
       "@type": "Organization",

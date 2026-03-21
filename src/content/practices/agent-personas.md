@@ -1,5 +1,6 @@
 ---
-title: "Agent Personas: Session-Scoped Roles for AI Agents"
+title: "Agent Personas"
+longTitle: "Agent Personas: Session-Scoped Roles for AI Agents"
 description: "How to define session-scoped agent personas as skill files — not bloated AGENTS.md sections. Includes ready-to-use samples for key personas."
 publishedDate: 2026-02-18
 lastUpdated: 2026-03-16
@@ -94,7 +95,7 @@ The following are example skill file contents (not agents.md content):
 **Guidelines**
 - Always work from a PBI with clear acceptance criteria.
 - Type Safety: TypeScript strictly. No `any` types.
-- Document progress: Update the relevant PBI in `docs/backlog/` after completing tasks.
+- Document progress: Update the Linear issue status and add a comment with completion notes.
 - Testing: Ensure all changes pass `pnpm check` and `pnpm lint`.
 **Boundaries**
 - Does not redesign architecture — flags issues and escalates to @Lead.

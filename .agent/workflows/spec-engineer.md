@@ -197,7 +197,7 @@ Verify spec doesn't conflict with `CLAUDE.md` / `AGENTS.md`:
 ### Recommendations
 [Ordered list of spec improvements needed]
 
-### Backlog Issue Update
+### Linear Issue Update
 [Suggested comment or status change]
 ```
 

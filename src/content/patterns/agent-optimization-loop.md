@@ -3,9 +3,16 @@ title: "Agent Optimization Loop"
 description: "The recursive process of using feedback from scenarios to continuously tune agent prompts, context, and tools."
 tags: ["Meta-Pattern", "Optimization", "Agent Engineering", "Factory"]
 relatedIds: ["patterns/ralph-loop", "concepts/context-engineering", "concepts/agentic-sdlc", "concepts/learning-loop"]
-lastUpdated: 2026-02-21
+publishedDate: 2026-02-21
+lastUpdated: 2026-03-18
 status: "Experimental"
 references:
+  - title: "SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?"
+    authors: ["Tingxu Han", "Yi Zhang", "Wei Song", "Chunrong Fang", "Zhenyu Chen", "Youcheng Sun", "Lijie Hu"]
+    url: "https://arxiv.org/abs/2603.15401"
+    type: "paper"
+    published: 2026-03-19
+    annotation: "Validates scenario-based evaluation over static benchmarks: acceptance-criteria-driven verification across 565 real tasks mirrors the Agent Optimization Loop's Scenario methodology."
   - title: "From Software Factories to Agent Factories: When Agents Build Agents"
     author: "Mutagent"
     url: "https://www.mutagent.io/blog/software-factories-agents-building-agents"

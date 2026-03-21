@@ -1,5 +1,6 @@
 ---
-title: "Levels of Autonomy: L1–L5 AI Agent Autonomy Scale"
+title: "Levels of Autonomy"
+longTitle: "Levels of Autonomy: L1-L5 AI Agent Autonomy Scale"
 description: "SAE-inspired taxonomy classifying AI agent autonomy from L1 assistive to L5 fully autonomous. Learn why L3 conditional autonomy is the current production ceiling and what each level means."
 tags:
   - Taxonomy
@@ -10,8 +11,15 @@ relatedIds:
   - patterns/context-gates
 status: Live
 publishedDate: 2026-01-09
-lastUpdated: 2026-03-16
+lastUpdated: 2026-03-18
 references:
+  - type: "website"
+    title: "Humans and Agents in Software Engineering Loops"
+    url: "https://martinfowler.com/articles/exploring-gen-ai/humans-and-agents.html"
+    author: "Kief Morris"
+    published: 2026-03-04
+    accessed: 2026-03-18
+    annotation: "Authoritative Fowler/Thoughtworks validation that 'On the Loop' harness engineering is the recommended governance model, mapping directly to L3 Conditional Autonomy."
   - type: "website"
     title: "Built by agents, tested by agents, trusted by whom?"
     url: "https://law.stanford.edu/2026/02/08/built-by-agents-tested-by-agents-trusted-by-whom/"

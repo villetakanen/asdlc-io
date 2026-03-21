@@ -2,12 +2,19 @@
 title: AI Amplification
 description: The principle that AI tools amplify existing engineering practices—making disciplined teams faster and chaotic teams fail sooner.
 status: Draft
-lastUpdated: 2026-02-12
+publishedDate: 2026-02-12
+lastUpdated: 2026-03-18
 tags: ["AI", "Culture", "Process", "Dynamics"]
 relatedIds: ["concepts/vibe-coding", "concepts/agentic-sdlc"]
 references:
   - { title: "AI is a High-Pass Filter for Software Quality", author: "Bryan Finster", url: "https://bryanfinster.substack.com/p/ai-is-a-high-pass-filter-for-software", type: "website", accessed: 2026-02-12, annotation: "Original article defining the 'High-Pass Filter' concept." }
   - { title: "Agile in the AI Era: Why 'Boring' Architecture Is Your Secret Weapon", author: "Raf Lefever", url: "https://www.linkedin.com/pulse/agile-ai-era-why-boring-architecture-your-secret-weapon-lefever-ravne/", type: "website", accessed: 2026-02-12, annotation: "Discussion on how 'boring' structured architecture enables AI agents." }
+  - type: paper
+    title: "SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?"
+    authors: ["Tingxu Han", "Yi Zhang", "Wei Song", "Chunrong Fang", "Zhenyu Chen", "Youcheng Sun", "Lijie Hu"]
+    url: "https://arxiv.org/abs/2603.15401"
+    published: 2026-03-19
+    annotation: "Empirical example of AI Amplification: version-mismatched skills degraded agent performance by up to 10%, demonstrating that bad context amplifies failures at machine speed."
 ---
 
 ## Definition

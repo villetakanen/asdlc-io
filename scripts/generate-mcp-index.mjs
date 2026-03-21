@@ -41,6 +41,7 @@ for (const collection of COLLECTIONS) {
         slug,
         collection,
         title: data.title || slug,
+        longTitle: data.longTitle || null,
         description: data.description || "",
         status: data.status,
         content: content.trim(),

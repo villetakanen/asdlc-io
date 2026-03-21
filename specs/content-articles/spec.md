@@ -42,15 +42,37 @@ All content articles share these fields (from `articleSchema`):
 
 ```yaml
 ---
-title: "Article Title"           # Collection-appropriate casing (see archetypes)
+title: "Article Title"           # Max 40 chars. Short, layout-friendly title for cards/lists/nav
+longTitle: "Full SEO Title"      # Optional, max 120 chars. SEO-optimized title for page H1 + meta tags. Defaults to title.
 description: "Summary..."        # Max 200 chars, clear standalone definition
 tags: ["Tag1", "Tag2"]           # 2-5 industry keywords
+publishedDate: 2025-01-15        # Optional. ISO 8601 date. Original publication date (distinct from lastUpdated).
 relatedIds: ["collection/slug"]  # Bidirectional cross-references
-lastUpdated: 2025-01-15          # ISO 8601 date
+lastUpdated: 2025-01-15          # ISO 8601 date. Most recent substantive edit.
 status: "Live"                   # Live | Experimental | Draft | Proposed | Deprecated
 references: []                   # External sources (see article-references spec)
 ---
 ```
+
+### Title Strategy: `title` vs `longTitle`
+
+Articles have two title surfaces with different constraints:
+
+| Field | Purpose | Used By | Example |
+|-------|---------|---------|---------|
+| `title` | Short, layout-friendly display name | SpecCard, SpecListItem, card grids, navigation, sort keys | "OODA Loop" |
+| `longTitle` | SEO-optimized full title | Page H1 (SpecHeader), `<title>`, og:title, Schema.org headline, MCP responses, Field Manual chapter headings | "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle" |
+
+**Rules:**
+- `title` is **max 40 characters** — enforced by Zod schema. This ensures titles fit card grids and list items without wrapping.
+- `longTitle` is optional, **max 120 characters**. When omitted, it defaults to `title`.
+- `longTitle` should be **descriptive** — optimized for search engines, social sharing, and standalone comprehension.
+- Articles with short, self-explanatory titles (e.g., "Guardrails", "Mermaid") do not need a `longTitle`.
+- Only add `longTitle` when the SEO-optimized title is materially different from the display title.
+
+**Consumer mapping:**
+- **Short title (`title`):** `SpecCard`, `SpecListItem`, `SpecCardList`, collection index pages, alphabetical sort keys, MCP `list_articles` and `search_knowledge_base` (list format)
+- **Long title (`longTitle`):** `SpecHeader` (H1), `SEOMetadata` (`<title>`, og:title, twitter:title), `StructuredData` (Schema.org headline), `[...slug].astro` (BaseLayout title prop), `fieldmanual.astro` / `compendium.astro` (chapter headings), MCP `get_article` (H1 heading), `generate-mcp-index.mjs`, `build-skill.mjs` (article headings)
 
 ### Cross-Referencing Rules
 
@@ -67,6 +89,8 @@ references: []                   # External sources (see article-references spec
 - **H1 in Content** — Using `#` headings in article body. H1 is reserved for the layout; content starts at `##`.
 - **Marketing Language** — "Revolutionary", "game-changing", "next-generation". State facts.
 - **Schema Drift** — Hardcoding frontmatter fields not defined in `articleSchema`. All fields must validate against `src/content/config.ts`.
+- **Redundant longTitle** — Setting `longTitle` identical to `title`. Only use `longTitle` when it differs materially.
+- **Long title in title field** — Putting SEO-optimized titles like "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle" in `title`. The `title` field must be concise for card/list layouts; use `longTitle` for the full version.
 - **Orphaned Content** — Articles with zero `relatedIds` and zero `references`. Every article must connect to the knowledge graph.
 
 ## Contract
@@ -88,12 +112,15 @@ references: []                   # External sources (see article-references spec
 ### Regression Guardrails
 
 - All content must validate against `articleSchema` — no unschematized frontmatter fields.
+- The `title` field must remain capped at 40 characters.
+- The `longTitle` field must remain capped at 120 characters.
 - The `description` field must remain capped at 200 characters.
 - Dates must use `z.coerce.date()` — no string dates.
 - The `references` field must remain optional with empty-array default.
 - Deprecated articles must specify `supersededBy` in frontmatter.
 - External links in article body are permitted only for inline context; attributable sources must use `references`.
-- Content must start at H2 (`##`) — the H1 is rendered by the layout from `title`.
+- Content must start at H2 (`##`) — the H1 is rendered by the layout from `longTitle` (falling back to `title`).
+- The `longTitle` field must remain optional with `title` as default — existing articles without `longTitle` must continue to work unchanged.
 
 ### Scenarios
 
@@ -118,7 +145,80 @@ references: []                   # External sources (see article-references spec
 - Then `supersededBy` references the replacement article(s)
 - And the article is excluded from the Field Manual
 
+**Scenario: Title with longTitle override**
+- Given an article has `title: "OODA Loop"` and `longTitle: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"`
+- When the article is rendered
+- Then SpecCard/SpecListItem displays "OODA Loop"
+- And the page H1, `<title>`, og:title, and Schema.org headline use "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"
+
+**Scenario: Title without longTitle (backward compat)**
+- Given an article has `title: "Guardrails"` and no `longTitle` field
+- When the article is rendered
+- Then all views (cards, lists, H1, meta tags) display "Guardrails"
+
+**Scenario: Title length validation**
+- Given an article has `title: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"` (56 chars)
+- When `pnpm check` runs
+- Then validation fails with "Title must be ≤ 40 chars for card/list layouts."
+- And the author must split into `title: "OODA Loop"` + `longTitle: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"`
+
 **Scenario: MCP discoverability**
 - Given a Live article exists in any collection
 - When an LLM calls `search_knowledge_base` with a relevant query
-- Then the article appears in the search results
+- Then the article appears in the search results with the short `title` (appropriate for list format)
+- And `get_article` uses `longTitle` (falling back to `title`) for the H1 heading
+
+## Implementation Notes
+
+### Schema Change (`src/content/config.ts`)
+
+Add `longTitle` to `articleSchema` with length constraints:
+
+```ts
+title: z.string().max(40, "Title must be ≤ 40 chars for card/list layouts."),
+longTitle: z.string().max(120, "Long title must be ≤ 120 chars.").optional(),
+```
+
+The default-to-title behavior should be resolved at the consumer level (views and scripts), not in the Zod schema, since Zod `.default()` cannot reference sibling fields. Use a helper or inline fallback: `data.longTitle ?? data.title`.
+
+### Files Requiring Changes
+
+**Schema:**
+- `src/content/config.ts` — Add `longTitle` to `articleSchema`
+
+**Views using SHORT title (`title` — no changes needed):**
+- `src/components/SpecCard.astro` — Already receives `title` prop; callers pass `data.title`
+- `src/components/SpecListItem.astro` — Already receives `title` prop
+- `src/components/SpecCardList.astro` — Already passes `item.data.title` to SpecCard
+
+**Views that must switch to LONG title (`data.longTitle ?? data.title`):**
+- `src/components/SpecHeader.astro` — H1 heading (line ~47)
+- `src/components/SEOMetadata.astro` — `<title>`, og:title, twitter:title
+- `src/components/StructuredData.astro` — Schema.org `headline`
+- `src/pages/concepts/[...slug].astro` — BaseLayout title prop + structuredDataProps
+- `src/pages/patterns/[...slug].astro` — BaseLayout title prop + structuredDataProps
+- `src/pages/practices/[...slug].astro` — BaseLayout title prop + structuredDataProps
+- `src/pages/fieldmanual.astro` — Chapter headings (H2)
+- `src/pages/resources/compendium.astro` — Chapter headings (H2)
+
+**Scripts that must include `longTitle`:**
+- `scripts/generate-mcp-index.mjs` — Include `longTitle` in articles.json manifest
+- `scripts/build-skill.mjs` — Use `longTitle` in skill markdown headings
+
+**MCP server:**
+- `src/mcp/tools.ts` — Use `longTitle` in `get_article` H1 response; `list_articles` and `search_knowledge_base` may use either (short title is acceptable in list format)
+
+### Content Migration
+
+Articles with existing long SEO titles should be migrated:
+1. Move the current `title` value to `longTitle`
+2. Set `title` to the short, layout-friendly version
+
+**Priority candidates** (articles with long titles that break card layouts):
+- `concepts/agentic-sdlc.md` — title: "Agentic SDLC: The Software Factory Framework" → title: "Agentic SDLC", longTitle: (keep original)
+- `concepts/levels-of-autonomy.md` — title: "Levels of Autonomy: L1–L5 AI Agent Autonomy Scale" → title: "Levels of Autonomy", longTitle: (keep original)
+- `concepts/ooda-loop.md` — title: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle" → title: "OODA Loop", longTitle: (keep original)
+- `practices/agent-personas.md` — title: "Agent Personas: Session-Scoped Roles for AI Agents" → title: "Agent Personas", longTitle: (keep original)
+- `practices/agents-md-spec.md` — title: "AGENTS.md Specification: A Research-Backed Guide" → title: "AGENTS.md Specification", longTitle: (keep original)
+
+Articles with short titles (e.g., "Specs", "Mermaid", "Guardrails") need no changes.

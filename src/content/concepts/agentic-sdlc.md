@@ -1,5 +1,6 @@
 ---
-title: "Agentic SDLC: The Software Factory Framework"
+title: "Agentic SDLC"
+longTitle: "Agentic SDLC: The Software Factory Framework"
 description: "Complete framework for industrializing software development with AI agents. Defines how agents serve as the logistic layer while humans design, govern, and optimize the production flow."
 tags:
   - Core

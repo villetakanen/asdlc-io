@@ -250,7 +250,7 @@ const today = new Date().toISOString().split("T")[0];
         const { Content } = await render(entry);
         return (
             <article class="chapter" id={entry.id}>
-                <h2 class="chapter-title">{entry.data.title}</h2>
+                <h2 class="chapter-title">{entry.data.longTitle ?? entry.data.title}</h2>
                 {entry.data.description && (
                     <p class="chapter-description">{entry.data.description}</p>
                 )}
@@ -270,7 +270,7 @@ const today = new Date().toISOString().split("T")[0];
         const { Content } = await render(entry);
         return (
             <article class="chapter" id={entry.id}>
-                <h2 class="chapter-title">{entry.data.title}</h2>
+                <h2 class="chapter-title">{entry.data.longTitle ?? entry.data.title}</h2>
                 {entry.data.description && (
                     <p class="chapter-description">{entry.data.description}</p>
                 )}
@@ -290,7 +290,7 @@ const today = new Date().toISOString().split("T")[0];
         const { Content } = await render(entry);
         return (
             <article class="chapter" id={entry.id}>
-                <h2 class="chapter-title">{entry.data.title}</h2>
+                <h2 class="chapter-title">{entry.data.longTitle ?? entry.data.title}</h2>
                 {entry.data.description && (
                     <p class="chapter-description">{entry.data.description}</p>
                 )}

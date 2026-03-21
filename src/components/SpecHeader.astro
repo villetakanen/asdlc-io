@@ -9,7 +9,7 @@ interface Props {
 const { data } = Astro.props;
 
 // Extract fields we display explicitly
-const { title, description, status } = data;
+const { longTitle, title, description, status } = data;
 
 // Get remaining metadata fields to loop over
 const metadataFields: Array<{ key: string; value: unknown }> = [];
@@ -44,7 +44,7 @@ function formatRelatedId(id: string) {
 ---
 
 <header class="spec-header border-box content">
-  <h1>{title}</h1>
+  <h1>{longTitle ?? title}</h1>
   <dl class="spec-meta mono">
     <div class="spec-row">
       <dt>Description</dt>
