@@ -1,20 +1,92 @@
 ---
 import { getCollection } from "astro:content";
-import { Content as Definition } from "../../components/definitions/practices.md";
-import SpecCardList from "../../components/SpecCardList.astro";
-import CollectionIndex from "../../layouts/CollectionIndex.astro";
-import { sortItemsByStatusAndDate } from "../../utils/content";
+import SpecCard from "../../components/SpecCard.astro";
+import SpecListItem from "../../components/SpecListItem.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const practices = await getCollection("practices");
-const sortedPractices = sortItemsByStatusAndDate(practices);
+
+const foundationalSlugs = ["agents-md-spec", "living-specs", "pbi-authoring"];
+const foundational = foundationalSlugs
+  .map((slug) => practices.find((p) => p.id === slug))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined);
+
+const live = practices
+  .filter((p) => p.data.status === "Live" && !foundationalSlugs.includes(p.id))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const experimental = practices
+  .filter((p) => ["Experimental", "Draft", "Proposed"].includes(p.data.status))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
 
-<CollectionIndex
+<BaseLayout
   title="Practices"
   description="Practical implementation guides, specifications, and step-by-step tutorials for adopting ASDLC workflows."
-  heading="Practices & Implementation Guides"
 >
-  <Definition slot="definition" />
+  <article class="prose">
+    <h1>Practices & Implementation Guides</h1>
 
-  <SpecCardList items={sortedPractices} collection="practices" />
-</CollectionIndex>
+    <p>Practices are execution standards and concrete recipes for implementation. If patterns are the factory blueprints, practices are the operating procedures — step-by-step guides, operational workflows, and code-level specifications that turn architectural intent into working systems.</p>
+
+    <h2>Start Here</h2>
+    <p>Three foundational practices that define how agents operate.</p>
+
+    <div class="spec-grid">
+      {foundational.map((p) => (
+        <SpecCard
+          title={p.data.title}
+          description={p.data.description}
+          url={`/practices/${p.id}`}
+          status={p.data.status}
+          meta={formatDate(p.data.lastUpdated)}
+          tags={p.data.tags || []}
+        />
+      ))}
+    </div>
+
+    {live.length > 0 && (
+      <>
+        <h2>Live Practices</h2>
+        <ul class="spec-list">
+          {live.map((p) => (
+            <li>
+              <SpecListItem
+                title={p.data.title}
+                url={`/practices/${p.id}`}
+                description={p.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {experimental.length > 0 && (
+      <>
+        <h2>Experimental &amp; Draft</h2>
+        <ul class="spec-list">
+          {experimental.map((p) => (
+            <li>
+              <SpecListItem
+                title={p.data.title}
+                url={`/practices/${p.id}`}
+                description={p.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li><a href="/patterns">Patterns</a> — The architectural blueprints these practices implement.</li>
+      <li><a href="/getting-started">Getting Started</a> — Deploy the methodology from scratch.</li>
+      <li><a href="/resources">Resources</a> — Field manual, design system, and governance.</li>
+    </ul>
+  </article>
+</BaseLayout>
