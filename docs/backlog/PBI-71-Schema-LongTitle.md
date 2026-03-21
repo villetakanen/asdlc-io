@@ -1,4 +1,4 @@
-# PBI-71: Schema — Add `longTitle` + `title` Max Constraint (Status: Open)
+# PBI-71: Schema — Add `longTitle` + `title` Max Constraint (Status: Done)
 
 ## 1. Directive
 Bring `articleSchema` in `src/content/config.ts` into alignment with `specs/content-articles/spec.md` by adding the `longTitle` field and enforcing a 40-character max on `title`.

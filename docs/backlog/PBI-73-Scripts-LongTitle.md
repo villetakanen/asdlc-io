@@ -1,4 +1,4 @@
-# PBI-73: Scripts/MCP — Include `longTitle` in Build Artifacts (Status: Open)
+# PBI-73: Scripts/MCP — Include `longTitle` in Build Artifacts (Status: Done)
 
 ## 1. Directive
 Update build scripts and the MCP tool layer to extract, store, and serve `longTitle` so that downstream consumers (LLM agents, offline skill) see the full SEO-optimized title.

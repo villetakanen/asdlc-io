@@ -1,4 +1,4 @@
-# PBI-75: Spec — Document `publishedDate` in Shared Frontmatter Contract (Status: Open)
+# PBI-75: Spec — Document `publishedDate` in Shared Frontmatter Contract (Status: Done)
 
 ## 1. Directive
 The `publishedDate` field exists in `articleSchema` (`src/content/config.ts` line 35) but is absent from the Shared Frontmatter Contract in `specs/content-articles/spec.md`. Update the spec to document it.

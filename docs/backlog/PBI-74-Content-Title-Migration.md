@@ -1,4 +1,4 @@
-# PBI-74: Content — Migrate 5 Articles with Overlong Titles (Status: Open)
+# PBI-74: Content — Migrate 5 Articles with Overlong Titles (Status: Done)
 
 ## 1. Directive
 Split the existing long `title` values into a short `title` (UX/card/list) and `longTitle` (SEO/H1/social) for the 5 articles that exceed the 40-character constraint.

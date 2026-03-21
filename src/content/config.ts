@@ -26,7 +26,8 @@ export const referenceSchema = baseReferenceSchema.refine(
 export type Reference = z.infer<typeof referenceSchema>;
 
 export const articleSchema = z.object({
-  title: z.string(),
+  title: z.string().max(40, "Title must be <= 40 chars for card/list layouts."),
+  longTitle: z.string().max(120, "Long title must be <= 120 chars.").optional(),
   description: z
     .string()
     .max(200, "Definition must be < 200 chars for quick scanning.")

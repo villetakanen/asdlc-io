@@ -70,6 +70,7 @@ for (const collection of COLLECTIONS) {
     const status = data.status || "Unknown";
     const slug = file.replace(/\.md$/, "");
     const title = data.title || slug;
+    const longTitle = data.longTitle || null;
     
     if (ALLOWED_STATUSES.includes(status)) {
       // 1. Rewrite Links
@@ -83,7 +84,8 @@ for (const collection of COLLECTIONS) {
       );
 
       // 2. Add Metadata Header
-      const header = `> **ASDLC Knowledge Base** | Status: ${status} | [View Online](${BASE_URL}/${collection}/${slug})\n\n`;
+      const displayTitle = longTitle ?? title;
+      const header = `> **ASDLC Knowledge Base** | Status: ${status} | [View Online](${BASE_URL}/${collection}/${slug})\n\n# ${displayTitle}\n\n`;
       
       // 3. Reconstruct file
       const finalContent = matter.stringify(header + transformedContent, data);

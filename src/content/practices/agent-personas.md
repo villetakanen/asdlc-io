@@ -1,5 +1,6 @@
 ---
-title: "Agent Personas: Session-Scoped Roles for AI Agents"
+title: "Agent Personas"
+longTitle: "Agent Personas: Session-Scoped Roles for AI Agents"
 description: "How to define session-scoped agent personas as skill files — not bloated AGENTS.md sections. Includes ready-to-use samples for key personas."
 publishedDate: 2026-02-18
 lastUpdated: 2026-03-16

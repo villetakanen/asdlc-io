@@ -19,11 +19,11 @@ An audit of `specs/content-articles/spec.md` against the live codebase revealed 
 
 | PBI | Title | Blocks | Status |
 |-----|-------|--------|--------|
-| [PBI-71](PBI-71-Schema-LongTitle.md) | Schema: Add `longTitle` + `title` max constraint | — | Open |
-| [PBI-72](PBI-72-Views-LongTitle-Wiring.md) | Views: Wire `longTitle` to SEO/H1 consumers | PBI-71 | Open |
-| [PBI-73](PBI-73-Scripts-LongTitle.md) | Scripts/MCP: Include `longTitle` in build artifacts | PBI-71 | Open |
-| [PBI-74](PBI-74-Content-Title-Migration.md) | Content: Migrate 5 articles with overlong titles | PBI-71 | Open |
-| [PBI-75](PBI-75-Spec-PublishedDate.md) | Spec: Document `publishedDate` in shared contract | — | Open |
+| [PBI-71](PBI-71-Schema-LongTitle.md) | Schema: Add `longTitle` + `title` max constraint | — | Done |
+| [PBI-72](PBI-72-Views-LongTitle-Wiring.md) | Views: Wire `longTitle` to SEO/H1 consumers | PBI-71 | Done |
+| [PBI-73](PBI-73-Scripts-LongTitle.md) | Scripts/MCP: Include `longTitle` in build artifacts | PBI-71 | Done |
+| [PBI-74](PBI-74-Content-Title-Migration.md) | Content: Migrate 5 articles with overlong titles | PBI-71 | Done |
+| [PBI-75](PBI-75-Spec-PublishedDate.md) | Spec: Document `publishedDate` in shared contract | — | Done |
 
 ## Dependency Graph
 

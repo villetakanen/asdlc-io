@@ -85,7 +85,7 @@ export async function handleToolCall(
       }
 
       // Build article response with content and references
-      let response = `# ${article.title}\n\n${article.content}`;
+      let response = `# ${article.longTitle ?? article.title}\n\n${article.content}`;
 
       // Append structured references if present
       if (article.references && article.references.length > 0) {

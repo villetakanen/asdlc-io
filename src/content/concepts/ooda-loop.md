@@ -1,5 +1,6 @@
 ---
-title: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"
+title: "OODA Loop"
+longTitle: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"
 description: "How the OODA loop drives autonomous agent decision-making in software development. Includes Orient-dominant design, tempo compression, and practical implementation patterns."
 tags:
   - AI

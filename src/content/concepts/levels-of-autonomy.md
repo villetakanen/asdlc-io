@@ -1,5 +1,6 @@
 ---
-title: "Levels of Autonomy: L1–L5 AI Agent Autonomy Scale"
+title: "Levels of Autonomy"
+longTitle: "Levels of Autonomy: L1-L5 AI Agent Autonomy Scale"
 description: "SAE-inspired taxonomy classifying AI agent autonomy from L1 assistive to L5 fully autonomous. Learn why L3 conditional autonomy is the current production ceiling and what each level means."
 tags:
   - Taxonomy

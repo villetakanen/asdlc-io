@@ -1,4 +1,4 @@
-# PBI-72: Views — Wire `longTitle` to SEO/H1 Consumers (Status: Open)
+# PBI-72: Views — Wire `longTitle` to SEO/H1 Consumers (Status: Done)
 
 ## 1. Directive
 Update all view-layer consumers that render page titles for SEO, social sharing, or document headings to use `longTitle ?? title` instead of `title` alone. Card/list views continue using `title` (no changes needed).

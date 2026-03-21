@@ -1,5 +1,6 @@
 ---
-title: "AGENTS.md Specification: A Research-Backed Guide"
+title: "AGENTS.md Specification"
+longTitle: "AGENTS.md Specification: A Research-Backed Guide"
 description: "Complete AGENTS.md specification with templates, section-by-section format guide, and research-backed rules for writing minimal, high-signal context files."
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution", "concepts/context-anchoring"]

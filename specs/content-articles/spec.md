@@ -46,8 +46,9 @@ title: "Article Title"           # Max 40 chars. Short, layout-friendly title fo
 longTitle: "Full SEO Title"      # Optional, max 120 chars. SEO-optimized title for page H1 + meta tags. Defaults to title.
 description: "Summary..."        # Max 200 chars, clear standalone definition
 tags: ["Tag1", "Tag2"]           # 2-5 industry keywords
+publishedDate: 2025-01-15        # Optional. ISO 8601 date. Original publication date (distinct from lastUpdated).
 relatedIds: ["collection/slug"]  # Bidirectional cross-references
-lastUpdated: 2025-01-15          # ISO 8601 date
+lastUpdated: 2025-01-15          # ISO 8601 date. Most recent substantive edit.
 status: "Live"                   # Live | Experimental | Draft | Proposed | Deprecated
 references: []                   # External sources (see article-references spec)
 ---
@@ -70,8 +71,8 @@ Articles have two title surfaces with different constraints:
 - Only add `longTitle` when the SEO-optimized title is materially different from the display title.
 
 **Consumer mapping:**
-- **Short title (`title`):** `SpecCard`, `SpecListItem`, `SpecCardList`, collection index pages, alphabetical sort keys
-- **Long title (`longTitle`):** `SpecHeader` (H1), `SEOMetadata` (`<title>`, og:title, twitter:title), `StructuredData` (Schema.org headline), `[...slug].astro` (BaseLayout title prop), `fieldmanual.astro` / `compendium.astro` (chapter headings), MCP tools (`list_articles`, `get_article`, `search_knowledge_base`), `generate-mcp-index.mjs`, `build-skill.mjs`
+- **Short title (`title`):** `SpecCard`, `SpecListItem`, `SpecCardList`, collection index pages, alphabetical sort keys, MCP `list_articles` and `search_knowledge_base` (list format)
+- **Long title (`longTitle`):** `SpecHeader` (H1), `SEOMetadata` (`<title>`, og:title, twitter:title), `StructuredData` (Schema.org headline), `[...slug].astro` (BaseLayout title prop), `fieldmanual.astro` / `compendium.astro` (chapter headings), MCP `get_article` (H1 heading), `generate-mcp-index.mjs`, `build-skill.mjs` (article headings)
 
 ### Cross-Referencing Rules
 
@@ -164,8 +165,8 @@ Articles have two title surfaces with different constraints:
 **Scenario: MCP discoverability**
 - Given a Live article exists in any collection
 - When an LLM calls `search_knowledge_base` with a relevant query
-- Then the article appears in the search results
-- And the response uses `longTitle` (or `title` if no longTitle) for display
+- Then the article appears in the search results with the short `title` (appropriate for list format)
+- And `get_article` uses `longTitle` (falling back to `title`) for the H1 heading
 
 ## Implementation Notes
 
