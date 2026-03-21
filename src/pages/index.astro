@@ -1,5 +1,4 @@
 ---
-import { version } from "../../package.json";
 import { Content as AccessKnowledgeBase } from "../components/definitions/access-knowledge-base.md";
 import StructuredData from "../components/StructuredData.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -27,11 +26,12 @@ const siteDescription =
   description={siteDescription}
 >
   <article class="prose">
-    <div class="banner-warning">
-     Release early, release often: {version}
-    </div>
+    <h1>Agentic Software Development Lifecycle</h1>
 
-    <h1>The Industrialization of Software: A Framework for Agentic SDLC</h1>
+    <section>
+      <h2>Connect Your Agent</h2>
+      <AccessKnowledgeBase />
+    </section>
 
     <blockquote>
       <p>"Agentic architecture is the conveyor belt for knowledge work."</p>
@@ -118,11 +118,6 @@ const siteDescription =
       <p>
         All content is versioned, validated against schemas, and maintained with production-grade rigor.
       </p>
-    </section>
-
-    <section>
-      <h2>Access the Knowledge Base</h2>
-      <AccessKnowledgeBase />
     </section>
 
     <section class="border-box" style="margin-top: 2rem; background: #f9f9f9;">
