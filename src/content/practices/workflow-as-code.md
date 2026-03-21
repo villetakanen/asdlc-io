@@ -190,7 +190,7 @@ name: Constitutional Review
 trigger: "@review"
 context:
   - .claude/skills/critic.md      # Critic persona — injected here, not in agents.md
-  - docs/backlog/current-pbi.md   # The spec being reviewed
+  - specs/{feature}/spec.md        # The spec being reviewed
   - AGENTS.md                     # Project-level judgment boundaries
 steps:
   - validate_against_spec
@@ -206,7 +206,7 @@ name: Implementation
 trigger: "@implement"
 context:
   - .claude/skills/dev.md         # Dev persona — only loaded for implementation tasks
-  - docs/backlog/current-pbi.md   # The PBI being implemented
+  - specs/{feature}/spec.md        # The spec for the feature being implemented
   - AGENTS.md                     # Project-level judgment boundaries
 steps:
   - review_pbi

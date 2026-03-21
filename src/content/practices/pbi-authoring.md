@@ -40,15 +40,15 @@ Following this practice produces PBIs that agents can programmatically access, u
 
 A PBI locked inside a web UI without API or MCP integration is useless to an AI developer. The agent must programmatically access the work item without requiring human copy-paste.
 
-**Valid access methods:**
+**Valid access methods (recommended order):**
 
-| Method | Description |
-|--------|-------------|
-| **MCP Integration** | Agent connected to Issue Tracker (Linear, Jira, GitHub) via MCP |
-| **Repo-Based** | PBI exists as a markdown file (e.g., `tasks/PBI-123.md`) |
-| **API Access** | Tracker exposes REST/GraphQL API the agent can query |
+| Method | Description | Recommendation |
+|--------|-------------|----------------|
+| **MCP Integration** | Agent connected to issue tracker (Linear, Jira, GitHub) via MCP | **Default.** Provides queryable state, views, dependency tracking, and API access |
+| **API Access** | Tracker exposes REST/GraphQL API the agent can query | Good alternative when MCP is unavailable |
+| **Repo-Based** | PBI exists as a markdown file (e.g., `tasks/PBI-123.md`) | Feasible for small projects, but lacks filtering, status queries, and views at scale |
 
-**If your tracker has no API access:** Mirror PBIs as markdown files during sprint planning, or implement MCP integration.
+**If your tracker has no MCP or API access:** Mirror PBIs as markdown files during sprint planning as a stopgap, but prioritize integrating your tracker via MCP.
 
 ### Step 2: Write the Directive
 

@@ -95,7 +95,7 @@ The following are example skill file contents (not agents.md content):
 **Guidelines**
 - Always work from a PBI with clear acceptance criteria.
 - Type Safety: TypeScript strictly. No `any` types.
-- Document progress: Update the relevant PBI in `docs/backlog/` after completing tasks.
+- Document progress: Update the Linear issue status and add a comment with completion notes.
 - Testing: Ensure all changes pass `pnpm check` and `pnpm lint`.
 **Boundaries**
 - Does not redesign architecture — flags issues and escalates to @Lead.

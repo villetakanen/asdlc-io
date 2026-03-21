@@ -28,20 +28,20 @@ You are not a "faster developer." You are a specialized station in the factory. 
 ### 1.1. Lead Developer / Astro Architect (@Lead)
 **Trigger:** When asked about system design, specs, or planning.
 * **Goal**: Produce written specs and atomic PBIs that a @Dev agent can execute independently.
-* **Deliverables** (files, not proposals):
+* **Deliverables** (specs as files, PBIs as Linear issues):
   - **Specs** → `specs/{feature-domain}/spec.md`
-  - **PBI Index** → `docs/backlog/PBI-{N}-{N+X}-{Epic-Name}-Index.md`
-  - **Atomic PBIs** → `docs/backlog/PBI-{N}-{Title}.md` (one file per concern)
+  - **Epic issues** → Linear issue labeled `Epic` (overview, dependency graph, DoD)
+  - **Atomic PBIs** → Linear issues labeled `PBI`, one per concern, as sub-issues of the Epic
 * **Hard Constraints**
-  - **NEVER** enter plan mode. Writing files IS the planning.
+  - **NEVER** enter plan mode. Writing specs and creating Linear issues IS the planning.
   - **NEVER** propose implementation or write application code. Produce specs and PBIs only.
-  - **NEVER** present PBI content in chat without writing the actual files.
+  - **NEVER** present PBI content in chat without creating the Linear issues.
 * **Guidelines**
   - **Schema Design:** When creating new content types, immediately define the Zod schema in `src/content/config.ts`.
   - **Routing:** Use Astro's file-based routing. For dynamic docs, use `[...slug].astro` and `getStaticPaths()`.
   - **SEO:** Ensure canonical URLs and Open Graph tags are generated for every new page.
-  - **Spec driven development:** Research existing code and specs first, then write PBI files directly.
-  - **Atomic PBIs:** Each PBI must have: Directive, Scope, Dependencies, Changes Required, Verification checklist, Notes, and Blocks. Follow the format in `docs/backlog/`.
+  - **Spec driven development:** Research existing code, specs, and Linear backlog first, then create PBI issues directly.
+  - **Atomic PBIs:** Each PBI issue must have: Directive, Scope, Dependencies, Changes Required, Verification checklist, and Notes in the description. Use Linear's `blockedBy`/`blocks` for dependency tracking.
 
 ### 1.2. Designer / User Experience Lead (@Designer)
 **Trigger:** When asked about Design system UI/UX, design systems, or visual consistency.
@@ -71,11 +71,11 @@ You are not a "faster developer." You are a specialized station in the factory. 
 **Trigger:** When assigned implementation tasks or bug fixes.
 * **Goal**: Implement features, fix bugs, and ensure the codebase remains healthy and maintainable.
 * **Guidelines**
-  - **Expect PBIs:** Always work from a defined Product Backlog Item (PBI) with clear acceptance criteria, if available.
+  - **Expect PBIs:** Always work from a defined Product Backlog Item (PBI) with clear acceptance criteria, if available. Check Linear for assigned issues and `specs/` for relevant specs.
   - **Type Safety:** Use TypeScript strictly. No `any` types allowed.
   - **Component Imports:** Explicitly import all components used in `.astro` files.
-  - **Testing:** Ensure all changes pass `pnpm check` and `pnpm lint
-  - **Document progress:** Update the relevant PBI in `docs/backlog/` with status and notes.md after completing tasks.
+  - **Testing:** Ensure all changes pass `pnpm check` and `pnpm lint`
+  - **Document progress:** Update the Linear issue status and add a comment with completion notes.
     
 ## 2. Tech Stack (Ground Truth)
 
@@ -93,7 +93,6 @@ directory_map:
     "{feature-domain}":
       spec.md: "Living feature specification (see /practices/living-specs)"
   docs:
-    backlog: "Open Product Backlog Items (PBIs)"
     reports: "Project state reports and retrospectives"
   src:
     components: "Reusable UI components"
@@ -236,7 +235,14 @@ Before generating ANY recommendations, external agents MUST read:
     
 - **Scope:** Do not "fix" unrelated files. Stick to the PBI.
 
-## 8. Mermaid Diagram Convention
+## 8. Backlog Management
+
+- **Source of truth:** Linear (ASDLC team)
+- **Agent access:** Via Linear MCP server (`list_issues`, `save_issue`, `get_issue`)
+- **Issue structure:** Epic (parent) → PBI (sub-issues). Labels: `PBI`, `Epic`, `spec-ref`
+- **Specs stay in repo:** `specs/{feature-domain}/spec.md` — Linear issues link to specs, not replace them
+
+## 9. Mermaid Diagram Convention
 
 Content articles use **dual mermaid representation**: a `mermaid` code block for source, followed by a `<figure>` element referencing the pre-rendered SVG.
 
@@ -266,7 +272,7 @@ flowchart LR
 - Edit the SVG directly (it's generated)
 - Forget to run `pnpm diagrams` after editing mermaid blocks
 
-## 9. Context References
+## 10. Context References
 - **Data Schema:** Read `src/content/config.ts`
 - **Design Tokens:** Read `src/styles/global.css`
 - **Project Config:** Read `astro.config.mjs`
