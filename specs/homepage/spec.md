@@ -29,10 +29,9 @@ BaseLayout (title, description, image)
 ├── StructuredData type="Organization"
 ├── StructuredData type="WebSite"
 └── article.prose
-    ├── h1 — Descriptive: what the site is and what you can do
-    ├── section — "Connect Your Agent" (MCP endpoint + skill download)
-    ├── blockquote — Pull quote + attribution
-    ├── section — Manifesto intro (craft → industrial)
+    ├── section — H1 + manifesto intro (craft → industrial)
+    ├── div.full.border-t.border-b.my-1.py-1 — Full-width band with dashed borders
+    │   └── section.breakout — "Connect Your Agent" (AccessKnowledgeBase component)
     ├── section — "The Problem: Two Misguided Narratives"
     │   ├── h3 — "The Faster Horse Fallacy"
     │   └── h3 — "The Replacement Fantasy"
@@ -45,32 +44,25 @@ BaseLayout (title, description, image)
     └── section.border-box — "Quick Start" (contributor onboarding)
 ```
 
-**Delta from reverse-spec (2026-03-21):** Three UX changes to improve first-impression quality and conversion:
-
-| Change | Before | After | Rationale |
-|--------|--------|-------|-----------|
-| **MCP section position** | Section 7 of 8 ("Access the Knowledge Base") | Section 2, immediately after H1 ("Connect Your Agent") | MCP is the most differentiated distribution channel; burying it after 5 manifesto sections loses agent-focused visitors |
-| **Banner removed** | `.banner-warning` (orange, uppercase, "RELEASE EARLY, RELEASE OFTEN") on homepage | Version moved to site footer (`Footer.astro`) | Orange warning banner reads as error/downtime; version is metadata, belongs in footer on all pages |
-| **H1 clarity** | "The Industrialization of Software: A Framework for Agentic SDLC" | "Agentic Software Development Lifecycle" | Manifesto-style H1 doesn't communicate utility; the site name IS the title |
+**Layout pattern:** The "Connect Your Agent" section uses the grid layout system's `.full` + subgrid pattern to create a full-width visual band (dashed borders via `.border-t .border-b` utilities), while the inner content sits at `breakout` width. This visually separates the agent CTA from the manifesto content.
 
 **SEO signals:**
 - `<title>`: "ASDLC.io | The Agentic Software Development Life Cycle Framework"
 - `<meta description>`: "The playbook for industrializing software engineering..."
 - JSON-LD: Organization + WebSite (see `specs/homepage-structured-data/spec.md`)
 
-**Styling:** Uses `.prose` wrapper (global), `.border-box` (design system class). No scoped CSS.
+**Styling:** Uses `.prose` wrapper (global), `.border-box` (design system class), grid utilities (`.full`, `.breakout`, `.border-t`, `.border-b`, `.my-1`, `.py-1`). No scoped CSS.
 
 ### Content Sections
 
 | # | Section | Purpose | Audience |
 |---|---------|---------|----------|
-| 1 | H1 | Identify the site and its value | All |
-| 2 | Connect Your Agent | MCP endpoint + skill download | Agents, power users |
-| 3 | Quote + manifesto intro | Frame the philosophy | Human visitors |
-| 4 | Two Narratives | Differentiate from copilots/replacement | Human visitors |
-| 5 | Agentic Factory | Core framework (3 pillars) | Human visitors |
-| 6 | Knowledge Base | Navigate to collections | All |
-| 7 | Quick Start | Contributor onboarding | Contributors |
+| 1 | H1 + manifesto intro | Identify the site, frame the philosophy | All |
+| 2 | Connect Your Agent (full-width band) | MCP endpoint + skill download | Agents, power users |
+| 3 | Two Narratives | Differentiate from copilots/replacement | Human visitors |
+| 4 | Agentic Factory | Core framework (3 pillars) | Human visitors |
+| 5 | Knowledge Base | Navigate to collections | All |
+| 6 | Quick Start | Contributor onboarding | Contributors |
 
 ### Anti-Patterns
 
@@ -101,7 +93,7 @@ BaseLayout (title, description, image)
 - Organization `name` MUST be `"ASDLC.io"` (consistent with `og:site_name`)
 - The MCP endpoint URL in `access-knowledge-base.md` MUST be `https://asdlc.io/mcp`
 - The skill download link MUST point to `/asdlc-skill.zip`
-- All existing content sections MUST be preserved — reorder, don't delete
+- Content sections MUST NOT be removed without explicit approval — reorder or restructure, don't silently delete
 
 ### Scenarios
 
