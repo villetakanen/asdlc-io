@@ -25,3 +25,6 @@
 @import "./components/color-palette.css";
 @import "./components/example-container.css";
 @import "./components/spec-list.css";
+
+/* Utilities (last, so they can override) */
+@import "./utilities.css";

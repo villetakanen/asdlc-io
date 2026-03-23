@@ -1,0 +1,19 @@
+/* --- Atomic Utilities --- */
+
+/* Borders */
+.border-t {
+  border-top: 1px dashed var(--c-border);
+}
+.border-b {
+  border-bottom: 1px dashed var(--c-border);
+}
+
+/* Vertical margin */
+.my-1 {
+  margin-block: var(--s-gap);
+}
+
+/* Vertical padding */
+.py-1 {
+  padding-block: var(--s-gap);
+}
