@@ -1,13 +1,17 @@
 ---
 title: Access the Knowledge Base
 ---
-Stay grounded in official ASDLC patterns and practices through two primary agent-ready interfaces:
+## Connect Your Agent
+
+Grouning your agent context with the ASDLC.io knowledge base.
 
 ### 1. Model Context Protocol (MCP)
 
 AI agents can connect directly to browse, search, and retrieve ASDLC content via the `/mcp` endpoint.
 
 Server Endpoint: `https://asdlc.io/mcp`
+
+_**Please note:** even if the ASDLC.io MCP is fairly small, we suggest enabling it only when scaffolding a new project, or when maintaining the agentic structure of a project. Access to the knowledge base is not necessary during the solution development._
 
 #### Claude Code
 

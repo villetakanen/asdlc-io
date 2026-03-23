@@ -12,7 +12,7 @@ h3 {
 h1 {
   font-size: 2.5rem;
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -29,6 +29,10 @@ h2 {
   margin-bottom: 1rem;
   border-bottom: 2px solid var(--c-text-primary);
   padding-bottom: 0.5rem;
+}
+
+h2:first-child {
+  margin-top: 0;
 }
 
 h3 {
