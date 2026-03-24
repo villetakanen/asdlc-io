@@ -1,3 +1,8 @@
+---
+description: "Pick the next task from the Linear backlog with the best speed/value ratio"
+argument-hint: "[optional: filter or context for task selection]"
+---
+
 Pick the next task from the Linear backlog with the best speed/value ratio.
 
 **Workflow:**
