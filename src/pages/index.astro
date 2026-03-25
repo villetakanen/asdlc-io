@@ -1,5 +1,10 @@
 ---
 import { Content as AccessKnowledgeBase } from "../components/definitions/access-knowledge-base.md";
+import { Content as AgenticFactory } from "../components/definitions/homepage-agentic-factory.md";
+import { Content as KnowledgeBase } from "../components/definitions/homepage-knowledge-base.md";
+import { Content as ManifestoIntro } from "../components/definitions/homepage-manifesto-intro.md";
+import { Content as QuickStart } from "../components/definitions/homepage-quick-start.md";
+import { Content as TwoNarratives } from "../components/definitions/homepage-two-narratives.md";
 import StructuredData from "../components/StructuredData.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -27,16 +32,7 @@ const siteDescription =
 >
   <article class="prose">
     <section>
-      <h1>Agentic Software Development Lifecycle</h1>
-      <p>
-        For 50 years, software development has been a <strong>Craft</strong>: dependent on individual artisans, manual tooling, and implicit knowledge.
-      </p>
-      <p>
-        We believe the next era of software engineering is <strong>Industrial</strong>.
-      </p>
-      <p>
-        ASDLC.io documents the principles, patterns, and standards required to make this transition. The blueprints for the <strong>software factory</strong>—systems where agents serve as the architecture of labor, and humans design, govern, and optimize the flow.
-      </p>
+      <ManifestoIntro />
     </section>
 
     <div class="full border-t border-b my-1 py-1">
@@ -46,84 +42,19 @@ const siteDescription =
     </div>
 
     <section>
-      <h2>The Problem: Two Misguided Narratives</h2>
-
-      <h3>The "Faster Horse" Fallacy</h3>
-      <p>
-        Copilots give developers faster hands via autocomplete and chat. This is <strong>tooling optimization</strong>—akin to giving a blacksmith a powered hammer. It creates local efficiency but does not solve systemic bottlenecks: context switching, communication overhead, technical debt.
-      </p>
-
-      <h3>The "Replacement" Fantasy</h3>
-      <p>
-        The "Agentic Workforce" narrative suggests agents will replace human employees one-for-one. This fundamentally misunderstands industrialization.
-      </p>
-      <p>
-        <strong>Agents do not replace humans; they industrialize execution.</strong>
-      </p>
-      <p>
-        Just as robotic arms automate welding without replacing manufacturing expertise, agents automate high-friction parts of knowledge work (logistics, syntax, verification) while humans focus on intent, architecture, and governance.
-      </p>
+      <TwoNarratives />
     </section>
 
     <section>
-      <h2>The Solution: The Agentic Factory</h2>
-      <p>
-        ASDLC is the framework for <strong>Agentic Operating Models</strong>. In this model:
-      </p>
-      <ul>
-        <li><strong>Agents are the logistic layer.</strong> They move information, verify specs, generate documentation, and execute tests.</li>
-        <li><strong>Context is the supply chain.</strong> Requirements, schemas, and code must be delivered Just-in-Time to the right station.</li>
-        <li><strong>Standardization is mandatory.</strong> A factory cannot run on ambiguous "vibes." It requires schemas, typed interfaces, and deterministic protocols.</li>
-      </ul>
-
-      <h3>The Three Pillars</h3>
-
-      <h4>I. Factory Architecture (Orchestration)</h4>
-      <p>
-        Structure projects where agents act as connective tissue. Move from monolithic context windows to discrete, specialized stations: Planning, Spec-Definition, Implementation, Review.
-      </p>
-
-      <h4>II. Standardized Parts (Determinism)</h4>
-      <p>
-        Industrialization requires interchangeable parts. In software, these are <strong>Schemas</strong>. Agents don't guess; they fulfill contracts. <code>AGENTS.md</code>, specs, and strict linting serve as the "jigs" and "molds" that constrain agent output.
-      </p>
-
-      <h4>III. Quality Control (Governance)</h4>
-      <p>
-        Inspection is automated and rigorous. Move from "Code Review" to "System Eval." Probabilistic tests and Human-in-the-Loop gates ensure a Senior Engineer can trust the <em>process</em>, not just the output.
-      </p>
+      <AgenticFactory />
     </section>
 
     <section>
-      <h2>The Knowledge Base</h2>
-      <p>
-        This site documents the factory blueprints:
-      </p>
-      <ul>
-        <li>
-          <strong><a href="/patterns">Patterns</a>:</strong> Reusable architectural solutions—the factory blueprints for agent-driven development.
-        </li>
-        <li>
-          <strong><a href="/practices">Practices</a>:</strong> Implementation guides—the assembly instructions for integrating patterns into your workflow.
-        </li>
-        <li>
-          <strong><a href="/concepts">Concepts</a>:</strong> Terminology and definitions—the shared vocabulary for the industrial age.
-        </li>
-      </ul>
-      <p>
-        All content is versioned, validated against schemas, and maintained with production-grade rigor.
-      </p>
+      <KnowledgeBase />
     </section>
 
-    <section class="border-box" style="margin-top: 2rem; background: #f9f9f9;">
-      <h3 class="mono">Quick Start</h3>
-      <p style="margin-bottom: 0.5rem;">To contribute or extend this knowledge base:</p>
-      <ol>
-        <li>Read <a href="/concepts/agentic-sdlc">Agentic SDLC</a> for the framework overview</li>
-        <li>Read <code>AGENTS.md</code> for AI contributor protocols</li>
-        <li>Review <code>src/content/config.ts</code> for content schemas</li>
-        <li>Use Conventional Commits and pass all checks</li>
-      </ol>
+    <section class="border-box" style="margin-top: 2rem; background: var(--c-bg-surface);">
+      <QuickStart />
     </section>
   </article>
 </BaseLayout>

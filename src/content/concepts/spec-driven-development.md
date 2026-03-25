@@ -13,6 +13,7 @@ relatedIds:
   - concepts/learning-loop
   - practices/workflow-as-code
   - concepts/model-driven-development
+  - concepts/triple-debt-model
 status: Live
 lastUpdated: 2026-01-18
 references:

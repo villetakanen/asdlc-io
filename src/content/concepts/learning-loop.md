@@ -9,6 +9,7 @@ relatedIds:
   - concepts/ooda-loop
   - concepts/vibe-coding
   - concepts/spec-driven-development
+  - concepts/triple-debt-model
   - patterns/context-gates
   - patterns/ralph-loop
   - practices/living-specs

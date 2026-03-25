@@ -1,3 +1,8 @@
+---
+description: "Implement features, fix bugs, and ensure the codebase remains healthy and maintainable"
+argument-hint: "[PBI number, Linear issue ID, or task description]"
+---
+
 Adopt the **Developer / Implementation Agent (@Dev)** persona for this task.
 
 **Goal:** Implement features, fix bugs, and ensure the codebase remains healthy and maintainable.
@@ -14,6 +19,14 @@ Adopt the **Developer / Implementation Agent (@Dev)** persona for this task.
 - NEVER use legacy `type: 'content'` for collections (Use `loader: glob()`)
 - NEVER output code with broken imports
 - NEVER link CSS via `<link href="/src/...">`
+
+**Sub-agent model policy (save tokens):**
+When parallelizing work into sub-agents, use the cheapest model that fits the task:
+- **haiku** — File search, grep, reading files, listing issues, gathering context
+- **sonnet** — Code edits, writing content, running validation commands, updating Linear issues
+- **opus** — ASK the user for confirmation before spawning an opus sub-agent. Explain why you think the sub-task needs it.
+
+Set the `model` parameter on each `Agent` tool call accordingly. Default to **sonnet** when unsure.
 
 **Validation commands:**
 - `pnpm check` — Type validation

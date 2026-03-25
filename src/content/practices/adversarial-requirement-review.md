@@ -3,6 +3,7 @@ title: Adversarial Requirement Review
 description: A verification practice where a Critic Agent challenges the problem statement and assumptions before any specification or code is written.
 status: Experimental
 tags: ["practice", "verification", "product-thinking", "requirements"]
+relatedIds: ["concepts/triple-debt-model"]
 lastUpdated: 2026-02-12
 ---
 

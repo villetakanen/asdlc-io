@@ -2,7 +2,7 @@
 title: "The ADR"
 description: "A structural pattern for capturing architectural decisions with context, rationale, and consequences in an immutable record."
 tags: ["Architecture", "Documentation", "Decision Making"]
-relatedIds: ["concepts/architecture-decision-record", "practices/adr-authoring", "patterns/the-spec", "patterns/agent-constitution"]
+relatedIds: ["concepts/architecture-decision-record", "practices/adr-authoring", "patterns/the-spec", "patterns/agent-constitution", "concepts/triple-debt-model"]
 lastUpdated: 2026-01-28
 status: "Live"
 references:

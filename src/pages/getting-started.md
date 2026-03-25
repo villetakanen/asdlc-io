@@ -116,6 +116,11 @@ flowchart LR
     AG -->|"Approve"| M
 ```
 
+<figure class="mermaid-diagram">
+  <img src="/mermaid/getting-started-fig-1.svg" alt="Mermaid Diagram" />
+  
+</figure>
+
 See the article [Conext Gates](http://localhost:4321/patterns/context-gates]) for additional details on the gate hierarchy.
 
 <figure class="mermaid-diagram">

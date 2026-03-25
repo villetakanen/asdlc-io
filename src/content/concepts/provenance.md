@@ -3,7 +3,7 @@ title: "Provenance"
 description: "The chain of custody and intent behind software artifacts, distinguishing high-value engineered systems from 'slop'."
 tags: ["Core", "Philosophy", "Quality", "Governance", "Value"]
 status: "Experimental"
-relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec"]
+relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec", "concepts/triple-debt-model"]
 lastUpdated: 2026-02-15
 references:
   - title: "Code is cheap. Show me the talk."
