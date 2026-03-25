@@ -4,7 +4,8 @@ test-results
 
 # generated types
 .astro/
-# generated Fuse.js search index
+# generated MCP index and search artifacts
+src/mcp/articles.json
 src/mcp/fuse-index.json
 
 # Logs
