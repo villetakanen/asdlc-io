@@ -3,7 +3,7 @@ title: "Vibe Coding"
 description: "Natural language code generation without formal specs—powerful for prototyping, problematic for production systems."
 tags: ["Disambiguation", "AI", "Code Quality", "Anti-Pattern"]
 status: "Experimental"
-relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy"]
+relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy", "concepts/triple-debt-model"]
 publishedDate: 2025-01-05
 lastUpdated: 2026-03-18
 references:

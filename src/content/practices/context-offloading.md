@@ -2,7 +2,7 @@
 title: "Context Offloading"
 description: "The practice of moving agent trajectories, tool results, and historical state from the context window to the filesystem to prevent cognitive overload and context rot."
 tags: ["Context Engineering", "Performance", "State Management"]
-relatedIds: ["concepts/context-engineering", "patterns/context-gates", "patterns/ralph-loop"]
+relatedIds: ["concepts/context-engineering", "patterns/context-gates", "patterns/ralph-loop", "concepts/triple-debt-model"]
 lastUpdated: 2026-02-21
 status: "Experimental"
 ---

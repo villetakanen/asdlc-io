@@ -3,7 +3,7 @@ title: "Agent Constitution"
 description: "Persistent, high-level directives that shape agent behavior and decision-making before action."
 tags: ["Agent Architecture", "System Prompts", "Alignment", "Governance"]
 status: "Live"
-relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop", "patterns/adversarial-code-review", "practices/workflow-as-code"]
+relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop", "patterns/adversarial-code-review", "practices/workflow-as-code", "concepts/triple-debt-model"]
 lastUpdated: 2026-02-18
 references:
   - type: "paper"
