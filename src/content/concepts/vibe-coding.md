@@ -2,10 +2,10 @@
 title: "Vibe Coding"
 description: "Natural language code generation without formal specs—powerful for prototyping, problematic for production systems."
 tags: ["Disambiguation", "AI", "Code Quality", "Anti-Pattern"]
-status: "Experimental"
+status: "Live"
 relatedIds: ["concepts/spec-driven-development", "patterns/context-gates", "concepts/levels-of-autonomy", "concepts/triple-debt-model"]
 publishedDate: 2025-01-05
-lastUpdated: 2026-03-18
+lastUpdated: 2026-03-28
 references:
   - type: "website"
     title: "Humans and Agents in Software Engineering Loops"
@@ -61,109 +61,91 @@ references:
     published: 2024-05-23
     accessed: 2026-02-12
     annotation: "Analysis of how speed without discipline creates 'legacy code in record time,' and why AI increases rather than decreases the need for TDD and solid design principles."
+  - type: "paper"
+    title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
+    url: "https://arxiv.org/abs/2603.22106"
+    author: "Margaret-Anne Storey"
+    published: 2026-03-23
+    accessed: 2026-03-25
+    annotation: "Defines the Triple Debt Model — Technical, Cognitive, and Intent Debt — positioning vibe coding as the primary generator of all three debt types."
+  - type: "paper"
+    title: "Thinking-Fast, Slow, and Artificial: How AI is Reshaping Human Reasoning and the Rise of Cognitive Surrender"
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646"
+    author: "Shaw, S. D. and Nave, G."
+    published: 2026-01-01
+    accessed: 2026-03-25
+    annotation: "Defines Cognitive Surrender — adopting AI outputs with minimal scrutiny, bypassing both intuition and deliberate reasoning. The psychological mechanism behind vibe coding's failure modes."
 ---
 
 ## Definition
 
 Vibe Coding is the practice of generating code directly from natural language prompts without formal specifications, schemas, or contracts. Coined by Andrej Karpathy, the term describes an AI-assisted development mode where engineers describe desired functionality conversationally ("make this faster," "add a login button"), and the LLM produces implementation code.
 
-This approach represents a fundamental shift: instead of writing specifications that constrain implementation, developers describe intent and trust the model to infer the details. The result is rapid iteration—code appears almost as fast as you can articulate what you want.
+This approach inverts traditional software engineering rigor: the specification emerges *after* the code, if at all. Developers describe intent and trust the model to infer the details.
 
-While vibe coding accelerates prototyping and exploration, it inverts traditional software engineering rigor: the specification emerges *after* the code, if at all.
+## Key Characteristics
 
-## The Seduction of Speed
+- **Natural language as input.** Functionality is described conversationally, not constrained by schemas or typed interfaces.
+- **Immediate feedback loop.** Describe the behavior, see the code, run it, iterate. Code appears almost as fast as you can articulate what you want.
+- **Probabilistic output.** The LLM infers implementation details — error handling strategies, validation rules, concurrency models — from training data, not from project-specific contracts.
+- **Extreme velocity.** Engineers report 2-10x faster feature delivery for greenfield work. At Anthropic, 80-90% of Claude Code's codebase is written by Claude Code itself, with a 70% productivity increase per engineer. At Google, approximately 30% of code committed in 2024 was AI-generated.
 
-The productivity gains from vibe coding are undeniable:
+When a feature that previously took three days can be scaffolded in thirty minutes, the economic pressure to adopt vibe coding becomes overwhelming. For throwaway scripts, MVPs, and rapid exploration, this workflow is transformative.
 
-* **At Anthropic:** 80-90% of Claude Code's codebase is now written by Claude Code itself, with a 70% productivity increase per engineer since adoption.
-* **At Google:** Approximately 30% of code committed in 2024 was AI-generated.
-* **Industry-wide:** Engineers report 2-10x faster feature delivery for greenfield projects and prototypes.
+## Known Caveats
 
-This velocity is seductive. When a feature that previously took three days can be scaffolded in thirty minutes, the economic pressure to adopt vibe coding becomes overwhelming.
+The velocity advantage collapses when code must be maintained, extended, or integrated into production systems. Storey (2026) frames vibe coding as the primary generator of all three debt types in the [Triple Debt Model](/concepts/triple-debt-model) — Technical Debt in code, Cognitive Debt in people, and Intent Debt in artifacts.
 
-The feedback loop is immediate: describe the behavior, see the code, run it, iterate. For throwaway scripts, MVPs, and rapid exploration, this workflow is transformative.
+### Debt Accumulation
 
-## The Failure Modes
+Forrester Research predicts that by 2026, 75% of technology leaders will face moderate-to-severe technical debt directly attributable to AI-generated code. Code generated from vague prompts encodes vague assumptions. Future maintainers inherit code without contracts and must reverse-engineer intent from implementation.
 
-The velocity advantage of vibe coding collapses when code must be maintained, extended, or integrated into production systems:
-
-### Technical Debt Accumulation
-
-**Forrester Research predicts that by 2026, 75% of technology leaders will face moderate-to-severe technical debt** directly attributable to AI-generated code. The mechanism is straightforward: code generated from vague prompts encodes vague assumptions.
-
-When specifications exist only in the prompt history (or the engineer's head), future maintainers inherit code without contracts. They must reverse-engineer intent from implementation—the exact problem formal specifications solve.
-
-### Copy-Paste Culture
-
-2024 marked the first year in industry history where **copy-pasted code exceeded refactored code**. This is a direct symptom of vibe coding: when generating fresh code is faster than understanding existing code, engineers default to regeneration over refactoring.
-
-### Legacy Code in Record Time
-
-As [Codurance](/concepts/vibe-coding#references) notes, speed without craftsmanship leads to "Legacy Code in record time." When AI generates code faster than a human can understand it, the codebase immediately becomes "legacy"—code that developers are afraid to touch because they don't understand its underlying intent or guarantees.
-
-The result is systemic duplication. The same logic appears in fifteen places with fifteen slightly different implementations, none validated against a shared contract.
-
-### Silent Drift
-
-LLMs are probabilistic. When generating code from vibes, they make assumptions:
-- Error handling strategies (fail silently? throw? log?)
-- Data validation rules (what's a valid email?)
-- Concurrency models (locks? optimistic? eventual consistency?)
-
-These assumptions are *never documented*. The code passes tests (if tests exist), but violates implicit architectural contracts. Over time, the system drifts toward inconsistency—different modules make different assumptions about the same concepts.
-
-Boris Cherny (Principal Engineer, Anthropic; creator of Claude Code) warns: **"You want maintainable code sometimes. You want to be very thoughtful about every line sometimes."**
-
-> **"Speed is seductive. Maintainability is survival."**  
-> — Boris Cherny, *The Peterman Podcast* (December 2025)
+2024 marked the first year in industry history where copy-pasted code exceeded refactored code — a direct symptom of vibe coding. When generating fresh code is faster than understanding existing code, engineers default to regeneration over refactoring. The result, as Codurance notes, is "legacy code in record time": systemic duplication across fifteen slightly different implementations, none validated against a shared contract.
 
 > [!NOTE]
 > **The 100 Million Token Lesson**
-> 
-> Dan Cripe, a 25-year enterprise software veteran, documented spending 100 million tokens on a frontier model attempting to fix its own architectural mistakes—not syntax errors, but fundamental design pattern violations. His diagnosis: "LLMs are pattern matchers, not architects. They generate code that looks like the code they were trained on: code written to solve an immediate problem, not code designed to be maintainable as part of a larger system."
+>
+> Dan Cripe, a 25-year enterprise software veteran, documented spending 100 million tokens on a frontier model attempting to fix its own architectural mistakes — not syntax errors, but fundamental design pattern violations. His diagnosis: "LLMs are pattern matchers, not architects."
 
-### Vibe Coded Into a Corner
+### Silent Drift
 
-Anthropic's internal research found that engineers who spend *more* time on Claude-assisted tasks often do so because they "vibe code themselves into a corner"—generating code without specs until debugging and cleanup overhead exceeds the initial velocity gains.
+LLMs make undocumented assumptions about error handling, validation, and concurrency. The code passes tests (if tests exist), but violates implicit architectural contracts. Over time, the system drifts toward inconsistency — different modules make different assumptions about the same concepts. Without deterministic constraints, LLMs trend toward generic solutions that lack the domain-specific optimizations and architectural decisions that distinguish production systems from prototypes.
 
-> "When producing output is so easy and fast, it gets harder and harder to actually take the time to learn something."
-> — Anthropic engineer
+> **"Speed is seductive. Maintainability is survival."**
+> — Boris Cherny, *The Peterman Podcast* (December 2025)
 
-This creates a debt spiral: vibe coding is fast until it isn't, and by then the context needed to fix issues was never documented.
+### Cognitive Surrender
 
-### Regression to the Mean
+Shaw & Nave (2026) identify the psychological mechanism behind these failure modes: **Cognitive Surrender** — adopting AI outputs with minimal scrutiny, bypassing both intuition and deliberate reasoning entirely.
 
-Without deterministic constraints, LLMs trend toward generic solutions. Vibe coding produces code that works but lacks the specific optimizations, domain constraints, and architectural decisions that distinguish production systems from prototypes.
+This is distinct from healthy [Cognitive Offloading](/practices/context-offloading), where a developer strategically delegates rote tasks to free mental capacity for higher-level reasoning. In Cognitive Surrender, the cost of evaluation appears to exceed the cost of acceptance, and the developer adopts generated code without understanding its implications.
 
-The model doesn't know that "user IDs must never be logged" or "this cache must invalidate within 100ms." These constraints exist in specifications, not prompts.
+The resulting debt is invisible: the developer's mental model of the system erodes with each surrendered decision. Over time, they lose the ability to reason about architectural trade-offs, diagnose subtle failures, or externalize the constraints that should govern future changes. Cognitive Surrender is the mechanism that accelerates all three debt types simultaneously.
+
+### The Debt Spiral
+
+Anthropic's internal research found that engineers who spend *more* time on Claude-assisted tasks often do so because they "vibe code themselves into a corner" — generating code without specs until debugging and cleanup overhead exceeds the initial velocity gains. Vibe coding is fast until it isn't, and by then the context needed to fix issues was never documented.
 
 ## Applications
 
-Vibe coding is particularly effective in specific contexts:
+Vibe coding is effective in bounded contexts where maintainability is not a constraint:
 
-**Rapid Prototyping:** When validating product hypotheses, speed of iteration outweighs code quality. Vibe coding enables designers and product managers to generate functional prototypes without deep programming knowledge.
-
-**Throwaway Scripts:** One-off data migrations, analysis scripts, and temporary tooling benefit from vibe coding's velocity. Since the code has no maintenance burden, formal specifications are unnecessary overhead.
-
-**Learning and Exploration:** When experimenting with new APIs, frameworks, or architectural patterns, vibe coding provides immediate feedback. The goal is understanding, not production-ready code.
-
-**Greenfield MVPs:** Early-stage startups building minimum viable products often prioritize speed-to-market over maintainability. Vibe coding accelerates this phase, though technical debt must be managed during the transition to production.
+- **Rapid Prototyping** — Validating product hypotheses where speed of iteration outweighs code quality.
+- **Throwaway Scripts** — One-off data migrations, analysis scripts, and temporary tooling with no maintenance burden.
+- **Learning and Exploration** — Experimenting with new APIs, frameworks, or architectural patterns for immediate feedback.
+- **Greenfield MVPs** — Early-stage products prioritizing speed-to-market, with planned transition to deterministic development.
 
 ## ASDLC Usage
 
-In ASDLC, vibe coding is recognized as a legitimate operational mode for bounded contexts (exploration, prototyping, throwaway code). However, for production systems, ASDLC mandates a transition to deterministic development.
+In ASDLC, vibe coding is a legitimate operational mode for bounded contexts (exploration, prototyping, throwaway code). For production systems, ASDLC mandates a transition to deterministic development:
 
-**The ASDLC position:**
 - Vibe coding is **steering** (probabilistic guidance via prompts)
 - Production requires **determinism** (schemas, tests, typed interfaces)
 - Both are necessary: prompts steer the agent; schemas enforce correctness
 
-Applied in:
+Related:
 - [Spec-Driven Development](/concepts/spec-driven-development) — The production-grade alternative to vibe coding
+- [Triple Debt Model](/concepts/triple-debt-model) — Diagnostic framework for the debt vibe coding generates
 - [Context Gates](/patterns/context-gates) — Deterministic enforcement layer
 - [Levels of Autonomy](/concepts/levels-of-autonomy) — Human oversight model (L3: "Hands Off, Eyes On")
-
-See also:
 - [Industry Alignment](/resources/further-reading) — External voices converging on ASDLC principles
-- [Spec-Driven Development](/concepts/spec-driven-development) — ASDLC's production-grade methodology
-- [Context Gates](/patterns/context-gates) — Deterministic enforcement layer
