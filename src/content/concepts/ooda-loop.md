@@ -1,7 +1,7 @@
 ---
 title: "OODA Loop"
-longTitle: "OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"
-description: "How the OODA loop drives autonomous agent decision-making in software development. Includes Orient-dominant design, tempo compression, and practical implementation patterns."
+longTitle: "OODA Loop Explained: Boyd's Decision Cycle for Software"
+description: "The OODA Loop (Observe-Orient-Decide-Act) is a decision-making framework by John Boyd. Learn how it applies to software development and autonomous AI agents."
 tags:
   - AI
   - Agent Architecture
