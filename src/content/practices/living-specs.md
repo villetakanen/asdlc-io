@@ -122,7 +122,7 @@ Implemented in `src/types/Notification.ts` using Zod validation.
 
 ## Template
 
-```markdown
+````markdown
 # Feature: [Feature Name]
 
 ## Blueprint
@@ -147,11 +147,13 @@ Implemented in `src/types/Notification.ts` using Zod validation.
 - [Critical invariant that must never break]
 
 ### Scenarios
-**Scenario: [Name]**
-- Given: [Precondition]
-- When: [Action]
-- Then: [Expected outcome]
+```gherkin
+Scenario: [Name]
+  Given [Precondition]
+  When [Action]
+  Then [Expected outcome]
 ```
+````
 
 ## Anti-Patterns
 
