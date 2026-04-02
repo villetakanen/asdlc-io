@@ -1,0 +1,75 @@
+---
+import { z } from "astro:content";
+import { recipeSchema } from "../content/config";
+import StatusBadge from "./StatusBadge.astro";
+
+type RecipeData = z.infer<typeof recipeSchema>;
+
+interface Props {
+  data: RecipeData;
+}
+
+const { data } = Astro.props;
+
+const { longTitle, title, description, status, difficulty, category, tools, estimatedMinutes } =
+  data;
+
+const prerequisites = data.prerequisites ?? [];
+const hasPrerequisites = prerequisites.length > 0;
+
+function isKbSlug(item: string): boolean {
+  return item.includes("/") && !item.startsWith("http");
+}
+
+function slugLabel(item: string): string {
+  const parts = item.split("/");
+  return parts[parts.length - 1] ?? item;
+}
+---
+
+<header class="spec-header border-box content">
+  <h1>{longTitle ?? title}</h1>
+  <dl class="spec-meta mono">
+    <div class="spec-row">
+      <dt>Description</dt>
+      <dd>{description || "—"}</dd>
+    </div>
+    <div class="spec-row">
+      <dt>Status</dt>
+      <dd><StatusBadge status={status} /></dd>
+    </div>
+    <div class="spec-row">
+      <dt>Difficulty</dt>
+      <dd>{difficulty}</dd>
+    </div>
+    <div class="spec-row">
+      <dt>Category</dt>
+      <dd>{category}</dd>
+    </div>
+    <div class="spec-row">
+      <dt>Tools</dt>
+      <dd>{tools.join(", ")}</dd>
+    </div>
+    <div class="spec-row">
+      <dt>Estimated Time</dt>
+      <dd>~{estimatedMinutes} min</dd>
+    </div>
+    {hasPrerequisites && (
+      <div class="spec-row">
+        <dt>Prerequisites</dt>
+        <dd>
+          {prerequisites.map((item, index) => (
+            <>
+              {isKbSlug(item) ? (
+                <a href={`/${item}`}>{slugLabel(item)}</a>
+              ) : (
+                <span>{item}</span>
+              )}
+              {index < prerequisites.length - 1 && ", "}
+            </>
+          ))}
+        </dd>
+      </div>
+    )}
+  </dl>
+</header>
