@@ -4,7 +4,7 @@ import { getCollection, render } from "astro:content";
 import ArticleReferences from "../../components/ArticleReferences.astro";
 import RecipeHeader from "../../components/RecipeHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import RecipeLayout from "../../layouts/RecipeLayout.astro";
 
 export async function getStaticPaths() {
   const recipes = await getCollection("recipes");
@@ -38,7 +38,7 @@ const structuredDataProps = {
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
 
-<BaseLayout title={recipe.data.longTitle ?? recipe.data.title} description={recipe.data.description}>
+<RecipeLayout title={recipe.data.longTitle ?? recipe.data.title} description={recipe.data.description}>
   <article class="recipe-detail">
     <RecipeHeader data={recipe.data} />
 
@@ -61,4 +61,4 @@ const structuredDataProps = {
 
     <ArticleReferences references={recipe.data.references} />
   </article>
-</BaseLayout>
+</RecipeLayout>
