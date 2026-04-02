@@ -18,7 +18,7 @@ function parseFrontmatter(markdown) {
 
 const BASE_DIR = resolve("src/content");
 const OUTPUT_FILE = resolve("src/mcp/articles.json");
-const COLLECTIONS = ["concepts", "patterns", "practices"];
+const COLLECTIONS = ["concepts", "patterns", "practices", "recipes"];
 
 console.log("🔍 Generating MCP Article Index...");
 
