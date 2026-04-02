@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import ArticleReferences from "../../components/ArticleReferences.astro";
+import RecipeHeader from "../../components/RecipeHeader.astro";
+import StructuredData from "../../components/StructuredData.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return recipes.map((recipe) => ({
+    params: { id: recipe.id },
+    props: { recipe },
+  }));
+}
+
+interface Props {
+  recipe: CollectionEntry<"recipes">;
+}
+
+const { recipe } = Astro.props;
+const { Content } = await render(recipe);
+
+// Generate canonical URL for structured data
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Prepare structured data for Schema.org TechArticle
+const structuredDataProps = {
+  title: recipe.data.longTitle ?? recipe.data.title,
+  longTitle: recipe.data.longTitle,
+  description: recipe.data.description,
+  keywords: recipe.data.tags?.join(", "),
+  datePublished: (recipe.data.publishedDate ?? recipe.data.lastUpdated).toISOString(),
+  dateModified: recipe.data.lastUpdated.toISOString(),
+  url: canonicalURL.toString(),
+};
+---
+
+<StructuredData type="TechArticle" data={structuredDataProps} />
+
+<BaseLayout title={recipe.data.longTitle ?? recipe.data.title} description={recipe.data.description}>
+  <article class="recipe-detail">
+    <RecipeHeader data={recipe.data} />
+
+    <div class="prose content-prose">
+      <Content />
+    </div>
+
+    {recipe.data.relatedIds && recipe.data.relatedIds.length > 0 && (
+      <section class="recipe-related">
+        <h2>Related</h2>
+        <ul>
+          {recipe.data.relatedIds.map((id) => {
+            const parts = id.split("/");
+            const label = parts[parts.length - 1];
+            return <li><a href={`/${id}`}>{label}</a></li>;
+          })}
+        </ul>
+      </section>
+    )}
+
+    <ArticleReferences references={recipe.data.references} />
+  </article>
+</BaseLayout>
