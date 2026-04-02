@@ -245,10 +245,9 @@ src/
       *.md
   pages/
     recipes/
-      index.astro         # Catalog with category nav
+      index.astro         # Cookbook catalog — bespoke layout, inline recipe list items
       [...slug].astro     # Recipe detail page
   components/
-    RecipeCard.astro      # Card for recipe index (extends SpecCard pattern with difficulty/category badges)
     RecipeNav.astro       # Sub-site category navigation
     RecipeHeader.astro    # Recipe detail header (difficulty, category, tools, prereqs)
   layouts/
