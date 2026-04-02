@@ -78,14 +78,16 @@ src/pages/recipes/
 
 #### Sub-Site Navigation
 
-Recipes are a **sub-site** with bespoke navigation, not just another collection tab in the main nav. The recipes index page (`/recipes`) provides:
+Recipes are a **sub-site** with bespoke navigation, entirely separate from the main ASDLC KB nav. The recipes sub-site is accessed via the **Resources page** (`/resources`), not via the main site header.
+
+The recipes pages render their own top navigation (RecipeNav) instead of the main site `Header.astro`. The main site header must NOT include a "Recipes" link — recipes are a sub-site, not a KB collection tab.
+
+The recipes index page (`/recipes`) provides:
 
 1. **Category sidebar/tabs** — Filter by category (Setup, Workflow, Content, Integration, Governance)
 2. **Difficulty filter** — Beginner / Intermediate / Advanced
 3. **Tool filter** — Filter by tool (derived from `tools` frontmatter across all recipes)
 4. **Search** — Client-side text search across titles and descriptions
-
-The main site header gets a "Recipes" link added to `Header.astro` nav, but the recipes pages themselves render an additional sub-navigation component for category/filter browsing.
 
 #### Recipe Detail Layout
 
@@ -174,7 +176,8 @@ Recipes may still appear in a KB article's `relatedIds` when the relationship is
 - Existing `articleSchema` base constraints (title length, description length, date coercion) apply unchanged
 - MCP index generation must include recipes — regressions in `generate-mcp-index.mjs` filtering would silently drop the collection
 - Recipe-to-KB cross-references via `relatedIds` follow the same slug format as KB articles: `collection/slug` (e.g., `concepts/context-engineering`)
-- The sub-site navigation must not break or interfere with the main site header navigation
+- The main site `Header.astro` must NOT contain a link to `/recipes` — recipes are a sub-site accessed via Resources, not a KB collection
+- The recipes sub-site must not render the main KB `Header.astro` — it uses RecipeNav instead
 - The `recipeTool` enum grows only when a recipe requires a new tool. Each addition must use a consistent naming convention: product name as it appears in official docs (e.g., "Claude Code" not "claude-code", "Playwright" not "playwright")
 
 ### Scenarios
@@ -246,7 +249,7 @@ src/
   pages/
     recipes/
       index.astro         # Cookbook catalog — bespoke layout, inline recipe list items
-      [...slug].astro     # Recipe detail page
+      [id].astro          # Recipe detail page (flat IDs from glob loader — no spread needed)
   components/
     RecipeNav.astro       # Sub-site category navigation
     RecipeHeader.astro    # Recipe detail header (difficulty, category, tools, prereqs)
@@ -331,11 +334,9 @@ If a recipe estimates 45+ minutes, reconsider scope — it may be an Epic, not a
 
 ### Navigation Update
 
-In `src/components/Header.astro`, add "Recipes" to the nav:
+Recipes are accessible via `src/pages/resources/index.md` (or equivalent Resources page) — add a link to `/recipes` there.
 
-```html
-<a href="/recipes" class="nav-link">Recipes</a>
-```
+Do NOT add "Recipes" to `src/components/Header.astro`. The recipes sub-site has its own top nav (RecipeNav) and does not share the main KB header.
 
 ### Seed Content Candidates
 
