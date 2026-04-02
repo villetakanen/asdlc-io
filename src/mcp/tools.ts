@@ -39,7 +39,7 @@ export const TOOLS: McpTool[] = [
   {
     name: "search_knowledge_base",
     description:
-      "The primary search tool for the ASDLC (Agentic Software Development Life Cycle) Knowledge Base. Use this tool whenever the user asks about AI collaboration, Agent Directives, Schema-First Development, Determinism over Vibes, Type Safety, Conventional Commits, or configuring LLM workflows. This tool searches across all 'Concepts' and 'Patterns' in the knowledge base.",
+      "The primary search tool for the ASDLC (Agentic Software Development Life Cycle) Knowledge Base. Use this tool whenever the user asks about AI collaboration, Agent Directives, Schema-First Development, Determinism over Vibes, Type Safety, Conventional Commits, or configuring LLM workflows. This tool searches across all Concepts, Patterns, Practices, and Recipes in the knowledge base.",
     inputSchema: {
       type: "object",
       properties: {
@@ -62,7 +62,9 @@ export async function handleToolCall(
   switch (name) {
     case "list_articles": {
       const articles = await contentService.listArticles();
-      const text = articles.map((a) => `- [${a.slug}] ${a.title}: ${a.description}`).join("\n");
+      const text = articles
+        .map((a) => `- [${a.collection}/${a.slug}] ${a.title}: ${a.description}`)
+        .join("\n");
       return {
         content: [{ type: "text", text: text || "No articles found." }],
       };
@@ -85,7 +87,27 @@ export async function handleToolCall(
       }
 
       // Build article response with content and references
-      let response = `# ${article.longTitle ?? article.title}\n\n${article.content}`;
+      let response: string;
+      if (article.collection === "recipes") {
+        const prereqs =
+          article.prerequisites && article.prerequisites.length > 0
+            ? article.prerequisites.join(", ")
+            : "None";
+        const metaBlock = [
+          `## Recipe Metadata`,
+          `- Difficulty: ${article.difficulty ?? ""}`,
+          `- Category: ${article.category ?? ""}`,
+          `- Tools: ${article.tools?.join(", ") ?? ""}`,
+          `- Estimated time: ${article.estimatedMinutes ?? ""} min`,
+          `- Prerequisites: ${prereqs}`,
+        ].join("\n");
+
+        const agentBlock = article.agentPrompt ? `## Usage Hint\n${article.agentPrompt}\n\n` : "";
+
+        response = `${agentBlock}${metaBlock}\n\n# ${article.title}\n\n${article.content}`;
+      } else {
+        response = `# ${article.longTitle ?? article.title}\n\n${article.content}`;
+      }
 
       // Append structured references if present
       if (article.references && article.references.length > 0) {
