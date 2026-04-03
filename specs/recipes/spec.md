@@ -73,7 +73,7 @@ File-based routing under `src/pages/recipes/`:
 ```
 src/pages/recipes/
   ├── index.astro          # Recipe catalog with category nav + search
-  └── [...slug].astro      # Individual recipe detail page
+  └── [id].astro           # Individual recipe detail page (flat IDs from glob loader)
 ```
 
 #### Sub-Site Navigation
@@ -84,10 +84,18 @@ The recipes pages render their own top navigation (RecipeNav) instead of the mai
 
 The recipes index page (`/recipes`) provides:
 
-1. **Category sidebar/tabs** — Filter by category (Setup, Workflow, Content, Integration, Governance)
+1. **Category tabs** — Filter by category (Setup, Workflow, Content, Integration, Governance)
 2. **Difficulty filter** — Beginner / Intermediate / Advanced
 3. **Tool filter** — Filter by tool (derived from `tools` frontmatter across all recipes)
 4. **Search** — Client-side text search across titles and descriptions
+
+#### Index Page Architecture
+
+`src/pages/recipes/index.astro` uses `RecipeLayout` with `showFilters={true}`. It does NOT use a `RecipeCard` component — recipe list items are rendered inline within the index page using its own scoped styles. This is intentional: the cookbook index has a fundamentally different layout from the KB article index pages, and the abstraction boundary lives at the page level.
+
+Filter state is URL-based: `?category=Setup&difficulty=Beginner`. The index page reads `Astro.url.searchParams` at build time for SSG-compatible category pre-filtering. Client-side JavaScript handles dynamic filter changes and search without a full page reload.
+
+`RecipeNav` receives the active `currentCategory` from URL params so category tabs render with the correct active state on initial load.
 
 #### Recipe Detail Layout
 
@@ -178,6 +186,7 @@ Recipes may still appear in a KB article's `relatedIds` when the relationship is
 - Recipe-to-KB cross-references via `relatedIds` follow the same slug format as KB articles: `collection/slug` (e.g., `concepts/context-engineering`)
 - The main site `Header.astro` must NOT contain a link to `/recipes` — recipes are a sub-site accessed via Resources, not a KB collection
 - The recipes sub-site must not render the main KB `Header.astro` — it uses RecipeNav instead
+- Both `index.astro` and `[id].astro` must use `RecipeLayout`, never `BaseLayout`
 - The `recipeTool` enum grows only when a recipe requires a new tool. Each addition must use a consistent naming convention: product name as it appears in official docs (e.g., "Claude Code" not "claude-code", "Playwright" not "playwright")
 
 ### Scenarios
@@ -244,17 +253,17 @@ Recipes may still appear in a KB article's `relatedIds` when the relationship is
 ```
 src/
   content/
-    recipes/              # New collection
+    recipes/              # Content collection
       *.md
   pages/
     recipes/
-      index.astro         # Cookbook catalog — bespoke layout, inline recipe list items
-      [id].astro          # Recipe detail page (flat IDs from glob loader — no spread needed)
+      index.astro         # Cookbook catalog — RecipeLayout + inline recipe list items
+      [id].astro          # Recipe detail page (flat IDs from glob loader)
   components/
-    RecipeNav.astro       # Sub-site category navigation
+    RecipeNav.astro       # Sub-site navigation (back link, brand, category tabs)
     RecipeHeader.astro    # Recipe detail header (difficulty, category, tools, prereqs)
   layouts/
-    (uses BaseLayout.astro — no new layout needed)
+    RecipeLayout.astro    # Sub-site layout — renders RecipeNav instead of Header.astro
 specs/
   recipes/
     spec.md               # This file

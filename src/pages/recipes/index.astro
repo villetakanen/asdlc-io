@@ -1,0 +1,421 @@
+---
+import { getCollection } from "astro:content";
+import RecipeLayout from "../../layouts/RecipeLayout.astro";
+
+type Category = "Setup" | "Workflow" | "Content" | "Integration" | "Governance";
+type Difficulty = "Beginner" | "Intermediate" | "Advanced";
+
+const validCategories: Category[] = ["Setup", "Workflow", "Content", "Integration", "Governance"];
+const validDifficulties: Difficulty[] = ["Beginner", "Intermediate", "Advanced"];
+
+const rawCategory = Astro.url.searchParams.get("category");
+const activeCategory: Category | undefined =
+  rawCategory !== null && validCategories.includes(rawCategory as Category)
+    ? (rawCategory as Category)
+    : undefined;
+
+const recipes = await getCollection("recipes");
+
+// Sort: published recipes first, then by title
+const sortedRecipes = [...recipes].sort((a, b) => {
+  const aLive = a.data.status === "Live" ? 0 : 1;
+  const bLive = b.data.status === "Live" ? 0 : 1;
+  if (aLive !== bLive) return aLive - bLive;
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<RecipeLayout
+  title="Recipes"
+  description="Practical how-to guides for building agentic software development workflows."
+  showFilters={true}
+  currentCategory={activeCategory}
+>
+  <section class="recipe-index">
+    <header class="recipe-index__header">
+      <h2 class="recipe-index__title">Cookbook</h2>
+      <p class="recipe-index__subtitle">
+        Step-by-step recipes for agentic SDLC workflows. Each recipe is a concrete,
+        runnable guide with estimated time and required tools.
+      </p>
+    </header>
+
+    <div class="recipe-index__controls">
+      <div class="recipe-index__search-wrap">
+        <label for="recipe-search" class="recipe-index__search-label">Search</label>
+        <input
+          id="recipe-search"
+          class="recipe-index__search"
+          type="search"
+          placeholder="Filter by title, description, or tool…"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="recipe-index__difficulty-wrap" role="group" aria-label="Filter by difficulty">
+        <span class="recipe-index__filter-label">Difficulty</span>
+        <div class="recipe-index__difficulty-buttons">
+          <button class="recipe-index__diff-btn recipe-index__diff-btn--active" data-difficulty="">All</button>
+          {validDifficulties.map((d) => (
+            <button class="recipe-index__diff-btn" data-difficulty={d}>{d}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <ul class="recipe-index__list" id="recipe-list" role="list">
+      {sortedRecipes.map((recipe) => (
+        <li
+          class="recipe-item"
+          data-category={recipe.data.category}
+          data-difficulty={recipe.data.difficulty}
+          data-tools={recipe.data.tools.join(",")}
+          data-title={recipe.data.title.toLowerCase()}
+          data-description={(recipe.data.description ?? "").toLowerCase()}
+        >
+          <a class="recipe-item__link" href={`/recipes/${recipe.id}`}>
+            <div class="recipe-item__meta">
+              <span class="recipe-item__category">{recipe.data.category}</span>
+              <span
+                class={`recipe-item__difficulty recipe-item__difficulty--${recipe.data.difficulty.toLowerCase()}`}
+              >
+                {recipe.data.difficulty}
+              </span>
+              <span class="recipe-item__time">{recipe.data.estimatedMinutes} min</span>
+            </div>
+            <h3 class="recipe-item__title">{recipe.data.title}</h3>
+            {recipe.data.description && (
+              <p class="recipe-item__desc">{recipe.data.description}</p>
+            )}
+            <div class="recipe-item__tools">
+              {recipe.data.tools.map((tool) => (
+                <span class="recipe-item__tool">{tool}</span>
+              ))}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="recipe-index__empty" id="recipe-empty" aria-live="polite" hidden>
+      No recipes found for the current filters.
+    </p>
+  </section>
+</RecipeLayout>
+
+<script>
+  const list = document.getElementById("recipe-list") as HTMLUListElement;
+  const emptyMsg = document.getElementById("recipe-empty") as HTMLParagraphElement;
+  const searchInput = document.getElementById("recipe-search") as HTMLInputElement;
+  const diffButtons = document.querySelectorAll<HTMLButtonElement>(".recipe-index__diff-btn");
+
+  // Read initial category from URL (set server-side, but we still track it for JS filtering)
+  const params = new URLSearchParams(window.location.search);
+  let activeCategory = params.get("category") ?? "";
+  let activeDifficulty = "";
+  let searchQuery = "";
+
+  function applyFilters() {
+    const items = list.querySelectorAll<HTMLLIElement>(".recipe-item");
+    let visibleCount = 0;
+
+    for (const item of items) {
+      const cat = item.dataset.category ?? "";
+      const diff = item.dataset.difficulty ?? "";
+      const title = item.dataset.title ?? "";
+      const desc = item.dataset.description ?? "";
+      const tools = item.dataset.tools ?? "";
+
+      const categoryMatch = activeCategory === "" || cat === activeCategory;
+      const difficultyMatch = activeDifficulty === "" || diff === activeDifficulty;
+      const textMatch =
+        searchQuery === "" ||
+        title.includes(searchQuery) ||
+        desc.includes(searchQuery) ||
+        tools.toLowerCase().includes(searchQuery);
+
+      const visible = categoryMatch && difficultyMatch && textMatch;
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    }
+
+    emptyMsg.hidden = visibleCount > 0;
+  }
+
+  // Category tabs in RecipeNav update the URL; intercept popstate to re-filter
+  window.addEventListener("popstate", () => {
+    const p = new URLSearchParams(window.location.search);
+    activeCategory = p.get("category") ?? "";
+    applyFilters();
+  });
+
+  // Handle RecipeNav category tab clicks without full reload
+  document.querySelectorAll<HTMLAnchorElement>(".recipe-nav__tab").forEach((tab) => {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = tab.getAttribute("href") ?? "";
+      const url = new URL(href, window.location.href);
+      activeCategory = url.searchParams.get("category") ?? "";
+
+      // Update active tab styling
+      document.querySelectorAll<HTMLAnchorElement>(".recipe-nav__tab").forEach((t) => {
+        t.classList.remove("recipe-nav__tab--active");
+        t.removeAttribute("aria-current");
+      });
+      tab.classList.add("recipe-nav__tab--active");
+      tab.setAttribute("aria-current", "page");
+
+      // Push state so back button works
+      history.pushState({}, "", href);
+      applyFilters();
+    });
+  });
+
+  // Difficulty buttons
+  diffButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeDifficulty = btn.dataset.difficulty ?? "";
+      diffButtons.forEach((b) => b.classList.remove("recipe-index__diff-btn--active"));
+      btn.classList.add("recipe-index__diff-btn--active");
+      applyFilters();
+    });
+  });
+
+  // Search input
+  searchInput.addEventListener("input", () => {
+    searchQuery = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  // Initial filter pass (in case category is set from URL on load)
+  applyFilters();
+</script>
+
+<style>
+  .recipe-index {
+    padding: var(--s-gap) 0;
+    max-width: var(--s-container);
+    margin: 0 auto;
+  }
+
+  .recipe-index__header {
+    margin-bottom: calc(var(--s-gap) * 1.5);
+  }
+
+  .recipe-index__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--c-text-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .recipe-index__subtitle {
+    color: var(--c-text-secondary);
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Controls */
+  .recipe-index__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-gap);
+    align-items: flex-end;
+    margin-bottom: var(--s-gap);
+    padding-bottom: var(--s-gap);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .recipe-index__search-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1 1 200px;
+  }
+
+  .recipe-index__search-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--c-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .recipe-index__search {
+    border: 1px solid var(--c-border);
+    background: transparent;
+    color: var(--c-text-primary);
+    font-family: var(--f-sans);
+    font-size: 0.875rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: 2px;
+    width: 100%;
+  }
+
+  .recipe-index__search:focus {
+    outline: 2px solid var(--c-brand);
+    outline-offset: 1px;
+  }
+
+  .recipe-index__difficulty-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .recipe-index__filter-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--c-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .recipe-index__difficulty-buttons {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .recipe-index__diff-btn {
+    border: 1px solid var(--c-border);
+    background: transparent;
+    color: var(--c-text-secondary);
+    font-family: var(--f-sans);
+    font-size: 0.8125rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: color 0.12s, border-color 0.12s;
+  }
+
+  .recipe-index__diff-btn:hover {
+    color: var(--c-text-primary);
+    border-color: var(--c-text-primary);
+  }
+
+  .recipe-index__diff-btn--active {
+    color: var(--c-brand);
+    border-color: var(--c-brand);
+    font-weight: 600;
+  }
+
+  /* Recipe list */
+  .recipe-index__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .recipe-item {
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .recipe-item:first-child {
+    border-top: 1px solid var(--c-border);
+  }
+
+  .recipe-item__link {
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.1s;
+  }
+
+  .recipe-item__link:hover {
+    background: var(--c-bg-surface);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin: 0 -0.5rem;
+  }
+
+  .recipe-item__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .recipe-item__category {
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    color: var(--c-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .recipe-item__difficulty {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.125rem 0.4rem;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+  }
+
+  .recipe-item__difficulty--beginner {
+    color: var(--c-success);
+  }
+
+  .recipe-item__difficulty--intermediate {
+    color: var(--c-warning);
+  }
+
+  .recipe-item__difficulty--advanced {
+    color: var(--c-error);
+  }
+
+  .recipe-item__time {
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    color: var(--c-text-secondary);
+    margin-left: auto;
+  }
+
+  .recipe-item__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--c-text-primary);
+    margin: 0 0 0.25rem;
+  }
+
+  .recipe-item__link:hover .recipe-item__title {
+    color: var(--c-brand);
+  }
+
+  .recipe-item__desc {
+    font-size: 0.875rem;
+    color: var(--c-text-secondary);
+    margin: 0 0 0.5rem;
+    line-height: 1.45;
+  }
+
+  .recipe-item__tools {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  .recipe-item__tool {
+    font-family: var(--f-mono);
+    font-size: 0.6875rem;
+    color: var(--c-text-secondary);
+    background: var(--c-bg-surface);
+    border: 1px solid var(--c-border);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  /* Empty state */
+  .recipe-index__empty {
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--c-text-secondary);
+    font-size: 0.9375rem;
+  }
+</style>
