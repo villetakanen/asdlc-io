@@ -1,0 +1,86 @@
+---
+interface Props {
+  currentCategory?: "Setup" | "Workflow" | "Content" | "Integration" | "Governance";
+  showFilters?: boolean;
+}
+
+const { currentCategory, showFilters = false } = Astro.props;
+
+const categories = ["Setup", "Workflow", "Content", "Integration", "Governance"] as const;
+---
+
+<nav class="recipe-nav">
+  <a href="/resources" class="recipe-nav__back">← Resources</a>
+  <span class="recipe-nav__brand">// Recipes</span>
+
+  {showFilters && (
+    <ul class="recipe-nav__tabs" role="list">
+      {categories.map((cat) => (
+        <li>
+          <a
+            href={`/recipes?category=${cat}`}
+            class={`recipe-nav__tab${currentCategory === cat ? " recipe-nav__tab--active" : ""}`}
+            aria-current={currentCategory === cat ? "page" : undefined}
+          >
+            {cat}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</nav>
+
+<style>
+  .recipe-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--s-gap);
+    padding: 0.75rem var(--s-gap);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .recipe-nav__back {
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  .recipe-nav__back:hover {
+    text-decoration: underline;
+  }
+
+  .recipe-nav__brand {
+    font-family: var(--f-mono);
+    color: var(--c-brand);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .recipe-nav__tabs {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+  }
+
+  .recipe-nav__tab {
+    color: var(--c-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    transition: color 0.15s;
+  }
+
+  .recipe-nav__tab:hover {
+    color: var(--c-text-primary);
+  }
+
+  .recipe-nav__tab--active {
+    color: var(--c-brand);
+    font-weight: 600;
+    border-bottom: 2px solid var(--c-brand);
+  }
+</style>

@@ -18,7 +18,7 @@ function parseFrontmatter(markdown) {
 
 const BASE_DIR = resolve("src/content");
 const OUTPUT_FILE = resolve("src/mcp/articles.json");
-const COLLECTIONS = ["concepts", "patterns", "practices"];
+const COLLECTIONS = ["concepts", "patterns", "practices", "recipes"];
 
 console.log("🔍 Generating MCP Article Index...");
 
@@ -47,6 +47,15 @@ for (const collection of COLLECTIONS) {
         content: content.trim(),
         tags: data.tags || [],
         references: data.references || [],
+        // Recipe-specific (undefined for non-recipe collections)
+        ...(collection === "recipes" && {
+          difficulty: data.difficulty,
+          category: data.category,
+          tools: data.tools || [],
+          prerequisites: data.prerequisites || [],
+          estimatedMinutes: data.estimatedMinutes,
+          agentPrompt: data.agentPrompt ?? undefined,
+        }),
       });
     }
   }

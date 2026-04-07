@@ -23,7 +23,7 @@ export interface Reference {
 
 export interface Article {
   slug: string;
-  collection: "concepts" | "patterns" | "practices";
+  collection: "concepts" | "patterns" | "practices" | "recipes";
   title: string;
   longTitle?: string | null;
   description: string;
@@ -31,6 +31,13 @@ export interface Article {
   content: string;
   tags?: string[];
   references?: Reference[];
+  // Recipe-specific (present only when collection === "recipes")
+  difficulty?: string;
+  category?: string;
+  tools?: string[];
+  prerequisites?: string[];
+  estimatedMinutes?: number;
+  agentPrompt?: string;
 }
 
 /** Pre-built Fuse index type (extracted from constructor signature) */

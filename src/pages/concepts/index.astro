@@ -1,20 +1,113 @@
 ---
 import { getCollection } from "astro:content";
-import { Content as Definition } from "../../components/definitions/concepts.md";
-import SpecCardList from "../../components/SpecCardList.astro";
-import CollectionIndex from "../../layouts/CollectionIndex.astro";
-import { sortItemsByStatusAndDate } from "../../utils/content";
+import SpecCard from "../../components/SpecCard.astro";
+import SpecListItem from "../../components/SpecListItem.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const concepts = await getCollection("concepts");
-const sortedConcepts = sortItemsByStatusAndDate(concepts);
+
+const foundationalSlugs = ["agentic-sdlc", "spec-driven-development", "levels-of-autonomy"];
+const foundational = foundationalSlugs
+  .map((slug) => concepts.find((c) => c.id === slug))
+  .filter((c): c is NonNullable<typeof c> => c !== undefined);
+
+const live = concepts
+  .filter((c) => c.data.status === "Live" && !foundationalSlugs.includes(c.id))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const experimental = concepts
+  .filter((c) => ["Experimental", "Draft", "Proposed"].includes(c.data.status))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const deprecated = concepts
+  .filter((c) => c.data.status === "Deprecated")
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
 
-<CollectionIndex
+<BaseLayout
   title="Concepts"
   description="Explore the core definitions, taxonomies, and theoretical foundations that underpin the Agentic SDLC."
-  heading="Defined Concepts"
 >
-  <Definition slot="definition" />
+  <article class="prose">
+    <h1>Defined Concepts</h1>
 
-  <SpecCardList items={sortedConcepts} collection="concepts" />
-</CollectionIndex>
+    <p>Concepts are the theoretical foundations — immutable ideas, taxonomies, and definitions that underpin the Agentic SDLC. They describe the "physics" of agent-driven software development.</p>
+
+    <h2>Start Here</h2>
+    <p>Three landmark concepts that define the domain.</p>
+
+    <div class="spec-grid">
+      {foundational.map((c) => (
+        <SpecCard
+          title={c.data.title}
+          description={c.data.description}
+          url={`/concepts/${c.id}`}
+          status={c.data.status}
+          meta={formatDate(c.data.lastUpdated)}
+          tags={c.data.tags || []}
+        />
+      ))}
+    </div>
+
+    {live.length > 0 && (
+      <>
+        <h2>Live Concepts</h2>
+        <ul class="spec-list">
+          {live.map((c) => (
+            <li>
+              <SpecListItem
+                title={c.data.title}
+                url={`/concepts/${c.id}`}
+                description={c.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {experimental.length > 0 && (
+      <>
+        <h2>Experimental &amp; Draft</h2>
+        <ul class="spec-list">
+          {experimental.map((c) => (
+            <li>
+              <SpecListItem
+                title={c.data.title}
+                url={`/concepts/${c.id}`}
+                description={c.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {deprecated.length > 0 && (
+      <>
+        <h2>Deprecated</h2>
+        <ul class="spec-list">
+          {deprecated.map((c) => (
+            <li>
+              <SpecListItem
+                title={c.data.title}
+                url={`/concepts/${c.id}`}
+                description={c.data.description}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    <h2>Next Steps</h2>
+    <ul>
+      <li><a href="/patterns">Patterns</a> — See how concepts become architectural designs.</li>
+      <li><a href="/getting-started">Getting Started</a> — Deploy the methodology from scratch.</li>
+      <li><a href="/resources">Resources</a> — Field manual, design system, and governance.</li>
+    </ul>
+  </article>
+</BaseLayout>

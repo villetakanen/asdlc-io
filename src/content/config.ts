@@ -42,6 +42,17 @@ export const articleSchema = z.object({
 });
 export type ArticleData = z.infer<typeof articleSchema>;
 
+export const recipeTool = z.enum(["Claude Code"]);
+
+export const recipeSchema = articleSchema.extend({
+  difficulty: z.enum(["Beginner", "Intermediate", "Advanced"]).default("Intermediate"),
+  prerequisites: z.array(z.string()).optional(),
+  tools: z.array(recipeTool).min(1),
+  category: z.enum(["Setup", "Workflow", "Content", "Integration", "Governance"]),
+  estimatedMinutes: z.number().int().positive(),
+  agentPrompt: z.string().max(440).optional(),
+});
+
 const concepts = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/concepts" }),
   schema: articleSchema,
@@ -57,4 +68,9 @@ const practices = defineCollection({
   schema: articleSchema,
 });
 
-export const collections = { concepts, patterns, practices };
+const recipes = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/recipes" }),
+  schema: recipeSchema,
+});
+
+export const collections = { concepts, patterns, practices, recipes };

@@ -1,0 +1,34 @@
+---
+import "../styles/index.css";
+import Footer from "../components/Footer.astro";
+import RecipeNav from "../components/RecipeNav.astro";
+import SEOMetadata from "../components/SEOMetadata.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  showFilters?: boolean;
+  currentCategory?: "Setup" | "Workflow" | "Content" | "Integration" | "Governance";
+}
+
+const { title, description, image, showFilters, currentCategory } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/asdlc.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <SEOMetadata title={title} description={description} image={image} />
+    <script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  </head>
+  <body>
+    <RecipeNav showFilters={showFilters} currentCategory={currentCategory} />
+    <main class="grid-layout">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
