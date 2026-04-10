@@ -4,14 +4,15 @@ description: "Living documents that serve as the permanent source of truth for f
 tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model"]
 status: "Live"
-lastUpdated: 2026-01-13
+lastUpdated: 2026-04-10
 references:
-  - type: "website"
-    title: "Living Documentation"
-    url: "https://martinfowler.com/bliki/LivingDocumentation.html"
-    author: "Martin Fowler"
-    accessed: 2026-01-08
-    annotation: "Martin Fowler's definition of Living Documentation, the foundation for keeping documentation synchronized with code."
+  - type: "book"
+    title: "Living Documentation: Continuous Knowledge Sharing by Design"
+    url: "https://www.oreilly.com/library/view/living-documentation-continuous/9780134689418/"
+    author: "Cyrille Martraire"
+    published: 2019-05-30
+    accessed: 2026-04-10
+    annotation: "The foundational text on Living Documentation—documentation that evolves alongside code, rooted in Domain-Driven Design principles."
   - type: "repository"
     title: "PRPs: Agentic Engineering"
     url: "https://github.com/Wirasm/PRPs-agentic-eng"
@@ -22,7 +23,7 @@ references:
     title: "Martin Fowler Fragment: January 8, 2026"
     url: "https://martinfowler.com/fragments/2026-01-08.html"
     author: "Martin Fowler"
-    published: 2022-12-22
+    published: 2026-01-08
     accessed: 2026-01-09
     annotation: "Commentary on Anthropic research and Kent Beck's critique of spec-driven approaches."
   - type: "website"
@@ -57,18 +58,26 @@ references:
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
     url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"
     author: "Birgitta Böckeler"
-    published: 2025-01-21
+    published: 2025-10-15
     accessed: 2026-03-03
-    annotation: "Defines the maturity levels of SDD (spec-first, spec-anchored, spec-as-source) and highlights MDD regression risks."
+    annotation: "Defines the SDD maturity ladder (spec-first → spec-anchored → spec-as-source), introduces 'living specs' as evolving artifacts, and highlights MDD regression risks."
 ---
 
 ## Definition
 
-A **Spec** is the permanent source of truth for a feature. It defines *how* the system works (Design) and *how* we know it works (Quality).
+A **Spec** is the durable, evolving source of truth for a feature. It defines *how* the system works (Design) and *how* we know it works (Quality).
 
-Unlike traditional tech specs or PRDs that are "fire and forget," specs are **living documents**. They reside in the repository alongside the code and evolve with every change to the feature.
+Unlike traditional tech specs or PRDs that are "fire and forget," specs are **living documents** in the sense defined by Cyrille Martraire: documentation that evolves alongside code rather than decaying in a separate system. They reside in the repository and change with every change to the feature—not as an afterthought, but as a first-class development artifact.
 
-Crucially, The Spec pattern adheres to a **`spec-anchored`** philosophy. The spec defines the architectural intent and boundaries, but **deterministic code** remains the ultimate source of truth for runtime logic. Attempting to use a spec as the absolute only source artifact (`spec-as-source`) to 100% generate a codebase is an anti-pattern that sacrifices the agent control loop and regresses to [Model-Driven Development](/concepts/model-driven-development) failures.
+Birgitta Böckeler identifies three maturity levels for Spec-Driven Development:
+
+1. **Spec-first** — A spec is written before implementation, then used for the task at hand and discarded.
+2. **Spec-anchored** — The spec is *kept alive* after the task is complete, continuing to serve as context for evolution and maintenance of the feature.
+3. **Spec-as-source** — The spec becomes the sole source file; humans never touch the generated code.
+
+An Agentic SDLC operates at the **spec-anchored** level. Specs persist across a feature's entire lifespan, accumulating lessons learned during implementation—what Kent Beck calls treating specs as "hypotheses, not verdicts." Each implementation cycle refines the spec with discoveries from the field.
+
+We explicitly reject the **spec-as-source** level as an anti-pattern. Deterministic code must remain the source of truth for runtime logic. Attempting to generate a codebase entirely from a spec sacrifices the agent control loop and regresses to the failures of [Model-Driven Development](/concepts/model-driven-development)—or as Böckeler warns, risks "the downsides of both MDD and LLMs: inflexibility *and* non-determinism."
 
 ## The Economy of Code
 
@@ -103,7 +112,7 @@ This is the core distinction that makes agentic development work at scale.
 | Dimension | The Spec | The PBI |
 |-----------|----------|---------|
 | **Purpose** | Define the State (how it works) | Define the Delta (what changes) |
-| **Lifespan** | Permanent (lives with the code) | Transient (closed after merge) |
+| **Lifespan** | Durable (lives and evolves with the code) | Transient (closed after merge) |
 | **Scope** | Feature-level rules | Task-level instructions |
 | **Audience** | Architects, Agents (Reference) | Agents, Developers (Execution) |
 
@@ -211,9 +220,13 @@ For detailed structure, examples, and templates, see the [Living Specs Practice 
 
 **[Behavior-Driven Development](/concepts/behavior-driven-development)** — BDD provides the methodology for the Contract section. [Gherkin](/concepts/gherkin) scenarios serve as "specifications of behavior" that guide agent reasoning and define acceptance criteria.
 
-## Iterative Spec Refinement
+## Specs as Living Hypotheses
 
-Kent Beck critiques spec-driven approaches that assume "you aren't going to learn anything during implementation." This is valid—specs are not waterfall artifacts.
+A spec is not a waterfall requirements document sealed before implementation begins. It is a **hypothesis**—a structured bet on how a feature should work, designed to be refined as the team learns.
+
+This aligns with the double diamond model of design: the second diamond (Develop → Deliver) is where implementation reveals unknowns. Edge cases surface, performance assumptions break, and new requirements emerge from contact with reality. A spec-anchored approach *expects* this. The spec is the artifact that captures what the team learns, making discoveries durable across agent sessions and team rotations.
+
+Kent Beck frames this precisely: "A specification should function as a hypothesis, not a verdict." And crucially: "Implementation doesn't invalidate a spec. Implementation completes it." The failure mode is not having specs—it is failing to update them when implementation teaches you something new.
 
 **The refinement cycle:**
 
@@ -223,10 +236,7 @@ Kent Beck critiques spec-driven approaches that assume "you aren't going to lear
 4. **Verification** — Gate validates implementation against updated spec
 5. **Repeat**
 
-This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec doesn't prevent learning—it captures learnings so agents can act on them in future sessions.
-
-> "Large Language Models give us great leverage—but they only work if we focus on learning and understanding."
-> — Unmesh Joshi, via Martin Fowler
+This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec doesn't prevent learning—it captures learnings so agents can act on them in future sessions. The spec grows smarter with every implementation cycle, becoming what Böckeler describes as a "living, executable artifact that evolves with the project."
 
 
 ## Industry Validation
