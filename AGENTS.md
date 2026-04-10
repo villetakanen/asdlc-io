@@ -46,6 +46,7 @@ Invoke via `/command`. Full definitions live in skill files.
 | @Dev | `/dev` | Implementation, bug fixes |
 | @Content | `/assess` | Content review, KB assessment |
 | @Critic | `/critic` | Adversarial code review |
+| @Ship | `/ship` | Validation, commit, and push |
 | @Designer | — | Design system, UI/UX, visual consistency |
 
 Content specs: `specs/content-articles/` (shared contract, concept, pattern, practice archetypes).
