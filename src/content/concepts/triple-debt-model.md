@@ -19,9 +19,9 @@ relatedIds:
   - patterns/agent-constitution
   - practices/context-offloading
   - practices/adversarial-requirement-review
-status: "Experimental"
+status: "Live"
 publishedDate: 2026-03-25
-lastUpdated: 2026-03-25
+lastUpdated: 2026-04-10
 references:
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
@@ -81,27 +81,15 @@ System health requires continuous alignment across all three layers.
 
 - **Domain**: Lives in Artifacts.
 - **Definition**: The absence of externalized rationale, context, and constraints. It occurs when decisions are made (by humans or AIs) but the *why* and *how* are never documented in a machine-readable or human-readable format.
-- **Characteristics**: Practitioner terms like "context debt" are symptoms of systemic Intent Debt. Intent is inherently ephemeral; it is best captured at the exact moment of decision (e.g., during the [Learning Loop](/concepts/learning-loop)). Unlike technical debt, lost intent cannot always be reverse-engineered later. Once intent is gone, any future modifications are blind guesses.
+- **Characteristics**: Practitioner terms like "context debt" are symptoms of systemic Intent Debt. Intent is inherently ephemeral; it is best captured at the exact moment of decision (e.g., during the [Learning Loop](/concepts/learning-loop)). 
+- **The Machine Context Gap**: Unlike technical debt, lost intent cannot always be reverse-engineered. Crucially, in agentic workflows, intent must be **machine-readable** (via [MCP](/concepts/model-context-protocol)) to prevent agents from operating on hallucinations or outdated assumptions. Once intent is gone, any future modifications—by human or agent—are blind guesses.
 
 ## Interaction Dynamics
 
 The three debt types do not exist in isolation. They form a bidirectional web where debt in one layer accelerates decay in the others:
 
-```mermaid
-flowchart TD
-    TD(Technical Debt\nCode)
-    CD(Cognitive Debt\nPeople)
-    ID(Intent Debt\nArtifacts)
-
-    ID -->|Lack of rationale prevents\nforming mental models| CD
-    CD -->|Lack of understanding prevents\nexternalizing constraints| ID
-    CD -->|Poor mental models lead to\nbad implementation choices| TD
-    TD -->|Messy code undermines\nsystem understanding| CD
-```
-
 <figure class="mermaid-diagram">
-  <img src="/mermaid/triple-debt-model-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/asdlc-triple-debt-model.svg" alt="Triple Debt Model: Software, People, and Artifacts" />
 </figure>
 
 ## How AI Shifts the Balance

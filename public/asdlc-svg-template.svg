@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1920"
+   height="1080"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="svg70"
+   sodipodi:docname="asdlc-triple-debt-mode.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     inkscape:document-units="px"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49588975"
+     inkscape:cx="826.79668"
+     inkscape:cy="361.97562"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     borderlayer="true"
+     bordercolor="#999999"
+     borderopacity="1"
+     pagecolor="#f4f4f0"
+     id="namedview6"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:window-width="2560"
+     inkscape:window-height="1412"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg70">
+    <!-- Guides: content column (67ch ≈ 670px centered), breakout, and full -->
+  </sodipodi:namedview>
+  <defs
+     id="defs6">
+    <!-- Google Fonts import for Archivo and B612 Mono -->
+    <style
+       type="text/css"
+       id="style6">
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&amp;family=B612+Mono:wght@400;700&amp;display=swap');
+
+      /* === ASDLC AVIONICS DESIGN TOKENS === */
+
+      /* Heading style: Archivo, uppercase, expanded, 700 */
+      .ds-h1 {
+        font-family: 'Archivo', sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        font-stretch: 110%;
+        fill: #111111;
+      }
+      .ds-h2 {
+        font-family: 'Archivo', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        font-stretch: 110%;
+        fill: #111111;
+      }
+      .ds-h3 {
+        font-family: 'B612 Mono', monospace;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        fill: #111111;
+      }
+      .ds-body {
+        font-family: 'Archivo', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        fill: #111111;
+      }
+      .ds-body-secondary {
+        font-family: 'Archivo', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        fill: #585855;
+      }
+      .ds-mono {
+        font-family: 'B612 Mono', monospace;
+        font-weight: 400;
+        font-size: 14px;
+        fill: #111111;
+      }
+      .ds-label {
+        font-family: 'B612 Mono', monospace;
+        font-weight: 400;
+        font-size: 11px;
+        fill: #585855;
+      }
+    </style>
+  </defs>
+  <!-- ============================================= -->
+  <!-- CANVAS: Full-HD working area (1920×1080)      -->
+  <!-- Background = --c-bg-page                      -->
+  <!-- ============================================= -->
+  <!-- ============================================= -->
+  <!-- OFF-CANVAS: Color Swatches (right of canvas)  -->
+  <!-- These are outside the 1920px canvas for       -->
+  <!-- Inkscape color picking only                   -->
+  <!-- ============================================= -->
+  <g
+     inkscape:label="COLOR SWATCHES"
+     transform="translate(2020, 40)"
+     inkscape:groupmode="layer"
+     id="g34">
+    <!-- Background & Structure -->
+    <text
+       x="0"
+       y="0"
+       class="ds-h3"
+       id="text6">BACKGROUND  STRUCTURE</text>
+    <rect
+       x="0"
+       y="16"
+       width="80"
+       height="80"
+       fill="#f4f4f0"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       inkscape:label="c-bg-page #f4f4f0"
+       id="rect7" />
+    <text
+       x="0"
+       y="112"
+       class="ds-label"
+       id="text7">--c-bg-page</text>
+    <text
+       x="0"
+       y="126"
+       class="ds-label"
+       id="text8">#f4f4f0</text>
+    <rect
+       x="100"
+       y="16"
+       width="80"
+       height="80"
+       fill="#ebebe6"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       inkscape:label="c-bg-surface #ebebe6"
+       id="rect8" />
+    <text
+       x="100"
+       y="112"
+       class="ds-label"
+       id="text9">--c-bg-surface</text>
+    <text
+       x="100"
+       y="126"
+       class="ds-label"
+       id="text10">#ebebe6</text>
+    <rect
+       x="200"
+       y="16"
+       width="80"
+       height="80"
+       fill="#d1d1c7"
+       stroke="#111111"
+       stroke-width="1"
+       inkscape:label="c-border #d1d1c7"
+       id="rect10" />
+    <text
+       x="200"
+       y="112"
+       class="ds-label"
+       id="text11">--c-border</text>
+    <text
+       x="200"
+       y="126"
+       class="ds-label"
+       id="text12">#d1d1c7</text>
+    <!-- Text -->
+    <text
+       x="0"
+       y="170"
+       class="ds-h3"
+       id="text13">TEXT</text>
+    <rect
+       x="0"
+       y="186"
+       width="80"
+       height="80"
+       fill="#111111"
+       inkscape:label="c-text-primary #111111"
+       id="rect13" />
+    <text
+       x="0"
+       y="282"
+       class="ds-label"
+       id="text14">--c-text-primary</text>
+    <text
+       x="0"
+       y="296"
+       class="ds-label"
+       id="text15">#111111</text>
+    <rect
+       x="100"
+       y="186"
+       width="80"
+       height="80"
+       fill="#585855"
+       inkscape:label="c-text-secondary #585855"
+       id="rect15" />
+    <text
+       x="100"
+       y="282"
+       class="ds-label"
+       id="text16">--c-text-secondary</text>
+    <text
+       x="100"
+       y="296"
+       class="ds-label"
+       id="text17">#585855</text>
+    <!-- Brand -->
+    <text
+       x="0"
+       y="340"
+       class="ds-h3"
+       id="text18">BRAND</text>
+    <rect
+       x="0"
+       y="356"
+       width="80"
+       height="80"
+       fill="#f04e30"
+       inkscape:label="c-brand #f04e30"
+       id="rect18" />
+    <text
+       x="0"
+       y="452"
+       class="ds-label"
+       id="text19">--c-brand</text>
+    <text
+       x="0"
+       y="466"
+       class="ds-label"
+       id="text20">#f04e30</text>
+    <rect
+       x="100"
+       y="356"
+       width="80"
+       height="80"
+       fill="#d13a1e"
+       inkscape:label="c-brand-hover #d13a1e"
+       id="rect20" />
+    <text
+       x="100"
+       y="452"
+       class="ds-label"
+       id="text21">--c-brand-hover</text>
+    <text
+       x="100"
+       y="466"
+       class="ds-label"
+       id="text22">#d13a1e</text>
+    <!-- Status -->
+    <text
+       x="0"
+       y="510"
+       class="ds-h3"
+       id="text23">STATUS INDICATORS</text>
+    <rect
+       x="0"
+       y="526"
+       width="80"
+       height="80"
+       fill="#00703c"
+       inkscape:label="c-success #00703c"
+       id="rect23" />
+    <text
+       x="0"
+       y="622"
+       class="ds-label"
+       id="text24">--c-success</text>
+    <text
+       x="0"
+       y="636"
+       class="ds-label"
+       id="text25">#00703c</text>
+    <rect
+       x="100"
+       y="526"
+       width="80"
+       height="80"
+       fill="#ffb400"
+       inkscape:label="c-warning #ffb400"
+       id="rect25" />
+    <text
+       x="100"
+       y="622"
+       class="ds-label"
+       id="text26">--c-warning</text>
+    <text
+       x="100"
+       y="636"
+       class="ds-label"
+       id="text27">#ffb400</text>
+    <rect
+       x="200"
+       y="526"
+       width="80"
+       height="80"
+       fill="#cc0000"
+       inkscape:label="c-error #cc0000"
+       id="rect27" />
+    <text
+       x="200"
+       y="622"
+       class="ds-label"
+       id="text28">--c-error</text>
+    <text
+       x="200"
+       y="636"
+       class="ds-label"
+       id="text29">#cc0000</text>
+    <!-- Mermaid diagram colors (for reference) -->
+    <text
+       x="0"
+       y="680"
+       class="ds-h3"
+       id="text30">MERMAID DIAGRAMS</text>
+    <rect
+       x="0"
+       y="696"
+       width="80"
+       height="80"
+       fill="#f04e30"
+       inkscape:label="mermaid-primaryColor #f04e30"
+       id="rect30" />
+    <text
+       x="0"
+       y="792"
+       class="ds-label"
+       id="text31">primaryColor</text>
+    <text
+       x="0"
+       y="806"
+       class="ds-label"
+       id="text32">#f04e30 (nodes)</text>
+    <rect
+       x="100"
+       y="696"
+       width="80"
+       height="80"
+       fill="#ebebe6"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       inkscape:label="mermaid-clusterBkg #ebebe6"
+       id="rect32" />
+    <text
+       x="100"
+       y="792"
+       class="ds-label"
+       id="text33">clusterBkg</text>
+    <text
+       x="100"
+       y="806"
+       class="ds-label"
+       id="text34">#ebebe6 (subgraphs)</text>
+  </g>
+  <!-- ============================================= -->
+  <!-- OFF-CANVAS: Typography Samples (below canvas) -->
+  <!-- ============================================= -->
+  <g
+     inkscape:label="TYPOGRAPHY SAMPLES"
+     transform="translate(40, 1160)"
+     inkscape:groupmode="layer"
+     id="g60">
+    <text
+       x="0"
+       y="0"
+       class="ds-h2"
+       id="text35">TYPOGRAPHY SPECIMENS</text>
+    <line
+       x1="0"
+       y1="12"
+       x2="600"
+       y2="12"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       id="line35" />
+    <!-- H1 -->
+    <text
+       x="0"
+       y="60"
+       class="ds-label"
+       id="text36">H1 — Archivo 700, 40px, uppercase, wdth 110</text>
+    <text
+       x="0"
+       y="100"
+       class="ds-h1"
+       id="text37">AVIONICS DESIGN SYSTEM</text>
+    <text
+       x="0"
+       y="140"
+       class="ds-h1"
+       id="text38">ABCDEFGHIJKLMNOPQRSTUVWXYZ</text>
+    <text
+       x="0"
+       y="180"
+       class="ds-h1"
+       id="text39">0123456789</text>
+    <!-- H2 -->
+    <text
+       x="0"
+       y="230"
+       class="ds-label"
+       id="text40">H2 — Archivo 700, 24px, uppercase, wdth 110</text>
+    <text
+       x="0"
+       y="260"
+       class="ds-h2"
+       id="text41">COLOR PALETTE</text>
+    <text
+       x="0"
+       y="290"
+       class="ds-h2"
+       id="text42">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</text>
+    <!-- H3 -->
+    <text
+       x="0"
+       y="340"
+       class="ds-label"
+       id="text43">H3 — B612 Mono 700, 18px, uppercase</text>
+    <text
+       x="0"
+       y="370"
+       class="ds-h3"
+       id="text44">BACKGROUND  STRUCTURE</text>
+    <text
+       x="0"
+       y="400"
+       class="ds-h3"
+       id="text45">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</text>
+    <!-- Body -->
+    <text
+       x="0"
+       y="450"
+       class="ds-label"
+       id="text46">Body — Archivo 400, 16px</text>
+    <text
+       x="0"
+       y="478"
+       class="ds-body"
+       id="text47">The Avionics palette is built around International Safety colors — high-contrast,</text>
+    <text
+       x="0"
+       y="498"
+       class="ds-body"
+       id="text48">immediately recognizable, and functional. This is body text at default weight.</text>
+    <text
+       x="0"
+       y="528"
+       class="ds-body"
+       id="text49">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789</text>
+    <!-- Body secondary -->
+    <text
+       x="0"
+       y="578"
+       class="ds-label"
+       id="text50">Body secondary — Archivo 400, 16px, #585855</text>
+    <text
+       x="0"
+       y="606"
+       class="ds-body-secondary"
+       id="text51">Secondary information, metadata, timestamps, and supporting text.</text>
+    <text
+       x="0"
+       y="636"
+       class="ds-body-secondary"
+       id="text52">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789</text>
+    <!-- Mono -->
+    <text
+       x="0"
+       y="686"
+       class="ds-label"
+       id="text53">Mono — B612 Mono 400, 14px (code, metadata, labels)</text>
+    <text
+       x="0"
+       y="714"
+       class="ds-mono"
+       id="text54">--c-brand: #f04e30;  /* Safety Orange */</text>
+    <text
+       x="0"
+       y="734"
+       class="ds-mono"
+       id="text55">font-family: &quot;Archivo&quot;, sans-serif;</text>
+    <text
+       x="0"
+       y="764"
+       class="ds-mono"
+       id="text56">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789</text>
+    <text
+       x="0"
+       y="794"
+       class="ds-mono"
+       id="text57">!@#$%^*()_+-=[]{}|;':&quot;,./?</text>
+    <!-- Brand text example -->
+    <text
+       x="0"
+       y="850"
+       class="ds-label"
+       id="text58">Brand accent — Safety Orange on page background</text>
+    <text
+       x="0"
+       y="880"
+       style="font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; font-stretch: 110%; fill: #f04e30;"
+       id="text59">SAFETY ORANGE HEADING</text>
+    <text
+       x="0"
+       y="910"
+       style="font-family: 'B612 Mono', monospace; font-weight: 400; font-size: 14px; fill: #f04e30;"
+       id="text60">// Safety Orange in mono context</text>
+  </g>
+  <!-- ============================================= -->
+  <!-- OFF-CANVAS: Component Patterns (far right)    -->
+  <!-- ============================================= -->
+  <g
+     inkscape:label="COMPONENT PATTERNS"
+     transform="translate(2020, 880)"
+     inkscape:groupmode="layer"
+     id="g67">
+    <text
+       x="0"
+       y="0"
+       class="ds-h3"
+       id="text61">COMMON PATTERNS</text>
+    <!-- Border box example -->
+    <rect
+       x="0"
+       y="20"
+       width="280"
+       height="80"
+       fill="none"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       inkscape:label="border-box pattern"
+       id="rect61" />
+    <text
+       x="12"
+       y="50"
+       class="ds-label"
+       id="text62">Border box (1px --c-border)</text>
+    <text
+       x="12"
+       y="70"
+       class="ds-label"
+       id="text63">padding: 1.5rem (--s-gap)</text>
+    <!-- Surface card example -->
+    <rect
+       x="0"
+       y="120"
+       width="280"
+       height="80"
+       fill="#ebebe6"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       inkscape:label="surface-card pattern"
+       id="rect63" />
+    <text
+       x="12"
+       y="150"
+       class="ds-label"
+       id="text64">Surface card (--c-bg-surface)</text>
+    <text
+       x="12"
+       y="170"
+       class="ds-label"
+       id="text65">For cards, headers, callouts</text>
+    <!-- Brand accent line -->
+    <line
+       x1="0"
+       y1="224"
+       x2="280"
+       y2="224"
+       stroke="#f04e30"
+       stroke-width="2"
+       inkscape:label="brand-accent-line"
+       id="line65" />
+    <text
+       x="0"
+       y="244"
+       class="ds-label"
+       id="text66">Brand accent line (2px --c-brand)</text>
+    <!-- Dashed divider -->
+    <line
+       x1="0"
+       y1="270"
+       x2="280"
+       y2="270"
+       stroke="#d1d1c7"
+       stroke-width="1"
+       stroke-dasharray="4,4"
+       inkscape:label="dashed-divider"
+       id="line66" />
+    <text
+       x="0"
+       y="290"
+       class="ds-label"
+       id="text67">Dashed divider (section breaks)</text>
+  </g>
+  <!-- ============================================= -->
+  <!-- ON-CANVAS: Subtle grid reference              -->
+  <!-- ============================================= -->
+  <g
+     inkscape:label="GRID REFERENCE"
+     opacity="0.15"
+     id="g70">
+    <line
+       x1="625"
+       y1="0"
+       x2="625"
+       y2="1080"
+       stroke="#f04e30"
+       stroke-width="0.5"
+       stroke-dasharray="8,8"
+       id="line67" />
+    <line
+       x1="1295"
+       y1="0"
+       x2="1295"
+       y2="1080"
+       stroke="#f04e30"
+       stroke-width="0.5"
+       stroke-dasharray="8,8"
+       id="line68" />
+    <line
+       x1="480"
+       y1="0"
+       x2="480"
+       y2="1080"
+       stroke="#d1d1c7"
+       stroke-width="0.5"
+       stroke-dasharray="4,8"
+       id="line69" />
+    <line
+       x1="1440"
+       y1="0"
+       x2="1440"
+       y2="1080"
+       stroke="#d1d1c7"
+       stroke-width="0.5"
+       stroke-dasharray="4,8"
+       id="line70" />
+  </g>
+  <g
+     id="g71"
+     transform="translate(-8.4062898,8.054545)">
+    <polygon
+       class="st1"
+       points="128,22.6 128,91.8 38.9,91.8 63.1,22.6 "
+       id="polygon1"
+       style="fill:#f04e30"
+       transform="translate(1763.7642,22.187583)" />
+    <g
+       id="g6"
+       transform="translate(1763.7642,22.187583)">
+      <path
+         class="st0"
+         d="M 19.7,91.8 52.5,6.4 h 22.9 l 32.9,85.4 h -20 L 82.2,75 H 45 L 38.9,91.8 Z M 50.3,60 H 76.8 L 69.2,39 C 68.9,38.1 68.5,37 68,35.7 67.5,34.4 67.1,33 66.6,31.4 c -0.5,-1.6 -1,-3.1 -1.4,-4.7 -0.5,-1.5 -0.9,-2.9 -1.3,-4.2 h -0.7 c -0.4,1.6 -1,3.4 -1.6,5.5 -0.7,2.1 -1.3,4.2 -2,6.1 -0.7,2 -1.2,3.5 -1.6,4.8 l -7.6,21 z"
+         id="path1"
+         style="fill:#111111" />
+      <g
+         id="g5">
+        <path
+           class="st0"
+           d="m 29.6,121.6 c -1.3,0 -2.6,-0.1 -3.8,-0.4 -1.2,-0.3 -2.3,-0.7 -3.2,-1.3 -0.9,-0.6 -1.6,-1.4 -2.2,-2.3 -0.5,-0.9 -0.8,-2 -0.8,-3.2 0,-1.2 0,-0.3 0,-0.4 0,-0.1 0,-0.2 0,-0.3 h 4.5 c 0,0 0,0.1 0,0.3 0,0.1 0,0.2 0,0.3 0,0.8 0.2,1.4 0.7,1.9 0.4,0.5 1.1,1 1.9,1.2 0.8,0.3 1.8,0.4 2.9,0.4 1.1,0 1.4,0 2,-0.1 0.6,0 1.1,-0.2 1.5,-0.4 0.4,-0.2 0.8,-0.4 1.1,-0.6 0.3,-0.2 0.5,-0.5 0.6,-0.8 0.1,-0.3 0.2,-0.6 0.2,-1 0,-0.7 -0.2,-1.2 -0.6,-1.7 -0.4,-0.4 -1,-0.8 -1.7,-1.1 -0.7,-0.3 -1.5,-0.6 -2.4,-0.8 -0.9,-0.2 -1.8,-0.5 -2.7,-0.7 -0.9,-0.3 -1.8,-0.6 -2.7,-0.9 -0.9,-0.4 -1.7,-0.8 -2.4,-1.3 -0.7,-0.5 -1.3,-1.1 -1.7,-1.9 -0.4,-0.8 -0.6,-1.7 -0.6,-2.8 0,-1.1 0.2,-2.1 0.7,-2.9 0.5,-0.8 1.1,-1.5 2,-2.1 0.9,-0.5 1.9,-0.9 3,-1.2 1.1,-0.3 2.4,-0.4 3.8,-0.4 1.4,0 2.5,0.1 3.6,0.4 1.1,0.3 2.1,0.7 2.9,1.2 0.9,0.6 1.5,1.3 2,2.1 0.5,0.8 0.7,1.9 0.7,3.1 v 0.4 H 34.5 V 104 c 0,-0.7 -0.2,-1.2 -0.6,-1.7 -0.4,-0.5 -1,-0.8 -1.7,-1.1 -0.7,-0.3 -1.6,-0.4 -2.5,-0.4 -0.9,0 -1.9,0 -2.7,0.3 -0.7,0.2 -1.3,0.5 -1.7,0.9 -0.4,0.4 -0.6,0.8 -0.6,1.4 0,0.6 0.2,1.1 0.6,1.4 0.4,0.4 1,0.7 1.7,1 0.7,0.3 1.5,0.5 2.4,0.8 0.9,0.2 1.8,0.5 2.7,0.7 0.9,0.3 1.8,0.6 2.7,0.9 0.9,0.3 1.7,0.8 2.4,1.3 0.7,0.5 1.3,1.2 1.7,1.9 0.4,0.8 0.6,1.7 0.6,2.7 0,1.8 -0.4,3.2 -1.3,4.3 -0.9,1.1 -2,1.9 -3.6,2.3 -1.5,0.5 -3.2,0.7 -5.2,0.7 z"
+           id="path2"
+           style="fill:#111111" />
+        <path
+           class="st0"
+           d="M 43.7,121.2 V 97.5 h 9.5 c 2.4,0 4.4,0.4 6.1,1.3 1.7,0.9 3,2.1 3.9,3.9 0.9,1.7 1.4,4 1.4,6.7 0,2.7 -0.5,4.9 -1.4,6.7 -0.9,1.7 -2.2,3 -3.9,3.9 -1.7,0.9 -3.7,1.3 -6.1,1.3 h -9.5 z m 4.5,-3.8 h 5 c 1.1,0 2.1,-0.2 2.9,-0.5 0.9,-0.3 1.6,-0.8 2.1,-1.4 0.6,-0.6 1,-1.4 1.3,-2.4 0.3,-1 0.4,-2.1 0.4,-3.3 v -0.7 c 0,-1.3 -0.1,-2.4 -0.4,-3.4 -0.3,-1 -0.7,-1.7 -1.3,-2.4 -0.6,-0.6 -1.3,-1.1 -2.1,-1.4 -0.9,-0.3 -1.8,-0.5 -2.9,-0.5 h -5 z"
+           id="path3"
+           style="fill:#111111" />
+        <path
+           class="st0"
+           d="M 68.8,121.2 V 97.5 h 4.5 v 19.8 h 11.9 v 3.9 H 68.9 Z"
+           id="path4"
+           style="fill:#111111" />
+        <path
+           class="st0"
+           d="m 97.9,121.6 c -2.4,0 -4.5,-0.4 -6.2,-1.3 -1.7,-0.9 -3,-2.2 -3.9,-4 -0.9,-1.8 -1.4,-4.1 -1.4,-7 0,-4.2 1,-7.2 3,-9.2 2,-2 4.8,-3 8.4,-3 3.6,0 3.7,0.3 5.3,1 1.6,0.7 2.8,1.7 3.8,3 1,1.3 1.4,3.1 1.4,5.1 h -4.6 c 0,-1.1 -0.2,-2.1 -0.7,-2.9 -0.5,-0.8 -1.2,-1.4 -2.1,-1.8 -0.9,-0.4 -1.9,-0.6 -3,-0.6 -1.1,0 -2.9,0.3 -3.9,0.9 -1,0.6 -1.8,1.5 -2.3,2.7 -0.5,1.2 -0.7,2.7 -0.7,4.4 v 0.8 c 0,1.8 0.2,3.3 0.7,4.5 0.5,1.2 1.3,2.1 2.3,2.7 1,0.6 2.3,0.9 3.9,0.9 1.6,0 2.2,-0.2 3.1,-0.6 0.9,-0.4 1.6,-1 2.1,-1.8 0.5,-0.8 0.7,-1.8 0.7,-2.9 h 4.4 c 0,2.1 -0.5,3.8 -1.4,5.1 -0.9,1.3 -2.2,2.3 -3.7,3 -1.6,0.7 -3.3,1 -5.3,1 z"
+           id="path5"
+           style="fill:#111111" />
+      </g>
+    </g>
+  </g>
+</svg>
