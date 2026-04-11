@@ -3,7 +3,7 @@ title: "Context Gates"
 description: "Architectural checkpoints that filter input context and validate output artifacts between phases of work to prevent cognitive overload and ensure system integrity."
 tags: ["Architecture", "Quality Gates", "Context Engineering", "Validation"]
 status: "Experimental"
-relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code"]
+relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code", "concepts/pr-slop"]
 lastUpdated: 2026-01-18
 references:
   - type: "website"

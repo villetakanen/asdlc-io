@@ -19,6 +19,7 @@ relatedIds:
   - patterns/agent-constitution
   - practices/context-offloading
   - practices/adversarial-requirement-review
+  - concepts/pr-slop
 status: "Live"
 publishedDate: 2026-03-25
 lastUpdated: 2026-04-10

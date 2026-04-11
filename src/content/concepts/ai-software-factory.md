@@ -13,6 +13,7 @@ relatedIds:
   - concepts/digital-twins
   - concepts/spec-driven-development
   - concepts/provenance
+  - concepts/pr-slop
 status: "Experimental"
 lastUpdated: 2026-03-09
 references:

@@ -1,7 +1,8 @@
 ---
 title: "Specs"
+longTitle: "The Spec: Living Specifications for Agentic Development"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
-tags: ["Documentation", "Living Documentation", "Spec-Driven Development", "Context Engineering"]
+tags: ["Specifications", "Living Documentation", "Spec-Driven Development", "Context Engineering", "AI Agents"]
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model"]
 status: "Live"
 lastUpdated: 2026-04-10
@@ -81,11 +82,9 @@ We explicitly reject the **spec-as-source** level as an anti-pattern. Determinis
 
 ## The Economy of Code
 
-> "Talk is cheap. Show me the code." — Linus Torvalds, 2000
+The cost of generating code has collapsed. Producing 10,000 lines of syntactically valid output is now effectively free. This inverts a decades-old assumption: the bottleneck in software development is no longer *writing code*, but **articulating intent**.
 
-In the AI era, this economic reality has flipped. **Code is cheap. Show me the talk.**
-
-Generating 10,000 lines of code is now effectively free. The high-value activity is no longer *typing semantics*, but **articulating intent**. The Spec is that articulation—the "Expensive Talk" that directs the cheap labor of code generation. Without a Spec, you have infinite [Provenance](/concepts/provenance)-free code ("slop").
+The Spec is the artifact that captures that intent. It defines *what* the system must do and *why*, so that generated code has [Provenance](/concepts/provenance)—a traceable chain from requirement to implementation. Without a Spec, code generation produces volume without direction: output that cannot be verified, maintained, or trusted. In a word: "slop."
 
 ## The Problem: Context Amnesia
 
@@ -238,18 +237,20 @@ Kent Beck frames this precisely: "A specification should function as a hypothesi
 
 This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec doesn't prevent learning—it captures learnings so agents can act on them in future sessions. The spec grows smarter with every implementation cycle, becoming what Böckeler describes as a "living, executable artifact that evolves with the project."
 
+## Relationship to Other Patterns
 
-## Industry Validation
+**[The PBI](/patterns/the-pbi)** — PBIs are the transient execution units (Delta) that reference specs for context. When a PBI changes contracts, it updates the spec in the same commit.
 
-The Spec pattern has emerged independently across the industry under different names. Notably, Rasmus Widing's **Product Requirement Prompt (PRP)** methodology defines the same structure: Goal + Why + Success Criteria + Context + Implementation Blueprint + Validation Loop.
+**[Feature Assembly](/practices/feature-assembly)** — Specs define the acceptance criteria verified during assembly. The diagram above shows this flow.
 
-His core principles—"Plan before you prompt," "Context is everything," "Scope to what the model can reliably do"—mirror ASDLC's Spec-Driven Development philosophy.
+**[Experience Modeling](/patterns/experience-modeling)** — Experience models capture user journeys; specs capture the technical contracts that implement those journeys.
 
-See [Product Requirement Prompts](/concepts/product-requirement-prompt) for the full mapping and [Further Reading](/resources/further-reading) for convergent frameworks.
+**[Context Engineering](/concepts/context-engineering)** — Specs are structured context assets optimized for agent consumption, with predictable sections (Blueprint, Contract) for efficient extraction.
 
-See also:
-- [Living Specs Practice Guide](/practices/living-specs) — Implementation instructions, templates, and best practices
-- [Behavior-Driven Development](/concepts/behavior-driven-development) — The methodology behind Contract scenarios
-- [Gherkin](/concepts/gherkin) — Syntax guidance for writing behavioral specifications
+**[Behavior-Driven Development](/concepts/behavior-driven-development)** — BDD provides the methodology for the Contract section. [Gherkin](/concepts/gherkin) scenarios serve as "specifications of behavior" that guide agent reasoning and define acceptance criteria.
 
+**[Product Requirement Prompt](/concepts/product-requirement-prompt)** — Convergent framework that independently arrived at the same structure: Goal + Why + Success Criteria maps to Blueprint + Contract. See the PRP page for the full structural comparison.
 
+**[Living Specs Practice Guide](/practices/living-specs)** — Implementation instructions, templates, and maintenance practices for this pattern.
+
+**[Triple Debt Model](/concepts/triple-debt-model)** — Specs are the primary mitigation for Intent Debt. Without externalized intent, every future modification — by human or agent — is a blind guess.
