@@ -171,6 +171,12 @@ Organize specs by **feature domain**, not by sprint, ticket, or team.
 
 An agent working on notifications should load `AGENTS.md` (global rules) + `/specs/notifications/spec.md` (feature rules). It should not need to parse a monolithic architecture document to find the three paragraphs relevant to its task.
 
+**The Project Template**
+
+Keep a `specs/TEMPLATE.md` as the canonical starting point for new specs. This is not the generic template from this guide — it is your project's version, adapted with your section conventions, your typical constraints, your Gherkin style. When a new feature needs a spec, copy the template rather than starting from scratch.
+
+The template is a living artifact too. As the team discovers what works — which sections always get filled in, which ones are always empty, what constraints apply project-wide — the template evolves. A good template after six months of use looks different from the one you started with, and that's the point.
+
 ## The Refinement Cycle
 
 A spec is not a waterfall requirements document sealed before implementation. It is a hypothesis — a structured bet on how a feature should work, designed to be refined as the team learns.
