@@ -2,7 +2,7 @@
 title: "Workflow as Code"
 description: "Define agentic workflows in deterministic code rather than prompts to ensure reliability, type safety, and testable orchestration."
 tags: ["Orchestration", "Determinism", "TypeScript", "Automation"]
-relatedIds: ["patterns/context-gates", "patterns/ralph-loop", "patterns/model-routing"]
+relatedIds: ["patterns/context-gates", "patterns/ralph-loop", "patterns/model-routing", "concepts/model-context-protocol"]
 status: "Experimental"
 lastUpdated: 2026-02-18
 references:

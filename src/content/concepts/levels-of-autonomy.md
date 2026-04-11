@@ -9,6 +9,7 @@ relatedIds:
   - concepts/agentic-sdlc
   - concepts/guardrails
   - patterns/context-gates
+  - concepts/pr-slop
 status: Live
 publishedDate: 2026-01-09
 lastUpdated: 2026-03-18
