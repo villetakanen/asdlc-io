@@ -194,4 +194,4 @@ This skill is designed to be adapted to your project. Common customizations:
 - **Domain-specific constraints:** Add project-wide constraints (e.g., "All APIs must be versioned") to the template
 - **CI integration:** Add a Step 5 check that runs your spec linter or validation tool
 
-See the [ASDLC project's own customization](https://asdlc.io) for a worked example of wrapping this recipe with Linear MCP integration and site-specific context loading.
+See the [ASDLC project's own customization](https://github.com/villetakanen/asdlc-io/tree/main/.claude/skills/spec.md) for a worked example of wrapping this recipe with Linear MCP integration and site-specific context loading.
