@@ -13,6 +13,12 @@ references:
     published: 2026-01-05
     accessed: 2026-01-09
     annotation: "Production implementation validating Review Gates' effectiveness in catching architectural violations through adversarial review."
+  - type: "paper"
+    title: "Language Models Are Not Naysayers: An Analysis of Language Models on Negation Benchmarks"
+    url: "https://arxiv.org/abs/2306.08189"
+    author: "Thinh Hung Truong, Timothy Baldwin, Karin Verspoor, Trevor Cohn"
+    published: 2023-06-14
+    annotation: "Empirical basis for why correctness constraints framed as negations cannot be reliably enforced by probabilistic systems — the foundational case for deterministic gating."
   - type: "website"
     title: "Dev Workflows as Code"
     url: "https://medium.com/nick-tune-tech-strategy-blog/dev-workflows-as-code-fab70d44b6ab"
@@ -26,7 +32,7 @@ references:
 
 **Context Gates** are architectural checkpoints that sit between phases of agentic work. They serve a dual mandate: filtering the **input** context to prevent cognitive overload, and validating the **output** artifacts to ensure system integrity.
 
-Unlike "Guardrails," which conflate prompt engineering with hard constraints, Context Gates are distinct, structural barriers that enforce contracts between agent sessions and phases.
+Unlike "Guardrails," which conflate prompt engineering with hard constraints, Context Gates are distinct, structural barriers that enforce contracts between agent sessions and phases. Their architectural necessity is grounded in a fundamental limitation of autoregressive models: LLMs are statistically predisposed to underweight negation (Truong et al., 2023). Correctness constraints framed as "DO NOT" clauses — the most common form of safety rule — cannot be reliably enforced by the probabilistic system itself, requiring external deterministic enforcement.
 
 ## The Problem: Context Pollution and Unvalidated Outputs
 

@@ -20,6 +20,12 @@ references:
     published: 2026-01-16
     accessed: 2026-01-18
     annotation: "Demonstrates programmatic implementation of subagents using Claude Code SDK."
+  - type: "paper"
+    title: "Language Models Are Not Naysayers: An Analysis of Language Models on Negation Benchmarks"
+    url: "https://arxiv.org/abs/2306.08189"
+    author: "Thinh Hung Truong, Timothy Baldwin, Karin Verspoor, Trevor Cohn"
+    published: 2023-06-14
+    annotation: "Empirical evidence that LLMs are systematically insensitive to negation, explaining why Critic agents are weakest at detecting 'DO NOT' constraint violations without deterministic gate backing."
   - type: "website"
     title: "Calm Coding: The Workflow That Makes Vibecoding Survivable"
     url: "https://oc2sf.com/blog/calm-coding-vibecoding-survivable.html"
@@ -236,6 +242,8 @@ Without the Critic, a human skimming the PR might miss the constant delay. The a
 **Context Window Limits** — Large diffs may exceed even Massive Context models. Use [Context Gates](/patterns/context-gates) filtering to provide only changed files + relevant Spec sections.
 
 **Critic Needs Clear Contracts** — The Critic can only enforce what's documented in the Spec. Vague specs produce vague critiques.
+
+**Negation Blindness** — LLMs are statistically predisposed to underweight negation (Truong et al., 2023). Spec constraints framed as "DO NOT" clauses are the weakest link in probabilistic review — the Critic is most likely to false-negative on exactly the violations that are expressed as negations. This is a structural property of autoregressive prediction, not a model-specific deficiency, and is the primary reason adversarial review requires deterministic [Context Gate](/patterns/context-gates) backing rather than relying on the Critic alone.
 
 **Model Capability Variance** — Not all "reasoning" models perform equally at code review. Validate your model's performance on representative examples.
 
