@@ -4,7 +4,8 @@ description: "Ultra-granular commit practice for agentic workflows, treating ver
 tags: ["Version Control", "Git", "Safety", "Rollback"]
 relatedIds: ["patterns/the-pbi", "patterns/context-gates", "concepts/agentic-sdlc"]
 status: "Live"
-lastUpdated: 2026-01-13
+publishedDate: 2025-12-27
+lastUpdated: 2026-04-15
 references:
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"
@@ -13,6 +14,12 @@ references:
     published: 2026-01-01
     accessed: 2026-01-08
     annotation: "Addy Osmani's practical guide emphasizing commits as 'save points in a game', validating the micro-commit approach for LLM workflows."
+  - type: "website"
+    title: "Using AI Coding Assistants — Linux Kernel Documentation"
+    url: "https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst"
+    author: "Linux Kernel Project"
+    accessed: 2026-04-15
+    annotation: "The Linux kernel's official policy formalizing the distinction between agent-assisted commits (Assisted-by tag) and human-owned program increments (Signed-off-by). Evidence that the merge boundary is a governance gate, not just cleanup."
 ---
 
 ## Definition
@@ -167,9 +174,9 @@ This is especially useful when an LLM takes a wrong architectural turn — you c
 
 See: [Checkpointing — Claude Code Docs](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#checkpointing)
 
-### 5. Tidy History for Comprehension
+### 5. The Merge Boundary: Human Accountability Gate
 
-Granular commits create noisy history. Before merging to main, optionally squash related commits into logical units:
+Granular commits create noisy history. Before merging to main, squash related commits into logical units:
 
 ```bash
 # Interactive rebase to squash last 5 commits
@@ -177,6 +184,8 @@ git rebase -i HEAD~5
 ```
 
 This preserves detailed history during development while creating clean history for long-term maintenance.
+
+**The merge to `main` is not just cleanup — it is the governance boundary where human accountability is asserted.** Individual micro-commits may be agent-co-authored (and should be attributed as such), but the program increment — the PR merge — requires human sign-off. The Linux kernel formalizes this distinction: individual commits carry `Assisted-by` tags for AI attribution, but only a human can add `Signed-off-by` to certify the contribution. This principle is level-invariant — it applies whether the human is writing code (L1), reviewing output (L2), or driving automation (L3).
 
 **Trade-off:** Squashing removes granular rollback points. Only squash after validation passes [Quality Gates](/patterns/context-gates).
 
