@@ -85,7 +85,7 @@
 /* Force tables to breakout */
 .prose > table,
 .prose > :has(> table) {
-  grid-column: breakout !important;
+  grid-column: breakout;
   width: 100%;
   max-width: 100%;
 }
