@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ContentService } from "../../src/mcp/content.ts";
+import type { McpToolCallResult } from "../../src/mcp/server.ts";
 import { McpServer } from "../../src/mcp/server.ts";
 
 describe("McpServer", () => {
@@ -57,8 +58,9 @@ describe("McpServer", () => {
     });
 
     expect(response.result).toBeDefined();
-    expect(response.result.serverInfo.name).toBe("asdlc-knowledge-base");
-    expect(response.result.capabilities.tools).toBeDefined();
+    const result = response.result as { serverInfo: { name: string }; capabilities: { tools: unknown } };
+    expect(result.serverInfo.name).toBe("asdlc-knowledge-base");
+    expect(result.capabilities.tools).toBeDefined();
   });
 
   it("should list tools", async () => {
@@ -68,8 +70,9 @@ describe("McpServer", () => {
       method: "tools/list",
     });
 
-    expect(response.result.tools).toHaveLength(3);
-    expect(response.result.tools.map((t: any) => t.name)).toContain(
+    const result = response.result as { tools: { name: string }[] };
+    expect(result.tools).toHaveLength(3);
+    expect(result.tools.map((t) => t.name)).toContain(
       "list_articles",
     );
   });
@@ -85,8 +88,9 @@ describe("McpServer", () => {
       },
     });
 
-    expect(response.result.content[0].text).toContain("Concept 1");
-    expect(response.result.content[0].text).toContain("Pattern 1");
+    const result = response.result as McpToolCallResult;
+    expect(result.content[0].text).toContain("Concept 1");
+    expect(result.content[0].text).toContain("Pattern 1");
   });
 
   it("should call get_article tool", async () => {
@@ -100,8 +104,9 @@ describe("McpServer", () => {
       },
     });
 
-    expect(response.result.content[0].text).toContain("# Concept 1");
-    expect(response.result.content[0].text).toContain("C1");
+    const result = response.result as McpToolCallResult;
+    expect(result.content[0].text).toContain("# Concept 1");
+    expect(result.content[0].text).toContain("C1");
   });
 
   it("should handle missing article in get_article", async () => {
@@ -115,8 +120,9 @@ describe("McpServer", () => {
       },
     });
 
-    expect(response.result.isError).toBe(true);
-    expect(response.result.content[0].text).toContain("not found");
+    const result = response.result as McpToolCallResult;
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain("not found");
   });
 
   it("should include references in get_article response", async () => {
@@ -130,7 +136,7 @@ describe("McpServer", () => {
       },
     });
 
-    const text = response.result.content[0].text;
+    const text = (response.result as McpToolCallResult).content[0].text;
     expect(text).toContain("# Concept with References");
     expect(text).toContain("Article content here");
     expect(text).toContain("## References");
@@ -155,7 +161,7 @@ describe("McpServer", () => {
       },
     });
 
-    const text = response.result.content[0].text;
+    const text = (response.result as McpToolCallResult).content[0].text;
     expect(text).toContain("# Concept 1");
     expect(text).not.toContain("## References");
   });
@@ -171,7 +177,7 @@ describe("McpServer", () => {
       },
     });
 
-    expect(response.result.content[0].text).toContain("Pattern 1");
+    expect((response.result as McpToolCallResult).content[0].text).toContain("Pattern 1");
   });
 
   it("should return error for old tool name search_articles", async () => {

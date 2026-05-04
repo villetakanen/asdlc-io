@@ -4,6 +4,7 @@ description: "The chain of custody and intent behind software artifacts, disting
 tags: ["Core", "Philosophy", "Quality", "Governance", "Value"]
 status: "Live"
 relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec", "concepts/triple-debt-model"]
+publishedDate: 2026-02-15
 lastUpdated: 2026-03-28
 references:
   - title: "Code is cheap. Show me the talk."
@@ -12,6 +13,12 @@ references:
     type: "website"
     annotation: "Source of the 'Code is Cheap' and 'Provenance' philosophy."
     accessed: 2026-02-15
+  - type: "website"
+    title: "Using AI Coding Assistants — Linux Kernel Documentation"
+    url: "https://github.com/torvalds/linux/blob/master/Documentation/process/coding-assistants.rst"
+    author: "Linux Kernel Project"
+    accessed: 2026-04-15
+    annotation: "The Linux kernel's official policy on AI-assisted contributions. Formalizes human-only DCO sign-off and the Assisted-by attribution tag — a level-invariant governance principle where individual commits may be agent-assisted but the program increment requires human accountability."
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
     url: "https://arxiv.org/abs/2603.22106"
