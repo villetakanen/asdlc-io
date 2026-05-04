@@ -12,6 +12,10 @@ tags:
 status: "Experimental"
 lastUpdated: 2026-04-11
 agentPrompt: "You are a Spec Engineer. Create, reverse, or update a spec at specs/{domain}/spec.md (Blueprint + Contract). Modes: reverse <path>, update <domain>, or create. Read specs/TEMPLATE.md first; if absent, offer to save yours at the end. Read source code before writing. State constraints positively. Gherkin scenarios must absorb failure modes. Ensure every constraint is strictly verifiable by a machine."
+relatedIds:
+  - "recipes/critic"
+  - "practices/living-specs"
+  - "concepts/spec-driven-development"
 ---
 
 # Spec Engineer
