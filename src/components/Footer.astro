@@ -2,7 +2,32 @@
 import { version } from "../../package.json";
 ---
 <footer>
-  <p>ASDLC.io v{version} © {new Date().getFullYear()} // Licensed under <a href="https://github.com/villetakanen/asdlc-io/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-title">
+        <span class="brand-mark">//</span> ASDLC<span class="brand-suffix">.io</span>
+      </a>
+      <p class="footer-brand-desc">
+        Definitive knowledge base for Agentic Software Development Life Cycle patterns, practices, and recipes.
+      </p>
+    </div>
+    
+    <div class="footer-links-group">
+      <h4>Community</h4>
+      <a href="https://github.com/villetakanen/asdlc-io" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/qaTsZSedC" class="footer-link" target="_blank" rel="noopener">Discord</a>
+    </div>
+    
+    <div class="footer-links-group">
+      <h4>Explore</h4>
+      <a href="/recipes" class="footer-link">Recipes</a>
+      <a href="/blog" class="footer-link">Blog</a>
+      <a href="https://github.com/villetakanen/asdlc-io/blob/main/LICENSE" class="footer-link" target="_blank" rel="noopener">MIT License</a>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} ASDLC.io. All rights reserved.</p>
+      <p>Release v{version}</p>
+    </div>
+  </div>
 </footer>
-
-

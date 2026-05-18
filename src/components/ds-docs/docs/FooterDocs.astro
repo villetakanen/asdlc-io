@@ -1,0 +1,38 @@
+---
+import Footer from "../../Footer.astro";
+import DsComponentHeader from "../DsComponentHeader.astro";
+
+interface Props {
+  isolatedComponentId?: string;
+}
+const { isolatedComponentId } = Astro.props;
+---
+
+{(!isolatedComponentId || isolatedComponentId === "footer") && (
+<div class="ds-component-block" id="footer">
+  <DsComponentHeader
+    title="Site Footer"
+    url={isolatedComponentId ? "/resources/design-system/components" : "/resources/design-system/components/footer"}
+    isIsolated={!!isolatedComponentId}
+  />
+  <p>The universal page footer providing site branding, structured navigation groups (Community & Explore), release tag, and legal details using a responsive CSS Grid system.</p>
+  
+  <div class="ds-demo-container" style="border: 1px solid var(--c-border); margin: 1.5rem 0;">
+    <Footer />
+  </div>
+
+  <h4>Usage</h4>
+  <pre><code>{`import Footer from "~/components/Footer.astro";
+
+// Rendered globally at the bottom of the page shell
+<Footer />`}</code></pre>
+
+  <h4>Consumed CSS Tokens</h4>
+  <ul>
+    <li><code>var(--c-bg-surface)</code> — Elevation background for the footer canvas</li>
+    <li><code>var(--c-border)</code> — Section separation lines and layout borders</li>
+    <li><code>var(--c-brand)</code> — Safety Orange brand highlights and active hover states</li>
+    <li><code>var(--f-mono)</code> — Monospace typography applied to categorized links and bottom tags</li>
+  </ul>
+</div>
+)}
