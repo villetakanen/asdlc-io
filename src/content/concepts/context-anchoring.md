@@ -19,6 +19,12 @@ references:
     author: "Nelson F. Liu et al."
     published: 2024-04-11
     annotation: "Research demonstrating that LLMs struggle to retrieve and use information placed in the middle of long contexts, highlighting the cost of noise."
+  - type: "paper"
+    title: "Language Models Are Not Naysayers: An Analysis of Language Models on Negation Benchmarks"
+    url: "https://arxiv.org/abs/2306.08189"
+    author: "Thinh Hung Truong, Timothy Baldwin, Karin Verspoor, Trevor Cohn"
+    published: 2023-06-14
+    annotation: "Controlled empirical demonstration that autoregressive LLMs exhibit systematic insensitivity to negation — the statistical basis for the Pink Elephant Problem."
   - type: "website"
     title: "Stop Using /init for AGENTS.md"
     url: "https://addyosmani.com/blog/agents-md/"
@@ -36,7 +42,7 @@ In the domain of AI-assisted software development, Context Anchoring occurs when
 
 ## The Pink Elephant Problem
 
-LLMs are probabilistic, next-token prediction engines. They do not possess a human understanding of negation or deprecation in the same way they understand presence. 
+LLMs are probabilistic, next-token prediction engines. They do not possess a human understanding of negation or deprecation in the same way they understand presence. This is not a training deficiency but a statistical property of autoregressive prediction: the attention mechanism assigns weight to token presence, making suppression of explicitly named concepts architecturally adversarial to how transformers generate output (Truong et al., 2023).
 
 If a project's `AGENTS.md` file contains the line: *"We use tRPC on the backend (Note: legacy endpoints only, new work uses GraphQL),"* the model now has the token `tRPC` active in its context window for every subsequent prompt. 
 

@@ -2,7 +2,7 @@
 title: "Context Map"
 description: "A high-density navigational index that enables agents to locate knowledge without managing massive context windows."
 tags: ["Context Engineering", "Architecture", "Retrieval", "Pattern"]
-relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "practices/context-mapping", "patterns/context-gates"]
+relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "practices/context-mapping", "patterns/context-gates", "patterns/ralph-loop"]
 status: "Experimental"
 lastUpdated: 2026-02-16
 references:
@@ -19,6 +19,9 @@ references:
 A **Context Map** is a curated, high-density index of a larger knowledge base (the "Territory") provided to an agent upfront. It acts as a navigational aid, allowing the agent to locate specific information or understand the system's topology without ingesting the entire corpus or relying on blind search.
 
 Instead of hoping an agent "finds" the right context through tool calls, the Context Map guarantees the agent knows *what* exists and *where* it resides.
+
+> [!NOTE]
+> **Nomenclature.** This pattern adapts the term from Domain-Driven Design (Evans, 2003), where a "Context Map" describes the relationships between bounded contexts in a software system. ASDLC applies the term *spatially* — to retrieval and navigation over a knowledge base — rather than to subsystem boundaries. When DDD-style bounded-context partitioning is the topic (e.g., scoping parallel agent fleets to subsystems, as in [Agentheim](https://github.com/heimeshoff/Agentheim)), see [Ralph Loop §6 Map-Reduce](/patterns/ralph-loop#6-map-reduce-initializer--sub-agents) instead.
 
 ## The Problem: The Haystack Failure
 

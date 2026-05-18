@@ -9,7 +9,8 @@ const patterns = await getCollection("patterns");
 const practices = await getCollection("practices");
 
 // Alphabetical sort descending from title
-const sortAlpha = (a: any, b: any) => a.data.title.localeCompare(b.data.title);
+const sortAlpha = (a: { data: { title: string } }, b: { data: { title: string } }) =>
+  a.data.title.localeCompare(b.data.title);
 
 const sortedConcepts = concepts.sort(sortAlpha);
 const sortedPatterns = patterns.sort(sortAlpha);

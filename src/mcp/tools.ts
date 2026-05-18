@@ -1,11 +1,18 @@
 import type { ContentService } from "./content.ts";
 
+export interface JsonSchemaProperty {
+  type: string;
+  description?: string;
+  enum?: string[];
+  default?: string;
+}
+
 export interface McpTool {
   name: string;
   description: string;
   inputSchema: {
     type: "object";
-    properties: Record<string, any>;
+    properties: Record<string, JsonSchemaProperty>;
     required?: string[];
   };
 }
@@ -56,7 +63,7 @@ export const TOOLS: McpTool[] = [
 
 export async function handleToolCall(
   name: string,
-  params: any,
+  params: Record<string, string>,
   contentService: ContentService,
 ): Promise<{ content: { type: "text"; text: string }[]; isError?: boolean }> {
   switch (name) {

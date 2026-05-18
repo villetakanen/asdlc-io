@@ -1,10 +1,11 @@
 ---
+import type { Reference } from "../../../content/config";
 import ArticleReferences from "../../ArticleReferences.astro";
 import DsComponentHeader from "../DsComponentHeader.astro";
 
 interface Props {
   isolatedComponentId?: string;
-  exampleReferences: any[];
+  exampleReferences: Reference[];
 }
 const { isolatedComponentId, exampleReferences } = Astro.props;
 ---

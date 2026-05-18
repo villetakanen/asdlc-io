@@ -61,7 +61,7 @@ const FUSE_OPTIONS = {
  * Simple Frontmatter parser (regex-based to avoid dependencies)
  */
 export function parseFrontmatter(markdown: string): {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
   content: string;
 } {
   const match = markdown.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -71,7 +71,7 @@ export function parseFrontmatter(markdown: string): {
 
   const yamlBlock = match[1];
   const content = match[2];
-  const data: Record<string, any> = {};
+  const data: Record<string, unknown> = {};
 
   const lines = yamlBlock.split("\n");
   for (const line of lines) {

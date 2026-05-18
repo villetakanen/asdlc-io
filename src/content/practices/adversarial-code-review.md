@@ -2,7 +2,7 @@
 title: "Adversarial Code Review"
 description: "Executing automated verification using a Critic Agent to validate implementation artifacts against Spec contracts."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification"]
-relatedIds: ["patterns/adversarial-code-review", "patterns/the-spec", "patterns/agent-constitution"]
+relatedIds: ["patterns/adversarial-code-review", "patterns/the-spec", "patterns/agent-constitution", "recipes/critic"]
 lastUpdated: 2026-01-31
 status: "Live"
 ---

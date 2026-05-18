@@ -1,21 +1,33 @@
 import type { ContentService } from "./content.ts";
 import { handleToolCall, TOOLS } from "./tools.ts";
 
+export interface JsonRpcToolCallParams {
+  name: string;
+  arguments?: Record<string, string>;
+}
+
+export type JsonRpcParams = JsonRpcToolCallParams | Record<string, unknown>;
+
+export interface McpToolCallResult {
+  content: { type: "text"; text: string }[];
+  isError?: boolean;
+}
+
 export interface JsonRpcRequest {
   jsonrpc: "2.0";
   id?: number | string;
   method: string;
-  params?: any;
+  params?: JsonRpcParams;
 }
 
 export interface JsonRpcResponse {
   jsonrpc: "2.0";
   id: number | string | null;
-  result?: any;
+  result?: unknown;
   error?: {
     code: number;
     message: string;
-    data?: any;
+    data?: unknown;
   };
 }
 
@@ -57,12 +69,13 @@ export class McpServer {
           };
 
         case "tools/call": {
-          if (!params || !params.name) {
+          const toolParams = params as JsonRpcToolCallParams | undefined;
+          if (!toolParams?.name) {
             return this.createError(id, -32602, "Invalid params: name is required");
           }
           const result = await handleToolCall(
-            params.name,
-            params.arguments || {},
+            toolParams.name,
+            toolParams.arguments || {},
             this.contentService,
           );
           return {
@@ -75,8 +88,9 @@ export class McpServer {
         default:
           return this.createError(id, -32601, `Method not found: ${method}`);
       }
-    } catch (error: any) {
-      return this.createError(id, -32603, error.message || "Internal error");
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Internal error";
+      return this.createError(id, -32603, message);
     }
   }
 

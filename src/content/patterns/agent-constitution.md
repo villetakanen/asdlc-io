@@ -24,6 +24,12 @@ references:
     publisher: "Anthropic"
     accessed: 2026-01-13
     annotation: "Defines the model for Constitutional AI: training a harmless assistant via self-critique based on a constitution."
+  - type: "paper"
+    title: "Language Models Are Not Naysayers: An Analysis of Language Models on Negation Benchmarks"
+    url: "https://arxiv.org/abs/2306.08189"
+    author: "Thinh Hung Truong, Timothy Baldwin, Karin Verspoor, Trevor Cohn"
+    published: 2023-06-14
+    annotation: "Empirical evidence that LLMs systematically underweight negation, explaining why negative constitutional constraints ('NEVER do X') are the least reliable form of steering."
   - type: "website"
     title: "Intent Engineering Framework for AI Agents"
     url: "https://www.productcompass.pm/p/intent-engineering-framework-for-ai-agents"
@@ -119,7 +125,7 @@ What is the agent trying to achieve?
 *   *Example:* "Your goal is to maximize code maintainability, even at the cost of slight verbosity."
 
 ### 3. The Boundaries (Negative Constraints)
-What must the agent *never* do? These are "Soft Gates"—instructions to avoid bad paths before hitting the hard [Context Gates](/patterns/context-gates).
+What must the agent *never* do? These are "Soft Gates"—instructions to avoid bad paths before hitting the hard [Context Gates](/patterns/context-gates). Note: negative constraints are the **least reliable** form of constitutional steering. Autoregressive models are statistically predisposed to underweight negation (Truong et al., 2023), so "NEVER do X" clauses activate the concept of X in the attention window while relying on the model to suppress it — a structural tension. Critical negative constraints should always be backed by deterministic gates.
 *   *Example:* "Never output code that swallows errors. Never use `var` in TypeScript."
 
 ### 4. The Process (Step-by-Step)
