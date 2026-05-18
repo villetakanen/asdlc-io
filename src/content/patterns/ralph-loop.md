@@ -14,6 +14,7 @@ relatedIds:
   - patterns/context-gates
   - patterns/adversarial-code-review
   - patterns/the-spec
+  - patterns/context-map
 publishedDate: 2026-02-21
 lastUpdated: 2026-03-18
 status: "Live"
@@ -193,6 +194,8 @@ For inherently parallel tasks or massive operations, a single Ralph Loop iterati
 - **Coordination:** Progress is merged via git history, orchestrated by a multi-agent harness or merge queue.
 
 This pattern limits context bloat by isolating the action space. The fast sub-agents execute tightly scoped tasks, while the Initializer maintains the strategic overview.
+
+**Partitioning principle.** Sub-agent scopes can be partitioned by feature area, file tree, or — as in [Agentheim](https://github.com/heimeshoff/Agentheim) — by Domain-Driven Design bounded contexts (`.agentheim/contexts/<bc>/`). DDD bounded contexts are one natural unit when the codebase already has clear subsystem boundaries; the partitioning principle itself is orthogonal to the Map-Reduce shape.
 
 ## OODA Loop Mapping
 
