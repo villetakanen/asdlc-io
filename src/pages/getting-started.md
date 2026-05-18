@@ -10,7 +10,7 @@ ASDLC (Agentic Software Development Life Cycle) is a framework for building soft
 
 Vibe coding is powerful for exploration and prototyping. Production requires more. When code must be maintained, extended, and trusted, you need schemas, contracts, gates, and governance. ASDLC provides the methodology for that transition.
 
-> "Agentic architecture is the conveyor belt for knowledge work." <br> -- Ville Takane
+> "Agentic architecture is the conveyor belt for knowledge work." <br> -- Ville Takanen
 
 If that sounds like overkill for your weekend project, it probably is. ASDLC is for teams building production software who want deterministic, repeatable outcomes from non-deterministic AI systems.
 
