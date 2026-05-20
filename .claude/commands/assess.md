@@ -50,7 +50,7 @@ Incorporate feedback. Label additions as "Added following human review."
 
 ## Phase 5: Content Review Report
 
-Write the report to `docs/assessments/claude/{YYYY-MM-DD}-{slug}.md` where the date is today and the slug is derived from the source title. Also output the report in chat.
+Write the report to `docs/assessments/{YYYY-MM-DD}-{slug}.md` where the date is today and the slug is derived from the source title. Also output the report in chat.
 
 Report sections:
 
