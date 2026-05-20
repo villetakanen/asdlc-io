@@ -20,15 +20,17 @@ If the input is a URL, fetch it first. If it's a text snippet, use it directly.
 5. **Load content specs** — read the relevant archetype from `specs/content-articles/`:
    - `spec.md` (shared contract)
    - `concept.md`, `pattern.md`, or `practice.md` (whichever fits)
+6. **Load assessor memory** — read `docs/assessments/lessons.md` to capture heuristics from past assessments.
 
 ## Phase 2: Adversarial Assessment
 
-Stress-test the input against current KB maturity:
+Stress-test the input against current KB maturity and scientific writing standards:
 
 1. **Regression Check** — Does this propose a simpler/naive solution we've already evolved past? Verdict: REGRESSIVE.
-2. **Evidence Check** — Is this opinion or empirical fact? If thought leadership, consider Further Reading instead.
-3. **Context Match** — Does this apply to our constraints (Agentic, High-Maturity, Industrial)? Verdict: MISMATCH if not.
-4. **Truth Arbitration** — On conflict, the KB is the Incumbent. Input must provide superior evidence to displace.
+2. **Evidence & Telemetry Check** — Is this opinion or empirical fact? Does it cite empirical research or telemetry? If thought leadership, consider Further Reading instead.
+3. **Scientific Writing & Rigor Check** — Is the tone objective and hype-free? Are assertions testable/falsifiable? Are operational boundary conditions and limitations explicitly defined? Are technical terms semantically precise?
+4. **Context Match** — Does this apply to our constraints (Agentic, High-Maturity, Industrial)? Verdict: MISMATCH if not.
+5. **Truth Arbitration** — On conflict, the KB is the Incumbent. Input must provide superior evidence to displace.
 
 ## Phase 3: Gap Analysis
 
@@ -62,6 +64,11 @@ Report sections:
 - **Challenger Input:** the new idea
 - **Analysis:** why better/worse/different
 - **Regression Risk:** is this a step backward?
+- **Scientific Rigor Evaluation:**
+  - **Evidence Level:** Empirical (benchmarks, telemetry) | Consensus (standard practice with citations) | Dialectical (pure theory/reasoning)
+  - **Boundary Conditions & Limitations:** Under what constraints does this content hold true?
+  - **Falsifiability:** What specific evidence or test would prove this new concept incorrect?
+  - **Citations/Reference Map:** What source documents or papers are referenced or should be added?
 
 ### C. Knowledge Graph Impact
 - **Existing Nodes Touched:** list of related articles
@@ -80,3 +87,9 @@ Select the best strategy:
 
 ### E. Draft Content (Optional)
 If creating a new article, provide a stub with title, description, frontmatter, definition, and placement path.
+
+### F. Assessor Learning Ledger Update
+Append a new JSON line to `docs/assessments/ledger.jsonl` with status `pending`. Follow this schema:
+```json
+{"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"pending","execution_retro":"","lessons_learned":""}
+```

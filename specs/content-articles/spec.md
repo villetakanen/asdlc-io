@@ -81,6 +81,15 @@ Articles have two title surfaces with different constraints:
 - External sources go in `references` frontmatter, never in `relatedIds`.
 - A resource appears in either `relatedIds` or `references`, never both.
 
+### Scientific Writing Standards
+
+To maintain the high intellectual rigor of the ASDLC knowledge base, all articles must adhere to standard scientific and academic writing principles:
+- **Tone & Objectivity:** Write in a formal, passive or third-person, factual tone. Avoid marketing buzzwords, hype terms ("revolutionary", "disruptive", "game-changing"), and speculative claims.
+- **Evidence-Based Claims:** Substantive claims of effectiveness (e.g., specific percentage changes, efficiency improvements, or agent performance metrics) must link directly to empirical studies, telemetry logs, or papers documented in the `references` frontmatter.
+- **Explicit Boundary Conditions:** Clearly state the limitations, prerequisites, and operational boundaries of the pattern or practice (e.g., when the practice is not applicable, or where it fails).
+- **Falsifiability:** Formulate concepts so that they can be tested and disproved. Identify the specific metrics or behaviors that would falsify the claims.
+- **Semantic Precision:** Define terms unambiguously. When referencing technical concepts, link to their defining article in the Concepts collection.
+
 ## Anti-Patterns
 
 - **Collection Misclassification** — Putting "how-to" content in Patterns, or structural definitions in Practices. Use the decision tree.

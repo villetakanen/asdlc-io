@@ -14,8 +14,9 @@ relatedIds:
   - concepts/context-engineering
   - patterns/ralph-loop
   - patterns/context-gates
+  - concepts/theory-of-llm-constraints
 status: "Experimental"
-lastUpdated: 2026-01-26
+lastUpdated: 2026-05-20
 references:
   - type: "website"
     title: "\"You Had One Job\": Why Twenty Years of DevOps Has Failed to Do it"
@@ -24,6 +25,20 @@ references:
     published: 2026-01-22
     accessed: 2026-01-26
     annotation: "Primary source defining the compression of feedback loops as DevOps' unfulfilled promise, now achievable through AI."
+  - type: "website"
+    title: "Theory of LLM Constraints"
+    author: "Mats Ljunggren"
+    url: "https://www.linkedin.com/pulse/theory-llm-constraints-mats-ljunggren-qmzde/"
+    published: 2026-05-12
+    accessed: 2026-05-18
+    annotation: "Applies Goldratt's Theory of Constraints to LLM-augmented delivery; synthesizes Faros, Thoughtworks, DORA, and METR telemetry."
+  - type: "website"
+    title: "How much faster can coding assistants really make software delivery?"
+    author: "Thoughtworks"
+    url: "https://www.thoughtworks.com/en-us/insights/blog/generative-ai/how-faster-coding-assistants-software-delivery"
+    published: 2025-02-01
+    accessed: 2026-05-18
+    annotation: "Empirical decomposition: ~30% coding acceleration yields ~8% net delivery improvement."
 ---
 
 ## Definition
@@ -36,6 +51,8 @@ references:
 The compression is asymmetric: AI has made the *Act* phase (code generation) nearly free, while the *Orient* phase (understanding production state) remains the constraint. Feedback Loop Compression addresses this by making observation and validation as fast as generation.
 
 ## The Shift in Constraints
+
+This shift is analyzed in [Theory of LLM Constraints](/concepts/theory-of-llm-constraints) and grounded in empirical telemetry: localized coding acceleration (~30%, per Thoughtworks) yields only a marginal net delivery improvement (~8%) because the bottleneck shifts downstream.
 
 | Era | Primary Bottleneck | Secondary Bottleneck |
 |-----|-------------------|----------------------|
