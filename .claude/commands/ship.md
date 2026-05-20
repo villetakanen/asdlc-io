@@ -54,6 +54,19 @@ For each relevant spec found:
 
 **If no spec exists for the changed files:** that's fine — not all files have specs. Note it and proceed.
 
+### Step 3.5 — Assessor Retrospective (Double-Loop Learning)
+
+For all changed files identified in Step 1, check if there are any related assessments in `docs/assessments/ledger.jsonl` with `execution_status: "pending"`. An assessment is related if its slug, target files, or challenger title overlap with the files being committed.
+
+If matching pending assessments are found:
+1. **Prompt for Retro Feedback:** Ask the user if the implementation of the assessment succeeded, and ask for any unforeseen difficulties or lessons.
+2. **Update the Ledger:** Update the corresponding JSON line in `docs/assessments/ledger.jsonl`:
+   - `"execution_status"`: `"success"` (or `"failed"`)
+   - `"execution_retro"`: A brief summary of the implementation results (e.g. build results, user feedback)
+   - `"lessons_learned"`: Any specific lessons or guidelines surfaced.
+3. **Consolidate Lessons:** Update `docs/assessments/lessons.md` with the new heuristics under `## Heuristics & Lessons`.
+4. **Stage Retro Files:** Staged the updated `docs/assessments/ledger.jsonl` and `docs/assessments/lessons.md` so they are automatically included in the commit.
+
 ### Step 4 — Stage & Commit
 
 1. Stage all relevant changed files with `git add` (specific files, not `-A`).

@@ -46,25 +46,34 @@ The agent must first "load" the relevant context from the ASDLC Knowledge Base t
         *   `specs/content-articles/practice.md` (Operations)
     *   *Goal:* Verify if the source material fits a Pattern (Shape), Practice (Steps), or Concept (Idea).
 
+5.  **Load Assessor Memory:**
+    *   Read [lessons.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/lessons.md). Keep these heuristics and lessons from past retrospectives in mind when performing the adversarial assessment.
+
 ### 2. Adversarial Assessment (The Gatekeeper)
 
-Before accepting the content, we must stress-test it against our current maturity.
+Before accepting the content, we must stress-test it against our current maturity and scientific writing standards.
 
 1.  **Regression Check:**
     *   Does this input propose a simpler/naive solution that we have already evolved past?
     *   *Example:* Article suggests "Just use Context", we already have "Context Gates".
     *   *Verdict:* **REGRESSIVE**. Reject or frame as "Basic Level".
 
-2.  **Evidence Check:**
+2.  **Evidence & Telemetry Check:**
     *   Is this opinion or empirical fact?
-    *   *Action:* Distinguish "Subjective Best Practice" from "Objective Benchmark".
+    *   *Action:* Distinguish "Subjective Best Practice" from "Objective Benchmark". Check if the input cites empirical research, papers, or telemetry data.
     *   *Note:* If the content is "thought leadership" or opinion but highly aligned philosophically with ASDLC, consider recommending it for the **Further Reading** log rather than rejecting it.
 
-3.  **Context Match:**
+3.  **Scientific Writing & Rigor Check:**
+    *   *Tone:* Is the writing objective, factual, and free of marketing fluff or anthropomorphic language?
+    *   *Falsifiability:* Is the concept formulated in a way that can be tested and disproved? What are the failure modes?
+    *   *Boundary Conditions:* Does the input explicitly document constraints, prerequisites, and scenarios where it *fails* or does not apply?
+    *   *Semantic Precision:* Are technical terms defined precisely and integrated with sibling nodes in the knowledge graph?
+
+4.  **Context Match:**
     *   Does this apply to our specific constraints (Agentic, High-Maturity, Industrial)?
     *   *Verdict:* **MISMATCH**. Reject if it solves a problem we don't have.
 
-4.  **Truth Arbitration:**
+5.  **Truth Arbitration:**
     *   In case of conflict, the Knowledge Base is the **Incumbent**.
     *   The Input must provide **Superior Evidence** to displace existing patterns.
     *   *If Conflict:* Highlight it. Do not overwrite without explicit "Supersedes" decision.
@@ -111,6 +120,11 @@ Generate a `Content Review Report` with the following sections:
 *   **Challenger Input:** [New Idea]
 *   **Analysis:** Why the Challenger is better/worse/different.
 *   **Regression Risk:** Is this a step backward?
+*   **Scientific Rigor Evaluation:**
+    *   **Evidence Level:** [Empirical (benchmarks, telemetry) | Consensus (standard practice with citations) | Dialectical (pure theory/reasoning)]
+    *   **Boundary Conditions & Limitations:** Under what constraints does this content hold true?
+    *   **Falsifiability:** What specific evidence or test would prove this new concept incorrect?
+    *   **Citations/Reference Map:** What source documents or papers are referenced or should be added to the frontmatter?
 
 #### C. Knowledge Graph Impact
 *   **Existing Nodes Touched:** List of articles that relate to this content.
@@ -144,6 +158,12 @@ If a new article is recommended, provide a **stub** following the appropriate Sp
 *   Frontmatter (Tags, Status)
 *   Definition
 *   Placement in `src/content/...`
+
+#### E. Assessor Learning Ledger Update
+*   Append a new JSON line to [ledger.jsonl](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/ledger.jsonl) containing the assessment's metadata and a status of `pending`. The line must follow this schema:
+    ```json
+    {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"pending","execution_retro":"","lessons_learned":""}
+    ```
 
 ## Usage Example
 

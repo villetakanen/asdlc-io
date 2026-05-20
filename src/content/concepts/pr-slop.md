@@ -8,9 +8,16 @@ tags:
   - AI Agents
   - Verification
 status: "Experimental"
-relatedIds: ["patterns/adversarial-code-review", "patterns/context-gates", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "concepts/provenance", "concepts/ai-software-factory", "practices/micro-commits"]
-lastUpdated: 2026-04-11
+relatedIds: ["patterns/adversarial-code-review", "patterns/context-gates", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "concepts/provenance", "concepts/ai-software-factory", "practices/micro-commits", "concepts/theory-of-llm-constraints"]
+lastUpdated: 2026-05-20
 references:
+  - type: website
+    title: "AI Productivity Paradox Report 2025"
+    author: "Faros AI"
+    url: "https://www.faros.ai/ai-productivity-paradox"
+    published: 2025-12-01
+    accessed: 2026-05-18
+    annotation: "Telemetry across 10,000+ developers and 1,255 teams. 98% more PRs merged, 91% PR review time increase, 154% larger PRs, 9% more bugs."
   - type: website
     title: "State of AI vs Human Code Generation Report"
     author: "CodeRabbit"
@@ -78,6 +85,8 @@ The term extends "slop" (AI-generated content that appears plausible but lacks d
 ## The Asymmetric Velocity Problem
 
 PR slop emerges from a fundamental mismatch: an agent generates code in seconds that takes a human hours to verify. This asymmetry didn't exist when humans wrote all the code — the author's production speed roughly matched the reviewer's comprehension speed.
+
+This asymmetry is grounded in industry telemetry, analyzed in [Theory of LLM Constraints](/concepts/theory-of-llm-constraints). Faros AI's study across 10,000+ developers and 1,255 teams reports a **98% increase in pull requests merged** alongside a **91% increase in PR review wait time**, driven by PRs that are **154% larger** on average. 
 
 At agent scale, the mismatch becomes structural. CodeRabbit's analysis of 470 GitHub pull requests found that AI-generated code produces 1.7× more issues than human-written code: 10.83 findings per PR versus 6.45. Logic and correctness errors rise 75%. Security vulnerabilities increase 1.5-2×. Performance inefficiencies appear nearly 8× more often. Readability problems — naming, formatting, structural consistency — increase more than 3×.
 
