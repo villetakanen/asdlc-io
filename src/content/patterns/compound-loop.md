@@ -53,7 +53,8 @@ The structural insight: the workspace is the team's procedural memory, but the m
 The compound-loop has five structural components and one reinforcing relationship across cycles.
 
 ```mermaid
-flowchart TD
+%% caption: The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle
+flowchart LR
     Lib[(Specialized substrate library<br/>skills · guides · runbooks · ADRs)]
     Idx[AGENTS.md<br/>minimal index]
     Lib -->|JIT fetch on demand| Ingest[Ingestion]
@@ -65,6 +66,11 @@ flowchart TD
     Gate -->|rejected| Discard[Discard candidate]
     Write --> Lib
 ```
+
+<figure class="mermaid-diagram">
+  <img src="/mermaid/compound-loop-fig-1.svg" alt="The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle" />
+  <figcaption>The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle</figcaption>
+</figure>
 
 **Specialized substrate library.** A workspace-local collection of scoped knowledge artifacts: skills documenting particular tools or APIs, guides explaining workflows, runbooks for operations, architecture decision records, convention docs. Each artifact has a defined scope and stays focused within it. The library lives inside the repository, versioned alongside the code.
 
