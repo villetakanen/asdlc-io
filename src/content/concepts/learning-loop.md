@@ -13,6 +13,8 @@ relatedIds:
   - patterns/context-gates
   - patterns/ralph-loop
   - practices/living-specs
+  - concepts/compound-engineering
+  - patterns/compound-loop
 status: Live
 lastUpdated: 2026-01-26
 references:

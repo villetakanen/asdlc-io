@@ -1,6 +1,7 @@
 # build output
 dist/
 test-results
+dist-skills
 
 # generated types
 .astro/

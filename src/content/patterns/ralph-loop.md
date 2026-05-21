@@ -15,6 +15,8 @@ relatedIds:
   - patterns/adversarial-code-review
   - patterns/the-spec
   - patterns/context-map
+  - concepts/compound-engineering
+  - patterns/compound-loop
 publishedDate: 2026-02-21
 lastUpdated: 2026-03-18
 status: "Live"
