@@ -15,6 +15,7 @@ relatedIds:
   - patterns/ralph-loop
   - patterns/context-gates
   - concepts/theory-of-llm-constraints
+  - concepts/compound-engineering
 status: "Experimental"
 lastUpdated: 2026-05-20
 references:

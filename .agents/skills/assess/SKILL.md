@@ -85,6 +85,7 @@ Compare the "Source Material" against the "Loaded Context".
 1.  **Duplicate Check:**
     *   Does this concept already exist? (e.g., "AI Code Checking" vs `patterns/adversarial-code-review`).
     *   *If YES:* Recommendation is **AMEND** or **REFERENCE**. Do not create a new article.
+    *   *SEO & Taxonomy Exception:* A new concept article is justified despite conceptual overlap if it represents a major industry category designation or high-volume search term (e.g., "Harness Engineering") that requires a dedicated SEO landing page and taxonomic anchor. Keep them distinct by letting the concept explain the *what and why* (definition/discipline) and the practice explain the *how* (execution steps).
 
 2.  **Conflict Check:**
     *   Does the source material contradict established ASDLC principles (e.g., "Vibe Coding" vs "Determinism")?
@@ -108,61 +109,21 @@ Compare the "Source Material" against the "Loaded Context".
 
 ### 5. Synthesis & Recommendation (The Output)
 
-Generate a `Content Review Report` with the following sections:
+Generate a `Content Review Report` following the standardized structure defined in the external template:
+- **Template Source:** [docs/assessments/TEMPLATE.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/TEMPLATE.md)
 
-#### A. Executive Summary
-*   **Verdict:** [accepted | rejected | synthesized | disputed]
-*   **Confidence:** [High/Medium/Low]
-*   **Assessment:** Brief summary of value vs risk.
+This template covers:
+*   **Section A:** Executive Summary (Verdict, Confidence, Assessment)
+*   **Section B:** Critical Analysis (Incumbent Pattern, Challenger Input, Truth Arbitration, Regression & Rigor Risk Analysis)
+*   **Section C:** Knowledge Graph Impact (Existing Nodes, New Nodes, HITL feedback applied)
+*   **Section D:** Action Plan (Integrated/Expanded/Combined/Rejected strategies)
+*   **Section E:** Draft Content (new stub & integrations)
+*   **Section F:** Open Questions / Follow-ups
 
-#### B. Critical Analysis (New)
-*   **Incumbent Pattern:** [Existing Pattern Name]
-*   **Challenger Input:** [New Idea]
-*   **Analysis:** Why the Challenger is better/worse/different.
-*   **Regression Risk:** Is this a step backward?
-*   **Scientific Rigor Evaluation:**
-    *   **Evidence Level:** [Empirical (benchmarks, telemetry) | Consensus (standard practice with citations) | Dialectical (pure theory/reasoning)]
-    *   **Boundary Conditions & Limitations:** Under what constraints does this content hold true?
-    *   **Falsifiability:** What specific evidence or test would prove this new concept incorrect?
-    *   **Citations/Reference Map:** What source documents or papers are referenced or should be added to the frontmatter?
-
-#### C. Knowledge Graph Impact
-*   **Existing Nodes Touched:** List of articles that relate to this content.
-*   **New Nodes Proposed:** List of potential new Articles (Concepts/Patterns/Practices).
-*   **Human Feedback Applied:** Brief summary of how the human review altered the initial scope (e.g., "Added agent-personas.md update based on human feedback").
-
-#### D. Action Plan
-Select the best strategy or combination of strategies:
-
-*   **STRATEGY 1: INTEGRATE (Update Existing)**
-    *   "Update `patterns/X.md` to include..."
-    *   "Add reference to `concepts/Y.md`..."
-
-*   **STRATEGY 2: EXPAND (Create New)**
-    *   "Create `practices/Z.md` following `specs/content-articles/practice.md`."
-    *   *Justification:* Why this warrants a standalone file.
-
-*   **STRATEGY 3: COMBINATION (Create + Integrate)**
-    *   "Create `concepts/A.md` AND update `patterns/B.md` to link to it."
-    *   *Note:* Often creating a new node requires updating neighbors to link to it.
-
-*   **STRATEGY 4: REJECT / ARCHIVE**
-    *   "Content is redundant with `patterns/A.md`. No action needed."
-
-*   **STRATEGY 5: LOG AS THOUGHT LEADERSHIP**
-    *   "Content aligns philosophically but lacks structural evidence. Recommend extracting quotes/themes and logging as an entry in `src/pages/resources/further-reading.astro`."
-
-#### D. draft-content.md (Optional)
-If a new article is recommended, provide a **stub** following the appropriate Spec (Concept/Pattern/Practice) including:
-*   Title & Description
-*   Frontmatter (Tags, Status)
-*   Definition
-*   Placement in `src/content/...`
-
-#### E. Assessor Learning Ledger Update
-*   Append a new JSON line to [ledger.jsonl](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/ledger.jsonl) containing the assessment's metadata and a status of `pending`. The line must follow this schema:
+#### F. Assessor Learning Ledger Update
+*   Append a new JSON line to [ledger.jsonl](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/ledger.jsonl) containing the assessment's metadata. The line must follow this schema:
     ```json
-    {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"pending","execution_retro":"","lessons_learned":""}
+    {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"success","execution_retro":"","lessons_learned":""}
     ```
 
 ## Usage Example

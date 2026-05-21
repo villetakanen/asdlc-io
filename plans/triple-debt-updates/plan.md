@@ -1,6 +1,6 @@
 # Plan: Triple Debt Model KB Integration
 
-**Source:** [Content Review Report](../../docs/assessments/claude/2026-03-25-triple-debt-model.md)
+**Source:** [Content Review Report](../../docs/assessments/2026-03-25-triple-debt-model.md)
 **Paper:** [arXiv:2603.22106](https://arxiv.org/abs/2603.22106) — Margaret-Anne Storey
 **Created:** 2026-03-25
 

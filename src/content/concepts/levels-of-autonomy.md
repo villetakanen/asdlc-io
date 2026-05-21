@@ -10,6 +10,7 @@ relatedIds:
   - concepts/guardrails
   - patterns/context-gates
   - concepts/pr-slop
+  - patterns/compound-loop
 status: Live
 publishedDate: 2026-01-09
 lastUpdated: 2026-03-18
