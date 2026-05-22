@@ -1,0 +1,164 @@
+{
+  "$schema": "./fixtures.schema.md",
+  "search": [
+    {
+      "id": "ctx-eng-by-name",
+      "query": "context engineering",
+      "description": "Direct keyword match — the canonical concept article must be the top hit.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["context-engineering"] }
+      }
+    },
+    {
+      "id": "ctx-eng-by-intent",
+      "query": "give an agent the right information",
+      "description": "Natural-language reader intent for context engineering. We do not pin a rank — Fuse ordering on intent phrasing is fragile — but the concept must appear in results.",
+      "expect": {
+        "mustInclude": ["context-engineering"]
+      }
+    },
+    {
+      "id": "spec-driven-development",
+      "query": "spec driven development",
+      "description": "Foundational concept — direct query must return the concept article in top-3.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["spec-driven-development"] }
+      }
+    },
+    {
+      "id": "agents-md",
+      "query": "AGENTS.md",
+      "description": "Readers asking about the AGENTS.md convention should find the practice that documents it.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["agents-md-spec"] }
+      }
+    },
+    {
+      "id": "agent-personas",
+      "query": "agent personas",
+      "description": "Direct keyword — the agent-personas practice must surface in top-3.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["agent-personas"] }
+      }
+    },
+    {
+      "id": "adversarial-code-review",
+      "query": "adversarial code review",
+      "description": "Adversarial review has both a pattern and a practice article (same slug). Top-3 must contain the slug.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["adversarial-code-review"] }
+      }
+    },
+    {
+      "id": "micro-commits",
+      "query": "micro commits",
+      "description": "Practice for small, focused commits — direct match must be top-1.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["micro-commits"] }
+      }
+    },
+    {
+      "id": "bdd-gherkin",
+      "query": "gherkin behavior driven",
+      "description": "Readers using BDD terminology should find both BDD and Gherkin concepts.",
+      "expect": {
+        "mustInclude": ["behavior-driven-development", "gherkin"]
+      }
+    },
+    {
+      "id": "mcp-by-name",
+      "query": "model context protocol",
+      "description": "The MCP concept article must dominate the result list for its own name.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["model-context-protocol"] }
+      }
+    },
+    {
+      "id": "compound-engineering",
+      "query": "compound engineering",
+      "description": "Direct concept lookup.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["compound-engineering"] }
+      }
+    },
+    {
+      "id": "agentic-sdlc",
+      "query": "agentic SDLC",
+      "description": "The site's namesake concept must be top-1 for this query.",
+      "expect": {
+        "topN": { "n": 1, "slugs": ["agentic-sdlc"] }
+      }
+    },
+    {
+      "id": "levels-of-autonomy",
+      "query": "levels of autonomy",
+      "description": "Direct concept lookup.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["levels-of-autonomy"] }
+      }
+    },
+    {
+      "id": "vibe-coding",
+      "query": "vibe coding",
+      "description": "Direct concept lookup — the anti-pattern article.",
+      "expect": {
+        "topN": { "n": 3, "slugs": ["vibe-coding"] }
+      }
+    },
+    {
+      "id": "not-found-graceful",
+      "query": "purple monkey dishwasher",
+      "description": "Fuzz noise must not produce results. Catches threshold regressions that would surface false positives.",
+      "expect": {
+        "minResults": 0,
+        "mustNotInclude": ["context-engineering", "agentic-sdlc"]
+      }
+    }
+  ],
+  "list": [
+    {
+      "id": "list-all",
+      "description": "Every Live and Experimental article must appear in list_articles.",
+      "expect": {
+        "minTotal": 50,
+        "mustInclude": [
+          "context-engineering",
+          "agentic-sdlc",
+          "model-context-protocol",
+          "spec-driven-development",
+          "agents-md-spec",
+          "micro-commits",
+          "agent-personas",
+          "critic"
+        ]
+      }
+    }
+  ],
+  "get": [
+    {
+      "id": "get-context-engineering",
+      "slug": "context-engineering",
+      "description": "Known foundational article must resolve to non-empty content with the expected H1.",
+      "expect": {
+        "minContentLength": 500,
+        "h1Contains": "Context Engineering"
+      }
+    },
+    {
+      "id": "get-agentic-sdlc",
+      "slug": "agentic-sdlc",
+      "description": "Namesake article must resolve.",
+      "expect": {
+        "minContentLength": 500
+      }
+    },
+    {
+      "id": "get-unknown",
+      "slug": "this-slug-does-not-exist-xyz",
+      "description": "Unknown slugs must surface a graceful error, not a 500 or silent empty.",
+      "expect": {
+        "isError": true
+      }
+    }
+  ]
+}

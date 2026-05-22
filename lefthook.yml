@@ -31,3 +31,5 @@ pre-push:
         fi
     build-check:
       run: pnpm build
+    mcp-evals:
+      run: pnpm evals:mcp
