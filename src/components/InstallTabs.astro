@@ -1,0 +1,193 @@
+---
+import { type ClientInstall, mcpClients } from "../data/mcp-clients";
+
+interface Props {
+  id: string;
+  tabs?: ClientInstall[];
+  heading?: string;
+}
+
+const { id, tabs = mcpClients, heading } = Astro.props;
+---
+
+{heading && <h3>{heading}</h3>}
+
+<fieldset class="install-tabs" id={id}>
+  <legend class="visually-hidden">Choose your agent client</legend>
+
+  {tabs.map((tab, i) => (
+    <input
+      type="radio"
+      name={`${id}-tabs`}
+      id={`${id}-tab-${tab.slug}`}
+      class={`install-tabs__radio install-tabs__radio--${tab.slug}`}
+      checked={i === 0}
+      aria-label={tab.label}
+    />
+  ))}
+
+  <div class="install-tabs__tablist" role="tablist">
+    {tabs.map((tab) => (
+      <label
+        for={`${id}-tab-${tab.slug}`}
+        class="install-tabs__tab"
+        role="tab"
+        aria-controls={`${id}-panel-${tab.slug}`}
+      >
+        {tab.label}
+      </label>
+    ))}
+  </div>
+
+  <div class="install-tabs__panels">
+    {tabs.map((tab) => (
+      <div
+        id={`${id}-panel-${tab.slug}`}
+        class={`install-tabs__panel install-tabs__panel--${tab.slug}`}
+        role="tabpanel"
+        aria-labelledby={`${id}-tab-${tab.slug}`}
+      >
+        {tab.configPath && (
+          <p class="install-tabs__config-path mono">{tab.configPath}</p>
+        )}
+        {tab.instruction && (
+          <p class="install-tabs__instruction">{tab.instruction}</p>
+        )}
+        <pre class={`language-${tab.lang}`}><code class={`language-${tab.lang}`}>{tab.code}</code></pre>
+        {tab.docsHref && (
+          <p class="install-tabs__docs">
+            <a href={tab.docsHref} target="_blank" rel="noopener">
+              → Official docs
+            </a>
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
+</fieldset>
+
+<style>
+  .install-tabs {
+    border: 1px solid var(--c-border);
+    padding: 0;
+    margin: 1.5rem 0;
+    background: var(--c-bg-surface);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Radios are visually hidden but remain focusable for keyboard navigation. */
+  .install-tabs__radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .install-tabs__tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--c-border);
+    background: var(--c-bg-page);
+  }
+
+  .install-tabs__tab {
+    padding: 0.5rem 1rem;
+    font-family: var(--f-mono);
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    color: var(--c-text-secondary);
+    user-select: none;
+    transition: color 80ms, border-color 80ms;
+  }
+
+  .install-tabs__tab:hover {
+    color: var(--c-text-primary);
+  }
+
+  .install-tabs__radio:focus-visible + .install-tabs__tablist .install-tabs__tab,
+  .install-tabs__tab:focus-visible {
+    outline: 2px solid var(--c-brand);
+    outline-offset: -2px;
+  }
+
+  .install-tabs__panels {
+    padding: 1rem;
+  }
+
+  .install-tabs__panel {
+    display: none;
+  }
+
+  .install-tabs__config-path {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.8125rem;
+    color: var(--c-text-secondary);
+  }
+
+  .install-tabs__instruction {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9375rem;
+  }
+
+  .install-tabs__panel pre {
+    margin: 0;
+  }
+
+  .install-tabs__docs {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.875rem;
+  }
+
+  /* Per-slug visibility rules — each checked radio reveals its matching panel
+     and highlights its matching tab. The radios all sit as direct children of
+     the fieldset, so we use ~ to reach both the tablist's labels and the panel. */
+
+  .install-tabs__radio--claude-code:checked
+    ~ .install-tabs__panels
+    .install-tabs__panel--claude-code,
+  .install-tabs__radio--opencode:checked
+    ~ .install-tabs__panels
+    .install-tabs__panel--opencode,
+  .install-tabs__radio--vscode:checked
+    ~ .install-tabs__panels
+    .install-tabs__panel--vscode,
+  .install-tabs__radio--zed:checked
+    ~ .install-tabs__panels
+    .install-tabs__panel--zed,
+  .install-tabs__radio--antigravity:checked
+    ~ .install-tabs__panels
+    .install-tabs__panel--antigravity {
+    display: block;
+  }
+
+  .install-tabs__radio--claude-code:checked
+    ~ .install-tabs__tablist
+    label[for$="-tab-claude-code"],
+  .install-tabs__radio--opencode:checked
+    ~ .install-tabs__tablist
+    label[for$="-tab-opencode"],
+  .install-tabs__radio--vscode:checked
+    ~ .install-tabs__tablist
+    label[for$="-tab-vscode"],
+  .install-tabs__radio--zed:checked
+    ~ .install-tabs__tablist
+    label[for$="-tab-zed"],
+  .install-tabs__radio--antigravity:checked
+    ~ .install-tabs__tablist
+    label[for$="-tab-antigravity"] {
+    color: var(--c-text-primary);
+    border-bottom-color: var(--c-brand);
+  }
+</style>
