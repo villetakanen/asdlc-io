@@ -18,6 +18,7 @@ Full vision: @docs/vision.md | Framework: [Agentic SDLC concept](/concepts/agent
 | Build MCP index | `pnpm build:mcp-index` |
 | Build skill | `pnpm build:skill` |
 | MCP preview | `pnpm test:mcp-preview <url>` |
+| Lint specs | `pnpm lint:specs` |
 
 Toolchain configs: `astro.config.mjs`, `tsconfig.json`, `biome.json`, `package.json`
 Design tokens: `src/styles/global.css` | Schema: `src/content/config.ts`

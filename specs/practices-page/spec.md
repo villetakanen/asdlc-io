@@ -1,3 +1,13 @@
+---
+title: "Practices Collection Page Update"
+status: "shipped"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-21"
+tags: []
+shipped: "2026-03-21"
+---
+
 # Feature: Practices Collection Page Update
 
 ## Blueprint

@@ -1,3 +1,13 @@
+---
+title: "robots.txt AI Crawler Directives"
+status: "shipped"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-16"
+tags: []
+shipped: "2026-03-16"
+---
+
 # Feature: robots.txt AI Crawler Directives
 
 ## Blueprint

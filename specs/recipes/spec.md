@@ -1,3 +1,13 @@
+---
+title: "Recipes"
+status: "shipped"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-04-01"
+tags: []
+shipped: "2026-04-03"
+---
+
 # Feature: Recipes
 
 ## Blueprint

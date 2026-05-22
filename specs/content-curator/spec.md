@@ -1,3 +1,13 @@
+---
+title: "@curator — Content Refresh Triage"
+status: "shipped"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-05-22"
+tags: []
+shipped: "2026-05-22"
+---
+
 # Feature: @curator — Content Refresh Triage
 
 ## Blueprint

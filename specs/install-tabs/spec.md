@@ -1,3 +1,13 @@
+---
+title: "`<InstallTabs>` — Zero-JS Multi-Client Install Component"
+status: "shipped"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-05-22"
+tags: []
+shipped: "2026-05-22"
+---
+
 # Feature: `<InstallTabs>` — Zero-JS Multi-Client Install Component
 
 ## Blueprint
