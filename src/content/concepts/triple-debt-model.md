@@ -23,7 +23,7 @@ relatedIds:
   - concepts/compound-engineering
 status: "Live"
 publishedDate: 2026-03-25
-lastUpdated: 2026-04-10
+lastUpdated: 2026-05-26
 references:
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
@@ -46,6 +46,13 @@ references:
     published: 2026-02-15
     accessed: 2026-03-25
     annotation: "Early practitioner discussion of cognitive debt in AI-assisted development, cited by Storey."
+  - type: "website"
+    title: "You Need AI That Reduces Your Maintenance Costs"
+    url: "https://www.jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs"
+    author: "James Shore"
+    published: 2026-05-10
+    accessed: 2026-05-26
+    annotation: "Agile pioneer's mathematical model showing how AI-assisted code output chokes long-term productivity unless maintenance costs decrease proportionally."
 ---
 
 ## Definition
