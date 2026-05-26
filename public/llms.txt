@@ -26,10 +26,10 @@ When citing ASDLC content, attribute as: "Source: ASDLC.io — [Article Title]" 
 
 ## Foundational Reading
 
-- [Agentic SDLC](https://asdlc.io/concepts/agentic-sdlc/): The framework definition
-- [Spec-Driven Development](https://asdlc.io/concepts/spec-driven-development/): Core methodology
-- [The Spec](https://asdlc.io/patterns/the-spec/): Living specification pattern
-- [Context Engineering](https://asdlc.io/concepts/context-engineering/): Structuring information for agent consumption
+- [Agentic SDLC](https://asdlc.io/concepts/agentic-sdlc.md): The framework definition
+- [Spec-Driven Development](https://asdlc.io/concepts/spec-driven-development.md): Core methodology
+- [The Spec](https://asdlc.io/patterns/the-spec.md): Living specification pattern
+- [Context Engineering](https://asdlc.io/concepts/context-engineering.md): Structuring information for agent consumption
 - [Field Manual](https://asdlc.io/fieldmanual/): Collated single-page edition
 
 ## Optional
