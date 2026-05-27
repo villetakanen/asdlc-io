@@ -1,11 +1,10 @@
 ---
 title: "Google Search Console Integration"
-status: "shipped"
+status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-05-22"
 tags: []
-shipped: "2026-05-22"
 ---
 
 # Feature: Google Search Console Integration

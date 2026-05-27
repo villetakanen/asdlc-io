@@ -1,11 +1,10 @@
 ---
 title: "Concepts Index Page"
-status: "shipped"
+status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-03-31"
 tags: []
-shipped: "2026-03-31"
 ---
 
 # Feature: Concepts Index Page

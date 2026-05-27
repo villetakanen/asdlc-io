@@ -1,11 +1,10 @@
 ---
 title: "Article Cards (SpecCard)"
-status: "shipped"
+status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-03-18"
 tags: []
-shipped: "2026-03-18"
 ---
 
 # Spec: Article Cards (SpecCard)

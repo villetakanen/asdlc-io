@@ -14,28 +14,20 @@ const ROOT = resolve(import.meta.dirname, "..");
 const PATTERN = "specs/**/spec.md";
 const EXCLUDE = ["specs/content-articles/**"];
 
-const SpecStatus = z.enum(["draft", "approved", "shipped", "archived"]);
+const SpecStatus = z.enum(["draft", "approved", "deprecated"]);
 
-const SpecFrontmatter = z
-  .object({
-    title: z.string().min(3),
-    status: SpecStatus,
-    owner: z.string().min(1),
-    linear: z
-      .string()
-      .regex(/^[A-Z]+-\d+$/, "must match e.g. ASDLC-123")
-      .optional(),
-    archetype: z
-      .enum(["feature", "infra", "content", "process"])
-      .default("feature"),
-    created: z.coerce.date(),
-    shipped: z.coerce.date().optional(),
-    tags: z.array(z.string()).default([]),
-  })
-  .refine((v) => v.status !== "shipped" || v.shipped !== undefined, {
-    message: "status 'shipped' requires a `shipped:` date",
-    path: ["shipped"],
-  });
+const SpecFrontmatter = z.object({
+  title: z.string().min(3),
+  status: SpecStatus,
+  owner: z.string().min(1),
+  linear: z
+    .string()
+    .regex(/^[A-Z]+-\d+$/, "must match e.g. ASDLC-123")
+    .optional(),
+  archetype: z.enum(["feature", "infra", "content", "process"]).default("feature"),
+  created: z.coerce.date(),
+  tags: z.array(z.string()).default([]),
+});
 
 const H1_RE = /^#\s+(?:(?:Feature|Spec):\s+)?(.+?)\s*$/m;
 

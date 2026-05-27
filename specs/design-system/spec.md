@@ -1,11 +1,10 @@
 ---
 title: "Avionics Design System"
-status: "shipped"
+status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-03-15"
 tags: []
-shipped: "2026-03-15"
 ---
 
 # Avionics Design System
