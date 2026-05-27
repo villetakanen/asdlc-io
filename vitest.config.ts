@@ -5,7 +5,7 @@ export default getViteConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['src/**/*.test.ts', 'netlify/**/*.test.ts', 'tests/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'netlify/**/*.test.ts', 'tests/**/*.test.ts', 'tools/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],

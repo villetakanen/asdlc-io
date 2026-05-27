@@ -9,8 +9,10 @@ dist-skills
 src/mcp/articles.json
 src/mcp/fuse-index.json
 
-# GSC integration — credentials and in-flight/raw data (committed: data/gsc/*.jsonl)
+# GSC integration — credentials + all snapshot data stay local (never committed:
+# search-query data is not published to this public repo)
 *.gsc-key.json
+data/gsc/*.jsonl
 data/gsc/*.raw.json
 data/gsc/*.jsonl.tmp
 

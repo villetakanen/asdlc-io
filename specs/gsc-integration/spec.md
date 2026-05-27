@@ -30,15 +30,15 @@ The skill that consumes this data is `@curator` (see `specs/content-curator/spec
 
 - **Command:** `pnpm gsc:snapshot` — invokes `scripts/gsc-snapshot.ts`
 - **Output:** `data/gsc/YYYY-MM-DD.jsonl` — one JSONL per snapshot run
-- **Schema:** Defined in `src/lib/gsc/schema.ts` (Zod), one row per `{date, page, query, clicks, impressions, ctr, position}` tuple
+- **Schema:** Defined in `tools/gsc/schema.ts` (Zod), one row per `{date, page, query, clicks, impressions, ctr, position}` tuple
 - **Date window:** Last 120 days at each run, daily granularity, dimensions `page` and `query`. The 120-day window exists so the `@curator` Refresh bucket can compare 60d vs prior 60d from a single snapshot.
 - **Pagination:** The GSC API caps responses at 25,000 rows per request. The snapshot script paginates with `startRow` and continues until the API returns fewer rows than the page size.
-- **Auth:** Service-account JSON key, path in `GSC_SERVICE_ACCOUNT_KEY` env var. The key file matches `*.gsc-key.json` and is gitignored.
+- **Auth:** Application Default Credentials (ADC) via the `gcloud` CLI — the property owner authenticates with `gcloud auth application-default login` (scopes `cloud-platform` + `webmasters.readonly`), and the snapshot script obtains a token from ADC at runtime. Quota project is sent via the `x-goog-user-project` header, configured by `GSC_QUOTA_PROJECT` (falls back to `gcloud config get-value project`). A service-account key path (`GSC_SERVICE_ACCOUNT_KEY`, matching the gitignored `*.gsc-key.json`) is the intended path for unattended/CI use but is **deferred** — adding the service account in Search Console was blocked, and ADC suits the current local/manual cadence. The deferred CI cron (below) will require implementing the service-account path.
 - **Cadence:** Manual for now (`pnpm gsc:snapshot` weekly). GitHub Action with cron schedule is a follow-up, not in this spec.
 - **Property:** `sc-domain:asdlc.io` — configured via `GSC_SITE_URL` env var
 - **Atomicity:** The script writes to `data/gsc/YYYY-MM-DD.jsonl.tmp` and renames on success. A failed run leaves no partial output.
 
-**Helper library — `src/lib/gsc/index.ts` exports:**
+**Helper library — `tools/gsc/index.ts` exports:**
 
 - `getLatestSnapshot(): { path: string; date: string }` — resolves the newest `data/gsc/*.jsonl`
 - `loadSnapshot(path): GscRow[]` — parses and Zod-validates a JSONL file
@@ -53,7 +53,7 @@ The skill that consumes this data is `@curator` (see `specs/content-curator/spec
   - `query_page_history(page, days)` — daily clicks/impressions/position for one page
   - `query_underperforming(min_impressions, max_ctr, max_position)` — filter for polish candidates
   - `query_queries_for_page(page, days)` — what users searched to land on this page
-- **Read-only.** No write tools. Auth via same service account as the snapshot script.
+- **Read-only.** No write tools. Auth via the same ADC credentials as the snapshot script (see Auth above).
 
 **Relationship to existing infrastructure:**
 
@@ -81,18 +81,18 @@ GscRow = {
 **File paths:**
 
 - Snapshot script: `scripts/gsc-snapshot.ts`
-- Schema: `src/lib/gsc/schema.ts`
-- Snapshot helpers: `src/lib/gsc/index.ts` (see helper list above)
+- Schema: `tools/gsc/schema.ts`
+- Snapshot helpers: `tools/gsc/index.ts` (see helper list above)
 - MCP server: `tools/mcp-gsc/src/server.ts`
 - MCP tool definitions: `tools/mcp-gsc/src/tools/*.ts`
 - Snapshot output dir: `data/gsc/`
 - `.gitignore` entries: `*.gsc-key.json` (key files), `data/gsc/*.raw.json` (raw API responses if dumped for debugging), `data/gsc/*.jsonl.tmp` (in-flight writes). `data/gsc/*.jsonl` is **committed**.
-- Env example: `.env.example` documents `GSC_SERVICE_ACCOUNT_KEY` and `GSC_SITE_URL`
+- Env example: `.env.example` documents `GSC_SITE_URL` and `GSC_QUOTA_PROJECT` (and `GSC_SERVICE_ACCOUNT_KEY` for the deferred service-account path)
 
 **Constraints:**
 
 - The snapshot pipeline is re-runnable. Re-running on the same day overwrites that day's file via the atomic temp-rename strategy.
-- Service-account credentials live outside the repo (env var pointing to a path); the key file pattern is gitignored.
+- Credentials live outside the repo: ADC is stored by `gcloud` in the user's config dir; the deferred service-account key pattern (`*.gsc-key.json`) is gitignored. No credentials are ever committed.
 - MCP server is stdio-only in v1. HTTP deployment requires a separate auth spec.
 
 ## Contract
@@ -106,8 +106,8 @@ GscRow = {
 - [ ] Re-running on the same day overwrites that day's file atomically (temp file + rename); failures leave no partial output
 - [ ] `mcp-gsc` server starts via stdio and exposes the four `query_*` tools listed above
 - [ ] All four MCP tools return Zod-validated responses (verifiable via `pnpm test:run` against a mocked GSC client)
-- [ ] `src/lib/gsc/index.ts` exports `getLatestSnapshot`, `loadSnapshot`, and `joinPageToArticle` with unit tests
-- [ ] `.env.example` documents `GSC_SERVICE_ACCOUNT_KEY` and `GSC_SITE_URL`
+- [ ] `tools/gsc/index.ts` exports `getLatestSnapshot`, `loadSnapshot`, and `joinPageToArticle` with unit tests
+- [ ] `.env.example` documents `GSC_SITE_URL` and `GSC_QUOTA_PROJECT`
 - [ ] `.gitignore` excludes `*.gsc-key.json`, `data/gsc/*.raw.json`, `data/gsc/*.jsonl.tmp`
 - [ ] At least one historical snapshot (`data/gsc/YYYY-MM-DD.jsonl`) is committed so consumers can develop against real data
 - [ ] `pnpm check` and `pnpm lint` pass
@@ -122,7 +122,7 @@ GscRow = {
 
 ```gherkin
 Scenario: Weekly snapshot on a fresh machine
-  Given GSC_SERVICE_ACCOUNT_KEY points to a valid service-account JSON
+  Given the user has run "gcloud auth application-default login" with the webmasters.readonly scope
   And GSC_SITE_URL is "sc-domain:asdlc.io"
   When I run "pnpm gsc:snapshot"
   Then a file "data/gsc/YYYY-MM-DD.jsonl" is created for today's date
@@ -157,11 +157,18 @@ Scenario: Underperforming-query filter
   Then the response contains only pages meeting all three thresholds
   And results are sorted by impressions descending
 
-Scenario: Missing credentials
-  Given GSC_SERVICE_ACCOUNT_KEY is unset
+Scenario: Missing configuration
+  Given GSC_SITE_URL is unset
   When I run "pnpm gsc:snapshot"
   Then the script exits non-zero
-  And the error message names the missing env var
+  And the error message names the missing variable
+  And no partial output is written
+
+Scenario: Missing credentials
+  Given GSC_SITE_URL is set but no Application Default Credentials are available
+  When I run "pnpm gsc:snapshot"
+  Then the script exits non-zero
+  And the error message tells the user to run "gcloud auth application-default login"
   And no partial output is written
 
 Scenario: joinPageToArticle resolves a content article

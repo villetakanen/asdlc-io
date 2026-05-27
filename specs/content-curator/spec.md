@@ -29,7 +29,7 @@ This is a read-only analytical skill. It produces a report; the human decides wh
 
 **Inputs:**
 
-- Latest snapshot from `data/gsc/` (resolved via `getLatestSnapshot()` in `src/lib/gsc/index.ts`)
+- Latest snapshot from `data/gsc/` (resolved via `getLatestSnapshot()` in `tools/gsc/index.ts`)
 - Content collections in `src/content/{concepts,patterns,practices}/`
 - Optional: a specific article path or URL to triage in isolation
 - Optional: live drill-down via the `mcp-gsc` server when the snapshot is stale
@@ -41,7 +41,7 @@ This is a read-only analytical skill. It produces a report; the human decides wh
 
 **Triage rubric (the core logic):**
 
-All thresholds live in `src/lib/curator/rubric.ts`. The values below describe the v1 defaults; the source file is the contract.
+All thresholds live in `tools/curator/rubric.ts`. The values below describe the v1 defaults; the source file is the contract.
 
 | Signal (28-day window unless noted) | Bucket | Suggested action | Weight |
 |---|---|---|---|
@@ -64,7 +64,7 @@ All thresholds live in `src/lib/curator/rubric.ts`. The values below describe th
 
 1. Load latest GSC snapshot via `loadSnapshot(getLatestSnapshot().path)`
 2. Aggregate per-page metrics for two windows: last 28 days, last 60 days, prior 60 days (61–120 days ago)
-3. Join snapshot pages to content files via `joinPageToArticle()` from `src/lib/gsc/index.ts`. Compute the inverse join (articles with no snapshot rows) for the Discoverability bucket.
+3. Join snapshot pages to content files via `joinPageToArticle()` from `tools/gsc/index.ts`. Compute the inverse join (articles with no snapshot rows) for the Discoverability bucket.
 4. Classify each article into one bucket (or "healthy — no action") using the rubric. Apply exclusion rules. Bucket precedence when multiple signals match: Polish > Upgrade > Refresh.
 5. Sort by priority. Write report to `reports/curator/YYYY-MM-DD.md`.
 
@@ -111,13 +111,13 @@ Briefly listed.
 
 - Skill: `.claude/skills/curator.md`
 - Report output: `reports/curator/YYYY-MM-DD.md`
-- Aggregation logic (testable, pure): `src/lib/curator/triage.ts`
-- Rubric thresholds and weights (single source of truth): `src/lib/curator/rubric.ts`
+- Aggregation logic (testable, pure): `tools/curator/triage.ts`
+- Rubric thresholds and weights (single source of truth): `tools/curator/rubric.ts`
 
 **Constraints:**
 
 - Curator is read-only against source content. It never edits articles directly — it reports.
-- All numeric thresholds and weights live in `src/lib/curator/rubric.ts`. No magic numbers in the skill prompt, `triage.ts`, or the report template.
+- All numeric thresholds and weights live in `tools/curator/rubric.ts`. No magic numbers in the skill prompt, `triage.ts`, or the report template.
 - Reports are committed. Historical reports drive retros on both content and the rubric itself.
 - Single-article mode uses the latest snapshot by default. The user may pass `--live` to invoke `mcp-gsc` for fresh data on that one URL; the report header records which path was used.
 
@@ -126,8 +126,8 @@ Briefly listed.
 ### Definition of Done
 
 - [ ] `.claude/skills/curator.md` exists and is invokable as `@curator`
-- [ ] `src/lib/curator/triage.ts` exports a pure function `triage(rows: GscRow[], articles: Article[], rubric: Rubric): TriageResult` with unit tests in `src/lib/curator/triage.test.ts`
-- [ ] `src/lib/curator/rubric.ts` exports all thresholds and weights named in this spec: `MIN_IMPRESSIONS_FOR_SIGNAL`, `STALE_SNAPSHOT_DAYS`, bucket-specific thresholds, bucket weights, and `confidenceMultiplier`
+- [ ] `tools/curator/triage.ts` exports a pure function `triage(rows: GscRow[], articles: Article[], rubric: Rubric): TriageResult` with unit tests in `tools/curator/triage.test.ts`
+- [ ] `tools/curator/rubric.ts` exports all thresholds and weights named in this spec: `MIN_IMPRESSIONS_FOR_SIGNAL`, `STALE_SNAPSHOT_DAYS`, bucket-specific thresholds, bucket weights, and `confidenceMultiplier`
 - [ ] Pinning tests in `rubric.test.ts` assert the v1 default values, forcing intentional updates via PR
 - [ ] Running `@curator` on the latest snapshot produces `reports/curator/YYYY-MM-DD.md` matching the template
 - [ ] The report names the snapshot file and its age in days
@@ -207,7 +207,7 @@ Scenario: Single-article drill-down with --live
   And the report header notes "data source: mcp-gsc (live)"
 
 Scenario: Rubric is version-controlled
-  Given I change a threshold in src/lib/curator/rubric.ts
+  Given I change a threshold in tools/curator/rubric.ts
   When I run pnpm test:run
   Then pinning tests in rubric.test.ts fail until updated
   Ensuring threshold changes are deliberate

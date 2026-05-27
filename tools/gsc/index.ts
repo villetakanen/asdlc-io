@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { type GscRow, gscRowSchema } from "./schema";
+import { type GscRow, gscRowSchema } from "./schema.ts";
 
 const SNAPSHOT_DIR = "data/gsc";
 const CONTENT_ROOT = "src/content";
