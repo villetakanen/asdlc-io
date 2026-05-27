@@ -9,6 +9,11 @@ dist-skills
 src/mcp/articles.json
 src/mcp/fuse-index.json
 
+# GSC integration — credentials and in-flight/raw data (committed: data/gsc/*.jsonl)
+*.gsc-key.json
+data/gsc/*.raw.json
+data/gsc/*.jsonl.tmp
+
 # Logs
 logs
 *.log
