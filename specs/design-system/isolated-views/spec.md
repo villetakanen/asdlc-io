@@ -1,3 +1,12 @@
+---
+title: "Isolated Design System Views"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-15"
+tags: []
+---
+
 # Feature: Isolated Design System Views
 
 ## Blueprint

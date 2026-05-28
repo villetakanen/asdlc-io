@@ -1,3 +1,12 @@
+---
+title: "Avionics Design System"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-15"
+tags: []
+---
+
 # Avionics Design System
 
 ## Blueprint

@@ -1,5 +1,7 @@
 # Agentic Software Development Lifecycle
 
+**Agentic Software Development is an engineering paradigm where autonomous AI agents form the architecture of labor, while humans design, govern, and optimize the flow.**
+
 For 50 years, software development has been a **Craft**: dependent on individual artisans, manual tooling, and implicit knowledge.
 
 We believe the next era of software engineering is **Industrial**.

@@ -1,3 +1,12 @@
+---
+title: "Recipes"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-04-01"
+tags: []
+---
+
 # Feature: Recipes
 
 ## Blueprint

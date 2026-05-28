@@ -1,3 +1,12 @@
+---
+title: "Homepage Structured Data"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-16"
+tags: []
+---
+
 # Feature: Homepage Structured Data
 
 ## Blueprint

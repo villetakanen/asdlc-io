@@ -17,6 +17,7 @@ relatedIds:
   - patterns/context-map
   - concepts/compound-engineering
   - patterns/compound-loop
+  - concepts/react-pattern
 publishedDate: 2026-02-21
 lastUpdated: 2026-03-18
 status: "Live"
@@ -55,6 +56,13 @@ references:
     url: "https://www.dancripe.com/ai-coding-enterprise-saas-reality-check/"
     accessed: 2026-01-24
     annotation: "Critique of unbounded Ralph Loop usage: 'Who the hell wants to maintain 100,000,000 lines of crappy code?'"
+  - type: "paper"
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    url: "https://arxiv.org/abs/2210.03629"
+    author: "Shunyu Yao et al."
+    published: 2022-10-06
+    accessed: 2026-05-28
+    annotation: "Introduces the ReAct paradigm of interleaving reasoning and acting at the prompting level."
 ---
 
 ## Definition
@@ -201,14 +209,14 @@ This pattern limits context bloat by isolating the action space. The fast sub-ag
 
 ## OODA Loop Mapping
 
-The Ralph Loop is [OODA](/concepts/ooda-loop) mechanized:
+The Ralph Loop is [OODA](/concepts/ooda-loop) mechanized. Specifically, it acts as an outer-loop wrapper around the inner prompting loop: while a prompting pattern like [ReAct](/concepts/react-pattern) handles the inner "Thought-Action-Observation" steps at the inference layer, the Ralph Loop wraps this cycle in a persistent harness at the OS and repository layers:
 
-| OODA Phase | Ralph Loop Implementation |
-|------------|--------------------------|
-| **Observe** | Read codebase state, error logs, failed builds |
-| **Orient** | Marshal context, interpret errors, read progress file |
-| **Decide** | Formulate specific plan for next iteration |
-| **Act** | Modify files, run tests, commit changes |
+| OODA Phase | Inner ReAct Loop | Outer Ralph Loop Implementation |
+|------------|-------------------|---------------------------------|
+| **Observe** | Observation (tool response) | Read codebase state, error logs, failed builds |
+| **Orient** | Thought (reasoning) | Marshal context, interpret errors, read progress file |
+| **Decide** | Thought (planning) | Formulate specific plan for next iteration |
+| **Act** | Action (tool use) | Modify files, run tests, commit changes |
 
 The cycle repeats until external verification passes.
 
