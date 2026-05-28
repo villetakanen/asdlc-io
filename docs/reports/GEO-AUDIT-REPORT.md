@@ -1,142 +1,135 @@
 # GEO Audit Report: ASDLC.io
 
-**Audit Date:** 2026-03-27
+**Audit Date:** 2026-05-28
 **Site:** https://asdlc.io
 **Site Type:** Publisher / Knowledge Base (Static Astro 5.x on Netlify)
-**Content Files Analyzed:** 63 (53 Live/Experimental exposed via MCP)
-**Collections:** Concepts (32), Patterns (16), Practices (15)
-**Total Words:** 55,668 (avg 883/article)
+**Content Files Analyzed:** 72 (37 concepts, 18 patterns, 14 practices, 3 recipes)
+**Collections:** Concepts, Patterns, Practices, Recipes
 
 ---
 
 ## Executive Summary
 
-**Overall GEO Score: 76/100 (Good)**
+**Overall GEO Score: 81/100 (Good)**
 
-ASDLC.io has a strong GEO foundation: SSG rendering, explicit AI crawler whitelisting, a live MCP server, comprehensive SEO metadata, and high-quality original content with 84% citation coverage. The three biggest gaps are: (1) missing BreadcrumbList and index-page schema markup, (2) relatedIds not exposed via MCP (breaking knowledge graph navigation), and (3) no individual author attribution (weakening E-E-A-T). Fixing these three would push the score to 85+.
+ASDLC.io has a strong GEO foundation: explicit AI-crawler allowances, a well-formed `llms.txt`, an MCP server, an `Accept: text/markdown` content-negotiation layer, dense cross-referencing, and rich external citations on flagship articles. The biggest unrealized gains are structural — missing `BreadcrumbList`, no `FAQPage`/`HowTo` exposure of inherently Q&A/step-shaped content, generic `Organization` author instead of a named `Person`, no `lastmod` in the sitemap, and no RSS/Atom feed. Closing these gaps would push the site solidly into the 90+ range.
 
 ### Score Breakdown
 
-| Category | Score | Weight | Weighted Score |
+| Category | Score | Weight | Weighted |
 |---|---|---|---|
 | AI Citability | 82/100 | 30% | 24.6 |
-| Content E-E-A-T | 72/100 | 25% | 18.0 |
-| Technical GEO | 84/100 | 15% | 12.6 |
-| Schema & Structured Data | 62/100 | 15% | 9.3 |
-| Knowledge Base & MCP | 78/100 | 15% | 11.7 |
-| **Overall GEO Score** | | | **76.2/100** |
+| Content E-E-A-T | 75/100 | 25% | 18.75 |
+| Technical GEO | 88/100 | 15% | 13.2 |
+| Schema & Structured Data | 70/100 | 15% | 10.5 |
+| Knowledge Base & MCP | 90/100 | 15% | 13.5 |
+| **Overall GEO Score** | | | **80.55 → 81** |
 
 ---
 
 ## Critical Issues (Fix Immediately)
 
-### 1. Collection Index Pages Have Zero Structured Data
-**Files:** `src/pages/concepts/index.astro`, `src/pages/patterns/index.astro`, `src/pages/practices/index.astro`
-**Impact:** Three high-traffic hub pages have no JSON-LD. Search engines cannot parse collection structure.
-**Fix:** Inject `ItemList` schema listing all articles with position, name, url, and description.
-
-### 2. relatedIds Not Exposed in MCP articles.json
-**File:** `scripts/generate-mcp-index.mjs` (line ~48)
-**Impact:** MCP tools cannot expose the knowledge graph. Agents see disconnected articles instead of a curated network. 61/63 articles have relatedIds in frontmatter, but the index generation script drops them.
-**Fix:** Add `relatedIds: data.relatedIds || []` to the article push in generate-mcp-index.mjs.
-
-### 3. No BreadcrumbList Schema on Article Pages
-**Files:** `src/pages/concepts/[...slug].astro`, `src/pages/patterns/[...slug].astro`, `src/pages/practices/[...slug].astro`
-**Impact:** Missing breadcrumb rich snippets in search results. Hierarchy (Home > Collection > Article) not machine-readable.
-**Fix:** Add BreadcrumbList JSON-LD to article pages or create a Breadcrumb component.
+None. No blockers detected — AI crawlers are allowed, every article emits valid JSON-LD, sitemap and `llms.txt` are present, and the MCP server is live.
 
 ---
 
 ## High Priority Issues
 
-### 4. No Individual Author Attribution
-**File:** `src/components/StructuredData.astro` (line 38)
-**Impact:** All articles attribute author as "ASDLC.io Contributors" — an opaque collective. E-E-A-T requires identifiable expertise. No about page, team page, or contributor bios exist.
-**Fix:** Create an about/team page. Add author field to `articleSchema` in `src/content/config.ts`. At minimum, list Ville Takanen as primary author with credentials.
+### H1. Author attribution is generic Organization, not a named Person
+- **Where:** `src/components/StructuredData.astro:36-40`
+- **Issue:** All `TechArticle`/`Article` JSON-LD uses `author: { "@type": "Organization", name: "ASDLC.io Contributors" }`. Schema.org and Google's E-E-A-T signals strongly favor a named `Person` author with `url`/`sameAs`. The author meta tag (`src/components/SEOMetadata.astro:25`) carries the same generic label.
+- **Fix:** Add an `author` field to `articleSchema` (optional, defaulting to `Ville Takanen` for current content); map it to a `Person` with `sameAs: ["https://villetakanen.com", "https://github.com/villetakanen", ...]`. Keep `publisher` as the ASDLC.io Organization.
 
-### 5. llms.txt Content-Type Header Missing
-**File:** `netlify.toml` (no headers section for llms.txt)
-**Impact:** `public/llms.txt` exists and builds to `dist/llms.txt`, but live fetch returned homepage content instead of the file — likely a Content-Type or redirect issue.
-**Fix:** Add to `netlify.toml`:
-```toml
-[[headers]]
-  for = "/llms.txt"
-  [headers.values]
-    Content-Type = "text/plain; charset=utf-8"
-```
+### H2. No `BreadcrumbList` schema on collection or article pages
+- **Where:** Article slug pages and `src/pages/{concepts,patterns,practices}/index.astro`
+- **Issue:** AI engines use breadcrumb signals to understand site hierarchy and surface contextual citations. ASDLC.io has a clear three-tier structure (Home → Collection → Article) but exposes no `BreadcrumbList` JSON-LD.
+- **Fix:** Extend `StructuredData.astro` to accept `type: "BreadcrumbList"` and inject it on every article page from `Astro.url.pathname`.
 
-### 6. 9 Core Articles Have Zero External References
-**Articles:** agentic-sdlc, experience-modeling, spec-reversing, the-pbi, adversarial-code-review (pattern), adversarial-requirement-review, constitutional-review-implementation, context-mapping, context-offloading
-**Impact:** Foundational articles (especially agentic-sdlc, the framework definition) lack citations, reducing credibility.
-**Fix:** Add 3-5 references per article. Priority: agentic-sdlc and the-pbi as core framework articles.
+### H3. Sitemap has no `<lastmod>` entries
+- **Where:** `astro.config.mjs:10` (`sitemap()` integration uses defaults; 101 entries, zero `lastmod`)
+- **Issue:** Crawlers (including AI ones that respect freshness) use `lastmod` to prioritize re-crawls. Every article already has a Zod-validated `lastUpdated` field — that data exists but isn't being plumbed through.
+- **Fix:** Configure `@astrojs/sitemap` with a `serialize` function or `customPages` that pulls `lastUpdated` from each content entry and emits it as `lastmod`.
 
-### 7. No FAQ Sections in Content
-**Impact:** Zero articles have explicit FAQ/Q&A blocks. This misses FAQ rich snippet opportunities and reduces AI answer extraction quality.
-**Fix:** Add 3-5 FAQ items to high-value articles: agentic-sdlc, context-engineering, vibe-coding, agents-md-spec, levels-of-autonomy.
+### H4. Practices content is shaped like `HowTo` but emits `TechArticle`
+- **Where:** `src/content/practices/*.md`, `src/pages/practices/[...slug].astro`
+- **Issue:** Articles like `practices/living-specs.md` and `practices/adr-authoring.md` are step-by-step procedural guides — the canonical `HowTo` schema shape. AI engines preferentially cite `HowTo` for procedural queries.
+- **Fix:** Add a `HowTo` JSON-LD variant in `StructuredData.astro`. Either auto-emit it for the `practices` collection, or add an optional `schemaType: "HowTo"` field to `articleSchema` and populate `step` items by parsing numbered H3s from the body (or by adding a `steps` frontmatter field on procedural practices).
 
 ---
 
 ## Medium Priority Issues
 
-### 8. Missing mainEntityOfPage, isPartOf, inLanguage in TechArticle Schema
-**File:** `src/components/StructuredData.astro`
-**Impact:** TechArticle schema has 11/20 recommended fields (55% completeness). Missing properties reduce knowledge graph connectivity.
-**Fix:** Add `mainEntityOfPage: { "@id": data.url }`, `isPartOf: { "@type": "WebSite", name: "ASDLC.io" }`, `inLanguage: "en"`.
+### M1. FAQ-shaped content lacks `FAQPage` schema
+- **Where:** Articles that open with a "Definition" H2 followed by Q&A-style H2s (e.g., `concepts/agentic-sdlc.md`, `concepts/spec-driven-development.md`, `concepts/levels-of-autonomy.md`).
+- **Fix:** Add an optional `faq: [{q, a}]` frontmatter field; when present, emit a `FAQPage` JSON-LD block alongside the existing `TechArticle`. Start with the 5-10 most-trafficked concept articles.
 
-### 9. No HowTo Schema for Practice Articles
-**File:** `src/pages/practices/[...slug].astro`
-**Impact:** Practice articles are procedural (step-by-step processes) but lack HowTo schema. Missed rich snippet opportunity.
-**Fix:** Add HowTo JSON-LD to practice pages, mapping article steps to HowTo schema structure.
+### M2. No RSS/Atom feed
+- **Where:** `src/pages/` (no `rss.xml.ts` or `feed.xml.ts`)
+- **Issue:** Feeds remain a meaningful discovery channel for AI content aggregators and Perplexity-style trackers, and they signal active publishing cadence.
+- **Fix:** Add `@astrojs/rss` and emit `/rss.xml` listing all `Live` and `Experimental` articles, ordered by `lastUpdated` desc. Link it from `<head>` in `BaseLayout.astro` via `<link rel="alternate" type="application/rss+xml">`.
 
-### 10. Schema References Undefined Fields
-**Files:** `src/components/StructuredData.astro` (lines 55-59), `src/content/config.ts`
-**Impact:** StructuredData references `proficiencyLevel` and `complexity` which don't exist in articleSchema. Values silently resolve to undefined.
-**Fix:** Either add these fields to articleSchema or remove the dead code from StructuredData.
+### M3. `TechArticle` schema omits `mainEntityOfPage` and `inLanguage`
+- **Where:** `src/components/StructuredData.astro:31-51`
+- **Fix:** Add `mainEntityOfPage: { "@type": "WebPage", "@id": data.url }` and `inLanguage: "en"`. Small payload, measurable AI citation lift.
 
-### 11. No RSS/Atom Feed
-**Impact:** No syndication mechanism for content updates. Lower priority given MCP-first approach, but RSS helps traditional aggregators and some AI training pipelines.
-**Fix:** Add `@astrojs/rss` integration.
+### M4. `WebSite` schema is missing `potentialAction` (SearchAction)
+- **Where:** `src/pages/index.astro:23-27`
+- **Issue:** Google and AI engines use `SearchAction` to surface sitelinks search boxes and to understand that the KB is queryable.
+- **Fix:** Either point at the MCP search endpoint or add a `/search?q={search_term_string}` route and emit the `SearchAction`. Even pointing at an internal Fuse-backed search page improves the signal.
 
-### 12. Only 11% of Articles Use longTitle
-**Impact:** 6/53 articles have longTitle (the SEO-optimized H1). Most articles use the 40-char `title` as both card label and page heading.
-**Fix:** Add longTitle to remaining articles for better search result titles.
+### M5. Schema generator references stale schema fields
+- **Where:** `src/components/StructuredData.astro:35` (`data.definition`), `:55-57` (`proficiencyLevel`, `maturity`, `complexity`)
+- **Issue:** These fields don't exist in the current `articleSchema` (`src/content/config.ts:28-42`) — they are dead branches. Not harmful, but they make the schema generator misleading and they prevent the team from noticing missing fields.
+- **Fix:** Remove dead branches; if `maturity`/`complexity` would be valuable, add them to `articleSchema` and surface them in the JSON-LD intentionally.
+
+### M6. `event-modeling.md` is missing `relatedIds`
+- **Where:** `src/content/concepts/event-modeling.md`
+- **Issue:** Only article in the KB without cross-references — breaks the bidirectional-link invariant called out in `CLAUDE.md`.
+- **Fix:** Add `relatedIds` linking to at least `concepts/behavior-driven-development`, `concepts/spec-driven-development`, `patterns/the-spec`.
+
+### M7. `status` field has inconsistent YAML quoting
+- **Where:** Across `src/content/**/*.md` — 33 `status: "Live"`, 8 `status: Live`; 21 `"Experimental"`, 2 unquoted; 4 `"Draft"`, 1 unquoted.
+- **Issue:** Cosmetic (Zod parses both), but it suggests the linter isn't enforcing a single style, which makes spec-driven authoring harder for agents.
+- **Fix:** Run `pnpm lint:specs` (or extend it) to normalize all `status:` values to the quoted form, then add a lint rule.
 
 ---
 
 ## Low Priority Issues
 
-### 13. Missing Explicit Cache Headers
-**File:** `netlify.toml`
-**Impact:** Using Netlify defaults. Explicit cache headers would improve crawler efficiency.
+### L1. Homepage `description` differs from default in `SEOMetadata`
+- `src/pages/index.astro:13` says "The playbook for industrializing software engineering…" while `src/components/SEOMetadata.astro:13` default is "Agentic Software Development Life Cycle - A knowledge base…". Pick one canonical phrasing.
 
-### 14. No Organization sameAs Links
-**File:** `src/components/StructuredData.astro`
-**Impact:** Organization schema lacks social profile links (GitHub, etc.).
+### L2. `og:image` is the SVG logo, not a per-article card
+- `src/components/SEOMetadata.astro:15` — every article shares `/asdlc.png`. A per-article OG card (even a templated SVG with the title) materially improves social and AI surfacing.
 
-### 15. Vibe Coding Article Failure Modes Not Numbered
-**File:** `src/content/concepts/vibe-coding.md` (lines 87-138)
-**Impact:** Dense paragraph format reduces AI extractability. Numbered list would improve citability.
+### L3. No `article:published_time` / `article:modified_time` OG tags
+- Article pages don't emit these properties when `type="article"`. Trivial addition; helps Facebook, LinkedIn, and some AI summarizers detect freshness.
 
-### 16. No Bidirectionality Validation Script
-**Impact:** relatedIds should be bidirectional (if A links B, B links A). No automated check exists.
+### L4. MCP `articles.json` may drift from content if `pnpm build:mcp-index` isn't a build prerequisite
+- Verify `pnpm build` re-runs `build:mcp-index` (it appears to be a separate command in `package.json`). If not, drift between the KB and MCP responses is possible.
+
+### L5. `recipes` collection isn't in `llms.txt`
+- `public/llms.txt` enumerates Concepts/Patterns/Practices but not Recipes. Add a Recipes line so AI clients discover them.
+
+### L6. Mermaid diagrams missing `alt` text beyond "Mermaid Diagram"
+- E.g., `patterns/the-spec.md:184` — `<img … alt="Mermaid Diagram" />`. Replace with descriptive alt (e.g., "Spec → multiple PBIs → Feature Assembly → Gate → Migration").
+
+### L7. No `X-Robots-Tag` header to reinforce `index, follow`
+- Optional Netlify header to belt-and-braces the `robots` meta tag.
 
 ---
 
 ## Source vs. Rendered Discrepancies
 
-| Check | Source | Rendered | Status |
-|---|---|---|---|
-| Homepage JSON-LD (Organization + WebSite) | `src/pages/index.astro` | Both blocks present | OK |
-| Article TechArticle JSON-LD | `src/pages/concepts/[...slug].astro` | Present with correct fields | OK |
-| OG Tags | `src/components/SEOMetadata.astro` | Present (confirmed via rendered HTML) | OK |
-| Canonical URLs | SEOMetadata generates dynamically | Confirmed on `/patterns/the-spec/` | OK |
-| `llms.txt` | `public/llms.txt` (41 lines) | **Returned homepage content, not file** | DISCREPANCY |
-| Sitemap | `@astrojs/sitemap` configured | `sitemap-index.xml` present, points to `sitemap-0.xml` | OK |
-| `robots.txt` | `public/robots.txt` (27 lines) | All AI crawlers explicitly allowed | OK |
-| Semantic HTML `<main>` | `BaseLayout.astro` line 32 | Present | OK |
-| Semantic HTML `<article>` | Article pages use `<article>` tag | Confirmed on `/patterns/the-spec/` | OK |
+**No discrepancies detected.** Live curl spot-checks confirm:
 
-**Key Discrepancy:** `llms.txt` exists in source and builds correctly, but live site may not serve it as `text/plain`. Needs Netlify headers fix.
+- `GET https://asdlc.io/concepts/agentic-sdlc/` → `<script type="application/ld+json">` with `"@type": "TechArticle"` present (matches `src/pages/concepts/[...slug].astro:42`).
+- `GET https://asdlc.io/` → two JSON-LD blocks: `Organization` and `WebSite` (matches `src/pages/index.astro:16-27`).
+- `GET https://asdlc.io/robots.txt` → matches `public/robots.txt` verbatim.
+- `GET https://asdlc.io/sitemap-index.xml` → references `/sitemap-0.xml` (101 URLs).
+- `GET https://asdlc.io/llms.txt` → matches `public/llms.txt`.
+
+Note: the initial `WebFetch` pass reported "NO JSON-LD FOUND" on article pages. This was a `WebFetch` summarization artifact, not a real absence — `curl` confirmed JSON-LD is rendered. Trust raw HTTP fetches over LLM-summarized WebFetch results when validating schema markup.
 
 ---
 
@@ -144,181 +137,144 @@ ASDLC.io has a strong GEO foundation: SSG rendering, explicit AI crawler whiteli
 
 ### AI Citability (82/100)
 
-**Strengths:**
-- Clear definition blocks at the top of most articles (88% start with explicit definitions)
-- Strong use of comparison tables (State vs Delta in The Spec, L1-L5 in Levels of Autonomy, Constitution vs Spec)
-- Rich blockquotes with attribution (Martin Fowler, Linus Torvalds, Boris Cherny, Anthropic research)
-- Statistics-rich content (Anthropic 80-90%, Google 30%, Forrester 75% predictions)
-- Structured H2/H3 hierarchy navigable by AI
+**Strengths**
+- Articles open with a `## Definition` H2 — a direct answer block AI can extract whole.
+- Comparison tables (e.g., `patterns/the-spec.md` State vs Delta table) and Gherkin code blocks give AI well-bounded, quotable units.
+- Cross-references are dense and bidirectional. An AI following one link rarely hits a dead end.
+- `Accept: text/markdown` content negotiation on `/concepts/:slug` etc. delivers clean markdown to agents (`netlify.toml`) — outstanding GEO move.
 
-**Weaknesses:**
-- Zero FAQ/Q&A sections across all articles
-- Some failure mode lists use paragraph format instead of numbered lists (vibe-coding)
-- Definitions occasionally run 3-4 sentences when 1-2 would be more extractable
-- No "One-Liner" answer blocks for quick AI extraction
+**Gaps**
+- Several articles repeat their `## Relationship to Other Patterns` section twice (e.g., `patterns/the-spec.md:210` and `:240`) — duplicate H2s confuse extractive AI.
+- No explicit Q&A sections. Even one `## Common Questions` H2 with H3 questions on flagship articles would significantly improve quote-pull rates.
+- Several articles end with `## ASDLC Usage` that lists links without context — these read as link dumps to AI.
 
-**Top citability articles:** agents-md-spec (89), context-engineering (88), levels-of-autonomy (87), the-spec (87)
-**Lowest citability:** vibe-coding (79), ralph-loop (83)
+**Sample passage check** — `concepts/agentic-sdlc.md` Definition (lines 27-33): self-contained, ~80 words, quotes Ville Takanen, defines the core term. Near-ideal AI citation block.
 
-### Content E-E-A-T (72/100)
+### Content E-E-A-T (75/100)
 
-**Strengths:**
-- 84% of articles cite external sources (53/63)
-- Original frameworks: Triple Debt Model (arxiv paper with Kent Beck review), Agentic Double Diamond
-- Active maintenance: 80%+ articles updated March 2026
-- 97% cross-referencing (61/63 have relatedIds)
-- Clear governance: status taxonomy (Live/Experimental/Draft/Proposed/Deprecated)
+**Strengths**
+- Average article ~1,200-2,000 words — well above the GEO-relevant depth threshold.
+- Reference density is excellent on flagship articles: `patterns/the-spec.md` cites 8 external sources (Martraire book, Anthropic paper, Martin Fowler, Kent Beck, Birgitta Böckeler, etc.), each with `annotation`, `accessed`, and `published` dates.
+- `lastUpdated` is required by the schema and populated everywhere; `publishedDate` exists on ~60% of articles.
+- Original framing (the industrial / cybernetic / triple-debt models) is novel synthesis, not aggregation.
 
-**Weaknesses:**
-- No individual author attribution (all "ASDLC.io Contributors")
-- No about/team page with credentials
-- No institutional backing or third-party endorsements
-- 72% of references are websites/blogs; only 19% peer-reviewed papers
-- AI contribution transparency unclear
+**Gaps**
+- No named author. Schema lists `ASDLC.io Contributors` (Organization). For a single-voice publication owned by Ville Takanen, this under-claims authorship.
+- No `/about` or `/authors` page surfacing credentials (Futurice tenure, prior publications, conference talks). Owner is currently invisible to AI.
+- No `sameAs` profile linkage (LinkedIn, GitHub, personal blog, X/Twitter, ORCID).
+- Citation depth is uneven — flagship articles have 8 references, but roughly half of practices and concepts have zero `references`.
 
-### Technical GEO (84/100)
+### Technical GEO (88/100)
 
-**Strengths:**
-- SSG rendering (optimal for crawlers) — 10/10
-- All AI crawlers explicitly whitelisted in robots.txt — 9/10
-- MCP server exposed at /mcp with 3 tools — 10/10
-- Comprehensive meta tags (OG, Twitter Cards, canonical, robots) — 10/10
-- Sitemap properly configured — 8/10
+**Strengths**
+- `robots.txt` explicitly allows `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `CCBot`, `Google-Extended` — best-practice white-listing.
+- `llms.txt` exists, follows the emerging spec (`# Site` → `>` description → `## Section` blocks with linked items), and is curated rather than dumped.
+- Astro static SSG — no JS-only rendering. Everything an AI crawler needs is in the initial HTML.
+- MCP edge function at `/mcp` exposes `list_articles`, `get_article`, `search_knowledge_base` — direct agent consumption channel.
+- `Accept: text/markdown` redirects (`netlify.toml`) serve raw markdown to agents — rare and high-value.
+- Downloadable skill bundle (`/asdlc-skill.zip`) for air-gapped agents.
 
-**Weaknesses:**
-- llms.txt serving issue (Content-Type header needed) — 6/10
-- No RSS/Atom feed — 0/10
-- No explicit cache headers in netlify.toml — 5/10
+**Gaps**
+- No `lastmod` in sitemap (see H3).
+- No RSS/Atom (see M2).
+- No favicon variants beyond `/asdlc.svg`.
+- `og:image` is logo-only, not per-article (L2).
 
-### Schema & Structured Data (62/100)
+### Schema & Structured Data (70/100)
 
-**Strengths:**
-- TechArticle JSON-LD on all 63 article pages
-- Organization + WebSite schema on homepage
-- OG tags and Twitter Cards on all pages
-- Canonical URLs implemented
+**Catalog (rendered, confirmed via curl):**
+- Homepage: `Organization`, `WebSite` ✅
+- `/concepts/:slug`, `/patterns/:slug`, `/practices/:slug`: `TechArticle` ✅
+- `/recipes/:id`: `TechArticle` (via the same component)
 
-**Weaknesses:**
-- No BreadcrumbList schema (0% breadcrumb coverage)
-- No FAQPage or HowTo schema
-- No ItemList on collection index pages (3 hub pages with zero schema)
-- TechArticle missing mainEntityOfPage, isPartOf, inLanguage (55% field completeness)
-- Dead code references undefined schema fields (proficiencyLevel, complexity)
+**Field completeness on `TechArticle`:**
+- `headline` ✅, `description` ✅, `author` (Organization) ⚠️, `publisher` ✅, `datePublished` ✅, `dateModified` ✅, `keywords` ✅, `url` ✅
+- Missing: `image`, `mainEntityOfPage`, `inLanguage`, `articleSection` (could map to collection name), `wordCount`
 
-### Knowledge Base & MCP (78/100)
+**Missing schema opportunities:**
+- `BreadcrumbList` everywhere (H2)
+- `HowTo` for practices (H4)
+- `FAQPage` for definition-led concepts (M1)
+- `Person` author (H1)
+- `SearchAction` in `WebSite` (M4)
 
-**Strengths:**
-- MCP server production-ready with 3 well-defined tools — 92/100
-- Content service with Fuse.js fuzzy search — 88/100
-- llms.txt well-structured with machine access section — 90/100
-- 100% valid kebab-case slugs, avg 16.5 chars — 89/100
-- Downloadable skill bundle with manifest — 85/100
+**Dead branches in `StructuredData.astro`** referencing nonexistent fields — see M5.
 
-**Weaknesses:**
-- relatedIds dropped from articles.json (CRITICAL) — 28/100 relationship density
-- 9 articles with zero references — 79/100 reference coverage
-- No MCP tool for relationship discovery
-- Search results don't expose relevance scores
+### Knowledge Base & MCP (90/100)
+
+**Strengths**
+- MCP server is live at `/mcp` with the three canonical tools.
+- `articles.json` + `fuse-index.json` provide both deterministic listing and fuzzy search.
+- `relatedIds` populated on 71/72 articles — relationship graph is denser than most KB sites.
+- Downloadable skill bundle is a distinctive distribution channel; few KBs do this.
+- The `.md` URL convention (`/patterns/the-spec.md`) gives agents a stable, canonical retrieval path that matches `llms.txt` links.
+
+**Gaps**
+- Recipes not enumerated in `llms.txt` (L5).
+- No machine-readable graph export (e.g., `/graph.json` with nodes + edges) — would let agents reason about the KB topology without crawling.
+- Verify that `pnpm build` always rebuilds the MCP index (L4).
 
 ---
 
 ## Quick Wins (Implement This Week)
 
-1. **Add `relatedIds` to MCP index** — `scripts/generate-mcp-index.mjs` line ~48. Add `relatedIds: data.relatedIds || []`. Rebuild with `pnpm build:mcp-index`. (30 min, +10 MCP score)
-
-2. **Fix llms.txt serving** — Add `[[headers]]` block to `netlify.toml` for `/llms.txt` with `Content-Type: text/plain; charset=utf-8`. (5 min, +4 Technical score)
-
-3. **Add BreadcrumbList schema** — Create `BreadcrumbList.astro` component, inject in article pages. Three-level: Home > Collection > Article. (1 hour, +8 Schema score)
-
-4. **Add ItemList schema to index pages** — Inject in `src/pages/concepts/index.astro`, `patterns/index.astro`, `practices/index.astro`. (1 hour, +5 Schema score)
-
-5. **Add mainEntityOfPage + isPartOf + inLanguage** to StructuredData.astro TechArticle block. (15 min, +3 Schema score)
-
-## 30-Day Action Plan
-
-### Week 1: Schema & Infrastructure Fixes
-- [ ] Add BreadcrumbList schema component (`src/components/BreadcrumbList.astro`)
-- [ ] Add ItemList schema to collection index pages
-- [ ] Add mainEntityOfPage, isPartOf, inLanguage to TechArticle
-- [ ] Fix llms.txt Content-Type header in `netlify.toml`
-- [ ] Add relatedIds to MCP index generation script
-- [ ] Remove dead proficiencyLevel/complexity references from StructuredData.astro
-
-### Week 2: Content Credibility
-- [ ] Create about/team page with author credentials
-- [ ] Add author field to articleSchema in `src/content/config.ts`
-- [ ] Add references to 9 orphaned articles (priority: agentic-sdlc, the-pbi)
-- [ ] Add longTitle to 10 highest-traffic articles
-
-### Week 3: AI Citability Boost
-- [ ] Add FAQ sections to 5 key articles (agentic-sdlc, context-engineering, vibe-coding, agents-md-spec, levels-of-autonomy)
-- [ ] Add FAQPage schema for articles with FAQ sections
-- [ ] Number failure mode lists in vibe-coding, ralph-loop
-- [ ] Add HowTo schema variant for practice articles
-
-### Week 4: Polish & Validation
-- [ ] Implement RSS/Atom feed (`@astrojs/rss`)
-- [ ] Add bidirectionality validation script for relatedIds
-- [ ] Add explicit cache headers to netlify.toml
-- [ ] Add Organization sameAs links (GitHub)
-- [ ] Run full GEO re-audit to measure improvement
+1. **Add `lastmod` to sitemap** — configure `@astrojs/sitemap` with a `serialize` that reads `lastUpdated` from each content entry. Touches `astro.config.mjs`. (H3)
+2. **Add `Person` author** — extend `articleSchema` with optional `author` (default `"Ville Takanen"`), update `StructuredData.astro` to emit `Person` with `sameAs` links. Update `SEOMetadata.astro` `<meta name="author">` accordingly. (H1)
+3. **Add `BreadcrumbList`** — extend `StructuredData.astro` with a `BreadcrumbList` variant; render it from `src/pages/{concepts,patterns,practices}/[...slug].astro` using `Astro.url.pathname`. (H2)
+4. **Add `mainEntityOfPage` + `inLanguage` to `TechArticle`** — 3-line change in `src/components/StructuredData.astro:31-51`. (M3)
+5. **Remove dead schema branches** referencing `data.definition`, `data.proficiencyLevel`, `data.maturity`, `data.complexity` in `src/components/StructuredData.astro:35,55-57`. (M5)
+6. **Add `recipes` to `llms.txt`** — one-line addition under `## Core Content` in `public/llms.txt`. (L5)
+7. **Fix `event-modeling.md` `relatedIds`** — restore bidirectional links. (M6)
 
 ---
 
-## Appendix: Content Analyzed (Live + Experimental)
+## 30-Day Action Plan
 
-| Collection | Article | Status | GEO Issues |
+### Week 1: Schema & Freshness Foundation
+- [ ] (H3) Configure `@astrojs/sitemap` to emit `lastmod` from `lastUpdated` — `astro.config.mjs`
+- [ ] (H1) Add `Person` author to `articleSchema` and `StructuredData.astro` — `src/content/config.ts`, `src/components/StructuredData.astro`, `src/components/SEOMetadata.astro`
+- [ ] (H2) Implement `BreadcrumbList` JSON-LD on all article and collection index pages
+- [ ] (M3) Add `mainEntityOfPage`, `inLanguage`, `articleSection` to `TechArticle` output
+- [ ] (M5) Remove dead schema branches; verify with `pnpm check`
+
+### Week 2: HowTo & FAQ Schema
+- [ ] (H4) Add `HowTo` variant to `StructuredData.astro`; either auto-emit for `practices/*` or gate on `schemaType` frontmatter field. Parse numbered H3s or accept `steps` array.
+- [ ] (M1) Add optional `faq: [{q, a}]` frontmatter; pilot on 5 flagship concept articles (`agentic-sdlc`, `spec-driven-development`, `context-engineering`, `levels-of-autonomy`, `model-context-protocol`)
+- [ ] (M4) Add `SearchAction` to `WebSite` schema in `src/pages/index.astro`
+- [ ] (L3) Add `article:published_time` / `article:modified_time` OG tags when `type="article"`
+
+### Week 3: Discovery & Distribution
+- [ ] (M2) Install `@astrojs/rss`, emit `/rss.xml`, link from `BaseLayout.astro`
+- [ ] (L5) Add Recipes section to `public/llms.txt`
+- [ ] (L4) Wire `pnpm build:mcp-index` into `pnpm build` if not already; add CI assertion that the index matches content
+- [ ] (L2) Add per-article OG image generator (templated SVG or Satori) at `/og/[slug].png`
+- [ ] (M6) Add `relatedIds` to `concepts/event-modeling.md`
+
+### Week 4: E-E-A-T & Content Polish
+- [ ] Create `/about` page with named-author bio, credentials, `sameAs` profile links
+- [ ] (M7) Normalize `status:` YAML quoting across all content; add `pnpm lint:specs` rule
+- [ ] (L6) Audit all `alt="Mermaid Diagram"` instances; replace with descriptive alt text
+- [ ] (L1) Reconcile homepage description and `SEOMetadata` default to a single canonical phrasing
+- [ ] Backfill `references` on concept and practice articles with citation count < 3
+- [ ] Audit and deduplicate the repeated `## Relationship to Other Patterns` H2s (e.g., `patterns/the-spec.md`)
+
+---
+
+## Appendix: Content Analyzed
+
+| Collection | Count | Status Mix | Notes |
 |---|---|---|---|
-| concepts | 4d-framework | Live | 0 |
-| concepts | agentic-sdlc | Live | 2 (no references, no FAQ) |
-| concepts | ai-software-factory | Experimental | 0 |
-| concepts | architecture-decision-record | Live | 0 |
-| concepts | behavior-driven-development | Live | 0 |
-| concepts | context-anchoring | Live | 0 |
-| concepts | context-engineering | Live | 1 (no FAQ) |
-| concepts | digital-twins | Experimental | 0 |
-| concepts | event-modeling | Experimental | 0 |
-| concepts | extreme-programming | Live | 0 |
-| concepts | feedback-loop-compression | Experimental | 0 |
-| concepts | gherkin | Live | 0 |
-| concepts | learning-loop | Live | 0 |
-| concepts | levels-of-autonomy | Live | 1 (no FAQ) |
-| concepts | mermaid | Live | 0 |
-| concepts | model-driven-development | Live | 0 |
-| concepts | ooda-loop | Live | 0 |
-| concepts | product-requirement-prompt | Experimental | 0 |
-| concepts | product-thinking | Experimental | 0 |
-| concepts | production-readiness-gap | Experimental | 0 |
-| concepts | provenance | Experimental | 0 |
-| concepts | request-for-comments | Live | 0 |
-| concepts | spec-driven-development | Live | 1 (no FAQ) |
-| concepts | triple-debt-model | Experimental | 0 |
-| concepts | vibe-coding | Experimental | 2 (no FAQ, unnumbered failure modes) |
-| concepts | yaml | Live | 0 |
-| patterns | adversarial-code-review | Live | 1 (no references) |
-| patterns | agent-constitution | Live | 1 (no FAQ) |
-| patterns | agent-optimization-loop | Experimental | 0 |
-| patterns | agentic-double-diamond | Experimental | 0 |
-| patterns | constitutional-review | Live | 0 |
-| patterns | context-gates | Experimental | 0 |
-| patterns | context-map | Experimental | 0 |
-| patterns | experience-modeling | Live | 1 (no references) |
-| patterns | model-routing | Live | 0 |
-| patterns | product-vision | Live | 0 |
-| patterns | ralph-loop | Live | 1 (dense sections) |
-| patterns | spec-reversing | Experimental | 1 (no references) |
-| patterns | the-adr | Live | 0 |
-| patterns | the-pbi | Live | 1 (no references) |
-| patterns | the-spec | Live | 0 |
-| practices | adr-authoring | Live | 0 |
-| practices | adversarial-code-review | Live | 1 (no references) |
-| practices | adversarial-requirement-review | Experimental | 1 (no references) |
-| practices | agent-personas | Live | 0 |
-| practices | agents-md-spec | Live | 0 |
-| practices | constitutional-review-implementation | Experimental | 1 (no references) |
-| practices | context-mapping | Experimental | 1 (no references) |
-| practices | context-offloading | Experimental | 1 (no references) |
-| practices | living-specs | Experimental | 0 |
-| practices | micro-commits | Live | 0 |
-| practices | pbi-authoring | Live | 0 |
-| practices | workflow-as-code | Experimental | 0 |
+| concepts | 37 | Live + Experimental dominant | `event-modeling` missing `relatedIds` (M6) |
+| patterns | 18 | Live + Experimental | `the-spec` has duplicate `## Relationship` H2 |
+| practices | 14 | Live-heavy | Best candidates for `HowTo` schema (H4) |
+| recipes | 3 | Live | Not enumerated in `llms.txt` (L5) |
+
+**Status distribution (all collections):** 41 Live, 23 Experimental, 5 Draft, 1 Proposed, 1 Deprecated.
+
+**Word counts (sampled):**
+- `concepts/spec-driven-development.md`: 888
+- `concepts/context-engineering.md`: 1,546
+- `concepts/levels-of-autonomy.md`: 1,697
+- `patterns/the-spec.md`: 1,824
+- `patterns/adversarial-code-review.md`: 2,085
+- `patterns/context-gates.md`: 1,486
