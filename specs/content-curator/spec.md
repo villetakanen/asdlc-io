@@ -32,7 +32,7 @@ This is a read-only analytical skill. It produces a report; the human decides wh
 - Latest snapshot from `data/gsc/` (resolved via `getLatestSnapshot()` in `tools/gsc/index.ts`)
 - Content collections in `src/content/{concepts,patterns,practices}/`
 - Optional: a specific article path or URL to triage in isolation
-- Optional: live drill-down via the `mcp-gsc` server when the snapshot is stale
+- Optional: a fresh snapshot via `--live` (re-runs `pnpm gsc:snapshot`) when the latest committed snapshot is stale
 
 **Outputs:**
 
@@ -119,7 +119,7 @@ Briefly listed.
 - Curator is read-only against source content. It never edits articles directly — it reports.
 - All numeric thresholds and weights live in `tools/curator/rubric.ts`. No magic numbers in the skill prompt, `triage.ts`, or the report template.
 - Reports are committed. Historical reports drive retros on both content and the rubric itself.
-- Single-article mode uses the latest snapshot by default. The user may pass `--live` to invoke `mcp-gsc` for fresh data on that one URL; the report header records which path was used.
+- Single-article mode uses the latest snapshot by default. The user may pass `--live` to re-run `pnpm gsc:snapshot` for the freshest data the GSC API offers (data lags ~2-3 days regardless — see [ADR 0001](../../docs/adrs/0001-no-live-gsc-mcp-server.md)); the report header records which snapshot was used.
 
 ## Contract
 
@@ -203,8 +203,9 @@ Scenario: Single-article drill-down from snapshot
 
 Scenario: Single-article drill-down with --live
   When I invoke @curator with page "/patterns/typed-handoffs" and --live
-  Then mcp-gsc is queried for fresh metrics on that page
-  And the report header notes "data source: mcp-gsc (live)"
+  Then "pnpm gsc:snapshot" is run to produce a fresh snapshot
+  And the article is triaged against that fresh snapshot
+  And the report header notes "data source: snapshot YYYY-MM-DD (refreshed)"
 
 Scenario: Rubric is version-controlled
   Given I change a threshold in tools/curator/rubric.ts
