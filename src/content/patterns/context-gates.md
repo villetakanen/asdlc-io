@@ -3,7 +3,7 @@ title: "Context Gates"
 description: "Architectural checkpoints that filter input context and validate output artifacts between phases of work to prevent cognitive overload and ensure system integrity."
 tags: ["Architecture", "Quality Gates", "Context Engineering", "Validation"]
 status: "Experimental"
-relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code", "concepts/pr-slop", "concepts/theory-of-llm-constraints", "concepts/compound-engineering", "patterns/compound-loop"]
+relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code", "concepts/pr-slop", "concepts/theory-of-llm-constraints", "concepts/compound-engineering", "patterns/compound-loop", "patterns/artifact-import"]
 lastUpdated: 2026-05-20
 references:
   - type: "website"
@@ -201,6 +201,7 @@ See also:
 - [The Spec](/patterns/the-spec) — Contract source for Review Gates
 - [Agent Constitution](/patterns/agent-constitution) — Architectural constraint source
 - [Model Routing](/patterns/model-routing) — Model selection for different gate types
+- [Artifact Import](/patterns/artifact-import) — Extends gates to the organizational trust boundary
 
 ### Related Concepts
 - [Agentic SDLC](/concepts/agentic-sdlc) — The lifecycle where gates create phase boundaries

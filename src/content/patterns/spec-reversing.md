@@ -4,7 +4,7 @@ description: "Using frontier models to derive specifications from existing code 
 tags: ["Brownfield", "Specification", "Bootstrapping", "Context Engineering"]
 status: "Experimental"
 lastUpdated: 2026-02-04
-relatedIds: ["patterns/the-spec", "concepts/context-engineering", "practices/feature-assembly"]
+relatedIds: ["patterns/the-spec", "concepts/context-engineering", "practices/feature-assembly", "patterns/artifact-import"]
 references: []
 ---
 
@@ -46,3 +46,8 @@ The workflow follows this loop:
 *   **Stops Context Amnesia**: Creates a permanent memory of how the system works.
 *   **Enables Agent Autonomy**: Agents can now reason about the system *before* acting.
 *   **Safe Refactoring**: You have a baseline "contract" to test against.
+
+## Related
+
+- [The Spec](/patterns/the-spec) — The artifact this pattern produces
+- [Artifact Import](/patterns/artifact-import) — Composes with Spec Reversing to bring frontier capability into regulated brownfield environments via the reversed spec

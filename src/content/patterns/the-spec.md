@@ -3,7 +3,7 @@ title: "Specs"
 longTitle: "The Spec: Living Specifications for Agentic Development"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
 tags: ["Specifications", "Living Documentation", "Spec-Driven Development", "Context Engineering", "AI Agents"]
-relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/levels-of-autonomy"]
+relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "patterns/artifact-import"]
 status: "Live"
 lastUpdated: 2026-04-10
 references:
@@ -254,3 +254,5 @@ This is the [Learning Loop](/concepts/learning-loop) applied to specs: the spec 
 **[Living Specs Practice Guide](/practices/living-specs)** — Implementation instructions, templates, and maintenance practices for this pattern.
 
 **[Triple Debt Model](/concepts/triple-debt-model)** — Specs are the primary mitigation for Intent Debt. Without externalized intent, every future modification — by human or agent — is a blind guess.
+
+**[Artifact Import](/patterns/artifact-import)** — A spec is the artifact most commonly imported across an enterprise trust boundary; it carries frontier-session reasoning in an inspectable, static form.

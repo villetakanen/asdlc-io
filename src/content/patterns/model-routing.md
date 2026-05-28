@@ -2,7 +2,7 @@
 title: "Model Routing"
 description: "Strategic assignment of LLM models to SDLC phases based on reasoning capability versus execution speed."
 tags: ["LLM Selection", "Context Engineering", "ASDLC", "Agent Architecture", "Economics"]
-relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering", "practices/workflow-as-code"]
+relatedIds: ["concepts/agentic-sdlc", "patterns/context-gates", "practices/agent-personas", "patterns/the-spec", "concepts/context-engineering", "practices/workflow-as-code", "patterns/artifact-import"]
 status: "Live"
 lastUpdated: 2026-01-31
 references:
@@ -147,3 +147,4 @@ The specific thresholds or weights used to make decisions. These must be tuned a
 Applied in:
 *   [Agentic SDLC](/concepts/agentic-sdlc) — Optimization of the factory floor.
 *   [Adversarial Code Review](/patterns/adversarial-code-review) — using different models for Builder vs Critic.
+*   [Artifact Import](/patterns/artifact-import) — governs internal model assignment once an artifact has crossed the enterprise perimeter.
