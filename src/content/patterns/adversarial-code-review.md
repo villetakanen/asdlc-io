@@ -2,7 +2,7 @@
 title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
-relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering"]
+relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering", "patterns/artifact-import"]
 status: "Live"
 lastUpdated: 2026-01-31
 references:
@@ -298,6 +298,7 @@ See also:
 - [Agentic Double Diamond](/patterns/agentic-double-diamond) — The design-phase Critic pattern this extends
 - [Adversarial Requirement Review](/patterns/adversarial-requirement-review) — The upstream verification pattern for problem definitions
 - [Agent Constitution](/patterns/agent-constitution) — How to frame Critic behavior as adversarial
+- [Artifact Import](/patterns/artifact-import) — The audit step at the enterprise checkpoint is structurally equivalent to this pattern
 
 ### Related Concepts
 - [Agentic SDLC](/concepts/agentic-sdlc) — The Verification phase where this pattern operates

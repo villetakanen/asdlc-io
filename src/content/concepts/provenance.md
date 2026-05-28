@@ -3,7 +3,7 @@ title: "Provenance"
 description: "The chain of custody and intent behind software artifacts, distinguishing high-value engineered systems from 'slop'."
 tags: ["Core", "Philosophy", "Quality", "Governance", "Value"]
 status: "Live"
-relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec", "concepts/triple-debt-model"]
+relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec", "concepts/triple-debt-model", "patterns/artifact-import"]
 publishedDate: 2026-02-15
 lastUpdated: 2026-03-28
 references:
@@ -65,3 +65,4 @@ Related:
 - [Context Gates](/patterns/context-gates) — The checkpoints of Verification Provenance
 - [Micro-Commits](/practices/micro-commits) — The unit of Audit Provenance
 - [Triple Debt Model](/concepts/triple-debt-model) — Diagnostic framework positioning Provenance within Intent Debt mitigation
+- [Artifact Import](/patterns/artifact-import) — Establishes provenance for artifacts crossing the enterprise perimeter
