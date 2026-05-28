@@ -66,7 +66,7 @@ The scale dictates precisely where the [Context Gate](/patterns/context-gates) m
 
 ```mermaid
 %% caption: Shifting Context Gate Boundaries from L1 to L5 Autonomy
-graph TD
+graph LR
     subgraph L1 [L1: Assistive]
         direction LR
         L1_AI[AI Autocomplete/Chat] -->|Line/Token| L1_Gate[Context Gate]
