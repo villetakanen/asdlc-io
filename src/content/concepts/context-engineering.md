@@ -2,7 +2,7 @@
 title: "Context Engineering"
 description: "Context Engineering is the practice of structuring information to optimize LLM comprehension and output quality."
 tags: ["AI", "LLM", "Prompt Engineering", "Context Engineering"]
-relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading", "concepts/context-anchoring", "concepts/triple-debt-model", "concepts/compound-engineering"]
+relatedIds: ["concepts/model-context-protocol", "practices/agents-md-spec", "patterns/context-gates", "concepts/4d-framework", "concepts/ooda-loop", "patterns/the-spec", "patterns/agent-optimization-loop", "patterns/context-map", "practices/context-offloading", "concepts/context-anchoring", "concepts/triple-debt-model", "concepts/compound-engineering", "concepts/react-pattern"]
 publishedDate: 2026-02-24
 lastUpdated: 2026-03-18
 status: "Live"
@@ -61,6 +61,13 @@ references:
     publisher: "ETH Zurich / LogicStar.ai"
     published: 2026-02-13
     annotation: "Empirical study showing that unnecessary context file instructions increase agent reasoning cost and reduce task success rates. Agents follow instructions faithfully — making constraint minimalism a performance concern, not just an aesthetic one."
+  - type: "paper"
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    url: "https://arxiv.org/abs/2210.03629"
+    author: "Shunyu Yao et al."
+    published: 2022-10-06
+    accessed: 2026-05-28
+    annotation: "Introduces the ReAct paradigm, demonstrating that interleaving reasoning traces and environment observations grounds context and mitigates hallucinations."
 ---
 
 ## Definition
@@ -82,6 +89,10 @@ Anthropic's research confirms this. Engineers cite the **cold start problem** as
 > "There is a lot of intrinsic information that I just have about how my team's code base works that Claude will not have by default… I could spend time trying to iterate on the perfect prompt [but] I'm just going to go and do it myself."
 
 Context Engineering solves cold start by capturing this intrinsic information in files the agent can read.
+
+**The Interleaved Grounding Thesis**
+
+Early empirical validation of context structure comes from the [ReAct Pattern](/concepts/react-pattern) (Yao et al., 2022). By interleaving reasoning thoughts with task-specific actions and environment observations, ReAct demonstrated that structuring context as a conversational trace of "Thought &rarr; Action &rarr; Observation" significantly mitigates hallucinations and improves task performance compared to reasoning (CoT) or acting in isolation.
 
 ## Key Characteristics
 

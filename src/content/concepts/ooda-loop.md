@@ -14,6 +14,7 @@ relatedIds:
   - concepts/feedback-loop-compression
   - patterns/context-gates
   - practices/agents-md-spec
+  - concepts/react-pattern
 publishedDate: 2026-01-13
 lastUpdated: 2026-03-16
 status: "Live"
@@ -31,6 +32,13 @@ references:
     published: 2025-12-02
     accessed: 2026-01-12
     annotation: "Research on tempo in human-AI collaboration; engineers who cycle faster with quality context converge on solutions."
+  - type: "paper"
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    url: "https://arxiv.org/abs/2210.03629"
+    author: "Shunyu Yao et al."
+    published: 2022-10-06
+    accessed: 2026-05-28
+    annotation: "Foundational paper introducing the Thought-Action-Observation prompting loop."
 ---
 
 ## Definition
@@ -69,16 +77,16 @@ This is why [Context Engineering](/concepts/context-engineering) isn't optional 
 
 ### OODA vs. Single-Shot Interactions
 
-Standard LLM interactions are **Observe-Act**: user provides input, model produces output. No explicit Orient or Decide phase. The model's "orientation" is implicit in training and whatever context happens to be present.
+Standard LLM interactions are **Observe-Act**: user provides input, model produces output. No explicit Orient or Decide phase.
 
-Agentic workflows make OODA explicit:
+At the prompting level, the [ReAct Pattern](/concepts/react-pattern) (Yao et al., 2022) introduces an explicit inner loop that interleaves reasoning ("thoughts") and environment-facing actions ("actions/observations"). This represents the direct, prompt-level operationalization of OODA, where thoughts represent Orientation and Decision, actions execute the Action, and observations perform the Observation:
 
-| Phase | Single-Shot LLM | Agentic Workflow |
-|-------|-----------------|------------------|
-| **Observe** | User prompt | Instrumented: read files, run tests, check logs |
-| **Orient** | Implicit (training + context) | Engineered: Specs, Constitution, Context Gates |
-| **Decide** | Implicit | Explicit: agent states plan before acting |
-| **Act** | Generate response | Verified: external tools confirm success/failure |
+| Phase | Single-Shot LLM | ReAct Agent Loop | ASDLC Autonomous Workflow |
+|-------|-----------------|------------------|---------------------------|
+| **Observe** | User prompt | Observation (tool response) | Instrumented: read files, run tests, check logs |
+| **Orient** | Implicit (training + context) | Thought (verbal reasoning) | Engineered: Specs, Constitution, Context Gates |
+| **Decide** | Implicit | Thought (planning trace) | Explicit: agent states plan before acting |
+| **Act** | Generate response | Action (tool execution) | Verified: external tools confirm success/failure |
 
 This explicit structure enables debugging. When an agent fails, you can diagnose *which phase* broke down:
 
