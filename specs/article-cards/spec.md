@@ -1,3 +1,12 @@
+---
+title: "Article Cards (SpecCard)"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-18"
+tags: []
+---
+
 # Spec: Article Cards (SpecCard)
 
 ## Context

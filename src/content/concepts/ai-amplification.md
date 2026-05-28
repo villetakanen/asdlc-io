@@ -3,7 +3,7 @@ title: AI Amplification
 description: The principle that AI tools amplify existing engineering practices—making disciplined teams faster and chaotic teams fail sooner.
 status: Draft
 publishedDate: 2026-02-12
-lastUpdated: 2026-05-20
+lastUpdated: 2026-05-26
 tags: ["AI", "Culture", "Process", "Dynamics"]
 relatedIds: ["concepts/vibe-coding", "concepts/agentic-sdlc", "concepts/triple-debt-model", "concepts/theory-of-llm-constraints"]
 references:
@@ -15,6 +15,13 @@ references:
     url: "https://arxiv.org/abs/2603.15401"
     published: 2026-03-19
     annotation: "Empirical example of AI Amplification: version-mismatched skills degraded agent performance by up to 10%, demonstrating that bad context amplifies failures at machine speed."
+  - type: "website"
+    title: "You Need AI That Reduces Your Maintenance Costs"
+    url: "https://www.jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs"
+    author: "James Shore"
+    published: 2026-05-10
+    accessed: 2026-05-26
+    annotation: "Agile pioneer's model highlighting the 'lock-in' effect where discontinuing an AI tool does not shed the accumulated maintenance burden of its output."
 ---
 
 ## Definition

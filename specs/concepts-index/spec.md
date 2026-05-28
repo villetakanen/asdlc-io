@@ -1,3 +1,12 @@
+---
+title: "Concepts Index Page"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-31"
+tags: []
+---
+
 # Feature: Concepts Index Page
 
 ## Blueprint

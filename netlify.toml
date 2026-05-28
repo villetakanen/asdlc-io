@@ -2,6 +2,34 @@
   command = "pnpm build"
   publish = "dist"
 
+# TODO(AL-28): Netlify's conditions.Accept matching uses wildcard glob syntax.
+# The value "text/markdown" below matches the exact header value. Agents sending
+# "text/markdown, */*" (with quality params) may not be matched — Netlify docs
+# are ambiguous on whether partial string matching applies here.
+# Verified approach: test with `curl -H "Accept: text/markdown"` post-deploy.
+# If unreliable, the `.md` URL is the canonical agent path per spec §Anti-Patterns.
+
+# Why :slug (single-segment) rather than splat: all three collections are flat —
+# no entry id contains a slash. If nested sub-directories are ever introduced,
+# switch to Netlify splat syntax (/*/:splat) so nested slugs route correctly.
+[[redirects]]
+  from = "/concepts/:slug/"
+  to = "/concepts/:slug.md"
+  status = 200
+  conditions = {Accept = "text/markdown"}
+
+[[redirects]]
+  from = "/patterns/:slug/"
+  to = "/patterns/:slug.md"
+  status = 200
+  conditions = {Accept = "text/markdown"}
+
+[[redirects]]
+  from = "/practices/:slug/"
+  to = "/practices/:slug.md"
+  status = 200
+  conditions = {Accept = "text/markdown"}
+
 # Redirects for URLs indexed by Google with wrong collection paths
 [[redirects]]
   from = "/concepts/context-gates"

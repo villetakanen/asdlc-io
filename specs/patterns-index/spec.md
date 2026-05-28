@@ -1,3 +1,12 @@
+---
+title: "Patterns Index Page"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-15"
+tags: []
+---
+
 # Feature: Patterns Index Page
 
 ## Blueprint

@@ -17,6 +17,26 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="feed-entry">
+      <h2>ReAct: Synergizing Reasoning and Acting in Language Models</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">Shunyu Yao et al. (arXiv, October 2022)</a></span>
+      </div>
+      <p>
+        The seminal paper that introduced the paradigm of interleaving reasoning traces ("thoughts") and task-oriented actions ("actions" and "observations") for LLMs. ReAct demonstrates that synergistically coupling reasoning and acting improves agent performance, mitigates hallucinations, and increases decision-making interpretability. In the ASDLC, we position ReAct as the prompt-level execution engine of the <a href="/concepts/ooda-loop">OODA Loop</a>, and as the inner-loop prompting primitive that is wrapped by the outer-loop persistence mechanics of the <a href="/patterns/ralph-loop">Ralph Loop</a>. We have integrated it as a core concept under the <a href="/concepts/react-pattern">ReAct Pattern</a>.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>Spec-Driven Development: How to Build Real Software with AI Coding Agents</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://bswamina22.substack.com/p/spec-driven-development-how-to-build" target="_blank" rel="noopener">Bhaskar S (Substack, May 2026)</a></span>
+      </div>
+      <p>
+        Bhaskar S outlines a 6-phase Spec-Driven Development (SDD) lifecycle (Constitution &rarr; Specify &rarr; Plan &rarr; Tasks &rarr; Build &rarr; Review) designed to prevent "Context Collapse" when guiding AI agents through complex feature creation. The article maps well to ASDLC concepts, but its linear phase progression underplays the iterative refinement model of the ASDLC Learning Loop. The post also highlights three tooling paradigms: BMad-Method (persona-based), GitHub spec-kit (CLI-based), and OpenSpec (CI/schema-validated specifications). We log this post as evidence of industry convergence on SDD vocabulary and have integrated BMad-Method and OpenSpec as references on the <a href="/concepts/spec-driven-development">Spec-Driven Development</a> page.
+      </p>
+    </div>
+
+    <div class="feed-entry">
       <h2>Theory of LLM Constraints</h2>
       <div class="meta">
         <span><strong>Source:</strong> <a href="https://www.linkedin.com/pulse/theory-llm-constraints-mats-ljunggren-qmzde/" target="_blank" rel="noopener">Mats Ljunggren (LinkedIn, May 2026)</a></span>
@@ -31,6 +51,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         "Scaffolding-First" remediation into a <strong>Minimal Scaffolding-First</strong> stance — starting from a sensible
         minimal scaffold, but strictly avoiding overt scaffolding beyond that baseline unless gates earn their place by protecting against identified risks.
         See <a href="/concepts/theory-of-llm-constraints">Theory of LLM Constraints</a> for the dialectic.
+      </p>
+    </div>
+
+    <div class="feed-entry">
+      <h2>You Need AI That Reduces Your Maintenance Costs</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://www.jamesshore.com/v2/blog/2026/you-need-ai-that-reduces-your-maintenance-costs" target="_blank" rel="noopener">James Shore (The Art of Agile, May 2026)</a></span>
+      </div>
+      <p>
+        James Shore presents a mathematical model of software maintainability in the AI era. He demonstrates that if coding agents double output but the code's maintenance cost per line remains constant, initial productivity gains are completely erased in 19 months. Crucially, the post warns of the "lock-in" effect where removing the AI tool removes the speed boost but permanently saddles the team with the increased maintenance overhead. Shore concludes that AI must reduce maintenance costs proportionally to its speed multiplier (e.g. double speed requires halving maintenance per LOC). We log this as qualitative Agile/XP consensus supporting the <a href="/concepts/triple-debt-model">Triple Debt Model</a> and <a href="/concepts/ai-amplification">AI Amplification</a> concepts.
       </p>
     </div>
 

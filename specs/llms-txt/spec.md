@@ -1,3 +1,12 @@
+---
+title: "llms.txt"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-15"
+tags: []
+---
+
 # Feature: llms.txt
 
 ## Blueprint

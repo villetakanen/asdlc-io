@@ -18,6 +18,8 @@ Full vision: @docs/vision.md | Framework: [Agentic SDLC concept](/concepts/agent
 | Build MCP index | `pnpm build:mcp-index` |
 | Build skill | `pnpm build:skill` |
 | MCP preview | `pnpm test:mcp-preview <url>` |
+| Lint specs | `pnpm lint:specs` |
+| MCP evals | `pnpm evals:mcp` |
 
 Toolchain configs: `astro.config.mjs`, `tsconfig.json`, `biome.json`, `package.json`
 Design tokens: `src/styles/global.css` | Schema: `src/content/config.ts`
@@ -52,6 +54,8 @@ Invoke via `/command`. Full definitions live in skill files.
 Content specs: `specs/content-articles/` (shared contract, concept, pattern, practice archetypes).
 
 ## Backlog
+
+Items in the backlog are transient and used for short-term planning and task management. Feature intent is encoded in the specs, and contract in the codebase. 
 
 - **Source of truth:** Linear (ASDLC team) via MCP
 - **Structure:** Epic → PBI sub-issues. Labels: `PBI`, `Epic`, `spec-ref`

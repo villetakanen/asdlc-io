@@ -107,11 +107,10 @@ export function parseFrontmatter(markdown: string): {
 
 export class ContentService {
   private fuse: Fuse<Article>;
+  private articles: Article[];
 
-  constructor(
-    private articles: Article[],
-    fuseIndex?: FusePrebuiltIndex,
-  ) {
+  constructor(articles: Article[], fuseIndex?: FusePrebuiltIndex) {
+    this.articles = articles;
     this.fuse = fuseIndex
       ? (new Fuse(articles, FUSE_OPTIONS, fuseIndex) as Fuse<Article>)
       : new Fuse(articles, FUSE_OPTIONS);

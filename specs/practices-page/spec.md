@@ -1,3 +1,12 @@
+---
+title: "Practices Collection Page Update"
+status: "approved"
+owner: "Ville Takanen"
+archetype: "feature"
+created: "2026-03-21"
+tags: []
+---
+
 # Feature: Practices Collection Page Update
 
 ## Blueprint

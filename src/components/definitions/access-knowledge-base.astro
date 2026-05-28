@@ -1,0 +1,33 @@
+---
+import InstallTabs from "../InstallTabs.astro";
+---
+
+<h2>Connect Your Agent</h2>
+
+<p>Grounding your agent context with the ASDLC.io knowledge base.</p>
+
+<h3>1. Model Context Protocol (MCP)</h3>
+
+<p>
+  AI agents can connect directly to browse, search, and retrieve ASDLC content via the <code>/mcp</code> endpoint.
+</p>
+
+<p>
+  Server endpoint: <code>https://asdlc.io/mcp</code>
+</p>
+
+<InstallTabs id="home-install" />
+
+<p>
+  <em><strong>Please note:</strong> even if the ASDLC.io MCP is fairly small, we suggest enabling it only when scaffolding a new project, or when maintaining the agentic structure of a project. Access to the knowledge base is not necessary during the solution development.</em>
+</p>
+
+<h3>2. Downloadable Static Skill</h3>
+
+<p>
+  For offline or local-first workflows, download the self-contained Knowledge Base bundle. Drop it into your project to give your local agent "ASDLC superpowers".
+</p>
+
+<p>
+  <a href="/asdlc-skill.zip" class="button">Download Skill (ZIP)</a>
+</p>

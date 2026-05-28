@@ -1,11 +1,15 @@
+---
+source: "[Author / Institution], Title, Platform / Publisher, Date"
+url: "[Source URL]"
+reviewer: "[Agent Name] ([Model Name])"
+sources_used:
+  - "[Other Models/Drafts Used]"
+hitl_executioner: "[HITL User Name]"
+assessment_date: "[YYYY-MM-DD]"
+---
+
 # Content Review: [Challenger Title / Concept Name]
 
-**Source:** [Author / Institution], *Title*, [Platform / Publisher], [Date]
-**URL:** [Source URL]
-**Reviewer:** Content Critic (Claude) with HITL feedback
-**Assessment date:** [YYYY-MM-DD]
-
----
 
 ## A. Executive Summary
 

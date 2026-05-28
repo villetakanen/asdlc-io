@@ -112,12 +112,20 @@ Compare the "Source Material" against the "Loaded Context".
 Generate a `Content Review Report` following the standardized structure defined in the external template:
 - **Template Source:** [docs/assessments/TEMPLATE.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/TEMPLATE.md)
 
-This template covers:
+The generated report must begin with a YAML frontmatter block containing metadata:
+*   `source`: [Author / Institution], Title, Platform / Publisher, Date
+*   `url`: Source URL
+*   `reviewer`: Agent Name and Model Name
+*   `sources_used`: List of other draft assessments/sources roped in (e.g. Codex/Opus takes)
+*   `hitl_executioner`: Ville Takanen (or the active human reviewer)
+*   `assessment_date`: YYYY-MM-DD
+
+The template sections cover:
 *   **Section A:** Executive Summary (Verdict, Confidence, Assessment)
-*   **Section B:** Critical Analysis (Incumbent Pattern, Challenger Input, Truth Arbitration, Regression & Rigor Risk Analysis)
+*   **Section B:** Critical Analysis (Incumbent Patterns, Challenger Input, Truth Arbitration & Alignment, Regression & Rigor Risk Analysis)
 *   **Section C:** Knowledge Graph Impact (Existing Nodes, New Nodes, HITL feedback applied)
 *   **Section D:** Action Plan (Integrated/Expanded/Combined/Rejected strategies)
-*   **Section E:** Draft Content (new stub & integrations)
+*   **Section E:** Draft Content (stubs and integrations)
 *   **Section F:** Open Questions / Follow-ups
 
 #### F. Assessor Learning Ledger Update

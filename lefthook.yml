@@ -7,6 +7,9 @@ pre-commit:
     astro-check:
       glob: "**/*.{astro,ts,tsx,js,jsx}"
       run: pnpm check
+    spec-lint:
+      glob: "specs/**/*.md"
+      run: node scripts/lint-specs.mjs
 
 commit-msg:
   commands:
@@ -28,3 +31,5 @@ pre-push:
         fi
     build-check:
       run: pnpm build
+    mcp-evals:
+      run: pnpm evals:mcp

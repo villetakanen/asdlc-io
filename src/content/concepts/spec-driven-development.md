@@ -15,8 +15,15 @@ relatedIds:
   - concepts/model-driven-development
   - concepts/triple-debt-model
 status: Live
-lastUpdated: 2026-01-18
+lastUpdated: 2026-05-26
 references:
+  - type: "website"
+    title: "Spec-Driven Development: How to Build Real Software with AI Coding Agents"
+    url: "https://bswamina22.substack.com/p/spec-driven-development-how-to-build"
+    author: "Bhaskar S"
+    published: 2026-05-24
+    accessed: 2026-05-26
+    annotation: "Defines a 6-phase SDD lifecycle and introduces three industry frameworks (BMad, spec-kit, OpenSpec) that enforce it."
   - type: "website"
     title: "Martin Fowler Fragment: January 8, 2026"
     url: "https://martinfowler.com/fragments/2026-01-08.html"
@@ -59,6 +66,14 @@ references:
     published: 2026-02-27
     accessed: 2026-03-09
     annotation: "Validates the dangers of the `spec-as-source` anti-pattern by highlighting how distancing engineers from detail causes 'Context Rot'."
+  - type: "repository"
+    title: "BMad-Method"
+    url: "https://github.com/bmadcode/bmad-method"
+    annotation: "Persona-driven agent orchestration framework (Analyst, Architect, Developer, QA) utilizing structured templates to enforce phase handoffs."
+  - type: "repository"
+    title: "OpenSpec"
+    url: "https://github.com/openspec-ai/openspec"
+    annotation: "Document-first SDD framework utilizing versioned, schema-validated Markdown specifications validated via CI checks."
 ---
 
 ## Definition

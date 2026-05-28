@@ -99,46 +99,25 @@ Compare the "Source Material" against the "Loaded Context".
 
 ### 5. Synthesis & Recommendation (The Output)
 
-Generate a `Content Review Report` with the following sections:
+Generate a `Content Review Report` following the standardized structure defined in the external template:
+- **Template Source:** [docs/assessments/TEMPLATE.md](file:///docs/assessments/TEMPLATE.md)
 
-#### A. Executive Summary
-*   **Verdict:** [accepted | rejected | synthesized | disputed]
-*   **Confidence:** [High/Medium/Low]
-*   **Assessment:** Brief summary of value vs risk.
+The generated report must begin with a YAML frontmatter block containing metadata:
+*   `source`: [Author / Institution], Title, Platform / Publisher, Date
+*   `url`: Source URL
+*   `reviewer`: Agent Name and Model Name
+*   `sources_used`: List of other draft assessments/sources roped in (e.g. Codex/Opus takes)
+*   `hitl_executioner`: Ville Takanen (or the active human reviewer)
+*   `assessment_date`: YYYY-MM-DD
 
-#### B. Critical Analysis (New)
-*   **Incumbent Pattern:** [Existing Pattern Name]
-*   **Challenger Input:** [New Idea]
-*   **Analysis:** Why the Challenger is better/worse/different.
-*   **Regression Risk:** Is this a step backward?
+The template sections cover:
+*   **Section A:** Executive Summary (Verdict, Confidence, Assessment)
+*   **Section B:** Critical Analysis (Incumbent Patterns, Challenger Input, Truth Arbitration & Alignment, Regression & Rigor Risk Analysis)
+*   **Section C:** Knowledge Graph Impact (Existing Nodes, New Nodes, HITL feedback applied)
+*   **Section D:** Action Plan (Integrated/Expanded/Combined/Rejected strategies)
+*   **Section E:** Draft Content (stubs and integrations)
+*   **Section F:** Open Questions / Follow-ups
 
-#### C. Knowledge Graph Impact
-*   **Existing Nodes Touched:** List of articles that relate to this content.
-*   **New Nodes Proposed:** List of potential new Articles (Concepts/Patterns/Practices).
-*   **Human Feedback Applied:** Brief summary of how the human review altered the initial scope (e.g., "Added agent-personas.md update based on human feedback").
-
-#### D. Action Plan
-Select the best strategy or combination of strategies:
-
-*   **STRATEGY 1: INTEGRATE (Update Existing)**
-    *   "Update `patterns/X.md` to include..."
-    *   "Add reference to `concepts/Y.md`..."
-
-*   **STRATEGY 2: EXPAND (Create New)**
-    *   "Create `practices/Z.md` following `specs/content-articles/practice.md`."
-    *   *Justification:* Why this warrants a standalone file.
-
-*   **STRATEGY 3: COMBINATION (Create + Integrate)**
-    *   "Create `concepts/A.md` AND update `patterns/B.md` to link to it."
-    *   *Note:* Often creating a new node requires updating neighbors to link to it.
-
-*   **STRATEGY 4: REJECT / ARCHIVE**
-    *   "Content is redundant with `patterns/A.md`. No action needed."
-
-*   **STRATEGY 5: LOG AS THOUGHT LEADERSHIP**
-    *   "Content aligns philosophically but lacks structural evidence. Recommend extracting quotes/themes and logging as an entry in `src/pages/resources/further-reading.astro`."
-
-#### D. draft-content.md (Optional)
 If a new article is recommended, provide a **stub** following the appropriate Spec (Concept/Pattern/Practice) including:
 *   Title & Description
 *   Frontmatter (Tags, Status)
