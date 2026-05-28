@@ -55,6 +55,8 @@ Content specs: `specs/content-articles/` (shared contract, concept, pattern, pra
 
 ## Backlog
 
+Items in the backlog are transient and used for short-term planning and task management. Feature intent is encoded in the specs, and contract in the codebase. 
+
 - **Source of truth:** Linear (ASDLC team) via MCP
 - **Structure:** Epic → PBI sub-issues. Labels: `PBI`, `Epic`, `spec-ref`
 - **Specs stay in repo:** `specs/{feature-domain}/spec.md` — Linear issues link to specs, not replace them
