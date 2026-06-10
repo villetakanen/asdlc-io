@@ -15,3 +15,8 @@ This document records crystallized heuristics and lessons learned from past cont
 ### 3. SEO & Taxonomy Definitions vs. Implementation Overlap
 - **Lesson:** Do not reject a new concept article solely based on conceptual overlap with operational practice nodes (e.g., `workflow-as-code` vs. `harness-engineering`). If the term is a major industry category designator or represents significant SEO value, it warrants a dedicated concept article. Differentiate by letting the concept define *what and why* (taxonomy/discipline) and the practice define *how* (execution steps).
 - **Reference:** [Code as Agent Harness](/docs/assessments/2026-05-20-code-as-agent-harness) (2026-05-20)
+
+### 4. Harness Self-Tuning and Autonomy Boundaries (Soft vs. Hard Harness)
+- **Lesson:** When documenting agent self-improvement or self-tuning loops, explicitly qualify the boundary of autonomy. The agent's self-modification should be limited to the **Soft Harness** (prompts, instructions, settings) to target model-specific failure patterns. The **Hard Harness** (sandbox runtime, tool implementations, and security gates) must remain frozen and human-governed to prevent behavioral drift and safety regressions, mirroring how design systems remain immutable compared to mutable UI pages.
+- **Reference:** [Self-Harness Assessment](/docs/assessments/2026-06-10-self-harness) (2026-06-10)
+

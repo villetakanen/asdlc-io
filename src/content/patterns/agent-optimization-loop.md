@@ -25,6 +25,12 @@ references:
     type: "website"
     annotation: "Explains shifting from boolean tests to empirical probabilistic satisfaction."
     accessed: 2026-03-09
+  - title: "Self-Harness: Harnesses That Improve Themselves"
+    authors: ["Hangfan Zhang", "Shao Zhang", "Kangcong Li", "Chen Zhang", "Yang Chen", "Yiqun Zhang", "Lei Bai", "Shuyue Hu"]
+    url: "https://arxiv.org/abs/2606.09498"
+    type: "paper"
+    published: 2026-06-08
+    annotation: "Introduces the Self-Harness loop for model-specific harness self-improvement, verifying edits using regression gates on held-out tasks."
 ---
 
 ## Definition
@@ -86,7 +92,23 @@ Optimization occurs asynchronously through explicit integration testing (Scenari
 ### Online Context Evolution (Experimental)
 Often called "Continual Learning in Token Space," where an agent natively reflects over its past trajectories (e.g., distilling sessions into an `AGENTS.md` update or generating a new skill file automatically). While this enables rapid adaptation, it risks uncontrolled drift if the agent infers the wrong lesson from a failure. 
 
-In ASDLC, we treat Online Evolution as an *input* to Offline Optimization: agents can suggest updates to the context, but these updates must pass deterministic Architectural Review before becoming canonical.
+A concrete implementation of this is **Self-Harness** (Zhang et al., 2026), which operationalizes this evolution as a three-stage loop:
+1. **Weakness Mining:** Clustering execution failures by verifier-grounded failure signatures to extract recurring agent-level mechanisms.
+2. **Harness Proposal:** Invoking the agent to generate diverse yet minimal harness modifications targeted at those patterns.
+3. **Proposal Validation:** Evaluating candidate harnesses against regression tests (on both held-in and held-out tasks) to ensure a candidate is promoted only if it improves performance on one split without degrading the other.
+
+#### Proposer Taxonomy
+
+The loop's Meta-Optimization phase can be driven by three distinct proposer types:
+*   **Human Proposer:** Human-in-the-loop analysis where engineers examine execution traces, identify root causes, and manually modify the harness. This provides maximum safety but operates with high latency.
+*   **Stronger External Meta-Agent:** Using a more capable model (e.g., GPT-4o or Claude Opus) to evaluate traces of a target agent and generate harness modifications for it.
+*   **Same-Model Self-Proposer:** The target agent itself acts as the proposer, refining its own operating harness (as validated in *Self-Harness*, Zhang et al., 2026) to maximize model-specific alignment.
+
+##### Self-Proposed Harness Optimization
+*(Note: Flagged as a target glossary entry; tracked via Linear ticket [AL-76](https://linear.app/asdlc/issue/AL-76/design-and-implement-glossary-feature-for-kb-terms).)*
+A sub-mode of Same-Model Self-Proposal where the agent optimizes its own scaffolding based on verifier-grounded trace signatures. In ASDLC, this remains a *proposal* loop rather than unbounded self-evolution: the allowed editable surfaces, sandbox environment, and final promotion criteria remain deterministically defined and governed by the harness and human architectural review.
+
+In ASDLC, we treat Online Evolution as an *input* to Offline Optimization: agents can suggest updates to the context or harness, but these updates must pass deterministic validation gates or human Architectural Review before becoming canonical.
 
 ## Relationship to Other Patterns
 

@@ -17,6 +17,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="feed-entry">
+      <h2>Self-Harness: Harnesses That Improve Themselves</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://arxiv.org/abs/2606.09498" target="_blank" rel="noopener">Hangfan Zhang et al. (arXiv, June 2026)</a></span>
+      </div>
+      <p>
+        Zhang et al. introduce the concept of "Self-Harness," a paradigm enabling a fixed language model to iteratively refine the harness (system prompts, tools, constraints, and runtime policies) through which it operates. Using a three-stage loop—Weakness Mining, Harness Proposal, and Proposal Validation—the agent self-tunes its interface to target its model-specific failure patterns. The paper provides empirical validation of the ASDLC <a href="/patterns/agent-optimization-loop">Agent Optimization Loop</a>, showing that regression-gated evaluation over held-out tasks prevents overfitting. In the ASDLC, we emphasize that while the agent automates proposal generation, the promotion gates, editable surfaces, and governance constraints remain under deterministic <a href="/concepts/harness-engineering">Harness Engineering</a> boundaries.
+      </p>
+    </div>
+
+    <div class="feed-entry">
       <h2>ReAct: Synergizing Reasoning and Acting in Language Models</h2>
       <div class="meta">
         <span><strong>Source:</strong> <a href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">Shunyu Yao et al. (arXiv, October 2022)</a></span>

@@ -28,6 +28,12 @@ references:
     author: "Xuying Ning, Katherine Tieu, Dongqi Fu, et al."
     published: "2026-05-18"
     annotation: "Defines the 'Code as Agent Harness' (CAH) framework, organizing agent infrastructure into interface, mechanism, and scaling layers."
+  - type: "paper"
+    title: "Self-Harness: Harnesses That Improve Themselves"
+    url: "https://arxiv.org/abs/2606.09498"
+    author: "Hangfan Zhang, Shao Zhang, Kangcong Li, et al."
+    published: "2026-06-08"
+    annotation: "Introduces the Self-Harness loop for model-specific harness self-improvement, verifying edits using regression gates on held-out tasks."
 ---
 
 ## Definition
@@ -53,6 +59,11 @@ The harness influences the model through two distinct vectors:
 In a harness-engineered system, the developer's role shifts:
 * **In the Loop:** The agent executing tasks and fixing code within its sandboxed workspace.
 * **On the Loop:** The human engineer designing, observing, and improving the harness itself. When an agent fails, the harness engineer does not merely edit a prompt; they build a new sensor or add a deterministic validator to the harness to prevent the failure class permanently.
+
+### 3. Harness Model-Specificity and Self-Tuning
+Harness design is inherently model-specific. Because different LLMs exhibit distinct reasoning habits, tool preferences, and error modes, a harness optimized for one model may be suboptimal or counterproductive for another. 
+
+Recent research (Zhang et al., 2026) demonstrates that agents can participate in reshaping their own harness under a bounded validation loop. By mining execution traces for model-specific failure patterns (Weakness Mining) and proposing targeted adjustments (Harness Proposal), the agent customizes the environment to its own base model. However, to prevent uncontrolled behavioral drift, these agent-proposed edits must be validated against strict, deterministic regression testing (Proposal Validation) before promotion.
 
 ### 3. The Three-Layer Infrastructure
 Following the framework established in *Code as Agent Harness* (Ning et al., 2026), a production-grade agentic harness consists of three structural layers:

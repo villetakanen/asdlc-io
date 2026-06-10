@@ -124,4 +124,5 @@ The file should remain simple and readable — no comments needed per-block beyo
 - [OpenAI: GPTBot](https://platform.openai.com/docs/bots) — GPTBot and ChatGPT-User documentation
 - [Anthropic: ClaudeBot](https://docs.anthropic.com/en/docs/claude-ai-web-crawling) — ClaudeBot user-agent
 - `specs/llms-txt/spec.md` — Sibling AEO feature (llms.txt for AI context)
+- `specs/sitemap/spec.md` — The sitemap this file declares; emits per-article `<lastmod>`
 - `docs/reports/GEO-AUDIT-REPORT.md` — Source audit (item #14)
