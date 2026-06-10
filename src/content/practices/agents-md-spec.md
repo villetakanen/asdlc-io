@@ -44,7 +44,7 @@ We align with the [agents.md specification](https://agents.md), treating this fi
 
 **Skip this practice when:**
 - The project is a temporary script or throwaway prototype
-- The project tech stack and structure is very commo or obvious.
+- The project tech stack and structure are very common or obvious.
 
 ## Core Philosophy
 
@@ -206,7 +206,7 @@ Favor explicit error handling and composition over inheritance.
 
 ### 5. Context Map
 
-*Use inly when the project structure is complex or the agents constantly stumbles finding files*
+*Use only when the project structure is complex or the agents constantly stumbles finding files*
 
 A structural index of the codebase for architectural orientation. This is most valuable for onboarding new sessions, spec writing, error triage, and ADR authoring — not primarily as a file-navigation aid for delivery tasks. Keep it high-level; agents can discover file-level details themselves.
 
