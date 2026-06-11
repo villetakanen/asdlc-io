@@ -1,7 +1,7 @@
 ---
 title: "AGENTS.md Specification"
-longTitle: "AGENTS.md Specification: A Research-Backed Guide"
-description: "Complete AGENTS.md specification with templates, section-by-section format guide, and research-backed rules for writing minimal, high-signal context files."
+longTitle: "AGENTS.md Specification: The Standard AI Context File Convention"
+description: "The standard agents.md specification and repository-level context file convention. A research-backed guide to writing minimal, high-signal instructions for AI agents."
 tags: ["governance", "agents", "specification"]
 relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", "practices/agent-personas", "patterns/agent-constitution", "concepts/context-anchoring", "patterns/compound-loop"]
 status: "Live"
@@ -28,11 +28,11 @@ references:
     annotation: "Research confirming that passive context maps outperform active tool retrieval for static knowledge."
 ---
 
-## Definition
+## The agents.md Standard and Convention
 
-`AGENTS.md` is an open format for guiding coding agents, acting as a "README for agents." It provides a dedicated, predictable place for the minimal, **human-authored** context that agents need to work effectively on a project — things that are not already expressed by the repo itself.
+`agents.md` is an emerging standard convention and specification for repository-level agent instruction files. Often referred to as a "README for AI agents," it provides a dedicated, predictable location for the minimal, **human-authored** context that LLM coding assistants (such as Claude Code, Cursor, Windsurf, and Copilot) need to work effectively on a project — specifically containing knowledge that is not already expressed by the codebase itself.
 
-We align with the [agents.md specification](https://agents.md), treating this file as the authoritative source of truth for agentic behavior within the ASDLC.
+We align with the official [agents.md specification](https://agents.md), treating this file as the authoritative standard and source of truth for agentic behavior within the Agentic SDLC (ASDLC).
 
 ## When to Use
 
@@ -138,15 +138,23 @@ ln -s AGENTS.md CLAUDE.md
 
 Note that Claude Code also supports `CLAUDE.local.md` for personal preferences that shouldn't be version-controlled.
 
+### agents.md vs. .cursorrules Precedence
+
+When configuring your repository for AI coding assistants, you may need to manage multiple instruction files (e.g., `agents.md` vs. `.cursorrules` or `.windsurfrules`).
+
+1. **Precedence**: Most coding assistants that support multiple rule formats prioritize tool-specific files (like `.cursorrules` or `.windsurfrules`) over the standard `agents.md` specification file. However, maintaining duplicate instruction sets creates synchronization debt.
+2. **Project Configuration Best Practice**: The recommended approach is to treat `agents.md` as the canonical specification for the repository. For tools requiring proprietary formats, establish symlinks (e.g., pointing `.cursorrules` to `agents.md`) rather than maintaining separate files.
+3. **Coexistence Rules**: If you must run tool-specific overrides, use `.cursorrules` strictly for editor-specific behavior (such as terminal pane settings or custom model routing) and keep core repository conventions inside `agents.md`.
+
 ## Ecosystem Tools
 
 ### Ruler
 
 [Ruler](https://github.com/intellectronica/ruler) synthesizes agent instructions from multiple sources (AGENTS.md, .cursorrules, project conventions) and injects them into coding assistants that may not natively support the AGENTS.md standard. Useful for teams using multiple coding assistants who want to maintain a single source of truth.
 
-## Anatomy
+## Standard agents.md Format & Recommended Sections
 
-The following sections form the minimal, effective structure for agents.md. Each section should only exist if it carries content that genuinely cannot live elsewhere.
+What should you include in an `agents.md` file? A typical structure for a standard-compliant `agents.md` file follows a minimal, high-signal format. The recommended sections include:
 
 ### 1. Mission (The Project Context)
 
