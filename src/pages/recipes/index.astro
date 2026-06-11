@@ -1,6 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import StructuredData from "../../components/StructuredData.astro";
 import RecipeLayout from "../../layouts/RecipeLayout.astro";
+import { collectionBreadcrumbs } from "../../lib/breadcrumbs";
+
+const recipesBreadcrumbs = collectionBreadcrumbs("recipes");
 
 type Category = "Setup" | "Workflow" | "Content" | "Integration" | "Governance";
 type Difficulty = "Beginner" | "Intermediate" | "Advanced";
@@ -24,6 +28,8 @@ const sortedRecipes = [...recipes].sort((a, b) => {
   return a.data.title.localeCompare(b.data.title);
 });
 ---
+
+<StructuredData type="BreadcrumbList" data={{ itemListElement: recipesBreadcrumbs }} />
 
 <RecipeLayout
   title="Recipes"

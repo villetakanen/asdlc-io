@@ -2,7 +2,11 @@
 import { getCollection } from "astro:content";
 import SpecCard from "../../components/SpecCard.astro";
 import SpecListItem from "../../components/SpecListItem.astro";
+import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { collectionBreadcrumbs } from "../../lib/breadcrumbs";
+
+const practicesBreadcrumbs = collectionBreadcrumbs("practices");
 
 const practices = await getCollection("practices");
 
@@ -22,6 +26,8 @@ const experimental = practices
 const formatDate = (d: Date) =>
   d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
+
+<StructuredData type="BreadcrumbList" data={{ itemListElement: practicesBreadcrumbs }} />
 
 <BaseLayout
   title="Practices"

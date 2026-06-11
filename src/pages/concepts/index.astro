@@ -2,7 +2,11 @@
 import { getCollection } from "astro:content";
 import SpecCard from "../../components/SpecCard.astro";
 import SpecListItem from "../../components/SpecListItem.astro";
+import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { collectionBreadcrumbs } from "../../lib/breadcrumbs";
+
+const conceptsBreadcrumbs = collectionBreadcrumbs("concepts");
 
 const concepts = await getCollection("concepts");
 
@@ -26,6 +30,8 @@ const deprecated = concepts
 const formatDate = (d: Date) =>
   d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 ---
+
+<StructuredData type="BreadcrumbList" data={{ itemListElement: conceptsBreadcrumbs }} />
 
 <BaseLayout
   title="Concepts"

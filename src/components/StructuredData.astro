@@ -5,8 +5,10 @@
  * Generates Schema.org JSON-LD structured data for SEO and AEO.
  * Transforms our Zod content schemas into Schema.org markup.
  *
- * Supported types: TechArticle, Article, WebSite, Organization
+ * Supported types: TechArticle, Article, WebSite, Organization, BreadcrumbList
  */
+
+import type { BreadcrumbItem } from "../lib/breadcrumbs";
 
 type JsonLdValue = string | number | boolean | Date | JsonLdObject | JsonLdArray | undefined;
 type JsonLdArray = JsonLdValue[];
@@ -14,10 +16,9 @@ interface JsonLdObject {
   [key: string]: JsonLdValue;
 }
 
-export interface Props {
-  type: "TechArticle" | "Article" | "WebSite" | "Organization";
-  data: JsonLdObject;
-}
+type Props =
+  | { type: "TechArticle" | "Article" | "WebSite" | "Organization"; data: JsonLdObject }
+  | { type: "BreadcrumbList"; data: { itemListElement: BreadcrumbItem[] } };
 
 const { type, data } = Astro.props;
 
@@ -74,6 +75,19 @@ if (type === "TechArticle" || type === "Article") {
     url: data.url,
     ...(data.logo && { logo: data.logo }),
     ...(data.description && { description: data.description }),
+  };
+} else if (type === "BreadcrumbList") {
+  structuredData = {
+    ...structuredData,
+    itemListElement: data.itemListElement.map((crumb, index) => {
+      const listItem: JsonLdObject = {
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: crumb.item,
+      };
+      return listItem;
+    }),
   };
 }
 ---

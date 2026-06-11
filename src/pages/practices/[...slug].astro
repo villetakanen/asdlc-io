@@ -5,6 +5,7 @@ import ArticleReferences from "../../components/ArticleReferences.astro";
 import SpecHeader from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { articleBreadcrumbs } from "../../lib/breadcrumbs";
 
 export async function getStaticPaths() {
   const practices = await getCollection("practices");
@@ -24,6 +25,13 @@ const { Content } = await render(practice);
 // Generate canonical URL for structured data
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
+// Build breadcrumb trail for BreadcrumbList JSON-LD
+const breadcrumbs = articleBreadcrumbs(
+  "practices",
+  practice.data.longTitle ?? practice.data.title,
+  canonicalURL.toString(),
+);
+
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
   title: practice.data.longTitle ?? practice.data.title,
@@ -37,6 +45,7 @@ const structuredDataProps = {
 ---
 
 <StructuredData type="TechArticle" data={structuredDataProps} />
+<StructuredData type="BreadcrumbList" data={{ itemListElement: breadcrumbs }} />
 
 <BaseLayout title={practice.data.longTitle ?? practice.data.title} description={practice.data.description}>
   <article class="practice-detail">
