@@ -38,8 +38,8 @@ let structuredData: JsonLdObject = {
 if (type === "TechArticle" || type === "Article") {
   structuredData = {
     ...structuredData,
-    headline: data.longTitle || data.title || data.headline,
-    description: data.description || data.definition,
+    headline: data.longTitle || data.title,
+    description: data.description,
     author: {
       "@type": "Organization",
       name: "ASDLC.io Contributors",
@@ -54,18 +54,7 @@ if (type === "TechArticle" || type === "Article") {
     ...(data.dateModified && { dateModified: data.dateModified }),
     ...(data.keywords && { keywords: data.keywords }),
     ...(data.url && { url: data.url }),
-    ...(data.image && { image: data.image }),
   };
-
-  // Add custom properties for technical content
-  if (type === "TechArticle") {
-    if (data.proficiencyLevel || data.maturity) {
-      structuredData.proficiencyLevel = data.proficiencyLevel || data.maturity;
-    }
-    if (data.complexity) {
-      structuredData.articleBody = `Complexity: ${data.complexity}`;
-    }
-  }
 } else if (type === "WebSite") {
   structuredData = {
     ...structuredData,
