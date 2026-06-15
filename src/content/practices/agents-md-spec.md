@@ -7,6 +7,17 @@ relatedIds: ["concepts/context-engineering", "concepts/model-context-protocol", 
 status: "Live"
 publishedDate: 2026-02-18
 lastUpdated: 2026-03-16
+steps:
+  - name: "Write the Mission Section"
+    text: "Write 2–4 sentences describing the project's purpose and the constraints agents cannot infer from code alone. Focus on domain-specific context that differentiates this project from generic training data."
+  - name: "Add the Toolchain Registry"
+    text: "List non-standard tools and how to invoke them with a minimal table. Do not describe what the tools enforce — that is already in their config files. One row per tool, command, and notes."
+  - name: "Define Judgment Boundaries"
+    text: "Document the NEVER, ASK, and ALWAYS rules that cannot be expressed by a linter or enforced by tooling. Each rule should represent a judgment call, not a constraint the toolchain already handles."
+  - name: "Add a Persona Registry (if multi-persona)"
+    text: "List persona names and invocation patterns only. Full definitions live in skill or workflow files, not inline in AGENTS.md — loading all definitions on every session wastes context and increases reasoning cost."
+  - name: "Audit Out Toolchain-Enforced Rules"
+    text: "Review agents.md for rules that have migrated to the toolchain (linter rules, tsconfig constraints, CI gates). Remove anything the toolchain enforces — every removed line is one less instruction the agent must process faithfully."
 references:
   - type: "paper"
     title: "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"

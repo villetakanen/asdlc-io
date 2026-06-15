@@ -5,6 +5,17 @@ tags: ["Orchestration", "Determinism", "TypeScript", "Automation"]
 relatedIds: ["patterns/context-gates", "patterns/ralph-loop", "patterns/model-routing", "concepts/model-context-protocol"]
 status: "Experimental"
 lastUpdated: 2026-02-18
+steps:
+  - name: "Identify Deterministic vs Probabilistic Tasks"
+    text: "Audit your workflow and separate mechanical tasks (running builds, parsing output, branching on conditions) from intelligence tasks (code review, summarization, decision-making under ambiguity). Only probabilistic tasks warrant an LLM call."
+  - name: "Define Typed Step Abstraction"
+    text: "Create a common interface for workflow steps using a typed WorkflowContext and StepResult discriminated union. This enables composition, type-safe data passing between steps, and unit testing without invoking an LLM."
+  - name: "Implement the Orchestration Shell"
+    text: "Write control flow in code. The LLM appears only where intelligence is required; deterministic steps run as plain functions around it. This prevents context pollution from an ever-growing agent loop."
+  - name: "Implement Opaque Commands"
+    text: "From the agent's perspective, each workflow step should be a black box. The agent invokes a high-level command and acts on the structured result — it does not need implementation details, which reduces token usage and prevents hallucinated shell commands."
+  - name: "Add Enforcement Hooks"
+    text: "Implement client-side hooks that block unauthorized actions (e.g., direct git push without running verification). Code-based enforcement is more reliable than instructions in a system prompt, which can be ignored."
 references:
   - type: "website"
     title: "Dev Workflows as Code"

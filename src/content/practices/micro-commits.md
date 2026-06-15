@@ -6,6 +6,17 @@ relatedIds: ["patterns/the-pbi", "patterns/context-gates", "concepts/agentic-sdl
 status: "Live"
 publishedDate: 2025-12-27
 lastUpdated: 2026-04-15
+steps:
+  - name: "Break Work into Atomic Tasks"
+    text: "Divide the PBI into small, independently testable chunks — one function, one test, one schema. Each chunk maps to exactly one commit, creating discrete save points."
+  - name: "Commit After Each Task"
+    text: "Make a commit immediately after completing each atomic task, including passing linting, adding one test, or generating a single working function. Do not bundle unrelated changes."
+  - name: "Write Execution-Log Commit Messages"
+    text: "Format commit messages as type(scope): description with bullet-point details. These messages serve as context for debugging, briefing material for future AI sessions, and an audit trail."
+  - name: "Use Branches or Worktrees for Isolation"
+    text: "Isolate LLM experiments on separate branches or git worktrees. If the output is successful, merge into main; if it fails, discard the branch or worktree without contaminating stable code."
+  - name: "Squash at the Merge Boundary"
+    text: "Before merging to main, squash related micro-commits into logical units for clean long-term history. Only squash after all quality gates pass — the merge to main is the human accountability gate."
 references:
   - type: "website"
     title: "My LLM Coding Workflow Going into 2026"

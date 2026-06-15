@@ -5,6 +5,17 @@ tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development", 
 relatedIds: ["patterns/the-spec", "patterns/the-pbi", "patterns/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
 status: "Draft"
 lastUpdated: 2026-01-09
+steps:
+  - name: "Load Context"
+    text: "Load the PBI (defines the delta), the Spec (defines the contracts), and the relevant codebase sections. Scope the context to what is necessary — do not load the entire codebase."
+  - name: "Verify the Execution Plan"
+    text: "Review the agent's proposed plan before implementation begins. Reject vague plans; demand a specific file-level plan that explicitly references spec sections and confirms it modifies Delta (code) not State (the Spec)."
+  - name: "Break Down and Sequence"
+    text: "Decompose implementation into atomic steps in standard order: refine contracts if needed, define types/schemas, generate test data, write failing tests, implement logic, then integrate. Each step is one Micro-Commit."
+  - name: "Pass Quality Gates"
+    text: "Run the three-tier validation system: deterministic gates (compilation, linting, unit tests, type safety, build), probabilistic review gates (Critic Agent checking spec compliance and anti-patterns), and human acceptance gates."
+  - name: "Integrate and Update Spec"
+    text: "Once all gates pass, merge the code. If implementation required deviating from the Spec, update the Spec in the same commit with a changelog entry. Close the PBI."
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"

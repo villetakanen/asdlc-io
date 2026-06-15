@@ -140,3 +140,4 @@ Reference the concepts route (`src/pages/concepts/[...slug].astro:28-34`) as the
 - [Schema.org TechArticle](https://schema.org/TechArticle) — The structured data type used
 - `specs/patterns-index/spec.md` — Related spec for the patterns collection
 - `specs/breadcrumbs/spec.md` — Sibling spec; extends `StructuredData.astro` with `BreadcrumbList`
+- `specs/howto-schema/spec.md` — Sibling spec; extends `StructuredData.astro` with `HowTo` for practices

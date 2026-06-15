@@ -5,6 +5,17 @@ tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification"]
 relatedIds: ["patterns/adversarial-code-review", "patterns/the-spec", "patterns/agent-constitution", "recipes/critic", "concepts/theory-of-llm-constraints"]
 lastUpdated: 2026-05-20
 status: "Live"
+steps:
+  - name: "Fetch Issue Context"
+    text: "Retrieve the source of truth for the work being reviewed from your project management tool. Gather the title, description, and acceptance criteria for the issue."
+  - name: "Gather Implementation Artifacts"
+    text: "Identify what has changed by checking git status or reviewing recent commits associated with the issue ID. Prepare the diff or set of modified files for the Critic Agent."
+  - name: "Load Contracts"
+    text: "Identify the laws the implementation must follow: relevant functional specs in the specs/ directory and the project Constitution (AGENTS.md or CLAUDE.md) containing architectural constraints."
+  - name: "Adversarial Review"
+    text: "Deploy the Critic Agent in a fresh session with an adversarial persona. Instruct it to be skeptical by design, prioritizing rejection of violations over helpfulness. Compare code strictly against loaded contracts."
+  - name: "Identify Violations and Issue Verdict"
+    text: "Analyze the Critic's output. If violations are found, categorize by impact and provide remediation paths. If no violations are found against the contracts, issue a PASS verdict."
 ---
 
 ## Definition

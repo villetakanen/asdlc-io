@@ -152,4 +152,5 @@ grep -c 'BreadcrumbList' dist/patterns/index.html   # expect 1 block
 - [Google — Breadcrumb structured data](https://developers.google.com/search/docs/appearance/structured-data/breadcrumb) — `ListItem`/`position`/`item` requirements, absolute-URL rule
 - `specs/structured-data/spec.md` — sibling spec; the `StructuredData.astro` component this feature extends
 - `specs/sitemap/spec.md` — shares the `/{collection}/{id}/` route hierarchy and absolute-URL form
+- `specs/howto-schema/spec.md` — sibling spec; mirrors this typed discriminated-union pattern for `HowTo`
 - `docs/reports/GEO-AUDIT-REPORT.md` — source audit (item H2)

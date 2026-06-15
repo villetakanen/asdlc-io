@@ -5,6 +5,17 @@ tags: ["Code Review", "Implementation", "Critic Agent", "Workflow", "Quality Gat
 relatedIds: ["patterns/constitutional-review", "patterns/adversarial-code-review", "patterns/agent-constitution", "practices/agents-md-spec"]
 status: "Experimental"
 lastUpdated: 2026-01-08
+steps:
+  - name: "Document Architectural Constraints in Constitution"
+    text: "Ensure your Agent Constitution includes non-functional constraints that are specific (e.g., 'push filtering to database layer'), testable, and scoped to categories such as Data Access, Performance, Security, and Error Handling."
+  - name: "Configure Critic Agent Prompt"
+    text: "Extend the standard Adversarial Code Review prompt to include constitutional validation. The Critic must validate against both the Spec (functional requirements) and the Constitution (architectural principles)."
+  - name: "Execute Constitutional Review Workflow"
+    text: "Open a fresh Critic Agent session, provide the Constitution and the feature Spec, and supply the code diff. Run the constitutional review after quality gates and spec compliance review have passed."
+  - name: "Process Violation Reports"
+    text: "When violations are found, return the structured report to the Builder Agent with categorized violations, impacted locations, and ordered remediation steps. Iterate until the Critic issues a PASS verdict."
+  - name: "Update Constitution Based on Violations"
+    text: "If the Critic produces unclear verdicts or false positives, refine the constitutional constraints to be more specific. Vague constraints like 'be performant' must become precise measurable rules before the next review cycle."
 ---
 
 ## Definition

@@ -5,6 +5,17 @@ tags: ["Context Engineering", "Product Design", "Documentation"]
 relatedIds: ["patterns/product-vision", "practices/agents-md-spec", "practices/living-specs", "practices/agent-personas"]
 status: "Draft"
 lastUpdated: 2025-01-05
+steps:
+  - name: "Decide: Inline or Separate File"
+    text: "If the vision fits in ~200–300 tokens and changes rarely, inline it in AGENTS.md. If it has multiple components, exceeds 500 tokens, or different agents need different depth, extract it to VISION.md and add a TL;DR reference in AGENTS.md."
+  - name: "Describe the Actual Humans"
+    text: "Write a paragraph about real people, not abstract personas. Include their constraints, what they hate, and what they wish existed. Agents use this to resolve 'would this person want X?' judgment calls."
+  - name: "State Your Point of View"
+    text: "List 3–5 opinionated stances on product tradeoffs that reasonable people might disagree with. Generic values like 'user-centric design' are not useful; tradeoff stances like 'dense information over progressive disclosure' are."
+  - name: "Add Taste References"
+    text: "Name specific products and what specifically to take from them, plus patterns to avoid and why. Agents can reference these directly when making design decisions."
+  - name: "Define Decision Heuristics"
+    text: "Provide a ranked list of tie-breakers for ambiguous situations. These are the rules the agent applies when genuinely uncertain — prioritize the most resolving heuristic first."
 ---
 
 ## Overview

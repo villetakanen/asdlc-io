@@ -5,6 +5,15 @@ tags: ["Context Engineering", "Documentation", "Project Structure"]
 relatedIds: ["patterns/context-map", "practices/agents-md-spec", "concepts/context-engineering"]
 status: "Experimental"
 lastUpdated: 2026-02-16
+steps:
+  - name: "Audit"
+    text: "Identify the 'Hidden Knowledge' that agents miss — architecture docs, domain-specific files, and any context that lives outside the main codebase. These gaps are what the Context Map will address."
+  - name: "Select Format"
+    text: "Default to Annotated YAML for readability and LLM compatibility. Switch to Compressed Pipe syntax only when your map exceeds 2000 tokens."
+  - name: "Embed"
+    text: "Place the finished map in Section 5 of your AGENTS.md so agents can locate and read it autonomously during every task."
+  - name: "Verify"
+    text: "Ask the agent a question that requires the map (e.g., 'Where is the Terraform state policy?'). If it reads the map and locates the correct file, the map is working correctly."
 ---
 
 ## Definition

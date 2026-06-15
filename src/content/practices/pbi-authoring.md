@@ -5,6 +5,19 @@ tags: ["Agile", "Product Backlog Item", "Workflow", "Agent Execution"]
 relatedIds: ["patterns/the-pbi", "patterns/the-spec", "practices/living-specs"]
 status: "Live"
 lastUpdated: 2026-01-13
+steps:
+  - name: "Ensure Accessibility"
+    text: "Confirm the PBI is programmatically accessible to agents via MCP integration, API access, or repo-based markdown. A PBI locked in a UI without API access is invisible to the workflow."
+  - name: "Write the Directive"
+    text: "State what to do in imperative form with explicit scope boundaries. Use 'Implement X. Scope: only touch folder Y' — not user-story format, which requires interpretation."
+  - name: "Add Context Pointers"
+    text: "Reference the permanent spec by file path rather than copying design decisions into the PBI. Pointers keep the agent reading the authoritative source as it evolves."
+  - name: "Define Verification Criteria"
+    text: "Link to spec scenarios or define inline checkboxes that produce a binary pass/fail. Each criterion must be independently verifiable."
+  - name: "Declare Dependencies"
+    text: "Explicitly state which PBIs block this one and which this one blocks. Implicit dependencies discovered at merge time are a planning failure."
+  - name: "Set the Refinement Rule"
+    text: "Define what the agent should do if implementation requires deviating from the spec: update spec in the same PR, flag for human review, or proceed with a deviation log."
 references:
   - type: "video"
     title: "Beyond Vibe-Coding: Learn Effective AI-Assisted Coding in 4 minutes"
