@@ -164,4 +164,5 @@ grep -rl 'HowTo' dist/concepts/ dist/patterns/                     # expect no m
 - `specs/structured-data/spec.md` — sibling spec; the `StructuredData.astro` component this extends
 - `specs/breadcrumbs/spec.md` — sibling spec; the typed discriminated-union pattern this mirrors
 - `specs/practices-page/spec.md` — the practices collection this marks up
+- `specs/article-schema-fields/spec.md` — sibling spec; same additive-extension pattern for `TechArticle` context fields
 - `docs/reports/GEO-AUDIT-REPORT.md` — source audit (item H4)

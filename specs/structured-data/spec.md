@@ -141,3 +141,4 @@ Reference the concepts route (`src/pages/concepts/[...slug].astro:28-34`) as the
 - `specs/patterns-index/spec.md` — Related spec for the patterns collection
 - `specs/breadcrumbs/spec.md` — Sibling spec; extends `StructuredData.astro` with `BreadcrumbList`
 - `specs/howto-schema/spec.md` — Sibling spec; extends `StructuredData.astro` with `HowTo` for practices
+- `specs/article-schema-fields/spec.md` — Sibling spec; adds `mainEntityOfPage`/`inLanguage`/`articleSection` to the `TechArticle` block

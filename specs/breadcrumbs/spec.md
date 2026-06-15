@@ -153,4 +153,5 @@ grep -c 'BreadcrumbList' dist/patterns/index.html   # expect 1 block
 - `specs/structured-data/spec.md` — sibling spec; the `StructuredData.astro` component this feature extends
 - `specs/sitemap/spec.md` — shares the `/{collection}/{id}/` route hierarchy and absolute-URL form
 - `specs/howto-schema/spec.md` — sibling spec; mirrors this typed discriminated-union pattern for `HowTo`
+- `specs/article-schema-fields/spec.md` — sibling spec; same additive-extension pattern for `TechArticle` context fields
 - `docs/reports/GEO-AUDIT-REPORT.md` — source audit (item H2)

@@ -54,6 +54,9 @@ if (type === "TechArticle" || type === "Article") {
     ...(data.dateModified && { dateModified: data.dateModified }),
     ...(data.keywords && { keywords: data.keywords }),
     ...(data.url && { url: data.url }),
+    inLanguage: "en",
+    ...(data.url && { mainEntityOfPage: { "@type": "WebPage", "@id": data.url } }),
+    ...(data.articleSection && { articleSection: data.articleSection }),
   };
 } else if (type === "WebSite") {
   structuredData = {
