@@ -14,6 +14,7 @@ relatedIds:
   - patterns/the-spec
   - patterns/context-gates
   - concepts/extreme-programming
+  - concepts/event-modeling
 lastUpdated: 2026-01-13
 status: "Live"
 references:

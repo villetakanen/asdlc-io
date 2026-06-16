@@ -5,6 +5,11 @@ tags:
   - Architecture
   - Requirements
   - Standards
+relatedIds:
+  - concepts/software-civil-engineering
+  - concepts/spec-driven-development
+  - concepts/behavior-driven-development
+  - patterns/the-spec
 status: Experimental
 lastUpdated: 2026-01-01
 references:
