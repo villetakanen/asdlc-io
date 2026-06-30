@@ -2,9 +2,9 @@
 title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
-relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering", "patterns/artifact-import"]
+relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering", "patterns/artifact-import", "concepts/red-queen-godel-machine"]
 status: "Live"
-lastUpdated: 2026-01-31
+lastUpdated: 2026-06-30
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
@@ -33,6 +33,12 @@ references:
     published: 2026-02-01
     accessed: 2026-02-04
     annotation: "External validation of session separation. Key insight: 'The agent that wrote the code is compromised. It knows what it built. It'll rationalize.'"
+  - type: "paper"
+    title: "The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators"
+    url: "https://arxiv.org/abs/2606.26294"
+    author: "Alex Iacob et al."
+    published: 2026-06-29
+    annotation: "Empirical validation that co-evolving an agent-as-a-judge code reviewer alongside the coder provides a cheap quality surrogate signal, saving 1.35x-1.72x fewer tokens compared to running full multi-turn coding executions."
 ---
 
 ## Definition
@@ -263,9 +269,11 @@ This pattern is currently manual but has clear automation paths:
 
 **CI/CD Integration** — Run Critic automatically on PR creation, posting violations as review comments.
 
-**IDE Integration** — Real-time critique as code is written, similar to linting but spec-aware.
+**IDE Integration** — Real-time critique as code is written, similar to linter feedback but spec-aware.
 
 **Multi-Agent Orchestration** — Automated handoff between Builder and Critic until PASS is achieved.
+
+**Co-Evolved Review Signals** — The [Red Queen Gödel Machine](/concepts/red-queen-godel-machine) demonstrates that co-evolving an "agent-as-a-judge" code reviewer alongside the coder provides a cheap quality surrogate signal. Because the judge evaluates the diff in a single step rather than running full multi-turn coding execution loops, this co-evolved Review Gate improves search efficiency and consumes 1.35x–1.72x fewer tokens.
     
 ### Programmatic Orchestration (Workflow as Code)
 

@@ -17,6 +17,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="feed-entry">
+      <h2>The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators</h2>
+      <div class="meta">
+        <span><strong>Source:</strong> <a href="https://arxiv.org/abs/2606.26294" target="_blank" rel="noopener">Alex Iacob et al. (arXiv, June 2026)</a></span>
+      </div>
+      <p>
+        Iacob et al. introduce the Red Queen Gödel Machine (RQGM), an evolutionary framework for recursive self-improvement under non-stationary utilities. The system co-evolves task agents and learned evaluators in shared workspaces, organizing search into epochs with frozen evaluation criteria. Evaluators are promoted at checkpoints only when they statistically outperform incumbents on a fixed ground-truth anchor using conservative best-belief scoring. In the ASDLC, we ground this as the <a href="/concepts/red-queen-godel-machine">Red Queen Gödel Machine</a> concept. We synthesize its findings into the <a href="/patterns/agent-optimization-loop">Agent Optimization Loop</a> as <strong>Controlled Evaluator Evolution</strong>, demonstrating how soft review gates can safely evolve without violating the Hard Harness freeze limits.
+      </p>
+    </div>
+
+    <div class="feed-entry">
       <h2>Self-Harness: Harnesses That Improve Themselves</h2>
       <div class="meta">
         <span><strong>Source:</strong> <a href="https://arxiv.org/abs/2606.09498" target="_blank" rel="noopener">Hangfan Zhang et al. (arXiv, June 2026)</a></span>

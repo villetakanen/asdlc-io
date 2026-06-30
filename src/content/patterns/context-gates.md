@@ -3,8 +3,8 @@ title: "Context Gates"
 description: "Architectural checkpoints that filter input context and validate output artifacts between phases of work to prevent cognitive overload and ensure system integrity."
 tags: ["Architecture", "Quality Gates", "Context Engineering", "Validation"]
 status: "Experimental"
-relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code", "concepts/pr-slop", "concepts/theory-of-llm-constraints", "concepts/compound-engineering", "patterns/compound-loop", "patterns/artifact-import"]
-lastUpdated: 2026-05-20
+relatedIds: ["patterns/model-routing", "concepts/agentic-sdlc", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/adversarial-code-review", "patterns/constitutional-review", "practices/feature-assembly", "practices/workflow-as-code", "concepts/pr-slop", "concepts/theory-of-llm-constraints", "concepts/compound-engineering", "patterns/compound-loop", "patterns/artifact-import", "concepts/red-queen-godel-machine"]
+lastUpdated: 2026-06-30
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews"
@@ -26,6 +26,12 @@ references:
     published: 2026-01-16
     accessed: 2026-01-18
     annotation: "Validates the need for deterministic orchestration and hard enforcement boundaries to prevent 'tipsy wobbling' agents."
+  - type: "paper"
+    title: "The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators"
+    url: "https://arxiv.org/abs/2606.26294"
+    author: "Alex Iacob et al."
+    published: 2026-06-29
+    annotation: "Defines controlled utility evolution epochs to prevent reward hacking when Review Gates are dynamically evolved."
 ---
 
 ## Definition
@@ -127,6 +133,16 @@ When violations are detected, Review Gates provide actionable feedback:
 4. **Test Requirements** — What tests would prevent regression
 
 This transforms Review Gates from "reject" mechanisms into "guide to resolution" checkpoints.
+
+##### Review Gate Evolution and Risks
+
+When integrating Review Gates into self-improving agent loops (such as the [Agent Optimization Loop](/patterns/agent-optimization-loop)), it is possible to dynamically evolve the Review Gate's prompts and rubrics to keep up with the agent's improved capability. As formulated in the [Red Queen Gödel Machine](/concepts/red-queen-godel-machine), this is implemented via **Controlled Utility Evolution**—keeping the Review Gate frozen during an active search epoch and updating it only at boundaries to prevent the agent from reward hacking the judge.
+
+However, evolving Review Gates introduces severe validation risks:
+1.  **Circular Validation:** Evolving judges of the same family can create shared blind spots where the builder and judge agree on incorrect code.
+2.  **Evaluator Drift:** Without frozen external anchors, evolved judges will drift and redefine success away from user intent.
+
+*Mitigation:* Evolved Review Gates must always be calibrated against independent, frozen ground-truth datasets and backed by deterministic Quality Gates.
 
 #### Acceptance Gates (Human-in-the-Loop)
 Subjective checks requiring human strategic judgment.

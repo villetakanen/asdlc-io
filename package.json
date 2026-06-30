@@ -1,7 +1,7 @@
 {
   "name": "asdlc-io",
   "type": "module",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
@@ -22,7 +22,7 @@
     "test:mcp-preview": "node scripts/test-deploy-preview.mjs",
     "build:skill": "node scripts/build-skill.mjs",
     "build:mcp-index": "node scripts/generate-mcp-index.mjs",
-    "gsc:snapshot": "node scripts/gsc-snapshot.ts",
+    "gsc:snapshot": "node --env-file-if-exists=.env scripts/gsc-snapshot.ts",
     "curator": "node scripts/curator-run.ts",
     "test:e2e": "playwright test",
     "evals:mcp": "node --experimental-strip-types --no-warnings scripts/run-mcp-evals.mjs"

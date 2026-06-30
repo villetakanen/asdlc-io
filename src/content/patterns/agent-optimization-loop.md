@@ -31,6 +31,12 @@ references:
     type: "paper"
     published: 2026-06-08
     annotation: "Introduces the Self-Harness loop for model-specific harness self-improvement, verifying edits using regression gates on held-out tasks."
+  - title: "The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators"
+    authors: ["Alex Iacob", "Andrej Jovanović", "William F. Shen", "Daniel Burkhardt", "Meghdad Kurmanji", "Nurbek Tastan", "Lorenzo Sani", "Niccolò Alberto Elia Venanzi", "Ambroise Odonnat", "Zeyu Cao", "Bill Marino", "Xinchi Qiu", "Nicholas D. Lane"]
+    url: "https://arxiv.org/abs/2606.26294"
+    type: "paper"
+    published: 2026-06-29
+    annotation: "Introduces the Red Queen Gödel Machine (RQGM) and controlled utility evolution."
 ---
 
 ## Definition
@@ -109,6 +115,19 @@ The loop's Meta-Optimization phase can be driven by three distinct proposer type
 A sub-mode of Same-Model Self-Proposal where the agent optimizes its own scaffolding based on verifier-grounded trace signatures. In ASDLC, this remains a *proposal* loop rather than unbounded self-evolution: the allowed editable surfaces, sandbox environment, and final promotion criteria remain deterministically defined and governed by the harness and human architectural review.
 
 In ASDLC, we treat Online Evolution as an *input* to Offline Optimization: agents can suggest updates to the context or harness, but these updates must pass deterministic validation gates or human Architectural Review before becoming canonical.
+
+### Controlled Evaluator Evolution (Experimental)
+
+A key limitation of standard self-improvement loops is that static evaluation criteria (scenarios or judges) become stale or prone to gaming (Goodhart's Law) as the agent's capabilities improve. The [Red Queen Gödel Machine](/concepts/red-queen-godel-machine) (Iacob et al., 2026) addresses this by **co-evolving the evaluator alongside the task agent** under non-stationary utility signals. 
+
+However, allowing an agent loop to dynamically modify its own evaluation criteria creates a direct conflict with **Lesson #4 (Hard Harness Freeze)**, which dictates that the verification gates must remain frozen and human-governed to prevent safety regressions and drift.
+
+To reconcile evaluator evolution with safety boundaries, the optimization loop implements **Controlled Utility Evolution**:
+*   **Epoch-Frozen Criteria:** The active evaluator (e.g., prompt-based judges or review rubrics) is completely frozen for the duration of a search epoch. It serves as the static contract against which candidate agents are optimized, preserving epoch-local convergence guarantees.
+*   **Governed Checkpoint Gates:** The evaluator can only be replaced at designated epoch boundaries (checkpoints). A candidate evaluator is promoted only if it statistically outperforms the incumbent on an independent, frozen **Ground-Truth Anchor** dataset using conservative $\epsilon$-best-belief scoring.
+*   **Selective Erasure:** When the evaluator is replaced, only the utility records scored by the retired judge are erased. The search lazily re-evaluates older nodes as it returns to them, preventing the mixing of stale utility evidence while keeping re-scoring costs linear in the total search budget.
+
+This ensures that while the evaluator's soft heuristics (prompts and rubrics) evolve as a curriculum, the hard promotion gate (the anchor) remains frozen and human-governed.
 
 ## Relationship to Other Patterns
 

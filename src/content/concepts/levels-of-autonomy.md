@@ -12,9 +12,10 @@ relatedIds:
   - concepts/pr-slop
   - patterns/compound-loop
   - patterns/the-spec
+  - concepts/red-queen-godel-machine
 status: Live
 publishedDate: 2026-01-09
-lastUpdated: 2026-05-28
+lastUpdated: 2026-06-30
 references:
   - type: "website"
     title: "Humans and Agents in Software Engineering Loops"
@@ -44,6 +45,12 @@ references:
     published: 2024-04-30
     accessed: 2026-01-19
     annotation: "Validates L2 as 'Guarded Autonomy' and L3 as 'Proposal-First' autonomy."
+  - type: "paper"
+    title: "The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators"
+    url: "https://arxiv.org/abs/2606.26294"
+    author: "Alex Iacob et al."
+    published: 2026-06-29
+    annotation: "Evolving evaluation criteria pressures L3 boundaries; requires epoch boundaries and independent anchors to remain governed."
 ---
 
 ## Definition
@@ -219,6 +226,7 @@ L3 represents the balance between operational scaling and engineering safety. Pu
 
 - **The Paradox of Supervision:** As agents operate with longer periods of isolation, human engineering skills atrophy. When an L4 agent experiences an edge-case failure, the human auditor lacks the immediate contextual clarity to intervene effectively.
 - **Silent Drift:** L4 and L5 agents can continuously generate code that compiles successfully and passes naive unit checks while slowly deviating from strategic product goals. This creates a state of **unpriced liability**, where system complexity outpaces human comprehension.
+- **Evaluator Evolution Drift:** Pushing agents toward recursive self-improvement where they can edit their own judges (such as the [Red Queen Gödel Machine](/concepts/red-queen-godel-machine)) directly pressures the L3 boundary. If agents autonomously mutate their evaluation criteria, they transition into L4/L5 closed loops, introducing severe alignment drift. To remain within L3 conditional autonomy, evaluator evolution must be restricted to a **proposal loop** where any proposed changes to Review Gates must pass a human-in-the-loop audit or be validated against frozen, human-governed ground-truth anchors at epoch boundaries.
 
 By formalizing strict validation loops and keeping human engineers positioned squarely at the gate as **Change Owners**, teams can safely maximize agentic throughput while enforcing deterministic engineering standards.
 

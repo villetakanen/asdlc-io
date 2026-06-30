@@ -20,7 +20,7 @@ If the input is a URL, fetch it first. If it's a text snippet, use it directly.
 5. **Load content specs** — read the relevant archetype from `specs/content-articles/`:
    - `spec.md` (shared contract)
    - `concept.md`, `pattern.md`, or `practice.md` (whichever fits)
-6. **Load assessor memory** — read `docs/assessments/lessons.md` to capture heuristics from past assessments.
+6. **Load assessor memory** — read `docs/assessments/lessons.md` to capture heuristics from past assessments. Also scan `docs/assessments/ledger.jsonl` (`hitl_pivots`, `lessons_learned`): if a correction has recurred two or more times but is not yet in `lessons.md`, treat it as a live heuristic now and flag it for promotion in Phase 5.G.
 
 ## Phase 2: Adversarial Assessment
 
@@ -93,3 +93,6 @@ Append a new JSON line to `docs/assessments/ledger.jsonl` with status `pending`.
 ```json
 {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"pending","execution_retro":"","lessons_learned":""}
 ```
+
+### G. Promote Recurring Lessons (Close the Loop)
+The ledger is a write-only log — it is **not** loaded during future assessments (only `lessons.md` is, in Phase 1). A lesson left only in the ledger is one the assessor will not see again, which is how the same correction recurs. After writing the ledger line, judge whether this assessment's `lessons_learned` or any `hitl_pivot` is **generalizable** (applies beyond this source) or **recurs** with a pattern flagged in Phase 1. If so, propose a one-line addition/amendment to `docs/assessments/lessons.md`, gated by the human reviewer — the Compound Loop applied to the assessor's own memory. One-off, source-specific lessons stay in the ledger only.
