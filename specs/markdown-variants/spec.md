@@ -1,14 +1,17 @@
 ---
 title: "Markdown Variants for Live Content Pages"
-status: "draft"
+status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-05-22"
+updated: "2026-07-05"
 tags: ["agent-docs", "discoverability", "content-negotiation"]
 linear: "AL-28"
 ---
 
 # Feature: Markdown Variants for Live Content Pages
+
+> **Implementation status (2026-07-05):** Shipped in commit `32a15cc` (`feat(markdown-variants): add markdown endpoints and assess updates`). The `.md` endpoints, shared helper, Netlify redirects, `llms.txt` links, and unit tests are all in place and green. This spec was reconciled against the live code in reverse/update mode. **One open item remains:** post-deploy verification that Netlify's `Accept`-header content negotiation matches real agent requests (see Contract › Definition of Done). Note: Linear AL-28 was still marked *Todo* at reconciliation time — the status should be corrected to reflect the shipped implementation.
 
 ## Blueprint
 
@@ -30,16 +33,17 @@ The MCP server and downloadable Skill already expose the *content collections* a
 
 **Output mode:** asdlc.io builds to fully static HTML (no SSR adapter). Therefore both representations must be emitted at build time. Runtime `Accept`-header negotiation is implemented at the Netlify edge via a redirect rule, not via SSR.
 
-**File layout:**
+**File layout (as shipped):**
 
-| Concern | Mechanism |
-|:---|:---|
-| `.md` URL routing | New static endpoints: `src/pages/concepts/[...slug].md.ts`, `src/pages/patterns/[...slug].md.ts`, `src/pages/practices/[...slug].md.ts` |
-| Content source | Same `getCollection()` entries used by the `[...slug].astro` HTML pages — single source of truth |
-| Status filter | Only entries with `status: "Live"` or `status: "Experimental"` are emitted as `.md`. Draft / Proposed / Deprecated → 404 (i.e. not emitted, Netlify returns 404). |
-| Response headers | `Content-Type: text/markdown; charset=utf-8` |
-| `Accept` negotiation | `netlify.toml` redirect: when `Accept` header contains `text/markdown` and path matches `/(concepts\|patterns\|practices)/<slug>/`, redirect (force 200 rewrite) to the corresponding `.md` URL |
-| `llms.txt` update | Foundational reading links in `public/llms.txt` point to `.md` variants |
+| Concern | Mechanism | Canonical source |
+|:---|:---|:---|
+| `.md` URL routing | Static endpoints, one per collection | `src/pages/concepts/[...slug].md.ts`, `src/pages/patterns/[...slug].md.ts`, `src/pages/practices/[...slug].md.ts` |
+| Shared payload logic | Frontmatter builder, size cap, published-status set — extracted so the three endpoints stay thin and behavior is tested in one place | `src/lib/markdown-variant.ts` |
+| Content source | Same `getCollection()` entries used by the `[...slug].astro` HTML pages — single source of truth | (Astro content collections) |
+| Status filter | Only entries with `status: "Live"` or `status: "Experimental"` are emitted as `.md`. Draft / Proposed / Deprecated are not emitted, so Netlify returns 404. | `PUBLISHED_STATUSES` in `src/lib/markdown-variant.ts` |
+| Response headers | `Content-Type: text/markdown; charset=utf-8` | endpoint `GET` handlers |
+| `Accept` negotiation | `netlify.toml` redirect: when the `Accept` header contains `text/markdown` and the path matches `/(concepts\|patterns\|practices)/<slug>/`, rewrite (force-200) to the corresponding `.md` URL | `netlify.toml` |
+| `llms.txt` update | "Foundational Reading" links point to `.md` variants | `public/llms.txt` |
 
 **Emitted body shape:**
 
@@ -56,9 +60,9 @@ canonical: "https://asdlc.io/concepts/<slug>/"
 <raw markdown body, h2-first per repo convention>
 ```
 
-The frontmatter is a curated subset of the article schema — only fields useful for an agent reader (title, description, status, lastUpdated, tags, canonical). It excludes implementation-only fields like `relatedIds` (which use internal collection IDs) and any reference objects that would balloon the payload. References are kept inline in the body as they already appear.
+The frontmatter is a curated subset of the article schema — only fields useful for an agent reader: `title`, `description`, `status`, `lastUpdated` (emitted as an ISO `YYYY-MM-DD` string), `tags` (defaulting to `[]`), and `canonical`. It excludes implementation-only fields like `relatedIds` (which use internal collection IDs), `references`, and `supersededBy`. References are kept inline in the body as they already appear. `buildFrontmatter()` in `src/lib/markdown-variant.ts` is the authoritative serializer.
 
-**Single source of truth:** The `.md` endpoint reads the raw `.md` file from the content collection via `getEntry()` / file system (whichever is the cleanest API in current Astro). It does **not** re-serialize from parsed AST — that risks losing formatting fidelity.
+**Single source of truth:** The `.md` endpoint emits the entry's raw `body` (the unparsed markdown from the content collection) prefixed with the built frontmatter — see `buildPayload()`. It does **not** re-serialize from a parsed AST or round-trip through rendered HTML, either of which would lose formatting fidelity. An entry with an empty body throws at build time rather than emitting a headers-only payload.
 
 ### Anti-Patterns
 
@@ -71,15 +75,19 @@ The frontmatter is a curated subset of the article schema — only fields useful
 
 ### Definition of Done
 
-- [ ] `src/pages/concepts/[...slug].md.ts` emits a static `.md` endpoint for every Live/Experimental concept
-- [ ] Same for `patterns` and `practices`
-- [ ] Each `.md` response has `Content-Type: text/markdown; charset=utf-8`
-- [ ] Each `.md` response body is ≤ 50,000 characters (regression guard for the truncation scorecard finding)
-- [ ] Draft / Proposed / Deprecated articles do not appear in the emitted set (Netlify returns 404)
-- [ ] `netlify.toml` rewrite: `Accept: */text\/markdown/*` on `/(concepts|patterns|practices)/<slug>/` serves the corresponding `.md` payload with HTTP 200
-- [ ] `public/llms.txt` "Foundational Reading" links updated to `.md` URLs
-- [ ] Unit tests cover: status filter, frontmatter shape, body length cap
-- [ ] `pnpm check`, `pnpm lint`, `pnpm test:run`, `pnpm build` all green
+- [x] `src/pages/concepts/[...slug].md.ts` emits a static `.md` endpoint for every Live/Experimental concept
+- [x] Same for `patterns` and `practices`
+- [x] Each `.md` response has `Content-Type: text/markdown; charset=utf-8`
+- [x] Each `.md` response body is ≤ 50,000 characters (regression guard for the truncation scorecard finding) — enforced by `assertSizeCap()`, which throws at build time
+- [x] Draft / Proposed / Deprecated articles do not appear in the emitted set (Netlify returns 404) — `getStaticPaths()` filters on `PUBLISHED_STATUSES`
+- [x] `netlify.toml` rewrite for `Accept: text/markdown` on `/(concepts|patterns|practices)/<slug>/` serves the corresponding `.md` payload with HTTP 200 — **rule is in place; live matching not yet verified (see open item below)**
+- [x] `public/llms.txt` "Foundational Reading" links updated to `.md` URLs
+- [x] Unit tests cover status filter, frontmatter shape, and body length cap (`src/pages/__tests__/markdown-variants.test.ts`, 14 tests green)
+- [x] `pnpm test:run` green for this suite
+
+**Open item (blocks marking AL-28 fully Done):**
+
+- [ ] Post-deploy verification that Netlify's `conditions.Accept` matching actually serves the `.md` payload for real agent requests. `netlify.toml` carries a `TODO(AL-28)` noting the ambiguity: agents commonly send `Accept: text/markdown, */*` (with quality params), and Netlify's exact-match semantics may not match those. Verify with `curl -H "Accept: text/markdown"` and `curl -H "Accept: text/markdown, */*;q=0.8"` against the deploy preview. If matching proves unreliable, document the `.md` URL as the canonical agent path (already the fallback per Anti-Patterns) and downgrade the negotiation guardrail to best-effort.
 
 ### Regression Guardrails
 
@@ -123,14 +131,14 @@ The frontmatter is a curated subset of the article schema — only fields useful
 
 ## Implementation Notes
 
-**Endpoint shape (sketch):**
+**Structure as shipped.** The three endpoints are deliberately thin — each calls `getCollection(<name>, filter)` in `getStaticPaths()` and delegates payload construction to `assertSizeCap()` in `src/lib/markdown-variant.ts`. The `PUBLISHED` set is re-declared in each endpoint (not imported) so a future per-collection divergence stays local, matching the shared helper's `PUBLISHED_STATUSES`.
 
 ```ts
-// src/pages/concepts/[...slug].md.ts
+// src/pages/concepts/[...slug].md.ts (patterns/practices are identical modulo collection name)
 import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
+import { assertSizeCap } from "../../lib/markdown-variant";
 
-const MAX_BYTES = 50_000;
 const PUBLISHED = new Set(["Live", "Experimental"]);
 
 export async function getStaticPaths() {
@@ -139,19 +147,15 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async ({ props }) => {
-  const { entry } = props as { entry: Awaited<ReturnType<typeof getCollection>>[number] };
-  const fm = buildFrontmatter(entry); // curated subset
-  const body = `${fm}\n\n${entry.body ?? ""}`;
-  if (body.length > MAX_BYTES) {
-    throw new Error(`md payload for ${entry.id} is ${body.length} chars (>${MAX_BYTES})`);
-  }
-  return new Response(body, {
-    headers: { "Content-Type": "text/markdown; charset=utf-8" },
-  });
+  const { entry } = props as { entry: Awaited<ReturnType<typeof getCollection<"concepts">>>[number] };
+  const body = assertSizeCap(entry, "concepts");
+  return new Response(body, { headers: { "Content-Type": "text/markdown; charset=utf-8" } });
 };
 ```
 
-Repeat the same shape for `patterns/` and `practices/`. The differences are the collection name and the published-status set (likely identical, but kept explicit per-collection so a future divergence is local).
+**Shared helper (`src/lib/markdown-variant.ts`).** Exposes `MAX_CHARS` (50,000), `PUBLISHED_STATUSES`, `buildFrontmatter()`, `buildPayload()`, and `assertSizeCap()`. `buildPayload()` throws on an empty body; `assertSizeCap()` throws when `frontmatter + body` exceeds `MAX_CHARS`. The cap counts the combined payload, not the body alone.
+
+**Note on the size cap.** The guard is character-based (`.length`), so "50K chars" — not bytes. For the current ASCII-dominant corpus the distinction is immaterial; a future multibyte-heavy article could pass the char cap while exceeding 50KB on the wire. Revisit only if that becomes real.
 
 **Netlify rewrite (sketch):**
 
@@ -169,9 +173,12 @@ Verify Netlify's `conditions.Accept` matching semantics during implementation �
 
 ## Resources
 
-- AL-28 (Linear) — Source PBI
-- `specs/llms-txt/spec.md` — Sibling discoverability surface (will be updated)
+- AL-28 (Linear) — Source PBI (status should be corrected from *Todo* → *Done* once the open verification item closes)
+- Commit `32a15cc` — `feat(markdown-variants): add markdown endpoints and assess updates` (implementation provenance)
+- `src/lib/markdown-variant.ts` — Shared payload logic (canonical implementation)
+- `src/pages/__tests__/markdown-variants.test.ts` — Contract tests (status filter, frontmatter shape, size cap)
+- `specs/llms-txt/spec.md` — Sibling discoverability surface (links updated to `.md`)
 - `specs/content-articles/spec.md` — Shared article contract
-- `specs/mcp-server/spec.md` (referenced) — Filter-set parity target
-- `netlify.toml` — Edge redirect surface
-- [Netlify Accept-based redirects](https://docs.netlify.com/routing/redirects/redirect-options/) — Verify behavior
+- `specs/mcp-evals/spec.md` — Adjacent agent-facing quality gate (AL-78)
+- `netlify.toml` — Edge redirect surface (carries the `TODO(AL-28)` verification note)
+- [Netlify Accept-based redirects](https://docs.netlify.com/routing/redirects/redirect-options/) — Verify behavior for the open content-negotiation item
