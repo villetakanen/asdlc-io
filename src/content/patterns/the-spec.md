@@ -5,7 +5,7 @@ description: "Living documents that serve as the permanent source of truth for f
 tags: ["Specifications", "Living Documentation", "Spec-Driven Development", "Context Engineering", "AI Agents"]
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "patterns/artifact-import", "concepts/event-modeling"]
 status: "Live"
-lastUpdated: 2026-04-10
+lastUpdated: 2026-07-05
 references:
   - type: "book"
     title: "Living Documentation: Continuous Knowledge Sharing by Design"
@@ -194,7 +194,9 @@ Defines **implementation constraints** that prevent agents from hallucinating in
 
 - **Context** — Why does this feature exist?
 - **Architecture** — API contracts, schemas, dependency directions
-- **Anti-Patterns** — What agents must NOT do
+- **Constraints** — Boundaries stated positively, as facts about how the system behaves
+
+State constraints as rules the system *follows*, not as a list of things to avoid. Telling an agent what *not* to do puts the wrong approach in its context window—the pink elephant problem. Where a failure mode matters, encode the correct behavior as a [Gherkin](/concepts/gherkin) scenario in the Contract instead of writing a warning. See the [Living Specs Practice Guide](/practices/living-specs) for the full rationale on positive constraints.
 
 ### Contract (Quality)
 Defines **verification rules** that exist independently of any specific task.
@@ -229,7 +231,7 @@ Kent Beck frames this precisely: "A specification should function as a hypothesi
 
 **The refinement cycle:**
 
-1. **Initial Spec** — Capture known constraints (API contracts, quality targets, anti-patterns)
+1. **Initial Spec** — Capture known constraints (API contracts, quality targets, architectural boundaries)
 2. **Implementation Discovery** — Agent or human encounters edge cases, performance issues, or missing requirements
 3. **Spec Update** — New constraints committed alongside the code that revealed them
 4. **Verification** — Gate validates implementation against updated spec
