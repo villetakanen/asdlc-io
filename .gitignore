@@ -16,6 +16,11 @@ data/gsc/*.jsonl
 data/gsc/*.raw.json
 data/gsc/*.jsonl.tmp
 
+# Curator reports are GSC-derived — they quote top-query strings, the same
+# private search data the snapshots above withhold. Same privacy class, so
+# same rule: kept local, regenerate on demand with `pnpm curator`. See ADR 0002.
+reports/curator/*.md
+
 # Logs
 logs
 *.log

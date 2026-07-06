@@ -37,7 +37,7 @@ This is a read-only analytical skill. It produces a report; the human decides wh
 **Outputs:**
 
 - A markdown report written to `reports/curator/YYYY-MM-DD.md`
-- Report is committed; historical reports drive retros — including retros on the rubric itself.
+- The report is a **local, regenerable artifact — not committed**. It is a pure view over the GSC snapshot and the rubric (`report = triage(snapshot, rubric)`), so `pnpm curator` reproduces it on demand. It is also GSC-derived: it quotes top-query strings, the same private search data the snapshots withhold from this public repo (see [ADR 0002](../../docs/adrs/0002-curator-reports-are-local-artifacts.md)). Retro history lives locally alongside the snapshots that produced it.
 
 **Triage rubric (the core logic):**
 
@@ -118,7 +118,7 @@ Briefly listed.
 
 - Curator is read-only against source content. It never edits articles directly — it reports.
 - All numeric thresholds and weights live in `tools/curator/rubric.ts`. No magic numbers in the skill prompt, `triage.ts`, or the report template.
-- Reports are committed. Historical reports drive retros on both content and the rubric itself.
+- Reports are **not committed** — they are GSC-derived (they quote query strings) and fully regenerable from the snapshot + rubric. `reports/curator/*.md` is gitignored; retros run against the locally-retained snapshots, not committed renders. See [ADR 0002](../../docs/adrs/0002-curator-reports-are-local-artifacts.md).
 - Single-article mode uses the latest snapshot by default. The user may pass `--live` to re-run `pnpm gsc:snapshot` for the freshest data the GSC API offers (data lags ~2-3 days regardless — see [ADR 0001](../../docs/adrs/0001-no-live-gsc-mcp-server.md)); the report header records which snapshot was used.
 
 ## Contract
