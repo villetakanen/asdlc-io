@@ -2,7 +2,7 @@
 title: "Extreme Programming"
 description: "A software development methodology emphasizing high-frequency feedback, testing, and continuous refactoring, which maps perfectly to the Agentic SDLC."
 tags: ["Agile", "Methodology", "TDD", "Agentic SDLC"]
-relatedIds: ["concepts/agentic-sdlc", "patterns/agentic-double-diamond", "concepts/behavior-driven-development", "patterns/agent-optimization-loop"]
+relatedIds: ["concepts/agentic-sdlc", "patterns/agentic-double-diamond", "concepts/behavior-driven-development", "patterns/agent-optimization-loop", "concepts/test-driven-development"]
 lastUpdated: 2026-02-24
 status: "Live"
 references:
