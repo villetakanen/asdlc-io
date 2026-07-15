@@ -15,6 +15,7 @@ relatedIds:
   - patterns/context-gates
   - concepts/extreme-programming
   - concepts/event-modeling
+  - concepts/test-driven-development
 lastUpdated: 2026-01-13
 status: "Live"
 references:
