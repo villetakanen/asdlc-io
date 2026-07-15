@@ -4,14 +4,16 @@ status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-05-22"
-updated: "2026-07-05"
+updated: "2026-07-15"
 tags: ["agent-docs", "discoverability", "content-negotiation"]
 linear: "AL-28"
 ---
 
 # Feature: Markdown Variants for Live Content Pages
 
-> **Implementation status (2026-07-05):** Shipped in commit `32a15cc` (`feat(markdown-variants): add markdown endpoints and assess updates`). The `.md` endpoints, shared helper, Netlify redirects, `llms.txt` links, and unit tests are all in place and green. This spec was reconciled against the live code in reverse/update mode. **One open item remains:** post-deploy verification that Netlify's `Accept`-header content negotiation matches real agent requests (see Contract › Definition of Done). Note: Linear AL-28 was still marked *Todo* at reconciliation time — the status should be corrected to reflect the shipped implementation.
+> **Implementation status (2026-07-05):** Shipped in commit `32a15cc` (`feat(markdown-variants): add markdown endpoints and assess updates`). The `.md` endpoints, shared helper, `llms.txt` links, and unit tests are all in place and green.
+>
+> **Verification result (2026-07-15):** The open item from the 2026-07-05 reconciliation was verified against the live site and **failed**. Netlify redirect `conditions` cannot match the `Accept` header (only Country/Language/Role/Cookie), so the negotiation rules in `netlify.toml` never fire — even for an exact `Accept: text/markdown` request. Requirement 2 (content negotiation) is therefore re-specified below as a **Netlify Edge Function** (precedent: `netlify/edge-functions/mcp.ts`). Evidence and research: Linear AL-28 comment thread (2026-07-15). The `.md` URL surface (requirement 1) is verified working in production.
 
 ## Blueprint
 
@@ -27,11 +29,11 @@ The MCP server and downloadable Skill already expose the *content collections* a
 
 **Consumers:** Claude Code / Cursor / OpenCode `WebFetch`-equivalent tools, Perplexity/ChatGPT/Gemini browse tools, AI answer engines, future MCP `get_article_by_url` flows.
 
-**Out of scope:** Recipes collection (separate archetype, deferred); resources pages (no markdown source — they're `.astro` pages).
+**Out of scope:** Recipes collection (separate archetype, deferred); resources pages (no markdown source — they're `.astro` pages); homepage and `/getting-started` negotiation (agents reach those surfaces via `public/llms.txt` and the discovery Link headers of AL-93 — revisit only if scanner or agent telemetry shows demand).
 
 ### Architecture
 
-**Output mode:** asdlc.io builds to fully static HTML (no SSR adapter). Therefore both representations must be emitted at build time. Runtime `Accept`-header negotiation is implemented at the Netlify edge via a redirect rule, not via SSR.
+**Output mode:** asdlc.io builds to fully static HTML (no SSR adapter). Therefore both representations must be emitted at build time. Runtime `Accept`-header negotiation is implemented at the Netlify edge via an edge function, not via SSR.
 
 **File layout (as shipped):**
 
@@ -42,7 +44,8 @@ The MCP server and downloadable Skill already expose the *content collections* a
 | Content source | Same `getCollection()` entries used by the `[...slug].astro` HTML pages — single source of truth | (Astro content collections) |
 | Status filter | Only entries with `status: "Live"` or `status: "Experimental"` are emitted as `.md`. Draft / Proposed / Deprecated are not emitted, so Netlify returns 404. | `PUBLISHED_STATUSES` in `src/lib/markdown-variant.ts` |
 | Response headers | `Content-Type: text/markdown; charset=utf-8` | endpoint `GET` handlers |
-| `Accept` negotiation | `netlify.toml` redirect: when the `Accept` header contains `text/markdown` and the path matches `/(concepts\|patterns\|practices)/<slug>/`, rewrite (force-200) to the corresponding `.md` URL | `netlify.toml` |
+| `Accept` negotiation | Netlify Edge Function registered on the three collection path patterns: when the request's `Accept` header lists `text/markdown` (including multi-value forms with quality params) and the path is a canonical article URL, serve the prebuilt `.md` payload for that slug with HTTP 200. All other requests fall through untouched. | `netlify/edge-functions/` (new function; registration pattern as in `mcp.ts`) |
+| Negotiation response headers | Negotiated responses carry `Content-Type: text/markdown; charset=utf-8` and `X-Markdown-Tokens` (estimated token count, `payload length / 4`) | same edge function |
 | `llms.txt` update | "Foundational Reading" links point to `.md` variants | `public/llms.txt` |
 
 **Emitted body shape:**
@@ -64,12 +67,14 @@ The frontmatter is a curated subset of the article schema — only fields useful
 
 **Single source of truth:** The `.md` endpoint emits the entry's raw `body` (the unparsed markdown from the content collection) prefixed with the built frontmatter — see `buildPayload()`. It does **not** re-serialize from a parsed AST or round-trip through rendered HTML, either of which would lose formatting fidelity. An entry with an empty body throws at build time rather than emitting a headers-only payload.
 
-### Anti-Patterns
+### Constraints
 
-- **Duplicating content under `public/`.** Do not copy `.md` files into `public/` to serve them as static assets. The collection remains the single source.
-- **Generating from rendered HTML.** Do not turn the rendered HTML page back into markdown — round-trip loses fidelity and reintroduces the boilerplate problem.
-- **SSR adapter for one feature.** Do not add `@astrojs/netlify` SSR adapter just for content negotiation. Edge-level redirect is sufficient and keeps the static-first ethos.
-- **Exposing Draft / Proposed.** The `.md` surface must match MCP and Skill filtering — never leak unfinished content via this channel.
+**[Restructured 2026-07-15]** — formerly "Anti-Patterns"; restated positively per the reconciled spec doctrine (AL-81).
+
+- The content collection is the single source for markdown payloads. `.md` responses are emitted from the raw collection body at build time — never from copies under `public/` and never converted back from rendered HTML.
+- The site remains fully static. Content negotiation is edge-layer routing to prebuilt payloads; no SSR adapter is introduced for this feature.
+- The `.md` surface exposes exactly the same status set as the MCP server and Skill bundle (Live + Experimental). Unpublished statuses are absent from the emitted set on every channel.
+- The negotiated response and the direct `.md` response for the same slug are byte-identical bodies.
 
 ## Contract
 
@@ -80,14 +85,20 @@ The frontmatter is a curated subset of the article schema — only fields useful
 - [x] Each `.md` response has `Content-Type: text/markdown; charset=utf-8`
 - [x] Each `.md` response body is ≤ 50,000 characters (regression guard for the truncation scorecard finding) — enforced by `assertSizeCap()`, which throws at build time
 - [x] Draft / Proposed / Deprecated articles do not appear in the emitted set (Netlify returns 404) — `getStaticPaths()` filters on `PUBLISHED_STATUSES`
-- [x] `netlify.toml` rewrite for `Accept: text/markdown` on `/(concepts|patterns|practices)/<slug>/` serves the corresponding `.md` payload with HTTP 200 — **rule is in place; live matching not yet verified (see open item below)**
+- [x] ~~`netlify.toml` rewrite for `Accept: text/markdown` serves the corresponding `.md` payload~~ **[DEPRECATED 2026-07-15]** — Netlify redirect `conditions` cannot match request headers; the rules never fired in production. Superseded by the edge-function items below.
 - [x] `public/llms.txt` "Foundational Reading" links updated to `.md` URLs
 - [x] Unit tests cover status filter, frontmatter shape, and body length cap (`src/pages/__tests__/markdown-variants.test.ts`, 14 tests green)
 - [x] `pnpm test:run` green for this suite
 
-**Open item (blocks marking AL-28 fully Done):**
+**Content negotiation via edge function (reopened 2026-07-15, closes AL-28):**
 
-- [ ] Post-deploy verification that Netlify's `conditions.Accept` matching actually serves the `.md` payload for real agent requests. `netlify.toml` carries a `TODO(AL-28)` noting the ambiguity: agents commonly send `Accept: text/markdown, */*` (with quality params), and Netlify's exact-match semantics may not match those. Verify with `curl -H "Accept: text/markdown"` and `curl -H "Accept: text/markdown, */*;q=0.8"` against the deploy preview. If matching proves unreliable, document the `.md` URL as the canonical agent path (already the fallback per Anti-Patterns) and downgrade the negotiation guardrail to best-effort.
+- [ ] An edge function under `netlify/edge-functions/` performs the negotiation for the three collection path patterns; the dead `conditions = {Accept = ...}` redirect blocks and the `TODO(AL-28)` note are removed from `netlify.toml` in the same commit
+- [ ] `curl -H "Accept: text/markdown" https://asdlc.io/concepts/agentic-sdlc/` returns HTTP 200, `Content-Type: text/markdown; charset=utf-8`, body identical to `/concepts/agentic-sdlc.md`
+- [ ] The same holds for a realistic multi-value header (`Accept: text/markdown, */*;q=0.8`)
+- [ ] Negotiated responses include `X-Markdown-Tokens`
+- [ ] Requests without `text/markdown` in `Accept` (browsers) receive the HTML page unchanged, including on paths the edge function is registered for
+- [ ] A negotiated request for a slug with no `.md` variant (Draft article, non-existent slug) falls through to the normal HTML/404 behavior rather than erroring
+- [ ] Edge-function negotiation logic is covered by unit tests (Accept-header parsing, path matching, fall-through)
 
 ### Regression Guardrails
 
@@ -96,6 +107,8 @@ The frontmatter is a curated subset of the article schema — only fields useful
 - The frontmatter schema in the `.md` output is part of the public contract — adding a field is fine, removing or renaming requires a deprecation notice
 - No `.md` response body may exceed 50K chars; the build MUST fail (not warn) on violation
 - Resources/recipes/fieldmanual/index pages MUST NOT acquire `.md` variants under this spec — they are explicitly out of scope
+- The negotiated response body MUST be byte-identical to the direct `.md` response for the same slug
+- Negotiation MUST fail open: any edge-function error yields the default HTML response, never a 5xx
 
 ### Scenarios
 
@@ -108,9 +121,25 @@ The frontmatter is a curated subset of the article schema — only fields useful
 
 **Scenario: Agent uses content negotiation on the canonical URL**
 - Given: An agent calls `curl -H "Accept: text/markdown" https://asdlc.io/concepts/context-engineering/`
-- When: Netlify's redirect rule matches
+- When: The edge function inspects the request
 - Then: The response is the same markdown body served by the `.md` URL
 - And: HTTP status is 200 (rewrite, not 301/302)
+- And: The response carries `Content-Type: text/markdown; charset=utf-8` and `X-Markdown-Tokens`
+
+**Scenario: Agent sends a multi-value Accept header**
+- Given: An agent sends `Accept: text/markdown, */*;q=0.8` (the common real-world form)
+- When: The edge function inspects the request
+- Then: The markdown payload is served exactly as in the exact-match case
+
+**Scenario: Browser requests a negotiated path**
+- Given: A browser sends `Accept: text/html,application/xhtml+xml,...` to `/concepts/context-engineering/`
+- When: The edge function inspects the request
+- Then: The prerendered HTML page is served unchanged
+
+**Scenario: Negotiated request for a slug without a markdown variant**
+- Given: A request with `Accept: text/markdown` targets a Draft article's canonical URL, or a non-existent slug
+- When: The edge function finds no prebuilt `.md` payload for the path
+- Then: The request falls through to Netlify's normal handling (HTML or 404), never a 5xx
 
 **Scenario: Draft article is requested as markdown**
 - Given: An article with `status: "Draft"` exists at `/concepts/foo/`
@@ -131,54 +160,39 @@ The frontmatter is a curated subset of the article schema — only fields useful
 
 ## Implementation Notes
 
-**Structure as shipped.** The three endpoints are deliberately thin — each calls `getCollection(<name>, filter)` in `getStaticPaths()` and delegates payload construction to `assertSizeCap()` in `src/lib/markdown-variant.ts`. The `PUBLISHED` set is re-declared in each endpoint (not imported) so a future per-collection divergence stays local, matching the shared helper's `PUBLISHED_STATUSES`.
-
-```ts
-// src/pages/concepts/[...slug].md.ts (patterns/practices are identical modulo collection name)
-import { getCollection } from "astro:content";
-import type { APIRoute } from "astro";
-import { assertSizeCap } from "../../lib/markdown-variant";
-
-const PUBLISHED = new Set(["Live", "Experimental"]);
-
-export async function getStaticPaths() {
-  const entries = await getCollection("concepts", (e) => PUBLISHED.has(e.data.status));
-  return entries.map((e) => ({ params: { slug: e.id }, props: { entry: e } }));
-}
-
-export const GET: APIRoute = async ({ props }) => {
-  const { entry } = props as { entry: Awaited<ReturnType<typeof getCollection<"concepts">>>[number] };
-  const body = assertSizeCap(entry, "concepts");
-  return new Response(body, { headers: { "Content-Type": "text/markdown; charset=utf-8" } });
-};
-```
+**Structure as shipped.** The three endpoints are deliberately thin — each filters its collection to published statuses in `getStaticPaths()` and delegates payload construction to the shared helper. The published-status set is re-declared in each endpoint (not imported) so a future per-collection divergence stays local. Canonical implementation: `src/pages/concepts/[...slug].md.ts` (patterns/practices are identical modulo collection name) and `src/lib/markdown-variant.ts`.
 
 **Shared helper (`src/lib/markdown-variant.ts`).** Exposes `MAX_CHARS` (50,000), `PUBLISHED_STATUSES`, `buildFrontmatter()`, `buildPayload()`, and `assertSizeCap()`. `buildPayload()` throws on an empty body; `assertSizeCap()` throws when `frontmatter + body` exceeds `MAX_CHARS`. The cap counts the combined payload, not the body alone.
 
 **Note on the size cap.** The guard is character-based (`.length`), so "50K chars" — not bytes. For the current ASCII-dominant corpus the distinction is immaterial; a future multibyte-heavy article could pass the char cap while exceeding 50KB on the wire. Revisit only if that becomes real.
 
-**Netlify rewrite (sketch):**
+**Content negotiation mechanism.**
 
-```toml
-[[redirects]]
-  from = "/concepts/:slug/"
-  to = "/concepts/:slug.md"
-  status = 200
-  conditions = {Accept = "text/markdown"}
-```
+**[DEPRECATED 2026-07-15]**
+~~`netlify.toml` redirect with `conditions = {Accept = "text/markdown"}`~~
+Netlify redirect conditions only match Country/Language/Role/Cookie; the `Accept` key is silently ignored, so the rules never fired ([Netlify forums confirmation](https://answers.netlify.com/t/content-negotiation-based-on-accept-header/160338)).
 
-Verify Netlify's `conditions.Accept` matching semantics during implementation — fall back to documenting the `.md` URL as the canonical agent path if header-conditioning proves unreliable.
+**Current:** A Netlify Edge Function (Deno runtime, registered via an exported `config` path pattern — see `netlify/edge-functions/mcp.ts` for the repo's existing example). Intent:
+
+1. Parse the request's `Accept` header; negotiation applies when it lists `text/markdown` (tolerate multi-value lists and `;q=` params — substring/media-range matching, not string equality).
+2. On a match, serve the already-built `.md` payload for the requested slug (internal rewrite to the sibling `.md` path — the static artifact from requirement 1). No HTML→markdown conversion at the edge: the prebuilt payload is the canonical markdown, byte-identical to the direct `.md` URL.
+3. Add `X-Markdown-Tokens` (estimate: payload length / 4) to the negotiated response.
+4. On no match, missing payload, or any internal error: fall through to the default response. Negotiation failures must degrade to HTML, never to an error page.
+
+Netlify's official [markdown-for-agents template](https://docs.netlify.com/prompt-templates/netlify/markdown-for-agents/) validates the edge-function approach but converts HTML with Turndown at request time; we deviate deliberately because our clean markdown already exists as a build artifact (see Constraints).
 
 **Updating `llms.txt`:** Switch four of the five "Foundational Reading" bullets to `.md` URLs (Agentic SDLC, Spec-Driven Development, The Spec, Context Engineering). Field Manual stays as HTML — it is an `.astro` aggregator page (`fieldmanual.astro`), not a content-collection entry, so it has no `.md` source and cannot emit a `.md` variant under this spec. Leave the index-page links (`/concepts/`, `/patterns/`, `/practices/`) as HTML since those are navigation, not content.
 
 ## Resources
 
-- AL-28 (Linear) — Source PBI (status should be corrected from *Todo* → *Done* once the open verification item closes)
+- AL-28 (Linear) — Source PBI; the 2026-07-15 comment thread carries the live-verification evidence and edge-function research
+- AL-93 (Linear) — Companion discovery surface (Link headers + `/.well-known/api-catalog`)
 - Commit `32a15cc` — `feat(markdown-variants): add markdown endpoints and assess updates` (implementation provenance)
 - `src/lib/markdown-variant.ts` — Shared payload logic (canonical implementation)
 - `src/pages/__tests__/markdown-variants.test.ts` — Contract tests (status filter, frontmatter shape, size cap)
+- `netlify/edge-functions/mcp.ts` — Existing edge-function precedent (registration pattern, project conventions)
 - `specs/llms-txt/spec.md` — Sibling discoverability surface (links updated to `.md`)
 - `specs/content-articles/spec.md` — Shared article contract
 - `specs/mcp-evals/spec.md` — Adjacent agent-facing quality gate (AL-78)
-- `netlify.toml` — Edge redirect surface (carries the `TODO(AL-28)` verification note)
-- [Netlify Accept-based redirects](https://docs.netlify.com/routing/redirects/redirect-options/) — Verify behavior for the open content-negotiation item
+- [Netlify markdown-for-agents template](https://docs.netlify.com/prompt-templates/netlify/markdown-for-agents/) — Official reference for the edge-function negotiation pattern
+- [Netlify Edge Functions](https://docs.netlify.com/build/edge-functions/overview/) — Runtime and configuration reference
