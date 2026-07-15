@@ -132,4 +132,5 @@ grep -A1 'concepts/levels-of-autonomy' dist/sitemap-0.xml   # spot-check a known
 - [Google — sitemap `lastmod` best practices](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap#additional-notes-about-xml-sitemaps) — how Google uses lastmod
 - `specs/robots-txt/spec.md` — sibling AEO feature; declares the sitemap URL
 - `specs/structured-data/spec.md` — also derives dates from `lastUpdated` (`dateModified`)
+- `specs/breadcrumbs/spec.md` — shares the `/{collection}/{id}/` route hierarchy and absolute-URL form
 - `docs/reports/GEO-AUDIT-REPORT.md` — source audit (item H3)

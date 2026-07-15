@@ -14,6 +14,7 @@ relatedIds:
   - practices/workflow-as-code
   - concepts/model-driven-development
   - concepts/triple-debt-model
+  - concepts/event-modeling
 status: Live
 lastUpdated: 2026-05-26
 references:

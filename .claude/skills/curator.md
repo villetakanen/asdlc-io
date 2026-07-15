@@ -43,6 +43,6 @@ This skill **never edits articles**. It reports. The human decides what to hand 
 - All thresholds live in `tools/curator/rubric.ts`. Do not quote magic numbers from memory — read the file if asked.
 - Bucket precedence: Polish > Upgrade > Refresh. Discoverability is a separate path (inverse join: article file exists, no snapshot rows).
 - Refresh requires ≥ 120 days of snapshot history. If the snapshot covers less, Refresh reports "insufficient data" and is skipped — this is correct behaviour, not a bug.
-- Reports are committed. Historical reports drive retros on both content and the rubric itself.
+- Reports are **not committed** — `reports/curator/*.md` is gitignored. They are GSC-derived (they quote query strings) and regenerable from the snapshot + rubric. Retros run against locally-retained snapshots. See ADR 0002.
 
 **Task:** $ARGUMENTS

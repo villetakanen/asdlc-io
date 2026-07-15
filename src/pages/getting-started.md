@@ -43,7 +43,7 @@ If you remember nothing else:
 
 1. **Write specs before code.** The [Spec](/patterns/the-spec) is the permanent source of truth. Agents read it; code fulfills it. No spec, no build.
 2. **Treat context as code.** Your [AGENTS.md](/practices/agents-md-spec) file is version-controlled, peer-reviewed, and optimized for agent consumption.
-3. **Use gates, not hope.** [Context Gates](/concepts/context-gates) enforce quality at three levels: deterministic (compilers, tests), probabilistic (AI review), and human (strategic fit).
+3. **Use gates, not hope.** [Context Gates](/patterns/context-gates) enforce quality at three levels: deterministic (compilers, tests), probabilistic (AI review), and human (strategic fit).
 4. **Separate state from delta.** The Spec defines *how it works* (state). The [PBI](/patterns/the-pbi) defines *what changes* (delta). Don't conflate them.
 5. **Commit constantly.** [Micro-Commits](/practices/micro-commits) are save points. When an agent generates garbage in file 4 of 10, you roll back without losing everything.
 
@@ -74,7 +74,7 @@ Understand how the pieces connect:
 
 1. **[Spec-Driven Development](/concepts/spec-driven-development)** — The overarching methodology.
 2. **[The Spec](/patterns/the-spec)** + **[The PBI](/patterns/the-pbi)** — State vs. delta, permanent vs. transient.
-3. **[Context Gates](/concepts/context-gates)** — Input filtering, output validation, the three-tier system.
+3. **[Context Gates](/patterns/context-gates)** — Input filtering, output validation, the three-tier system.
 4. **[Adversarial Code Review](/patterns/adversarial-code-review)** — Using a Critic Agent to validate Builder output.
 5. **[The ADR](/patterns/the-adr)** — Architecture Decision Records as immutable context for agents.
 
@@ -93,7 +93,7 @@ Understand how the pieces connect:
 
 ### The Gate Hierarchy
 
-ADSLC recommends a 3 tier "guardrail" system with deterministic quality gates, probabilistic review gates, and human-in-the-loop acceptance gates.
+ASDLC recommends a 3-tier "guardrail" system with deterministic quality gates, probabilistic review gates, and human-in-the-loop acceptance gates.
 
 ```mermaid
 flowchart LR
@@ -121,12 +121,7 @@ flowchart LR
   
 </figure>
 
-See the article [Conext Gates](/patterns/context-gates]) for additional details on the gate hierarchy.
-
-<figure class="mermaid-diagram">
-  <img src="/mermaid/getting-started-fig-1.svg" alt="Mermaid Diagram" />
-  
-</figure>
+See the article [Context Gates](/patterns/context-gates) for additional details on the gate hierarchy.
 
 
 ## What ASDLC Is Not

@@ -5,6 +5,15 @@ tags: ["Context Engineering", "Performance", "State Management"]
 relatedIds: ["concepts/context-engineering", "patterns/context-gates", "patterns/ralph-loop", "concepts/triple-debt-model"]
 lastUpdated: 2026-02-21
 status: "Experimental"
+steps:
+  - name: "Establish the State Directory"
+    text: "Create a dedicated location for offloaded context, isolated from project source code. A directory like .agents/state/trajectories keeps agent state separate from the codebase."
+  - name: "Implement Truncation Thresholds"
+    text: "Configure the agent harness to monitor token usage. When the context window approaches a safety threshold (e.g., 80% capacity), trigger a truncation event to begin offloading."
+  - name: "Offload and Summarize"
+    text: "Write the raw intermediate results to a file in the state directory, then replace the massive raw result in the active context with a pointer and a highly compressed summary. Always preserve the raw data before summarizing."
+  - name: "Provide Retrieval Tools"
+    text: "Give the agent explicit filesystem access tools so it can read offloaded context back into working memory when needed. Implement progressive disclosure so raw logs are fetched only when actively debugging them."
 ---
 
 ## Definition

@@ -5,6 +5,21 @@ tags: ["Architecture", "Documentation", "Decision Making", "ADR"]
 relatedIds: ["patterns/the-adr", "concepts/architecture-decision-record", "concepts/request-for-comments", "practices/living-specs"]
 lastUpdated: 2026-01-28
 status: "Live"
+steps:
+  - name: "Check for Existing ADRs"
+    text: "Search the existing ADR directory for decisions in the same domain before writing a new record. If a relevant ADR exists, consider superseding it rather than creating a duplicate."
+  - name: "Choose an ID and Title"
+    text: "Assign the next sequential ID and write a clear, scannable title using the format ADR-NNN-short-descriptive-title.md. Use lowercase with hyphens and keep it to 3–7 words after the ID."
+  - name: "Document the Context"
+    text: "Capture the forces that make this decision necessary: what triggered it, what constraints exist, and what the non-negotiable requirements are. Write as if explaining to a new team member next month."
+  - name: "State the Decision"
+    text: "Write a clear, unambiguous statement of what was decided. Avoid hedged language — 'We will use PostgreSQL' not 'We decided to maybe consider PostgreSQL.'"
+  - name: "Document Consequences"
+    text: "List outcomes honestly — positive, negative, and neutral. Every significant decision has trade-offs; ADRs with no negative consequences are a signal that analysis is incomplete."
+  - name: "Record Alternatives Considered"
+    text: "For each seriously considered alternative, explain why it was rejected with specific, concrete reasons. Vague dismissals like 'too complex' are not sufficient."
+  - name: "Set Status and Commit"
+    text: "Set status to Proposed for review or Accepted if final. Commit the ADR alongside the related code changes in the same commit."
 references:
   - type: "website"
     title: "Documenting Architecture Decisions"

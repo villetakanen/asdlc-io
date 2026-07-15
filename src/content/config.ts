@@ -39,6 +39,7 @@ export const articleSchema = z.object({
   supersededBy: z.array(z.string()).optional(),
   relatedIds: z.array(z.string()).optional(),
   references: z.array(referenceSchema).optional().default([]),
+  steps: z.array(z.object({ name: z.string(), text: z.string() })).optional(),
 });
 export type ArticleData = z.infer<typeof articleSchema>;
 

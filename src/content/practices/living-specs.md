@@ -10,7 +10,7 @@ tags:
   - Verification
 status: "Live"
 relatedIds: ["patterns/the-spec", "concepts/spec-driven-development", "concepts/triple-debt-model", "patterns/adversarial-code-review", "concepts/context-engineering", "practices/feature-assembly", "concepts/gherkin", "concepts/learning-loop"]
-lastUpdated: 2026-04-11
+lastUpdated: 2026-07-05
 references:
   - type: website
     title: "How to Write a Good Spec for AI Agents"
@@ -94,7 +94,7 @@ Every spec consists of two parts that mirror the two questions an agent needs an
 
 ### Blueprint (Design)
 
-The Blueprint defines **implementation constraints** — the architectural decisions, API contracts, data schemas, and anti-patterns that prevent agents from hallucinating invalid architectures.
+The Blueprint defines **implementation constraints** — the architectural decisions, API contracts, data schemas, and boundaries that prevent agents from hallucinating invalid architectures.
 
 A good Blueprint contains:
 
@@ -137,7 +137,7 @@ Specs serve two audiences: humans who design and govern features, and agents who
 
 **Keep specs focused.** The GitHub AGENTS.md study of 2,500+ repositories found that focused, minimal context consistently outperforms comprehensive documentation. The same applies to specs. A 200-line spec for a well-scoped feature domain outperforms a 2,000-line spec that tries to document an entire subsystem. If your spec is growing past 500 lines, it's covering multiple features — split it.
 
-**Structure predictably.** Every spec should have the same section headings (Blueprint → Context, Architecture, Anti-Patterns; Contract → Definition of Done, Guardrails, Scenarios). Agents learn patterns. Consistent structure means the agent spends zero tokens figuring out *where* information lives and all tokens on *using* it.
+**Structure predictably.** Every spec should have the same section headings (Blueprint → Context, Architecture, Constraints; Contract → Definition of Done, Guardrails, Scenarios). Agents learn patterns. Consistent structure means the agent spends zero tokens figuring out *where* information lives and all tokens on *using* it.
 
 ## File Organization
 
@@ -185,7 +185,7 @@ Kent Beck frames this precisely: specs should function as hypotheses, not verdic
 
 **The cycle:**
 
-1. **Initial Spec** — Capture known constraints before the first line of code. API contracts, quality targets, anti-patterns, Gherkin scenarios. This is the minimum viable spec — enough for an agent to start work and a Critic to verify against.
+1. **Initial Spec** — Capture known constraints before the first line of code. API contracts, quality targets, architectural boundaries, Gherkin scenarios. This is the minimum viable spec — enough for an agent to start work and a Critic to verify against.
 
 2. **Implementation Discovery** — The agent (or human) encounters edge cases, performance issues, missing requirements, or architectural insights that the initial spec didn't anticipate. This is expected. Every implementation cycle reveals unknowns.
 

@@ -32,6 +32,7 @@ Design tokens: `src/styles/global.css` | Schema: `src/content/config.ts`
 - Content collections: start with h2 (`##`). The h1 is reserved for the layout.
 - Mermaid diagrams use dual representation: code block (source of truth) + `<figure>` with pre-rendered SVG. Run `pnpm diagrams` after editing mermaid blocks.
 - Cross-references must be bidirectional (if A links B, B must link A).
+- Keep all GSC-derived artifacts local — snapshots (`data/gsc/`) *and* curator reports (`reports/curator/`) are gitignored. They quote private search-query data that is never published to this public repo; reports are regenerable via `pnpm curator`. See [ADR 0002](docs/adrs/0002-curator-reports-are-local-artifacts.md).
 
 ### ASK FIRST
 - Before adding new dependencies.

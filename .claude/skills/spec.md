@@ -93,6 +93,7 @@ Scenario: [Descriptive name]
 - **State constraints positively.** Do not write an "Anti-Patterns" section. Telling an agent what NOT to do puts the wrong approach in its context window. "All real-time updates use WebSocket" is better than "Don't use polling." Security/compliance rules go under Constraints as facts, not warnings.
 - **Let Gherkin absorb failure modes.** Write scenarios for edge cases instead of anti-pattern lists. `Then the system does NOT store credentials in localStorage` is a verifiable contract.
 - **Use file paths, not descriptions.** "`src/types/User.ts`" is actionable. "The user model" is ambiguous.
+- **Code illustrates, never transcribes.** A code block must convey intent (an example algorithm or pseudocode), not mirror the implementation. No real symbol names, `import` lines, or exact serialization — those drift on the next refactor. If a block would need editing on a pure refactor with no contract change, replace it with a file-path reference. See the Copy-Paste Codebase anti-pattern in `src/content/practices/living-specs.md`.
 - **Match depth to complexity.** Simple features get simple specs. Omit sections that add no information.
 - **Assume engineering competence.** Document project-specific constraints, not general knowledge.
 
@@ -111,7 +112,11 @@ Scenario: [Descriptive name]
 - [ ] Spec depth matches feature complexity
 - [ ] If updating: stale sections marked `[DEPRECATED yyyy-mm-dd]` with rationale, not deleted
 
-### Step 6 — Template Offer
+### Step 6 — Reduction Pass
+
+Before finishing, subtract. Remove anything a reader could confirm by opening the code — transcribed snippets, real symbol names, field-by-field serialization — and replace each with a file-path reference. Ask of every code block: *does this illustrate intent, or mirror the implementation?* In reverse/update mode especially, a spec that **grew** is a red flag: reconciliation should usually make a spec smaller.
+
+### Step 7 — Template Offer
 
 If `specs/TEMPLATE.md` does not exist, offer to save it for future consistency.
 
@@ -122,6 +127,7 @@ If `specs/TEMPLATE.md` does not exist, offer to save it for future consistency.
 - **Same-commit rule.** If code changes behavior, the spec update is in the same commit.
 - **Deprecation over deletion.** Mark outdated sections `[DEPRECATED]` with rationale.
 - **Positive constraints.** State what the system does, not what it shouldn't. Gherkin absorbs failure modes.
+- **Code illustrates, never transcribes.** Example algorithms and pseudocode are welcome; copies of the real implementation are not — they drift. Replace transcription with file-path references.
 
 ## Boundaries
 

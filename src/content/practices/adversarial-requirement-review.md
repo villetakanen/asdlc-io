@@ -5,6 +5,13 @@ status: Experimental
 tags: ["practice", "verification", "product-thinking", "requirements"]
 relatedIds: ["concepts/triple-debt-model"]
 lastUpdated: 2026-02-12
+steps:
+  - name: "Sharpen the Problem Statement"
+    text: "Use the Problem Sharpener prompt to have an AI Thought Partner interview you one question at a time. The goal is to clarify who is affected, surface overlooked barriers, and challenge whether the problem is framed correctly — without soliciting solutions yet."
+  - name: "Surface Risky Assumptions"
+    text: "Use the Assumption Surfacer prompt to identify beliefs that must be true for the strategy to succeed. Focus on behavioral assumptions (will people actually change?), value assumptions (is it worth building?), and opportunity cost (what is being deprioritized?)."
+  - name: "Pre-Build Stress Test"
+    text: "Use the Pre-Build Stress Test prompt to pressure-test the idea with a skeptical but constructive advisor before committing to a spec or PBI. Push back on thin reasoning and discover what you don't know before investing in implementation."
 ---
 
 # Adversarial Requirement Review

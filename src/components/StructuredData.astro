@@ -5,8 +5,10 @@
  * Generates Schema.org JSON-LD structured data for SEO and AEO.
  * Transforms our Zod content schemas into Schema.org markup.
  *
- * Supported types: TechArticle, Article, WebSite, Organization
+ * Supported types: TechArticle, Article, WebSite, Organization, BreadcrumbList, HowTo
  */
+
+import type { BreadcrumbItem } from "../lib/breadcrumbs";
 
 type JsonLdValue = string | number | boolean | Date | JsonLdObject | JsonLdArray | undefined;
 type JsonLdArray = JsonLdValue[];
@@ -14,10 +16,15 @@ interface JsonLdObject {
   [key: string]: JsonLdValue;
 }
 
-export interface Props {
-  type: "TechArticle" | "Article" | "WebSite" | "Organization";
-  data: JsonLdObject;
+interface HowToStep {
+  name: string;
+  text: string;
 }
+
+type Props =
+  | { type: "TechArticle" | "Article" | "WebSite" | "Organization"; data: JsonLdObject }
+  | { type: "BreadcrumbList"; data: { itemListElement: BreadcrumbItem[] } }
+  | { type: "HowTo"; data: { name: string; description?: string; steps: HowToStep[] } };
 
 const { type, data } = Astro.props;
 
@@ -31,8 +38,8 @@ let structuredData: JsonLdObject = {
 if (type === "TechArticle" || type === "Article") {
   structuredData = {
     ...structuredData,
-    headline: data.longTitle || data.title || data.headline,
-    description: data.description || data.definition,
+    headline: data.longTitle || data.title,
+    description: data.description,
     author: {
       "@type": "Organization",
       name: "ASDLC.io Contributors",
@@ -47,18 +54,10 @@ if (type === "TechArticle" || type === "Article") {
     ...(data.dateModified && { dateModified: data.dateModified }),
     ...(data.keywords && { keywords: data.keywords }),
     ...(data.url && { url: data.url }),
-    ...(data.image && { image: data.image }),
+    inLanguage: "en",
+    ...(data.url && { mainEntityOfPage: { "@type": "WebPage", "@id": data.url } }),
+    ...(data.articleSection && { articleSection: data.articleSection }),
   };
-
-  // Add custom properties for technical content
-  if (type === "TechArticle") {
-    if (data.proficiencyLevel || data.maturity) {
-      structuredData.proficiencyLevel = data.proficiencyLevel || data.maturity;
-    }
-    if (data.complexity) {
-      structuredData.articleBody = `Complexity: ${data.complexity}`;
-    }
-  }
 } else if (type === "WebSite") {
   structuredData = {
     ...structuredData,
@@ -74,6 +73,34 @@ if (type === "TechArticle" || type === "Article") {
     url: data.url,
     ...(data.logo && { logo: data.logo }),
     ...(data.description && { description: data.description }),
+  };
+} else if (type === "BreadcrumbList") {
+  structuredData = {
+    ...structuredData,
+    itemListElement: data.itemListElement.map((crumb, index) => {
+      const listItem: JsonLdObject = {
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: crumb.item,
+      };
+      return listItem;
+    }),
+  };
+} else if (type === "HowTo") {
+  structuredData = {
+    ...structuredData,
+    name: data.name,
+    ...(data.description && { description: data.description }),
+    step: data.steps.map((step, index) => {
+      const howToStep: JsonLdObject = {
+        "@type": "HowToStep",
+        position: index + 1,
+        name: step.name,
+        text: step.text,
+      };
+      return howToStep;
+    }),
   };
 }
 ---

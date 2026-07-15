@@ -10,8 +10,8 @@ tags:
   - Practices
   - Context Engineering
 status: "Experimental"
-lastUpdated: 2026-04-11
-agentPrompt: "You are a Spec Engineer. Create, reverse, or update a spec at specs/{domain}/spec.md (Blueprint + Contract). Modes: reverse <path>, update <domain>, or create. Read specs/TEMPLATE.md first; if absent, offer to save yours at the end. Read source code before writing. State constraints positively. Gherkin scenarios must absorb failure modes. Ensure every constraint is strictly verifiable by a machine."
+lastUpdated: 2026-07-05
+agentPrompt: "You are a Spec Engineer. Create, reverse, or update a spec at specs/{domain}/spec.md (Blueprint + Contract). Modes: reverse <path>, update <domain>, or create. Read specs/TEMPLATE.md first; if absent, offer to save yours at the end. Read source before writing; illustrate intent, don't transcribe it. State constraints positively. Gherkin scenarios must absorb failure modes. Ensure every constraint is strictly verifiable by a machine."
 relatedIds:
   - "recipes/critic"
   - "practices/living-specs"
@@ -131,6 +131,8 @@ Scenario: [Descriptive name]
 
 **Be specific about file paths.** "`src/types/User.ts` validated by `src/schemas/user.schema.ts`" is actionable. "The user model" is ambiguous. Agents work with files, not concepts.
 
+**Code illustrates, never transcribes.** A code block in a spec must convey intent — an example algorithm or pseudocode showing *what* a contract is and *why*. It must not mirror the implementation: no real symbol names, `import` lines, or field-by-field serialization. Those drift the moment the code is refactored. Litmus test: if a block would need editing on a pure refactor with no contract change, it is transcription — replace it with a file-path reference. This is the [Copy-Paste Codebase](https://asdlc.io/practices/living-specs) anti-pattern.
+
 **Match depth to complexity.** A simple feature may need only Context, one API contract, and two scenarios. A complex integration may need multiple Architecture subsections and a dozen scenarios. The template provides structure, not mandatory overhead. If a section adds no information, omit it.
 
 **Assume engineering competence.** Document constraints and decisions, not general knowledge. "Use React hooks for state management" is not a spec constraint. "All component state must use the `useAppState` hook from `src/hooks/` to ensure persistence across navigation" is.
@@ -150,9 +152,14 @@ Verify the spec against these criteria:
 - [ ] Constraints are stated positively — no "Anti-Patterns" section, no "avoid X" warnings
 - [ ] Architecture section references specific file paths, not abstract descriptions
 - [ ] Spec depth matches feature complexity (no 500-line spec for a config change)
+- [ ] No transcribed code — every code block illustrates intent; implementation detail is referenced by file path, not copied
 - [ ] If updating: stale sections are marked `[DEPRECATED yyyy-mm-dd]` with rationale, not silently deleted
 
-### Step 6 — Template Offer
+### Step 6 — Reduction Pass
+
+Before finishing, subtract. Remove anything a reader could confirm by opening the code — transcribed snippets, real symbol names, field-by-field serialization — and replace each with a file-path reference. Ask of every code block: *does this illustrate intent, or mirror the implementation?* In reverse and update modes especially, a spec that **grew** is a red flag: reconciliation should usually make a spec smaller, not larger.
+
+### Step 7 — Template Offer
 
 If `specs/TEMPLATE.md` does not exist, offer to save the template used for this spec as `specs/TEMPLATE.md` for future consistency. The project template can then evolve as the team learns what works for their codebase.
 
@@ -177,6 +184,10 @@ When updating, mark outdated sections as `[DEPRECATED yyyy-mm-dd]` with rational
 ### Positive Constraints, Not Anti-Patterns
 
 State what the system *does*, not what it *shouldn't do*. Write Gherkin scenarios that specify correct behavior for edge cases. Reserve negative constraints for genuine security/compliance rules, and state those as facts under Architecture → Constraints.
+
+### Code Illustrates, Never Transcribes
+
+Code in a spec conveys intent, not implementation. Example algorithms and pseudocode are welcome; copies of the real code drift on the next refactor. If a block would change on a pure refactor with no contract change, replace it with a file-path reference. Reverse and update modes are the worst offenders — running the [Reduction Pass](#step-6-reduction-pass) should leave the spec smaller than the code it describes.
 
 ## Boundaries
 

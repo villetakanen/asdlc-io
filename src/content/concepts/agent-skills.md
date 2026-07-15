@@ -7,6 +7,7 @@ tags:
 relatedIds: ["concepts/model-context-protocol", "concepts/context-engineering", "practices/agents-md-spec"]
 publishedDate: 2026-03-02
 lastUpdated: 2026-03-18
+status: "Live"
 references:
   - type: paper
     title: "SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?"
@@ -46,8 +47,6 @@ references:
     accessed: 2026-03-02
     annotation: "Provides the \"cooking\" metaphor: skills teach you to cook, MCP provides the instruments."
 ---
-
-# Agent Skills
 
 ## Definition
 

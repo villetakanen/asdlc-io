@@ -69,10 +69,10 @@ Write the spec to `specs/{feature-domain}/spec.md` using this structure:
 
 ### Architecture
 [Data flow, dependencies, key design decisions. Include diagrams if complex.]
-[API contracts, data models, file structure.]
+[API contracts, data models, file structure. Reference canonical source files by path — do not transcribe them.]
 
-### Anti-Patterns
-[What agents must NOT do, with rationale. Learned from experience or PBI notes.]
+### Constraints
+[Boundaries stated positively, as facts about how the system behaves. Reserve for security / compliance / architectural rules not already implied by the architecture above. State them as rules the system follows, not warnings — push failure modes into the Gherkin scenarios below.]
 
 ## Contract
 
@@ -90,8 +90,8 @@ Write the spec to `specs/{feature-domain}/spec.md` using this structure:
 - Then: [Expected outcome]
 
 ## Implementation Notes
-[Technical details: directory structure, build config, dependencies, algorithms.]
-[Reference canonical source files — don't duplicate code.]
+[Technical details: directory structure, build config, dependencies, non-obvious algorithms.]
+[Reference canonical source files by path. Any code here must illustrate intent (an example algorithm or pseudocode), never transcribe the implementation — see "Code Illustrates, Never Transcribes" under Principles.]
 
 ## Resources
 [Links to external standards, related specs, design docs.]
@@ -107,13 +107,20 @@ Write the spec to `specs/{feature-domain}/spec.md` using this structure:
 
 - Verify every Definition of Done item is testable (not vague)
 - Verify scenarios cover happy path, error cases, and edge cases
-- Verify anti-patterns are specific and actionable
+- Verify constraints are stated positively — no "Anti-Patterns" section; failure modes live in Gherkin scenarios
 - Verify architecture section matches actual code structure (reverse/update modes)
+
+### Step 6 — Reduction Pass
+
+Before finishing, subtract. Remove anything a reader could confirm by opening the code — transcribed snippets, real symbol names, field-by-field serialization — and replace each with a file-path reference. Ask of every code block: *does this illustrate intent, or mirror the implementation?* In reverse/update mode especially, a spec that **grew** is a red flag: reconciliation should usually make a spec smaller.
 
 ## Principles
 
 ### Spec-Anchored, Not Spec-as-Source
 We target the `spec-anchored` maturity level. The spec is the authority for *intent and contracts*. Code remains the authority for *execution logic*. Never try to encode every implementation detail in the spec.
+
+### Code Illustrates, Never Transcribes
+Code in a spec must illustrate intent, not mirror the implementation. Example algorithms and pseudocode that convey *what* a contract is and *why* are welcome; copies of real code — actual function/symbol names, `import` lines, exact serialization, "put this in file X" — are not. They drift silently the moment the code is refactored. Litmus test: if a block would need editing on a pure refactor with no contract change, it is transcription — replace it with a file-path reference. See the Copy-Paste Codebase anti-pattern in `src/content/practices/living-specs.md`.
 
 ### Contracts, Not Tutorials
 Assume engineering competence. Document constraints and decisions, not general knowledge. The spec answers "what are the rules?" not "how does JavaScript work?"

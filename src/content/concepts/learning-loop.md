@@ -15,8 +15,9 @@ relatedIds:
   - practices/living-specs
   - concepts/compound-engineering
   - patterns/compound-loop
+  - concepts/red-queen-godel-machine
 status: Live
-lastUpdated: 2026-01-26
+lastUpdated: 2026-06-30
 references:
   - type: "website"
     title: "Martin Fowler Fragment: January 8, 2026"
@@ -46,6 +47,12 @@ references:
     published: 2026-01-22
     accessed: 2026-01-26
     annotation: "Industry validation of the Learning Loop—proposes identical 'deploy → observe → validate → learn → iterate' cycle as the AI-enabled future of software development."
+  - type: "paper"
+    title: "The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators"
+    url: "https://arxiv.org/abs/2606.26294"
+    author: "Alex Iacob et al."
+    published: 2026-06-29
+    annotation: "Evolving evaluation criteria at checkpoints re-ranks the search archive, imposing a curriculum-like effect."
 ---
 
 ## Definition
@@ -112,6 +119,10 @@ When verification fails, Ralph automatically re-enters Explore with the learned 
 **Key difference:** The Learning Loop expects human judgment in the Learn and Crystallize phases. The Ralph Loop requires that "learning" be expressible as observable state (error logs, test results) and "crystallization" be automatic (Git commits, progress files).
 
 Ralph Loops work best when success criteria are machine-verifiable (tests pass, builds complete). For tasks requiring human judgment—ambiguous requirements, architectural decisions, product direction—the Learning Loop remains the appropriate model.
+
+### Curriculum and Co-Evolution
+
+In advanced recursive self-improvement scenarios where verification criteria are model-based (such as code reviews or proof grading), co-evolving the evaluator alongside the agent introduces a curriculum-like effect. As documented by the [Red Queen Gödel Machine](/concepts/red-queen-godel-machine), updating these evaluative criteria at checkpoint boundaries re-ranks the candidate archive under a progressively stricter bar. This forces the agent population to continuously adapt and improve, advancing the system around a stable and resilient lineage backbone.
 
 ## ASDLC Usage
 

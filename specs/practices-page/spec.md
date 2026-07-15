@@ -134,3 +134,4 @@ The `formatDate` helper can be defined inline (same as patterns page).
 - Patterns page (reference implementation): `src/pages/patterns/index.astro`
 - SpecCard component: `src/components/SpecCard.astro`
 - SpecListItem component: `src/components/SpecListItem.astro`
+- `specs/howto-schema/spec.md` — emits `HowTo` JSON-LD for procedural practice articles

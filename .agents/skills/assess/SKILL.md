@@ -48,6 +48,7 @@ The agent must first "load" the relevant context from the ASDLC Knowledge Base t
 
 5.  **Load Assessor Memory:**
     *   Read [lessons.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/lessons.md). Keep these heuristics and lessons from past retrospectives in mind when performing the adversarial assessment.
+    *   **Also scan the ledger for recurring pivots:** Read [ledger.jsonl](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/ledger.jsonl) and inspect the `hitl_pivots` and `lessons_learned` fields across entries. If a correction has occurred **two or more times** but is not yet reflected in `lessons.md`, treat it as a live heuristic for *this* assessment and flag it for promotion in Step 5.F. (The canonical example: agents reject a standalone article for a named seminal framework, then HITL overrides — now captured as Lesson #6.)
 
 ### 2. Adversarial Assessment (The Gatekeeper)
 
@@ -68,6 +69,7 @@ Before accepting the content, we must stress-test it against our current maturit
     *   *Falsifiability:* Is the concept formulated in a way that can be tested and disproved? What are the failure modes?
     *   *Boundary Conditions:* Does the input explicitly document constraints, prerequisites, and scenarios where it *fails* or does not apply?
     *   *Semantic Precision:* Are technical terms defined precisely and integrated with sibling nodes in the knowledge graph?
+    *   *Evaluator Evolution:* If the input proposes self-improvement, learned evaluators, mutable judges, or non-stationary utilities, explicitly identify what remains frozen inside the evaluation epoch, what may change at promotion boundaries, and what independent anchor prevents circular validation.
 
 4.  **Context Match:**
     *   Does this apply to our specific constraints (Agentic, High-Maturity, Industrial)?
@@ -86,10 +88,13 @@ Compare the "Source Material" against the "Loaded Context".
     *   Does this concept already exist? (e.g., "AI Code Checking" vs `patterns/adversarial-code-review`).
     *   *If YES:* Recommendation is **AMEND** or **REFERENCE**. Do not create a new article.
     *   *SEO & Taxonomy Exception:* A new concept article is justified despite conceptual overlap if it represents a major industry category designation or high-volume search term (e.g., "Harness Engineering") that requires a dedicated SEO landing page and taxonomic anchor. Keep them distinct by letting the concept explain the *what and why* (definition/discipline) and the practice explain the *how* (execution steps).
+    *   *Canonical Research Term Exception:* A new concept article may also be justified when the source introduces a named framework likely to become a reusable research or industry reference, even if it overlaps existing patterns. Require an explicit HITL or editorial rationale, and keep the page definitional: the concept explains the term; incumbent patterns explain ASDLC implementation.
 
 2.  **Conflict Check:**
     *   Does the source material contradict established ASDLC principles (e.g., "Vibe Coding" vs "Determinism")?
     *   *If YES:* Default to **REJECT**. Only recommend **SYNTHESIS** if the input offers a superior dialectic execution.
+
+    *   *Hard-Harness Reconciliation:* For sources that mutate evaluators, judges, tools, sandboxes, or success criteria, do not accept the mutation as normal online autonomy. Synthesis requires a governed boundary: frozen in-epoch contracts, deterministic or human-governed promotion, independent ground-truth anchors, and regression checks against unrelated holdouts.
 
 3.  **Missing Link Check:**
     *   Does the source fill a known gap? (e.g., "How to write a PBI" when we only have "The PBI" pattern).
@@ -106,6 +111,7 @@ Compare the "Source Material" against the "Loaded Context".
 2.  **Incorporate Feedback:**
     *   Amend the Action Plan based on the user's feedback (e.g., if the user suggests an additional article to update, add it to Strategy 1).
     *   *Attribution:* Explicitly label any additions born from this discussion as "Added following human review" to maintain accountability and trace provenance.
+    *   *Disagreement Preservation:* If multiple assessors or drafts disagree, record the disagreement and the HITL rationale rather than flattening it into a single agent verdict. This is especially important when the user overrides a duplicate-check rejection to create a taxonomy anchor.
 
 ### 5. Synthesis & Recommendation (The Output)
 
@@ -133,6 +139,10 @@ The template sections cover:
     ```json
     {"timestamp":"YYYY-MM-DDTHH:MM:SSZ","id":"YYYY-MM-DD-slug","challenger":"Source Title (Author)","initial_verdict":"[accepted|rejected|synthesized|disputed]","hitl_pivots":["Pivot 1", "Pivot 2"],"final_verdict":"[accepted|rejected|synthesized|disputed]","execution_status":"success","execution_retro":"","lessons_learned":""}
     ```
+
+#### G. Promote Recurring Lessons (Close the Loop)
+*   The ledger is a write-only log; it is **not** loaded during future assessments — only `lessons.md` is (Step 1.5). A lesson left in the ledger is a lesson the assessor will not see again, which is how the same correction recurs across assessments.
+*   After writing the ledger line, evaluate whether this assessment's `lessons_learned` or any `hitl_pivots` represents a **generalizable** heuristic (applies beyond this one source) **or recurs** with a pattern already flagged in Step 1.5. If so, propose a one-line addition or amendment to [lessons.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/lessons.md) — gated by the human reviewer, in keeping with the [Compound Loop](/patterns/compound-loop) (discrimination at the gate, writeback to the loaded substrate). Source-specific or one-off lessons stay in the ledger only.
 
 ## Usage Example
 
