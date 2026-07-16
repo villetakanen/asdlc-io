@@ -28,6 +28,24 @@
   to = "/concepts/ooda-loop/"
   status = 301
 
+# Agents predict URLs from semantics: "/skills" is the common guess when
+# asked about ASDLC skills guidance (observed in the wild, 2026-07). Land the
+# guess on the canonical article instead of a 404.
+[[redirects]]
+  from = "/skills"
+  to = "/concepts/agent-skills/"
+  status = 301
+
+[[redirects]]
+  from = "/skills/"
+  to = "/concepts/agent-skills/"
+  status = 301
+
+[[redirects]]
+  from = "/skill"
+  to = "/concepts/agent-skills/"
+  status = 301
+
 [[redirects]]
   from = "/manuscript"
   to = "/fieldmanual/"
