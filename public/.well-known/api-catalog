@@ -1,0 +1,28 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://asdlc.io/",
+      "item": [
+        {
+          "href": "https://asdlc.io/mcp",
+          "title": "ASDLC MCP server (Model Context Protocol) — GET for SSE stream, POST for JSON-RPC"
+        },
+        {
+          "href": "https://asdlc.io/llms.txt",
+          "title": "Agent-facing site guide (llms.txt)",
+          "type": "text/markdown"
+        },
+        {
+          "href": "https://asdlc.io/asdlc-skill.zip",
+          "title": "Downloadable ASDLC skill bundle",
+          "type": "application/zip"
+        },
+        {
+          "href": "https://asdlc.io/sitemap-index.xml",
+          "title": "Sitemap index",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}

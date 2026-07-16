@@ -37,3 +37,16 @@
   from = "/manuscript/"
   to = "/fieldmanual/"
   status = 301
+
+# Agent discovery headers (AL-93) — advertise the agent surface (MCP endpoint,
+# llms.txt, api-catalog, sitemap) at the HTTP layer per RFC 8288 (Link header)
+# and RFC 9727 (api-catalog).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Link = "</.well-known/api-catalog>; rel=\"api-catalog\", </llms.txt>; rel=\"llms-txt\", </sitemap-index.xml>; rel=\"sitemap\""
+
+[[headers]]
+  for = "/.well-known/api-catalog"
+  [headers.values]
+    Content-Type = "application/linkset+json"
