@@ -3,6 +3,8 @@
 
 User-agent: *
 Allow: /
+# Content Signals (contentsignals.org): affirm AI-usage stance explicitly
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 # AI crawlers: explicit allow signals
 User-agent: GPTBot

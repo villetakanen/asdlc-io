@@ -4,6 +4,7 @@ status: "approved"
 owner: "Ville Takanen"
 archetype: "feature"
 created: "2026-03-16"
+updated: "2026-07-15"
 tags: []
 ---
 
@@ -30,10 +31,12 @@ This was identified as item #14 in the GEO audit (2026-03-14), estimated at +2-3
 
 ```
 # robots.txt for ASDLC.io
+# Allow all crawlers to index all content
 
-# Default: allow all crawlers
 User-agent: *
 Allow: /
+# Content Signals (contentsignals.org): affirm AI-usage stance explicitly
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 # AI crawlers: explicit allow signals
 User-agent: GPTBot
@@ -68,12 +71,16 @@ Sitemap: https://asdlc.io/sitemap-index.xml
 | `CCBot` | Common Crawl | Open dataset used by many AI systems |
 | `Google-Extended` | Google | Gemini training data (separate from Googlebot) |
 
-### Anti-Patterns
+**Content Signals:** In addition to per-bot `User-agent` blocks, the `User-agent: *` group carries a `Content-Signal: ai-train=yes, search=yes, ai-input=yes` line. Content Signals ([contentsignals.org](https://contentsignals.org), a Cloudflare-backed IETF draft) express the site's affirmative AI-usage stance in a single, aggregator-neutral directive — one line readable by any crawler that understands the emerging standard, rather than requiring per-operator `User-agent` blocks. This is consistent with the project's MIT license and complements (does not replace) the explicit per-bot `Allow` blocks above.
 
-- **Adding `Disallow` rules for AI bots:** This site exists to be consumed by agents. Never restrict AI crawler access.
-- **Adding crawl-delay directives:** The site is statically hosted on Netlify CDN. Crawl throttling is unnecessary and counterproductive for a small static site.
-- **Listing every conceivable bot:** Only include well-documented, major AI crawlers. Speculative user-agents create maintenance burden with no benefit. The wildcard rule covers the rest.
-- **Moving sitemap declaration:** The `Sitemap:` directive must remain at the bottom, after all `User-agent` blocks, per robots.txt spec convention.
+### Constraints
+
+**[Restructured 2026-07-15]** — formerly "Anti-Patterns"; restated positively per the reconciled spec doctrine (AL-81).
+
+- AI crawler access is always allowed — the site exists to be consumed by agents.
+- The site is statically hosted on Netlify CDN; no crawl-delay directives are used.
+- Only well-documented major AI crawlers get explicit blocks; the wildcard covers the rest.
+- The Sitemap directive remains at the bottom, after all User-agent blocks.
 
 ## Contract
 
@@ -81,6 +88,7 @@ Sitemap: https://asdlc.io/sitemap-index.xml
 
 - [ ] `public/robots.txt` contains explicit `User-agent` + `Allow: /` blocks for: GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, Google-Extended
 - [ ] The existing `User-agent: *` / `Allow: /` block is preserved (not replaced)
+- [ ] `curl -s https://asdlc.io/robots.txt | grep Content-Signal` returns `Content-Signal: ai-train=yes, search=yes, ai-input=yes`
 - [ ] The `Sitemap:` directive is preserved and points to `https://asdlc.io/sitemap-index.xml`
 - [ ] No `Disallow` rules exist anywhere in the file
 - [ ] `pnpm build` succeeds and `dist/robots.txt` contains the updated content
