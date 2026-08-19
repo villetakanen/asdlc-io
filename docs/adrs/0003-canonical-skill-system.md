@@ -4,13 +4,12 @@ Date: 2026-07-08
 
 ## Status
 
-Draft
+Accepted — 2026-08-19 (HITL: Ville Takanen)
 
-> Draft pending owner approval. Records the direction agreed while triaging
-> [AL-86](https://linear.app/asdlc/issue/AL-86); to be promoted to Accepted once
-> validated in practice. This ADR is the blocking decision for the persona-
-> deprecation epic ([AL-85](https://linear.app/asdlc/issue/AL-85)) — its
-> migration PBIs (AL-87/88/89) should reference it.
+> Approved while closing [AL-86](https://linear.app/asdlc/issue/AL-86). This ADR is
+> the blocking decision for the persona-deprecation epic
+> ([AL-85](https://linear.app/asdlc/issue/AL-85)) — its migration PBIs
+> (AL-87/88/89/90) reference it and are now unblocked.
 
 ## Context
 
@@ -99,6 +98,14 @@ never touched by the converter.
 The deprecated slash-command tree is removed. Slash-command invocation (`/spec`,
 `/ship`, …) is preserved via the Claude-native skills in `.claude/skills/`.
 
+**Ordering is a hard constraint: migrate before deleting.** At acceptance time all
+ten commands in `.claude/commands/` are live slash commands, while `.claude/skills/`
+holds only `spec` and `curator`. Deleting the tree first breaks the other eight
+(`/assemble`, `/assess`, `/critic`, `/dev`, `/geo-audit`, `/lead`, `/next-task`,
+`/prep-for-launch`). Each command must exist as a Claude-native skill — and be
+verified invocable — before its `commands/` counterpart is removed. The migration
+may proceed skill by skill; it may not begin with the deletion.
+
 ### Worked example: `spec-engineer` → `spec`
 
 The portable skill is currently named `spec-engineer` (role framing) while the
@@ -121,7 +128,14 @@ of the naming rule and the first rename the migration performs.
   intentional variants — de-duplicating `assess`/`assess-opus` would destroy the
   fork. AL-87 becomes: collapse *accidental* duplicates and role-named skills to
   task names; declare *intentional* variants via the suffix convention.
-- **New authoring rules to document** once accepted: the `version:` field, the
+- **A published article now contradicts this decision.**
+  `src/content/recipes/critic.md` teaches readers, in two places, to "ship identical
+  copies in both `.agents/skills/` and `.claude/commands/`" as a **Dual-tree
+  mirroring** practice. This ADR retires `.claude/commands/` and replaces
+  identical-copy mirroring with agent conversion (rule 4), so the recipe advocates
+  the exact pattern we are dropping. It must be reconciled as part of the KB
+  vocabulary pass ([AL-90](https://linear.app/asdlc/issue/AL-90)), not left to drift.
+- **New authoring rules to document**: the `version:` field, the
   task-not-role naming rule, and the `-suffix` variant convention belong in
   `AGENTS.md` / the `agents-md-spec` practice (touches AL-89).
 - **Open items for implementation** (not decided here): the exact sync trigger

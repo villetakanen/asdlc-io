@@ -134,6 +134,7 @@ The ledger is a write-only log — it is **not** loaded during future assessment
 
 After writing the ledger line, judge whether this assessment's `lessons_learned` or any `hitl_pivot` is **generalizable** (applies beyond this source) or **recurs** with a pattern flagged in Phase 1.6. If so, propose a one-line addition or amendment to `docs/assessments/lessons.md`, gated by the human reviewer — the [Compound Loop](/patterns/compound-loop) applied to the assessor's own memory (discrimination at the gate, writeback to the loaded substrate). One-off, source-specific lessons stay in the ledger only.
 
-## Task input
+## Task
 
-Apply the skill to the supplied URL, snippet, or prompt.
+$ARGUMENTS
+

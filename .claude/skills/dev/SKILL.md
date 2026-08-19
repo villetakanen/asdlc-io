@@ -55,6 +55,7 @@ Set the `model` parameter on each sub-agent call accordingly. Default to **sonne
 - `pnpm lint` — Biome checks
 - `pnpm test:run` — unit tests
 
-## Task input
+## Task
 
-Apply the skill to the supplied PBI number, issue ID, or task description.
+$ARGUMENTS
+
