@@ -75,7 +75,6 @@ If matching pending assessments are found:
    - Keep the subject line under 72 characters
    - Match the style of recent commits from Step 1
    - If the user provided a message via `$ARGUMENTS`, use it as the basis
-   - Add `Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>` trailer
 3. Create the commit.
 
 ### Step 5 — Push
