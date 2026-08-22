@@ -1,11 +1,13 @@
 ---
+name: prep-for-launch
 description: "Pick a Linear PBI, spec it, assemble it, then hold at the gate with a Boeing list for HITL clearance. Does NOT ship."
 argument-hint: "[optional: Linear PBI number, filter, or context for task selection]"
+version: 1.0.0
 ---
 
-# Prep-for-Launch (@PrepForLaunch)
+# Prep for Launch — PBI-to-pre-flight pipeline with HITL clearance gate
 
-You are the Prep-for-Launch agent. You taxi a Linear PBI from the backlog to a fully-implemented, reviewed, **but-not-yet-shipped** state, then hold at the gate with the chocks still in place and present a **Boeing list** to the human for clearance.
+Taxi a Linear PBI from the backlog to a fully-implemented, reviewed, **but-not-yet-shipped** state, then hold at the gate with chocks in place and present a **Boeing list** to the human for clearance.
 
 > The aircraft is fueled, checked, and ready, but does not move until ground control says so.
 
@@ -21,6 +23,13 @@ Run the full Linear-PBI-to-pre-flight pipeline:
 2. **Spec** the feature (via `/spec`'s logic).
 3. **Assemble** the implementation (via `/assemble`'s Dev→Critic loop).
 4. **Hold** at the gate. Produce a **Boeing List** for HITL approval. Do NOT run smoke tests. Do NOT push to remote. Do NOT invoke `/ship`.
+
+## Boundaries
+
+- Does **NOT** run smoke tests (`pnpm check` / `lint` / `test:run`) without explicit HITL clearance.
+- Does **NOT** commit or push — `/ship` is a separate, explicitly-invoked step.
+- Does **NOT** modify Linear issue status to Done (status moves to "In Review" at most).
+- Does **NOT** loop back into itself — one PBI per invocation.
 
 ## Pipeline
 
@@ -103,23 +112,16 @@ After printing the Boeing List, **stop**. Do not proceed further. Wait for the u
 ## Sub-Agent Model Policy
 
 Inherits from `/assemble`:
-- **haiku** — context gathering, Linear reads, file lookups
-- **sonnet** — spec writes, dev cycles, critic reviews
+- **haiku / flash** — context gathering, Linear reads, file lookups
+- **sonnet / pro** — spec writes, dev cycles, critic reviews
 - **opus** — only with explicit user approval
 
 ## Principles
 
-- **Single invocation, exact match.** Do not run unless the user typed `/chocks-on`. No auto-triggering, no helpful inference.
+- **Single invocation, exact match.** Do not run unless the user typed `/prep-for-launch`. No auto-triggering, no helpful inference.
 - **Hold at the gate.** The skill's defining behavior is *stopping before takeoff*. Smoke tests and push are not part of the skill; they are explicitly the human's call after reviewing the Boeing List.
 - **Full findings, not just final verdict.** The Boeing List preserves every Q/A and dev finding across all cycles, including ones the loop resolved. The human gets to judge whether the resolution was the right call, not just whether the test went green.
 - **Silent inside cycles.** Within each stage, only interrupt the user if genuinely blocked. The HITL gate is at Stage 4, not scattered across the pipeline.
-
-## Boundaries
-
-- Does **NOT** run smoke tests (`pnpm check` / `lint` / `test:run`). The human authorizes these as part of clearance.
-- Does **NOT** commit or push. `/ship` is a separate, explicitly-invoked step.
-- Does **NOT** modify Linear issue status to Done. Status moves to "In Review" at most.
-- Does **NOT** loop back into itself. One PBI per invocation.
 
 ## Instructions
 
