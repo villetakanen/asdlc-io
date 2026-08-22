@@ -22,7 +22,7 @@ Full vision: @docs/vision.md | Framework: [Agentic SDLC concept](/concepts/agent
 | MCP evals | `pnpm evals:mcp` |
 
 Toolchain configs: `astro.config.mjs`, `tsconfig.json`, `biome.json`, `package.json`
-Design tokens: `src/styles/global.css` | Schema: `src/content/config.ts`
+Design tokens: `src/styles/ds/tokens.css` | Schema: `src/content/config.ts`
 
 ## Judgment Boundaries
 
@@ -36,21 +36,32 @@ Design tokens: `src/styles/global.css` | Schema: `src/content/config.ts`
 
 ### ASK FIRST
 - Before adding new dependencies.
-- Before modifying `src/styles/global.css` (immutable design token source).
+- Before modifying `src/styles/ds/tokens.css` (immutable design token source).
 - Before deleting content files.
 
-## Personas
+## Skills
 
-Invoke via `/command`. Full definitions live in skill files.
+Invoke via `/command` or `.agents/skills/<name>/SKILL.md`. Full definitions live in skill files.
 
-| Persona | Skill | Trigger |
+| Skill | Invocation | Purpose |
 |---|---|---|
-| @Lead | `/lead` | System design, specs, planning |
-| @Dev | `/dev` | Implementation, bug fixes |
-| @Content | `/assess` | Content review, KB assessment |
-| @Critic | `/critic` | Adversarial code review |
-| @Ship | `/ship` | Validation, commit, and push |
-| @Designer | — | Design system, UI/UX, visual consistency |
+| assemble | `/assemble` | Dev-Critic loop: implement, review, fix until clean |
+| assess | `/assess` | Content review & KB assessment against source material |
+| critic | `/critic` | Adversarial code review of changeset against contracts |
+| curator | `/curator` | Triage content corpus against GSC snapshot; refresh reports |
+| dev | `/dev` | Implementation, bug fixes, validation loop |
+| geo-audit | `/geo-audit` | GEO+SEO audit of AI citability, schema, and MCP infrastructure |
+| lead | `/lead` | System design, specs, and Linear PBI authoring |
+| next-task | `/next-task` | Backlog prioritization by speed/value ratio |
+| prep-for-launch | `/prep-for-launch` | PBI-to-pre-flight pipeline with Boeing List HITL clearance gate |
+| ship | `/ship` | Quality gates, spec verification, micro-commit, and push |
+| spec | `/spec` | Spec authoring, reverse-engineering, and living updates |
+
+### Skill System Governance (ADR 0003)
+- **Homes:** Portable (`.agents/skills/<name>/SKILL.md`) and Claude Code (`.claude/skills/<name>/SKILL.md`).
+- **Naming:** Task-named, never role-named (no `@Persona` identity framing).
+- **Semver:** Every skill's frontmatter carries a `version:` (semver).
+- **Variants:** Qualified names with hyphenated suffixes (`<task>-<variant>`, e.g. `assess-opus`) indicate intentional forks.
 
 Content specs: `specs/content-articles/` (shared contract, concept, pattern, practice archetypes).
 

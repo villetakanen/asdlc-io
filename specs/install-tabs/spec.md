@@ -85,7 +85,7 @@ Because all panels are present in the DOM, LLMs and AEO crawlers see every insta
 - Keyboard: native radio-group arrow-key navigation works out of the box. No custom JS keyboard handlers.
 - The visually-hidden inputs are `hidden`-via-CSS only (not `display: none`) so they remain focusable.
 
-**Styling:** uses tokens from `src/styles/global.css`. No Tailwind, no inline colors. Tab bar uses `--c-border` for the inactive underline and `--c-accent` for the active one. Code block inherits the project's existing `<pre>` styling.
+**Styling:** uses tokens from `src/styles/ds/tokens.css`. No Tailwind, no inline colors. Tab bar uses `--c-border` for the inactive underline and `--c-accent` for the active one. Code block inherits the project's existing `<pre>` styling.
 
 **Canonical client list (v1) — `src/data/mcp-clients.ts`:**
 
