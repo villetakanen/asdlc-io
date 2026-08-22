@@ -116,16 +116,17 @@ Run the project quality gate, then output a structured verdict:
 
 ## Skill Template
 
-Drop this into `.agents/skills/critic/SKILL.md` or `.claude/commands/critic.md` and customise the placeholders:
+Drop this into `.agents/skills/critic/SKILL.md` or `.claude/skills/critic/SKILL.md` and customise the placeholders:
 
 ````md
 ---
 name: critic
 description: "Perform an adversarial code review of the current changeset against specs
   and architectural contracts. Assume broken until proven otherwise. Report; do not fix."
+version: 1.0.0
 ---
 
-# Critic Agent (@Critic)
+# Critic — adversarial code review
 
 **Prime Directive:**
 > Assume the code is broken until proven otherwise.
@@ -244,7 +245,7 @@ Without this, the Critic has to guess which spec applies. With it, context loadi
 
 **Hard-constraint checklist.** For projects with binary invariants (zero runtime dependencies, file size limits, no specific import patterns), add an explicit checklist before the three-lens review. Binary checks are faster and more reliable than probabilistic ones.
 
-**Dual-tree mirroring.** If your project uses both an `.agents/skills/` roster and `.claude/commands/`, ship identical copies in both trees. The skill content is the same; the tree location determines which tooling can discover it.
+**Dual-tree homes.** If your project uses both portable agent tooling and Claude Code, place the canonical portable definition in `.agents/skills/<name>/SKILL.md` and mirror or convert it to `.claude/skills/<name>/SKILL.md`. Maintain a `version:` (semver) field in the frontmatter so drift between homes is immediately detectable.
 
 ## Principles
 

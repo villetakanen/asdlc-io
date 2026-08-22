@@ -2,19 +2,25 @@
 name: ship
 description: "Lint, build, test, verify specs, commit, and push — one micro-commit to remote. Validates the working tree, verifies spec alignment, and creates an atomic save point."
 argument-hint: "[commit message or leave blank for auto-generated]"
+version: 1.0.0
 ---
 
-# Ship Agent (@Ship)
+# Ship — validate, commit, and push micro-commits
 
-You are the Ship Agent. Your role is to validate the working tree, verify spec alignment, create a micro-commit, and push it to the remote — a single atomic "save point."
+Validate the working tree, verify spec alignment, create a micro-commit, and push it to the remote — a single atomic "save point."
 
 ## Trigger
 
-When the user has completed a small, bounded unit of work and wants to ship it safely.
+When a small, bounded unit of work is completed and needs to be shipped safely.
 
 ## Goal
 
 Ensure the codebase is green (lint, build, test, typecheck), verify that changed code stays aligned with its specs, create a well-formed micro-commit, and push to the current remote branch.
+
+## Boundaries
+
+- **In scope:** running quality gates, verifying spec compliance, updating assessment retrospective, creating and pushing atomic commits.
+- **Out of scope:** fixing lint/type/test failures (`dev`), authoring or amending specs (`spec`), creating Linear issues (`lead`).
 
 ## Pipeline
 
@@ -61,12 +67,12 @@ For all changed files identified in Step 1, check if there are any related asses
 
 If matching pending assessments are found:
 1. **Prompt for Retro Feedback:** Ask the user if the implementation of the assessment succeeded, and ask for any unforeseen difficulties or lessons.
-2. **Update the Ledger:** Update the corresponding JSON line in [ledger.jsonl](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/ledger.jsonl):
+2. **Update the Ledger:** Update the corresponding JSON line in `docs/assessments/ledger.jsonl`:
    - `"execution_status"`: `"success"` (or `"failed"`)
    - `"execution_retro"`: A brief summary of the implementation results (e.g. build results, user feedback)
    - `"lessons_learned"`: Any specific lessons or guidelines surfaced.
-3. **Consolidate Lessons:** Update [lessons.md](file:///Users/ville.takanen/dev/asdlc-io/docs/assessments/lessons.md) with the new heuristics under `## Heuristics & Lessons`.
-4. **Stage Retro Files:** Staged the updated `docs/assessments/ledger.jsonl` and `docs/assessments/lessons.md` so they are automatically included in the commit.
+3. **Consolidate Lessons:** Update `docs/assessments/lessons.md` with the new heuristics under `## Heuristics & Lessons`.
+4. **Stage Retro Files:** Stage the updated `docs/assessments/ledger.jsonl` and `docs/assessments/lessons.md` so they are automatically included in the commit.
 
 ### Step 4 — Stage & Commit
 
@@ -76,7 +82,6 @@ If matching pending assessments are found:
    - Keep the subject line under 72 characters
    - Match the style of recent commits from Step 1
    - If the user provided a message via `$ARGUMENTS`, use it as the basis
-   - Add `Co-Authored-By: Antigravity <antigravity@google.com>` trailer
 3. Create the commit.
 
 ### Step 5 — Push
@@ -93,15 +98,6 @@ If matching pending assessments are found:
 - **No fixes in flight** — If something fails, stop and report. The developer fixes; then runs `/ship` again.
 - **No force push** — Always a regular push. If the remote has diverged, stop and tell the user.
 
-## Boundaries
+## Instructions
 
-- Does not fix lint errors, test failures, or build issues.
-- Does not write or modify specs — that is the spec agent's job.
-- Does not amend previous commits — always creates a new commit.
-- Does not push to `main` or `master` directly — warns and stops if on a protected branch.
-
-## Usage Example
-
-```bash
-/skill:ship "feat(auth): add login validation"
-```
+$ARGUMENTS

@@ -66,6 +66,7 @@ Create issues via the Linear MCP tools (`save_issue`). Each atomic PBI must cont
 - **ALWAYS research first** — read existing specs, code, and the Linear backlog before writing PBIs.
 - **ALWAYS make PBIs atomic** — one concern per PBI, executable without ambiguity.
 
-## Task input
+## Task
 
-Apply the skill to the supplied feature area or planning request.
+$ARGUMENTS
+

@@ -67,7 +67,7 @@ To create effective verification, separate the generation and critique roles. Ad
 
 **The Builder** — Optimizes for implementation throughput (e.g., Gemini 3 Flash, Claude Haiku 4.5). Generates code from the PBI and Spec.
 
-**The Critic Lanes** — A set of independent models (e.g., an illustrative "Tri-Model Lane" approach with independent Architect, SecOps, and QA personas) optimized for specific validation dimensions. Models must have strict [Provenance](/concepts/provenance) identity separation so their actions are audited independently.
+**The Critic Lanes** — A set of independent models (e.g., an illustrative "Tri-Model Lane" approach with independent Architect, SecOps, and QA review lenses) optimized for specific validation dimensions. Models must have strict [Provenance](/concepts/provenance) identity separation so their actions are audited independently.
 
 The Critics do not generate alternative implementations. They act as gatekeepers, producing either **PASS** or a list of **spec violations** that must be addressed.
 
@@ -89,7 +89,7 @@ If using the same model, close the current chat and open a fresh session. If usi
 
 ### 3. Critique Phase
 
-Feed the Spec and the code diff to the Critic Agents with adversarial framing. Advanced factories run these in parallel lanes using specialized prompts (for example, the Architect persona below):
+Feed the Spec and the code diff to the Critic Agents with adversarial framing. Advanced factories run these in parallel lanes using specialized prompts (for example, the Architect review lens below):
 
 **System Prompt (Architect Critic Example):**
 ```

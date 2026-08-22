@@ -25,7 +25,7 @@ This is a read-only analytical skill. It produces a report; the human decides wh
 
 ### Architecture
 
-**Skill file:** `.claude/skills/curator.md`
+**Skill files:** `.agents/skills/curator/SKILL.md` (portable, canonical) mirrored to `.claude/skills/curator/SKILL.md` (Claude Code). Homes and sync policy per [ADR 0003](../../docs/adrs/0003-canonical-skill-system.md).
 
 **Inputs:**
 
@@ -109,7 +109,7 @@ Briefly listed.
 
 **File paths:**
 
-- Skill: `.claude/skills/curator.md`
+- Skill: `.agents/skills/curator/SKILL.md`, mirrored to `.claude/skills/curator/SKILL.md`
 - Report output: `reports/curator/YYYY-MM-DD.md`
 - Aggregation logic (testable, pure): `tools/curator/triage.ts`
 - Rubric thresholds and weights (single source of truth): `tools/curator/rubric.ts`
@@ -125,11 +125,11 @@ Briefly listed.
 
 ### Definition of Done
 
-- [ ] `.claude/skills/curator.md` exists and is invokable as `@curator`
+- [ ] `.agents/skills/curator/SKILL.md` exists and its `.claude/skills/curator/SKILL.md` mirror is invokable as `/curator`
 - [ ] `tools/curator/triage.ts` exports a pure function `triage(rows: GscRow[], articles: Article[], rubric: Rubric): TriageResult` with unit tests in `tools/curator/triage.test.ts`
 - [ ] `tools/curator/rubric.ts` exports all thresholds and weights named in this spec: `MIN_IMPRESSIONS_FOR_SIGNAL`, `STALE_SNAPSHOT_DAYS`, bucket-specific thresholds, bucket weights, and `confidenceMultiplier`
 - [ ] Pinning tests in `rubric.test.ts` assert the v1 default values, forcing intentional updates via PR
-- [ ] Running `@curator` on the latest snapshot produces `reports/curator/YYYY-MM-DD.md` matching the template
+- [ ] Running `/curator` on the latest snapshot produces `reports/curator/YYYY-MM-DD.md` matching the template
 - [ ] The report names the snapshot file and its age in days
 - [ ] Each triaged article links to its source markdown file path
 - [ ] `pnpm test:run` covers each shipping bucket (Polish, Upgrade, Refresh, Discoverability) with at least one positive and one negative case
@@ -149,20 +149,20 @@ Briefly listed.
 ```gherkin
 Scenario: Weekly triage on a fresh snapshot
   Given a snapshot at data/gsc/2026-05-20.jsonl exists and is today's date
-  When I invoke @curator with no arguments
+  When I invoke /curator with no arguments
   Then reports/curator/2026-05-20.md is written
   And the report header shows "snapshot age: 0 days"
   And the report contains a Top 10 table and per-bucket sections
 
 Scenario: Stale snapshot warning
   Given the latest snapshot is older than STALE_SNAPSHOT_DAYS
-  When I invoke @curator
+  When I invoke /curator
   Then the report header warns about snapshot age and suggests running pnpm gsc:snapshot
   And the triage still runs against the stale data
 
 Scenario: Refresh bucket with insufficient history
   Given the latest snapshot covers only 45 days
-  When @curator runs
+  When /curator runs
   Then the Refresh section reads "insufficient data (< 120d snapshot history)"
   And no articles are placed in the Refresh bucket
   And Polish, Upgrade, and Discoverability buckets are unaffected
@@ -171,38 +171,38 @@ Scenario: Refresh bucket with sufficient history
   Given a snapshot covers 120 days
   And article src/content/patterns/old.md had 1000 clicks in days 61–120 ago and 500 clicks in days 0–60
   And the article was published more than 6 months ago
-  When @curator runs
+  When /curator runs
   Then src/content/patterns/old.md appears in the Refresh bucket
   And the signal cell quotes the 50% decline
 
 Scenario: Polish takes precedence over Upgrade
   Given an article matches both Polish (high impressions, low CTR, position 8) and Upgrade signals
-  When @curator runs
+  When /curator runs
   Then the article appears in Polish only
   And the bucket-precedence test pins this behavior
 
 Scenario: Discoverability via inverse join
   Given an article exists at src/content/patterns/new-thing.md
   And no snapshot rows reference its URL
-  When @curator runs
+  When /curator runs
   Then the article appears in Discoverability with confidence n/a
   And the suggested action references geo-audit
 
 Scenario: Low-traffic article is excluded from signal buckets
   Given an article has 30 impressions in 28d and 1% CTR
-  When @curator runs
+  When /curator runs
   Then the article does not appear in Polish, Upgrade, or Refresh
   And it appears in neither Healthy nor Discoverability (it has snapshot rows, but below threshold)
   And the report's count line accounts for it under "excluded-low-traffic"
 
 Scenario: Single-article drill-down from snapshot
-  When I invoke @curator with page "/patterns/typed-handoffs"
+  When I invoke /curator with page "/patterns/typed-handoffs"
   Then the output focuses on that article only
   And uses the latest snapshot as the data source
   And includes the article's bucket, signals, top queries, and a suggested action paragraph
 
 Scenario: Single-article drill-down with --live
-  When I invoke @curator with page "/patterns/typed-handoffs" and --live
+  When I invoke /curator with page "/patterns/typed-handoffs" and --live
   Then "pnpm gsc:snapshot" is run to produce a fresh snapshot
   And the article is triaged against that fresh snapshot
   And the report header notes "data source: snapshot YYYY-MM-DD (refreshed)"

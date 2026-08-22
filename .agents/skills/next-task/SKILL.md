@@ -1,11 +1,20 @@
 ---
+name: next-task
 description: "Pick the next task from the Linear backlog with the best speed/value ratio"
 argument-hint: "[optional: filter or context for task selection]"
+version: 1.0.0
 ---
+
+# Next Task — prioritize backlog items by speed/value
 
 Pick the next task from the Linear backlog with the best speed/value ratio.
 
-**Workflow:**
+## Boundaries
+
+- **In scope:** querying Linear backlog, ranking tasks by speed/value, proposing recommendations with rationale.
+- **Out of scope:** implementing tasks (`dev`, `assemble`), modifying specs (`spec`), creating new PBIs (`lead`).
+
+## Workflow
 
 1. **Fetch backlog:** List all issues in `Backlog` state for the ASDLC team from Linear.
 2. **Read comments:** For every issue returned, fetch its comments. Comments often contain context that changes priority or flags blockers (e.g., "defer this", "needs human supervision").

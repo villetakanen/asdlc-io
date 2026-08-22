@@ -14,8 +14,8 @@ steps:
     text: "List non-standard tools and how to invoke them with a minimal table. Do not describe what the tools enforce — that is already in their config files. One row per tool, command, and notes."
   - name: "Define Judgment Boundaries"
     text: "Document the NEVER, ASK, and ALWAYS rules that cannot be expressed by a linter or enforced by tooling. Each rule should represent a judgment call, not a constraint the toolchain already handles."
-  - name: "Add a Persona Registry (if multi-persona)"
-    text: "List persona names and invocation patterns only. Full definitions live in skill or workflow files, not inline in AGENTS.md — loading all definitions on every session wastes context and increases reasoning cost."
+  - name: "Add a Skills Roster (if multi-skill)"
+    text: "List task-named skills and invocation triggers only. Full definitions live in skill files (.agents/skills/ or .claude/skills/), not inline in AGENTS.md — loading all definitions on every session wastes context and increases reasoning cost."
   - name: "Audit Out Toolchain-Enforced Rules"
     text: "Review agents.md for rules that have migrated to the toolchain (linter rules, tsconfig constraints, CI gates). Remove anything the toolchain enforces — every removed line is one less instruction the agent must process faithfully."
 references:
@@ -81,7 +81,7 @@ Not a list of what Biome enforces.
 |---|---|---|
 | Toolchain-enforced | no `var`, import order, formatting | biome.json / eslint / tsconfig |
 | Judgment / architectural | prefer composition, ask before adding deps | agents.md |
-| Session-scoped persona | Critic, Builder | skill or workflow file |
+| Session-scoped task skill | `/critic`, `/dev`, `/spec` | `.agents/skills/` or `.claude/skills/` |
 | Task-specific style | API naming for this module | The Spec / PBI |
 
 ### 3. Avoiding the Pink Elephant Problem
@@ -206,19 +206,19 @@ The behavioral rules that cannot be expressed by a tool or through a **skill** �
 
 Note: If a rule here overlaps with something your toolchain or harness enforces (e.g., skill, linting rules, type errors), remove it from agents.md. The tool is the enforcement mechanism, not the agent.
 
-### 4. Available Personas (Registry Only)
+### 4. Available Skills (Roster Only)
 
-If your project uses multiple agent personas, list them by name and invocation. **Full persona definitions live in skill/workflow files**, not inline here. Loading all persona definitions on every session is wasteful when only one is active at a time. 
+If your project defines specialized workflow skills, list them by task name and invocation trigger. **Full skill definitions live in skill files (`.agents/skills/` or `.claude/skills/`)**, not inline here. Loading all procedural instructions on every session is wasteful when only one is active at a time. 
 
 ```md
-## Personas
-Invoke via skill: @Lead, @Dev, @Designer, @Critic  
-Definitions: `.claude/skills/`
+## Skills
+Invoke via /command: /lead, /dev, /critic, /ship
+Definitions: `.agents/skills/` and `.claude/skills/`
 ```
 
-For single-persona projects, a brief identity statement is sufficient:
+For single-workflow projects, a brief identity or focus statement is sufficient:
 ```md
-## Identity
+## Focus
 Senior Systems Engineer — Go 1.22, gRPC, high-throughput concurrency.
 Favor explicit error handling and composition over inheritance.
 ```
@@ -239,7 +239,7 @@ Periodically review agents.md for content that has migrated to the toolchain. Co
 
 - Style rules that a linter now enforces (remove from agents.md)
 - Library restrictions that a tsconfig or ESLint rule enforces (remove)
-- Persona definitions that have been moved to skill files (replace with registry line)
+- Procedural instructions that have been moved to skill files (replace with roster line)
 - Codebase overviews copied from README (remove — the agent can read README)
 - LLM-generated sections from `/init` commands (treat as draft, not final)
 
@@ -290,9 +290,9 @@ The goal is signal density, not format compliance. Overly rigid specs create ado
 - Explain your plan before writing code
 - Run `buf lint` after modifying any `.proto` file
 
-## Personas
-Invoke via skill: @Lead, @Dev, @Critic  
-Definitions: `.claude/skills/`
+## Skills
+Invoke via /command: /lead, /dev, /critic, /ship  
+Definitions: `.agents/skills/` and `.claude/skills/`
 
 ## Context Map
 
