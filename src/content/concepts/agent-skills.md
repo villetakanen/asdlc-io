@@ -90,9 +90,9 @@ In the Agentic SDLC, Skills hold a specific place in the artifact taxonomy:
 | **Skills** | Workflow-scoped | Reusable | Procedural knowledge |
 | **MCP** | Integration-scoped | Runtime | Connectivity / Tools |
 
-### Skills as Persona Carriers
+### Skills as Task Carriers
 
-A core ASDLC pattern asserts that personas should be injected via workflows, not loaded globally. Skills are the natural packaging format for this pattern. Instead of bloating the global `AGENTS.md` with instructions on how to act as a "Database Reviewer" or a "UI/UX Specialist," those personas are encapsulated as Skills and invoked only when the relevant tasks arise.
+In the ASDLC, specialized procedural instructions are injected on demand via skills rather than loaded globally. Instead of bloating `AGENTS.md` with instructions on how to perform niche workflows or attempting to role-play identities (e.g., "act as a Database Reviewer" or "role-play a UX Specialist"), procedures are encapsulated as task-type skills. Skills provide explicit triggers, quality gates, and output contracts, invoked only when the relevant tasks arise.
 
 ### Horizontal vs. Vertical Context
 

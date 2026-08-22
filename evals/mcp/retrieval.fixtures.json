@@ -36,9 +36,9 @@
     {
       "id": "agent-personas",
       "query": "agent personas",
-      "description": "Direct keyword — the agent-personas practice must surface in top-3.",
+      "description": "Historical query — searching for deprecated agent personas surfaces related review and skills articles.",
       "expect": {
-        "topN": { "n": 3, "slugs": ["agent-personas"] }
+        "topN": { "n": 3, "slugs": ["critic", "agent-constitution", "constitutional-review"] }
       }
     },
     {
@@ -128,7 +128,7 @@
           "spec-driven-development",
           "agents-md-spec",
           "micro-commits",
-          "agent-personas",
+          "agent-skills",
           "critic"
         ]
       }

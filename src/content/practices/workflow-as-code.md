@@ -185,22 +185,22 @@ export async function execute(ctx: WorkflowContext): Promise<StepResult> {
 }
 ```
 
-## Workflows as Persona Carriers
+## Workflows as Task Skill Carriers
 
-### Persona Injection via Workflow
+### Task Skill Injection via Workflow
 
-Workflows are the natural home for session-scoped persona injection. Rather than loading all persona definitions into agents.md on every session, define the persona as part of the workflow context — it gets injected precisely when needed and is absent when it isn't.
+Workflows are the natural home for session-scoped task skill injection. Rather than loading all specialized procedures into `AGENTS.md` on every session, define task instructions as part of the workflow context — injected precisely when needed and absent when they are not.
 
-A code review workflow injects the Critic persona. An implementation workflow injects the Dev persona. A spec workflow injects the Lead persona. This is more precise than always-on loading, and avoids the cost of agents following instructions that are irrelevant to the current task.
+A code review workflow injects `critic`. An implementation workflow injects `dev`. A spec authoring workflow injects `spec`. This is more precise than always-on loading, and avoids the cost of agents following instructions that are irrelevant to the current task.
 
-**Example: Review workflow with Critic persona**
+**Example: Review workflow with Critic skill**
 
 ```yaml
 # .claude/workflows/review.yaml
 name: Constitutional Review
-trigger: "@review"
+trigger: "/critic"
 context:
-  - .claude/skills/critic.md      # Critic persona — injected here, not in agents.md
+  - .claude/skills/critic/SKILL.md # Critic skill — injected here, not in AGENTS.md
   - specs/{feature}/spec.md        # The spec being reviewed
   - AGENTS.md                     # Project-level judgment boundaries
 steps:
@@ -209,14 +209,14 @@ steps:
   - produce_report
 ```
 
-**Example: Implementation workflow with Dev persona**
+**Example: Implementation workflow with Dev skill**
 
 ```yaml
 # .claude/workflows/implement.yaml
 name: Implementation
-trigger: "@implement"
+trigger: "/dev"
 context:
-  - .claude/skills/dev.md         # Dev persona — only loaded for implementation tasks
+  - .claude/skills/dev/SKILL.md    # Dev skill — only loaded for implementation tasks
   - specs/{feature}/spec.md        # The spec for the feature being implemented
   - AGENTS.md                     # Project-level judgment boundaries
 steps:
@@ -227,7 +227,7 @@ steps:
   - update_pbi_status
 ```
 
-The key property: `AGENTS.md` contains only project-level judgment. The persona is carried by the workflow and injected at invocation. This keeps agents.md stable and minimal, while delivering the right behavioral context for each task type.
+The key property: `AGENTS.md` contains only project-level judgment and a skills roster. Specialized procedural instructions are carried by the workflow or skill and injected at invocation. This keeps `AGENTS.md` stable and minimal, while delivering the right behavioral context for each task type.
 
 ## Common Mistakes
 
