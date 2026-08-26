@@ -21,6 +21,11 @@ data/gsc/*.jsonl.tmp
 # same rule: kept local, regenerate on demand with `pnpm curator`. See ADR 0002.
 reports/curator/*.md
 
+# Assessment drafts are working artifacts — the canonical report in
+# docs/assessments/{date}-{slug}.md is the durable record, including each
+# assessor's position and any disagreement.
+docs/assessments/drafts/
+
 # Logs
 logs
 *.log

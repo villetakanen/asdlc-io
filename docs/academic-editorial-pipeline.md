@@ -1,400 +1,473 @@
-# Academic Editorial Pipeline: Scientific Synthesis & Epistemic Isolation
+# Academic Editorial Pipeline
 
-> **Vision:** Transform the ASDLC editorial pipeline from ad-hoc LLM text generation into a formal academic research and synthesis instrument grounded in *tieteellinen kirjoittaminen* (scientific writing), multi-harness triangulation, empirical evidence hierarchies, and strict epistemic ordering.
+> **Purpose:** Turn source material into evidence-calibrated ASDLC knowledge without making routine editorial work unnecessarily expensive. The pipeline preserves provenance, distinguishes evidence from judgment, and escalates review in proportion to risk.
 
----
+## 1. Decision Summary
 
-## 1. Executive Summary & Epistemic Rationale
+The editorial pipeline uses four controls:
 
-### The Core Problem: LLM Cognitive Anchoring & Single-Model Bias
-Standard AI-assisted writing workflows suffer from severe epistemic degradation:
-1. **Unanchored Prompt Ingestion:** When an LLM is given an existing article alongside a new source in a single context window, it anchors on the prompt and the new source, uncritically overwriting established truths, diluting precision, and ignoring historical design rationale.
-2. **Single-Model Inductive Bias:** A single agent harness/model possesses blind spots, idiosyncratic biases, and non-deterministic blinders. Relying on a single model run to assess and author critical knowledge introduces model-specific drift.
-3. **Epistemic Flattening:** Traditional workflows treat all inputs equally—a tweet, a marketing blog post, a peer-reviewed paper, and production telemetry are synthesized with identical epistemic weight.
-4. **Graph Blindness:** Isolated edits inadvertently violate semantic boundaries with neighboring concepts, causing conceptual duplication, one-way link breaks, or contradictory assertions across the knowledge base.
+1. **Independent claim extraction:** The incumbent article and challenger source are reduced to separate claim sets before they are compared.
+2. **Claim-specific evidence appraisal:** Evidence is judged against the claim it supports; no source type automatically outranks every other source type.
+3. **Risk-proportional review:** Deterministic checks are always required. Additional independent assessors and human adjudication are added when the change is consequential or disputed.
+4. **Traceable synthesis:** Every material change records the claim, evidence, confidence, editorial operation, and decision rationale.
 
-### The Solution: Epistemic Isolation & Multi-Harness Triangulation
-To produce durable, citable, and empirically grounded knowledge, the pipeline enforces two foundational invariants:
-1. **Heterogeneous Multi-Harness Triangulation ($N \ge 3$):** The analysis/assessment phase is executed independently across $N$ distinct agent harnesses (e.g. OpenCode/Sol, Claude Code/Fable, Antigravity/Gemini 3.7). The independent assessments are merged via a formal Consensus & Disagreement Preservation protocol.
-2. **Strictly Ordered Epistemic Sequence:** The authoring engine isolates the incumbent baseline and literature provenance *before* ingesting the challenger input or consensus brief.
+The knowledge base remains the incumbent baseline because it carries prior editorial decisions and graph relationships. It is not presumed true. A challenger may corroborate, bound, revise, supersede, or split the baseline when the evidence and scope warrant it.
 
 ```mermaid
+%% caption: The editorial pipeline separates claim extraction before evidence appraisal, routes review by risk, and converges at an accountable decision.
 flowchart TD
-    subgraph MultiHarness["Phase 0: Multi-Harness Assessment Panel (N ≥ 3)"]
-        direction LR
-        HarnessA["Harness 1<br/>(e.g., OpenCode / Sol)"]
-        HarnessB["Harness 2<br/>(e.g., Claude Code / Fable)"]
-        HarnessC["Harness 3<br/>(e.g., AGY / Gemini 3.7)"]
-        
-        HarnessA & HarnessB & HarnessC --> Merge["Consensus & Adjudication Merge<br/>• Inter-Rater Agreement Matrix<br/>• Disagreement Preservation<br/>• HITL Governance Gate"]
-    end
-
-    subgraph EpistemicBaseline["Phase 1: Incumbent Baseline & Context Hull"]
-        direction TB
-        Ego["1. Ego-Node (Target Article)<br/>• Read target doc in isolation<br/>• Extract incumbent thesis & claims"]
-        Refs["2. Citation Provenance<br/>• Fetch & read all frontmatter references<br/>• Map claims to primary evidence"]
-        Hull["3. Context Hull (relatedIds)<br/>• Load neighboring articles<br/>• Map semantic perimeters & invariants"]
-        Ego --> Refs --> Hull
-    end
-
-    subgraph ChallengerIngestion["Phase 2: Challenger Deconstruction"]
-        direction TB
-        Challenger["4. Challenger Source & Consensus Brief<br/>• Apply Lähdekritiikki (Source Criticism)<br/>• Extract methodology & evidence tier<br/>• Ingest multi-harness consensus delta"]
-    end
-
-    subgraph Dialectic["Phase 3: Academic Synthesis"]
-        direction TB
-        Synthesis["5. Dialectical Triangulation<br/>• Thesis (Baseline) vs Antithesis (Challenger)<br/>• Delta Matrix: Corroborate | Bound | Refute | Split"]
-    end
-
-    subgraph Production["Phase 4: Spec Execution & Verification"]
-        direction TB
-        Draft["6. Scientific Drafting<br/>• Apply archetype (Concept/Pattern/Practice)<br/>• Third-person objective tone<br/>• State falsifiability & boundary limits"]
-        GraphSync["7. Graph Rebalancing<br/>• Sync bidirectional relatedIds<br/>• Eliminate orphaned links"]
-        Gate["8. Pre-Flight Verification<br/>• pnpm check & pnpm diagrams<br/>• Adversarial /critic review"]
-        Draft --> GraphSync --> Gate
-    end
-
-    MultiHarness --> EpistemicBaseline
-    EpistemicBaseline --> ChallengerIngestion
-    ChallengerIngestion --> Dialectic
-    Dialectic --> Production
+    Source["Source or editorial question"] --> Frame["Frame question, scope, and risk"]
+    Frame --> Incumbent["Extract incumbent claims"]
+    Frame --> Challenger["Extract challenger claims"]
+    Incumbent & Challenger --> Evidence["Search context and build claim–evidence ledger"]
+    Evidence --> Appraise["Appraise evidence per claim"]
+    Appraise --> Route{"Route review by risk"}
+    Route -- "Low" --> Primary["Primary assessment"]
+    Route -- "Moderate" --> Challenge["Primary assessment + independent challenge"]
+    Route -- "High or disputed" --> Panel["Independent assessments + HITL adjudication"]
+    Primary & Challenge & Panel --> Synthesize["Synthesize each material delta"]
+    Synthesize --> Decide["Approve, narrow, dispute, or reject"]
+    Decide --> Implement["Implement approved scope"]
+    Implement --> Verify["Verify claims, graph, schema, and checks"]
+    Verify --> Learn["Record decision and reusable learning"]
 ```
 
----
+## 2. Scope
 
-## 2. Theoretical Frameworks for Synthesis
+This pipeline applies when creating or substantively revising Concepts, Patterns, and Practices from external sources, internal telemetry, or new editorial arguments.
 
-The pipeline is built upon classical research methodology, epistemology, and scientific writing principles (*tieteellinen kirjoittaminen*):
+It is not required in full for:
 
-### A. Multi-Harness Triangulation & Inter-Rater Reliability
-In scientific peer review, a single referee is never sufficient to establish truth. ASDLC employs **Investigator & Harness Triangulation**:
-- The assessment task is submitted in parallel to $N$ independent, heterogeneous harnesses (e.g. OpenCode, Claude Code, Antigravity).
-- The harness outputs are evaluated for **Inter-Rater Reliability (IRR)** across four axes:
-  1. *Classification of Evidence Tier* (Empirical vs. Opinion)
-  2. *Regression Risk Assessment* (Is this a step backward?)
-  3. *Action Strategy* (Integrate vs. Expand vs. Reject vs. Split)
-  4. *Knowledge Graph Node Impact* (Which siblings are touched?)
-- **Disagreement Preservation Principle:** If independent harnesses disagree (e.g., Harness 1 recommends "Synthesize" while Harness 2 recommends "Taxonomic Split / New Concept"), the consensus protocol does **not** average or flatten the dispute. The dialectical tension is explicitly recorded in the synthesis brief, allowing the human reviewer (HITL) or drafting agent to address both viewpoints with clear boundary conditions.
+- spelling, formatting, or metadata corrections that do not change meaning;
+- mechanical schema migrations with separately reviewed transformation rules;
+- content changes already specified by an approved, evidence-bearing assessment.
 
-```mermaid
-flowchart TD
-    Raw["Raw Source / Input"] --> H1["Assessor 1 (Harness α)"]
-    Raw --> H2["Assessor 2 (Harness β)"]
-    Raw --> H3["Assessor 3 (Harness γ)"]
-    
-    H1 --> R1["Report 1"]
-    H2 --> R2["Report 2"]
-    H3 --> R3["Report 3"]
-    
-    R1 & R2 & R3 --> MergeEngine["Consensus Merge & Adjudication Engine"]
-    
-    MergeEngine --> Matrix["Inter-Rater Agreement Matrix<br/>• Full Consensus (3/3) ➔ Fast-track<br/>• Partial Consensus (2/3) ➔ Majority + Note<br/>• Disputed (1/1/1) ➔ Preserve Tension & Gate"]
-    
-    Matrix --> Brief["Consolidated Consensus Synthesis Brief"]
-```
+Those changes still run the deterministic repository gates required by `AGENTS.md` and the relevant content spec.
 
-### B. Source Criticism (*Lähdekritiikki*) & Evidence Hierarchy
-All inputs are categorized into a 4-tier epistemic hierarchy. Higher tiers strictly supersede lower tiers during conflict arbitration:
+## 3. Operating Principles
 
-```mermaid
-graph BT
-    T4["Tier 4: Dialectical / Thought Leadership<br/>(Essays, blog posts, opinion, heuristics)"]
-    T3["Tier 3: Practitioner Consensus<br/>(Production case studies, post-mortems, verified RFCs)"]
-    T2["Tier 2: Peer-Reviewed / Canonical Research<br/>(Formal papers, preprints with empirical validation)"]
-    T1["Tier 1: Empirical Telemetry & Hard Data<br/>(Benchmarks, execution traces, mathematical proofs)"]
+### 3.1 Agreement is not correctness
 
-    T4 --> T3
-    T3 --> T2
-    T2 --> T1
+Multiple assessors can expose different interpretations and failure modes, but their agreement does not establish truth. Models may share training data, architectural assumptions, benchmarks, and error patterns. Consensus is therefore a routing signal:
 
-    classDef t1 fill:#1b4332,stroke:#2d6a4f,stroke-width:2px,color:#d8f3dc;
-    classDef t2 fill:#1e3d59,stroke:#17b978,stroke-width:2px,color:#f1f1f1;
-    classDef t3 fill:#4a3f35,stroke:#bb9457,stroke-width:2px,color:#ffe6a7;
-    classDef t4 fill:#3a2020,stroke:#9b2226,stroke-width:2px,color:#f8d7da;
+- agreement can reduce the need for further interpretation;
+- disagreement identifies a decision that needs adjudication;
+- neither agreement nor majority vote can replace supporting evidence or accountable editorial judgment.
 
-    class T1 t1;
-    class T2 t2;
-    class T3 t3;
-    class T4 t4;
-```
+### 3.2 Evidence strength depends on the claim
 
-- **Tier 1 (Empirical Telemetry):** Direct benchmark results, runtime logs, unit-tested harness data. Ground truth.
-- **Tier 2 (Peer-Reviewed / Canonical Research):** Published research (e.g. arXiv, IEEE, ACM) with documented methodologies and datasets.
-- **Tier 3 (Practitioner Consensus):** Real-world industrial case studies from established engineering teams.
-- **Tier 4 (Thought Leadership / Opinion):** Conceptual musings, developer blogs, social posts. Treated strictly as **hypotheses** requiring validation, never as established fact.
+The pipeline does not use a universal evidence ladder. A source is appraised for its fitness to support a specific claim.
 
-### C. Dialectical Arbitration (Thesis ↔ Antithesis ➔ Synthesis)
-When a challenger input conflicts with the incumbent knowledge base, the agent executes dialectical arbitration rather than uncritical overwrite:
-
-```mermaid
-flowchart LR
-    Thesis["Thesis<br/>(Incumbent Baseline + Citations)"]
-    Antithesis["Antithesis<br/>(Challenger + Multi-Harness Brief)"]
-    
-    Thesis & Antithesis --> Arbitrate{"Arbitration Engine<br/>(Evidence & Rigor Comparison)"}
-    
-    Arbitrate -- "Challenger < Incumbent Tier" --> Reject["REJECT / BOUND<br/>(Preserve incumbent; add caution note)"]
-    Arbitrate -- "Challenger > Incumbent Tier" --> Supersede["SUPERSEDE<br/>(Update thesis with explicit dialectic)"]
-    Arbitrate -- "Different Boundary Conditions" --> Synthesize["SYNTHESIZE<br/>(Document distinct operational regimes)"]
-    Arbitrate -- "Distinct Named Category" --> Split["TAXONOMIC SPLIT<br/>(Create dedicated sibling Concept)"]
-```
-
-### D. Popperian Falsifiability & Boundary Conditions
-Scientific writing requires that all propositions are testable and bounded:
-1. **Operational Boundaries:** Where does this pattern or concept *fail*? (e.g., maximum token context, cost ceiling, concurrency limits, non-deterministic model degradations).
-2. **Falsification Criteria:** What measurable metric (e.g., SWE-bench score drop, latency spike > 500ms, human-intervention rate increase) would disprove this pattern's efficacy?
-3. **Semantic Demarcation:** Distinct separation between *What/Why* (Concepts), *Structure/Blueprints* (Patterns), and *How/Execution* (Practices).
-
----
-
-## 3. End-to-End Pipeline Specification
-
-The academic article authoring workflow comprises the multi-harness assessment front-end and the 8-phase epistemic authoring execution.
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as Editor (HITL)
-    participant Harness1 as Assessor 1 (OpenCode/Sol)
-    participant Harness2 as Assessor 2 (Claude Code/Fable)
-    participant Harness3 as Assessor 3 (AGY/Gemini 3.7)
-    participant MetaReview as Consensus Merge & Adjudication
-    participant Author as Academic Authoring Engine (/author)
-    participant Graph as Knowledge Graph (relatedIds & references)
-    participant Critic as Adversarial Reviewer (/critic)
-
-    Note over User,Harness3: Multi-Harness Assessment Panel (N ≥ 3)
-    User->>Harness1: Assess Source vs KB
-    User->>Harness2: Assess Source vs KB
-    User->>Harness3: Assess Source vs KB
-    
-    Harness1-->>MetaReview: Report 1 (Verdict, Evidence Tier, Graph Nodes)
-    Harness2-->>MetaReview: Report 2 (Verdict, Evidence Tier, Graph Nodes)
-    Harness3-->>MetaReview: Report 3 (Verdict, Evidence Tier, Graph Nodes)
-    
-    MetaReview->>MetaReview: Compute Agreement Matrix & Preserve Disputes
-    MetaReview-->>User: Consolidated Assessment & HITL Gate
-    User->>Author: Dispatch Consensus Brief to Author Engine
-    
-    Note over Author,Graph: Strict Epistemic Isolation Sequence
-    Author->>Author: Phase 1: Load Target Article (Ego-Node Baseline)
-    Author->>Graph: Phase 2: Fetch & Read Frontmatter References
-    Author->>Graph: Phase 3: Load Neighbor Nodes (relatedIds Hull)
-    Author->>Author: Phase 4: Ingest Challenger & Multi-Harness Brief
-    Author->>Author: Phase 5: Dialectical Synthesis (Delta Classification)
-    Author->>Author: Phase 6: Spec-Anchored Scientific Drafting
-    Author->>Graph: Phase 7: Sync Bidirectional Links
-    
-    Author->>Critic: Phase 8: Invoke Adversarial Review (/critic)
-    Critic-->>Author: Verdict (PASS / FAIL with Violations)
-    Author-->>User: Verified, Empirically Grounded Knowledge Node
-```
-
----
-
-### Step 0: Multi-Harness Assessment & Consensus Adjudication
-
-Before authoring starts, the challenger material is processed by $N$ independent harnesses:
-1. **Parallel Ingestion:** Harnesses 1 through $N$ run the `/assess` skill independently against `src/content/`.
-2. **Consensus Aggregation:** The meta-reviewer parses the individual assessment reports (`docs/assessments/{date}-{slug}.md`) and compiles:
-   - **Consensus Verdict:** Majority or unanimous verdict (Accepted / Synthesized / Split / Rejected).
-   - **Evidence Confidence Matrix:** Triangulated score across all reviewers.
-   - **Graph Impact Union:** The superset of all proposed `relatedIds` and neighbor modifications.
-   - **Disagreement Record:** Documented divergences in interpretation or structural recommendations.
-3. **HITL Clearance Gate:** The user confirms the consolidated brief and triggers the authoring skill.
-
----
-
-### Phase 1: Ego-Node Baseline Extraction
-
-**Objective:** Understand the target article in complete isolation before any outside influence.
-
-1. **Read Target:** Open `src/content/{concepts,patterns,practices}/<slug>.md`.
-2. **Archetype Identification:** Match against `specs/content-articles/`:
-   - `concept.md` (Terminology authority: definition, context, trade-offs, taxonomy).
-   - `pattern.md` (Architectural blueprints: context, problem, solution, structure, diagram).
-   - `practice.md` (Operational process: prerequisites, step-by-step procedure, validation).
-3. **Incumbent State Extraction:**
-   - Extract primary claims and underlying rationale.
-   - Record current frontmatter (`title`, `longTitle`, `description`, `tags`, `status`, `relatedIds`, `references`).
-   - Identify existing internal gaps or ambiguities in the text.
-
----
-
-### Phase 2: Citation Provenance Audit (Literature & Data)
-
-**Objective:** Audit the evidence supporting the incumbent article.
-
-1. **Load `references`:** Read every entry in the target article's frontmatter `references` array:
-   ```yaml
-   references:
-     - title: "Language Models are Few-Shot Learners"
-       url: "https://arxiv.org/abs/2005.14165"
-       type: "paper"
-   ```
-2. **Fetch and Verify Content:** Read the cited external literature (via URLs, preprints, RFCs, local sources).
-3. **Evidentiary Mapping:**
-   - Which specific paragraphs in the target rely on which citation?
-   - What is the evidence tier (Tier 1 Empirical, Tier 2 Peer-Reviewed, Tier 3 Consensus, Tier 4 Opinion)?
-   - Are any citations dead, outdated, or superseded by newer research?
-
----
-
-### Phase 3: Context Hull Expansion (The Graph Neighborhood)
-
-**Objective:** Load the neighboring nodes to protect semantic boundaries and avoid duplication.
-
-1. **Load `relatedIds`:** Read all articles listed in the target's `relatedIds` array.
-2. **Topological Mapping:**
-   - What roles do neighboring nodes play?
-   - Does a neighboring *Practice* already handle the execution steps of this *Concept*?
-   - What shared taxonomy connects these nodes?
-3. **Boundary Invariant Check:** Ensure the upcoming update will not encroach on a neighbor's domain or create conflicting terminology.
-
----
-
-### Phase 4: Challenger Deconstruction (*Lähdekritiikki*) & Multi-Harness Ingestion
-
-**Objective:** Isolate the new source and the multi-harness consensus brief with critical detachment.
-
-1. **Ingest Consolidated Brief:** Ingest the raw challenger input alongside the Multi-Harness Consensus Brief from Step 0.
-2. **Critical Source Audit (*Lähdekritiikki*):**
-   - **Provenance:** Who authored it? What is their institutional affiliation or commercial incentive?
-   - **Evidence Level:** Is it backed by telemetry, controlled experiments, or subjective impressions?
-   - **Methodological Soundness:** What was the sample size, test harness, model version, and benchmark suite?
-   - **Hidden Assumptions:** What conditions did the author take for granted (e.g., unlimited budget, specific IDE, proprietary model)?
-
----
-
-### Phase 5: Dialectical Synthesis & Delta Classification
-
-**Objective:** Synthesize Incumbent Truth (Phases 1–3) with Multi-Harness Challenger Data (Phase 4).
-
-Evaluate the delta across five canonical operations:
-
-| Operation | Condition | Editorial Action |
+| Claim type | Evidence that may be appropriate | Common failure mode |
 |---|---|---|
-| **Corroborate** | Challenger provides newer/stronger Tier 1/2 evidence for an incumbent claim. | Add citations to `references`; refine empirical metrics; tighten definitions. |
-| **Bound** | Challenger exposes edge cases or failure modes in the incumbent pattern. | Add explicit "Limitations & Boundary Conditions" or "Failure Modes" section. |
-| **Refute / Supersede** | Challenger presents higher-tier empirical evidence disproving an incumbent claim. | Update the thesis; document the shift in reasoning; preserve historical context if valuable. |
-| **Taxonomic Split** | Challenger introduces a distinct named category or framework. | Propose a new sibling concept/pattern; cross-link via `relatedIds`. |
-| **Reject** | Challenger is lower-tier opinion contradicting verified empirical consensus. | Reject change; optionally log to `docs/assessments/` as disputed thought leadership. |
+| Definition or taxonomy | Standards, canonical papers, documented industry usage, primary descriptions | Treating popularity as semantic precision |
+| Descriptive claim | Representative telemetry, observational studies, reproducible corpus analysis | Generalizing from a selected case |
+| Causal or effectiveness claim | Controlled comparisons, credible counterfactuals, replicated telemetry | Ignoring confounding or baseline choice |
+| Mechanistic claim | Direct measurements, ablations, traces, formal analysis | Inferring mechanism from outcome alone |
+| Operational recommendation | Evidence of benefit, cost, failure modes, and applicability to ASDLC constraints | Converting a local success into universal guidance |
+| Mathematical or logical claim | Valid proof under explicit premises | Treating formal validity as empirical applicability |
 
----
+Peer review, publication venue, author reputation, and source type are useful provenance signals. None substitutes for examining the method and its fit to the claim. A preprint is labeled as a preprint; production telemetry is not called ground truth unless its measurement validity and scope justify that term.
 
-### Phase 6: Spec-Anchored Scientific Drafting
+### 3.3 Confidence is multidimensional
 
-**Objective:** Write or update the markdown content adhering to strict scientific writing standards.
+For each material claim, assess:
 
-1. **Frontmatter Constraints:**
-   - `title`: ≤ 40 chars (strict layout display name for cards and navigation).
-   - `longTitle`: ≤ 120 chars (SEO/H1 title, e.g., `"OODA Loop for AI Agents: Observe-Orient-Decide-Act Cycle"`).
-   - `description`: ≤ 200 chars (standalone definition).
-   - `tags`: 2–5 industry keywords (avoid internal jargon).
-   - `status`: `Live` | `Experimental` | `Draft` | `Proposed` | `Deprecated`.
-   - `references`: Clean structured array of external sources.
-   - `relatedIds`: Clean array of collection-prefixed internal slugs.
-2. **Academic Prose Rules:**
-   - Third-person, formal, passive or neutral voice.
-   - Zero marketing adjectives ("revolutionary", "game-changing", "seamless", "next-gen").
-   - Headings start strictly at `##` (H2).
-   - Explicit operational boundary conditions and falsifiability criteria.
-3. **Dual-Representation Diagrams:**
-   - Write standard Mermaid code block.
-   - Quote node labels containing parentheses or special characters.
+- **Provenance:** authorship, publication status, incentives, funding, and version;
+- **Method fit:** whether the design can answer the stated question;
+- **Risk of bias:** selection, measurement, confounding, evaluator, and reporting bias;
+- **Directness:** similarity between the studied conditions and the ASDLC use case;
+- **Precision:** sample size, uncertainty interval, run-to-run variance, and sensitivity;
+- **Consistency:** replication and compatibility with other relevant evidence;
+- **Reproducibility:** availability of data, code, prompts, harness versions, and procedures;
+- **Currency:** whether a time-sensitive result still applies to current models and tooling.
 
----
+Confidence is reported as **High**, **Moderate**, **Low**, or **Insufficient**, with a short rationale. It is assessed per claim or conclusion, not assigned once to an entire source.
 
-### Phase 7: Knowledge Graph Re-Balancing
-
-**Objective:** Maintain complete graph integrity across the ASDLC corpus.
-
-1. **Bidirectional Link Invariant:**
-   - If `src/content/concepts/a.md` lists `relatedIds: ["patterns/b"]`, open `src/content/patterns/b.md` and ensure `concepts/a` is in its `relatedIds`.
-2. **Eliminate Asymmetric References:** Ensure no one-way links or dead references exist.
-3. **Cross-Collection Boundary Audit:** Verify that Concepts contain no how-to recipes and Practices contain no architectural definitions.
-
----
-
-### Phase 8: Quality Gates & Verification
-
-**Objective:** Automated and adversarial verification before saving or committing.
-
-1. **Automated Verification:**
-   ```bash
-   pnpm check       # Astro check + spec linter
-   pnpm diagrams    # Pre-render Mermaid SVG figures
-   pnpm lint        # Biome formatting and linting
-   pnpm test:run    # Unit test suite
-   ```
-2. **Blind Adversarial Review (`/critic`):**
-   - Run adversarial critic to audit the uncommitted diff against contracts, Zod schemas, and scientific rigor rules.
-   - Resolve any identified regressions before clearance.
-
----
-
-## 4. Integration into the ASDLC Editorial System
-
-The academic writing skill sits at the core of the ASDLC editorial lifecycle:
+Appraisal depth is proportional too, or the controls meant for high-risk changes will tax every routine one. At Moderate risk the required minimum is **method fit**, **directness**, and **precision**; the remaining dimensions are recorded when they are load-bearing for the decision or when an assessor raises them. High-risk claims use all eight. The claim–evidence ledger carries a row for each claim the change actually adds, alters, or bounds — not for every claim already standing in the article.
 
 ```mermaid
-stateDiagram-v2
-    [*] --> Triage: Raw Source / Idea / GSC
-    
-    state MultiHarnessAssessment {
-        [*] --> Assessor1: Harness 1 (OpenCode/Sol)
-        [*] --> Assessor2: Harness 2 (Claude Code/Fable)
-        [*] --> Assessor3: Harness 3 (AGY/Gemini 3.7)
-        
-        Assessor1 --> ConsensusMerge
-        Assessor2 --> ConsensusMerge
-        Assessor3 --> ConsensusMerge
-        
-        ConsensusMerge --> HITLGatedDecision: Human Review Gate
-    }
-
-    Triage --> MultiHarnessAssessment
-    MultiHarnessAssessment --> AuthorSkill: Verdict = Accept / Synthesize / Expand
-    MultiHarnessAssessment --> [*]: Verdict = Reject / Archive
-
-    state AuthorSkill {
-        [*] --> BaselineEgo
-        BaselineEgo --> ProvenanceLoad
-        ProvenanceLoad --> GraphHullLoad
-        GraphHullLoad --> ChallengerCritique
-        ChallengerCritique --> DialecticalSynthesis
-        DialecticalSynthesis --> AcademicDrafting
-        AcademicDrafting --> GraphRebalance
-        GraphRebalance --> [*]
-    }
-
-    AuthorSkill --> CriticSkill: Invoke /critic
-    
-    state CriticSkill {
-        [*] --> AdversarialReview
-        AdversarialReview --> SpecValidation
-        SpecValidation --> [*]
-    }
-
-    CriticSkill --> AuthorSkill: Verdict = FAIL (Violations)
-    CriticSkill --> ShipSkill: Verdict = PASS
-    
-    state ShipSkill {
-        [*] --> QualityGates
-        QualityGates --> MicroCommit
-        MicroCommit --> PushRemote
-        PushRemote --> [*]
-    }
-
-    ShipSkill --> [*]: Published Knowledge Node
+%% caption: Evidence confidence is a reasoned judgment over several dimensions, not a lookup based on publication type.
+flowchart LR
+    Claim["Material claim"] --> Provenance["Provenance"]
+    Claim --> Method["Method fit"]
+    Claim --> Bias["Risk of bias"]
+    Claim --> Directness["Directness"]
+    Claim --> Precision["Precision"]
+    Claim --> Consistency["Consistency"]
+    Claim --> Reproducibility["Reproducibility"]
+    Claim --> Currency["Currency"]
+    Provenance & Method & Bias & Directness & Precision & Consistency & Reproducibility & Currency --> Confidence["Claim confidence + rationale"]
+    Confidence --> Language["Calibrated editorial language"]
 ```
 
----
+### 3.4 Scientific language is calibrated language
 
-## 5. Implementation Roadmap & Next Steps
+Editorial prose must distinguish among:
 
-1. **Multi-Harness Aggregation Script / Tooling:** Create a lightweight merge utility to ingest independent assessment reports from `docs/assessments/` and generate the Inter-Rater Reliability matrix.
-2. **Authoring Skill Creation:** Implement `.agents/skills/author/SKILL.md` and `.claude/skills/author/SKILL.md` enforcing the 8-phase epistemic isolation protocol.
-3. **Assessor Memory Writeback:** Ensure `docs/assessments/lessons.md` heuristics are loaded in Phase 1 and updated when novel synthesis patterns emerge.
-4. **Automated Linting:** Integrate cross-reference validation and title length checks into `pnpm lint:specs` and pre-commit hooks.
+- observation: what was measured;
+- inference: what the evidence suggests;
+- hypothesis: what remains to be tested;
+- recommendation: what ASDLC advises under stated conditions;
+- definition: how a term is used in the knowledge base.
+
+Prefer clear active or neutral prose. Passive voice is useful when the actor is unknown or irrelevant, but it is not an academic requirement. Causal language requires causal evidence. Effectiveness claims require measurable outcomes and limitations. Definitions and taxonomies require semantic clarity, not artificial falsification criteria.
+
+## 4. Review Routing
+
+Every assessment stops for human approval before it is finalized. Routing changes how much independent assessment precedes that stop; it never removes it. The number of assessors is a configurable operating choice, not an epistemic invariant. The editor assigns a risk class during intake and may escalate at any later phase.
+
+| Risk | Typical change | Minimum review path |
+|---|---|---|
+| **Low** | Copy edit, citation repair, clarification without thesis change | One assessor or editor; deterministic gates; human approval before finalizing |
+| **Moderate** | New empirical claim, material boundary change, new source synthesis | One primary assessment plus an independent challenge pass; human publication approval |
+| **High** | Core-thesis reversal, new taxonomy node, deprecation, governance change, safety claim, mutable evaluator | At least two independent assessments; explicit HITL adjudication; add another assessor when disagreement or uncertainty remains |
+
+The human approval required at Low risk is the `assess` skill's existing stop: present the verdict, nodes touched, and action plan, and incorporate the response. It is a lighter conversation than High-risk adjudication, not an exemption from it. Risk class is assigned by the party doing the assessment, so it is not a trustworthy gate on its own; the unconditional stop is what makes a misclassification recoverable. Changes exempted by Section 2 never enter this table.
+
+Three or more heterogeneous harnesses may be the current operating profile for selected high-risk reviews. That profile must be recorded with the assessment; it must not be encoded as a universal rule.
+
+Escalate regardless of initial risk when:
+
+- sources conflict on a material claim;
+- evidence is inaccessible, retracted, or cannot be verified;
+- confidence remains Low or Insufficient but the proposed wording is authoritative;
+- the change affects multiple high-centrality knowledge nodes;
+- an assessor recommends superseding incumbent guidance;
+- evaluator criteria, success metrics, or verification anchors would change.
+
+```mermaid
+%% caption: Review effort escalates with consequence and uncertainty, but every path passes through the same human stop before a decision is recorded.
+flowchart TD
+    Intake["Editorial intake"] --> Classify{"Initial risk"}
+    Classify -- "Low" --> Low["One assessor or editor"]
+    Classify -- "Moderate" --> Moderate["Primary assessment + independent challenge"]
+    Classify -- "High" --> High["At least two independent assessments"]
+    Low --> Gates["Deterministic gates"]
+    Gates --> Uncertainty{"Material disagreement or low confidence?"}
+    Moderate --> Uncertainty
+    High --> Uncertainty
+    Uncertainty -- "Yes" --> Escalate["Add evidence, another assessor, or both"]
+    Escalate --> Uncertainty
+    Uncertainty -- "No" --> Stop["Human approval stop"]
+    Stop --> Decision["Record decision"]
+```
+
+## 5. Required Artifacts
+
+### 5.1 Intake brief
+
+The assessment begins with:
+
+- source identity and version;
+- target article or proposed node;
+- editorial question;
+- initial risk class and rationale;
+- affected claim types;
+- known constraints, including time and source-access limits.
+
+### 5.2 Independent assessment drafts
+
+When multiple assessments are used, each assessor works from the same intake brief and writes to a unique path:
+
+```text
+docs/assessments/drafts/{assessment-id}/{reviewer-id}.md
+```
+
+Drafts are working artifacts and are not committed. `docs/assessments/drafts/` is gitignored; the durable record of who assessed what, and of any disagreement, is the canonical report in Section 5.5, which must therefore carry each assessor's position in its own words rather than pointing at a draft file.
+
+Assessors do not read one another's conclusions before submitting their initial claim extraction and verdict. They may all read the incumbent KB, source material, content specs, and assessor memory required by the `assess` skill.
+
+Independence here is bounded, and the bounds are recorded rather than assumed away:
+
+- **Model-level, not person-level.** With a single editor, the primary assessor, the adjudicator, and the human approver are the same person; only the harnesses differ. Separation of duties between people is a later state, not a control this pipeline currently provides. State which of these roles were distinct in the assessment record.
+- **Shared context correlates verdicts.** Every assessor reading the same incumbent article, specs, and `docs/assessments/lessons.md` shares a stronger prior than shared architecture supplies — `lessons.md` exists precisely to steer verdicts. Record which shared inputs each assessor loaded, and consider withholding `lessons.md` from the challenge pass when the question at issue is one a prior lesson already prejudges.
+
+### 5.3 Claim–evidence ledger
+
+The canonical assessment contains a compact ledger:
+
+| Claim ID | Claim | Type | Supporting or conflicting evidence | Appraisal | Confidence | Editorial operation |
+|---|---|---|---|---|---|---|
+| C1 | Concise, independently understandable claim | causal | Source and precise location | Bias, directness, precision, consistency | Moderate | Bound |
+
+Each substantive article claim must be supported, explicitly labeled as a hypothesis or recommendation, or removed. Citation quantity is not a substitute for this mapping.
+
+### 5.4 Search and selection record
+
+External discovery is required when the change introduces or revises an empirical claim, claims field consensus, or may be affected by newer evidence. Record:
+
+- search question and date;
+- databases, websites, or repositories searched;
+- queries and material limits;
+- inclusion and exclusion criteria;
+- included sources and material exclusions;
+- inaccessible sources and other search limitations.
+
+This is a lightweight rapid-review record, not a claim that every editorial update is a systematic review. Routine changes and primary-source verification do not require an exhaustive literature search.
+
+### 5.5 Canonical assessment and decision record
+
+The adjudicator produces one final report at:
+
+```text
+docs/assessments/{YYYY-MM-DD}-{slug}.md
+```
+
+It separates:
+
+- **assessment verdict:** accepted, rejected, synthesized, or disputed;
+- **editorial strategy:** integrate, expand, combine, archive, or log as further reading;
+- **evidence confidence:** High, Moderate, Low, or Insufficient;
+- **disagreements:** positions, evidence, and adjudication rationale;
+- **human decision:** approver and any override.
+
+Only the canonical adjudicator appends the assessment ledger entry. Independent reviewers never write competing canonical reports or ledger lines.
+
+## 6. End-to-End Workflow
+
+### Phase 1 — Frame
+
+1. Identify the editorial question and target node.
+2. Classify the claim types and initial risk.
+3. Define what decision the evidence must inform.
+4. Record resource and source-access constraints.
+
+**Exit condition:** The question, scope, and review route are explicit.
+
+### Phase 2 — Extract independently
+
+1. Extract the incumbent article's material claims, citations, boundaries, and graph role.
+2. Extract the challenger's claims, methods, evidence, assumptions, and limitations separately.
+3. Do not classify the delta until both extractions exist.
+
+This ordering reduces cross-contamination without pretending that reading either source first eliminates anchoring.
+
+**Exit condition:** Two independently understandable claim sets exist.
+
+### Phase 3 — Establish context and evidence
+
+1. Search `src/content/` for semantic siblings, not only existing `relatedIds`.
+2. Load relevant archetype specs and assessor lessons.
+3. Verify cited sources against the claims attributed to them.
+4. Run targeted external discovery when required by Section 5.4.
+5. Record contradictory, null, and limiting evidence, not only supportive findings.
+
+**Exit condition:** The claim–evidence ledger and search record are complete enough to support a decision.
+
+### Phase 4 — Appraise
+
+1. Appraise each material claim using the dimensions in Section 3.3.
+2. Assign confidence with a written rationale.
+3. Identify boundary conditions, alternative explanations, and missing evidence.
+4. For model or harness evaluations, record model versions, prompts, sampling settings, repetitions, benchmark selection, and evaluator independence.
+
+**Exit condition:** The report distinguishes observation, inference, hypothesis, and recommendation.
+
+### Phase 5 — Synthesize
+
+Apply one operation to each material delta:
+
+| Operation | Meaning |
+|---|---|
+| **Retain** | Challenger does not materially change the incumbent claim. |
+| **Corroborate** | Independent evidence increases confidence without changing scope. |
+| **Bound** | Evidence identifies a limitation, prerequisite, or narrower scope. |
+| **Revise** | Better-fitting evidence changes the claim while preserving the node's purpose. |
+| **Supersede** | Evidence invalidates incumbent guidance under the same boundary conditions. |
+| **Split** | The challenger establishes a distinct, useful taxonomic or operational node. |
+| **Reject** | The claim is unsupported, mismatched, duplicative, or regressive. |
+
+Do not resolve assessor disagreement by counting votes alone. The adjudicator compares the claim maps and rationales, documents the strongest competing interpretation, and routes unresolved material disputes to HITL.
+
+```mermaid
+%% caption: Synthesis operates on individual deltas before the assessment verdict, editorial strategy, and confidence are recorded separately.
+flowchart LR
+    Baseline["Incumbent claim + boundaries"]
+    Challenger["Challenger claim + boundaries"]
+    Evidence["Appraised evidence"]
+    Baseline & Challenger & Evidence --> Compare{"Compare the material delta"}
+    Compare --> Retain["Retain"]
+    Compare --> Corroborate["Corroborate"]
+    Compare --> Bound["Bound"]
+    Compare --> Revise["Revise"]
+    Compare --> Supersede["Supersede"]
+    Compare --> Split["Split"]
+    Compare --> Reject["Reject"]
+    Retain & Corroborate & Bound & Revise & Supersede & Split & Reject --> Record["Record verdict, strategy, confidence, disagreement, and rationale"]
+```
+
+**Exit condition:** Every proposed article change traces to an editorial operation and rationale.
+
+### Phase 6 — Decide
+
+Present the verdict, strategy, graph impact, uncertainty, and disagreements to the human reviewer. This stop is unconditional; the risk class sets its depth, not whether it happens. Preserve overrides and their rationale.
+
+Possible outcomes are:
+
+- proceed to implementation;
+- narrow or expand the evidence search;
+- preserve the report as disputed;
+- reject or archive without changing the KB.
+
+**Exit condition:** The implementation scope has an accountable owner and decision.
+
+### Phase 7 — Implement
+
+1. Draft against the Concept, Pattern, or Practice archetype.
+2. Use claim-calibrated language and cite the evidence actually supporting each material assertion.
+3. Update affected neighbors and bidirectional `relatedIds` in the same changeset.
+4. Preserve historical rationale when guidance is materially reversed.
+5. Update `lastUpdated` only for substantive changes.
+
+**Exit condition:** The diff implements the approved assessment without unrelated expansion.
+
+### Phase 8 — Verify and learn
+
+Always:
+
+- verify frontmatter and source metadata;
+- verify claim-to-citation accuracy;
+- audit internal links and `relatedIds` bidirectionality;
+- run `pnpm check`.
+
+Conditionally:
+
+- run `pnpm diagrams` after Mermaid changes and ensure dual representation;
+- run `pnpm build` for new or structurally changed published content;
+- run `biome check` over the changed paths; `pnpm lint` (`biome check --write .`) rewrites the whole tree, so if it is used instead, revert every mutation outside the changeset;
+- run `pnpm test:run` when scripts, schemas, components, or other executable behavior changed;
+- run `/critic` for material or high-risk changes.
+
+Record generalizable learning through the assessor ledger and `docs/assessments/lessons.md` gate.
+
+**Exit condition:** Required checks pass, the published artifact matches the approved decision, and reusable learning is recorded.
+
+## 7. Failure and Exception Handling
+
+| Condition | Required response |
+|---|---|
+| Source cannot be accessed | Record the failure; do not attribute unverified claims; reduce confidence or stop. |
+| Citation does not support the attributed claim | Remove, replace, or narrow the claim. |
+| Evidence is only a single benchmark or case study | State the boundary; do not generalize to universal effectiveness. |
+| Models agree without an independent anchor | Record agreement as consistency, not correctness. |
+| Assessors remain materially divided | Preserve both positions and route to HITL. |
+| New evidence conflicts with a core KB thesis | Require a supersession rationale and regression impact review. |
+| Evidence or evaluator changes during assessment | Version the assessment inputs and restart affected comparisons. |
+| Verification reveals unrelated defects | Record separately; do not silently expand the editorial changeset. |
+
+## 8. Delivery Plan
+
+Implementation proceeds in evidence-producing slices. Each slice is independently reviewable and does not require the later automation slices to be useful.
+
+### Slice 1 — Approve the process contract
+
+**Deliverables**
+
+- this pipeline document;
+- the accompanying content assessment and decision record;
+- agreed review-risk definitions and artifact ownership;
+- a single-assessor baseline measured from the existing `docs/assessments/` corpus and `ledger.jsonl`: citation defects, claim-to-citation mismatches, broken or asymmetric `relatedIds`, missed neighbors, and HITL pivots per assessment.
+
+**Acceptance**
+
+- evidence confidence and editorial action are separate concepts;
+- no fixed assessor count is presented as scientific necessity;
+- each phase has an exit condition and exception path;
+- the baseline is recorded before any contract, spec, or gate changes, because it cannot be reconstructed afterwards.
+
+### Slice 2 — Align the assessment contract
+
+**Deliverables**
+
+- update `.agents/skills/assess/SKILL.md` with risk routing, claim-level appraisal, collision-safe draft paths, and single-writer adjudication, keeping the Phase 4 human stop unconditional;
+- convert the change to `.claude/skills/assess/SKILL.md` under ADR 0003;
+- update `docs/assessments/TEMPLATE.md` with the claim–evidence ledger, search record, disagreement record, and distinct verdict/strategy/confidence fields;
+- align the confidence vocabulary on High / Moderate / Low / Insufficient across the skill homes and the template, replacing the current High / Medium / Low scale;
+- extend the `ledger.jsonl` line schema with `risk_class`, `confidence`, and `reviewer_profile` (harnesses used, roles distinct or collapsed, shared inputs loaded), applied to new lines only — the file is append-only history;
+- gitignore `docs/assessments/drafts/`;
+- bump skill semver.
+
+**Acceptance**
+
+- two assessors can work concurrently without overwriting reports or duplicating ledger entries;
+- a final report explains why evidence supports each material action;
+- one confidence vocabulary is in force everywhere it is written;
+- the reviewer profile Section 4 requires is recoverable from the ledger;
+- both skill homes express equivalent behavior.
+
+### Slice 3 — Correct the content scientific-writing contract
+
+**Deliverables**
+
+- revise `specs/content-articles/spec.md` so prose clarity does not require passive voice;
+- apply falsifiability to empirical effectiveness and causal claims rather than definitions;
+- add claim-calibrated language and evidence-appraisal requirements.
+
+**Acceptance**
+
+- the spec distinguishes definitions, observations, hypotheses, causal claims, and recommendations;
+- evidence requirements are strict without forcing pseudo-empirical framing onto taxonomy pages.
+
+### Slice 4 — Add deterministic content-integrity checks
+
+**Deliverables**
+
+- specify and implement checks for nonexistent and asymmetric `relatedIds`;
+- detect Mermaid source without its required rendered representation in `src/content/` and `src/pages/`;
+- retain the existing Zod frontmatter validation in `src/content/config.ts` rather than duplicating it, and keep `scripts/lint-specs.mjs` scoped to specs;
+- add `scripts/lint-content.mjs`, exposed as `pnpm lint:content` and wired into `pnpm check`, so the AGENTS.md pre-completion gate covers it.
+
+**Acceptance**
+
+- a fixture demonstrates each failure mode;
+- valid existing content does not fail without a documented migration;
+- no new dependency is introduced without prior approval.
+
+### Slice 5 — Pilot before automating adjudication
+
+The pilot measures defects that can be checked independently of the earlier verdict, because a historical case cannot test verdict quality: the challenger is already integrated into the incumbent article the assessor is asked to extract claims from, and the earlier HITL decision was made by the same human whose judgment is under test. Agreement with a past decision measures reproduction, not correctness, and is not collected.
+
+**Retrospective half — defect detection.** Re-run a stratified sample of historical cases (routine integration, empirical amendment, taxonomy split, disputed or superseding guidance) and record only independently verifiable findings:
+
+- citation defects: unreachable identifiers, wrong titles, sources that do not support the attributed claim;
+- nonexistent or asymmetric `relatedIds` and missed semantic neighbors;
+- unbounded generalizations from a single benchmark or case;
+- assessor count, latency, and token or monetary cost;
+- number and cause of escalations.
+
+**Prospective half — marginal value of another assessor.** On new sources as they arrive, vary the assessor count within a risk class and record whether the additional assessor changed the decision, added a distinct material finding, or only restated prior analysis. This is the only half that can speak to assessor count, and it accumulates slowly by design.
+
+Use the retrospective half to set the defect baseline against Slice 1 and to choose what is worth automating. Do not claim that multi-harness review improves quality until the prospective half outperforms the single-assessor baseline on decision-relevant outcomes. With a corpus of roughly twenty historical assessments, treat every retrospective number as a defect count, never as a significance test.
+
+**Acceptance**
+
+- the recommended routing profile is justified by pilot evidence, and the sample size behind it is stated;
+- unresolved trade-offs are documented rather than hidden in a composite score;
+- the pilot identifies which steps are worth automating;
+- if the prospective half shows no marginal value at a risk class, that class reverts to a single assessor plus the deterministic gates and the human stop, and the reversion is recorded like any other decision.
+
+### Slice 6 — Automate only demonstrated bottlenecks
+
+Possible follow-up work includes structured report validation, adjudication assistance, or a task-named `synthesize-content` skill. Create it only when the pilot demonstrates repeated manual cost or inconsistency that a new tool or skill can address.
+
+An `/author` skill is not proposed: it is role-named and conflicts with ADR 0003. Any future skill must be task-named, versioned, assigned an explicit home policy, and verified against the workflow it replaces.
+
+## 9. Success Criteria
+
+The pipeline is successful when:
+
+- material article claims are traceable to evidence, an explicit inference, or a labeled recommendation;
+- evidence confidence matches the strength and applicability of the underlying method;
+- independent review finds consequential omissions often enough to justify its cost at the routed risk level;
+- disagreements and HITL overrides retain provenance;
+- graph and schema regressions are caught deterministically;
+- routine editorial latency does not grow because of controls intended only for high-risk changes;
+- published language states important uncertainty and boundary conditions without academic theater.
+
+## 10. Methodological References
+
+- Page, M. J., et al. (2021). [The PRISMA 2020 statement: an updated guideline for reporting systematic reviews](https://doi.org/10.1136/bmj.n71). Used as guidance for transparent question framing, search reporting, selection, and synthesis; this pipeline does not claim PRISMA compliance for routine editorial reviews.
+- Schünemann, H. J., et al. (2024). [Cochrane Handbook, Chapter 14: Completing 'Summary of findings' tables and grading the certainty of the evidence](https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-14) (version 6.5). Used for the dimensions of bias, inconsistency, indirectness, imprecision, and publication bias.
+- Hallgren, K. A. (2012). [Computing Inter-Rater Reliability for Observational Data: An Overview and Tutorial](https://doi.org/10.20982/tqmp.08.1.p023). *Tutorials in Quantitative Methods for Psychology*, 8(1), 23–34. Used to distinguish structured reliability measurement from informal vote counts.
+- Kim, E., Garg, A., Peng, K., and Garg, N. (2025). [Correlated Errors in Large Language Models](https://proceedings.mlr.press/v267/kim25e.html). Used to bound claims that heterogeneous model agreement implies independent validation.
