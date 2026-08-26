@@ -8,6 +8,7 @@
  * Supported types: TechArticle, Article, WebSite, Organization, BreadcrumbList, HowTo
  */
 
+import { resolveAuthors } from "../data/authors";
 import type { BreadcrumbItem } from "../lib/breadcrumbs";
 
 type JsonLdValue = string | number | boolean | Date | JsonLdObject | JsonLdArray | undefined;
@@ -36,15 +37,39 @@ let structuredData: JsonLdObject = {
 
 // Map data to Schema.org properties based on type
 if (type === "TechArticle" || type === "Article") {
+  const resolvedAuthors = resolveAuthors(data.authors as string[] | undefined);
+  const authorLd =
+    resolvedAuthors.length === 1
+      ? {
+          "@type": "Person",
+          name: resolvedAuthors[0].name,
+          url: resolvedAuthors[0].url,
+          sameAs: resolvedAuthors[0].sameAs,
+          ...(resolvedAuthors[0].affiliation && {
+            affiliation: {
+              "@type": "Organization",
+              name: resolvedAuthors[0].affiliation,
+            },
+          }),
+        }
+      : resolvedAuthors.map((author) => ({
+          "@type": "Person",
+          name: author.name,
+          url: author.url,
+          sameAs: author.sameAs,
+          ...(author.affiliation && {
+            affiliation: {
+              "@type": "Organization",
+              name: author.affiliation,
+            },
+          }),
+        }));
+
   structuredData = {
     ...structuredData,
     headline: data.longTitle || data.title,
     description: data.description,
-    author: {
-      "@type": "Organization",
-      name: "ASDLC.io Contributors",
-      url: "https://asdlc.io",
-    },
+    author: authorLd,
     publisher: {
       "@type": "Organization",
       name: "ASDLC.io",

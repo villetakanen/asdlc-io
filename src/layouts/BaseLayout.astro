@@ -8,9 +8,11 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: "website" | "article";
+  author?: string;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, type, author } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +22,7 @@ const { title, description, image } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/asdlc.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEOMetadata title={title} description={description} image={image} />
+    <SEOMetadata title={title} description={description} image={image} type={type} author={author} />
 
     <!-- 100% privacy-first analytics -->
     <script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

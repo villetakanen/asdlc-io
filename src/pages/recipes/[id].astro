@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import ArticleReferences from "../../components/ArticleReferences.astro";
 import RecipeHeader from "../../components/RecipeHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
+import { resolveAuthors } from "../../data/authors";
 import RecipeLayout from "../../layouts/RecipeLayout.astro";
 import { articleBreadcrumbs } from "../../lib/breadcrumbs";
 
@@ -32,11 +33,16 @@ const breadcrumbs = articleBreadcrumbs(
   canonicalURL.toString(),
 );
 
+// Resolve authors for metadata and JSON-LD
+const resolvedAuthors = resolveAuthors(recipe.data.authors);
+const authorNames = resolvedAuthors.map((a) => a.name).join(", ");
+
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
   title: recipe.data.longTitle ?? recipe.data.title,
   longTitle: recipe.data.longTitle,
   description: recipe.data.description,
+  authors: recipe.data.authors,
   keywords: recipe.data.tags?.join(", "),
   datePublished: (recipe.data.publishedDate ?? recipe.data.lastUpdated).toISOString(),
   dateModified: recipe.data.lastUpdated.toISOString(),
@@ -48,7 +54,11 @@ const structuredDataProps = {
 <StructuredData type="TechArticle" data={structuredDataProps} />
 <StructuredData type="BreadcrumbList" data={{ itemListElement: breadcrumbs }} />
 
-<RecipeLayout title={recipe.data.longTitle ?? recipe.data.title} description={recipe.data.description}>
+<RecipeLayout
+  title={recipe.data.longTitle ?? recipe.data.title}
+  description={recipe.data.description}
+  author={authorNames}
+>
   <article class="recipe-detail">
     <RecipeHeader data={recipe.data} />
 
