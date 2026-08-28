@@ -31,3 +31,7 @@ This document records crystallized heuristics and lessons learned from past cont
 ### 7. Article Status Is a Distribution Switch
 - **Lesson:** Frontmatter `status` is not just editorial metadata — `Live`/`Experimental` gates the MCP index, the `.md` variant endpoints, and MCP eval fixtures. Before proposing a status change (especially `Deprecated`), check the distribution side effects. When the KB's position on a pattern reverses, deprecate the *pattern in prose* while keeping the taxonomy-anchor URL Live: the article retains definitional authority for the term (concept validity) while its guidance discourages usage (usage guidance). Concept validity and usage guidance are separate axes — do not collapse them into a status flag.
 - **Reference:** [Persona Prompting Evidence Assessment](/docs/assessments/2026-07-05-persona-prompting-evidence) (2026-07-05)
+
+### 8. Assessor Count Is an Operating Profile, Not Evidence
+- **Lesson:** Do not encode a current multi-assessor configuration as a universal epistemic rule. Route independent review by change risk and unresolved uncertainty, and treat model agreement as consistency rather than correctness. Record the reviewer profile for provenance; require evidence or an independent anchor for the underlying claim.
+- **Reference:** [Academic Editorial Pipeline Assessment](/docs/assessments/2026-08-25-academic-editorial-pipeline) (2026-08-25)

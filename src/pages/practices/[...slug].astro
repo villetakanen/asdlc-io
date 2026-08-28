@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import ArticleReferences from "../../components/ArticleReferences.astro";
 import SpecHeader from "../../components/SpecHeader.astro";
 import StructuredData from "../../components/StructuredData.astro";
+import { resolveAuthors } from "../../data/authors";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { articleBreadcrumbs } from "../../lib/breadcrumbs";
 
@@ -32,11 +33,16 @@ const breadcrumbs = articleBreadcrumbs(
   canonicalURL.toString(),
 );
 
+// Resolve authors for metadata and JSON-LD
+const resolvedAuthors = resolveAuthors(practice.data.authors);
+const authorNames = resolvedAuthors.map((a) => a.name).join(", ");
+
 // Prepare structured data for Schema.org TechArticle
 const structuredDataProps = {
   title: practice.data.longTitle ?? practice.data.title,
   longTitle: practice.data.longTitle,
   description: practice.data.description,
+  authors: practice.data.authors,
   keywords: practice.data.tags?.join(", "),
   datePublished: (practice.data.publishedDate ?? practice.data.lastUpdated).toISOString(),
   dateModified: practice.data.lastUpdated.toISOString(),
@@ -51,7 +57,12 @@ const structuredDataProps = {
   <StructuredData type="HowTo" data={{ name: practice.data.longTitle ?? practice.data.title, description: practice.data.description, steps: practice.data.steps }} />
 )}
 
-<BaseLayout title={practice.data.longTitle ?? practice.data.title} description={practice.data.description}>
+<BaseLayout
+  title={practice.data.longTitle ?? practice.data.title}
+  description={practice.data.description}
+  type="article"
+  author={authorNames}
+>
   <article class="practice-detail">
     <SpecHeader
       data={practice.data}

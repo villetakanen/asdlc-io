@@ -2,6 +2,8 @@
 title: "Artifact Import"
 longTitle: "Artifact Import: Crossing the Enterprise Perimeter"
 description: "A pattern for crossing the enterprise perimeter with LLM-generated artifacts. Decouples the session (risk) from the artifact (value). Gives compliance teams something they already know how to review."
+authors:
+  - mats-ljunggren
 tags:
   - Enterprise Adoption
   - Compliance

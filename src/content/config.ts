@@ -1,5 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
+import { authors } from "../data/authors";
 
 export const baseReferenceSchema = z.object({
   type: z.enum(["website", "paper", "book", "podcast", "video", "repository", "standard"]),
@@ -32,6 +33,15 @@ export const articleSchema = z.object({
     .string()
     .max(200, "Definition must be < 200 chars for quick scanning.")
     .default(""),
+  authors: z
+    .array(z.string())
+    .refine(
+      (slugs) => slugs.every((slug) => slug in authors),
+      (slugs) => ({
+        message: `Unknown author slug(s): ${slugs.filter((slug) => !(slug in authors)).join(", ")}. Valid slugs are: ${Object.keys(authors).join(", ")}`,
+      }),
+    )
+    .optional(),
   tags: z.array(z.string()).optional(),
   publishedDate: z.coerce.date().optional(),
   lastUpdated: z.coerce.date(),
