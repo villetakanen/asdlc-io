@@ -2,9 +2,9 @@
 title: "Adversarial Code Review"
 description: "Consensus verification pattern using a secondary Critic Agent to review Builder Agent output against the Spec."
 tags: ["Code Review", "Quality Gates", "Multi-Agent", "Verification", "Context Engineering"]
-relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering", "patterns/artifact-import", "concepts/red-queen-godel-machine"]
+relatedIds: ["patterns/context-gates", "patterns/the-spec", "patterns/model-routing", "patterns/agentic-double-diamond", "patterns/agent-constitution", "patterns/constitutional-review", "concepts/provenance", "concepts/pr-slop", "recipes/critic", "concepts/compound-engineering", "patterns/artifact-import", "concepts/red-queen-godel-machine", "practices/domain-driven-specification"]
 status: "Live"
-lastUpdated: 2026-06-30
+lastUpdated: 2026-10-05
 references:
   - type: "website"
     title: "A Method for AI-Assisted Pull Request Reviews: Aligning Code with Business Value"
@@ -300,6 +300,7 @@ This allows you to treat Critic Agents as **standardized, version-controlled fun
 As agent orchestration tooling matures, this pattern may move from Experimental to Standard.
 
 See also:
+- [Domain-Driven Specification](/practices/domain-driven-specification) — A domain review task covering terminology, invariants, ownership, and cross-context dependencies.
 - [Context Gates](/patterns/context-gates) — The architectural checkpoint pattern this implements
 - [The Spec](/patterns/the-spec) — The source of truth the Critic validates against
 - [Model Routing](/patterns/model-routing) — How to assign different models to Builder and Critic roles

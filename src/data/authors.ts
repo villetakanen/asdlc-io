@@ -1,11 +1,15 @@
 export interface Author {
   name: string;
   url: string;
-  sameAs: string[];
+  sameAs?: string[];
   affiliation?: string;
 }
 
 export const authors: Record<string, Author> = {
+  "sachin-kundu": {
+    name: "Sachin Kundu",
+    url: "https://zachoverzero.substack.com",
+  },
   "ville-takanen": {
     name: "Ville Takanen",
     url: "https://villetakanen.com",

@@ -2,9 +2,9 @@
 title: "Context Map"
 description: "A high-density navigational index that enables agents to locate knowledge without managing massive context windows."
 tags: ["Context Engineering", "Architecture", "Retrieval", "Pattern"]
-relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "practices/context-mapping", "patterns/context-gates", "patterns/ralph-loop"]
+relatedIds: ["concepts/context-engineering", "practices/agents-md-spec", "practices/context-mapping", "patterns/context-gates", "patterns/ralph-loop", "practices/domain-driven-specification"]
 status: "Experimental"
-lastUpdated: 2026-02-16
+lastUpdated: 2026-10-05
 references:
   - title: "AGENTS.md outperforms skills in our agent evals"
     author: "Vercel"
@@ -22,6 +22,8 @@ Instead of hoping an agent "finds" the right context through tool calls, the Con
 
 > [!NOTE]
 > **Nomenclature.** This pattern adapts the term from Domain-Driven Design (Evans, 2003), where a "Context Map" describes the relationships between bounded contexts in a software system. ASDLC applies the term *spatially* — to retrieval and navigation over a knowledge base — rather than to subsystem boundaries. When DDD-style bounded-context partitioning is the topic (e.g., scoping parallel agent fleets to subsystems, as in [Agentheim](https://github.com/heimeshoff/Agentheim)), see [Ralph Loop §6 Map-Reduce](/patterns/ralph-loop#6-map-reduce-initializer--sub-agents) instead.
+
+For an operational workflow using DDD context relationships, see [Domain-Driven Specification](/practices/domain-driven-specification). Its context map records subsystem ownership and integration contracts rather than retrieval pointers.
 
 ## The Problem: The Haystack Failure
 
