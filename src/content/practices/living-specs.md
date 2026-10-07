@@ -9,8 +9,8 @@ tags:
   - AI Agents
   - Verification
 status: "Live"
-relatedIds: ["patterns/the-spec", "concepts/spec-driven-development", "concepts/triple-debt-model", "patterns/adversarial-code-review", "concepts/context-engineering", "practices/feature-assembly", "concepts/gherkin", "concepts/learning-loop"]
-lastUpdated: 2026-07-05
+relatedIds: ["patterns/the-spec", "concepts/spec-driven-development", "concepts/triple-debt-model", "patterns/adversarial-code-review", "concepts/context-engineering", "practices/feature-assembly", "concepts/gherkin", "concepts/learning-loop", "practices/domain-driven-specification"]
+lastUpdated: 2026-10-05
 references:
   - type: website
     title: "How to Write a Good Spec for AI Agents"
@@ -349,3 +349,5 @@ Living Specs is the practice layer of the [Specs pattern](/patterns/the-spec). T
 In the industrial verification model, specs serve as the **input quality gate**: if the spec is ambiguous, every downstream gate — from CI to adversarial review to human acceptance — is verifying against a moving target. Spec quality is the rate-limiter for the entire pipeline. Garbage spec, garbage gates.
 
 The combination of Living Specs (capturing intent), [Adversarial Code Review](/patterns/adversarial-code-review) (verifying against intent), and [Context Gates](/patterns/context-gates) (layering verification) creates a system where Intent Debt is managed structurally rather than through tribal knowledge. The spec externalizes what the team knows. The gates verify that the code matches. The refinement cycle ensures both stay current.
+
+For features with domain ownership and vocabulary constraints, [Domain-Driven Specification](/practices/domain-driven-specification) connects the glossary and DDD context map to executable scenarios and requirement-to-scenario reconciliation.

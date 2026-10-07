@@ -3,9 +3,9 @@ title: "Specs"
 longTitle: "The Spec: Living Specifications for Agentic Development"
 description: "Living documents that serve as the permanent source of truth for features, solving the context amnesia problem in agentic development."
 tags: ["Specifications", "Living Documentation", "Spec-Driven Development", "Context Engineering", "AI Agents"]
-relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "patterns/artifact-import", "concepts/event-modeling", "concepts/test-driven-development"]
+relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/levels-of-autonomy", "patterns/artifact-import", "concepts/event-modeling", "concepts/test-driven-development", "practices/domain-driven-specification"]
 status: "Live"
-lastUpdated: 2026-07-15
+lastUpdated: 2026-10-05
 references:
   - type: "book"
     title: "Living Documentation: Continuous Knowledge Sharing by Design"
@@ -210,6 +210,8 @@ The Contract section implements [Behavior-Driven Development](/concepts/behavior
 For detailed structure, examples, and templates, see the [Living Specs Practice Guide](/practices/living-specs).
 
 ## Relationship to Other Patterns
+
+**[Domain-Driven Specification](/practices/domain-driven-specification)** — A practice for grounding the Blueprint in domain ownership and the Contract in executable BDD scenarios, with requirement-to-scenario reconciliation.
 
 **[The PBI](/patterns/the-pbi)** — PBIs are the transient execution units (Delta) that reference specs for context. When a PBI changes contracts, it updates the spec in the same commit.
 

@@ -7,6 +7,7 @@ tags:
   - Agile
   - Requirements
 relatedIds:
+  - practices/domain-driven-specification
   - concepts/gherkin
   - concepts/learning-loop
   - concepts/context-engineering
@@ -16,7 +17,7 @@ relatedIds:
   - concepts/extreme-programming
   - concepts/event-modeling
   - concepts/test-driven-development
-lastUpdated: 2026-01-13
+lastUpdated: 2026-10-05
 status: "Live"
 references:
   - type: "website"
@@ -92,4 +93,4 @@ This is why BDD scenarios belong in Specs, not just test suites. They're not jus
 **Applied in:**
 - [The Spec](/patterns/the-spec) — Implements BDD through Blueprint (constraints) and Contract (scenarios)
 - [Context Gates](/patterns/context-gates) — BDD scenarios define verification criteria at gates
-
+- [Domain-Driven Specification](/practices/domain-driven-specification) — Grounds scenarios in domain language and reconciles executable coverage with acceptance criteria.

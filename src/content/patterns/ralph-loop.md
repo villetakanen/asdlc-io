@@ -7,6 +7,7 @@ tags:
   - Iteration
   - Verification
 relatedIds:
+  - practices/domain-driven-specification
   - concepts/ooda-loop
   - concepts/learning-loop
   - concepts/context-engineering
@@ -19,7 +20,7 @@ relatedIds:
   - patterns/compound-loop
   - concepts/react-pattern
 publishedDate: 2026-02-21
-lastUpdated: 2026-03-18
+lastUpdated: 2026-10-05
 status: "Live"
 references:
   - type: "website"
@@ -206,6 +207,8 @@ For inherently parallel tasks or massive operations, a single Ralph Loop iterati
 This pattern limits context bloat by isolating the action space. The fast sub-agents execute tightly scoped tasks, while the Initializer maintains the strategic overview.
 
 **Partitioning principle.** Sub-agent scopes can be partitioned by feature area, file tree, or — as in [Agentheim](https://github.com/heimeshoff/Agentheim) — by Domain-Driven Design bounded contexts (`.agentheim/contexts/<bc>/`). DDD bounded contexts are one natural unit when the codebase already has clear subsystem boundaries; the partitioning principle itself is orthogonal to the Map-Reduce shape.
+
+For a practical bounded-context workflow, see [Domain-Driven Specification](/practices/domain-driven-specification). It establishes domain ownership and shared event contracts before parallel implementation.
 
 ## OODA Loop Mapping
 
