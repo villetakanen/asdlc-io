@@ -5,7 +5,7 @@ tags: ["Core", "Philosophy", "Quality", "Governance", "Value"]
 status: "Live"
 relatedIds: ["patterns/context-gates", "practices/micro-commits", "concepts/agentic-sdlc", "patterns/the-spec", "concepts/triple-debt-model", "patterns/artifact-import"]
 publishedDate: 2026-02-15
-lastUpdated: 2026-03-28
+lastUpdated: 2026-10-08
 references:
   - title: "Code is cheap. Show me the talk."
     author: "Kailash Nadh"
@@ -21,11 +21,11 @@ references:
     annotation: "The Linux kernel's official policy on AI-assisted contributions. Formalizes human-only DCO sign-off and the Assisted-by attribution tag — a level-invariant governance principle where individual commits may be agent-assisted but the program increment requires human accountability."
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
-    url: "https://arxiv.org/abs/2603.22106"
+    url: "https://arxiv.org/abs/2603.22106v4"
     author: "Margaret-Anne Storey"
-    published: 2026-03-23
-    accessed: 2026-03-25
-    annotation: "Defines Intent Debt — the absence of externalized rationale and constraints. Provenance is one enforcement mechanism for reducing Intent Debt, not its full scope."
+    published: 2026-04-06
+    accessed: 2026-10-08
+    annotation: "Version 4 defines Intent Debt in terms of missing or eroded explicit rationale, goals, and constraints for guiding a system's evolution. Provenance is one enforcement mechanism for reducing Intent Debt, not its full scope."
 ---
 
 ## Definition
@@ -46,7 +46,7 @@ Linus Torvalds famously said, "Talk is cheap. Show me the code." In the AI era, 
 
 ## Provenance and Intent Debt
 
-Provenance and Intent Debt (Storey, 2026) are related but distinct concepts. **Provenance** is the traceability chain — *who* decided, *when*, and *how* it was verified. **Intent Debt** is the absence of externalized rationale — the *why* behind a decision was never captured in a durable artifact.
+Provenance and Intent Debt (Storey, 2026) are related but distinct concepts. **Provenance** is the traceability chain — *who* decided, *when*, and *how* it was verified. **Intent Debt** is missing or eroded explicit rationale, goals, and constraints for guiding a system's evolution.
 
 A codebase can have perfect provenance (every commit signed, every PR linked to a ticket, every gate passed) and still carry severe Intent Debt if the *rationale* — the constraints, trade-offs, and rejected alternatives — was never written down. Provenance is one enforcement mechanism for reducing Intent Debt, but it is not sufficient on its own. Full mitigation requires explicit intent artifacts: [Specs](/patterns/the-spec), [ADRs](/patterns/the-adr), and [Constitutions](/patterns/agent-constitution).
 

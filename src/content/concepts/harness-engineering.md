@@ -13,21 +13,22 @@ relatedIds:
   - concepts/model-context-protocol
 status: "Experimental"
 publishedDate: 2026-05-20
-lastUpdated: 2026-10-01
+lastUpdated: 2026-10-08
 references:
   - type: "website"
-    title: "The Agent Harness"
-    url: "https://martinfowler.com/articles/agent-harness.html"
-    author: "Martin Fowler"
-    published: 2024-05-20
-    accessed: 2026-05-20
-    annotation: "Popularized the 'Agent = Model + Harness' equation, defining the harness as the steering, safety, and instrumentation environment around the LLM."
+    title: "Harness engineering for coding agent users"
+    url: "https://martinfowler.com/articles/harness-engineering.html"
+    author: "Birgitta Böckeler"
+    published: 2026-04-02
+    accessed: 2026-10-08
+    annotation: "Uses the 'Agent = Model + Harness' formulation and describes guides and sensors for steering coding agents and enabling self-correction."
   - type: "paper"
-    title: "Code as Agent Harness: Toward Executable, Verifiable, and Stateful Agent Systems"
+    title: "Code as Agent Harness"
     url: "https://arxiv.org/abs/2605.18747"
     author: "Xuying Ning, Katherine Tieu, Dongqi Fu, et al."
     published: "2026-05-18"
-    annotation: "Defines the 'Code as Agent Harness' (CAH) framework, organizing agent infrastructure into interface, mechanism, and scaling layers."
+    accessed: 2026-10-08
+    annotation: "Surveys code as agent infrastructure through three connected layers: harness interface, harness mechanisms, and harness scaling."
   - type: "paper"
     title: "Self-Harness: Harnesses That Improve Themselves"
     url: "https://arxiv.org/abs/2606.09498"
@@ -49,7 +50,7 @@ references:
 
 It represents the shift from **prompt engineering** (managing the probabilistic model's internal prompt state) to **environment engineering** (building the deterministic system boundaries, state containers, and sensors that wrap the model). 
 
-The term is popularized by Martin Fowler and practitioners at Thoughtworks, using the equestrian metaphor: a horse represents raw, unbridled power, but requires a harness (reins, bit, and saddle) to direct that power toward a specific goal. In the context of AI, the agent is represented by the formula:
+Birgitta Böckeler describes the harness as everything in an AI agent apart from the model itself, using the formulation:
 
 $$\text{Agent} = \text{Model} + \text{Harness}$$
 
@@ -72,8 +73,8 @@ Harness design is inherently model-specific. Because different LLMs exhibit dist
 
 Recent research (Zhang et al., 2026) demonstrates that agents can participate in reshaping their own harness under a bounded validation loop. By mining execution traces for model-specific failure patterns (Weakness Mining) and proposing targeted adjustments (Harness Proposal), the agent customizes the environment to its own base model. However, to prevent uncontrolled behavioral drift, these agent-proposed edits must be validated against strict, deterministic regression testing (Proposal Validation) before promotion.
 
-### 3. The Three-Layer Infrastructure
-Following the framework established in *Code as Agent Harness* (Ning et al., 2026), a production-grade agentic harness consists of three structural layers:
+### 4. The Three-Layer Infrastructure
+The survey *Code as Agent Harness* (Ning et al., 2026) organizes agent infrastructure into three connected layers:
 
 ```mermaid
 %% caption: The Three-Layer Agent Harness Architecture

@@ -23,15 +23,15 @@ relatedIds:
   - concepts/compound-engineering
 status: "Live"
 publishedDate: 2026-03-25
-lastUpdated: 2026-05-26
+lastUpdated: 2026-10-08
 references:
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
-    url: "https://arxiv.org/abs/2603.22106"
+    url: "https://arxiv.org/abs/2603.22106v4"
     author: "Margaret-Anne Storey"
-    published: 2026-03-23
-    accessed: 2026-03-25
-    annotation: "Seminal paper defining the Triple Debt Model. Reviewed by Kent Beck, Adam Tornhill, Mary Shaw, Marian Petre, Markus Borg, Dave Thomas."
+    published: 2026-04-06
+    accessed: 2026-10-08
+    annotation: "Proposes the Triple Debt Model. Version 4 clarifies the intent-debt definition."
   - type: "paper"
     title: "Thinking-Fast, Slow, and Artificial: How AI is Reshaping Human Reasoning and the Rise of Cognitive Surrender"
     url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6097646"
@@ -57,9 +57,9 @@ references:
 
 ## Definition
 
-The **Triple Debt Model** is a unified diagnostic framework for reasoning about software system health. Formulated by Margaret-Anne Storey et al., it expands the traditional concept of technical debt to account for the unique failure modes introduced by generative AI and agentic software development.
+The **Triple Debt Model** is a unified diagnostic framework for reasoning about software system health. Formulated by Margaret-Anne Storey, it expands the traditional concept of technical debt to account for the unique failure modes introduced by generative AI and agentic software development.
 
-The model posits that system health degrades across three interconnected vectors: **Technical Debt** (in code), **Cognitive Debt** (in people), and **Intent Debt** (in externalized artifacts). While AI accelerates code creation—often reducing syntax-level technical debt—it simultaneously drives an exponential increase in cognitive and intent debt if not strictly governed.
+The model posits that system health degrades across three interconnected vectors: **Technical Debt** (in code), **Cognitive Debt** (in people), and **Intent Debt** (in externalized artifacts). Storey argues that generative AI may lower technical debt while cognitive and intent debt build up faster.
 
 ## The Three-Layer System Model
 
@@ -89,7 +89,7 @@ System health requires continuous alignment across all three layers.
 ## Intent Debt: The Forgotten Layer
 
 - **Domain**: Lives in Artifacts.
-- **Definition**: The absence of externalized rationale, context, and constraints. It occurs when decisions are made (by humans or AIs) but the *why* and *how* are never documented in a machine-readable or human-readable format.
+- **Definition**: Missing or eroded explicit rationale, goals, and constraints for guiding a system's evolution. It accumulates when these are unclear, poorly articulated, or not captured in artifacts that humans and AI agents can consult.
 - **Characteristics**: Practitioner terms like "context debt" are symptoms of systemic Intent Debt. Intent is inherently ephemeral; it is best captured at the exact moment of decision (e.g., during the [Learning Loop](/concepts/learning-loop)). 
 - **The Machine Context Gap**: Unlike technical debt, lost intent cannot always be reverse-engineered. Crucially, in agentic workflows, intent must be **machine-readable** (via [MCP](/concepts/model-context-protocol)) to prevent agents from operating on hallucinations or outdated assumptions. Once intent is gone, any future modifications—by human or agent—are blind guesses.
 
@@ -105,7 +105,7 @@ The three debt types do not exist in isolation. They form a bidirectional web wh
 
 In pre-AI development, the sheer friction of writing code manually forced a feedback loop. Translating an idea into syntax required the developer to deeply *understand* the system (reducing Cognitive Debt) and continuously hold the constraints in their mind (managing Intent Debt). 
 
-Generative AI bypasses this cognitive bottleneck. By drastically lowering the cost of execution, AI removes the friction that traditionally forced understanding. The result is a shift in the debt balance: AI minimizes Technical Debt but supercharges Cognitive and Intent Debt, leading to [Legacy Code in record time](/concepts/vibe-coding).
+Generative AI can weaken this feedback loop by lowering the effort needed to produce code. Storey argues that Technical Debt may decrease while Cognitive and Intent Debt accumulate faster, creating a risk of [Legacy Code in record time](/concepts/vibe-coding).
 
 ## ASDLC Usage
 
