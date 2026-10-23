@@ -11,8 +11,8 @@ relatedIds:
   - patterns/context-map
   - patterns/adversarial-code-review
   - patterns/ralph-loop
-lastUpdated: 2026-10-07
-status: "Experimental"
+lastUpdated: 2026-10-23
+status: "Live"
 references:
   - type: "website"
     title: "How I Use Domain-Driven Design in AI-Assisted Software Delivery"
@@ -40,7 +40,7 @@ references:
 
 ## Definition
 
-Domain-Driven Specification is the process of using Domain-Driven Design (DDD) artifacts to ground agent generated implementation in explicit business meaning. It connects requirements, a domain glossary, bounded contexts, context relationships, and domain events to executable behavioral specifications.
+Domain-Driven Specification is the process of using Domain-Driven Design (DDD) artifacts to ground agent-generated implementation in explicit business meaning. It connects requirements, a domain glossary, bounded contexts, context relationships, and domain events to executable behavioral specifications.
 
 The practice implements the [Spec pattern](/patterns/the-spec): domain models inform the Blueprint, while [Behavior-Driven Development](/concepts/behavior-driven-development) supplies the Contract. Humans decide what the domain means. Agents help explore, document, implement, and review those decisions.
 
@@ -114,7 +114,7 @@ Refine the glossary alongside the bounded contexts. This design is iterative.
 
 Ask agents to propose alternative boundaries and explain their consequences. Treat those proposals as inputs to architectural judgment.
 
-Again [Eisenreich et al. (2026, §V-C)](https://arxiv.org/html/2603.26244v1) found that agents can generate plausible boundaries that overlook coupling and can produce impractical splits. Evaluate consolidation as well as separation. This requires human judgement and is an essential step to generate good architecture which reflects the domaian.
+Again [Eisenreich et al. (2026, §V-C)](https://arxiv.org/html/2603.26244v1) found that agents can generate plausible boundaries that overlook coupling and can produce impractical splits. Evaluate consolidation as well as separation. This requires human judgement and is an essential step to generate good architecture which reflects the domain.
 
 For the tool library, one proposal might place all behavior inside a single context. Another might separate Catalog, Lending, Maintenance, and Billing.
 
@@ -148,7 +148,7 @@ contexts:
 
 The relationship is explicit: Lending announces that a tool was returned. Maintenance owns inspection and determines whether the item is fit to circulate again.
 
-Where an external system uses a different model, define an anti-corruption layer(ACL). An external maintenance service may expose `assetId` and `conditionCode`. An ACL adapter translates those values into the local domain language. The external vocabulary stays at the integration boundary.
+Where an external system uses a different model, define an anti-corruption layer (ACL). An external maintenance service may expose `assetId` and `conditionCode`. An ACL adapter translates those values into the local domain language. The external vocabulary stays at the integration boundary.
 
 Reference the map from the project's agent instructions. Enforce dependency boundaries with linters and tools such as [dependency-cruiser](https://github.com/sverweij/dependency-cruiser). Validate event payloads against agreed schemas with tools such as [Ajv](https://ajv.js.org/); and use executable tests to check behavior across contexts.
 
@@ -171,7 +171,7 @@ Prefer an event that expresses business meaning:
 
 A generic `ToolUpdated` event with database row identifiers and changed-field lists leaves consumers to infer the business meaning and couples them to internal storage details.
 
-Review event names and payloads before parallel implementation begins. They form the integration contracts between contexts and chosing these well helps run parallel agents to work on different domain context without merge conflicts and integration problems.
+Review event names and payloads before parallel implementation begins. They form the integration contracts between contexts. Choosing these contracts carefully helps agents work in parallel across bounded contexts while reducing the risk of merge conflicts and integration problems.
 
 ### 6. Derive BDD scenarios from the domain model
 
@@ -251,9 +251,9 @@ Note that this is not a replacement for linters and dependency checkers mentione
 
 **Equating traceability with correctness.** Requirement identifiers make relationships checkable but they do not establish if the requirement is semantically implemented correctly.
 
-**Leaving architecture in prose.** Document ownership and relationships as a machine readable format. Then enforce the portions that tooling can check deterministically.
+**Leaving architecture in prose.** Document ownership and relationships as a machine-readable format. Then enforce the portions that tooling can check deterministically.
 
-**Parallelizing before contracts are agreed.** Parallel agents need shared definitions of the events and APIs through which their work connects. Worktree isolation is not architecturally independent and creates merge conflicts and intergration work downstream.
+**Parallelizing before contracts are agreed.** Parallel agents need shared definitions of the events and APIs through which their work connects. Worktree isolation is not architecturally independent and creates merge conflicts and integration work downstream.
 
 ## Related Patterns
 
