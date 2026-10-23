@@ -22,6 +22,13 @@ references:
     published: 2026-07-22
     accessed: 2026-10-05
     annotation: "Source practitioner account for this workflow: domain glossaries, structured DDD context maps, requirement-to-BDD reconciliation, independent domain review, and bounded-context partitioning for parallel agents. The tool-library example is illustrative, not a measured evaluation."
+  - type: "website"
+    title: "[MODEL] Claude Code is unusable for complex engineering tasks with the Feb updates"
+    url: "https://github.com/anthropics/claude-code/issues/42796"
+    publisher: "anthropics/claude-code (GitHub Issues)"
+    published: 2026-04-02
+    accessed: 2026-10-07
+    annotation: "User reports of an agent claiming fixes are complete when they are incorrect; cited as an example of the unverified-completion failure mode addressed in step 7."
   - type: "paper"
     title: "Automating Domain-Driven Design: Experience with a Prompting Framework"
     url: "https://arxiv.org/abs/2603.26244v1"
@@ -36,6 +43,8 @@ references:
 Domain-Driven Specification is the process of using Domain-Driven Design (DDD) artifacts to ground agent generated implementation in explicit business meaning. It connects requirements, a domain glossary, bounded contexts, context relationships, and domain events to executable behavioral specifications.
 
 The practice implements the [Spec pattern](/patterns/the-spec): domain models inform the Blueprint, while [Behavior-Driven Development](/concepts/behavior-driven-development) supplies the Contract. Humans decide what the domain means. Agents help explore, document, implement, and review those decisions.
+
+> **Evidence note.** This workflow is practitioner-derived: it distills the approach described in [Kundu (2026)](https://zachoverzero.substack.com/p/how-i-use-domain-driven-design-in), not a controlled evaluation. The tool-library example is illustrative. [Eisenreich et al. (2026)](https://arxiv.org/abs/2603.26244v1) supports specific cautions, namely that agent-generated glossaries can contain generic terms, that proposed boundaries can overlook coupling, and that early errors accumulate. The study does not evaluate this workflow as a whole.
 
 ## When to Use
 
@@ -192,7 +201,7 @@ Check traceability in both directions:
 
 Fail reconciliation when a required connection is missing or a scenario cannot execute.
 
-While this can be helped with agents, it requires human judgement. Agents regularly claim work as completed when it is not and also generate unnecessary artifacts which was not requested and increase the scope of work.
+While this can be helped with agents, it requires human judgement. Agents can report work as completed when it is not, a documented failure mode in coding agents (e.g. [anthropics/claude-code#42796](https://github.com/anthropics/claude-code/issues/42796) and similar reports), and can generate artifacts that were not requested, expanding the scope of work beyond what was agreed.
 
 Keep structural and semantic verification distinct. A valid `AC-LEND-07` tag proves that a reference exists. Passing steps establish the behavior those steps actually check. Neither proves that the scenario faithfully expresses the requirement. This has to be checked by a human.
 
@@ -252,4 +261,4 @@ This practice implements the [Spec pattern](/patterns/the-spec) by grounding its
 
 [Adversarial Code Review](/patterns/adversarial-code-review) supplies independent critique. [Ralph Loop's partitioning principle](/patterns/ralph-loop#6-map-reduce-initializer--sub-agents) describes how bounded scopes support parallel execution. However, this practice does not require a Ralph Loop harness.
 
-Agents can reduce the effort required to explore, document, implement, and review DDD artifacts. However, responsibility for deciding what the domain and it's rules mean remains with the people who understand the domain.
+In [Kundu (2026)](https://zachoverzero.substack.com/p/how-i-use-domain-driven-design-in)'s experience, agents reduced the effort required to explore, document, implement, and review DDD artifacts. However, responsibility for deciding what the domain and its rules mean remains with the people who understand the domain.
