@@ -2,7 +2,7 @@
 name: spec
 description: "Create, reverse-engineer, or update living feature specs following the spec-anchored methodology."
 argument-hint: "[feature description, 'reverse <path>', or 'update <domain>']"
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Spec — create, reverse, and update living specs
@@ -110,6 +110,7 @@ Scenario: [Descriptive name]
 - **Let Gherkin absorb failure modes.** Write scenarios for edge cases instead of anti-pattern lists. `Then the system does NOT store credentials in localStorage` is a verifiable contract.
 - **Use file paths, not descriptions.** "`src/types/User.ts`" is actionable. "The user model" is ambiguous.
 - **Code illustrates, never transcribes.** A code block must convey intent (an example algorithm or pseudocode), not mirror the implementation. No real symbol names, `import` lines, or exact serialization — those drift on the next refactor. If a block would need editing on a pure refactor with no contract change, replace it with a file-path reference. See the Copy-Paste Codebase anti-pattern in `src/content/practices/living-specs.md`.
+- **Transcription lint.** `pnpm lint:specs` warns on fenced code longer than 25 lines or containing module imports/`require()` calls. Declarative formats (including Gherkin, JSON, YAML, Mermaid, Markdown, and plain text) are excluded. Prefer intent plus file references; short pseudocode remains valid. For a necessary illustrative algorithm, place `<!-- lint:allow-code -->` immediately before that fence (blank lines allowed); this exempts only that block. `pnpm lint:specs --strict-transcription` makes findings fail for CI/adoption gates; the default warns while existing specs are reduced. See `specs/spec-linter/spec.md`.
 - **Match depth to complexity.** Simple features get simple specs. Omit sections that add no information.
 - **Assume engineering competence.** Document project-specific constraints, not general knowledge.
 

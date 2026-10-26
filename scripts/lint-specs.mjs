@@ -6,6 +6,7 @@
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { glob } from "glob";
 import matter from "gray-matter";
 import { z } from "astro/zod";
@@ -31,14 +32,46 @@ const SpecFrontmatter = z.object({
 
 const H1_RE = /^#\s+(?:(?:Feature|Spec):\s+)?(.+?)\s*$/m;
 
-async function main() {
-  const files = await glob(PATTERN, { cwd: ROOT, ignore: EXCLUDE });
+/**
+ * Conservative fenced-code heuristic, not a Markdown/JS parser.
+ * Contract/data formats are excluded; exceptions apply only to the next fence.
+ * @param {string} body Markdown body (without frontmatter)
+ */
+export function findCodeTranscription(body) {
+  const lines = body.split(/\r?\n/);
+  const findings = [];
+  const contractFormats = new Set(["gherkin", "feature", "json", "jsonc", "yaml", "yml", "text", "txt", "markdown", "md", "mermaid", "diff", "csv"]);
+  for (let index = 0; index < lines.length; index++) {
+    const opening = lines[index].match(/^ {0,3}(`{3,}|~{3,})([^`]*)$/);
+    if (!opening) continue;
+    const start = index;
+    const fence = opening[1];
+    const language = opening[2].trim().split(/\s+/)[0].toLowerCase();
+    const closing = new RegExp(`^ {0,3}${fence[0]}{${fence.length},}\\s*$`);
+    const code = [];
+    while (++index < lines.length && !closing.test(lines[index])) code.push(lines[index]);
+    let previous = start - 1;
+    while (previous >= 0 && !lines[previous].trim()) previous--;
+    if (lines[previous]?.trim() === "<!-- lint:allow-code -->" || contractFormats.has(language)) continue;
+    const reasons = [];
+    if (code.length > 25) reasons.push(`fenced code has ${code.length} lines (maximum 25)`);
+    if (code.some((line) => /^\s*import(?:\s|\(|["'{*])/.test(line) || /\brequire\s*\(\s*["'`]/.test(line))) {
+      reasons.push("fenced code contains import/require statements");
+    }
+    if (reasons.length) findings.push({ line: start + 1, reasons });
+  }
+  return findings;
+}
+
+/** @param {{ root?: string, strictTranscription?: boolean }} options */
+export async function lintSpecs({ root = ROOT, strictTranscription = false } = {}) {
+  const files = await glob(PATTERN, { cwd: root, ignore: EXCLUDE });
   files.sort();
 
   const failures = [];
 
   for (const rel of files) {
-    const full = resolve(ROOT, rel);
+    const full = resolve(root, rel);
     const raw = readFileSync(full, "utf8");
     const parsed = matter(raw);
 
@@ -66,6 +99,11 @@ async function main() {
       }
     }
 
+    for (const finding of findCodeTranscription(parsed.content)) {
+      const message = `body line ${finding.line}: possible code transcription: ${finding.reasons.join("; ")}. Replace with intent + a file reference, or precede this fence with <!-- lint:allow-code -->.`;
+      if (strictTranscription) errors.push(message);
+      else console.warn(`! ${rel}: ${message}`);
+    }
     if (errors.length) failures.push({ file: rel, errors });
   }
 
@@ -76,13 +114,18 @@ async function main() {
       for (const e of errors) console.error(`    - ${e}`);
       console.error("");
     }
-    process.exit(1);
+    return false;
   }
 
   console.log(`✓ ${files.length} specs validated`);
+  return true;
 }
 
-main().catch((err) => {
-  console.error("spec linter crashed:", err);
-  process.exit(2);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  lintSpecs({ strictTranscription: process.argv.includes("--strict-transcription") }).then((ok) => {
+    if (!ok) process.exitCode = 1;
+  }).catch((err) => {
+    console.error("spec linter crashed:", err);
+    process.exitCode = 2;
+  });
+}

@@ -95,6 +95,18 @@ Output: human-readable error block per failing spec, exit `1` if any failure. Ex
 - No network calls. The optional Linear-validation mode is a separate script, not the default linter.
 - The linter must not touch file contents. It is read-only.
 
+### Code transcription guard (AL-83)
+
+Specs own intent and observable contracts, not copies of implementation. The linter reports a possible transcription at the fence's body-relative line when an executable or unlabelled code block exceeds 25 lines or contains module imports / `require()` calls. This is a conservative heuristic, not semantic code analysis: short implementation snippets may escape detection, and long illustrative algorithms may need an exception.
+
+Declarative contract/data fences (`gherkin`, `feature`, `json`, `jsonc`, `yaml`, `yml`, `text`, `txt`, `markdown`, `md`, `mermaid`, `diff`, `csv`) are excluded. Backtick and tilde fences, longer delimiters, CRLF, and unclosed blocks are supported. A longer outer fence owns nested example fences.
+
+Default behavior is warning-only to permit incremental reduction of existing specs; schema errors still fail. `pnpm lint:specs --strict-transcription` makes transcription findings fail with exit 1, suitable for CI once the existing corpus is reconciled. The normal check remains warning-only; this change does not silently enable strict enforcement in CI.
+
+An exact `<!-- lint:allow-code -->` comment immediately preceding a fence (blank lines allowed) exempts only that block. Use it for a genuinely necessary illustrative algorithm, not to grandfather copied implementation. Guidance is maintained in `.agents/skills/spec/SKILL.md` and `.claude/skills/spec/SKILL.md`; regression coverage lives in `tests/lint-specs.test.ts`.
+
+Acceptance: copied endpoint imports and oversized executable fences produce diagnostics, short pseudocode and declarative contracts pass, exceptions are local, strict mode fails findings, and linting never rewrites files.
+
 ### Open Questions
 
 - **Should `status: approved` require a `linear:` key?** Argument for: approval is operationalized by a tracked ticket. Argument against: not every approved spec has a PBI yet. Leaning toward *yes, enforce once 80% of existing specs have a key*; for v1 keep it optional and revisit.
