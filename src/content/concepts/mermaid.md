@@ -11,7 +11,7 @@ relatedIds:
   - concepts/yaml
   - concepts/context-engineering
   - patterns/the-spec
-lastUpdated: 2026-01-13
+lastUpdated: 2026-10-27
 status: "Live"
 references:
   - type: "website"
@@ -38,14 +38,14 @@ Mermaid diagrams are defined in plain text, making them:
 - **Agent-parseable** — LLMs can read and modify diagrams
 
 ```mermaid
+%% alt: Input flows through a process to produce output.
 flowchart LR
     A[Input] --> B[Process]
     B --> C[Output]
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/mermaid-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/mermaid-fig-1.svg" alt="Input flows through a process to produce output." />
 </figure>
 
 ### Diagram Types
@@ -64,6 +64,7 @@ flowchart LR
 Subgraphs partition complex diagrams into logical regions:
 
 ```mermaid
+%% alt: Input enters a processing group, passes through transformation and validation, and produces output.
 flowchart LR
     subgraph Input
         A[Source]
@@ -80,8 +81,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/mermaid-fig-2.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/mermaid-fig-2.svg" alt="Input enters a processing group, passes through transformation and validation, and produces output." />
 </figure>
 
 ## ASDLC Usage

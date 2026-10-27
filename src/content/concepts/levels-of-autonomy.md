@@ -15,7 +15,7 @@ relatedIds:
   - concepts/red-queen-godel-machine
 status: Live
 publishedDate: 2026-01-09
-lastUpdated: 2026-06-30
+lastUpdated: 2026-10-27
 references:
   - type: "website"
     title: "Humans and Agents in Software Engineering Loops"
@@ -72,6 +72,7 @@ The scale dictates precisely where the [Context Gate](/patterns/context-gates) m
 ## Shifting Context Gate Boundaries
 
 ```mermaid
+%% alt: At L1 and L2, context gates lead to immediate human review; L3 gates multi-file changes at PR approval, L4 uses telemetry audits, and L5 delivers from a closed evolution loop to a human consumer.
 %% caption: Shifting Context Gate Boundaries from L1 to L5 Autonomy
 graph LR
     subgraph L1 [L1: Assistive]
@@ -101,7 +102,7 @@ graph LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/levels-of-autonomy-fig-1.svg" alt="Shifting Context Gate Boundaries from L1 to L5 Autonomy" />
+  <img src="/mermaid/levels-of-autonomy-fig-1.svg" alt="At L1 and L2, context gates lead to immediate human review; L3 gates multi-file changes at PR approval, L4 uses telemetry audits, and L5 delivers from a closed evolution loop to a human consumer." />
   <figcaption>Shifting Context Gate Boundaries from L1 to L5 Autonomy</figcaption>
 </figure>
 

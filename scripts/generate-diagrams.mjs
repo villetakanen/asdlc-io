@@ -1,94 +1,97 @@
-import fs from 'fs';
-import path from 'path';
-import { execSync } from 'child_process';
-import { glob } from 'glob';
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
+import { glob } from "glob";
 
-const CONTENT_DIR = 'src/content';
-const MERMAID_CONFIG = 'mermaid.json';
+const ROOT = path.resolve(import.meta.dirname, "..");
+const diagramPattern = () => /(```mermaid(?![-\w])([^\n]*)\n([\s\S]*?)```)(?:\s*<figure class="mermaid-diagram">[\s\S]*?<\/figure>)?/g;
 
-const PUBLIC_MERMAID_DIR = 'public/mermaid';
-
-async function generateDiagrams() {
-  const contentFiles = await glob(`${CONTENT_DIR}/**/*.md`);
-  const pageFiles = await glob('src/pages/**/*.md');
-  const files = [...contentFiles, ...pageFiles];
-
-  // Ensure public/mermaid directory exists
-  if (!fs.existsSync(PUBLIC_MERMAID_DIR)) {
-    fs.mkdirSync(PUBLIC_MERMAID_DIR, { recursive: true });
+/** @param {string} code @param {string} location */
+export function readDiagramMetadata(code, location) {
+  const alternatives = [...code.matchAll(/^[\t ]*%%[\t ]+alt:[\t ]*(.*)$/gm)];
+  const alt = alternatives[0]?.[1].trim();
+  if (alternatives.length !== 1 || !alt || /^mermaid\s+diagram$/i.test(alt)) {
+    throw new Error(`${location}: require exactly one non-empty, descriptive %% alt: comment`);
   }
+  const caption = code.match(/^[\t ]*%%[\t ]+caption:[\t ]*(.*)$/m)?.[1].trim() ?? "";
+  return { alt, caption };
+}
 
-  for (const file of files) {
-    let content = fs.readFileSync(file, 'utf-8');
-    // Match ```mermaid block AND optional following <figure>...</figure>
-    const mermaidRegex = /```mermaid(?![-\w])([\s\S]*?)```(?:\s*<figure class="mermaid-diagram">[\s\S]*?<\/figure>)?/g;
-    let match;
-    let newContent = '';
-    let lastIndex = 0;
-    let diagramIndex = 1;
-    let hasChanges = false;
-    const baseName = path.basename(file, '.md').replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+/** @param {string} value */
+function escapeHtml(value) {
+  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;");
+}
 
-    // Find all mermaid blocks
-    while ((match = mermaidRegex.exec(content)) !== null) {
-      // Append content before this match
-      newContent += content.slice(lastIndex, match.index);
-      
-      const mermaidCode = match[1].trim();
-      const mmdFile = `${baseName}-fig-${diagramIndex}.mmd`;
-      const svgFileName = `${baseName}-fig-${diagramIndex}.svg`;
-      const outputPath = path.resolve(PUBLIC_MERMAID_DIR, svgFileName);
-
-      console.log(`Generating diagram ${diagramIndex} for ${file}...`);
-
-      // Extract caption if present
-      let caption = '';
-      const captionMatch = mermaidCode.match(/%% caption: (.*)/);
-      if (captionMatch) {
-        caption = captionMatch[1].trim();
-      }
-
-      // Write temp mmd file
-      fs.writeFileSync(mmdFile, mermaidCode);
-
-      try {
-        // Generate SVG using mmdc
-        execSync(`pnpm exec mmdc -i ${mmdFile} -o ${outputPath} -c ${MERMAID_CONFIG} -b transparent`, { stdio: 'inherit' });
-
-        // Clean up temp files
-        fs.unlinkSync(mmdFile);
-        
-        const replacement = `\`\`\`mermaid
-${mermaidCode}
-\`\`\`
-
-<figure class="mermaid-diagram">
-  <img src="/mermaid/${svgFileName}" alt="${caption || 'Mermaid Diagram'}" />
-  ${caption ? `<figcaption>${caption}</figcaption>` : ''}
+/** @param {string} svgFileName @param {{ alt: string, caption: string }} metadata */
+export function renderFigure(svgFileName, { alt, caption }) {
+  return `<figure class="mermaid-diagram">
+  <img src="/mermaid/${svgFileName}" alt="${escapeHtml(alt)}" />${caption ? `\n  <figcaption>${escapeHtml(caption)}</figcaption>` : ""}
 </figure>`;
+}
 
-        newContent += replacement;
-        hasChanges = true;
+/** @param {string} code @param {string} outputPath @param {string} root */
+function renderDiagram(code, outputPath, root) {
+  const temporaryDirectory = mkdtempSync(path.join(tmpdir(), "asdlc-mermaid-"));
+  const inputPath = path.join(temporaryDirectory, "diagram.mmd");
+  try {
+    writeFileSync(inputPath, code);
+    execFileSync("pnpm", ["exec", "mmdc", "-i", inputPath, "-o", outputPath,
+      "-c", path.join(root, "mermaid.json"), "-b", "transparent"], {
+      cwd: root,
+      stdio: "inherit",
+    });
+  } finally {
+    rmSync(temporaryDirectory, { recursive: true, force: true });
+  }
+}
 
+/** @param {{ root?: string, render?: typeof renderDiagram }} options */
+export async function generateDiagrams({ root = ROOT, render = renderDiagram } = {}) {
+  const files = (await glob(["src/content/**/*.md", "src/pages/**/*.md"], { cwd: root })).sort();
+  // Preflight every source before rendering assets or rewriting any document.
+  const documents = files.map((file) => {
+    const content = readFileSync(path.join(root, file), "utf8");
+    const diagrams = [...content.matchAll(diagramPattern())].map((match, index) => ({
+      match,
+      code: match[3].trim(),
+      metadata: readDiagramMetadata(match[3], `${file}, diagram ${index + 1}`),
+    }));
+    return { file, content, diagrams };
+  });
+  const outputDirectory = path.join(root, "public/mermaid");
+  mkdirSync(outputDirectory, { recursive: true });
+
+  for (const { file, content, diagrams } of documents) {
+    if (!diagrams.length) continue;
+    const baseName = path.basename(file, ".md").replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+    let updated = "";
+    let lastIndex = 0;
+    for (const [index, { match, code, metadata }] of diagrams.entries()) {
+      const svgFileName = `${baseName}-fig-${index + 1}.svg`;
+      console.log(`Generating diagram ${index + 1} for ${file}...`);
+      try {
+        render(code, path.join(outputDirectory, svgFileName), root);
       } catch (error) {
-        console.error(`Failed to generate diagram for ${file}:`, error);
-        // If failed, keep original content for this block
-        newContent += match[0];
-        if (fs.existsSync(mmdFile)) fs.unlinkSync(mmdFile);
+        throw new Error(`${file}, diagram ${index + 1}: rendering failed`, { cause: error });
       }
-      
-      lastIndex = mermaidRegex.lastIndex;
-      diagramIndex++;
+      updated += content.slice(lastIndex, match.index);
+      updated += `${match[1]}\n\n${renderFigure(svgFileName, metadata)}`;
+      lastIndex = match.index + match[0].length;
     }
-    
-    // Append remaining content
-    newContent += content.slice(lastIndex);
-
-    if (hasChanges) {
-      fs.writeFileSync(file, newContent);
+    updated += content.slice(lastIndex);
+    if (updated !== content) {
+      writeFileSync(path.join(root, file), updated);
       console.log(`Updated ${file}`);
     }
   }
 }
 
-generateDiagrams().catch(console.error);
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  generateDiagrams().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

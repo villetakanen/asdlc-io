@@ -4,7 +4,7 @@ description: "The implementation phase where PBIs are executed against Specs, va
 tags: ["Implementation", "Testing", "Quality Gates", "Spec-Driven Development", "Observability"]
 relatedIds: ["patterns/the-spec", "patterns/the-pbi", "patterns/context-gates", "patterns/experience-modeling", "concepts/spec-driven-development"]
 status: "Draft"
-lastUpdated: 2026-01-09
+lastUpdated: 2026-10-27
 steps:
   - name: "Load Context"
     text: "Load the PBI (defines the delta), the Spec (defines the contracts), and the relevant codebase sections. Scope the context to what is necessary — do not load the entire codebase."
@@ -40,6 +40,7 @@ This is where the "Delta" (PBI) meets the "State" (Spec), and the output is veri
 ## The Assembly Pipeline
 
 ```mermaid
+%% alt: A PBI references a spec, which guides implementation; failed gates return work to implementation, while passing gates allow merge and completion.
 flowchart LR
   PBI[PBI] --> Spec[Spec]
   Spec --> Code[Implementation]
@@ -50,8 +51,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/feature-assembly-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/feature-assembly-fig-1.svg" alt="A PBI references a spec, which guides implementation; failed gates return work to implementation, while passing gates allow merge and completion." />
 </figure>
 
 ## The Problem: Implementation Drift

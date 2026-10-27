@@ -96,6 +96,7 @@ Understand how the pieces connect:
 ASDLC recommends a 3-tier "guardrail" system with deterministic quality gates, probabilistic review gates, and human-in-the-loop acceptance gates.
 
 ```mermaid
+%% alt: Deterministic quality gates pass work to probabilistic review gates, then human acceptance gates approve the merge.
 flowchart LR
   subgraph Deterministic
     QG["Quality Gates"]
@@ -117,8 +118,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/getting-started-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/getting-started-fig-1.svg" alt="Deterministic quality gates pass work to probabilistic review gates, then human acceptance gates approve the merge." />
 </figure>
 
 See the article [Context Gates](/patterns/context-gates) for additional details on the gate hierarchy.

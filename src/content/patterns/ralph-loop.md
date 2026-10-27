@@ -20,7 +20,7 @@ relatedIds:
   - patterns/compound-loop
   - concepts/react-pattern
 publishedDate: 2026-02-21
-lastUpdated: 2026-10-05
+lastUpdated: 2026-10-27
 status: "Live"
 references:
   - type: "website"
@@ -73,6 +73,7 @@ The **Ralph Loop**—named by Geoffrey Huntley after the persistently confused b
 The pattern operationalizes the [OODA Loop](/concepts/ooda-loop) for terminal-based agents and automates the [Learning Loop](/concepts/learning-loop) with machine-verifiable completion criteria. It enables sustained [L3-L4 autonomy](/concepts/levels-of-autonomy)—"AFK coding" where the developer initiates and returns to find committed changes.
 
 ```mermaid
+%% alt: A shared PBI or spec feeds human-assisted development and autonomous agent iteration; failed external verification loops back to the agent, while passing work reaches adversarial review and merge.
 flowchart LR
     subgraph Input
         PBI["PBI / Spec"]
@@ -104,8 +105,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/ralph-loop-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/ralph-loop-fig-1.svg" alt="A shared PBI or spec feeds human-assisted development and autonomous agent iteration; failed external verification loops back to the agent, while passing work reaches adversarial review and merge." />
 </figure>
 
 Both lanes start from the same well-structured PBI/Spec and converge at Adversarial Review. The Ralph Loop lane operates autonomously, with human oversight at review boundaries rather than every iteration.

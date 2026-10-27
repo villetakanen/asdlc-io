@@ -4,7 +4,7 @@ description: "A transient execution unit that defines the delta (change) while p
 tags: ["Agile", "Product Backlog Item", "Spec-Driven Development", "Bounded Agency"]
 relatedIds: ["patterns/the-spec", "practices/pbi-authoring", "concepts/spec-driven-development"]
 status: "Live"
-lastUpdated: 2026-01-13
+lastUpdated: 2026-10-27
 ---
 
 ## Definition
@@ -72,6 +72,7 @@ The PBI is not a request for conversation—it's a constrained optimization prob
 ---
 title: Spec-flow
 ---
+%% alt: Intent is refined into a spec and split into three PBIs, executed through Ralph Loop, reviewed development, or craftsmanship; each path must pass its gates to reach Done.
 flowchart LR
   T1 -->|/ralpt| FA1
   T2 -->|/dev| FA2
@@ -103,8 +104,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/the-pbi-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/the-pbi-fig-1.svg" alt="Intent is refined into a spec and split into three PBIs, executed through Ralph Loop, reviewed development, or craftsmanship; each path must pass its gates to reach Done." />
 </figure>
 
 In swarm execution (multiple agents working in parallel), each PBI must be:

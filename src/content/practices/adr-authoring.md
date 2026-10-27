@@ -3,7 +3,7 @@ title: "ADR Authoring"
 description: "Step-by-step guide for creating, organizing, and maintaining Architecture Decision Records in your codebase."
 tags: ["Architecture", "Documentation", "Decision Making", "ADR"]
 relatedIds: ["patterns/the-adr", "concepts/architecture-decision-record", "concepts/request-for-comments", "practices/living-specs"]
-lastUpdated: 2026-01-28
+lastUpdated: 2026-10-27
 status: "Live"
 steps:
   - name: "Check for Existing ADRs"
@@ -197,6 +197,7 @@ The `README.md` should include:
 ### Status Transitions
 
 ```mermaid
+%% alt: A proposed ADR is accepted or rejected; an accepted decision can later be deprecated or superseded, and each retired state ends the lifecycle.
 stateDiagram-v2
     [*] --> Proposed
     Proposed --> Accepted : Approved
@@ -209,8 +210,7 @@ stateDiagram-v2
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/adr-authoring-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/adr-authoring-fig-1.svg" alt="A proposed ADR is accepted or rejected; an accepted decision can later be deprecated or superseded, and each retired state ends the lifecycle." />
 </figure>
 
 ### Superseding an ADR

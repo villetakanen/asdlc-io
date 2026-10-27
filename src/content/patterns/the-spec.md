@@ -148,6 +148,7 @@ Without this separation, the agent in Sprint 8 has no visibility into decisions 
 Specs serve as the context source for Feature Assembly. Multiple PBIs reference the same spec, and the spec's contracts are verified at quality gates.
 
 ```mermaid
+%% alt: One spec supplies context to three PBIs and their feature assemblies; all assemblies pass through a shared gate before migration.
 flowchart LR
   A[/spec.md/]
 
@@ -181,8 +182,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/the-spec-fig-1.svg" alt="Mermaid Diagram" />
-  
+  <img src="/mermaid/the-spec-fig-1.svg" alt="One spec supplies context to three PBIs and their feature assemblies; all assemblies pass through a shared gate before migration." />
 </figure>
 
 ## Anatomy

@@ -15,7 +15,7 @@ relatedIds:
   - practices/agents-md-spec
 status: "Live"
 publishedDate: 2026-05-21
-lastUpdated: 2026-05-21
+lastUpdated: 2026-10-27
 ---
 
 ## Definition
@@ -53,6 +53,7 @@ The structural insight: the workspace is the team's procedural memory, but the m
 The compound-loop has five structural components and one reinforcing relationship across cycles.
 
 ```mermaid
+%% alt: A minimal index guides just-in-time retrieval from a specialized library into cycle work; review extracts learnings, and a human gate approves writeback to the library or discards the candidate.
 %% caption: The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle
 flowchart LR
     Lib[(Specialized substrate library<br/>skills · guides · runbooks · ADRs)]
@@ -68,7 +69,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/compound-loop-fig-1.svg" alt="The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle" />
+  <img src="/mermaid/compound-loop-fig-1.svg" alt="A minimal index guides just-in-time retrieval from a specialized library into cycle work; review extracts learnings, and a human gate approves writeback to the library or discards the candidate." />
   <figcaption>The Compound Loop: gated writeback to a specialized substrate, JIT retrieval into the next cycle</figcaption>
 </figure>
 

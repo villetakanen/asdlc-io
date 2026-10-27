@@ -114,7 +114,7 @@ To maintain the high intellectual rigor of the ASDLC knowledge base, all article
 - All `relatedIds` are bidirectional — the referenced article links back.
 - No `#` (H1) headings appear in the markdown body.
 - Level-two ATX headings are unique within each article body, including recipes. Compare trimmed, case-sensitive heading text without optional closing markers; frontmatter and fenced code examples are excluded. `pnpm lint:content` reports duplicates with source line numbers.
-- Mermaid diagrams, if used, have been rendered via `pnpm diagrams`.
+- Mermaid diagrams, if used, have been rendered via `pnpm diagrams`. Each source block includes exactly one non-empty `%% alt: ...` comment describing the depicted relationships or flow; the generic "Mermaid Diagram" alternative is invalid. Optional `%% caption: ...` text is independent of the image alternative. This source-owned metadata requirement also applies to diagrams in `src/pages/`.
 - The article appears on its collection index page and in the Field Manual (if Live/Experimental).
 - The article is retrievable via MCP `get_article` (if Live/Experimental).
 - The article conforms to its collection archetype (see per-type specs).
@@ -144,6 +144,14 @@ To maintain the high intellectual rigor of the ASDLC knowledge base, all article
 - When `pnpm lint:content` runs
 - Then validation fails with the file path and the duplicate and original source line numbers
 - And repeated headings in different articles, repeated H3s, and headings inside frontmatter or fenced examples do not fail this check
+
+**Scenario: Accessible diagram regeneration**
+- Given a Mermaid source block with descriptive alt metadata and an optional caption
+- When `pnpm diagrams` regenerates its SVG and figure
+- Then the figure retains the source-owned alternative, safely escaped for HTML, and preserves the optional visible caption independently
+- And repeated generation preserves article source and figure markup without duplicates
+- And missing, blank, duplicate, or generic alt metadata fails before any diagrams are rendered or documents rewritten, identifying the file and diagram ordinal
+- And rendering failures produce a nonzero command exit status
 
 **Scenario: Cross-reference integrity**
 - Given article A adds `relatedIds: ["patterns/the-spec"]`

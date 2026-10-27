@@ -13,7 +13,7 @@ relatedIds:
   - concepts/model-context-protocol
 status: "Experimental"
 publishedDate: 2026-05-20
-lastUpdated: 2026-10-08
+lastUpdated: 2026-10-27
 references:
   - type: "website"
     title: "Harness engineering for coding agent users"
@@ -77,6 +77,7 @@ Recent research (Zhang et al., 2026) demonstrates that agents can participate in
 The survey *Code as Agent Harness* (Ning et al., 2026) organizes agent infrastructure into three connected layers:
 
 ```mermaid
+%% alt: The harness interface layer feeds the mechanisms layer, which feeds the scaling layer; each layer groups its tooling, control, or multi-agent coordination capabilities.
 %% caption: The Three-Layer Agent Harness Architecture
 graph TD
     subgraph HS [Harness Scaling Layer]
@@ -96,7 +97,7 @@ graph TD
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/harness-engineering-fig-1.svg" alt="The Three-Layer Agent Harness Architecture" />
+  <img src="/mermaid/harness-engineering-fig-1.svg" alt="The harness interface layer feeds the mechanisms layer, which feeds the scaling layer; each layer groups its tooling, control, or multi-agent coordination capabilities." />
   <figcaption>The Three-Layer Agent Harness Architecture</figcaption>
 </figure>
 

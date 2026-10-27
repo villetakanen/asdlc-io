@@ -11,7 +11,7 @@ relatedIds:
   - patterns/context-gates
   - practices/feature-assembly
 status: Live
-lastUpdated: 2026-01-25
+lastUpdated: 2026-10-27
 ---
 
 ## Definition
@@ -49,6 +49,7 @@ The "words" the agent is allowed to use. This is a set of dumb, stateless UI com
 A mechanical barrier between Experience Modeling and [Feature Assembly](/practices/feature-assembly).
 
 ```mermaid
+%% alt: Context feeds experience modeling, which passes through a gate into feature assembly; defects and requirements feed back to modeling, while release moves forward.
 %% caption: Context Gating for Design System Integrity
 flowchart LR
   A[[...]] --> |CONTEXT| C
@@ -61,7 +62,7 @@ flowchart LR
 ```
 
 <figure class="mermaid-diagram">
-  <img src="/mermaid/experience-modeling-fig-1.svg" alt="Context Gating for Design System Integrity" />
+  <img src="/mermaid/experience-modeling-fig-1.svg" alt="Context feeds experience modeling, which passes through a gate into feature assembly; defects and requirements feed back to modeling, while release moves forward." />
   <figcaption>Context Gating for Design System Integrity</figcaption>
 </figure>
 
