@@ -4,7 +4,7 @@ export default defineConfig({
   fullyParallel: true,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://127.0.0.1:14321',
     trace: 'on-first-retry',
   },
   projects: [
@@ -14,8 +14,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm preview',
-    url: 'http://localhost:4321',
-    reuseExistingServer: true,
+    // Own the preview server: never silently test another local project.
+    command: 'pnpm preview --host 127.0.0.1 --port 14321',
+    url: 'http://127.0.0.1:14321',
+    reuseExistingServer: false,
   },
 });

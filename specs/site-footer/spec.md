@@ -23,7 +23,7 @@ The site footer provides universal identity, logical navigation groups, release 
 - **File System Structure:**
   - Component implementation: `src/components/Footer.astro`
   - Global stylesheet: `src/styles/ds/components/footer.css`
-  - Rendered within layout: `src/layouts/BaseLayout.astro`
+  - Rendered within layouts: `src/layouts/BaseLayout.astro` and `src/layouts/RecipeLayout.astro`
 - **Dependencies:**
   - Depended on by: `src/layouts/BaseLayout.astro` (rendered as a core shell element immediately after `<main>`)
   - Consumer of: `package.json` (version string)
@@ -31,12 +31,17 @@ The site footer provides universal identity, logical navigation groups, release 
   - **Styling isolation:** All site footer styling must live exclusively within `src/styles/ds/components/footer.css`. The use of inline styles, scoped components, or Tailwind utility-first overrides is prohibited.
   - **Variable encapsulation:** The release tag and copyright year must be generated dynamically from `package.json` and system runtime respectively. Hardcoded versions or years are prohibited.
   - **Link destinations:** The Discord invite link must point exactly to the canonical address `https://discord.gg/qaTsZSedC`.
-  - **Structural navigation:** All footer anchor links must be grouped into titled, clean vertical monospace sections utilizing CSS Grid layouts.
+  - **Structural navigation:** Navigation links are grouped into titled, clean vertical monospace sections utilizing CSS Grid layouts. Brand identity and analytics attribution belong in the brand column.
   - **Design token integration:** Sizing, spacing, border styles, container constraints, color tones, and hover transitions must utilize only the standard design system CSS variables (`var(--f-mono)`, `var(--c-bg-surface)`, `var(--c-border)`, and `var(--c-brand)`).
 
 ## Contract
 
 ### Definition of Done
+
+- [ ] A linked Simple Analytics image badge appears beneath the brand description on standard and recipe pages, including with JavaScript disabled.
+- [ ] The badge forces the light variant regardless of OS theme, with visitor counts disabled, attributes referrals to asdlc.io, and links to Simple Analytics in a new tab with opener isolation. Token-based vertical padding separates it from surrounding content while preserving left alignment.
+- [ ] Image requests are anonymous and referrer-free, load lazily, and reserve intrinsic dimensions. Alt text identifies the provider; keyboard focus is visible.
+- [ ] Badge fits at 320px and desktop widths without clipping or changing existing navigation, copyright, or release information.
 
 - [ ] Implements a responsive, multi-column grid layout (1 column on mobile, 3 columns on desktop `min-width: 600px`).
 - [ ] Incorporates the following active external links configured with `target="_blank" rel="noopener"`:
@@ -52,7 +57,8 @@ The site footer provides universal identity, logical navigation groups, release 
 
 ### Regression Guardrails
 
-- The site footer must render on every page via `BaseLayout.astro`.
+- The site footer renders through both `BaseLayout.astro` and `RecipeLayout.astro`.
+- The badge remains HTML-only, independent of analytics scripts and public dashboard access; account visibility and billing settings remain unchanged.
 - Version rendering must always import from `package.json`.
 - Link destinations must match their specified canonical URLs exactly.
 - Link hover states must transition smoothly over `0.2s ease` to Safety Orange (`var(--c-brand)`).
@@ -79,7 +85,25 @@ Scenario: Monospace hover link transitions are smooth
   And the active color shifts from "--c-text-secondary" to the safety orange brand indicator "--c-brand"
 ```
 
+```gherkin
+Scenario: Attribution is available without JavaScript
+  Given JavaScript is disabled
+  When a visitor opens the homepage, a KB article, or a recipe detail
+  Then the shared footer contains one linked light analytics badge without a visitor count
+
+Scenario: Badge image is unavailable
+  Given the badge image request fails
+  When a visitor reaches the footer
+  Then descriptive alternative text and the provider link remain available
+  And footer navigation and release information remain usable
+```
+
 ## Resources
+
+- [AL-105](https://linear.app/asdlc/issue/AL-105) — Badge implementation
+- [Simple Analytics badge builder](https://www.simpleanalytics.com/badges#builder) — Provider requirements
+- `src/components/Footer.astro` — Badge markup and provider URLs
+- `src/components/ds-docs/docs/FooterDocs.astro` — Design-system documentation
 
 - `src/layouts/BaseLayout.astro` — Layout shell
 - `src/styles/ds/components/footer.css` — Global component styling

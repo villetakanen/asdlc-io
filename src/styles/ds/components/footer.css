@@ -56,6 +56,25 @@ footer {
   text-transform: none; /* Keep description standard casing */
 }
 
+.footer-analytics-badge {
+  color-scheme: only light;
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: calc(var(--s-gap) / 6);
+  padding-block: calc(var(--s-gap) / 4);
+}
+
+.footer-analytics-badge img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.footer-analytics-badge:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 4px;
+}
+
 /* Links columns styling */
 .footer-links-group {
   display: flex;
