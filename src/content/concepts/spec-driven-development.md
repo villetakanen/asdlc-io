@@ -16,7 +16,7 @@ relatedIds:
   - concepts/triple-debt-model
   - concepts/event-modeling
 status: Live
-lastUpdated: 2026-05-26
+lastUpdated: 2026-10-27
 references:
   - type: "website"
     title: "Spec-Driven Development: How to Build Real Software with AI Coding Agents"
@@ -57,7 +57,7 @@ references:
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
     url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"
     author: "Birgitta Böckeler"
-    published: 2025-01-21
+    published: 2025-10-15
     accessed: 2026-03-03
     annotation: "Defines the maturity levels of SDD (spec-first, spec-anchored, spec-as-source) and highlights MDD regression risks."
   - type: "website"

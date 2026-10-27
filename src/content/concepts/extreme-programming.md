@@ -3,7 +3,7 @@ title: "Extreme Programming"
 description: "A software development methodology emphasizing high-frequency feedback, testing, and continuous refactoring, which maps perfectly to the Agentic SDLC."
 tags: ["Agile", "Methodology", "TDD", "Agentic SDLC"]
 relatedIds: ["concepts/agentic-sdlc", "patterns/agentic-double-diamond", "concepts/behavior-driven-development", "patterns/agent-optimization-loop", "concepts/test-driven-development"]
-lastUpdated: 2026-02-24
+lastUpdated: 2026-10-27
 status: "Live"
 references:
   - type: "website"
@@ -37,7 +37,7 @@ Many agile frameworks (like Scrum) emphasize human-centric ceremonies (sprints, 
 In ASDLC, we do not abandon XP; we **industrialize** it by replacing human labor with agentic execution in the high-friction logistics layers.
 
 ### 1. TDD $\rightarrow$ Probabilistic Unit Testing & Context Gates
-In traditional XP, humans write unit tests to catch human regressions. In ASDLC, humans write tests to constrain **agent hallucination**. The tests become the strict, deterministic boundaries ([Context Gates](/patterns/context-gates)) that verify whether the probabilistic model (the Agent) successfully adhered to the ([Spec](/patterns/the-spec)). TDD is no longer a best practice; it is the mandatory safety harness for autonomous code generation.
+In traditional XP, humans write unit tests to catch human regressions. In ASDLC, humans write tests to constrain **agent hallucination**. The tests supply executable acceptance checks for [Context Gates](/patterns/context-gates), checking the implementation against the [Spec](/patterns/the-spec)'s encoded scenarios under the tested conditions—not establishing adherence to the whole specification. See [TDD's assurance boundary](/concepts/test-driven-development#what-passing-tests-establish). TDD is no longer a best practice; it is the mandatory safety harness for autonomous code generation.
 
 ### 2. Pair Programming $\rightarrow$ The Pilot & Instructor Model
 The classic Driver/Navigator dynamic of pair programming is perfectly preserved in the ASDLC, but the roles are specialized. The Agent acts as the **Driver** (writing the boilerplate, executing refactors, generating the syntax), while the Human acts as the **Navigator** or *Instructor* (reviewing structural integrity, managing context, and steering the architecture). The human no longer types; they govern the trajectory.

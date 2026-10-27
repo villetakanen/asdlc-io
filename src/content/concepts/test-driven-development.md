@@ -1,6 +1,6 @@
 ---
 title: "Test-Driven Development"
-description: "A software development discipline where tests are written before production code, using a Red-Green-Refactor cycle to drive design and ensure correctness."
+description: "A software development discipline where tests are written before production code, using a Red-Green-Refactor cycle to drive design and build confidence in behavior."
 tags:
   - Testing
   - Methodology
@@ -13,16 +13,25 @@ relatedIds:
   - patterns/context-gates
   - concepts/vibe-coding
   - concepts/ai-amplification
-lastUpdated: 2026-07-06
+lastUpdated: 2026-10-27
 status: "Live"
 references:
   - type: "book"
     title: "Test Driven Development: By Example"
     author: "Kent Beck"
     publisher: "Addison-Wesley"
-    published: 2002-11-01
+    published: 2002-11-08
     isbn: "978-0321146533"
-    annotation: "The canonical formulation of TDD by its creator, introducing the Red-Green-Refactor cycle."
+    url: "https://www.informit.com/store/test-driven-development-by-example-9780321146533"
+    annotation: "The canonical formulation of TDD, introducing Red-Green-Refactor. The preface also explains why tests alone cannot mechanically demonstrate all security or concurrency goals."
+  - type: "paper"
+    title: "The Humble Programmer (EWD340)"
+    author: "Edsger W. Dijkstra"
+    publisher: "Communications of the ACM 15(10), October 1972, pp. 859–866"
+    url: "https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html"
+    doi: "10.1145/355604.361591"
+    accessed: 2026-10-27
+    annotation: "Argument three distinguishes finding defects through testing from proving correctness, and advocates growing proof and program together. It does not establish the effectiveness of modern agent review workflows."
 ---
 
 ## Definition
@@ -46,6 +55,12 @@ The cycle is intentionally short — typically minutes. Long cycles indicate the
 ### Test-First as Design Tool
 
 TDD's primary value is not the test suite it produces — it is the design pressure it applies. Writing a test first forces the developer to consider the interface before the implementation, often revealing awkward dependencies and coupling early.
+
+### What Passing Tests Establish
+
+Passing tests show agreement with the checked expectations under the tested conditions; they do not generally prove correctness beyond that scope. The result also depends on the test oracle and environment. Exhaustive checking of a finite model has a different scope from an ordinary non-exhaustive test suite.
+
+In *The Humble Programmer* (1972), Dijkstra distinguished testing that exposes defects from a convincing correctness proof, and advocated developing the proof with the program. TDD's test-first design role is related, but executable examples are not proofs. Beck's own preface identifies security and concurrency goals that TDD alone cannot mechanically demonstrate. These limits do not remove the value of design feedback and regression tests, and adding model review or human approval does not turn their results into a proof.
 
 ### The Iron Law
 
@@ -90,7 +105,7 @@ This is an open hypothesis, not a benchmarked result. Nothing in the fast-path e
 In the [Extreme Programming](/concepts/extreme-programming) mapping to ASDLC, TDD corresponds to two artifacts:
 
 - **[The Spec](/patterns/the-spec)** — The spec's Contract section plays the role of the RED phase: it defines expected behavior before any implementation begins.
-- **[Context Gates](/patterns/context-gates)** — Gate verification runs the test suite as the GREEN phase confirmation, providing a deterministic boundary that constrains probabilistic agent output.
+- **[Context Gates](/patterns/context-gates)** — Gate verification runs the test suite as the GREEN phase confirmation, enforcing an acceptance condition based on the encoded checks rather than certifying the whole specification.
 
 TDD is not optional in an agentic factory — it is the mechanism by which human-defined specifications become machine-verifiable constraints. As noted in [AI Amplification](/concepts/ai-amplification), disciplined practices like TDD are amplified by AI: teams with strong test coverage move faster with agents; teams without it accumulate failures at machine speed.
 

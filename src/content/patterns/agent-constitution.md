@@ -4,7 +4,7 @@ description: "Persistent, high-level directives that shape agent behavior and de
 tags: ["Agent Architecture", "System Prompts", "Alignment", "Governance"]
 status: "Live"
 relatedIds: ["patterns/constitutional-review", "patterns/context-gates", "practices/agents-md-spec", "concepts/ooda-loop", "patterns/adversarial-code-review", "practices/workflow-as-code", "concepts/triple-debt-model", "concepts/model-context-protocol"]
-lastUpdated: 2026-02-18
+lastUpdated: 2026-10-27
 references:
   - type: "paper"
     title: "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"
@@ -37,6 +37,14 @@ references:
     published: 2024-04-30
     accessed: 2026-01-19
     annotation: "Provides the taxonomy for 'Steering Constraints' (Constitution) vs 'Hard Constraints' (Orchestration/Hook)."
+  - type: "paper"
+    title: "The Humble Programmer (EWD340)"
+    author: "Edsger W. Dijkstra"
+    publisher: "Communications of the ACM 15(10), October 1972, pp. 859–866"
+    url: "https://www.cs.utexas.edu/~EWD/transcriptions/EWD03xx/EWD340.html"
+    doi: "10.1145/355604.361591"
+    accessed: 2026-10-27
+    annotation: "Historical distinction between mechanically imposed rules and obligations then left to programmer discipline, including termination proofs and invariants. Not an equivalence with probabilistic steering or evidence of agent reliability."
 ---
 
 ## Definition
@@ -72,6 +80,8 @@ When an agent **Observes** the world (reads code, sees a user request), the Cons
 *   A "Skeptical" Constitution might interpret the same vague request as a risk to be flagged.
 
 ## Taxonomy: Steering vs. Deterministic Constraints
+
+In *The Humble Programmer* (1972), Dijkstra distinguished rules imposed mechanically by a programming language from obligations then left to programmer discipline, including termination arguments and stated invariants. This is a historical antecedent to separating tool enforcement from reasoning obligations, not an identity with the deterministic/probabilistic categories below. His remaining discipline included proof, not merely preferences or self-policing; prompt steering and model review do not by themselves discharge those obligations. Dijkstra left future mechanization uncertain. The periodic audit recommended here is a present-day practice, not a prediction attributed to him.
 
 It is critical to distinguish what the Constitution *can* enforce (Steering) from what external systems enforce deterministically (Hard). Hard constraints split into two distinct categories:
 

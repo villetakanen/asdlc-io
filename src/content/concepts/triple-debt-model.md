@@ -21,9 +21,10 @@ relatedIds:
   - practices/adversarial-requirement-review
   - concepts/pr-slop
   - concepts/compound-engineering
+  - concepts/intellectual-manageability
 status: "Live"
 publishedDate: 2026-03-25
-lastUpdated: 2026-10-08
+lastUpdated: 2026-10-27
 references:
   - type: "paper"
     title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
@@ -85,6 +86,8 @@ System health requires continuous alignment across all three layers.
   - **Cognitive Offloading** is strategic and healthy: delegating rote tasks (syntax generation, boilerplate) to an agent to free up mental capacity for higher-level architectural reasoning.
   - **Cognitive Surrender** (Shaw & Nave, 2026) is pathological: adopting AI outputs with minimal scrutiny and bypassing both intuition and deliberate reasoning entirely. The human accepts the code without understanding its implications.
 - **Diagnostic Indicators**: Severe resistance to making architectural changes, unexpected production results, extremely low bus factor, developer burnout, and unusually slow onboarding of new team members who cannot comprehend the AI-generated maze.
+
+[Intellectual Manageability](/concepts/intellectual-manageability) concerns how a program's structure and abstractions support reasoning about its behavior. Cognitive debt concerns erosion of a team's shared understanding. These are related but distinct: a design that is amenable to reasoning does not ensure that its maintainers possess the necessary mental model. Manageability is therefore not a measure of cognitive debt or evidence that the debt has been reduced.
 
 ## Intent Debt: The Forgotten Layer
 

@@ -10,13 +10,13 @@ relatedIds:
   - concepts/spec-driven-development
   - patterns/the-spec
 status: Live
-lastUpdated: 2026-03-03
+lastUpdated: 2026-10-27
 references:
   - type: website
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
     url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html"
     author: "Birgitta Böckeler"
-    published: 2025-01-21
+    published: 2025-10-15
     accessed: 2026-03-03
     annotation: "Highlights the risks of 'spec-as-source' by comparing it to the failed Model-Driven Development (MDD) paradigms."
 ---
