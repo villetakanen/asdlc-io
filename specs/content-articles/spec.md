@@ -113,6 +113,7 @@ To maintain the high intellectual rigor of the ASDLC knowledge base, all article
 - Tags are 2–5 industry keywords (not ASDLC-internal jargon).
 - All `relatedIds` are bidirectional — the referenced article links back.
 - No `#` (H1) headings appear in the markdown body.
+- Level-two ATX headings are unique within each article body, including recipes. Compare trimmed, case-sensitive heading text without optional closing markers; frontmatter and fenced code examples are excluded. `pnpm lint:content` reports duplicates with source line numbers.
 - Mermaid diagrams, if used, have been rendered via `pnpm diagrams`.
 - The article appears on its collection index page and in the Field Manual (if Live/Experimental).
 - The article is retrievable via MCP `get_article` (if Live/Experimental).
@@ -137,6 +138,12 @@ To maintain the high intellectual rigor of the ASDLC knowledge base, all article
 - Given a topic that fits one of the three collections
 - When an author creates the article following the appropriate archetype
 - Then the article validates, builds, and appears on the correct index page
+
+**Scenario: Duplicate article headings**
+- Given an article repeats the same H2 outside fenced code examples
+- When `pnpm lint:content` runs
+- Then validation fails with the file path and the duplicate and original source line numbers
+- And repeated headings in different articles, repeated H3s, and headings inside frontmatter or fenced examples do not fail this check
 
 **Scenario: Cross-reference integrity**
 - Given article A adds `relatedIds: ["patterns/the-spec"]`

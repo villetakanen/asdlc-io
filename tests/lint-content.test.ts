@@ -20,9 +20,90 @@ function workspace(documents: Record<string, string[]>, baseline: string[] = [])
   return { root, baselinePath };
 }
 
+function headingWorkspace(body: string) {
+  const options = workspace({ "patterns/example": [] });
+  writeFileSync(resolve(options.root, "src/content/patterns/example.md"),
+    `---\nrelatedIds: []\n---\n${body}`);
+  return options;
+}
+
 afterEach(() => {
   vi.restoreAllMocks();
   for (const root of temporaryRoots.splice(0)) rmSync(root, { recursive: true, force: true });
+});
+
+describe("article H2 integrity", () => {
+  it("reports duplicate headings with original source line numbers and fails lint", async () => {
+    const options = headingWorkspace("## Relationship\n\n## Relationship\n");
+    await expect(findContentIntegrityErrors(options)).resolves.toEqual([
+      'src/content/patterns/example.md:6: duplicate H2 "Relationship" (first at line 4)',
+    ]);
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    await expect(lintContent(options)).resolves.toBe(false);
+  });
+
+  it("accepts unique, case-distinct H2s and repeated H3s", async () => {
+    const options = headingWorkspace("## Alpha\n## alpha\n## Beta\n### Repeated\n### Repeated\n");
+    await expect(lintContent(options)).resolves.toBe(true);
+  });
+
+  it("normalizes whitespace and optional closing markers", async () => {
+    const options = headingWorkspace("  ##  Relationship  ###\n## Relationship\n");
+    await expect(findContentIntegrityErrors(options)).resolves.toHaveLength(1);
+  });
+
+  it("handles empty H2 headings", async () => {
+    const options = headingWorkspace("##\n## ###\n");
+    await expect(findContentIntegrityErrors(options)).resolves.toHaveLength(1);
+  });
+
+  it.each(["concepts", "patterns", "practices", "recipes"])(
+    "checks %s without comparing headings across articles", async (collection) => {
+      const options = headingWorkspace("## Shared\n");
+      const file = resolve(options.root, `src/content/${collection}/other.md`);
+      mkdirSync(dirname(file), { recursive: true });
+      writeFileSync(file, "---\nrelatedIds: []\n---\n## Shared\n");
+      await expect(lintContent(options)).resolves.toBe(true);
+      writeFileSync(file, "---\nrelatedIds: []\n---\n## Shared\n## Shared\n");
+      await expect(findContentIntegrityErrors(options)).resolves.toHaveLength(1);
+    },
+  );
+
+  it("ignores frontmatter examples", async () => {
+    const options = headingWorkspace("");
+    writeFileSync(resolve(options.root, "src/content/patterns/example.md"),
+      '---\nexample: |\n  ## Shared\n  ## Shared\nrelatedIds: []\n---\n## Shared\n');
+    await expect(lintContent(options)).resolves.toBe(true);
+  });
+
+  it.each(["`", "~"])("ignores %s fences and requires a matching, long-enough closer", async (marker) => {
+    const fence = marker.repeat(4);
+    const other = marker === "`" ? "~~~" : "```";
+    const options = headingWorkspace([
+      "## Shared", `${fence}markdown`, "## Shared", marker.repeat(3),
+      "## Shared", other, "## Shared", `${fence}not-a-closer`,
+      "## Shared", marker.repeat(5), "## Unique",
+    ].join("\n"));
+    await expect(lintContent(options)).resolves.toBe(true);
+  });
+
+  it.each(["```", "~~~"])("resumes checks after a %s fenced example", async (fence) => {
+    const options = headingWorkspace([
+      "## Shared", `${fence}markdown`, "## Shared", fence, "## Shared",
+    ].join("\n"));
+    await expect(findContentIntegrityErrors(options)).resolves.toEqual([
+      'src/content/patterns/example.md:8: duplicate H2 "Shared" (first at line 4)',
+    ]);
+  });
+
+  it("ignores indented code and preserves heading line numbers without frontmatter", async () => {
+    const options = headingWorkspace("");
+    writeFileSync(resolve(options.root, "src/content/patterns/example.md"),
+      "    ## Shared\n    ## Shared\n## Shared\n## Shared\n");
+    await expect(findContentIntegrityErrors(options)).resolves.toEqual([
+      'src/content/patterns/example.md:4: duplicate H2 "Shared" (first at line 3)',
+    ]);
+  });
 });
 
 describe("content integrity linter", () => {

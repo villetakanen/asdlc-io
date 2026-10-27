@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Content-graph integrity linter. Astro owns frontmatter schema validation. */
+/** Content heading and graph integrity linter. Astro owns frontmatter validation. */
 import { readFileSync } from "node:fs";
 import { relative, resolve, sep } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -12,6 +12,42 @@ const COLLECTIONS = [...KB_COLLECTIONS, "recipes"];
 const BASELINE_PATH = resolve(import.meta.dirname, "content-integrity-baseline.json");
 const posix = (path) => path.split(sep).join("/");
 
+/** @param {string} source @param {string} file */
+function findDuplicateH2s(source, file) {
+  const { content } = matter(source);
+  const lineOffset = source.slice(0, source.length - content.length).split("\n").length - 1;
+  /** @type {Map<string, number>} */
+  const headings = new Map();
+  /** @type {{ marker: string, length: number } | undefined} */
+  let fence;
+  const errors = [];
+  for (const [index, line] of content.split("\n").entries()) {
+    const fenceMatch = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+    if (fence) {
+      if (fenceMatch && fenceMatch[1][0] === fence.marker &&
+        fenceMatch[1].length >= fence.length && !fenceMatch[2].trim()) {
+        fence = undefined;
+      }
+      continue;
+    }
+    if (fenceMatch && !(fenceMatch[1][0] === "`" && fenceMatch[2].includes("`"))) {
+      fence = { marker: fenceMatch[1][0], length: fenceMatch[1].length };
+      continue;
+    }
+    const heading = line.match(/^ {0,3}##(?:[\t ]+(.+?)\s*|[\t ]*)$/);
+    if (!heading) continue;
+    const title = (heading[1] ?? "").replace(/(?:^|[\t ]+)#+[\t ]*$/, "").trim();
+    const lineNumber = lineOffset + index + 1;
+    const firstLine = headings.get(title);
+    if (firstLine !== undefined) {
+      errors.push(`${file}:${lineNumber}: duplicate H2 "${title}" (first at line ${firstLine})`);
+    } else {
+      headings.set(title, lineNumber);
+    }
+  }
+  return errors;
+}
+
 /** @param {{ root?: string }} options */
 export async function findContentIntegrityErrors({ root = ROOT } = {}) {
   const files = await glob(COLLECTIONS.map((name) => `src/content/${name}/**/*.md`), {
@@ -19,11 +55,13 @@ export async function findContentIntegrityErrors({ root = ROOT } = {}) {
     absolute: true,
   });
   const documents = new Map();
+  const errors = [];
   for (const file of files) {
     const id = posix(relative(resolve(root, "src/content"), file)).replace(/\.md$/, "");
-    documents.set(id, { file, relatedIds: matter(readFileSync(file, "utf8")).data.relatedIds });
+    const source = readFileSync(file, "utf8");
+    documents.set(id, { file, relatedIds: matter(source).data.relatedIds });
+    errors.push(...findDuplicateH2s(source, posix(relative(root, file))));
   }
-  const errors = [];
   for (const [id, document] of documents) {
     for (const relatedId of document.relatedIds ?? []) {
       const related = documents.get(relatedId);
