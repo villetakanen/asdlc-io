@@ -81,9 +81,11 @@ When an agent **Observes** the world (reads code, sees a user request), the Cons
 
 ## Taxonomy: Steering vs. Deterministic Constraints
 
-In *The Humble Programmer* (1972), Dijkstra distinguished rules imposed mechanically by a programming language from obligations then left to programmer discipline, including termination arguments and stated invariants. This is a historical antecedent to separating tool enforcement from reasoning obligations, not an identity with the deterministic/probabilistic categories below. His remaining discipline included proof, not merely preferences or self-policing; prompt steering and model review do not by themselves discharge those obligations. Dijkstra left future mechanization uncertain. The periodic audit recommended here is a present-day practice, not a prediction attributed to him.
+It is critical to distinguish what the Constitution *can* enforce (Steering) from what external systems enforce deterministically (Hard).
 
-It is critical to distinguish what the Constitution *can* enforce (Steering) from what external systems enforce deterministically (Hard). Hard constraints split into two distinct categories:
+In *The Humble Programmer* (1972), Dijkstra distinguished rules imposed mechanically by a programming language from obligations then left to programmer discipline, including termination arguments and stated invariants. This is a historical antecedent to separating tool enforcement from reasoning obligations, not an identity with the deterministic/probabilistic categories below. His remaining discipline included proof, not merely preferences or self-policing; prompt steering and model review do not by themselves discharge those obligations. Dijkstra left future mechanization uncertain. The periodic audit recommended under Periodic Auditing below is a present-day practice, not a prediction attributed to him.
+
+Hard constraints split into two distinct categories:
 
 ### 1. Steering Constraints (Probabilistic)
 Live in the **system prompt / agents.md**. Influence the model's reasoning, tone, and risk preference. The agent self-polices these — they are probabilistic, not guaranteed.

@@ -62,7 +62,7 @@ Manageability is also distinct from correctness. A comprehensible program can im
 
 The [Triple Debt Model](/concepts/triple-debt-model) locates **cognitive debt** in the erosion of a team's shared understanding of its system. Intellectual manageability concerns the structure through which the system can be understood. A design amenable to reasoning does not ensure that its maintainers possess the necessary mental model.
 
-For example, a clearly factored subsystem may still be unfamiliar to a replacement team that has lost its design rationale. Its structure and the team's retained understanding need separate examination. Linking these concepts does not establish that improving manageability measurably reduces cognitive debt, nor attribute Storey's debt model to Dijkstra.
+For example, a clearly factored subsystem may still be unfamiliar to a replacement team that has lost its design rationale. Its structure and the team's retained understanding need separate examination. Linking these concepts does not establish that improving manageability measurably reduces cognitive debt, nor does it attribute Storey's debt model to Dijkstra.
 
 ## Limits of the Argument
 

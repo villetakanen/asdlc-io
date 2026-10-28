@@ -5,7 +5,7 @@ description: "Living documents that serve as the permanent source of truth for f
 tags: ["Specifications", "Living Documentation", "Spec-Driven Development", "Context Engineering", "AI Agents"]
 relatedIds: ["patterns/the-pbi", "practices/feature-assembly", "patterns/experience-modeling", "concepts/context-engineering", "concepts/model-context-protocol", "patterns/model-routing", "concepts/behavior-driven-development", "concepts/gherkin", "concepts/mermaid", "concepts/provenance", "concepts/triple-debt-model", "concepts/intellectual-manageability", "concepts/levels-of-autonomy", "patterns/artifact-import", "concepts/event-modeling", "concepts/test-driven-development", "practices/domain-driven-specification"]
 status: "Live"
-lastUpdated: 2026-10-27
+lastUpdated: 2026-10-28
 references:
   - type: "book"
     title: "Living Documentation: Continuous Knowledge Sharing by Design"
@@ -90,7 +90,7 @@ We explicitly reject the **spec-as-source** level as an anti-pattern. Determinis
 
 ## The Economy of Code
 
-Producing code and understanding its behavior are different concerns. In his 1972 lecture *The Humble Programmer*, Dijkstra argued for restricting designs to [intellectually manageable programs](/concepts/intellectual-manageability): understanding was already a design concern, not one introduced by code-generation tools. A spec should make intended behavior and its justification inspectable. It may omit implementation details while remaining precise about its contracts; omitting those contracts is underspecification, not a higher level of abstraction. Dijkstra also proposed growing correctness proof and implementation together. Living specs apply a related ordering principle by developing implementation and its justification together, but prose contracts and passing scenarios do not constitute a formal correctness proof.
+Even when code is inexpensive to generate, articulating intent and understanding behavior remain separate tasks. In his 1972 lecture *The Humble Programmer*, Dijkstra argued for restricting designs to [intellectually manageable programs](/concepts/intellectual-manageability): understanding was already a design concern, not one introduced by code-generation tools. A spec should make intended behavior and its justification inspectable. It may omit implementation details while remaining precise about its contracts; omitting those contracts is underspecification, not a higher level of abstraction. Dijkstra also proposed growing correctness proof and implementation together. Living specs apply a related ordering principle by developing implementation and its justification together, but prose contracts and passing scenarios do not constitute a formal correctness proof.
 
 The Spec is the artifact that captures that intent. It defines *what* the system must do and *why*, so that generated code has [Provenance](/concepts/provenance)—a traceable chain from requirement to implementation. Without a Spec, code generation produces volume without direction: output that cannot be verified, maintained, or trusted. In a word: "slop."
 

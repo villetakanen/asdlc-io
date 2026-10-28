@@ -11,7 +11,7 @@ reviewer_profile:
   roles: "Three primary reports and two supporting assessments examined; this synthesis is not another independent extraction. The pi primary assessor also performs this adjudication."
   shared_inputs: ["EWD340", "incumbent KB", "content specs", "assessment lessons", "five working reports"]
 assessment_date: 2026-10-27
-status: "Final assessment — human-approved; content implementation pending"
+status: "Final assessment — human-approved; content implemented 2026-10-27"
 hitl_executioner: "Ville Takanen"
 sources_used:
   - "Five unchanged agent reports linked in section B"
@@ -28,7 +28,7 @@ confidence: Moderate
 
 **Editorial question:** Which claims from EWD340 improve the ASDLC knowledge base, where should they live, and which modern analogies exceed the source?
 
-**Review route:** Three primary reports plus two supporting assessments, source-level cross-examination, then explicit human adjudication. Ville approved the recommendations with one expansion: add Intellectual Manageability and link it to Triple Debt. He requested this final synthesis and the individual reports beside it. This is the canonical assessment; the approved article work remains pending. Original agent reports are preserved byte-for-byte as collateral evidence, including their historical pending statuses and superseded recommendations. This report records the final decision.
+**Review route:** Three primary reports plus two supporting assessments, source-level cross-examination, then explicit human adjudication. Ville approved the recommendations with one expansion: add Intellectual Manageability and link it to Triple Debt. He requested this final synthesis and the individual reports beside it. This is the canonical assessment; the approved article work was implemented on 2026-10-27 in commit `dda141e`. Original agent reports are preserved byte-for-byte as collateral evidence, including their historical pending statuses and superseded recommendations. This report records the final decision.
 
 **Verdict: synthesized. Strategy: combine** (expand the taxonomy and integrate bounded amendments). **Confidence: Moderate** for editorial transfer; **High** for the source passages directly checked. **Risk: High** because the package affects central specifications, correctness boundaries and governance framing, and now includes an approved taxonomy node. Other reviewers used Moderate unless a node is created; retain the stricter route under the skill's explicit high-centrality escalation rule. Reviewer agreement does not establish correctness.
 
@@ -126,11 +126,11 @@ Dijkstra's “only effective way” claim about proof is stronger than the propo
 - **Exact instruction:** “add Intellectual Manageability, link it to triple debt, with that the recommendations are ok, write the final synthesis report, save the agent level ones next to it.”
 - **Feedback applied:** The optional Intellectual Manageability node is now required. Its connection to Triple Debt is substantive and bidirectional, in prose and `relatedIds`; the proposed Specs connection is retained. Four bounded article changes and verified citation-date repairs are approved. All three primary and both supporting reports are saved next to this final report without retrospective edits.
 - **Rationale:** Ville explicitly chose the taxonomy addition and named connection. The editorial rationale is the distinction between manageable structure and retained team understanding; this is the synthesis author’s rationale, not an invented explanation of Ville’s motives.
-- **Execution boundary:** This task finalizes assessment records. Content implementation remains pending. No article publication, commit, push or Linear mutation is recorded.
+- **Execution boundary:** Assessment records were finalized in `e020aef`; content implementation followed in `dda141e` on 2026-10-27. The original ledger entry remains unchanged as the filing-time record. Completion and subsequent corrections are recorded in the dated addendum below. No Linear mutation is recorded.
 
 ## D. Knowledge Graph Impact and Action Plan
 
-The following implementation scope is approved, not yet executed.
+The required implementation scope was approved and executed; the optional Further Reading entry remains deferred. The table records the actions as adjudicated.
 
 | Priority | Path | Approved action |
 |---|---|---|
@@ -165,11 +165,20 @@ Re-ran `pnpm check` during synthesis: passed, 0 errors, 0 warnings, 2 Astro depr
 
 This report is the durable canonical record. The five linked sibling reports are verbatim historical assessment snapshots; their pending decisions, earlier paths and recommendations do not supersede section C. The gitignored working drafts are retained as well.
 
-One append-only record is added to `docs/assessments/ledger.jsonl`, with the approved content execution marked pending:
+One append-only record was added to `docs/assessments/ledger.jsonl`, with the approved content execution marked pending at filing. The snapshot below and the ledger entry remain unchanged. Their pending status describes the filing-time state; the dated execution addendum records subsequent completion without rewriting history.
 
 ```json
 {"timestamp":"2026-10-27T19:09:19Z","id":"2026-10-27-humble-programmer","challenger":"The Humble Programmer (Edsger W. Dijkstra, EWD340, 1972)","risk_class":"High","confidence":"Moderate","reviewer_profile":{"harnesses_used":["pi/gpt-6-astra primary and isolated same-model supporting assessment","Antigravity/Gemini 4 Argon Medium primary (self-reported)","Antigravity independent challenger (exact model unspecified)","Claude Code/claude-fable-5-1 primary and later cross-read synthesis (self-reported)","pi/gpt-6-astra canonical adjudication"],"roles":"Three primary reports and two supporting assessments; primary Pi assessor also synthesized and finalized, not an additional independent extraction. Ville supplied explicit human scope approval. Original agent reports preserved verbatim as collateral evidence.","shared_inputs":["EWD340 UT transcription","incumbent KB","content specs","assessment lessons and ledger","five agent reports","primary citation checks"]},"initial_verdict":"synthesized","hitl_pivots":["Ville approved the cross-examined integration recommendations and citation-date repairs.","Ville expanded the default no-new-node package to include Intellectual Manageability and explicitly required its link to Triple Debt; reciprocal body links and relatedIds to Triple Debt and Specs are included in the approved plan.","Ville requested the final synthesis report and preservation of agent-level reports beside it; all three primaries and both supporting assessments archived unchanged."],"final_verdict":"synthesized","editorial_strategy":"combine","execution_status":"pending","execution_retro":"Canonical report and five unchanged agent-level reports saved in docs/assessments/. Approved scope: Intellectual Manageability node with reciprocal Triple Debt/Specs links; four bounded article changes (Specs, TDD, Agent Constitution, XP); Böckeler dates in SDD/MDD and Beck date in TDD. Content implementation pending; no commit or publication.","lessons_learned":"Historical arguments do not validate agent mechanisms. Preserve intellectual manageability as distinct from team cognitive debt; retain proof/test and enforcement/reasoning boundaries. Cross-assessor agreement is not source verification."}
 ```
+
+### Execution addendum — 28 October 2026
+
+Recorded by pi/gpt-6-astra following Ville's authorization to correct the review findings, commit and push.
+
+- **Implementation:** `dda141e` (27 October 2026) added Intellectual Manageability, reciprocal body links and `relatedIds` to Triple Debt and Specs, the four bounded article edits and the citation-date repairs. The optional Further Reading entry was not implemented.
+- **Follow-up corrections:** Retain the review agent's grammar correction and Constitution section reordering. Make the cost-of-code lead conditional rather than asserting an unsupported trend and causal shift. Restore the original ledger line and correct the report's chronology: the implementation commit did not update that line.
+- **Record integrity:** Completion is recorded here. The conflicting in-place-update instruction in the ship skill is not used to override the assess skill/template's explicit append-only rule; broader skill-governance changes are outside this patch.
+- **Verification:** On 28 October 2026, `pnpm check`, `pnpm lint`, `pnpm test:run` (288 tests across 20 files) and `pnpm build` passed. Existing Astro deprecation hints, two spec advisories and 149 documented legacy relationship defects remain. The ledger is byte-for-byte identical to its committed filing-time version. Earlier local browser validation remains documented in the implementation review record; these checks do not establish production deployment.
 
 ## G. Reusable learning
 
