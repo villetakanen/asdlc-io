@@ -1,0 +1,29 @@
+{
+  "selection": "Purposive overlapping thematic samples; not representative; 69 records inventoried at metadata level.",
+  "source_packets": [
+    "design-and-context.md",
+    "gates-and-delivery.md",
+    "learning-and-history.md"
+  ],
+  "distinct_top_level_records_cited": 18,
+  "paths": [
+    "docs/loop-evidence/2026-10-29-planet-purpose-scope.md",
+    "docs/loop-evidence/2026-10-29-planet-roles-cycle.md",
+    "docs/loop-evidence/2026-10-29-planetary-design-study.md",
+    "docs/loop-evidence/2026-10-31-ion-stream-failure.md",
+    "docs/loop-evidence/2026-11-02-utilities-failed-study.md",
+    "docs/loop-evidence/2026-11-03-factory-harness-amendments.md",
+    "docs/loop-evidence/2026-11-05-interstellar-arrival-release.md",
+    "docs/loop-evidence/2026-11-06-derelict-three-closure.md",
+    "docs/loop-evidence/2026-11-07-standard-sun-implementation.md",
+    "docs/loop-evidence/2026-11-08-link-repair.md",
+    "docs/loop-evidence/2026-11-08-release-0.5.6.md",
+    "docs/loop-evidence/2026-11-08-retro-and-actions.md",
+    "docs/loop-evidence/2026-11-09-ion-point-defence-study.md",
+    "docs/loop-evidence/2026-11-11-design-study-writing-and-closure.md",
+    "docs/loop-evidence/2026-11-11-gauntlet-two-pirates-release.md",
+    "docs/loop-evidence/2026-11-11-ship-slots-study.md",
+    "docs/loop-evidence/2026-11-12-practice-g7-sun.md",
+    "docs/loop-evidence/2026-11-12-yellow-family-flight-trial.md"
+  ]
+}

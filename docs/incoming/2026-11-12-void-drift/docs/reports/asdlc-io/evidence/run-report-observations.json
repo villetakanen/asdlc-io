@@ -1,0 +1,135 @@
+{
+  "note": "Direct inspection of existing reports, not new execution. Ignored reports may later disappear; selected fields and hashes retained here.",
+  "reports": [
+    {
+      "path": "artifacts/verification/2026-11-08T08-06-19.673Z-QURdGF/report.json",
+      "available": true,
+      "sha256": "371146b2e6cdab9cb575b65d7edc23281aa60b171d3eea23b4b452ed430d0945",
+      "revision": "c0f0a599976a12dd7dd29681ba41ca5565157e86",
+      "mode": "full",
+      "passed": true,
+      "selectedChecksPassed": true,
+      "sourceUnchanged": true,
+      "workingTree": "",
+      "sourceFingerprint": "ff363b3873889aeb1e4e3fee1d5df9723129dcc58062ce465bd5308c61019560",
+      "steps": [
+        {
+          "command": "pnpm run check:contracts",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run check:commits",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run lint",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run check:types",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run build",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:browser",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:rules",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:competition",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/verification/2026-11-11T21-07-59.851Z-3dUc84/report.json",
+      "available": true,
+      "sha256": "f324705fba9dc7a80114db2c28de0db5a3691ba0d91daa2b4a9c63ac0ab2f1e1",
+      "revision": "d718d29bfd169bae421410246cbfb168ed6b21bb",
+      "mode": "full",
+      "passed": true,
+      "selectedChecksPassed": true,
+      "sourceUnchanged": true,
+      "workingTree": "",
+      "sourceFingerprint": "4764e4f568362880a328e97b81ca33c204df1dd25c127fb275b51c6d3dbd3e9e",
+      "steps": [
+        {
+          "command": "pnpm run check:contracts",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run check:commits",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run lint",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run check:types",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run build",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:browser",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:rules",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test:competition",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-08-link-repair/report.json",
+      "available": true,
+      "sha256": "b363088f0bebffc8e85e11ee1eabed736dde2f47983ef43167eba145e6d60b5c",
+      "revision": "5223ffb13b68a7f61d0f10a69781e78697d2c5bc",
+      "mode": "quick",
+      "passed": false,
+      "selectedChecksPassed": true,
+      "sourceUnchanged": true,
+      "workingTree": " M apps/web/src/components/studies/in-game-controllers/ControllerGeometryBench.svelte\n M apps/web/src/components/studies/in-game-controllers/StageMarginBench.svelte\n M apps/web/src/pages/lab/studies/in-game-controllers.astro\n M docs/development.md\n M docs/specs/factory/spec.md\n M scripts/check-contracts.mjs\n?? apps/web/src/components/studies/in-game-controllers/CssGutterBench.svelte",
+      "sourceFingerprint": "48e5ac356cab46c546f2165ce9db4fa83eece9250ec2bd4844a0faf362c2d292",
+      "steps": [
+        {
+          "command": "pnpm run check:contracts",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run lint",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run check:types",
+          "status": "passed"
+        },
+        {
+          "command": "pnpm run test",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

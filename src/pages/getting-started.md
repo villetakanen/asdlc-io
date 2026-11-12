@@ -22,7 +22,7 @@ Think automotive manufacturing: robotic arms automate welding, but they don't re
 
 <figure>
   <img src="/images/agentic-double-diamond.svg" alt="Agentic Double Diamond"/>
-  <figcaption>In the ASDLC, the <strong>Spec</strong> becomes the primary source code, and "Delivery" becomes an automated <strong>assembly</strong> step. The human role shifts from <i>Crafting</i> to Engineering.</figcaption>
+  <figcaption>In the ASDLC, the <strong>Spec</strong> records agreed intent and contracts; executable code determines runtime behavior. Agents use the spec to guide <strong>assembly</strong>, and implementation discoveries feed back into the living spec.</figcaption>
 </figure>
 
 ## How It Works?

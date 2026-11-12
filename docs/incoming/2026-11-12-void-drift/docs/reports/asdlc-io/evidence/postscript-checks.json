@@ -1,0 +1,40 @@
+{
+  "checked_utc": "2026-11-12T06:54:42.423185+00:00",
+  "scope": "KonMari postscript and two navigation/method updates; original report-checks.json remains the historical initial-edition check.",
+  "local_links_checked": 35,
+  "git_diff_check_exit": 0,
+  "errors": [],
+  "product_tests": "not run; documentation-only assessment supplement",
+  "project_source_identities": [
+    {
+      "path": ".agents/skills/browser-test-konmari/SKILL.md",
+      "matches_original_baseline": true,
+      "sha256": "30059ecfd566912a27276636be3345ba1e9230c6844a025b7ba64748fe19c5ab"
+    },
+    {
+      "path": ".agents/skills/unit-test-konmari/SKILL.md",
+      "matches_original_baseline": true,
+      "sha256": "e0ac8716533030dcc620ca6e9c2f541c57de716228a1f72d05b565ad968732cd"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-browser-test-konmari.md",
+      "matches_original_baseline": true,
+      "sha256": "e7b1df24c44c1536d6fa024541ec29a287d03ce086f97e51236b37c573968f09"
+    },
+    {
+      "path": "docs/reviews/2026-11-11-browser-test-konmari.md",
+      "matches_original_baseline": true,
+      "sha256": "899dfebf60ce195e466d0067722e2b65b0340468c024719073ce1f801c652798"
+    },
+    {
+      "path": "docs/plans/2026-11-03-test-suite-pruning.md",
+      "matches_original_baseline": true,
+      "sha256": "befd7c5fd85566b12c51cc19d8ad351f7434e98de90f4a138f0b82ed66f0390f"
+    }
+  ],
+  "checked_file_sha256": {
+    "docs/reports/asdlc-io/07-postscript-test-retention.md": "2b2789f59590bbf83dcc9791ac66037ca64c495f23eadc51d9f06b4945db4ce7",
+    "docs/reports/asdlc-io/README.md": "a16435712836d8e940c5f1fe849f2f2385edbd75a152888b0014b47a86d0a3b9",
+    "docs/reports/asdlc-io/01-method-and-sources.md": "754e47f0f759d8dde36a398d450ffc5bc9bb710b2ac66457d111d1c5aef699ae"
+  }
+}

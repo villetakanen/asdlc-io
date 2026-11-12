@@ -1,0 +1,986 @@
+{
+  "revision": "49336a6e5675da1b50b7179f3baaf28f6d3a7bb4",
+  "scope": "Committed docs, skills, scripts, outgoing drafts, root instructions/package and two inspected implementation files; identity inventory, not full semantic review.",
+  "files": [
+    {
+      "path": ".agents/skills/browser-test-konmari/SKILL.md",
+      "sha256": "30059ecfd566912a27276636be3345ba1e9230c6844a025b7ba64748fe19c5ab"
+    },
+    {
+      "path": ".agents/skills/close-loop/SKILL.md",
+      "sha256": "d6b3e21139b59e7074e813dbc37ef8775cbed4a0191c0a3acc95dc2f992dea78"
+    },
+    {
+      "path": ".agents/skills/commit-messages/SKILL.md",
+      "sha256": "14bdb9a96292511babc8df2b152e8a46c2bc868980b9d6a45e391f6f8b8f5c96"
+    },
+    {
+      "path": ".agents/skills/daily-pop-sdlc/LICENSE",
+      "sha256": "cceaf75642624cdeb2feabc69119eb7b124d25eef8c3fd44884d07b6c53e9544"
+    },
+    {
+      "path": ".agents/skills/daily-pop-sdlc/SKILL.md",
+      "sha256": "3c21c29f461e7e227fd87a2ff7b7a2aaafc52b8f6a16fdb1a8acaf5e31b09d71"
+    },
+    {
+      "path": ".agents/skills/daily-pop/LICENSE",
+      "sha256": "cceaf75642624cdeb2feabc69119eb7b124d25eef8c3fd44884d07b6c53e9544"
+    },
+    {
+      "path": ".agents/skills/daily-pop/SKILL.md",
+      "sha256": "9d92e1deab1d2eefd3165a920149861ae427b6a080ab0736f346477d528ba8ed"
+    },
+    {
+      "path": ".agents/skills/design-study/SKILL.md",
+      "sha256": "12feb4cef870273b199d24f836e60b9f618d3a6a2d3e94e11feba0425281a3a3"
+    },
+    {
+      "path": ".agents/skills/design-study/references/exploration.md",
+      "sha256": "2c23bb9178dc5d6b85f23713e644b0f989a61739031ad1bba229285ac6d92ba5"
+    },
+    {
+      "path": ".agents/skills/design-study/references/question-test.md",
+      "sha256": "d3399461440e709bcd747444b3f9c0386837a78457eea0f5890d5ac82839bfee"
+    },
+    {
+      "path": ".agents/skills/design-study/references/writing.md",
+      "sha256": "2eabb51135d9a2d79a2773b91f4d6c7482da03d52c43ff6327c769ef0d0a57e3"
+    },
+    {
+      "path": ".agents/skills/fx-development/SKILL.md",
+      "sha256": "4564a8a58c7ab4d77bdfeded69f1f2d9b0eea4bf8462b409507207c4c471035a"
+    },
+    {
+      "path": ".agents/skills/shared-components/SKILL.md",
+      "sha256": "29226f204b714478256778e2ae86e18adf6c39ac8faf2b805361cd963f9d2bae"
+    },
+    {
+      "path": ".agents/skills/spec/SKILL.md",
+      "sha256": "a4d4d20ab837e2f12367deb76ac9f168b2b835a1f4cb390b7a1c0c5536a4e17b"
+    },
+    {
+      "path": ".agents/skills/unit-test-konmari/SKILL.md",
+      "sha256": "e0ac8716533030dcc620ca6e9c2f541c57de716228a1f72d05b565ad968732cd"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "6564926c326a5ec9ef16afb900a1165e0bf8797770969eed192e61522e124e2a"
+    },
+    {
+      "path": "apps/web/src/components/FlightDeck.svelte",
+      "sha256": "4d58f7ccc3c51982509cd5dc3425b68b635c124996084cd95def098ec2ab2e0d"
+    },
+    {
+      "path": "apps/web/src/components/studies/IonCannonFlight.svelte",
+      "sha256": "c6b801391c73c8e45fc2350c118e59dc9339fd429aeaf6834710d267e44538ec"
+    },
+    {
+      "path": "docs/architecture.md",
+      "sha256": "7c1d5cf51216f6bcdbfbeb78ffadf0af22d5d78066a4ee2934bb9d036fa2b408"
+    },
+    {
+      "path": "docs/archive/sfx-canvas-legacy.md",
+      "sha256": "b62295d4b2392d701e1974a44f7d0bd8ed045415af721f238794636e5c1bb7a1"
+    },
+    {
+      "path": "docs/archive/specs/IMPLEMENTATION-PBI-013.md",
+      "sha256": "bad061c6b139f9c495eba946b8d3c093cb26be57b29ea060c48080a35933add3"
+    },
+    {
+      "path": "docs/archive/specs/design-studies-history.md",
+      "sha256": "aa89d1603699c16b651245649935901b63fc778943a26151efda696aaca420ac"
+    },
+    {
+      "path": "docs/archive/specs/game-engine-phase1.md",
+      "sha256": "fe997163f96c5b44252d192b81cc45e971720f22ee1f1a7249b1563299f78111"
+    },
+    {
+      "path": "docs/archive/specs/menu-overlay.md",
+      "sha256": "29462c844814016bc5a34e35c0a821fdd1fa4dfa118277a9238dead922a72b0c"
+    },
+    {
+      "path": "docs/archive/specs/ship-lab-chassis-preview.md",
+      "sha256": "9975cff3636918a19fb54338e064fc716d829b9555347da6477fa059541c7313"
+    },
+    {
+      "path": "docs/artwork/void-drift-ships-equipment.svg",
+      "sha256": "15ef5b8981a4b276c15739c4be2392099f7ea9f0938a3d078b8ed5b5788573be"
+    },
+    {
+      "path": "docs/audits/2026-11-01-opening-screen.md",
+      "sha256": "fc4b6a05bc2e3f9a562fc3a8a4fb93fa4dcc727b86ba18691f47dadf22dd4b1a"
+    },
+    {
+      "path": "docs/design.md",
+      "sha256": "751be510ab927f0c887156100e7d1fedb4a20c77e4edab0d6f44d74643b0a4f1"
+    },
+    {
+      "path": "docs/development.md",
+      "sha256": "cdb1677776105e6fa8422c961a7cb4bcf97dc7151b5de5927460695d74811a6c"
+    },
+    {
+      "path": "docs/factory-building-lessons/001-modernizing-the-factory.md",
+      "sha256": "f7986ecaeaa69441f03a4e26b84c3bbe6716fcc60a5431c57909b03f1e3e011d"
+    },
+    {
+      "path": "docs/factory-building-lessons/002-phased-design-studies.md",
+      "sha256": "52850ca7d61c8ee0faf973e2a27412c55d8ee1c938c5a300c1a94ca956b3c580"
+    },
+    {
+      "path": "docs/factory-building-lessons/2026-11-06-derelict-correction-loop.md",
+      "sha256": "31b3351bff285f21bd7d8c691075ceaa956c8646f8b21f6947beb4f57076ca9a"
+    },
+    {
+      "path": "docs/factory-building-lessons/README.md",
+      "sha256": "c43c3dc50f9ee54b60af6994fd1b31e9e221b061f95514bb1ceb33288de325a1"
+    },
+    {
+      "path": "docs/factory-building-lessons/design-study-evaluation.md",
+      "sha256": "a99bbb09c47f37d36e80b51913e3115d61c1245062481290a12b63086bf7b9e7"
+    },
+    {
+      "path": "docs/factory-experiment-alpha.md",
+      "sha256": "4eb50a58d93429cf4fbd7d325847f3e1d77ba47ee48e65522de900587a74537e"
+    },
+    {
+      "path": "docs/factory-experiment-design-studies.md",
+      "sha256": "51222dd2180b68e98d825063b4e24e142b960d0fba84b4aac7ed9b1530743c8a"
+    },
+    {
+      "path": "docs/factory-experiment-planet-purpose-scope.md",
+      "sha256": "3d18e04e5cc89ce3f33f68472687325b2e8feec51dffc7074d14bd1315b20e03"
+    },
+    {
+      "path": "docs/factory-experiment-planetary-study.md",
+      "sha256": "0b82638b564b78aaf4679efb11da8ab35e41ea23e22456dfb1c0c4b89a92fc10"
+    },
+    {
+      "path": "docs/factory-report-design-study-form-drift.md",
+      "sha256": "3e83361657a1277475d6a273d549ff287e335609c769b3c1560f25c272d85fc8"
+    },
+    {
+      "path": "docs/gravity-model.md",
+      "sha256": "7d0ba2c364dcfb6ac9fde43db7cb8b64b3a84192aae9b3260f9931b7f22bce8e"
+    },
+    {
+      "path": "docs/hints.md",
+      "sha256": "8ac95173e46c7edf6f8e5e3b4b67aff05487f0fdab3ef1b27dc3d64fdd2a7fe8"
+    },
+    {
+      "path": "docs/history/rebuild-charter.md",
+      "sha256": "bcae91f130058d112f1c6e0babecd5d2d5af50dd8a1279d16303938f98c6c181"
+    },
+    {
+      "path": "docs/history/ship-builder.md",
+      "sha256": "e7c6305a2dcf160615e23602456ac80698f39f246e6bf37529caecb84cd73382"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-29-planet-purpose-scope.md",
+      "sha256": "95903216ff0f2db6e81d73562b11dff778c88a5addc7385f1984098f4e220476"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-29-planet-roles-cycle.md",
+      "sha256": "32dc7779bc76e269c8f186ec6d7355581d5bf611c75346a9cfb7cc26d03b4b1f"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-29-planetary-design-study.md",
+      "sha256": "f3dbc34da0a63a240e47589c01ea24f0e28fc181ca7e9d995b30ad80a30094b5"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-30-engine-effects.md",
+      "sha256": "ff2f66effc276b37c3469a4d75abb130d3556e6c89a2e1cab71a0ed140fdd437"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-30-ship-silhouettes.md",
+      "sha256": "779ed506364cfe9c79fb57609b4bc80115b7508da8a8bf163f8cd5a66ace7f9c"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-engine-identities.md",
+      "sha256": "4cb61a3ab82551c84e9ce0cca4a2f145105f673f300662d32df8f4507597edf3"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ion-engines.md",
+      "sha256": "a7327fb373ec5b12b30e98ef9999a07625ad6905d5b443e4f55fce5fe1ad76c2"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ion-stream-failure.md",
+      "sha256": "48f68839e4cb19a198a9e56fbc2b5f47cfddbffd9e5fdc58760d0eecbd413af8"
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ship-slot-language.md",
+      "sha256": "dc9a5fe9fd55634b50a8e62d1ed33126c3a80419d5e52e5006e6ead9adc65f42"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-base-movement-ion.md",
+      "sha256": "4485008eea541df1686e280c024a836107fb32a4877275c4938f22b006c53b7e"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-default-stabilizers.md",
+      "sha256": "b36e0189ac34a992594a83bd4e199d6ba46be97a8e51991f98df2d25ee061908"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-lab-instrument.md",
+      "sha256": "f046806a4e4197e024ae7fc8b4ed15593342bdae188a363de4f42aceaa8f9bbc"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-lhi-wasp-study.md",
+      "sha256": "dba1e69f7392cf55e58f4b9db92e7dc0be0e123f6bf24f38953ed2092f6c7d29"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-path-instrument-closure.md",
+      "sha256": "c7679265cbc974951f3d848a5aca328f3dcf700f77a94b0df031340a8671065a"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-plasma-behaviour-closure.md",
+      "sha256": "3f5e214e04170dba47e2510af4e2582f704cc5ec2da4e923390b479bad0da177"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-s3-colour-roles.md",
+      "sha256": "13abce053a9f89e4ffbc3d67dcf34119378e8fadf273b18be46fdf2c413398f5"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-starter-fleet.md",
+      "sha256": "72f972fdebaf32dd2c4270904f53c0a7c487c38e3d5fbf5deb4816f15cc59a14"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-energy-support-closure.md",
+      "sha256": "d3c2e47409508a2c8b82d78cb08e3c093ff241d36061fc5be9ce38a8ba8e0222"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-open-frame-machinery-closure.md",
+      "sha256": "b9658d9bff0f4dd74fb3ab8fb16a14d6067f27ec97766799bf21404b3dcef65d"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-potential-well.md",
+      "sha256": "35267281e41c4c47d65ffc62067044cbd51f71b1fcfa7f82eb0fa3811fea694c"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-ship-utility-language-failed-study.md",
+      "sha256": "b6786da3f5d323c4d2a9d7cd16057f4c553acde876927dc712e61a34b6d9b392"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-utilities-failed-study.md",
+      "sha256": "53c568d84737b36bbb59bb006617cf376a4293e3041d16d647729f7846c32837"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-factory-harness-amendments.md",
+      "sha256": "ea4c81819521987bb72f8983e7acda2af94397bbc6adde259bade48432dea299"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-fx-alpha-0.5.0.md",
+      "sha256": "7199103356dfde622bd299fa73afd97e7411b6b61165270e465c7057bb172fe2"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-fx-surface-repair.md",
+      "sha256": "5548e4b77538211745763f339ce2e80d84e74152a672fe8f9a6998c817db7809"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-gravity-coil-stopped.md",
+      "sha256": "14a0523830caa5821b65f13dd727ae98af06421af87b10748936747c6942497b"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-lhi-fiddler.md",
+      "sha256": "d5900bb140d82768d8370906e5033568a6c47f84d0b0b5c0f8ddd7c857caab8f"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-square-switch.md",
+      "sha256": "b83a9fc1515e35b26301c391b015139e5b5baf001111488afd7db77a70703331"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-top-scores.md",
+      "sha256": "ad32a145b2a07638429f8d2d3998e66e352b0166b786b50f927d05d63b696ae8"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-framing-direction.md",
+      "sha256": "298936fc8704170169d1f8c85bc56206f3a97761ff7b767e2ad0a9dd0fee9e35"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-framing-trial.md",
+      "sha256": "d63644a373b79497ac9fe0ffc85875ae8931172228ce01c994babd3e2cdc85d7"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-trial-2.md",
+      "sha256": "4855bbf97abef2f4783287aea2377f45f098c037c8471fbe57a45d739ef40434"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-game-screen-and-steering.md",
+      "sha256": "de2c78b8f71a20760f84e3414c5f78ebaa7c9115493d636e55196e455c8b4cbc"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-harness-lessons-and-prune.md",
+      "sha256": "abfa2850b78908a4a9e2107f740632b0c743382c91bf4c2bfdec8bb4f8ab6d45"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-interstellar-arrival-release.md",
+      "sha256": "3ff375172b983d8c348e77ab3efb4627ed41221000462e27c378c33a8a8a0da1"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-landing-wasp.md",
+      "sha256": "d1e04fce0f0e051c19cb26b5799d9b3695227442081137944463846961ff00cf"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-motion-instrument-conformance.md",
+      "sha256": "2f49240a0a5809f08c7681e9af40bc785eb275ab0df65b6b97abc684ad522c36"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-motion-instrument-contract-review.md",
+      "sha256": "cc5358452e042612040a30f908e834d91c53d235fe75284f2209bc60e388d724"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-release-0.5.5-and-cleanup.md",
+      "sha256": "24b8cc93610aae3cfe0004c83a70b7c1bda2c1ccd01a78f6b00ef3a4033f1f7b"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-ship-propulsion.md",
+      "sha256": "5ee9beeb12996c116506a9780c680fa78f3e8092353bb0dbab465cef03146547"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-starter-wasp-gravity-coil.md",
+      "sha256": "875fa89eed9c04b3e1081d9639825991c405516ef4e212f6b89ce74e576587f3"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelict-draft-two-closure.md",
+      "sha256": "c11f662330eeeb9396cc29aad850762442c00f5a4b5fafc75914277ea6a3b16a"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelict-three-closure.md",
+      "sha256": "a98b30e353a62ec1ec793316471ccd839741df1ecb3012b41897eb5cff891e73"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelicts-closure.md",
+      "sha256": "32466f16c7a4f0c368eec120d885bc826d1a84f1e40a5da74da3384602385fee"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-derelicts-integration-closure.md",
+      "sha256": "56e38ace6a784b1b1aa0b145b66168c23fde0d9d213ce19cdc88a6fbae063854"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-standard-sun-implementation.md",
+      "sha256": "dc9df3b9871b40e720cc24977e3d700ca0a213e73b21bd1ad5c7963f0d2ca6c2"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-suns-closure.md",
+      "sha256": "ada644fb1646457460b06f46b36357495efda16ed221f7d33d179f77c2725818"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-link-repair.md",
+      "sha256": "674b107645d756f6700364f5c3a5d5664c153c046b9b4790578997abf8a1a8af"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-release-0.5.6.md",
+      "sha256": "a7902062d3289851369389dc9bfad5756142adcab4ef68f9a5c2abc631a2f480"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-retro-and-actions.md",
+      "sha256": "e01aa40c191ed9e528fc9aac3d126753a8a6ceaac6aa10f3902ea7c2c77d4c1e"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-retro-exploration.md",
+      "sha256": "fae56a22a69b70321102fc22fec961a43f8468bee07427fae943c7a4669c68b4"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-derelicts-in-survival-s1.md",
+      "sha256": "c536812022cfd67d1911a88403bea87418bc8fb77041081fa4b94c7e7568dbae"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-ion-point-defence-implementation.md",
+      "sha256": "d38084752c1ecae53ee8e9f813b28b7a5b4a38061397993d3915058413d57d96"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-ion-point-defence-study.md",
+      "sha256": "400ba8a09b4d1cf5e4fd0efa8bb43e2b495059998d5451b825980f0b6ebfa6d9"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-0-6-0-spec-session.md",
+      "sha256": "d9d43a5636e63e98c39a46c3105761b1c66818abbb4c99b74c4f8879ab3e7882"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-flight-scene-instrument-study.md",
+      "sha256": "0a3747b21495a7f69db47606da2da93de3137b2bc108cbff613185808188d8ea"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-lab-game-modes.md",
+      "sha256": "b6ed6ab9be7e741cd786743b336cdbbf1670eaf4bb21a53b44193021d1ca851c"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-layered-renderer-workbench.md",
+      "sha256": "c2ae5fbb2c56923c0bfe33969ac2966a60b8f9aedd5daf37ee6fc67b5417baf3"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-render-performance-bench.md",
+      "sha256": "a6b736cd05b87ef0b64f926812c2d13d3d89cf5bccedea605706f410abaab005"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-browser-test-konmari.md",
+      "sha256": "e7b1df24c44c1536d6fa024541ec29a287d03ce086f97e51236b37c573968f09"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-design-study-writing-and-closure.md",
+      "sha256": "7ebae4f4cacbe40b012005448ef3c4dbb03fafe3119bab5c74ff8291b79a844f"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-first-gauntlet-pirate.md",
+      "sha256": "a97a39d06b0b55d6a07efde634bfe099cdc02b3d3d1311e1ae40301f023efa93"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-gauntlet-two-pirates-release.md",
+      "sha256": "c55662954d54a3629225584945850edb73facc98b0fc6c602292517a9b7587e2"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-playground-title-status.md",
+      "sha256": "600a241960bdccef04d44c1d775a016da489225293ed5b17a824cb3eb03dea5a"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-ship-slots-study.md",
+      "sha256": "07cb69325a6bf7d78e3cf807e1a8bcd27c2ce649e8370645e4b4c755fc3f5c2b"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-stellar-encounters-closure.md",
+      "sha256": "0b456c81b65ae6c4b0f38492fd2264ded148a5395769475f647faec2ae655fed"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-title-star-family-trial.md",
+      "sha256": "93830c34cafab8458226455d4067397e7bc72b3926eb6a582e6701efb2187227"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-12-practice-g7-sun.md",
+      "sha256": "9f712bad3dd773e34683013f32975c6c89d4692a5b120e13f5ea1fd191f2cba1"
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-12-yellow-family-flight-trial.md",
+      "sha256": "2f44bb32ed959d503b283faf669a3b4f138d70827b42640fc1ccc56802b255aa"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/browser-controls.log",
+      "sha256": "0c7b6457601a4702347271f1ad1dec934120ac7784fbe9d2067844e49267843a"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/browser-suns.log",
+      "sha256": "6811d308376e8c3b9d4c720e4cc7df79eb85f868672ce43ae9bfcb7eb20ef89e"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/build.log",
+      "sha256": "f8833c0fa4e0e609bbd7624d376a3c8360fcfac56b01616788771643cd6d6884"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/contracts.log",
+      "sha256": "3208dcdc518efa52d8dab20ca6c23167a1aeb6cb6414eb41fee8ac37dfe63a31"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/lint-full.log",
+      "sha256": "a180f6f3c558131c5938cbe0d86663b0370156e13be4b6b324b8a660937f2ff2"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/lint-scoped.log",
+      "sha256": "3bf513cd850143b018fa32634b828ff8564f79427b761116a140b70115ff1b1a"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/suns-article-top.png",
+      "sha256": "0f17b86ce8b51f94684bf83ebd8569ed3f00a4ec415554a90d25083f082ba8af"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/suns-live-dpr-1.png",
+      "sha256": "ca03ee92a0757adb9e32293cda89088df6a242012ac5390cff7cde4848865f71"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/suns-live-dpr-2.png",
+      "sha256": "c9aae443438ece3ec9a336d05da930b81ec1eb5e49be71ebec4ada0851eaf756"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/suns-zones.png",
+      "sha256": "cd410d544e4ed3fe90d83046a4b7b71eddbf614722ae176a9d1625572e285765"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/types.log",
+      "sha256": "1d5fb506f3096c5f2569fd80a766feda15b755681543c82265169b6ebfbd4ca9"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-standard-sun/unit.log",
+      "sha256": "91b2ef458aa0b11b04a9eed6cd9b7fbb39c2f6b8d1106fd888a6e08c7c9bacea"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-suns/astro-check.log",
+      "sha256": "cc272b86af3570f27f6c684ac7b2f6b94b719ef42974971b5360b859f58bfdfb"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-suns/hud-earlier-5-percent-fills.png",
+      "sha256": "889ef29f2502facd0f3742edf0797418b4b488aad26e0e8bfe173c5f25d133da"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-07-suns/svelte-check.log",
+      "sha256": "0eef03c3164f27b2e543810caee732c7204f0fff19702146fd3e26fa8d3d800f"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-08-link-repair/report.json",
+      "sha256": "b363088f0bebffc8e85e11ee1eabed736dde2f47983ef43167eba145e6d60b5c"
+    },
+    {
+      "path": "docs/loop-evidence/artifacts/2026-11-11-stellar-encounters/closure-page-check.json",
+      "sha256": "c6fe21e99da21c28fafdaf08721bcc309d8f3775298b39be720c8feeeaff4271"
+    },
+    {
+      "path": "docs/plans/2026-11-03-alpha-0.5.0-refresh.md",
+      "sha256": "d56decdbb171e3c2795e97fbe7903fecefee553f7d3e26daa5f1cf9b6b7e42fe"
+    },
+    {
+      "path": "docs/plans/2026-11-03-alpha-0.5.0.md",
+      "sha256": "9027e2cb73b6682cadf8d6955f2adfeb3fd2cfc14cd2bc35d80de8c5ceca4926"
+    },
+    {
+      "path": "docs/plans/2026-11-03-fx-framework-triage.md",
+      "sha256": "da5a9e9cbc0a63530459daf50a6a1ec091bb031a5034b4e7bf46169d4f0511a7"
+    },
+    {
+      "path": "docs/plans/2026-11-03-fx-surface-correction.md",
+      "sha256": "1f654f17e25d852a9f54446b6e839d433ca8ebb2f92c9ed0607400da8643850c"
+    },
+    {
+      "path": "docs/plans/2026-11-03-opening-screen-dialog-boundary.md",
+      "sha256": "872e7fec6572515efe3a77db417524ec9704c59f04d7f769965b664fdefd111a"
+    },
+    {
+      "path": "docs/plans/2026-11-03-test-suite-pruning.md",
+      "sha256": "befd7c5fd85566b12c51cc19d8ad351f7434e98de90f4a138f0b82ed66f0390f"
+    },
+    {
+      "path": "docs/plans/2026-11-04-camera-framing.md",
+      "sha256": "c94abb9deba340be91d5fe53de0504387fb42480f27fc58da588e7b365cbafe4"
+    },
+    {
+      "path": "docs/plans/2026-11-04-camera-trial-2.md",
+      "sha256": "c4b7dbc7e0f4388423aa25515889758cd84df9b6103571a77df9e0976cc053ca"
+    },
+    {
+      "path": "docs/plans/2026-11-04-gravity-field-lab.md",
+      "sha256": "0f5326aa44c48424c3310daff0017684a2367bc82a86021d0300c9ddb5cc119d"
+    },
+    {
+      "path": "docs/plans/2026-11-04-lab-usability.md",
+      "sha256": "fe078769d9bc4a8016da24aaad4b20aca4bd961b6d1836507cdc57e50f85e233"
+    },
+    {
+      "path": "docs/plans/2026-11-04-motion-instrument-conformance.md",
+      "sha256": "c32ac29ea8149b5d90e227aa3dee5d4ad69570cbfa24370640b8ea9274acb9f1"
+    },
+    {
+      "path": "docs/plans/2026-11-05-game-and-lab-spec-trees.md",
+      "sha256": "345d59a6fc4b1879b3a1d6560da0781dc087953551c4039e8f7ebe045469dace"
+    },
+    {
+      "path": "docs/plans/2026-11-05-hull-engine-cruise-model.md",
+      "sha256": "103786bc72cc596099605ea6913714d0a7d11bc6c9b1ba1d589eeb220d259d66"
+    },
+    {
+      "path": "docs/plans/2026-11-07-derelicts-mode.md",
+      "sha256": "b38923e78f28d298c5d0abaf7ddf8aab59d9b6af6fe9a95aa58ea349dcb45d08"
+    },
+    {
+      "path": "docs/plans/2026-11-07-stellar-variety-follow-up.md",
+      "sha256": "00638632ea004346f2b0094e212d3fbdc6311b258e6441bdca67166e45279957"
+    },
+    {
+      "path": "docs/plans/2026-11-08-in-game-controllers.md",
+      "sha256": "7128026f6cc05f16a7881d386ec7be5006a7ab79b00e6d511bf45af51e9b7a1a"
+    },
+    {
+      "path": "docs/plans/2026-11-08-ion-storm-0-6-0.md",
+      "sha256": "1ff8a887f9e9293aab8101988bd483fd4e64a05ff4a19cc43f95a334268be0bf"
+    },
+    {
+      "path": "docs/plans/2026-11-08-retro-actions.md",
+      "sha256": "629bba7ede758e6e79f64e8220a539c2e64a59277e6bf5fcc55555b49ffb6c50"
+    },
+    {
+      "path": "docs/plans/2026-11-09-derelicts-in-survival.md",
+      "sha256": "d8e46aa12901216f97647287acb7dc96b9cd55e66fa3e2509f5b5f07bf01d815"
+    },
+    {
+      "path": "docs/plans/2026-11-10-active-ship-delivery.md",
+      "sha256": "645c40eec45c9ccb8ac658c871ce31fcdd4cf0e06e4c2290392ab0082acaf6f8"
+    },
+    {
+      "path": "docs/plans/2026-11-10-brief-lab-flight-tools.md",
+      "sha256": "5355f806021f2a6fa31158e8b63bd82d5b33d63439f8c5178bea8ec2c5369fd2"
+    },
+    {
+      "path": "docs/plans/2026-11-10-brief-layered-renderer-next.md",
+      "sha256": "4a6a04c886f42ccbaeb87708d4dd6fe810e97816f4dc43d0fc49d2ecad2152d9"
+    },
+    {
+      "path": "docs/plans/2026-11-10-brief-spec-gaps.md",
+      "sha256": "52d30548893b2e8f138e7739d1f804f5c044a1ecb8d6ae4d0bb889fbd9417b05"
+    },
+    {
+      "path": "docs/plans/2026-11-10-experimental-mode.md",
+      "sha256": "c0e48470539b8705e9f4ce9b895c741419f8b9996805e75fc3a0848a847df1eb"
+    },
+    {
+      "path": "docs/plans/2026-11-10-fx-stamp-gaps-blocker.md",
+      "sha256": "08e902a29e74421d312bb2bf5f06073ec31e9f1d077f01db47b78c9b3bef2d9b"
+    },
+    {
+      "path": "docs/plans/2026-11-10-layered-renderer-route.md",
+      "sha256": "aad06dac4409a05371492bc798f10939c882dc984e83d5e3a50ef5c8d26b487f"
+    },
+    {
+      "path": "docs/plans/2026-11-10-part-01-question-rubric.md",
+      "sha256": "5343a1da7bb023e91cbc010149bb39d24bd5a4cbeea3131a4b7236a2d34c56e8"
+    },
+    {
+      "path": "docs/plans/2026-11-11-actions-implementation-handoff.md",
+      "sha256": "d071c9d50204fd2af0fea7e00606a4f4d1a5f51832b700b277b610412c48902c"
+    },
+    {
+      "path": "docs/plans/2026-11-11-gauntlet-first-pirate.md",
+      "sha256": "18cf8bca89a84de4811f441efcb64c8163aad50303b608a68895f1eb93a8d0ed"
+    },
+    {
+      "path": "docs/plans/2026-11-11-hangar-recovery-audit.md",
+      "sha256": "47cdc3abc2edf5bb2c102aee4548a01d626ee0c95c55ce7a28229e639f6d71a7"
+    },
+    {
+      "path": "docs/plans/2026-11-11-plasma-light-delivery.md",
+      "sha256": "a5e749879e6e2d3d1338a8c4d036e187847afb035d831ae4d9c86754c7b3a05d"
+    },
+    {
+      "path": "docs/plans/2026-11-11-tabs-design-system-brief.md",
+      "sha256": "d32d7e70bc611cd3ea38129ce3b46776e4042e7249c2b5d7f5a0909033d8e841"
+    },
+    {
+      "path": "docs/plans/AGENTS.md",
+      "sha256": "5aca5124f9865e1521e02b7baa40a8c8aaa254946f4fcc4a6661dd36fc8bd367"
+    },
+    {
+      "path": "docs/plans/CLAUDE.md",
+      "sha256": "a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9"
+    },
+    {
+      "path": "docs/plans/random-star-systems.md",
+      "sha256": "133612f8d45813f85f10120c0ba8787c12763b35bde4c4458b0bc9ea6a3c596f"
+    },
+    {
+      "path": "docs/project-vision.md",
+      "sha256": "c63d1dabb62aeaa30d0098e96718e258a84310187fd058d292a8697ebc3f7bc1"
+    },
+    {
+      "path": "docs/releases/0.4.9.md",
+      "sha256": "84c3340328a20e4d1308af34af0057f1f2b8fbc4a583b429810eebb081c76272"
+    },
+    {
+      "path": "docs/releases/0.5.0.md",
+      "sha256": "f04f409357b2ef64f16d1b2ffcfad388c86c235f41279d7d20f237097e415355"
+    },
+    {
+      "path": "docs/releases/0.5.1.md",
+      "sha256": "f66dc5baac4bb91ad9c56a37c78458d41e717f2a974f84df46a99682ff5d433a"
+    },
+    {
+      "path": "docs/releases/0.5.2.md",
+      "sha256": "6aa734f9c6fc40ed92a637967832b59ed9e5e9beec059ce97bcf337eedd89d79"
+    },
+    {
+      "path": "docs/releases/0.5.4.md",
+      "sha256": "73de6bd90418c7ae3898f87a5e8ad123f9dd25c01221819bcc9862b9cd938391"
+    },
+    {
+      "path": "docs/releases/0.5.5.md",
+      "sha256": "bb1130bf6721ab3f34b1e88e0326768376fcf3457448dee7ac26da593a558840"
+    },
+    {
+      "path": "docs/releases/0.5.6.md",
+      "sha256": "69899a964008b940daa97c62648ec4f04cdeb796755c2b41d8a5233a3d3d8f37"
+    },
+    {
+      "path": "docs/releases/0.6.0.md",
+      "sha256": "7742ea351373147df9ac15e07d68180727a6cf10d07704ab55b14196e2615e2e"
+    },
+    {
+      "path": "docs/releases/0.6.1.md",
+      "sha256": "4a0a5279436e2e91ace70fad9b9109acf690a67f0d72a2527c4105d03e1c284a"
+    },
+    {
+      "path": "docs/releases/0.6.2.md",
+      "sha256": "a6b652842819d9897d79ec5eaccaf96cef164e994ce089617ee72c1f5a9c648e"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/README.md",
+      "sha256": "659f93e324d371bc169e878985f2fac6dd4bc499287acd3bf815481a3e0f6206"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/designer-findings-evidence.md",
+      "sha256": "d14e9e1e6372f79d7be877a729f805653901d03ef66897bc9d5985d4cff797de"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/factory-lessons.md",
+      "sha256": "56ee3ed642c9e823b1e9393abb6ebd18bac41017fed9ae9c0cccdbc0b6174897"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/health-metrics.md",
+      "sha256": "36ec7aaf618d4fe055dfe202b548f0f90656099848fbe46f61cb524867889e37"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/loops-2026-10-29-to-11-02.md",
+      "sha256": "f1acc937c98958538ab2ad58f3498139c307ef2edeadf6b107ec1add6b58e7b5"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/loops-2026-11-03-to-11-08.md",
+      "sha256": "733170b0dae03511126a99f1c9ec31271f078462ab0ce31ba9f074db3517d2e5"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/plans-specs-releases.md",
+      "sha256": "dd94159df5d028d9a30c5dc95ddb6bfb1b67a02f1183189d63644363aab13840"
+    },
+    {
+      "path": "docs/reviews/2026-11-08-retro-0-6-0/tooling-and-harness.md",
+      "sha256": "3d0ba5cbff1508dcf498d1514e77037ece342e96accc6ba4e26936ccce45f870"
+    },
+    {
+      "path": "docs/reviews/2026-11-11-browser-test-konmari.md",
+      "sha256": "899dfebf60ce195e466d0067722e2b65b0340468c024719073ce1f801c652798"
+    },
+    {
+      "path": "docs/reviews/2026-11-11-gauntlet-two-pirates.md",
+      "sha256": "44ae9789cafa0369913b0a295a8192a5f398c83520f9f2eccd2a667009d46a32"
+    },
+    {
+      "path": "docs/reviews/utility-machinery-2026-11-02.md",
+      "sha256": "22b2ab2b6eb46116be2b195931528cdb96b221fe7e617cbaeb5c1eae1ff2414f"
+    },
+    {
+      "path": "docs/specs/factory/cockpit-materials/spec.md",
+      "sha256": "dd96fb770e521dcfa9600d29816608ccd0d737b0e6d2d2acb6ce6d5cab1b0171"
+    },
+    {
+      "path": "docs/specs/factory/design-system/spec.md",
+      "sha256": "05bbb2e65cfe26f47e29f6d02abd415e0c06dcdb92132d152964467c3bad8fee"
+    },
+    {
+      "path": "docs/specs/factory/effects/spec.md",
+      "sha256": "127514bc5d07b4f7e0e1baeac493f812456633ccec6aaede3c725a3995cc703b"
+    },
+    {
+      "path": "docs/specs/factory/monorepo/scaffold.md",
+      "sha256": "05173118cef2065a55b780d9e6f091c68c2925c42a0dda91c7f82eacedc4f6f5"
+    },
+    {
+      "path": "docs/specs/factory/monorepo/spec.md",
+      "sha256": "193e29d70e56fbaad362554319445f268ab57e265d3d1897ec380f8efde6a991"
+    },
+    {
+      "path": "docs/specs/factory/spec.md",
+      "sha256": "c8efe4e5d1bb1bca9b5bff05c65bd3466308a735e3e98fd4cedb277c750fa6ee"
+    },
+    {
+      "path": "docs/specs/game/active-ship/spec.md",
+      "sha256": "3a6bc4e061cfe6a0160f469917a55188d58aa318827c51bfa984ac2e200206c1"
+    },
+    {
+      "path": "docs/specs/game/camera/spec.md",
+      "sha256": "c1affe05baf9989cef1ebb896544ae428b9c976f5c8f87b039b9df37e7b2fe96"
+    },
+    {
+      "path": "docs/specs/game/controls/spec.md",
+      "sha256": "35a98a3612b13b8065166de0703c71b69cb8867b86c4666dea87641848ab1ab8"
+    },
+    {
+      "path": "docs/specs/game/derelicts/spec.md",
+      "sha256": "4d8920e32cc4d57dab7725700803da2823b0798e1a991866d19bb67cdf51d854"
+    },
+    {
+      "path": "docs/specs/game/dialogs/spec.md",
+      "sha256": "aa2fab2790dea8f09bc7783d9873162beadf4a733e26244211856d1da5ad214a"
+    },
+    {
+      "path": "docs/specs/game/experimental/spec.md",
+      "sha256": "5bf294087e4857996b214856fe992e9cdb8b20849a2f23f89bcdab48d249f9c2"
+    },
+    {
+      "path": "docs/specs/game/game-screen/spec.md",
+      "sha256": "87970bd29c7ccf5a3575fc1744f223b919c41129ce19e5e8f53b409978a43c10"
+    },
+    {
+      "path": "docs/specs/game/gauntlet/spec.md",
+      "sha256": "87671fd36f9931149b150339881d7bf00678e55bb7b557bcfabe3e61b3c7f0ae"
+    },
+    {
+      "path": "docs/specs/game/hangar/mount-planner/spec.md",
+      "sha256": "97217881613d2b7f554228913b5cf1522dce40b3fbc1499ad8af5d9e9139d56d"
+    },
+    {
+      "path": "docs/specs/game/hangar/spec.md",
+      "sha256": "b0aa318f62e81ff3c4e14da5ad46fc3687fe12b621ea9dc7d806c2cbb76b57e7"
+    },
+    {
+      "path": "docs/specs/game/ion-point-defence/spec.md",
+      "sha256": "7fcc87e9b26e8528cbfcc4d819ed7ae2ea3e4d1fac636a5a4cfb7060ddf55dd1"
+    },
+    {
+      "path": "docs/specs/game/landing-page/hints.md",
+      "sha256": "c3ac24d959d0932c162ee8c4c6f63a445b34fdccacaab542252bf7c94c0f5d0e"
+    },
+    {
+      "path": "docs/specs/game/landing-page/spec.md",
+      "sha256": "8b66628c4ffd612a04c4f6213d2a90e89be0a81d5cb94bc29f41be9b455aab72"
+    },
+    {
+      "path": "docs/specs/game/light-ion-cannon/spec.md",
+      "sha256": "bb09160bb7d789eacc2da226074ac7ca7b15137aa2eb8ddb7fd6eb8e40c5a854"
+    },
+    {
+      "path": "docs/specs/game/options/spec.md",
+      "sha256": "ef680840485c8cfa3a332dc2a41804c85a45c7701ed3940925f5acf6fc44816e"
+    },
+    {
+      "path": "docs/specs/game/parts/spec.md",
+      "sha256": "9fcad08f9eae80bb5fa074af262c71b4219f488624d3aaf3c8571404e30b668c"
+    },
+    {
+      "path": "docs/specs/game/render/fx.md",
+      "sha256": "77811764352bec9f2caec27c6bd657fd10e2e6c00081530c28c9cb38a5c8494c"
+    },
+    {
+      "path": "docs/specs/game/render/lfx.md",
+      "sha256": "e5f2e6578bc49e53800b77e282edb77f6454f7a9033b84ac42c2def154c4ef52"
+    },
+    {
+      "path": "docs/specs/game/render/spec.md",
+      "sha256": "849c24503e42456827987d7caf1e7510d3c675c61aeb77dfec9b006fb04cd1d5"
+    },
+    {
+      "path": "docs/specs/game/render/world.md",
+      "sha256": "81bf0775114a7cde07947aceb25718d4e0cbf625ec611a0c910887d16cdc8bee"
+    },
+    {
+      "path": "docs/specs/game/scores/spec.md",
+      "sha256": "a92fe2ced27bea868e0a875d92f4985278f47c88f9a5ebffbe63d9eb5a639797"
+    },
+    {
+      "path": "docs/specs/game/ships/spec.md",
+      "sha256": "6fa5a3774a921da48e56349beea4f481acb34c658eff405610d2ceeba870be62"
+    },
+    {
+      "path": "docs/specs/game/spec.md",
+      "sha256": "ba8837f2afaa4a98953108d05db8702b5bcf3319fe06a8b87a3856be7f264f12"
+    },
+    {
+      "path": "docs/specs/game/survival/spec.md",
+      "sha256": "c5829c4cbb462e79dd5c842e4496dbd7e30f635e9d7d334f1b08466a96e90f39"
+    },
+    {
+      "path": "docs/specs/game/test-flight/spec.md",
+      "sha256": "d5b1f31f0a53801a3f626ec0a9750ddbd0840c03048ddc7441e44edd4e540343"
+    },
+    {
+      "path": "docs/specs/game/world/derelict/spec.md",
+      "sha256": "e819f9e84b7d4d2fa0dfaf7d1c575b0ee915a54e69d1149a0ba4828651367430"
+    },
+    {
+      "path": "docs/specs/game/world/gravity-field/spec.md",
+      "sha256": "e3e888771615d3673574872e7c6dcd92b33125fef9031f75244c52a46c659266"
+    },
+    {
+      "path": "docs/specs/game/world/planets/spec.md",
+      "sha256": "f01c75b5f5dc4a9c25253c36eb0d52393bc93b437d553b91579f3cf0ac4d8818"
+    },
+    {
+      "path": "docs/specs/game/world/star/spec.md",
+      "sha256": "b4f9beb62bed33c0ad2cfb26d1dfe42c5b0b964dd1590837889fa9932af57848"
+    },
+    {
+      "path": "docs/specs/game/world/systems/spec.md",
+      "sha256": "eab87dcd34c25ffdc99374dab49d8d3c546bfefcbac8063a11defb6d3eec2485"
+    },
+    {
+      "path": "docs/specs/lab/design-studies/spec.md",
+      "sha256": "d3905ee052bba8acc387e643317a79fcd4f27d7af6412d5e18b26c80f2b585ce"
+    },
+    {
+      "path": "docs/specs/lab/flight-scene-instrument/spec.md",
+      "sha256": "17d78a9dcba11113088db73439a4e880a71cf2fc9a83ccd58f395e13c9dde538"
+    },
+    {
+      "path": "docs/specs/lab/gauntlet-bench/spec.md",
+      "sha256": "cd48b759698600f5f5c5c9f85263377561a21649220c219350f7c3dfd44e742c"
+    },
+    {
+      "path": "docs/specs/lab/gravity-tuning/spec.md",
+      "sha256": "f11e75d92a47d7d143e3196003b0fb98776944f287b68deb63da17a89f7dae19"
+    },
+    {
+      "path": "docs/specs/lab/motion-instrument/spec.md",
+      "sha256": "ca744c1b11b6437e21803cce8c18ebced944499868cac08d597a80774ac06d22"
+    },
+    {
+      "path": "docs/specs/lab/render-model/spec.md",
+      "sha256": "b1dc7c670a72b7381975243af5fe82884d7c1f34ba56f9eceb0b916fb838a7c3"
+    },
+    {
+      "path": "docs/specs/lab/render-performance/spec.md",
+      "sha256": "b2eac58208671cbd0301f9d0c2213d59355c31fc7e8a34291df8d373f2445b68"
+    },
+    {
+      "path": "docs/specs/lab/spec.md",
+      "sha256": "dec06a1c8437d6390d2f44139d48b3584f4127407b5f7e24eca938d5aa3b91cb"
+    },
+    {
+      "path": "docs/specs/lab/workbench/spec.md",
+      "sha256": "41258bacdbcba54dffd0b8630ffe788baa24a89066605efd7143011278028241"
+    },
+    {
+      "path": "docs/vision.md",
+      "sha256": "82e383d3090d1bf8a2cc77b327334785b600bea962ed0c78516e3c6059b977c5"
+    },
+    {
+      "path": "docs/writing-pruning.md",
+      "sha256": "04d6f250fce90375556db9849a21cc50b0850895b655cabe17e21020fc6eec72"
+    },
+    {
+      "path": "outgoing/asdlc-feedback-void-drift.md",
+      "sha256": "96183da438c72e16e4faa3c96dbcd67dee534ab571226ee7834ffcdaa228eb33"
+    },
+    {
+      "path": "package.json",
+      "sha256": "a3b0142096312c764393e2522d65f1d9c47d779b0ddd533d27c0b1209aaf2f44"
+    },
+    {
+      "path": "scripts/check-contracts.mjs",
+      "sha256": "0378143e4a49fc0eeb9e3ed3893fa061308533d66c92cbdcb5da149f348a9d65"
+    },
+    {
+      "path": "scripts/convert-logomark.py",
+      "sha256": "f27b3f010dfc5902a1b88eef116409a2bc7d7756e00aa0bd24236e495a83a4db"
+    },
+    {
+      "path": "scripts/profile-fx.mjs",
+      "sha256": "1bb0a3cabbe7d73458aa2eeda66e06b3ffe1448e780b7accabe42edff5623351"
+    },
+    {
+      "path": "scripts/release-smoke.mjs",
+      "sha256": "aeea104ef50abad216942e96744eb8a76bfd405b1ec7b6411ecbba52103bbe95"
+    },
+    {
+      "path": "scripts/release.mjs",
+      "sha256": "ca083b17d3dbacfc3bfde9cca46d9a955997c4618c444afdff185e44aa7929b1"
+    },
+    {
+      "path": "scripts/release.test.mjs",
+      "sha256": "b995b157d939d33aa2e0c1ae0a3a900d8b3ee90429e71d7b11402b0baac8e6bf"
+    },
+    {
+      "path": "scripts/tuning-apply.mjs",
+      "sha256": "b093cd07dc3b75197c7264b1baa08f35b8eb643f4e699315c9804a53d20cdb95"
+    },
+    {
+      "path": "scripts/verification.test.mjs",
+      "sha256": "459900e07aa5d33f319d7c87a9d4a3cb8a029b76999b1bead9faf3fa8bd188ec"
+    },
+    {
+      "path": "scripts/verify-backend.mjs",
+      "sha256": "d9217a91513a20aa3be4f419ea9ad9a1e25ba4799e184ec0efe305f8f66a2f78"
+    },
+    {
+      "path": "scripts/verify.mjs",
+      "sha256": "036f1d21bcd15f931d8f1baad8ee972fa2c8dc17a403720880da576022c775ec"
+    }
+  ]
+}

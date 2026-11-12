@@ -1,0 +1,48 @@
+--- a/src/pages/getting-started.md
++++ b/src/pages/getting-started.md
+@@ -22,7 +22,7 @@
+ 
+ <figure>
+   <img src="/images/agentic-double-diamond.svg" alt="Agentic Double Diamond"/>
+-  <figcaption>In the ASDLC, the <strong>Spec</strong> becomes the primary source code, and "Delivery" becomes an automated <strong>assembly</strong> step. The human role shifts from <i>Crafting</i> to Engineering.</figcaption>
++  <figcaption>In the ASDLC, the <strong>Spec</strong> records agreed intent and contracts; executable code determines runtime behavior. Agents use the spec to guide <strong>assembly</strong>, and implementation discoveries feed back into the living spec.</figcaption>
+ </figure>
+ 
+ ## How It Works?
+--- a/src/content/patterns/agentic-double-diamond.md
++++ b/src/content/patterns/agentic-double-diamond.md
+@@ -5,10 +5,10 @@
+ relatedIds: ["patterns/experience-modeling", "patterns/the-spec", "practices/adversarial-requirement-review", "practices/adversarial-code-review", "concepts/extreme-programming"]
+ references:
+   - { title: "The Double Diamond", author: "Design Council", url: "https://www.designcouncil.org.uk/our-work/skills-learning/tools-frameworks/framework-for-innovation-design-council-s-evolved-double-diamond/", type: "website", annotation: "Origin of the Diverge-Converge model.", accessed: 2026-02-12 }
+-  - { title: "Software Craftsmanship in the AI Era", author: "Codurance", url: "https://www.codurance.com/", type: "website", annotation: "Source of the 'Spec is Code' philosophy.", accessed: 2026-02-12 }
++  - { title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl", author: "Birgitta Böckeler", url: "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html", type: "website", published: 2025-10-15, annotation: "Distinguishes spec-first, spec-anchored, and spec-as-source workflows; supports the terminology used here, not an effectiveness claim.", accessed: 2026-11-12 }
+   - { title: "Before I Ask AI to Build, I Ask It to Challenge", author: "Daniel Donbavand", url: "https://danieldonbavand.com/2026/02/12/before-i-ask-ai-to-build-i-ask-it-to-challenge/", type: "website", annotation: "Source of the Adversarial Requirement Review pattern.", accessed: 2026-02-12 }
+   - { title: "AI-Driven Development Framework", author: "Effective Delivery", url: "https://effectivedelivery.io/p/ai-driven-development-framework", type: "website", annotation: "A practical implementation of the Agentic Double Diamond using GitHub Copilot showing a 30-40% speed increase.", accessed: 2026-02-25 }
+-lastUpdated: 2026-02-25
++lastUpdated: 2026-11-12
+ status: "Experimental"
+ ---
+ 
+@@ -20,7 +20,7 @@
+ 
+ ![Agentic Double Diamond Diagram](/images/agentic-double-diamond.svg)
+ 
+-In this model, the **Spec** becomes the primary source code, and "Coding" becomes an automated assembly step. The human role shifts from *Implementation* to *Context Engineering* and *Verification*.
++In this model, the **Spec** records agreed intent, architectural constraints, and observable contracts. Executable code determines runtime behavior. Agents use the spec to guide implementation; humans shape the context and verify the result.
+ 
+ ## The Problem: Lossy Handoffs
+ 
+@@ -69,10 +69,10 @@
+ *   **Gate 1 (The Checkpoint):** **[Adversarial Requirement Review](/practices/adversarial-requirement-review)**.
+     *   Before writing a single line of a Spec, an Adversarial Agent challenges the strategy constraints. If it fails, we loop back to Discover.
+ 
+-### Phase 3: SPEC (The New Coding)
++### Phase 3: SPEC (The Living Contract)
+ *From Insight to Blueprint.*
+ 
+-This is the most significant shift. In the Agentic SDLC, **Spec Writing IS Coding**. The Spec is the permanent, living source of truth. It defines the "What" (Behavior) and the "How" (Architecture) in a format rigorous enough for agents to execute.
++The Spec is the durable record of intended behavior, architectural constraints, and verification criteria. Following the spec-anchored approach described in The Spec, it persists alongside the implementation and is refined as implementation reveals new constraints. This uses Böckeler’s distinction between spec-anchored and spec-as-source workflows: the spec remains context for development and maintenance rather than becoming the only source humans edit.
+ 
+ **Context Output:** **[The Spec](/patterns/the-spec)** (Context, Blueprint, Contract).
+ 

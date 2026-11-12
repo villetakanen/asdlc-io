@@ -1,0 +1,3025 @@
+{
+  "baseline_commit": "49336a6e5675da1b50b7179f3baaf28f6d3a7bb4",
+  "scope": "Committed top-level Markdown records under docs/loop-evidence; nested artifacts and untracked/working-tree records excluded. Metadata inventory only, not semantic review.",
+  "inventory_count": 69,
+  "records": [
+    {
+      "path": "docs/loop-evidence/2026-10-29-planet-purpose-scope.md",
+      "sha256": "95903216ff0f2db6e81d73562b11dff778c88a5addc7385f1984098f4e220476",
+      "date_from_path": "2026-10-29",
+      "name": "2026-10-29-planet-purpose-scope.md",
+      "title": "Planet-purpose study: closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Planet-purpose study: closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent, changes, and decisions",
+          "line": 14
+        },
+        {
+          "level": 2,
+          "text": "Revision and provenance",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence and limits",
+          "line": 56
+        },
+        {
+          "level": 2,
+          "text": "Retention gaps",
+          "line": 90
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "29 October 2026. Cycle: `planet-purpose-2026-10-29` only.",
+          "line": 9
+        },
+        {
+          "field": "outcome",
+          "value": "designer declared the entire study unsuccessful, requested a retrospective,",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-29-planet-roles-cycle.md",
+      "sha256": "32dc7779bc76e269c8f186ec6d7355581d5bf611c75346a9cfb7cc26d03b4b1f",
+      "date_from_path": "2026-10-29",
+      "name": "2026-10-29-planet-roles-cycle.md",
+      "title": "Planet roles study — stopped cycle evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Planet roles study — stopped cycle evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 15
+        },
+        {
+          "level": 2,
+          "text": "Retained artifacts and inspected identity",
+          "line": 65
+        },
+        {
+          "level": 2,
+          "text": "Checks and their limits",
+          "line": 80
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "29 October 2026. Scope: this chat's fresh cycle at",
+          "line": 9
+        },
+        {
+          "field": "outcome",
+          "value": "the designer stopped the study and requested a failure assessment.",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-29-planetary-design-study.md",
+      "sha256": "f3dbc34da0a63a240e47589c01ea24f0e28fc181ca7e9d995b30ad80a30094b5",
+      "date_from_path": "2026-10-29",
+      "name": "2026-10-29-planetary-design-study.md",
+      "title": "Planetary design study: closed-loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Planetary design study: closed-loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Restart cycle: second failure",
+          "line": 14
+        },
+        {
+          "level": 2,
+          "text": "Intent and boundaries",
+          "line": 62
+        },
+        {
+          "level": 2,
+          "text": "Conversation sequence",
+          "line": 72
+        },
+        {
+          "level": 2,
+          "text": "Inspected materials",
+          "line": 103
+        },
+        {
+          "level": 2,
+          "text": "Local changes and verification",
+          "line": 125
+        },
+        {
+          "level": 2,
+          "text": "Publication and gaps",
+          "line": 150
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "29 October 2026. Outcome: the designer declared this study cycle failed and",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-30-engine-effects.md",
+      "sha256": "ff2f66effc276b37c3469a4d75abb130d3556e6c89a2e1cab71a0ed140fdd437",
+      "date_from_path": "2026-10-30",
+      "name": "2026-10-30-engine-effects.md",
+      "title": "Engine Effects — study and alpha patch 0.3.5",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Engine Effects — study and alpha patch 0.3.5",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Delivered revisions",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 56
+        },
+        {
+          "level": 2,
+          "text": "Publication and live verification",
+          "line": 82
+        },
+        {
+          "level": 2,
+          "text": "Limits and retention",
+          "line": 99
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-30-ship-silhouettes.md",
+      "sha256": "779ed506364cfe9c79fb57609b4bc80115b7508da8a8bf163f8cd5a66ace7f9c",
+      "date_from_path": "2026-10-30",
+      "name": "2026-10-30-ship-silhouettes.md",
+      "title": "Ship silhouettes study — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ship silhouettes study — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Delivered local changes",
+          "line": 37
+        },
+        {
+          "level": 2,
+          "text": "Inspected findings and limits",
+          "line": 57
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 78
+        },
+        {
+          "level": 2,
+          "text": "Remaining evidence gaps",
+          "line": 102
+        },
+        {
+          "level": 2,
+          "text": "Integration and tuning closure — 2026-10-30",
+          "line": 111
+        },
+        {
+          "level": 3,
+          "text": "Scope and delivered revision",
+          "line": 113
+        },
+        {
+          "level": 3,
+          "text": "Checks and identity",
+          "line": 137
+        },
+        {
+          "level": 3,
+          "text": "Human feedback and findings",
+          "line": 170
+        },
+        {
+          "level": 3,
+          "text": "Publication and remaining limits",
+          "line": 185
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-engine-identities.md",
+      "sha256": "4cb61a3ab82551c84e9ce0cca4a2f145105f673f300662d32df8f4507597edf3",
+      "date_from_path": "2026-10-31",
+      "name": "2026-10-31-engine-identities.md",
+      "title": "Engine identities and integration — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Engine identities and integration — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Decisions and delivery",
+          "line": 9
+        },
+        {
+          "level": 2,
+          "text": "Verification and publication",
+          "line": 33
+        },
+        {
+          "level": 2,
+          "text": "Human feedback at closure",
+          "line": 62
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits and closure boundary",
+          "line": 80
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ion-engines.md",
+      "sha256": "a7327fb373ec5b12b30e98ef9999a07625ad6905d5b443e4f55fce5fe1ad76c2",
+      "date_from_path": "2026-10-31",
+      "name": "2026-10-31-ion-engines.md",
+      "title": "Ion engine visuals and 0.4.1 — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ion engine visuals and 0.4.1 — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent, decisions and changes of direction",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Delivered implementation and scope",
+          "line": 45
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 68
+        },
+        {
+          "level": 2,
+          "text": "Publication states",
+          "line": 100
+        },
+        {
+          "level": 2,
+          "text": "Limits and remaining unknowns",
+          "line": 121
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ion-stream-failure.md",
+      "sha256": "48f68839e4cb19a198a9e56fbc2b5f47cfddbffd9e5fdc58760d0eecbd413af8",
+      "date_from_path": "2026-10-31",
+      "name": "2026-10-31-ion-stream-failure.md",
+      "title": "Ion engine study — failed and closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ion engine study — failed and closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Delivered work and changes of direction",
+          "line": 14
+        },
+        {
+          "level": 2,
+          "text": "Human assessment",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Revisions and publication",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Checks and observed failures",
+          "line": 57
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 83
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "2026-10-31 (Europe/Helsinki).",
+          "line": 3
+        },
+        {
+          "field": "outcome",
+          "value": "owner-declared failure; study deleted at the owner's request.",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-10-31-ship-slot-language.md",
+      "sha256": "dc9a5fe9fd55634b50a8e62d1ed33126c3a80419d5e52e5006e6ead9adc65f42",
+      "date_from_path": "2026-10-31",
+      "name": "2026-10-31-ship-slot-language.md",
+      "title": "Ship slot language — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ship slot language — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Decisions and delivery",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Verification and revision evidence",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Human feedback and observed writing issues",
+          "line": 60
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 83
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-base-movement-ion.md",
+      "sha256": "4485008eea541df1686e280c024a836107fb32a4877275c4938f22b006c53b7e",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-base-movement-ion.md",
+      "title": "Base movement and ion integration — 0.4.2",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Base movement and ion integration — 0.4.2",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivery and publication",
+          "line": 15
+        },
+        {
+          "level": 2,
+          "text": "Checks and evidence",
+          "line": 35
+        },
+        {
+          "level": 2,
+          "text": "Remaining evidence limits",
+          "line": 70
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-default-stabilizers.md",
+      "sha256": "b36e0189ac34a992594a83bd4e199d6ba46be97a8e51991f98df2d25ee061908",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-default-stabilizers.md",
+      "title": "Standard-flight defaults — 0.4.4",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Standard-flight defaults — 0.4.4",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Same-version inverted-controls update",
+          "line": 30
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-lab-instrument.md",
+      "sha256": "f046806a4e4197e024ae7fc8b4ed15593342bdae188a363de4f42aceaa8f9bbc",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-lab-instrument.md",
+      "title": "Lab instrument study and v1 — closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Lab instrument study and v1 — closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Sequence, owner decisions and feedback",
+          "line": 19
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 69
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 93
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 120
+        },
+        {
+          "level": 2,
+          "text": "Findings (observations only)",
+          "line": 124
+        },
+        {
+          "level": 2,
+          "text": "Unknowns and evidence gaps",
+          "line": 135
+        },
+        {
+          "level": 2,
+          "text": "Later evidence (after closure)",
+          "line": 146
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-lhi-wasp-study.md",
+      "sha256": "dba1e69f7392cf55e58f4b9db92e7dc0be0e123f6bf24f38953ed2092f6c7d29",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-lhi-wasp-study.md",
+      "title": "LHI Wasp design study — failed and closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "LHI Wasp design study — failed and closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Delivered work and changes of direction",
+          "line": 19
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 48
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 61
+        },
+        {
+          "level": 2,
+          "text": "Interpretation at closure — attributed, not a lesson",
+          "line": 68
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 89
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "2026-11-01 (Europe/Helsinki). Branch `claude/lhi-wasp-design-study-a9008a`.",
+          "line": 3
+        },
+        {
+          "field": "outcome",
+          "value": "owner-declared failure. Filed as failed on Claude Fable 5.1 at medium",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-path-instrument-closure.md",
+      "sha256": "c7679265cbc974951f3d848a5aca328f3dcf700f77a94b0df031340a8671065a",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-path-instrument-closure.md",
+      "title": "Path instrument study — closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Path instrument study — closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Sequence and human feedback",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 38
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 50
+        },
+        {
+          "level": 2,
+          "text": "Findings (observations only)",
+          "line": 54
+        },
+        {
+          "level": 2,
+          "text": "Unknowns and evidence gaps",
+          "line": 64
+        },
+        {
+          "level": 2,
+          "text": "Requested follow-ups (not inferred by this record)",
+          "line": 71
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-plasma-behaviour-closure.md",
+      "sha256": "3f5e214e04170dba47e2510af4e2582f704cc5ec2da4e923390b479bad0da177",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-plasma-behaviour-closure.md",
+      "title": "Plasma behaviour study — closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Plasma behaviour study — closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Sequence and human assessment",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Extraction and boundaries",
+          "line": 23
+        },
+        {
+          "level": 2,
+          "text": "Source and revision state",
+          "line": 33
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence and limits",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Pending investigation",
+          "line": 56
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-s3-colour-roles.md",
+      "sha256": "13abce053a9f89e4ffbc3d67dcf34119378e8fadf273b18be46fdf2c413398f5",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-s3-colour-roles.md",
+      "title": "Opening-screen S3: colour roles — closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Opening-screen S3: colour roles — closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Sequence, owner decisions and feedback",
+          "line": 22
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 64
+        },
+        {
+          "level": 2,
+          "text": "Browser evidence",
+          "line": 98
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 105
+        },
+        {
+          "level": 2,
+          "text": "Findings (observations only)",
+          "line": 112
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 125
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-01-starter-fleet.md",
+      "sha256": "72f972fdebaf32dd2c4270904f53c0a7c487c38e3d5fbf5deb4816f15cc59a14",
+      "date_from_path": "2026-11-01",
+      "name": "2026-11-01-starter-fleet.md",
+      "title": "Fitted starter fleet — 0.4.3",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Fitted starter fleet — 0.4.3",
+          "line": 1
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-energy-support-closure.md",
+      "sha256": "d3c2e47409508a2c8b82d78cb08e3c093ff241d36061fc5be9ce38a8ba8e0222",
+      "date_from_path": "2026-11-02",
+      "name": "2026-11-02-energy-support-closure.md",
+      "title": "Extra-energy support study — closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Extra-energy support study — closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and delivered work",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Restart brief and owner feedback",
+          "line": 42
+        },
+        {
+          "level": 2,
+          "text": "Checks and evidence limits",
+          "line": 66
+        },
+        {
+          "level": 2,
+          "text": "Revision and publication",
+          "line": 84
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-open-frame-machinery-closure.md",
+      "sha256": "b9658d9bff0f4dd74fb3ab8fb16a14d6067f27ec97766799bf21404b3dcef65d",
+      "date_from_path": "2026-11-02",
+      "name": "2026-11-02-open-frame-machinery-closure.md",
+      "title": "Open-frame machinery — closed exploration",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Open-frame machinery — closed exploration",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and delivered evidence",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Human assessment and discussion outcomes",
+          "line": 18
+        },
+        {
+          "level": 2,
+          "text": "Restart prompt developed in chat",
+          "line": 26
+        },
+        {
+          "level": 2,
+          "text": "Revision, checks and gaps",
+          "line": 48
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-potential-well.md",
+      "sha256": "35267281e41c4c47d65ffc62067044cbd51f71b1fcfa7f82eb0fa3811fea694c",
+      "date_from_path": "2026-11-02",
+      "name": "2026-11-02-potential-well.md",
+      "title": "Potential Well — design, implementation and release",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Potential Well — design, implementation and release",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Delivered revisions and publication",
+          "line": 35
+        },
+        {
+          "level": 2,
+          "text": "Checks and observed failures",
+          "line": 50
+        },
+        {
+          "level": 2,
+          "text": "Deployment and live evidence",
+          "line": 71
+        },
+        {
+          "level": 2,
+          "text": "Findings, limits and retention",
+          "line": 88
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-ship-utility-language-failed-study.md",
+      "sha256": "b6786da3f5d323c4d2a9d7cd16057f4c553acde876927dc712e61a34b6d9b392",
+      "date_from_path": "2026-11-02",
+      "name": "2026-11-02-ship-utility-language-failed-study.md",
+      "title": "Ship utility language — failed and closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ship utility language — failed and closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Delivered work and human judgment",
+          "line": 13
+        },
+        {
+          "level": 2,
+          "text": "Revision and publication",
+          "line": 23
+        },
+        {
+          "level": 2,
+          "text": "Checks and evidence limits",
+          "line": 27
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-02-utilities-failed-study.md",
+      "sha256": "53c568d84737b36bbb59bb006617cf376a4293e3041d16d647729f7846c32837",
+      "date_from_path": "2026-11-02",
+      "name": "2026-11-02-utilities-failed-study.md",
+      "title": "Utilities study — failed and closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Utilities study — failed and closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and boundaries",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Delivered exploration and feedback",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Interpretations and unresolved work",
+          "line": 25
+        },
+        {
+          "level": 2,
+          "text": "Revision and publication",
+          "line": 31
+        },
+        {
+          "level": 2,
+          "text": "Check evidence and gaps",
+          "line": 35
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-factory-harness-amendments.md",
+      "sha256": "ea4c81819521987bb72f8983e7acda2af94397bbc6adde259bade48432dea299",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-factory-harness-amendments.md",
+      "title": "Factory harness amendments — 2026-11-03",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Factory harness amendments — 2026-11-03",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Authorized scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Implementation evidence",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Provenance and limits",
+          "line": 77
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-fx-alpha-0.5.0.md",
+      "sha256": "7199103356dfde622bd299fa73afd97e7411b6b61165270e465c7057bb172fe2",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-fx-alpha-0.5.0.md",
+      "title": "Arcade FX and alpha 0.5.0",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Arcade FX and alpha 0.5.0",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivered work and provenance",
+          "line": 18
+        },
+        {
+          "level": 2,
+          "text": "Checks and observations",
+          "line": 32
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 66
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 80
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-fx-surface-repair.md",
+      "sha256": "5548e4b77538211745763f339ce2e80d84e74152a672fe8f9a6998c817db7809",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-fx-surface-repair.md",
+      "title": "Persistent FX surface repair — 2026-11-03",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Persistent FX surface repair — 2026-11-03",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Delivered behavior",
+          "line": 22
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Performance and appearance evidence",
+          "line": 59
+        },
+        {
+          "level": 2,
+          "text": "Publication and concurrent work at repair closure",
+          "line": 91
+        },
+        {
+          "level": 2,
+          "text": "Later owner-approved 0.5.0 publication",
+          "line": 101
+        },
+        {
+          "level": 2,
+          "text": "Closure inspection and evidence limits",
+          "line": 138
+        },
+        {
+          "level": 2,
+          "text": "Physical-device owner report and final closure",
+          "line": 170
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-gravity-coil-stopped.md",
+      "sha256": "14a0523830caa5821b65f13dd727ae98af06421af87b10748936747c6942497b",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-gravity-coil-stopped.md",
+      "title": "Gravity coil study — stopped, 2026-11-03",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Gravity coil study — stopped, 2026-11-03",
+          "line": 1
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-lhi-fiddler.md",
+      "sha256": "d5900bb140d82768d8370906e5033568a6c47f84d0b0b5c0f8ddd7c857caab8f",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-lhi-fiddler.md",
+      "title": "LHI Fiddler — design study and flight integration",
+      "headings": [
+        {
+          "level": 1,
+          "text": "LHI Fiddler — design study and flight integration",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 9
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes and revisions",
+          "line": 42
+        },
+        {
+          "level": 2,
+          "text": "Checks and evidence",
+          "line": 67
+        },
+        {
+          "level": 2,
+          "text": "Publication evidence, observed later",
+          "line": 103
+        },
+        {
+          "level": 2,
+          "text": "Human feedback and remaining limits",
+          "line": 121
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-square-switch.md",
+      "sha256": "b83a9fc1515e35b26301c391b015139e5b5baf001111488afd7db77a70703331",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-square-switch.md",
+      "title": "Square Switch design-system loop",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Square Switch design-system loop",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivered revision",
+          "line": 15
+        },
+        {
+          "level": 2,
+          "text": "Checks and publication",
+          "line": 27
+        },
+        {
+          "level": 2,
+          "text": "Owner decision",
+          "line": 39
+        },
+        {
+          "level": 2,
+          "text": "Findings and limits",
+          "line": 45
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-03-top-scores.md",
+      "sha256": "ad32a145b2a07638429f8d2d3998e66e352b0166b786b50f927d05d63b696ae8",
+      "date_from_path": "2026-11-03",
+      "name": "2026-11-03-top-scores.md",
+      "title": "Top Scores and run-complete UI — 2026-11-03",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Top Scores and run-complete UI — 2026-11-03",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Local changes",
+          "line": 16
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 33
+        },
+        {
+          "level": 2,
+          "text": "Visual observations and limits",
+          "line": 60
+        },
+        {
+          "level": 2,
+          "text": "Publication and closure boundary",
+          "line": 74
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-framing-direction.md",
+      "sha256": "298936fc8704170169d1f8c85bc56206f3a97761ff7b767e2ad0a9dd0fee9e35",
+      "date_from_path": "2026-11-04",
+      "name": "2026-11-04-camera-framing-direction.md",
+      "title": "Camera framing direction and charter archive — closure evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Camera framing direction and charter archive — closure evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Sequence and owner feedback",
+          "line": 24
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 80
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 95
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 111
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 117
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 145
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-framing-trial.md",
+      "sha256": "d63644a373b79497ac9fe0ffc85875ae8931172228ce01c994babd3e2cdc85d7",
+      "date_from_path": "2026-11-04",
+      "name": "2026-11-04-camera-framing-trial.md",
+      "title": "Camera framing trial (2026-11-04)",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Camera framing trial (2026-11-04)",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered (not on `feat/0-5-0`)",
+          "line": 19
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 35
+        },
+        {
+          "level": 2,
+          "text": "Agent-side browser observations (before the owner flight)",
+          "line": 56
+        },
+        {
+          "level": 2,
+          "text": "Owner feedback (2026-11-04, after flying both modes)",
+          "line": 68
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 77
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-04-camera-trial-2.md",
+      "sha256": "4855bbf97abef2f4783287aea2377f45f098c037c8471fbe57a45d739ef40434",
+      "date_from_path": "2026-11-04",
+      "name": "2026-11-04-camera-trial-2.md",
+      "title": "Camera trial 2 (2026-11-04)",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Camera trial 2 (2026-11-04)",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered (not on `feat/0-5-0`)",
+          "line": 18
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 39
+        },
+        {
+          "level": 2,
+          "text": "Flight",
+          "line": 67
+        },
+        {
+          "level": 2,
+          "text": "Owner answers",
+          "line": 77
+        },
+        {
+          "level": 3,
+          "text": "Scenario 1: sun-only field, sun skim and climb away",
+          "line": 81
+        },
+        {
+          "level": 3,
+          "text": "Build change after scenario 1",
+          "line": 107
+        },
+        {
+          "level": 2,
+          "text": "Agent-side observations",
+          "line": 118
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-game-screen-and-steering.md",
+      "sha256": "de2c78b8f71a20760f84e3414c5f78ebaa7c9115493d636e55196e455c8b4cbc",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-game-screen-and-steering.md",
+      "title": "Game screen and steering — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Game screen and steering — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Delivered revision",
+          "line": 23
+        },
+        {
+          "level": 2,
+          "text": "Human feedback and observed behavior",
+          "line": 40
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 54
+        },
+        {
+          "level": 2,
+          "text": "Visual artifacts and retention",
+          "line": 84
+        },
+        {
+          "level": 2,
+          "text": "Publication and remaining limits",
+          "line": 96
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-harness-lessons-and-prune.md",
+      "sha256": "abfa2850b78908a4a9e2107f740632b0c743382c91bf4c2bfdec8bb4f8ab6d45",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-harness-lessons-and-prune.md",
+      "title": "Harness lessons assessment and repository prune",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Harness lessons assessment and repository prune",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 51
+        },
+        {
+          "level": 2,
+          "text": "Sub-agent reports",
+          "line": 86
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 99
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 105
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-interstellar-arrival-release.md",
+      "sha256": "3ff375172b983d8c348e77ab3efb4627ed41221000462e27c378c33a8a8a0da1",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-interstellar-arrival-release.md",
+      "title": "Interstellar arrival and 0.5.4 release",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Interstellar arrival and 0.5.4 release",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes and revisions",
+          "line": 19
+        },
+        {
+          "level": 2,
+          "text": "Verification and repairs",
+          "line": 50
+        },
+        {
+          "level": 2,
+          "text": "Publication and live evidence",
+          "line": 82
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 102
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-landing-wasp.md",
+      "sha256": "d1e04fce0f0e051c19cb26b5799d9b3695227442081137944463846961ff00cf",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-landing-wasp.md",
+      "title": "Landing-page incoming Wasp — closed",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Landing-page incoming Wasp — closed",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Decisions and delivery",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Publication and evidence limits",
+          "line": 54
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-motion-instrument-conformance.md",
+      "sha256": "2f49240a0a5809f08c7681e9af40bc785eb275ab0df65b6b97abc684ad522c36",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-motion-instrument-conformance.md",
+      "title": "Motion instrument conformance implementation attempt (2026-11-05)",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Motion instrument conformance implementation attempt (2026-11-05)",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Changes and revision",
+          "line": 16
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 26
+        },
+        {
+          "level": 2,
+          "text": "Workspace state and evidence gaps",
+          "line": 34
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-motion-instrument-contract-review.md",
+      "sha256": "cc5358452e042612040a30f908e834d91c53d235fe75284f2209bc60e388d724",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-motion-instrument-contract-review.md",
+      "title": "Motion instrument contract review — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Motion instrument contract review — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Owner decisions recorded in the conversation",
+          "line": 17
+        },
+        {
+          "level": 2,
+          "text": "Delivered revisions and publication",
+          "line": 47
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 66
+        },
+        {
+          "level": 2,
+          "text": "Interrupted migration investigation",
+          "line": 105
+        },
+        {
+          "level": 2,
+          "text": "Working-tree boundaries and evidence gaps",
+          "line": 130
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-release-0.5.5-and-cleanup.md",
+      "sha256": "24b8cc93610aae3cfe0004c83a70b7c1bda2c1ccd01a78f6b00ef3a4033f1f7b",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-release-0.5.5-and-cleanup.md",
+      "title": "Release 0.5.5 and repository cleanup",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Release 0.5.5 and repository cleanup",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 30
+        },
+        {
+          "level": 2,
+          "text": "Publication and live verification",
+          "line": 52
+        },
+        {
+          "level": 2,
+          "text": "Cleanup and preservation",
+          "line": 76
+        },
+        {
+          "level": 2,
+          "text": "Limits",
+          "line": 98
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-ship-propulsion.md",
+      "sha256": "5ee9beeb12996c116506a9780c680fa78f3e8092353bb0dbab465cef03146547",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-ship-propulsion.md",
+      "title": "Ship propulsion: accepted model",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ship propulsion: accepted model",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivered revision and scope",
+          "line": 18
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 42
+        },
+        {
+          "level": 2,
+          "text": "Study recovery and evidence limits",
+          "line": 83
+        },
+        {
+          "level": 2,
+          "text": "Human feedback and publication",
+          "line": 102
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-05-starter-wasp-gravity-coil.md",
+      "sha256": "875fa89eed9c04b3e1081d9639825991c405516ef4e212f6b89ce74e576587f3",
+      "date_from_path": "2026-11-05",
+      "name": "2026-11-05-starter-wasp-gravity-coil.md",
+      "title": "Starter Wasp Gravity coil — 2026-11-05",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Starter Wasp Gravity coil — 2026-11-05",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and delivered scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Observations and owner feedback",
+          "line": 15
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 24
+        },
+        {
+          "level": 2,
+          "text": "Publication and closure",
+          "line": 44
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelict-draft-two-closure.md",
+      "sha256": "c11f662330eeeb9396cc29aad850762442c00f5a4b5fafc75914277ea6a3b16a",
+      "date_from_path": "2026-11-06",
+      "name": "2026-11-06-derelict-draft-two-closure.md",
+      "title": "Derelict draft two — aborted",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Derelict draft two — aborted",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent, delivery and decisions",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Final clarification and handoff",
+          "line": 39
+        },
+        {
+          "level": 2,
+          "text": "Evidence and checks",
+          "line": 64
+        },
+        {
+          "level": 2,
+          "text": "Gaps and closure boundary",
+          "line": 101
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "2026-11-06, Europe/Helsinki. Owner outcome: **failed loop, aborted**.",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelict-three-closure.md",
+      "sha256": "a98b30e353a62ec1ec793316471ccd839741df1ecb3012b41897eb5cff891e73",
+      "date_from_path": "2026-11-06",
+      "name": "2026-11-06-derelict-three-closure.md",
+      "title": "Derelict three — completed visual study",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Derelict three — completed visual study",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and delivered scope",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Retained evidence and conditions",
+          "line": 46
+        },
+        {
+          "level": 2,
+          "text": "Revision, checks and publication",
+          "line": 66
+        },
+        {
+          "level": 2,
+          "text": "Closure boundary",
+          "line": 98
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "2026-11-06, Europe/Helsinki. Owner instruction: “this is done, finalize 03",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-06-derelicts-closure.md",
+      "sha256": "32466f16c7a4f0c368eec120d885bc826d1a84f1e40a5da74da3384602385fee",
+      "date_from_path": "2026-11-06",
+      "name": "2026-11-06-derelicts-closure.md",
+      "title": "Derelicts design study — stopped",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Derelicts design study — stopped",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and boundary",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Delivered work and decisions",
+          "line": 16
+        },
+        {
+          "level": 2,
+          "text": "Revision and verification evidence",
+          "line": 38
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 69
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "2026-11-06 (Europe/Helsinki). Outcome: **failed design loop; stopped,",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-derelicts-integration-closure.md",
+      "sha256": "56e38ace6a784b1b1aa0b145b66168c23fde0d9d213ce19cdc88a6fbae063854",
+      "date_from_path": "2026-11-07",
+      "name": "2026-11-07-derelicts-integration-closure.md",
+      "title": "Derelicts integration — loop closure",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Derelicts integration — loop closure",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and owner decisions",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Delivered revisions",
+          "line": 28
+        },
+        {
+          "level": 2,
+          "text": "Check evidence",
+          "line": 48
+        },
+        {
+          "level": 2,
+          "text": "Publication and feedback",
+          "line": 85
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits",
+          "line": 96
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "7 November 2026, Europe/Helsinki.",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-standard-sun-implementation.md",
+      "sha256": "dc9df3b9871b40e720cc24977e3d700ca0a213e73b21bd1ad5c7963f0d2ca6c2",
+      "date_from_path": "2026-11-07",
+      "name": "2026-11-07-standard-sun-implementation.md",
+      "title": "Standard-Sun implementation — 2026-11-07",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Standard-Sun implementation — 2026-11-07",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Delivery",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Provenance and delivery state",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 44
+        },
+        {
+          "level": 2,
+          "text": "Visual inspection and limits",
+          "line": 78
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-07-suns-closure.md",
+      "sha256": "ada644fb1646457460b06f46b36357495efda16ed221f7d33d179f77c2725818",
+      "date_from_path": "2026-11-07",
+      "name": "2026-11-07-suns-closure.md",
+      "title": "Suns study closure — 2026-11-07",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Suns study closure — 2026-11-07",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 5
+        },
+        {
+          "level": 2,
+          "text": "Accepted decisions and local outputs",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Owner assessment and interpretation",
+          "line": 21
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 29
+        },
+        {
+          "level": 2,
+          "text": "Delivery state and remaining limits",
+          "line": 41
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "outcome",
+          "value": "accepted design study, closed at the owner's request. Production integration and the polished Suns article remain separate delivery work.",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-link-repair.md",
+      "sha256": "674b107645d756f6700364f5c3a5d5664c153c046b9b4790578997abf8a1a8af",
+      "date_from_path": "2026-11-08",
+      "name": "2026-11-08-link-repair.md",
+      "title": "Loop record: Markdown link repair and failing link gate — 2026-11-08",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Loop record: Markdown link repair and failing link gate — 2026-11-08",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Starting state",
+          "line": 21
+        },
+        {
+          "level": 2,
+          "text": "Map used (old path under `docs/specs/` to current path)",
+          "line": 28
+        },
+        {
+          "level": 2,
+          "text": "Deleted with no successor",
+          "line": 66
+        },
+        {
+          "level": 2,
+          "text": "Gate proof",
+          "line": 73
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 88
+        },
+        {
+          "level": 2,
+          "text": "Not run",
+          "line": 103
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-release-0.5.6.md",
+      "sha256": "a7902062d3289851369389dc9bfad5756142adcab4ef68f9a5c2abc631a2f480",
+      "date_from_path": "2026-11-08",
+      "name": "2026-11-08-release-0.5.6.md",
+      "title": "Release 0.5.6",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Release 0.5.6",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Verification",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Artifact and publication",
+          "line": 26
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-retro-and-actions.md",
+      "sha256": "e01aa40c191ed9e528fc9aac3d126753a8a6ceaac6aa10f3902ea7c2c77d4c1e",
+      "date_from_path": "2026-11-08",
+      "name": "2026-11-08-retro-and-actions.md",
+      "title": "Retrospective at 0.5.6 and the actions taken the same day",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Retrospective at 0.5.6 and the actions taken the same day",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 69
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 101
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 109
+        },
+        {
+          "level": 2,
+          "text": "Designer's note after closure, 8 November",
+          "line": 121
+        },
+        {
+          "level": 2,
+          "text": "Findings (observations)",
+          "line": 147
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 172
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-08-retro-exploration.md",
+      "sha256": "fae56a22a69b70321102fc22fec961a43f8468bee07427fae943c7a4669c68b4",
+      "date_from_path": "2026-11-08",
+      "name": "2026-11-08-retro-exploration.md",
+      "title": "Retro exploration with the designer, 8 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Retro exploration with the designer, 8 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 9
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 31
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 46
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 54
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 59
+        },
+        {
+          "level": 2,
+          "text": "Findings (observations)",
+          "line": 98
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 122
+        },
+        {
+          "level": 2,
+          "text": "Later on 8 November: acting on the items",
+          "line": 132
+        },
+        {
+          "level": 3,
+          "text": "Changes delivered",
+          "line": 138
+        },
+        {
+          "level": 3,
+          "text": "Checks",
+          "line": 163
+        },
+        {
+          "level": 3,
+          "text": "Publication",
+          "line": 171
+        },
+        {
+          "level": 3,
+          "text": "Human feedback, attributed paraphrase",
+          "line": 179
+        },
+        {
+          "level": 3,
+          "text": "Findings (observations)",
+          "line": 202
+        },
+        {
+          "level": 3,
+          "text": "Evidence gaps",
+          "line": 219
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-derelicts-in-survival-s1.md",
+      "sha256": "c536812022cfd67d1911a88403bea87418bc8fb77041081fa4b94c7e7568dbae",
+      "date_from_path": "2026-11-09",
+      "name": "2026-11-09-derelicts-in-survival-s1.md",
+      "title": "Derelicts in survival: plan and S1 starter Wasp, 9 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Derelicts in survival: plan and S1 starter Wasp, 9 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 35
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 60
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 76
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 85
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 111
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-ion-point-defence-implementation.md",
+      "sha256": "d38084752c1ecae53ee8e9f813b28b7a5b4a38061397993d3915058413d57d96",
+      "date_from_path": "2026-11-09",
+      "name": "2026-11-09-ion-point-defence-implementation.md",
+      "title": "Ion Point Defence specification and implementation, 9 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ion Point Defence specification and implementation, 9 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 10
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 38
+        },
+        {
+          "level": 2,
+          "text": "Implement and review rounds",
+          "line": 65
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 76
+        },
+        {
+          "level": 3,
+          "text": "Main session, on the dirty tree before the commit",
+          "line": 78
+        },
+        {
+          "level": 3,
+          "text": "Reported by agents, not inspected by the main session",
+          "line": 96
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 114
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 119
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 127
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 152
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-09-ion-point-defence-study.md",
+      "sha256": "400ba8a09b4d1cf5e4fd0efa8bb43e2b495059998d5451b825980f0b6ebfa6d9",
+      "date_from_path": "2026-11-09",
+      "name": "2026-11-09-ion-point-defence-study.md",
+      "title": "Ion Point Defence design study, 8–9 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ion Point Defence design study, 8–9 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 10
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 39
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 63
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 84
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 89
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 107
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 140
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-0-6-0-spec-session.md",
+      "sha256": "d9d43a5636e63e98c39a46c3105761b1c66818abbb4c99b74c4f8879ab3e7882",
+      "date_from_path": "2026-11-10",
+      "name": "2026-11-10-0-6-0-spec-session.md",
+      "title": "0.6.0 spec session, 10 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "0.6.0 spec session, 10 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 10
+        },
+        {
+          "level": 3,
+          "text": "Decisions recorded by the designer",
+          "line": 32
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 57
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 69
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 76
+        },
+        {
+          "level": 2,
+          "text": "After this loop (not this session's work)",
+          "line": 89
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 99
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-flight-scene-instrument-study.md",
+      "sha256": "0a3747b21495a7f69db47606da2da93de3137b2bc108cbff613185808188d8ea",
+      "date_from_path": "2026-11-10",
+      "name": "2026-11-10-flight-scene-instrument-study.md",
+      "title": "Flight scene instrument study, 10 November 2026",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Flight scene instrument study, 10 November 2026",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 11
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 35
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 60
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 96
+        },
+        {
+          "level": 2,
+          "text": "Human feedback",
+          "line": 103
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 120
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 170
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-lab-game-modes.md",
+      "sha256": "b6ed6ab9be7e741cd786743b336cdbbf1670eaf4bb21a53b44193021d1ca851c",
+      "date_from_path": "2026-11-10",
+      "name": "2026-11-10-lab-game-modes.md",
+      "title": "Loop evidence: Lab game modes and stale pages",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Loop evidence: Lab game modes and stale pages",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 27
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 59
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 81
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 86
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 107
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-layered-renderer-workbench.md",
+      "sha256": "c2ae5fbb2c56923c0bfe33969ac2966a60b8f9aedd5daf37ee6fc67b5417baf3",
+      "date_from_path": "2026-11-10",
+      "name": "2026-11-10-layered-renderer-workbench.md",
+      "title": "Layered renderer and workbench — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Layered renderer and workbench — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and designer decisions",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Delivered revisions and working changes",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 57
+        },
+        {
+          "level": 2,
+          "text": "Visual and human evidence",
+          "line": 95
+        },
+        {
+          "level": 2,
+          "text": "Publication and remaining uncertainty",
+          "line": 113
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-10-render-performance-bench.md",
+      "sha256": "a6b736cd05b87ef0b64f926812c2d13d3d89cf5bccedea605706f410abaab005",
+      "date_from_path": "2026-11-10",
+      "name": "2026-11-10-render-performance-bench.md",
+      "title": "Render performance bench — closed loop",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Render performance bench — closed loop",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and accepted scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivery and revision boundary",
+          "line": 26
+        },
+        {
+          "level": 2,
+          "text": "Correctness evidence",
+          "line": 55
+        },
+        {
+          "level": 2,
+          "text": "Visible-browser measurements",
+          "line": 84
+        },
+        {
+          "level": 2,
+          "text": "Evidence limits and closure",
+          "line": 107
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-browser-test-konmari.md",
+      "sha256": "e7b1df24c44c1536d6fa024541ec29a287d03ce086f97e51236b37c573968f09",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-browser-test-konmari.md",
+      "title": "Browser-test KonMari closure",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Browser-test KonMari closure",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes and identity",
+          "line": 21
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 38
+        },
+        {
+          "level": 2,
+          "text": "Human feedback and limits",
+          "line": 68
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-design-study-writing-and-closure.md",
+      "sha256": "7ebae4f4cacbe40b012005448ef3c4dbb03fafe3119bab5c74ff8291b79a844f",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-design-study-writing-and-closure.md",
+      "title": "Design-study writing and closure guidance",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Design-study writing and closure guidance",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes and identity",
+          "line": 32
+        },
+        {
+          "level": 2,
+          "text": "Inspection and validation evidence",
+          "line": 61
+        },
+        {
+          "level": 2,
+          "text": "Remaining scope and evidence limits",
+          "line": 91
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-first-gauntlet-pirate.md",
+      "sha256": "a97a39d06b0b55d6a07efde634bfe099cdc02b3d3d1311e1ae40301f023efa93",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-first-gauntlet-pirate.md",
+      "title": "First Gauntlet pirate experiment",
+      "headings": [
+        {
+          "level": 1,
+          "text": "First Gauntlet pirate experiment",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Delivered revision",
+          "line": 24
+        },
+        {
+          "level": 2,
+          "text": "Review observations and corrections",
+          "line": 42
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 61
+        },
+        {
+          "level": 2,
+          "text": "Measurement limits",
+          "line": 88
+        },
+        {
+          "level": 2,
+          "text": "Commit, push and later work",
+          "line": 100
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps and boundary",
+          "line": 111
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-gauntlet-two-pirates-release.md",
+      "sha256": "c55662954d54a3629225584945850edb73facc98b0fc6c602292517a9b7587e2",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-gauntlet-two-pirates-release.md",
+      "title": "Two-pirate Gauntlet and 0.6.1 publication",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Two-pirate Gauntlet and 0.6.1 publication",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Delivered changes and review",
+          "line": 23
+        },
+        {
+          "level": 2,
+          "text": "Verification evidence",
+          "line": 53
+        },
+        {
+          "level": 2,
+          "text": "Publication states",
+          "line": 82
+        },
+        {
+          "level": 2,
+          "text": "Measurements, observations and limits",
+          "line": 101
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-playground-title-status.md",
+      "sha256": "600a241960bdccef04d44c1d775a016da489225293ed5b17a824cb3eb03dea5a",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-playground-title-status.md",
+      "title": "Playground title status — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Playground title status — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 7
+        },
+        {
+          "level": 2,
+          "text": "Designer decisions",
+          "line": 16
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 28
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 45
+        },
+        {
+          "level": 2,
+          "text": "Visual and human evidence",
+          "line": 61
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 71
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps and out-of-scope workspace changes",
+          "line": 77
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "status",
+          "value": "-slot composition and that warning visibility does not interrupt normal",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-ship-slots-study.md",
+      "sha256": "07cb69325a6bf7d78e3cf807e1a8bcd27c2ce649e8370645e4b4c755fc3f5c2b",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-ship-slots-study.md",
+      "title": "Ship slots study — loop evidence",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ship slots study — loop evidence",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 12
+        },
+        {
+          "level": 2,
+          "text": "Sequence",
+          "line": 24
+        },
+        {
+          "level": 2,
+          "text": "Designer decisions",
+          "line": 80
+        },
+        {
+          "level": 2,
+          "text": "Changes delivered",
+          "line": 91
+        },
+        {
+          "level": 2,
+          "text": "Checks",
+          "line": 108
+        },
+        {
+          "level": 2,
+          "text": "Publication",
+          "line": 126
+        },
+        {
+          "level": 2,
+          "text": "Findings",
+          "line": 130
+        },
+        {
+          "level": 2,
+          "text": "Unknown",
+          "line": 157
+        },
+        {
+          "level": 2,
+          "text": "Evidence gaps",
+          "line": 165
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-stellar-encounters-closure.md",
+      "sha256": "0b456c81b65ae6c4b0f38492fd2264ded148a5395769475f647faec2ae655fed",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-stellar-encounters-closure.md",
+      "title": "Stellar encounters — stopped study",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Stellar encounters — stopped study",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and observed direction",
+          "line": 8
+        },
+        {
+          "level": 2,
+          "text": "Retained outputs and decisions",
+          "line": 42
+        },
+        {
+          "level": 2,
+          "text": "Observations and limits",
+          "line": 69
+        },
+        {
+          "level": 2,
+          "text": "Revision and publication evidence",
+          "line": 93
+        },
+        {
+          "level": 2,
+          "text": "Check evidence",
+          "line": 106
+        },
+        {
+          "level": 2,
+          "text": "Closure changes and remaining gaps",
+          "line": 148
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-11-title-star-family-trial.md",
+      "sha256": "93830c34cafab8458226455d4067397e7bc72b3926eb6a582e6701efb2187227",
+      "date_from_path": "2026-11-11",
+      "name": "2026-11-11-title-star-family-trial.md",
+      "title": "Title star family trial",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Title star family trial",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Changes",
+          "line": 21
+        },
+        {
+          "level": 2,
+          "text": "Evidence",
+          "line": 34
+        },
+        {
+          "level": 2,
+          "text": "Publication and evidence gaps",
+          "line": 52
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "11 November 2026",
+          "line": 3
+        },
+        {
+          "field": "status",
+          "value": "Implemented in the working tree; not committed or published.",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-12-practice-g7-sun.md",
+      "sha256": "9f712bad3dd773e34683013f32975c6c89d4692a5b120e13f5ea1fd191f2cba1",
+      "date_from_path": "2026-11-12",
+      "name": "2026-11-12-practice-g7-sun.md",
+      "title": "Practice G7 Sun — 2026-11-12",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Practice G7 Sun — 2026-11-12",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and scope",
+          "line": 3
+        },
+        {
+          "level": 2,
+          "text": "Delivery",
+          "line": 12
+        },
+        {
+          "level": 2,
+          "text": "Provenance and delivery state",
+          "line": 24
+        },
+        {
+          "level": 2,
+          "text": "Evidence",
+          "line": 39
+        },
+        {
+          "level": 2,
+          "text": "Limits and unknowns",
+          "line": 61
+        }
+      ],
+      "brief_fields": []
+    },
+    {
+      "path": "docs/loop-evidence/2026-11-12-yellow-family-flight-trial.md",
+      "sha256": "2f44bb32ed959d503b283faf669a3b4f138d70827b42640fc1ccc56802b255aa",
+      "date_from_path": "2026-11-12",
+      "name": "2026-11-12-yellow-family-flight-trial.md",
+      "title": "Yellow-family flight trial",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Yellow-family flight trial",
+          "line": 1
+        },
+        {
+          "level": 2,
+          "text": "Intent and decisions",
+          "line": 6
+        },
+        {
+          "level": 2,
+          "text": "Changes in this loop",
+          "line": 23
+        },
+        {
+          "level": 2,
+          "text": "Evidence",
+          "line": 43
+        },
+        {
+          "level": 2,
+          "text": "Publication and remaining evidence gaps",
+          "line": 72
+        }
+      ],
+      "brief_fields": [
+        {
+          "field": "date",
+          "value": "12 November 2026",
+          "line": 3
+        },
+        {
+          "field": "status",
+          "value": "Implemented in the working tree; not committed or published.",
+          "line": 4
+        }
+      ]
+    }
+  ]
+}

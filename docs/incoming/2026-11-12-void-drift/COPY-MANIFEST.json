@@ -1,0 +1,118 @@
+{
+  "source_checkout": "/Users/ville.takanen/dev/void-drift",
+  "prepared_utc": "2026-11-12T07:00:58.906434+00:00",
+  "copied_files": [
+    {
+      "path": "docs/plans/2026-11-12-asdlc-assessment.md",
+      "sha256": "2cefa21a1447fe09fe041352072fa6b539c25ab44d0ba2f75890527c7a9339a7"
+    },
+    {
+      "path": "docs/reports/asdlc-io/01-method-and-sources.md",
+      "sha256": "754e47f0f759d8dde36a398d450ffc5bc9bb710b2ac66457d111d1c5aef699ae"
+    },
+    {
+      "path": "docs/reports/asdlc-io/02-factory-and-evolution.md",
+      "sha256": "01d87582f44976c4a0b4a2a2366f6acfc774c363a33fa7916b2dfaadcaefde32"
+    },
+    {
+      "path": "docs/reports/asdlc-io/03-guidance-assessment.md",
+      "sha256": "fa80923914a8beb4752c84576caa61ae796685e220750fd24919415b19f8b054"
+    },
+    {
+      "path": "docs/reports/asdlc-io/04-case-studies.md",
+      "sha256": "3591962ba5f4dcba26e915b40d4b97447b59f0599e6532cb343c5ecc3cda1e34"
+    },
+    {
+      "path": "docs/reports/asdlc-io/05-findings-for-asdlc.md",
+      "sha256": "0f6e9d582403eab15fd47bc7dc0fb5f7b2e17ed4563b8abfc5dd067adb1444d9"
+    },
+    {
+      "path": "docs/reports/asdlc-io/06-documentation-proposals.md",
+      "sha256": "f84d4e3cb03a35a8cf76d9c6dad74206f92ef42cbf58813cd8433b9aada6ee88"
+    },
+    {
+      "path": "docs/reports/asdlc-io/07-postscript-test-retention.md",
+      "sha256": "2b2789f59590bbf83dcc9791ac66037ca64c495f23eadc51d9f06b4945db4ce7"
+    },
+    {
+      "path": "docs/reports/asdlc-io/README.md",
+      "sha256": "a16435712836d8e940c5f1fe849f2f2385edbd75a152888b0014b47a86d0a3b9"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/challenge-design.md",
+      "sha256": "3282afbb724663c0e9d87c2f07c9d0142dcd13ec56aa00895b78c8504c3f0327"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/challenge-gates.md",
+      "sha256": "3c19ca204daa7e187eed5d302f1b72dfa4bfd5606e8958a4ced97bc9aa78cced"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/challenge-learning.md",
+      "sha256": "d4ad42c05c80b24af40a3a6ac9d3d3e82b05580517a48b4d7728b20d071aa65e"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/coordinator-checks.md",
+      "sha256": "e92eb8fcb56be5d0acbb72c6a48df58f9fd7a69097565170a7ce18f2dec10b17"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/design-and-context.md",
+      "sha256": "a807e359c3696efcd74521ce1f93bc8162720b868b3ae4d87517a1dc4b111a4c"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/episode-selection.json",
+      "sha256": "49b086f8f929b7da9025e9dc300837e75594683d1667d81a6834383183e4454d"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/gates-and-delivery.md",
+      "sha256": "7a80c5127d5846e52b37cad46f5636945817475893947796248474171e1b2ffa"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/guidance-capture.json",
+      "sha256": "69f9215eb2f06b226ea7bcdc50967d0e722478871c434528aeb06ecb677a3ab9"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/guidance-context-and-learning.md",
+      "sha256": "51b7a930dd0e191dc6612674ba94f620f4815d16af1f76a49f24158b2eeb7a2d"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/guidance-coverage.md",
+      "sha256": "8a8a3a3a4e56e58618f9064ded1c7077ec397d1cd2da2eaea5d18958709ddaf0"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/guidance-design-and-specs.md",
+      "sha256": "3dfb6e3bd2b2d1961893c9c188c2a046900936a613f09bc11d080c6d57720f1d"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/guidance-gates-and-factory.md",
+      "sha256": "c0ad4acc6dfb047c88233edfff0d2cfe2db50f8c8b6778d9b15eca3bc71443cb"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/learning-and-history.md",
+      "sha256": "6d1b185b3dda5587d1b67d3d4841fbd78d6b4bdb808f1b80caae626c622085c0"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/loop-inventory.json",
+      "sha256": "55d2777827d89fc20a5067bc54cc22efc5b080c482d10c96b51f250f65202794"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/postscript-checks.json",
+      "sha256": "9c9f9f73318a540bde571a06d9bd7f16a322ef6be46f8198a34a7f2c3fe0f5bf"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/report-checks.json",
+      "sha256": "3bcec6d08dc2001dd49622ad12c2d319b7253fde3f28ad645332b259bd73dd1d"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/repository-manifest.json",
+      "sha256": "c50d3b6ab6264f63b8c9f78972dc27e93d19ed03f6b82de68f459fd25d40f7e6"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/run-report-observations.json",
+      "sha256": "0e9ec6e3d65321d21994d24955050063c75303f0464c2461f70aec8554195798"
+    },
+    {
+      "path": "docs/reports/asdlc-io/evidence/validation.md",
+      "sha256": "39cec74939b7ca71133d9f61a66f4240098ba66c102a640a56b14dcf43ad2c3b"
+    }
+  ]
+}
